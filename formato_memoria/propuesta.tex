@@ -20,7 +20,7 @@ Gabriel Sanhueza Fuentes (Estudiante)\\
 Jimmy Gutierrez Bahamondes (Profesor guía)\\
 Carrera de Ingeniería Civil en Computación\\ 
 Universidad de Talca}
-\date{\today}
+\date{6 de septiembre de 2019}
 
 \maketitle
 
@@ -36,18 +36,48 @@ La longitud máxima de esta sección es de 2.5 páginas.)}
 
 
 \begin{itemize}
-\item \textbf{Optimización}:
-\item \textbf{Algoritmos genéticos}:
-\item \textbf{NSGA-II}:
-\item \textbf{Epanet}:
+\item \textbf{Optimización}: 
+\item \textbf{Problemas Mono-objetivos}: 
+\begin{itemize}
+	\item \textbf{Exactos}: 
+	\item \textbf{Heurísticos}: 
+	\begin{itemize}
+		\item \textbf{Algoritmos genéticos}: 
+	\end{itemize}
+\end{itemize}
+\item \textbf{Problemas Multiobjetivo}:
+	\begin{itemize}
+		\item \textbf{NSGA-II}: 
+	\end{itemize}
 \item \textbf{JMetal}:
+\item \textbf{Epanet}:
+\item \textbf{Red de distribución de agua}:
+ 
 \end{itemize}
 
 \subsection{Contexto del proyecto} 
 \emph{Esta sección debe incluir el marco en el cual se presenta el problema y/o proyecto a desarrollar, incluyendo los fundamentos teóricos y/o prácticos necesarios para el desarrollo del proyecto.) Esta sección responde a la pregunta ¿Dónde surge el problema?}
 
+La escasez de agua potable es sin duda una problemática a nivel mundial. Dentro de este contexto, la optimización de los sistemas de distribución de agua potable es un problema sin resolver hasta la fecha. 
+
+A lo mencionado anteriormente, también se suma la escasez energética. Puesto que, es requerida para el tratamiento y distribución del agua. Es por esto que, es importante hacer un uso eficiente de la energia durante la operación del sistema.
+
+La optimización de estos sistemas, a la vez, involucra la participación de múltiples criterios que deben ser tomados en cuenta a la hora de decidir. Sin embargo, la incorporación de estos criterios, involucra la generación de modelos cada vez más complejos.
+
+Los algoritmos metaheurísticos han demostrado ser un mecanismo eficiente ante problemas de este tipo. Ya que, estos reducen el tiempo necesario que toma el evaluar todas las configuraciones posibles. Dado que, juzgan un conjunto menor de valores logrando como resultado una aproximación a la solución óptima.
+
 \subsection{Definición del problema} 
 \emph{(Esta sección debe incluir la descripción del problema resolver o idea a desarrollar, y la motivación para hacerlo. Es decir, cual es la importancia, innovación, aporte, y/o beneficio para la ciencia y/o la humanidad). Esta sección responde a la pregunta ¿Cuál es el problema que voy a resolver?}
+
+Los encargados de implementar sistemas de distribución de agua potable, no cuentan con suficientes herramientas y  tiempo para su correcta gestión. Por lo tanto, no es posible utilizar los recursos asociados de forma eficiente. Además, las herramientas existentes no satisfacen las necesidades de usabilidad y costo, debido a que son poco intuitivas y de pago.
+
+El escoger las especificaciones de una red de agua potable ya es de por sí difícil debido a que hay que evaluar el rendimiento general del sistema alternando entre distintas configuraciones en busca de una solución que sea eficaz. Debido a esto, el uso de herramientas automatizadas que evalúen el rendimiento de las diversas combinaciones posibles viene a ser necesario.
+
+A lo anterior se suma el hecho de que los interesados en esta área no manejan herramientas informáticas.
+
+%Es por esto que con la realización de este trabajo se busca lograr la implementación de  una herramienta que ayude a los encargados a evaluar el diseño y la operación de la red de agua potable utilizando un enfoque especifico, contribuyendo a la ves al uso eficiente del agua y energía.
+
+
 
 \subsection{Trabajo relacionado} 
 \emph{(Esta sección debe incluir los enfoques usados actualmente para resolver el problema. Esta sección debe contener referencias bibliográficas a trabajos relacionados al proyecto.) Esta sección responde a la pregunta ¿Qué se ha hecho para resolver el problema?}
@@ -70,7 +100,7 @@ La longitud máxima de esta sección es de 2.5 páginas.)}
 \emph{(Debe ser una sola frase que resuma lo que se quiere lograr.)} 
 \begin{itemize}
 %\item Desarrollar un sistema web que permita administrar la asignación de salas de clase de forma automática y eficiente.
-\item Desarrollar un sistema que mediante una interfaz gráfica y utilizando algoritmos metaheurísticos ayude a seleccionar los elementos que conforman una red de agua potable y a establecer los niveles de operación de una red ya construida en base a costos operacionales y energéticos. Permitiendo a la vez la comparación de las soluciones obtenidas a través de indicadores establecidos.
+\item Generar un software capaz de cargar diferentes redes de agua potable, el cual por una parte haciendo uso de algoritmos de optimización multiobjetivo (NSGA-II) obtenga el régimen de bombeo que optimiza los costos operativos y energéticos y por otra parte resuelva un problema de diseño usando el enfoque mono-objetivo configurando los diámetros de las tuberías con el fin de reducir el costo de inversión.
 \end{itemize}
 
 \paragraph{Objetivos específicos} \emph{(Una lista de puntos que detallan el objetivo general.)}
