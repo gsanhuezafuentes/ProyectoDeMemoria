@@ -36,8 +36,9 @@ La longitud máxima de esta sección es de 2.5 páginas.)}
 
 
 \begin{itemize}
-\item \textbf{Optimización}: 
-\item \textbf{Problemas Mono-objetivos}: 
+\item \textbf{Optimización}: Mejorar las variables presentes en un proceso con el fin de conseguir el mejor resultado posible.
+\item \textbf{Función objetivo}: Función que modela el problema que debe ser optimizado. Por ejemplo, función de costos de inversión.
+\item \textbf{Problemas Mono-objetivos}: Problemas que cuentan con una sola función objetivo.
 \begin{itemize}
 	\item \textbf{Exactos}: 
 	\item \textbf{Heurísticos}: 
@@ -45,12 +46,12 @@ La longitud máxima de esta sección es de 2.5 páginas.)}
 		\item \textbf{Algoritmos genéticos}: 
 	\end{itemize}
 \end{itemize}
-\item \textbf{Problemas Multiobjetivo}:
+\item \textbf{Problemas Multiobjetivo}: Problemas que poseen múltiples funciones objetivos.
 	\begin{itemize}
-		\item \textbf{NSGA-II}: 
+		\item \textbf{NSGA-II}: Algoritmo para la optimización multiobjetivo.
 	\end{itemize}
-\item \textbf{JMetal}:
-\item \textbf{Epanet}:
+\item \textbf{JMetal}: Framework que incorpora y permite la utilización de algoritmos metahuristicos para la optimización multiobjetivo. \cite{9}
+\item \textbf{Epanet}: Software para la simulación y análisis de redes hidraulicas.
 \item \textbf{Red de distribución de agua}:
  
 \end{itemize}
@@ -111,8 +112,12 @@ A lo anterior se suma el hecho de que los interesados en esta área no manejan h
 %\item Evaluar el sistema a través de ... 
 \item Especificar los requerimientos del proyecto.
 \item Definir la manera de representar la red de agua potable y los elementos que la componen.
-\item Elegir algoritmos metaheurísticos a utilizar para los problemas de diseño y operación.
-\item Establecer indicadores de calidad para evaluar la solución obtenida a partir de los métodos metaheurísticos.
+\item Diseñar e implementar una interfaz que permita la carga y visualización de una red de agua potable.
+\item Integrar el algoritmo multiobjetivo Nondominated Sorting Genetic Algorithm (NSGA-II) para resolver el problema de la programación de bombas.
+\item Integrar distintos operadores de cruza y mutación para utilizar en el algoritmo multiobjetivo.
+\item Integrar Algoritmo Genético para resolver el problema de diseño de la red.
+\item Integrar distintos operadores de cruza y mutación para utilizar en el algoritmo mono-objetivo.
+\item Permitir almacenar los resultados obtenidos al ejecutar los algoritmos.
 \item Evaluar el sistema a través de pruebas de usabilidad.
 \end{itemize}
 
@@ -121,9 +126,15 @@ A lo anterior se suma el hecho de que los interesados en esta área no manejan h
 \section{Alcances}
 \emph{(En esta sección se debe incluir una lista de puntos que definen los límites del trabajo. La longitud máxima de esta sección es de 1/2 página.)}
 \begin{itemize}
-\item En este trabajo se espera implementar un prototipo funcional de la idea a desarrollar, por lo tanto se propone desarrollar una interfaz de línea de comando simple en lugar de una interfaz de usuario gráfica. 
-\item En este trabajo no se crearán algoritmos para ... 
-\item Este trabajo se limita a ...
+%\item En este trabajo se espera implementar un prototipo funcional de la idea a desarrollar, por lo tanto se propone desarrollar una interfaz de línea de comando simple en lugar de una interfaz de usuario gráfica. 
+%\item En este trabajo no se crearán algoritmos para ... 
+%\item Este trabajo se limita a ...
+\item Este trabajo no contempla la creación de la red.
+\item Este trabajo solo contempla la utilización de un algoritmo monoobjetivo y un algoritmo multiobjetivo.
+\item El producto obtenido a través de la realización de este trabajo solo sera compatible con el sistema operativo windows. Esto se debe a que se harán llamadas nativas para realizar los calculos de las redes.
+\item En este trabajo no se crearan algoritmos para resolver los problemas a tratar, sino que sera usado un framework que ya implementa estos.
+\item Este trabajo no contempla la implementación del motor de calculos desde cero. Sino que se utilizará uno ya existente, Epanet. 
+
 \end{itemize}
 
 
