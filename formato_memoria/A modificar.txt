@@ -1,6 +1,0 @@
-Quitar los algoritmos de los objetivos generales
-
-Tareas:
-1 Buscar 5 ejemplos de objetivos generales en proyectos de desarrollo de software. Usar como referencia tesis anteriores.
-2 En funcion de estos objetivos redefinir el objetivo general de la memoria.
-3. Buscar librerias para hacer el diseño grafico de la plataforma.
