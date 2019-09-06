@@ -13,7 +13,7 @@
 \pagestyle{empty}
 
 \title{
-$<$Título de la propuesta de proyecto$>$\\
+Herramienta para la optimización de redes de distribución de agua potable\\
 (Propuesta de proyecto final de carrera)
 }
 \author{
@@ -32,19 +32,19 @@ Universidad de Talca}
 
 % Agregar una introducción a lo que viene abajo
 
-En el presente capitulo se presentan los conceptos básicos, el problema y su contexto, y la propuesta de solución. 
+En el presente capitulo se presentan los conceptos básicos, el problema, su contexto, y la propuesta de solución. 
 
 \subsection{Conceptos básicos del proyecto} 
 
-En esta sección se definen algunos conceptos básicos que serán necesarios para la realización del proyecto.
+En esta sección se definen algunos elementos básicos que serán necesarios para la realización del proyecto.
 
 \begin{itemize}
-\item \textbf{Optimización}: La optimización consiste en maximizar o minimizar un conjunto de funciones
+\item \textbf{Optimización}: La optimización consiste en maximizar o minimizar un conjunto de funciones que matemáticamente pueden ser expresadas de la siguiente forma:
 $$f_1(x),f_2(x), ..., f_N(x),\ x=(x_1,...,x_d) | x \in X$$
 sujeto a una serie de condiciones
 $$h_j(x) = 0, j=1,2,...,J$$
 $$g_k(x) \leq 0, k=1,2,...,K$$
-siendo $f_1,...,f_N$ funciones objetivos y   $h_j$ junto con $g_k$ una serie de restricciones \cite{Yang2015}. En donde de acuerdo a [Optimización multi-objetivo: aplicaciones a problemas del mundo real], $X$ corresponde el espacio de búsqueda, mientras que los valores obtenidos $f_n(x)$ al espacio objetivo. De acuerdo a la cantidad de funciones objetivos que se tenga, se establece que si $N=1$ la optimización es \textbf{mono-objetivo}, mientras que para $N\geq 2$ es \textbf{multi-objetivo} \cite{Yang2015}.
+siendo $f_1,...,f_N$ funciones objetivos y   $h_j$ junto con $g_k$ una serie de restricciones \cite{Yang2015}. En donde de acuerdo a \cite{Lopez2013},donde $X$ corresponde al conjunto de espacio de búsqueda, mientras que los valores obtenidos $f_n(x)$ representa a los valores alcanzados por cada uno de los objetivos. De acuerdo a la cantidad de funciones objetivos que se tenga, se establece que si $N=1$ la optimización es \textbf{mono-objetivo}, mientras que para $N\geq 2$ es \textbf{multi-objetivo} \cite{Yang2015}. En este punto se debe tener en cuenta que los objetivos planteados deben encontrarse en contradicción. 
 
 Debido a la definición de las restricciones es posible dividir el espacio de búsqueda en dos regiones \cite{Lopez2013}:
 \begin{itemize}
@@ -52,9 +52,14 @@ Debido a la definición de las restricciones es posible dividir el espacio de b�
 	\item Soluciones no factibles: Integrado por aquellos elementos que no complen todas las restricciones.
 \end{itemize}
 %\item \textbf{Optimización Mono-objetivo}: 
-\item \textbf{Heurísticas}: Métodos que permiten obtener soluciones de calidad haciendo uso de un bajo nivel de recursos y en un tiempo reducido \cite{Lopez2013}.
-\item \textbf{Metaheuristica}: Heuristicas generalizadas para ser aplicadas en un amplio conjunto de problemas \cite{Lopez2013}.
-\item \textbf{Algoritmos genéticos}: Algoritmo que busca soluciones optimas dentro del espacio de soluciones. Para realizar esto, el algoritmo parte desde una solución candidata y lleva a cabo un proceso de reproducción, generando nuevas soluciones. A medida que se agregan nuevas soluciones en la población, soluciones de generaciones anteriores mueren \cite{Heiss-Czedik1997}.
+
+
+\item \textbf{Heurísticas}: Métodos que permiten obtener soluciones de un problema haciendo uso de un bajo nivel de recursos y en un tiempo reducido \cite{Lopez2013}.
+
+
+\item \textbf{Metaheuristica}: Heuristicas generalizadas para ser aplicadas en un amplio conjunto de problemas. \cite{Lopez2013}.
+
+\item \textbf{Algoritmos genéticos}:Estrategia de búsqueda de soluciones basada en la teoría de la Evolución Algoritmo de Darwin. Para realizar esto, el algoritmo parte desde un conjunto de soluciones denominada población he iterativamente, lleva a cabo un proceso de reproducción, generando nuevas soluciones \cite{Heiss-Czedik1997}.
 %\item \textbf{Optimización Multi-objetivo}: Problemas que poseen múltiples funciones objetivos.
 
 \item \textbf{NSGA-II}: Algoritmo que utiliza la cruza, mutación y reproducción para encontrar un conjunto de soluciones optimas a problemas que cuentan con mas de un objetivo \cite{Deb2002}. 
@@ -95,9 +100,15 @@ A lo anterior se suma el hecho de que los interesados en esta área no manejan h
 En este apartado se mostraran algunos trabajos parecidos al que tiene como resultado este proyecto.
 
 \begin{itemize}
-	\item \textbf{Magmoredes}: En \cite{Edwin2017} se describe la existencia de un software de diseño basado en micro-algoritmos genéticos multiobjetivos, que de acuerdo al autor, tiene un mejor rendimiento y es mas eficiente debido a que requiere una menor cantidad de memoria y tiene un tiempo de computo que el algoritmo NSGA-II. Este programa puede cargar cualquier red y realiza los cálculos utilizando librerías de java. Sin embargo, este programa tiene como objetivo optimizar el costo y la confiabilidad final de la red.
+	\item \textbf{Magmoredes}: En \cite{Edwin2017} se describe la existencia de un software de diseño basado en micro-algoritmos genéticos multiobjetivos, que de acuerdo al autor, tiene un mejor rendimiento y es más eficiente debido a que requiere una menor cantidad de memoria y tiene un tiempo de computo que el algoritmo NSGA-II. Este programa puede cargar cualquier red y realiza los cálculos utilizando librerías de java. Este programa tiene como objetivo optimizar el costo y la confiabilidad final de la red.
+	
+	
 	\item \textbf{Hidra software}: Es un Software de paga que permite el diseño y la realización de distintos tipos de cálculos, como la capacidad de estanque, los recursos requeridos para la construcción de la red, demanda, diámetros, etc.
+	
+	
 	\item \textbf{WaterGEMS}: De acuerdo a \cite{Bentley2017}, este software permite la  contrucción de modelos geoespaciales; optimizacion de diseño, ciclos de bombeo y calibración automatica del modelo; y la  gestion de activos. 
+	
+	Los programas presentados anteriormente, resuelven problemas particulares que se dan en una red de distribución de agua potable.
 \end{itemize}
 
 \subsection{Propuesta de solución}
@@ -160,7 +171,7 @@ A continuación se darán a conocer el objetivo general y los objetivos específ
 %\item En este trabajo se espera implementar un prototipo funcional de la idea a desarrollar, por lo tanto se propone desarrollar una interfaz de línea de comando simple en lugar de una interfaz de usuario gráfica. 
 %\item En este trabajo no se crearán algoritmos para ... 
 %\item Este trabajo se limita a ...
-\item Este trabajo no contempla la creación de la red, por lo que estas seran ser ingresadas como entradas.
+\item Este trabajo no contempla la creación de la red, por lo que estas serán ser ingresadas como entradas.
 \item Este trabajo solo contempla la utilización e implementación del algoritmo genético y NSGA-II.
 \item El producto obtenido a través de la realización de este trabajo solo sera compatible con el sistema operativo Windows. Esto se debe a que harán llamadas a librerías nativas para realizar los cálculos de las redes.
 
@@ -171,20 +182,20 @@ A continuación se darán a conocer el objetivo general y los objetivos específ
 \section{Metodología}
 %\emph{(En esta sección se deben describir y justificar los métodos que se usarán en el desarrollo del proyecto de titulación. Los métodos obligatorios que debe incluir esta seccion es: Metodología de Desarrollo/Investigación y Metodología de Evaluación.)}
 
-En esta sección se describirá y justificara la metodologia de desarrollo y la metodologia de evaluacion que se usaran a lo largo del desarrollo del proyecto.. 
+En esta sección se describirá y justificara la metodologías de desarrollo y evaluación que se usaran durante el desarrollo del proyecto.. 
 \subsection{Metodología de desarrollo}
 
 %\emph{(En esta subsección se deben describir y justificar los metodos de desarrollo y/o investigación que se aplicaran a lo largo del desarrollo del proyecto.)}
 
-Esta sección describe y justifica la metodología de desarrollo que se utilizara.
+Esta sección describe y justifica el uso de la metodología iterativo incremental.
 \subsubsection{Iterativo incremental}
 
 Esta metodología lleva a cabo el desarrollo de un proyecto de software dividiéndolo en iteraciones que generan un incremento, el cual contribuye en el desarrollo del producto final. Cada iteración se compone de las fases de análisis, diseño, implementación y testing. La fase de análisis lleva a cabo la obtención y definición de los requerimientos del software. La etapa de diseño se encarga de la conceptualización del software basado en los requerimientos definidos anteriormente. Durante la implementación se codifican las funcionalidades siguiendo las directivas establecidas durante el diseño, con el fin de satisfacer los requerimientos. Y finalmente, durante la fase de testing, se valida y verifica la correctitud de las funcionalidades implementadas, asi como el cumplimiento de los requisitos. El hecho de llevar a cabo un desarrollo iterativo permite la obtención de retroalimentación del producto que se esta desarrollando tempranamente y de esta manera poder refinar el trabajo en etapas posteriores del desarrollo. \cite{Victor2003, Mitchell2009, Martin1999,Alshamrani2015}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
-Debido a que la metodología esta creada para ser llevada a cabo por un equipo de trabajo se adaptara la metodología para poder ser aplicada en el desarrollo llevado a cabo por una sola persona. Esta adaptación consiste en la disminución de la cantidad de la documentación generada, permitir llevar a cabo mas de una fase de la iteración al mismo tiempo, el rol de analista, diseñador, implementador y tester sera realizado por una sola persona. Los documentos a realizar serán el de requisitos y el de diseño. El documento de requisitos contara con los requerimientos de usuario y de sistema. En el documento de diseño se documentara el como la aplicación será implementada utilizando los diagramas de casos de uso, arquitectura lógica y diagrama de clases.
+Debido a que la metodología esta pensada para ser llevada a cabo por un equipo de trabajo se adaptara la metodología para poder ser aplicada en el desarrollo llevado a cabo por una sola persona. Esta adaptación consiste en la disminución de la cantidad de la documentación generada, permitir llevar a cabo mas de una fase de la iteración al mismo tiempo, el rol de analista, diseñador, implementador y tester sera realizado por una sola persona. Los documentos a realizar serán el de requisitos y el de diseño. El documento de requisitos contara con los requerimientos de usuario y de sistema. En el documento de diseño se documentara el como la aplicación será implementada utilizando los diagramas de casos de uso, arquitectura lógica y diagrama de clases.
 
-Debido a que la metodología esta creada para ser llevada a cabo por un equipo de trabajo se adaptara la metodología para poder ser aplicada en el desarrollo llevado a cabo por una sola persona. Esta adaptación consiste en lo siguiente:
+Debido a que la metodología esta pensada para ser llevada a cabo por un equipo de trabajo se adaptara la metodología para poder ser aplicada en el desarrollo llevado a cabo por una sola persona. Esta adaptación consiste en lo siguiente:
 \begin{itemize}
 	\item Disminución de la cantidad de la documentación generada.
 	\item Se podra llevar a cabo mas de una base de la iteración a la vez.
@@ -198,16 +209,23 @@ La implementación de esta metodología para el desarrollo del proyecto se lleva
 
 \subsection{Metodología de evaluación del proyecto}
 \emph{(En esta subsección se deben describir y justificar los metodos de evaluación/validación que se aplicarán a lo largo del desarrollo del proyecto.)}
+
+Esta sección describe las metodologías que se aplicaran para la evaluación del proyecto. Estas serán pruebas unitarias, pruebas de integración y caso de estudio.
+
 \subsubsection{Pruebas unitarias}
+Pruebas realizadas sobre un componente del programa, ya sean métodos u objetos. Estas pruebas se llevan a cabo variando los parámetros de entrada de los componentes para comprobar que la funcionalidad haya sido correctamente implementada.Ademas, deben ser realizadas aisladamente sin interacción con otros componentes o sistemas.\cite{Sommerville2010}.
+
+El motivo para realizar estas pruebas sobre los componentes del sistema, es para poder detectar defectos y comprobar que el modulo se comporte de la manera esperada.
 
 \subsubsection{Pruebas de integración}
+
 \subsubsection{Caso de estudio}
 
 \textbf{Por ejemplo:}
 \begin{itemize}
 	\item Metodología de evaluación basado en experimentos
 	\item Metodología de evaluación basado en casos de estudio
-		\item Metodología de evaluación basado action research
+	\item Metodología de evaluación basado action research
 \end{itemize}
 
 \part{%\paragraph{Objetivo 1:} ``Comparación de algoritmos para ..."
