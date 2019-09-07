@@ -59,7 +59,7 @@ Debido a la definición de las restricciones es posible dividir el espacio de b�
 
 \item \textbf{Metaheuristica}: Heuristicas generalizadas para ser aplicadas en un amplio conjunto de problemas. \cite{Lopez2013}.
 
-\item \textbf{Algoritmos genéticos}:Estrategia de búsqueda de soluciones basada en la teoría de la Evolución Algoritmo de Darwin. Para realizar esto, el algoritmo parte desde un conjunto de soluciones denominada población he iterativamente, lleva a cabo un proceso de reproducción, generando nuevas soluciones \cite{Heiss-Czedik1997}.
+\item \textbf{Algoritmos genéticos}:Estrategia de búsqueda de soluciones basada en la teoría de la evolución de Darwin. Para realizar esto, el algoritmo  parte desde un conjunto de soluciones denominada población he iterativamente, lleva a cabo un proceso de reproducción, generando nuevas soluciones \cite{Heiss-Czedik1997}.
 %\item \textbf{Optimización Multi-objetivo}: Problemas que poseen múltiples funciones objetivos.
 
 \item \textbf{NSGA-II}: Algoritmo que utiliza la cruza, mutación y reproducción para encontrar un conjunto de soluciones optimas a problemas que cuentan con mas de un objetivo \cite{Deb2002}. 
@@ -75,7 +75,7 @@ Debido a la definición de las restricciones es posible dividir el espacio de b�
 
 La escasez de agua potable es sin duda una problemática a nivel mundial. Dentro de este contexto, la optimización de los sistemas de distribución de agua potable es un problema sin resolver hasta la fecha. 
 
-A lo mencionado anteriormente, también se suma la escasez energética. Puesto que, es requerida para el tratamiento y distribución del agua. Es por esto que, es importante hacer un uso eficiente de la energia durante la operación del sistema.
+A lo mencionado anteriormente, también se suma la escasez energética. Puesto que, es requerida para el tratamiento y distribución del agua. Es por esto que, es importante hacer un uso eficiente de la energía durante la operación del sistema.
 
 La optimización de estos sistemas, a la vez, involucra la participación de múltiples criterios que deben ser tomados en cuenta a la hora de decidir. Sin embargo, la incorporación de estos criterios, involucra la generación de modelos cada vez más complejos.
 
@@ -100,26 +100,31 @@ A lo anterior se suma el hecho de que los interesados en esta área no manejan h
 En este apartado se mostraran algunos trabajos parecidos al que tiene como resultado este proyecto.
 
 \begin{itemize}
-	\item \textbf{Magmoredes}: En \cite{Edwin2017} se describe la existencia de un software de diseño basado en micro-algoritmos genéticos multiobjetivos, que de acuerdo al autor, tiene un mejor rendimiento y es más eficiente debido a que requiere una menor cantidad de memoria y tiene un tiempo de computo que el algoritmo NSGA-II. Este programa puede cargar cualquier red y realiza los cálculos utilizando librerías de java. Este programa tiene como objetivo optimizar el costo y la confiabilidad final de la red.
+	\item \textbf{Magmoredes}: En \cite{Edwin2017} se describe la existencia de un software de diseño basado en micro-algoritmos genéticos multiobjetivos, que de acuerdo al autor, tiene un mejor rendimiento y es más eficiente debido a que requiere una menor cantidad de memoria y tiene un tiempo de computo mejor que el algoritmo NSGA-II. Este programa puede cargar cualquier red y realiza los cálculos utilizando librerías de java. Las funciones objetivos que este sistema intenta resolver son la optimización de los costo y la confiabilidad final de la red.
 	
 	
 	\item \textbf{Hidra software}: Es un Software de paga que permite el diseño y la realización de distintos tipos de cálculos, como la capacidad de estanque, los recursos requeridos para la construcción de la red, demanda, diámetros, etc.
 	
 	
-	\item \textbf{WaterGEMS}: De acuerdo a \cite{Bentley2017}, este software permite la  contrucción de modelos geoespaciales; optimizacion de diseño, ciclos de bombeo y calibración automatica del modelo; y la  gestion de activos. 
+	\item \textbf{WaterGEMS}: De acuerdo a \cite{Bentley2017}, este software permite la  construcción de modelos geoespaciales; optimizacion de diseño, ciclos de bombeo y calibración automática del modelo; y la  gestión de activos. 
 	
 	Los programas presentados anteriormente, resuelven problemas particulares que se dan en una red de distribución de agua potable.
 \end{itemize}
 
 \subsection{Propuesta de solución}
-\emph{(Esta sección debe incluir el planteamiento y justificación de la solución y/o idea, incluyendo aspectos novedosos.) Esta sección responde a la pregunta ¿Cómo voy a resolver el problema planteado?}
+%\emph{(Esta sección debe incluir el planteamiento y justificación de la solución y/o idea, incluyendo aspectos novedosos.) Esta sección responde a la pregunta ¿Cómo voy a resolver el problema planteado?}
 
-Para resolver el problema, se llevara a cabo la implementación de una aplicación de escritorio. Esta aplicación, permitirá buscar posibles soluciones a los siguientes problemas:
+La solución que se propone para solventar el problema que motiva este trabajo es el desarrollo de una aplicación que sirva como una base sobre la cual poder agregar nuevas funcionalidades. Para esto la aplicación debe quedar bien documentada. Por lo tanto, lo que se tendrá al termino del desarrollo del proyecto será un software escalable que tratara con dos problemas relacionados a la distribución de agua potable y que podrá ser ampliado en futuros trabajos.
 
+Los problemas que se abordaran en el contexto de optimización de redes de agua potable serán:
 \begin{itemize}
-	\item Problema de diseño: E
-	\item Problema del régimen de bombeo: Este problema se abarcara desde el enfoque multiobjetivo a través del algoritmo conocido como NSGA-II. Este algoritmo podrá ser ejecutado con distintos operadores los cuales estarán disponibles en el sistema. Como solución otorgara los ...
+	\item \textbf{Problema de diseño:} Se trata este problema desde un enfoque monoobjetivo implementando un algoritmo genético que buscara la optimización de los costo de inversión variando el diámetro de las tuberías.  
+	\item \textbf{Problema de operación:} Este problema se abordara desde el enfoque multiobjetivo. Para esto se implementara el algoritmo NSGA-II y se buscara la optimización de los objetivos de costos energetivos y el numero de encendidos y apagados de las bombas.
 \end{itemize}
+
+Tanto el algoritmo genético como el NSGA-II, permiten la utilización de distintos operadores de cruza y mutación que también serán implementados para ser utilizados. 
+
+La solución planteada supone ademas el diseño e implementación de una interfaz gráfica para ayudar al usuario en el uso de la herramienta.
 %\section{Hipótesis}
 %\emph{(En esta sección se deben incluir una lista de afirmaciones o suposiciones las cuales se esperar responder con el desarrollo del proyecto. La longitud máxima de esta sección es de 1/2 página.)}
 %\begin{itemize}
@@ -141,8 +146,8 @@ A continuación se darán a conocer el objetivo general y los objetivos específ
 \item Diseñar y desarrollar una aplicación de apoyo a la toma de decisiones, integrando algoritmos de optimización aplicados al problema de diseño y operación en redes de distribución de agua potable.
 \end{itemize}
 
-\paragraph{Objetivos específicos} \emph{(Una lista de puntos que detallan el objetivo general.)}
-\begin{itemize}
+\paragraph{Objetivos específicos}% \emph{(Una lista de puntos que detallan el objetivo general.)}
+\begin{enumerate}
 %\item Especificar los requerimientos del proyecto.
 %\item Diseñar un algoritmo para ...
 %\item Construir una herramienta para ...
@@ -161,7 +166,7 @@ A continuación se darán a conocer el objetivo general y los objetivos específ
 \item Diseñar he implementar interfaz grafica del sistema. 
 \item Evaluar el desempeño de los algoritmos, contrastando los resultados obtenidos en redes de benchmarking con óptimos conocidos.
 
-\end{itemize}
+\end{enumerate}
 
 
 
@@ -192,43 +197,65 @@ Esta sección describe y justifica el uso de la metodología iterativo increment
 
 Esta metodología lleva a cabo el desarrollo de un proyecto de software dividiéndolo en iteraciones que generan un incremento, el cual contribuye en el desarrollo del producto final. Cada iteración se compone de las fases de análisis, diseño, implementación y testing. La fase de análisis lleva a cabo la obtención y definición de los requerimientos del software. La etapa de diseño se encarga de la conceptualización del software basado en los requerimientos definidos anteriormente. Durante la implementación se codifican las funcionalidades siguiendo las directivas establecidas durante el diseño, con el fin de satisfacer los requerimientos. Y finalmente, durante la fase de testing, se valida y verifica la correctitud de las funcionalidades implementadas, asi como el cumplimiento de los requisitos. El hecho de llevar a cabo un desarrollo iterativo permite la obtención de retroalimentación del producto que se esta desarrollando tempranamente y de esta manera poder refinar el trabajo en etapas posteriores del desarrollo. \cite{Victor2003, Mitchell2009, Martin1999,Alshamrani2015}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
-Debido a que la metodología esta pensada para ser llevada a cabo por un equipo de trabajo se adaptara la metodología para poder ser aplicada en el desarrollo llevado a cabo por una sola persona. Esta adaptación consiste en la disminución de la cantidad de la documentación generada, permitir llevar a cabo mas de una fase de la iteración al mismo tiempo, el rol de analista, diseñador, implementador y tester sera realizado por una sola persona. Los documentos a realizar serán el de requisitos y el de diseño. El documento de requisitos contara con los requerimientos de usuario y de sistema. En el documento de diseño se documentara el como la aplicación será implementada utilizando los diagramas de casos de uso, arquitectura lógica y diagrama de clases.
+Debido a que la metodología esta pensada para ser llevada a cabo por un equipo de trabajo se adaptara la metodología para poder ser aplicada en el desarrollo llevado a cabo por una sola persona. Esta adaptación consiste en la disminución de la cantidad de la documentación generada, permitir llevar a cabo mas de una fase de la iteración al mismo tiempo y los roles de analista, diseñador, implementador y tester sera realizado por una sola persona. Los documentos a generar por cada fase serán:
 
-Debido a que la metodología esta pensada para ser llevada a cabo por un equipo de trabajo se adaptara la metodología para poder ser aplicada en el desarrollo llevado a cabo por una sola persona. Esta adaptación consiste en lo siguiente:
+\paragraph{Análisis:} El producto generado por esta fase sera un documento de especificación de requisitos que constara de:
 \begin{itemize}
-	\item Disminución de la cantidad de la documentación generada.
-	\item Se podra llevar a cabo mas de una base de la iteración a la vez.
-	\item Las actividades de los roles de analista, diseñador, implementador y tester sera realizado por una sola persona.
-	\item  Los documentos a realizar serán el de requisitos y el de diseño. El documento de requisitos contara con los requerimientos de usuario y de sistema. En el documento de diseño se documentara el como la aplicación será implementada utilizando los diagramas de casos de uso, arquitectura lógica y diagrama de clases.
+	\item Introducción
+	\item Requisitos de usuario
+	\item Requisito de sistema
+	\item Matriz de trazado requisitos de usuario vs sistema.
 \end{itemize}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-La razón por la que se utilizara esta metodología sobre otras es porque el producto resultante de este proyecto esta pensado para servir como base para futuros trabajos. Debido a esto es necesario documentar correctamente para que otros programadores puedan continuar con su desarrollo en el futuro. Aunque existen otras metodologías como cascada u otras tradicionales, estas son difíciles de llevar a cabo por la cantidad de documentación que se requiere, mientras que metodologías de desarrollo ágil carecen en cuanto a la documentación que se necesita para el sistema a desarrollar. Ademas, esta metodología nos permite obtener una retroalimentacion al final de la iteración, obtener nuevos requisitos que no hayan quedado definidos en etapas anteriores o refinar los requisitos y el diseño ya existente, permitiendo asi mejorar la calidad del producto final.
+\paragraph{Diseño:} Esta fase generara como producto un documento de diseño que contara con los siguientes diagramas:
+\begin{itemize}
+	\item Casos de uso
+	\item Arquitectura lógica
+	\item Diagrama de componentes
+	\item Diagrama de clases
+\end{itemize}
+\paragraph{Implementación:} Esta fase generara el código fuente de la aplicación y un manual de usuario de la aplicación.
+\paragraph{Pruebas:} Durante esta fase de realizaran la documentación y la realización de las pruebas sobre la aplicación.
+\begin{itemize}
+	\item Se documentara las pruebas unitarias realizadas y sobre que componentes.
+	\item Se documentara las pruebas de integración y que caso de uso cubren.
+\end{itemize}
+
+La razón por la que se utilizará esta metodología sobre otras es porque el producto resultante de este proyecto esta pensado para servir como base para futuros trabajos. Debido a esto es necesario documentar correctamente para que otros programadores puedan continuar con su desarrollo más adelante. Aunque existen otras metodologías como cascada u otras tradicionales, estas son difíciles de llevar a cabo por la cantidad de documentación que se requiere, mientras que metodologías de desarrollo ágil carecen en cuanto a la documentación que se necesita para el sistema a desarrollar. Ademas, esta metodología nos permite obtener una retroalimentacion al final de la iteración, obtener nuevos requisitos que no hayan quedado definidos en etapas anteriores o refinar los requisitos y el diseño ya existente, permitiendo así mejorar la calidad del producto final.
 
 La implementación de esta metodología para el desarrollo del proyecto se llevara a cabo repartiendo las tareas necesarias para el cumplimiento de los objetivos en iteraciones. De este modo al final de cada iteración se contará con un prototipo funcional de la aplicación sobre el que se agregaran las nuevas funcionalidades en las iteraciones siguientes.
 
 \subsection{Metodología de evaluación del proyecto}
-\emph{(En esta subsección se deben describir y justificar los metodos de evaluación/validación que se aplicarán a lo largo del desarrollo del proyecto.)}
+%\emph{(En esta subsección se deben describir y justificar los metodos de evaluación/validación que se aplicarán a lo largo del desarrollo del proyecto.)}
 
-Esta sección describe las metodologías que se aplicaran para la evaluación del proyecto. Estas serán pruebas unitarias, pruebas de integración y caso de estudio.
+Esta sección describe las metodologías que se aplicaran para la evaluación del proyecto. Estas serán pruebas unitarias, de integración y caso de estudio.
 
 \subsubsection{Pruebas unitarias}
-Pruebas realizadas sobre un componente del programa, ya sean métodos u objetos. Estas pruebas se llevan a cabo variando los parámetros de entrada de los componentes para comprobar que la funcionalidad haya sido correctamente implementada.Ademas, deben ser realizadas aisladamente sin interacción con otros componentes o sistemas.\cite{Sommerville2010}.
+Pruebas realizadas sobre un componente del programa, ya sean métodos u objetos. Estas pruebas se llevan a cabo variando los parámetros de entrada de los componentes para comprobar que la funcionalidad haya sido correctamente implementada. Ademas, deben ser realizadas aisladamente sin interacción con otros componentes o sistemas.\cite{Sommerville2010}.
 
 El motivo para realizar estas pruebas sobre los componentes del sistema, es para poder detectar defectos y comprobar que el modulo se comporte de la manera esperada.
 
 \subsubsection{Pruebas de integración}
+Las pruebas de integración son utilizadas para comprobar las interfaces y las interacciones entre los módulos que conforman la aplicación \cite{Leung1990}. Este tipo de pruebas se realizan después de la realización de las pruebas unitarias y permitirá verificar que  los componentes interactúan  adecuadamente. 
 
 \subsubsection{Caso de estudio}
+ %\textbf{(Wholin Empirical software engineering reasearch, Case studies Yin)}
+La metodología de evaluación \cite{Yin2009,Shull2008} que se utilizara para la investigación es mediante casos de estudio. Un caso de estudio permite aplicar los resultados de implementación en un contexto real con el objetivo de responder la pregunta de investigación planteada. Esta metodología de evaluación considera aspectos formales para obtener evidencia. Los principales aspectos son:
 
-\textbf{Por ejemplo:}
 \begin{itemize}
-	\item Metodología de evaluación basado en experimentos
-	\item Metodología de evaluación basado en casos de estudio
-	\item Metodología de evaluación basado action research
+\item Describir el contexto de aplicación del caso
+\item Definición de objetivos experimentales
+\item Definición de características a evaluar
+\item Definición de sujetos de prueba
+\item Definición de un protocolo para conducir el caso de estudio
+\item Aplicación de caso de estudio en un conjunto de sesiones no controladas
+\item Aplicación de herramientas de obtención de evidencia empírica
+\item Análisis y evaluación de datos empíricos
 \end{itemize}
 
-\part{%\paragraph{Objetivo 1:} ``Comparación de algoritmos para ..."
+
+
+
+%\paragraph{Objetivo 1:} ``Comparación de algoritmos para ..."
 %\begin{itemize}
 %\item Estudiar ...
 %\item Seleccionar ...
@@ -241,24 +268,71 @@ El motivo para realizar estas pruebas sobre los componentes del sistema, es para
 %\item Clasificar ...
 %\item Especificar ...
 %\end{itemize}
-}
 
 \section{Plan de trabajo}
-\emph{(En esta sección se debe definir como organizar y planificar, en términos de etapas y tiempo, las actividades a desarrollar así como los resultados a obtener.  Cada actividad debe generar un entregable. Se entiende como entregable a la generación de artefactos que sean útiles al desarrollo del proyecto, por ejemplo: documentos bibliográficos con resumen, documentos de desarrollo de software, código fuente, planificaciones, diagramas, esquemas, algoritmos, etc.)}
+%\emph{(En esta sección se debe definir como organizar y planificar, en términos de etapas y tiempo, las actividades a desarrollar así como los resultados a obtener.  Cada actividad debe generar un entregable. Se entiende como entregable a la generación de artefactos que sean útiles al desarrollo del proyecto, por ejemplo: documentos bibliográficos con resumen, documentos de desarrollo de software, código fuente, planificaciones, diagramas, esquemas, algoritmos, etc.)}
 
-\emph{(Esta sección debe incluir además una Carta Gantt, la cual define fechas de inicio y término. La longitud máxima de esta sección es de 1 página, sin considerar la Carta Gantt.)}
+%\emph{(Esta sección debe incluir además una Carta Gantt, la cual define fechas de inicio y término. La longitud máxima de esta sección es de 1 página, sin considerar la Carta Gantt.)}
 
-\paragraph{Etapa 1:} Desarrollar el objetivo 1 (inicio-término)
+En esta sección de detallara las tareas a realizar para cumplir con cada uno de los objetivos así como la fecha en que estas serán realizadas. Ademas, junto a este documento se adjuntada una carta Gantt que refleja este plan de trabajo.
+
+\paragraph{Etapa 1:} Desarrollar el objetivo 1 (12/08-07/10)
 \begin{itemize}
-\item Analizar ... (inicio-término)
-\item Redactar ... (inicio-término)
+	\item Capturar y especificación de los requisitos (26/08-09/09)
+	\item Construir planificación (12/08-09/09)
+	\item Crear la arquitectura lógica (09/09-16/09)
+	\item Especificar casos de uso (09/09-16/09)
+	\item Crear diagrama de clases (09/09-16/09)
+	\item Leer red de distribución de agua desde un archivo .inp (16/09-30/09)
+	\item Parsear entrada del archivo y crear una representación de la red utilizando estructuras de datos. (16/09-30/09)
+	\item Realizar pruebas unitarias (23/09-07/10)
+	\item Realizar pruebas de integración (23/09-07/10)
+	\item Entregar de incremento y primera versión de los documentos generados en cada fase, este cargara la red y la representara usando un conjunto de clases. (07/10)
 \end{itemize}
 
-\paragraph{Etapa 2:} Desarrollar los objetivos 2 y 3 (inicio-término)
+\paragraph{Etapa 2:} Desarrollar el objetivos 2 (07/10-25/11)
 \begin{itemize}
-\item Diseñar ... (inicio-término)
-\item Programar ... (inicio-término)
-\item Redactar ... (inicio-término)
+	\item Capturar y especificación y refinación de los requisitos (07/10-14/10)
+	\item Revisión la arquitectura lógica (07/10-14/10)
+	\item Especificar casos de uso (07/10-14/10)
+	\item Revisión y adaptación diagrama de clases (07/10-14/10)
+	\item Corregir y refactorizar el código de la aplicación (07/10-28/10)
+	\item Integrar algoritmo GA y sus operadores (07/10-11/11)
+	\item Realizar pruebas unitarias (23/09-07/10)
+	\item Realizar pruebas de integración (28/09-25/11)
+	\item Entregar de incremento y segunda versión de los documentos generados en cada fase, este permitirá la ejecución del algoritmo GA a través de la terminal. (25/11)
+\end{itemize}
+
+
+\paragraph{Etapa 3:} Desarrollar el objetivos 3 (02/12-27/04)
+\begin{itemize}
+	\item Capturar y especificación y refinación de los requisitos (02/12-09/12)
+	\item Revisión la arquitectura lógica (02/12-09/12)
+	\item Especificar casos de uso (02/12-09/12)
+	\item Revisión y adaptación diagrama de clases (02/12-09/12)
+	\item Corregir y refactorizar el código de la aplicación (09/12-23/12) retomando el (02/03-16/03)
+	\item Integrar algoritmo NSGA-II y sus operadores (02/03-27/04)
+	\item Realizar pruebas unitarias (06/04-27/04)
+	\item Realizar pruebas de integración (06/04-27/04)
+	\item Entregar de incremento y tercera versión de los documentos generados en cada fase, este permitirá la ejecución del algoritmo GA y NSGA-II desde la terminal (27/04)
+\end{itemize}
+
+\paragraph{Etapa 4:} Desarrollar el objetivos 4 (27/04-06/07)
+\begin{itemize}
+	\item Capturar y especificación y refinación de los requisitos (27/04-04/05)
+	\item Revisión la arquitectura lógica (27/04-04/05)
+	\item Especificar casos de uso (27/04-04/05)
+	\item Revisión y adaptación diagrama de clases (27/04-04/05)
+	\item Diseño de interfaces graficas (27/04-04/05)
+	\item Corregir y refactorizar el código de la aplicación (27/04-18/05)
+	\item Implementar Interfaz y los menús de interacción (04/05-18/05)
+	\item Mostrar la representación de la red en la interfaz (11/05-01/06)
+	\item Implementar interfaz para visualizar resultados de la simulación (11/05-01/06)
+	\item Guardar resultados de la simulación (11/05-01/06)
+	\item Realizar pruebas unitarias (25/05-08/06)
+	\item Realizar pruebas de integración (25/05-08/06)
+	\item Entregar de incremento y cuarta y última versión de los documentos generados en cada fase, este permitirá la ejecución del algoritmo GA y NSGA-II desde una interfaz gráfica (08/06)
+	\item Realizar el caso de estudio (08/06-13/07)
 \end{itemize}
 
 
