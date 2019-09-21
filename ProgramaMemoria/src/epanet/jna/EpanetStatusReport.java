@@ -1,19 +1,18 @@
 package epanet.jna;
 
 /**
- * Class that denote the type of water quality analysis.
+ * Class that contain the status report
  *
  */
-public enum EpanetQualType {
-	EN_NONE(0, "No quality analysis"), //
-	EN_CHEM(1, "Chemical analysis"), //
-	EN_AGE(2, "Water age analysis"), //
-	EN_TRACE(3, "Source tracing");
+public enum EpanetStatusReport {
+	NO_REPORTING(0, "no status reporting"), //
+	NORMAL_REPORTING(1, "normal reporting"), //
+	FULL_REPORTING(2, "full status reporting");
 
 	private int code;
 	private String description;
 
-	private EpanetQualType(int code, String description) {
+	private EpanetStatusReport(int code, String description) {
 		this.code = code;
 		this.description = description;
 	}
@@ -24,9 +23,9 @@ public enum EpanetQualType {
 	 * @param code The code of type.
 	 * @return EpanetLinkType object
 	 */
-	public EpanetQualType convert(int code) {
-		EpanetQualType[] types = EpanetQualType.values();
-		for (EpanetQualType type : types) {
+	public EpanetStatusReport convert(int code) {
+		EpanetStatusReport[] types = EpanetStatusReport.values();
+		for (EpanetStatusReport type : types) {
 			if (type.code == code) {
 				return type;
 			}

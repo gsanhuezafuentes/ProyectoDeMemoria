@@ -1,32 +1,29 @@
 package epanet.jna;
 
 /**
- * Class that denote the type of water quality analysis.
- *
+ * This class denote the node type of the nodes.
+ * 
  */
-public enum EpanetQualType {
-	EN_NONE(0, "No quality analysis"), //
-	EN_CHEM(1, "Chemical analysis"), //
-	EN_AGE(2, "Water age analysis"), //
-	EN_TRACE(3, "Source tracing");
+public enum EpanetNodeType {
+	EN_JUNCTION(0, "Junction node"), EN_RESERVOIR(1, "Reservoir node "), EN_TANK(2, "Tank node");
 
 	private int code;
 	private String description;
 
-	private EpanetQualType(int code, String description) {
+	private EpanetNodeType(int code, String description) {
 		this.code = code;
 		this.description = description;
 	}
 
 	/**
-	 * Convert a given code in a EpanetQualType.
+	 * Convert a given code in a EpanetNodeType.
 	 * 
 	 * @param code The code of type.
-	 * @return EpanetLinkType object
+	 * @return EpanetNodeType object
 	 */
-	public EpanetQualType convert(int code) {
-		EpanetQualType[] types = EpanetQualType.values();
-		for (EpanetQualType type : types) {
+	public EpanetNodeType convert(int code) {
+		EpanetNodeType[] types = EpanetNodeType.values();
+		for (EpanetNodeType type : types) {
 			if (type.code == code) {
 				return type;
 			}
