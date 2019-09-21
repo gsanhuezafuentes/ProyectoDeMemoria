@@ -23,14 +23,14 @@ public enum EpanetStatusReport {
 	 * @param code The code of type.
 	 * @return EpanetLinkType object
 	 */
-	public EpanetStatusReport convert(int code) {
+	public static EpanetStatusReport convert(int code) {
 		EpanetStatusReport[] types = EpanetStatusReport.values();
 		for (EpanetStatusReport type : types) {
 			if (type.code == code) {
 				return type;
 			}
 		}
-		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + getClass().getSimpleName());
+		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + EpanetStatusReport.class.getSimpleName());
 	}
 
 	/**

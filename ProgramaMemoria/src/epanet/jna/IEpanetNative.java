@@ -4,11 +4,13 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
+import com.sun.jna.Library;
+
 /**
  * Class use to load java native interface using JNA.
  *
  */
-public interface IEpanetNative {
+public interface IEpanetNative extends Library{
 
 	/**
 	 * Opens the Toolkit to analyze a particular distribution system. <br>

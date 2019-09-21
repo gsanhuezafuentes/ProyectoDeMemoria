@@ -26,14 +26,14 @@ public enum EpanetCountComponentCode {
 	 * @param code The code of type.
 	 * @return EpanetLinkType object
 	 */
-	public EpanetCountComponentCode convert(int code) {
+	public static EpanetCountComponentCode convert(int code) {
 		EpanetCountComponentCode[] types = EpanetCountComponentCode.values();
 		for (EpanetCountComponentCode type : types) {
 			if (type.code == code) {
 				return type;
 			}
 		}
-		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + getClass().getSimpleName());
+		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + EpanetCountComponentCode.class.getSimpleName());
 	}
 
 	/**

@@ -32,14 +32,14 @@ public enum EpanetOptionCodes {
 	 * @param code The code of type.
 	 * @return EpanetLinkType object
 	 */
-	public EpanetOptionCodes convert(int code) {
+	public static EpanetOptionCodes convert(int code) {
 		EpanetOptionCodes[] types = EpanetOptionCodes.values();
 		for (EpanetOptionCodes type : types) {
 			if (type.code == code) {
 				return type;
 			}
 		}
-		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + getClass().getSimpleName());
+		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + EpanetOptionCodes.class.getSimpleName());
 	}
 
 	/**

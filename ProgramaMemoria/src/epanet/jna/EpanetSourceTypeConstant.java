@@ -23,14 +23,14 @@ public enum EpanetSourceTypeConstant {
 	 * @param code The code of type.
 	 * @return EpanetLinkType object
 	 */
-	public EpanetSourceTypeConstant convert(int code) {
+	public static EpanetSourceTypeConstant convert(int code) {
 		EpanetSourceTypeConstant[] types = EpanetSourceTypeConstant.values();
 		for (EpanetSourceTypeConstant type : types){
 			if (type.code == code) {
 				return type;
 			}
 		}
-		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + getClass().getSimpleName());
+		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + EpanetQualType.class.getSimpleName());
 	}
 
 	/**

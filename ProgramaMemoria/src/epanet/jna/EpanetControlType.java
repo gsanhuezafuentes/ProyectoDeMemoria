@@ -23,14 +23,14 @@ public enum EpanetControlType {
 	 * @param code The code of type.
 	 * @return EpanetLinkType object
 	 */
-	public EpanetControlType convert(int code) {
+	public static EpanetControlType convert(int code) {
 		EpanetControlType[] types = EpanetControlType.values();
 		for (EpanetControlType type : types){
 			if (type.code == code) {
 				return type;
 			}
 		}
-		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + getClass().getSimpleName());
+		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + EpanetControlType.class.getSimpleName());
 	}
 
 	/**

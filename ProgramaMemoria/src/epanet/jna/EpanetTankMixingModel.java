@@ -23,14 +23,14 @@ public enum EpanetTankMixingModel {
 	 * @param code The code of type.
 	 * @return EpanetLinkType object
 	 */
-	public EpanetTankMixingModel convert(int code) {
+	public static EpanetTankMixingModel convert(int code) {
 		EpanetTankMixingModel[] types = EpanetTankMixingModel.values();
 		for (EpanetTankMixingModel type : types){
 			if (type.code == code) {
 				return type;
 			}
 		}
-		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + getClass().getSimpleName());
+		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + EpanetTankMixingModel.class.getSimpleName());
 	}
 
 	/**

@@ -74,14 +74,14 @@ public enum EpanetNodeParameter {
 	 * @param code The code of type.
 	 * @return EpanetLinkType object
 	 */
-	public EpanetNodeParameter convert(int code) {
+	public static EpanetNodeParameter convert(int code) {
 		EpanetNodeParameter[] types = EpanetNodeParameter.values();
 		for (EpanetNodeParameter type : types) {
 			if (type.code == code) {
 				return type;
 			}
 		}
-		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + getClass().getSimpleName());
+		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + EpanetNodeParameter.class.getSimpleName());
 	}
 
 	/**

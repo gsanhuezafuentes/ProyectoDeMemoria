@@ -32,14 +32,14 @@ public enum EpanetTimeParameterCodes {
 	 * @param code The code of type.
 	 * @return EpanetLinkType object
 	 */
-	public EpanetTimeParameterCodes convert(int code) {
+	public static EpanetTimeParameterCodes convert(int code) {
 		EpanetTimeParameterCodes[] types = EpanetTimeParameterCodes.values();
 		for (EpanetTimeParameterCodes type : types){
 			if (type.code == code) {
 				return type;
 			}
 		}
-		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + getClass().getSimpleName());
+		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + EpanetTimeParameterCodes.class.getSimpleName());
 	}
 
 	/**

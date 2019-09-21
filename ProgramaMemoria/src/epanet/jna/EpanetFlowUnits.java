@@ -30,14 +30,14 @@ public enum EpanetFlowUnits {
 	 * @param code The code of type.
 	 * @return EpanetLinkType object
 	 */
-	public EpanetFlowUnits convert(int code) {
+	public static EpanetFlowUnits convert(int code) {
 		EpanetFlowUnits[] types = EpanetFlowUnits.values();
 		for (EpanetFlowUnits type : types) {
 			if (type.code == code) {
 				return type;
 			}
 		}
-		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + getClass().getSimpleName());
+		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + EpanetFlowUnits.class.getSimpleName());
 	}
 
 	/**

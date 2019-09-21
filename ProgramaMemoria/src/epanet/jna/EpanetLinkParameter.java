@@ -38,14 +38,14 @@ public enum EpanetLinkParameter {
 	 * @param code The code of type.
 	 * @return EpanetLinkType object
 	 */
-	public EpanetLinkParameter convert(int code) {
+	public static EpanetLinkParameter convert(int code) {
 		EpanetLinkParameter[] types = EpanetLinkParameter.values();
 		for (EpanetLinkParameter type : types) {
 			if (type.code == code) {
 				return type;
 			}
 		}
-		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + getClass().getSimpleName());
+		throw new IllegalArgumentException("Don't exist a type for code " + code + "in " + EpanetLinkParameter.class.getSimpleName());
 	}
 
 	/**
