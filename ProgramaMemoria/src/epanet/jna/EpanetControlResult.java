@@ -1,7 +1,8 @@
 package epanet.jna;
 
 /**
- * Class use to return result of {@link EpanetDLL#ENgetcontrol(int)}.<br><br>
+ * Class use to return result of {@link EpanetDLL#ENgetcontrol(int)}.<br>
+ * <br>
  * 
  * Control type codes consist of the following:<br>
  * 
@@ -81,6 +82,13 @@ public class EpanetControlResult {
 	 */
 	public float getLevel() {
 		return level;
+	}
+
+	@Override
+	public String toString() {
+		String txt = "cindex: " + cindex + " | ctype: " + ctype + " | lindex: " + lindex + " | setting: " + setting
+				+ " | nindex: " + nindex + " | level: " + level;
+		return txt;
 	}
 
 }

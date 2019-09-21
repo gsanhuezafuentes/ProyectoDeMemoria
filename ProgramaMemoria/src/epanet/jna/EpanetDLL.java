@@ -269,6 +269,7 @@ public class EpanetDLL {
 		FloatBuffer levelBuffer = FloatBuffer.allocate(1);
 		int err = epanet.ENgetcontrol(cindex, ctypeBuffer, lindexBuffer, settingBuffer, nindexBuffer, levelBuffer);
 		checkError(err);
+		
 		int ctype = EpanetUtils.IntBufferToInt(ctypeBuffer);
 		int lindex = EpanetUtils.IntBufferToInt(lindexBuffer);
 		float setting = EpanetUtils.FloatBufferToFloat(settingBuffer);
@@ -645,7 +646,7 @@ public class EpanetDLL {
 	 * @param err
 	 * @throws EpanetException
 	 */
-	public void checkError(int err) throws EpanetException {
+	private void checkError(int err) throws EpanetException {
 		try {
 			EpanetErrors.checkError(err);
 			warningMessage = EpanetErrors.checkWarning(err);
@@ -660,8 +661,42 @@ public class EpanetDLL {
 	 * 
 	 * @return Warning message or null if warning message don't exist.
 	 */
-	public String getWarningMessage() {
+	private String getWarningMessage() {
 		return warningMessage;
 	}
 
+	public static void main(String[] args) {
+		try {
+			EpanetDLL epanet = new EpanetDLL("epanet2_64bit.dll", "lib/");
+			epanet.ENopen("inp/red1.inp", "inp/report.rpt", "");
+			//long t, tstep;
+			long[] tstep = {1};
+			long[] t = {0};
+			
+			epanet.ENopenH();
+			epanet.ENwriteline("a");
+
+			epanet.ENinitH(0);
+			do {  
+				epanet.ENrunH(t);  
+				/* Retrieve hydraulic results for time t */
+				System.out.println(epanet.ENgetflowunits());
+				System.out.println(epanet.ENgetnodevalue(1, EpanetNodeParameter.EN_BASEDEMAND));
+				System.out.println(epanet.ENgetqualtype()[0] + " "  + epanet.ENgetqualtype()[1]);
+				System.out.println(epanet.ENgetnodeindex("23"));
+				System.out.println(epanet.ENgetpatternvalue(1,4));
+				EpanetControlResult res = epanet.ENgetcontrol(1);
+				System.out.println(res);
+				System.out.println(epanet.ENgetlinkid(res.getLindex()));
+				
+				epanet.ENnextH(tstep);  
+			} while (tstep[0] > 0);  
+
+			epanet.ENcloseH();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

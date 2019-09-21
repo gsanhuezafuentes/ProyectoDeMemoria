@@ -23,7 +23,7 @@ public class EpanetUtils {
 			text.append(charElement);
 		}
 		
-		return text.toString();
+		return text.toString().trim();
 	}
 	
 	/**

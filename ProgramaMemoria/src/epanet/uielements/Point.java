@@ -6,24 +6,30 @@ package epanet.uielements;
  *
  */
 public class Point {
-	private int x;
-	private int y;
+	private double x;
+	private double y;
 	
-	public Point(int x, int y) {
+	public Point(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
 	/**
 	 * @return Get the position x.
 	 */
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 	/**
 	 * @return Get the position y.
 	 */
-	public int getY() {
+	public double getY() {
 		return y;
+	}
+	
+	@Override
+	public String toString() {
+		String text = "x-coordinate: " + getX() + " y-coordinate: " + getY() + "\n";
+		return text;
 	}
 	
 }

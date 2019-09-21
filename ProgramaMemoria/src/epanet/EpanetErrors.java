@@ -66,6 +66,11 @@ public class EpanetErrors {
         throw new EpanetException(msg);
 	}
 	
+	public static void throwException(int errcode, String msg) throws EpanetException{
+        String errorMsg = errors.get(errcode);
+        throw new EpanetException(errorMsg + "\n" + msg);
+	}
+	
     public static void checkError( int errcode ) throws EpanetException {
         if (errcode > 100) {
             throwException(errcode);

@@ -1,0 +1,230 @@
+[TITLE]
+exporting test
+
+[JUNCTIONS]
+;ID              	Elev        	Demand      	Pattern         
+ N10             	0           	145.8333    	                	;
+ N11             	0           	138.8889    	                	;
+ N12             	0           	155.5556    	                	;
+ N13             	0           	261.1111    	                	;
+ N14             	0           	170.8333    	                	;
+ N15             	0           	77.77778    	                	;
+ N16             	0           	86.11111    	                	;
+ N17             	0           	240.2778    	                	;
+ N18             	0           	373.6111    	                	;
+ N19             	0           	16.66667    	                	;
+ N2              	0           	247.2222    	                	;
+ N20             	0           	354.1667    	                	;
+ N21             	0           	258.3333    	                	;
+ N22             	0           	134.7222    	                	;
+ N23             	0           	290.2778    	                	;
+ N24             	0           	227.7778    	                	;
+ N25             	0           	47.22222    	                	;
+ N26             	0           	250         	                	;
+ N27             	0           	102.7778    	                	;
+ N28             	0           	80.55556    	                	;
+ N29             	0           	100         	                	;
+ N3              	0           	236.1111    	                	;
+ N30             	0           	100         	                	;
+ N31             	0           	29.16667    	                	;
+ N32             	0           	223.6111    	                	;
+ N4              	0           	36.11111    	                	;
+ N5              	0           	201.3889    	                	;
+ N6              	0           	279.1667    	                	;
+ N7              	0           	375         	                	;
+ N8              	0           	152.7778    	                	;
+ N9              	0           	145.8333    	                	;
+
+[RESERVOIRS]
+;ID              	Head        	Pattern         
+ P1              	100         	                	;
+
+[TANKS]
+;ID              	Elevation   	InitLevel   	MinLevel    	MaxLevel    	Diameter    	MinVol      	VolCurve
+ 1               	0           	10          	0           	20          	50          	0           	                	;
+
+[PIPES]
+;ID              	Node1           	Node2           	Length      	Diameter    	Roughness   	MinorLoss   	Status
+ Línea_1         	P1              	N2              	100         	0.5         	130         	0           	Open  	;
+ Línea_10        	N10             	N11             	950         	0.5         	130         	0           	Open  	;
+ Línea_11        	N11             	N12             	1200        	0.5         	130         	0           	Open  	;
+ Línea_12        	N12             	N13             	3500        	0.5         	130         	0           	Open  	;
+ Línea_13        	N10             	N14             	800         	0.5         	130         	0           	Open  	;
+ Línea_14        	N14             	N15             	500         	0.5         	130         	0           	Open  	;
+ Línea_15        	N15             	N16             	550         	0.5         	130         	0           	Open  	;
+ Línea_16        	N16             	N17             	2730        	0.5         	130         	0           	Open  	;
+ Línea_17        	N17             	N18             	1750        	0.5         	130         	0           	Open  	;
+ Línea_18        	N18             	N19             	800         	0.5         	130         	0           	Open  	;
+ Línea_19        	N19             	N3              	400         	0.5         	130         	0           	Open  	;
+ Línea_2         	N2              	N3              	1350        	0.5         	130         	0           	Open  	;
+ Línea_20        	N3              	N20             	2200        	0.5         	130         	0           	Open  	;
+ Línea_21        	N20             	N21             	1500        	0.5         	130         	0           	Open  	;
+ Línea_22        	N21             	N22             	500         	0.5         	130         	0           	Open  	;
+ Línea_23        	N20             	N23             	2650        	0.5         	130         	0           	Open  	;
+ Línea_24        	N23             	N24             	1230        	0.5         	130         	0           	Open  	;
+ Línea_25        	N24             	N25             	1300        	0.5         	130         	0           	Open  	;
+ Línea_26        	N25             	N26             	850         	0.5         	130         	0           	Open  	;
+ Línea_27        	N26             	N27             	300         	0.5         	130         	0           	Open  	;
+ Línea_28        	N27             	N16             	750         	0.5         	130         	0           	Open  	;
+ Línea_29        	N23             	N28             	1500        	0.5         	130         	0           	Open  	;
+ Línea_3         	N3              	N4              	900         	0.5         	130         	0           	Open  	;
+ Línea_30        	N28             	N29             	2000        	0.5         	130         	0           	Open  	;
+ Línea_31        	N29             	N30             	1600        	0.5         	130         	0           	Open  	;
+ Línea_32        	N30             	N31             	150         	0.5         	130         	0           	Open  	;
+ Línea_33        	N31             	N32             	860         	0.5         	130         	0           	Open  	;
+ Línea_34        	N32             	N25             	950         	0.5         	130         	0           	Open  	;
+ Línea_4         	N4              	N5              	1150        	0.5         	130         	0           	Open  	;
+ Línea_5         	N5              	N6              	1450        	0.5         	130         	0           	Open  	;
+ Línea_6         	N6              	N7              	450         	0.5         	130         	0           	Open  	;
+ Línea_7         	N7              	N8              	850         	0.5         	130         	0           	Open  	;
+ Línea_8         	N8              	N9              	850         	0.5         	130         	0           	Open  	;
+ Línea_9         	N9              	N10             	800         	0.5         	130         	0           	Open  	;
+ A1              	N13             	1               	1000        	300         	0.1         	0           	Open  	;
+
+[PUMPS]
+;ID              	Node1           	Node2           	Parameters
+
+[VALVES]
+;ID              	Node1           	Node2           	Diameter    	Type	Setting     	MinorLoss   
+ 2               	N13             	N11             	300         	PRV 	0           	0           	;
+
+[TAGS]
+
+[DEMANDS]
+;Junction        	Demand      	Pattern         	Category
+
+[STATUS]
+;ID              	Status/Setting
+
+[PATTERNS]
+;ID              	Multipliers
+
+[CURVES]
+;ID              	X-Value     	Y-Value
+
+[CONTROLS]
+
+
+
+
+[RULES]
+
+
+
+
+[ENERGY]
+ Global Efficiency  	75
+ Global Price       	0
+ Demand Charge      	0
+
+[EMITTERS]
+;Junction        	Coefficient
+
+[QUALITY]
+;Node            	InitQual
+
+[SOURCES]
+;Node            	Type        	Quality     	Pattern
+
+[REACTIONS]
+;Type     	Pipe/Tank       	Coefficient
+
+
+[REACTIONS]
+ Order Bulk            	1
+ Order Tank            	1
+ Order Wall            	1
+ Global Bulk           	0
+ Global Wall           	0
+ Limiting Potential    	0
+ Roughness Correlation 	0
+
+[MIXING]
+;Tank            	Model
+
+[TIMES]
+ Duration           	0:00 
+ Hydraulic Timestep 	1:00 
+ Quality Timestep   	0:05 
+ Pattern Timestep   	1:00 
+ Pattern Start      	0:00 
+ Report Timestep    	1:00 
+ Report Start       	0:00 
+ Start ClockTime    	12 am
+ Statistic          	NONE
+
+[REPORT]
+ Status             	No
+ Summary            	No
+ Page               	0
+
+[OPTIONS]
+ Units              	LPS
+ Headloss           	H-W
+ Specific Gravity   	1
+ Viscosity          	1.1E-06
+ Trials             	40
+ Accuracy           	0.00001
+ CHECKFREQ          	2
+ MAXCHECK           	10
+ DAMPLIMIT          	0
+ Unbalanced         	Continue 10
+ Pattern            	1
+ Demand Multiplier  	1
+ Emitter Exponent   	0.5
+ Quality            	None mg/L
+ Diffusivity        	1
+ Tolerance          	0.01
+
+[COORDINATES]
+;Node            	X-Coord         	Y-Coord
+ N10             	5045,00         	1752,00         
+ N11             	5039,00         	1979,00         
+ N12             	5034,00         	2260,00         
+ N13             	4565,00         	2272,00         
+ N14             	4766,00         	1752,00         
+ N15             	4466,00         	1748,00         
+ N16             	4205,00         	1752,00         
+ N17             	4201,00         	1475,00         
+ N18             	4205,00         	1197,00         
+ N19             	4196,00         	971,00          
+ N2              	4199,00         	388,00          
+ N20             	3922,00         	744,00          
+ N21             	3901,00         	387,00          
+ N22             	3893,00         	36,00           
+ N23             	3575,00         	753,00          
+ N24             	3587,00         	1343,00         
+ N25             	3612,00         	1756,00         
+ N26             	3819,00         	1756,00         
+ N27             	4008,00         	1756,00         
+ N28             	3246,00         	759,00          
+ N29             	2941,00         	765,00          
+ N3              	4200,00         	749,00          
+ N30             	2971,00         	1355,00         
+ N31             	2996,00         	1775,00         
+ N32             	3307,00         	1775,00         
+ N4              	4640,00         	749,00          
+ N5              	5005,00         	749,00          
+ N6              	5410,00         	749,00          
+ N7              	5410,00         	1063,00         
+ N8              	5405,00         	1416,00         
+ N9              	5405,00         	1746,00         
+ P1              	4746,15         	53,01           
+ 1               	4004,72         	2224,54         
+
+[VERTICES]
+;Link            	X-Coord         	Y-Coord
+ A1              	4318,51         	2074,59         
+ 2               	4735,04         	2057,93         
+ 2               	4435,14         	1980,17         
+
+[LABELS]
+;X-Coord           Y-Coord          Label & Anchor Node
+
+[BACKDROP]
+ DIMENSIONS     	2817,55         	-113,60         	5533,45         	2385,60         
+ UNITS          	Ninguno
+ FILE           	
+ OFFSET         	0,00            	0,00            
+
+[END]
