@@ -8,7 +8,7 @@ import java.nio.IntBuffer;
  * Class use to load java native interface using JNA.
  *
  */
-public interface IEpanetDLL {
+public interface IEpanetNative {
 
 	/**
 	 * Opens the Toolkit to analyze a particular distribution system. <br>
