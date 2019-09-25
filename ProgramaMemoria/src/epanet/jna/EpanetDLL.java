@@ -1,6 +1,8 @@
 package epanet.jna;
 
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
@@ -227,7 +229,8 @@ public class EpanetDLL {
 	 * @throws EpanetException
 	 */
 	public void ENwriteline(String line) throws EpanetException {
-		ByteBuffer buffer = EpanetUtils.StringToByteBuffer(line);
+		ByteBuffer buffer = EpanetUtils.stringToByteBuffer(line);
+		
 		int err = epanet.ENwriteline(buffer);
 		checkError(err);
 	}
@@ -588,8 +591,8 @@ public class EpanetDLL {
 	}
 
 	public void ENsetpattern(int index, float[] factors, int nfactors) throws EpanetException {
-		FloatBuffer factorsBuffer = FloatBuffer.allocate(factors.length);
-		factorsBuffer.put(factors);
+		FloatBuffer factorsBuffer = EpanetUtils.floatToByteBuffer(factors);
+		
 		int err = epanet.ENsetpattern(index, factorsBuffer, nfactors);
 		checkError(err);
 	}
@@ -633,9 +636,9 @@ public class EpanetDLL {
 
 	public void ENsetqualtype(int qualcode, String chemname, String chemunits, String tracenode)
 			throws EpanetException {
-		ByteBuffer chemnameBuffer = EpanetUtils.StringToByteBuffer(chemname);
-		ByteBuffer chemunitsBuffer = EpanetUtils.StringToByteBuffer(chemunits);
-		ByteBuffer tracenodeBuffer = EpanetUtils.StringToByteBuffer(tracenode);
+		ByteBuffer chemnameBuffer = EpanetUtils.stringToByteBuffer(chemname);
+		ByteBuffer chemunitsBuffer = EpanetUtils.stringToByteBuffer(chemunits);
+		ByteBuffer tracenodeBuffer = EpanetUtils.stringToByteBuffer(tracenode);
 
 		int err = epanet.ENsetqualtype(qualcode, chemnameBuffer, chemunitsBuffer, tracenodeBuffer);
 		checkError(err);
@@ -667,27 +670,32 @@ public class EpanetDLL {
 
 	public static void main(String[] args) {
 		try {
-			EpanetDLL epanet = new EpanetDLL("epanet2_64bit.dll", "lib/");
+			EpanetDLL epanet = new EpanetDLL("Epanet20012.dll", "lib/");
 			epanet.ENopen("inp/red1.inp", "inp/report.rpt", "");
 			//long t, tstep;
 			long[] tstep = {1};
 			long[] t = {0};
 			
 			epanet.ENopenH();
-			epanet.ENwriteline("a");
+
+			epanet.ENwriteline("kjkdjsdkajslhjgjgjfjfgjf");
+			
+			float[] array = new float[] {1, 3, (float) 3.4, 5, 3, (float) 3.4, 5, 3, (float) 3.4, 5, 3, (float) 3.4, 5};
+			epanet.ENsetpattern(1, array, array.length);
+			System.out.println(array[2]);
 
 			epanet.ENinitH(0);
 			do {  
 				epanet.ENrunH(t);  
 				/* Retrieve hydraulic results for time t */
-				System.out.println(epanet.ENgetflowunits());
-				System.out.println(epanet.ENgetnodevalue(1, EpanetNodeParameter.EN_BASEDEMAND));
-				System.out.println(epanet.ENgetqualtype()[0] + " "  + epanet.ENgetqualtype()[1]);
-				System.out.println(epanet.ENgetnodeindex("23"));
-				System.out.println(epanet.ENgetpatternvalue(1,4));
-				EpanetControlResult res = epanet.ENgetcontrol(1);
-				System.out.println(res);
-				System.out.println(epanet.ENgetlinkid(res.getLindex()));
+//				System.out.println(epanet.ENgetflowunits());
+//				System.out.println(epanet.ENgetnodevalue(1, EpanetNodeParameter.EN_BASEDEMAND));
+//				System.out.println(epanet.ENgetqualtype()[0] + " "  + epanet.ENgetqualtype()[1]);
+//				System.out.println(epanet.ENgetnodeindex("23"));
+//				System.out.println(epanet.ENgetpatternvalue(1, 4));
+//				EpanetControlResult res = epanet.ENgetcontrol(1);
+//				System.out.println(res);
+//				System.out.println(epanet.ENgetlinkid(res.getLindex()));
 				
 				epanet.ENnextH(tstep);  
 			} while (tstep[0] > 0);  

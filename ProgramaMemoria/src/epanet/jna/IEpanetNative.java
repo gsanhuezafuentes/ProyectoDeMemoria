@@ -1110,7 +1110,7 @@ public interface IEpanetNative extends Library{
 	 * pattern.
 	 * 
 	 * @param index    time pattern index
-	 * @param factors  multiplier factors for the entire pattern
+	 * @param factors  multiplier factors for the entire pattern (The buffer as to contain float element).
 	 * @param nfactors number of factors in the pattern
 	 * @return Returns an error code.
 	 */
