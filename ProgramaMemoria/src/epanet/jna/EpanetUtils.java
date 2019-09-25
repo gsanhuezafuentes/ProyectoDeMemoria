@@ -36,8 +36,8 @@ public class EpanetUtils {
 	/**
 	 * Transform IntBuffer to int
 	 * 
-	 * @param buffer
-	 * @return int
+	 * @param buffer Buffer
+	 * @return int that is contained in the buffer
 	 */
 	public static int IntBufferToInt(IntBuffer buffer) {
 		return buffer.get();
@@ -46,18 +46,18 @@ public class EpanetUtils {
 	/**
 	 * Transform FloatBuffer to float
 	 * 
-	 * @param buffer
-	 * @return float
+	 * @param buffer Buffer
+	 * @return float that is contained in the buffer
 	 */
 	public static float FloatBufferToFloat(FloatBuffer buffer) {
 		return buffer.get();
 	}
 	
 	/**
-	 * Transform a floatArray in a ByteBuffer.
+	 * Transform a float[] in a FloatBuffer.
 	 * 
-	 * @param text text to transform.
-	 * @return ByteBuffer
+	 * @param array array of float element
+	 * @return FloatBuffer with the element of array
 	 */
 	public static FloatBuffer floatToFloatBuffer(float[] array) {
 		int sizeOfMemory = array.length*Float.BYTES;

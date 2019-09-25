@@ -11,6 +11,7 @@ import com.sun.jna.NativeLibrary;
 
 import epanet.EpanetErrors;
 import epanet.EpanetException;
+import epanet.jna.IEpanetNative.pviewprog;
 
 public class EpanetDLL {
 	private static IEpanetNative epanet;
@@ -32,6 +33,28 @@ public class EpanetDLL {
 				throw new Exception("The library can't be loaded", e);
 			}
 		}
+	}
+
+	/**
+	 * 
+	 * Example:<br><br>
+	 * <code>
+	 * IEpanetNative.pviewprog callback = new IEpanetNative.pviewprog() {<br><br>
+	 * 
+	 * &nbsp; @Override <br>
+	 * &nbsp; public void invoke(String text) { System.out.println(text); } <br><br>
+	 * };
+	 * <code>
+	 * @param f1
+	 * @param f2
+	 * @param f3
+	 * @param callback
+	 * @return
+	 * @see epanet.jna.IEpanetNative#ENepanet(java.lang.String, java.lang.String,
+	 *      java.lang.String, epanet.jna.IEpanetNative.pviewprog)
+	 */
+	public int ENepanet(String f1, String f2, String f3, pviewprog callback) {
+		return epanet.ENepanet(f1, f2, f3, callback);
 	}
 
 	/**
@@ -230,7 +253,7 @@ public class EpanetDLL {
 	 */
 	public void ENwriteline(String line) throws EpanetException {
 		ByteBuffer buffer = EpanetUtils.stringToByteBuffer(line);
-		
+
 		int err = epanet.ENwriteline(buffer);
 		checkError(err);
 	}
@@ -272,7 +295,7 @@ public class EpanetDLL {
 		FloatBuffer levelBuffer = FloatBuffer.allocate(1);
 		int err = epanet.ENgetcontrol(cindex, ctypeBuffer, lindexBuffer, settingBuffer, nindexBuffer, levelBuffer);
 		checkError(err);
-		
+
 		int ctype = EpanetUtils.IntBufferToInt(ctypeBuffer);
 		int lindex = EpanetUtils.IntBufferToInt(lindexBuffer);
 		float setting = EpanetUtils.FloatBufferToFloat(settingBuffer);
@@ -498,8 +521,8 @@ public class EpanetDLL {
 
 	/**
 	 * 
-	 * @param index
-	 * @return
+	 * @param link index
+	 * @return EpanetLinkType
 	 * @throws EpanetException
 	 */
 	public EpanetLinkType ENgetlinktype(int index) throws EpanetException {
@@ -513,8 +536,8 @@ public class EpanetDLL {
 	 * Obtains the index of the nodes at both ends of the edge
 	 * 
 	 * @param index index of link
-	 * @return A array of size 2 that contain both ends of the edge
-	 * @throws EpanetException
+	 * @return A array of size 2 that contain both ends of the edge s * @throws
+	 *         EpanetException
 	 */
 	public int[] ENgetlinknodes(int index) throws EpanetException {
 		int[] fromnode = new int[1];
@@ -592,7 +615,7 @@ public class EpanetDLL {
 
 	public void ENsetpattern(int index, float[] factors, int nfactors) throws EpanetException {
 		FloatBuffer factorsBuffer = EpanetUtils.floatToFloatBuffer(factors);
-		
+
 		int err = epanet.ENsetpattern(index, factorsBuffer, nfactors);
 		checkError(err);
 	}
@@ -671,37 +694,45 @@ public class EpanetDLL {
 	public static void main(String[] args) {
 		try {
 			EpanetDLL epanet = new EpanetDLL("Epanet20012.dll", "lib/");
-			epanet.ENopen("inp/red1.inp", "inp/report.rpt", "");
-			//long t, tstep;
-			long[] tstep = {1};
-			long[] t = {0};
-			
-			epanet.ENopenH();
+			IEpanetNative.pviewprog callback = new IEpanetNative.pviewprog() {
 
-			epanet.ENwriteline("kjkdjsdkajslhjgjgjfjfgjf");
-			
-			float[] array = new float[] {1, 3, (float) 3.4, 5, 3, (float) 3.4, 5, 3, (float) 3.4, 5, 3, (float) 3.4, 5};
-			epanet.ENsetpattern(1, array, array.length);
-			System.out.println(array[2]);
+				@Override
+				public void invoke(String text) {
+					System.out.println(text);
+				}
+			};
+			epanet.ENepanet("inp/red1.inp", "inp/report.rpt", "", callback);
+//			epanet.ENopen("inp/red1.inp", "inp/report.rpt", "");
+//			//long t, tstep;
+//			long[] tstep = {1};
+//			long[] t = {0};
+//			
+//			epanet.ENopenH();
+//
+//			epanet.ENwriteline("kjkdjsdkajslhjgjgjfjfgjf");
+//			
+//			float[] array = new float[] {1, 3, (float) 3.4, 5, 3, (float) 3.4, 5, 3, (float) 3.4, 5, 3, (float) 3.4, 5};
+//			epanet.ENsetpattern(1, array, array.length);
+//			System.out.println(array[2]);
+//
+//			epanet.ENinitH(0);
+//			do {  
+//				epanet.ENrunH(t);  
+//				/* Retrieve hydraulic results for time t */
+////				System.out.println(epanet.ENgetflowunits());
+////				System.out.println(epanet.ENgetnodevalue(1, EpanetNodeParameter.EN_BASEDEMAND));
+////				System.out.println(epanet.ENgetqualtype()[0] + " "  + epanet.ENgetqualtype()[1]);
+////				System.out.println(epanet.ENgetnodeindex("23"));
+////				System.out.println(epanet.ENgetpatternvalue(1, 4));
+////				EpanetControlResult res = epanet.ENgetcontrol(1);
+////				System.out.println(res);
+////				System.out.println(epanet.ENgetlinkid(res.getLindex()));
+//				
+//				epanet.ENnextH(tstep);  
+//			} while (tstep[0] > 0);  
+//
+//			epanet.ENcloseH();
 
-			epanet.ENinitH(0);
-			do {  
-				epanet.ENrunH(t);  
-				/* Retrieve hydraulic results for time t */
-//				System.out.println(epanet.ENgetflowunits());
-//				System.out.println(epanet.ENgetnodevalue(1, EpanetNodeParameter.EN_BASEDEMAND));
-//				System.out.println(epanet.ENgetqualtype()[0] + " "  + epanet.ENgetqualtype()[1]);
-//				System.out.println(epanet.ENgetnodeindex("23"));
-//				System.out.println(epanet.ENgetpatternvalue(1, 4));
-//				EpanetControlResult res = epanet.ENgetcontrol(1);
-//				System.out.println(res);
-//				System.out.println(epanet.ENgetlinkid(res.getLindex()));
-				
-				epanet.ENnextH(tstep);  
-			} while (tstep[0] > 0);  
-
-			epanet.ENcloseH();
-			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
