@@ -59,7 +59,7 @@ public class EpanetUtils {
 	 * @param text text to transform.
 	 * @return ByteBuffer
 	 */
-	public static FloatBuffer floatToByteBuffer(float[] array) {
+	public static FloatBuffer floatToFloatBuffer(float[] array) {
 		int sizeOfMemory = array.length*Float.BYTES;
 		Pointer pointer = new Memory(sizeOfMemory);
 		for (int i = 0; i < array.length; i++) {

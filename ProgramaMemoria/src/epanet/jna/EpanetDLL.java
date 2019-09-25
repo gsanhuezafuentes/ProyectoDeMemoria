@@ -591,7 +591,7 @@ public class EpanetDLL {
 	}
 
 	public void ENsetpattern(int index, float[] factors, int nfactors) throws EpanetException {
-		FloatBuffer factorsBuffer = EpanetUtils.floatToByteBuffer(factors);
+		FloatBuffer factorsBuffer = EpanetUtils.floatToFloatBuffer(factors);
 		
 		int err = epanet.ENsetpattern(index, factorsBuffer, nfactors);
 		checkError(err);
