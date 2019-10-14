@@ -1,0 +1,123 @@
+%% inicio, la clase del documento es iccmemoria.cls
+\documentclass{iccmemoria}
+
+%% datos generales y para la tapa
+\titulo{Título de la Memoria}
+\author{Nombre del Alumno}
+\supervisor{Profesor Supervisor}
+\informantes
+	{Profesor Informante 1}
+	{Profesor Informante 2}
+\adicional{(sólo por si se necesita agregar algún otro profesor)}
+\director{Profesor del ramo Memoria de Título}
+\date{mes, año}
+
+%% inicio de documento
+\begin{document}
+
+%% crea la tapa
+\maketitle
+
+%% dedicatoria
+\begin{dedicatory}
+Dedicado a ...
+\end{dedicatory}
+
+%% agradecimientos
+\begin{acknowledgment}
+Agradecimientos a ...
+\end{acknowledgment}
+
+%% indices
+\tableofcontents
+\listoffigures
+\listoftables
+
+%% resumen
+\begin{resumen}
+Aquí va el resumen (en Castellano)... 
+\end{resumen}
+
+%% abstract
+
+%% contenido del primer capítulo
+\chapter{Primer Capítulo}
+Aquí va el texto del capítulo 1...
+
+\section{La primera sección del capítulo 1}
+Aquí va el texto de la primera sección del capítulo 1... 
+
+\subsection{La primera subsección de la primera sección del capítulo 1}
+Aquí va el texto de la primera subsección de la primera sección del capítulo 1... 
+
+\subsection{La segunda subsección de la primera sección del capítulo 1}
+Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
+
+\section{La segunda sección del capítulo 1}
+Aquí va el texto de la segunda sección del capítulo 1...
+
+
+%% contenido del segundo capítulo
+\chapter{Segundo Capítulo}
+Sólo para probar algunas cosas como las referencias.
+La primera cita es a Lamport~\cite{lamport79}.
+La segunda cita es para Lamport nuevamente~\cite{lamport78}.
+La última cita es para Keleher \emph{et al.}~\cite{keleher92}.
+
+
+%% contenido del tercer capítulo
+\chapter{Tercer Capítulo}
+Sólo para incluir figuras y tablas.
+\begin{figure}[h]
+  \vspace*{1cm}
+  \includegraphics[bb=0 0 640 480, width=.5\linewidth]{latexlogo.png}
+  \vspace*{1cm}
+  \caption{La primera figura de la memoria}
+\end{figure}
+\begin{table}[h]
+  \vspace*{1cm}
+  (aqui debiera ir la tabla)
+  \vspace*{1cm}
+  \caption{La primera tabla de la memoria}
+\end{table}
+
+
+%% ambiente glosario
+\begin{glosario}
+  \item[El primer término:] Este es el significado del primer término, realmente no se bien lo que significa pero podría haberlo averiguado si hubiese tenido un poco mas de tiempo.
+  \item[El segundo término:] Este si se lo que significa pero me da lata escribirlo...
+\end{glosario}
+
+
+%% genera las referencias
+\bibliography{refs}
+
+
+%% comienzo de la parte de anexos
+\appendixpart
+
+%% contenido del primer anexo
+\appendix{El Primer Anexo}
+Aquí va el texto del primer anexo...
+
+\section{La primera sección del primer anexo}
+Aquí va el texto de la primera sección del primer anexo...
+
+\section{La segunda sección del primer anexo}
+Aquí va el texto de la segunda sección del primer anexo...
+
+\subsection{La primera subsección de la segunda sección del primer anexo}
+
+
+%% contenido del segundo anexo
+\appendix{El segundo Anexo}
+Aquí va el texto del segundo anexo...
+
+\section{La primera sección del segundo anexo}
+Aquí va el texto de la primera sección del segundo anexo...
+
+%% fin
+\end{document}
+
+   
+

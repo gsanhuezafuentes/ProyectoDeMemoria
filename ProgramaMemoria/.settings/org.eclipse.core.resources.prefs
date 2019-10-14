@@ -1,2 +1,16 @@
 eclipse.preferences.version=1
+encoding//src/model/metaheuristic/algorithm/Algorithm.java=UTF-8
+encoding//src/model/metaheuristic/algorithm/GeneticAlgorithm.java=UTF-8
+encoding//src/model/metaheuristic/operator/Operator.java=UTF-8
+encoding//src/model/metaheuristic/operator/crossover/CrossoverOperator.java=UTF-8
+encoding//src/model/metaheuristic/operator/crossover/IntegerSBXCrossover.java=UTF-8
+encoding//src/model/metaheuristic/operator/mutation/IntegerPolynomialMutation.java=UTF-8
+encoding//src/model/metaheuristic/operator/mutation/MutationOperator.java=UTF-8
+encoding//src/model/metaheuristic/operator/selection/SelectionOperator.java=UTF-8
+encoding//src/model/metaheuristic/operator/selection/TournamentSelection.java=UTF-8
+encoding//src/model/metaheuristic/problem/Problem.java=UTF-8
+encoding//src/model/metaheuristic/solution/IntegerSolution.java=UTF-8
+encoding//src/model/metaheuristic/solution/Solution.java=UTF-8
+encoding//src/model/metaheuristic/utils/DominanceComparator.java=UTF-8
+encoding//src/model/metaheuristic/utils/ObjectiveComparator.java=UTF-8
 encoding/<project>=US-ASCII
