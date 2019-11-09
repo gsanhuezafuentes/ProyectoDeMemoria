@@ -1,0 +1,328 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{pslatex}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc} % Caracteres con acentos.
+\usepackage{latexsym}
+\usepackage{amssymb} 
+\usepackage{amsmath}
+\usepackage{epsfig}
+\usepackage{url}
+\usepackage{titlesec}
+\usepackage{float}
+
+%%%%%% Usado junto con titlesec
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+%%%%%%%%
+\begin{document}
+
+\pagestyle{empty}
+
+\title{
+Herramienta para la optimización de redes de distribución de agua potable\\
+(Propuesta de proyecto final de carrera)
+}
+\author{
+Gabriel Sanhueza Fuentes (Estudiante)\\
+Jimmy Gutierrez Bahamondes (Profesor guía)\\
+Carrera de Ingeniería Civil en Computación\\ 
+Universidad de Talca}
+\date{6 de septiembre de 2019}
+
+\maketitle
+
+
+\section{Descripción de la propuesta}
+%\emph{(Esta sección debe incluir una presentación general del problema a investigar y/o idea a desarrollar. En esta sección se debe incluir aquellas referencias bibliográficas vinculadas al contexto del proyecto. Para esto último se recomienda el uso de un archivo *.bib, el cual usa el formato BibTex \cite{1} para codificar  referencias sobre libros \cite{2}, artículos en revistas científicas \cite{3}, artículos en conferencias o workshops \cite{4}, reportes técnicos \cite{5}, capítulos en libros \cite{6}, y páginas Web \cite{7}.
+%La longitud máxima de esta sección es de 2.5 páginas.)
+
+% Agregar una introducción a lo que viene abajo
+
+%En el presente capítulo se presentan los conceptos básicos, el problema, su contexto, y la propuesta de solución. 
+En el presente capítulo se presentan los conceptos básicos que son necesario tener claros durante el desarrollo de este proyecto. Posteriormente, se presenta el problema y contexto del proyecto. Finalmente, se presenta la propuesta de solución al problema identificado.
+\subsection{Conceptos básicos del proyecto} 
+
+En esta sección se definen algunos elementos básicos que serán necesarios para la realización del proyecto.
+
+\begin{itemize}
+\item \textbf{Optimización}: La optimización consiste en maximizar o minimizar un conjunto de funciones que matemáticamente pueden ser expresadas de la siguiente forma:
+$$f_1(x),f_2(x), ..., f_N(x),\ x=(x_1,...,x_d) | x \in X$$
+sujeto a una serie de condiciones
+$$h_j(x) = 0, j=1,2,...,J$$
+$$g_k(x) \leq 0, k=1,2,...,K$$
+siendo $f_1,...,f_N$ funciones objetivos; $x_1, ..., x_d$ variables de decisión, pertenecientes al espacio de búsqueda $X$; y $h_j$ junto con $g_k$, una serie de restricciones \cite{Yang2015}. De acuerdo a la cantidad de funciones objetivos que se tenga, se establece que si $N=1$ la optimización es \textbf{monoobjetivo}, mientras que para $N\geq 2$ se conoce como \textbf{multiobjetivo} \cite{Yang2015}. En este punto se debe tener en cuenta que los objetivos planteados deben encontrarse en contradicción. 
+
+Debido a la definición de las restricciones es posible dividir el espacio de búsqueda en dos regiones \cite{Bozorg-Haddad2017}:
+\begin{itemize}
+	\item Soluciones factibles: Compuesto por los elementos pertenecientes al espacio de búsqueda que satisfacen todas las restricciones.
+	\item Soluciones no factibles: Integrado por aquellos elementos que no complen todas las restricciones.
+\end{itemize}
+%\item \textbf{Optimización Monoobjetivo}: 
+
+
+\item \textbf{Heurísticas}: Técnicas estocásticas que permitan acotar la búsqueda de soluciones en problemas cuyo espacio de búsqueda es de gran tamaño y que hacen inviable la aplicación de técnicas deterministas por el costo de tiempo que implican. Con la utilización de estas técnicas se espera encontrar soluciones buenas en un tiempo razonable, pero esto no esta garantizado \cite{Yang2015,Romanycia1985}.
+
+
+\item \textbf{Metaheuristica}: Heurísticas generalizadas para ser aplicadas en un amplio conjunto de problemas. (Buscar mejor referencia)
+
+\item \textbf{Algoritmos genéticos}: Estrategia de búsqueda de soluciones basada en la teoría de la evolución de Darwin. Para realizar esto, el algoritmo  parte desde un conjunto de soluciones denominada población he iterativamente, lleva a cabo un proceso de reproducción, generando nuevas soluciones \cite{Heiss-Czedik1997}.
+%\item \textbf{Optimización Multiobjetivo}: Problemas que poseen múltiples funciones objetivos.
+
+\item \textbf{NSGA-II}: Algoritmo que utiliza el cruzamiento, mutación y reproducción para encontrar un conjunto de soluciones optimas a problemas que cuentan con mas de un objetivo \cite{Deb2002}. 
+
+%\item \textbf{JMetal}: Framework que incorpora y permite la utilización de algoritmos metahuristicos para la optimización multiobjetivo. \cite{9}
+\item \textbf{Epanet}: Software que permite simular el comportamiento hidráulico y la calidad del agua en redes de distribución de aguas compuesta por tuberías, nodos, bombas, válvulas y tanques de almacenamiento \cite{Rossman2017}. 
+\item \textbf{Red de distribución de agua potable}: Conjunto de elementos enlazados de tal manera que permite suministrar cierta cantidad de agua a una presión establecida \cite{Doctoral2012}.
+ 
+\end{itemize}
+
+\subsection{Contexto del proyecto} 
+%\emph{Esta sección debe incluir el marco en el cual se presenta el problema y/o proyecto a desarrollar, incluyendo los fundamentos teóricos y/o prácticos necesarios para el desarrollo del proyecto.) Esta sección responde a la pregunta ¿Dónde surge el problema?}
+
+La escasez de agua potable es sin duda una problemática a nivel mundial. Dentro de este contexto, la optimización de los sistemas de distribución de agua potable es un problema sin resolver hasta la fecha. 
+
+A lo mencionado anteriormente, también se suma la escasez energética. Puesto que, es requerida para el tratamiento y distribución del agua. Es por esto que, es importante hacer un uso eficiente de la energía durante la operación del sistema.
+
+La optimización de estos sistemas, a la vez, involucra la participación de múltiples criterios que deben ser tomados en cuenta a la hora de decidir. Sin embargo, la incorporación de estos criterios, involucra la generación de modelos cada vez más complejos.
+
+Los algoritmos metaheurísticos han demostrado ser un mecanismo eficiente ante problemas de este tipo. Ya que, estos reducen el tiempo necesario que toma el evaluar todas las configuraciones posibles. Dado que, juzgan un conjunto menor de valores logrando como resultado una aproximación a la solución óptima.
+
+\subsection{Definición del problema} 
+%\emph{(Esta sección debe incluir la descripción del problema resolver o idea a desarrollar, y la motivación para hacerlo. Es decir, cual es la importancia, innovación, aporte, y/o beneficio para la ciencia y/o la humanidad). Esta sección responde a la pregunta ¿Cuál es el problema que voy a resolver?}
+
+Los encargados de implementar sistemas de distribución de agua potable, no cuentan con suficientes herramientas y  tiempo para su correcta gestión. Por lo tanto, no es posible utilizar los recursos asociados de forma eficiente. Además, las herramientas existentes no satisfacen las necesidades de usabilidad y costo, debido a que son poco intuitivas y de pago.
+
+El escoger las especificaciones de una red de agua potable ya es de por sí difícil debido a que hay que evaluar el rendimiento general del sistema alternando entre distintas configuraciones en busca de una solución que sea eficaz. Debido a esto, el uso de herramientas automatizadas que evalúen el rendimiento de las diversas combinaciones posibles viene a ser necesario.
+
+A lo anterior se suma el hecho de que los interesados en esta área no manejan herramientas informáticas.
+
+%Es por esto que con la realización de este trabajo se busca lograr la implementación de  una herramienta que ayude a los encargados a evaluar el diseño y la operación de la red de agua potable utilizando un enfoque especifico, contribuyendo a la ves al uso eficiente del agua y energía.
+
+
+
+\subsection{Trabajo relacionado} 
+%\emph{(Esta sección debe incluir los enfoques usados actualmente para resolver el problema. Esta sección debe contener referencias bibliográficas a trabajos relacionados al proyecto.) Esta sección responde a la pregunta ¿Qué se ha hecho para resolver el problema?}
+
+En este apartado se mostraran distintas herramientas y el enfoque utilizado para resolver el problema con estas herramientas. En general, los enfoques consisten en usar software ya disponible o crear un software personalizado.
+
+\begin{itemize}
+	\item \textbf{Magmoredes}: En \cite{Edwin2017} se describe la existencia de un software de diseño basado en micro-algoritmos genéticos multiobjetivos, que de acuerdo al autor, tiene un mejor rendimiento y es más eficiente que el algoritmo NSGA-II, debido a que requiere una menor cantidad de memoria y tiene un mejor tiempo de computo. Este programa puede cargar cualquier red y realiza los cálculos utilizando librerías de java. Las funciones objetivos que este sistema intenta resolver son la optimización de los costo y la confiabilidad final de la red.
+	
+	\item \textbf{WaterGEMS}: Software comercial que permite la  construcción de modelos geoespaciales; optimización de diseño, ciclos de bombeo y calibración automática del modelo; y la  gestión de activos. Este software a sido usado en \cite{Mehta2017} para llevar a cabo las simulaciones necesarias para su estudio. La metodología seguida para la utilización de este sistema consiste en ingresar los datos a WaterGEMS para correr las simulaciones. La limitación de este programa es que no permite la adición de nuevos algoritmos por parte del usuario, en el caso de que se quiera probar o mejorar algún algoritmo ya existente. Sin embargo, este sistema también tiene sus ventajas, por que ya incorpora algunos algoritmos predefinidos para resolver ciertos problemas. Ademas, de que cuenta con diversas funcionalidades como conexión con datos externos, operaciones de análisis espaciales, intercambio de datos con dispositivos o programas de administración, entre otros.
+	
+	\item \textbf{EPANET}: El enfoque seguido con la utilización de esta herramienta consiste en la automatización al momento de ejecutar los algoritmos y la posterior evaluación de los resultados utilizando la librería EPANET Toolkit. Este es usado en \cite{Doctoral2012} y consiste en la creación de un programa el cual implementa algoritmos metaheurísticos y los resultados obtenidos por estos son enviados a la EPANET Toolkit para evaluar la solución y determinar la factibilidad de esta. La ventaja de este enfoque es que permite una mayor flexibilidad en los algoritmos metaheuristicos utilizados y los problemas que se quieren resolver. Sin embargo, debido a que se necesita implementar los problemas y los algoritmos, este enfoque toma mucho tiempo.
+\end{itemize}
+
+Para el desarrollo de este proyecto se usa en enfoque basado en EPANET, puesto que esta ya es una librería de simulación hidráulica y permite enfocarnos en la resolución de los problemas usando algoritmos metaheurísticos.
+
+\subsection{Propuesta de solución}
+%\emph{(Esta sección debe incluir el planteamiento y justificación de la solución y/o idea, incluyendo aspectos novedosos.) Esta sección responde a la pregunta ¿Cómo voy a resolver el problema planteado?}
+
+%La solución que se propone para solventar el problema que motiva este trabajo es el desarrollo de una aplicación que sirva como una base sobre la cual poder agregar nuevas funcionalidades. Para esto la aplicación debe quedar bien documentada. Por lo tanto, lo que se tendrá al termino del desarrollo del proyecto será un software escalable que tratara con dos problemas relacionados a la distribución de agua potable y que podrá ser ampliado en futuros trabajos.
+
+La solución que se propone para solventar el problema consiste en el desarrollo de una aplicación que 
+que permita buscar soluciones a dos de los problemas existentes en las redes de agua potable. Además, de hacer uso de una arquitectura que permita fácilmente extender el programa para abarcar nuevos problemas. Para lograr esto  último la aplicación debe quedar bien documentada. Por lo tanto, lo que se tendrá al termino del desarrollo del proyecto será un software escalable que tratara con dos problemas relacionados a la distribución de agua potable y que podrá ser ampliado en futuros trabajos.
+
+Los problemas que se abordaran en el contexto de optimización de redes de agua potable serán:
+\begin{itemize}
+	\item \textbf{Problema de diseño:} Se trata este problema desde un enfoque monoobjetivo implementando un algoritmo genético que buscará la optimización de los costo de inversión variando el diámetro de las tuberías.  
+	\item \textbf{Problema de operación:} Este problema se abordara desde el enfoque multiobjetivo. Para esto se implementara el algoritmo NSGA-II y se buscará la optimización de los objetivos de costos energéticos y el número de encendidos y apagados de las bombas.
+\end{itemize}
+
+Tanto el algoritmo genético como el NSGA-II, permiten la utilización de distintos operadores de cruzamiento y mutación que también serán implementados para ser utilizados. 
+
+La solución planteada supone además el diseño e implementación de una interfaz gráfica para ayudar al usuario en el uso de la herramienta.
+%\section{Hipótesis}
+%\emph{(En esta sección se deben incluir una lista de afirmaciones o suposiciones las cuales se esperar responder con el desarrollo del proyecto. La longitud máxima de esta sección es de 1/2 página.)}
+%\begin{itemize}
+%\item El uso de ... puede facilitar ....
+%\item El problema de .... puede estudiarse como ... 
+%\item Las técnicas usadas en ... pueden ser aplicables para resolver el problema de ...
+%\end{itemize}
+
+\section{Objetivos}
+%\emph{(En esta sección se deben especificar el objetivo general y los objetivos específicos del proyecto. Los objetivos deben reflejar lo que se espera lograr con el proyecto, evitando incluir características específicas de la solución. La longitud máxima de esta sección es de 1 página.)}
+
+A continuación se darán a conocer el objetivo general y los objetivos específicos que se desean lograr con el desarrollo del proyecto.
+
+\paragraph{Objetivo general}
+%\emph{(Debe ser una sola frase que resuma lo que se quiere lograr.)} 
+
+\begin{itemize}
+%\item Desarrollar un sistema web que permita administrar la asignación de salas de clase de forma automática y eficiente.
+\item Diseñar y desarrollar una aplicación de apoyo a la toma de decisiones, integrando algoritmos de optimización aplicados al problema de diseño y operación en redes de distribución de agua potable.
+\end{itemize}
+
+\paragraph{Objetivos específicos}% \emph{(Una lista de puntos que detallan el objetivo general.)}
+\begin{enumerate}
+\item Generar soluciones frente al problema monoobjetivo de diseño de redes de distribución de agua potable a través de la implementación de algoritmos genéticos.
+\item Generar soluciones frente al problema multiobjetivo de operación de redes de distribución de agua potable a través de la implementación de NSGA-II.
+\item Diseñar he implementar la interfaz gráfica del sistema de optimización de redes de agua potable desarrollado durante este proyecto.
+\item Evaluar el desempeño de los algoritmos, contrastando los resultados obtenidos en redes de benchmarking con óptimos conocidos.
+
+\end{enumerate}
+
+
+
+\section{Alcances}
+%\emph{(En esta sección se debe incluir una lista de puntos que definen los límites del trabajo. La longitud máxima de esta sección es de 1/2 página.)}
+%\begin{itemize}
+%\item En este trabajo se espera implementar un prototipo funcional de la idea a desarrollar, por lo tanto se propone desarrollar una interfaz de línea de comando simple en lugar de una interfaz de usuario gráfica. 
+%\item En este trabajo no se crearán algoritmos para ... 
+%\item Este trabajo se limita a ...
+%\item Este trabajo no contempla la creación de la red, por lo que estas serán ser ingresadas como entradas.
+%\item Este trabajo solo contempla la utilización e implementación del algoritmo genético y NSGA-II.
+%\item El producto obtenido a través de la realización de este trabajo solo sera compatible con el sistema operativo Windows. Esto se debe a que harán llamadas a librerías nativas para realizar los cálculos de las redes.
+%\end{itemize}
+Al final del periodo de desarrollo la herramienta contara con las siguientes prestaciones.
+\begin{itemize}
+
+\item El sistema permitirá la carga y la visualización de la red gráficamente.
+\item El sistema solo resolverá dos clases de problemas de optimización, uno mono-objetivo y el otro multiobjetivo. El problema monoobjetivo será el de los costos de inversión. En cuanto al problema multiobjetivo, este será el de los costos energéticos y el número de encendidos y apagado de las bombas.  
+\item El sistema únicamente contara con dos algoritmos implementados los cuales serán el algoritmo genético y NSGA-II. El algoritmo genético será el usado para tratar el problema monoobjetivo, mientras que NSGA-II será aplicado al multiobjetivo.
+\item El sistema permitirá generar archivos .inp con la configuración de la solución obtenida a través de los algoritmos. Debido a que el archivo .inp establece una gran cantidad de configuraciones, las únicas que se permitirán modificar serán las configuraciones asociadas a los conexiones (junctions) y tuberías (pipes).
+\item La comparación con las redes de benchmarking consistirá unicamente, en presentar una tabla comparativa entre los resultados presentes en la literatura y los obtenidos a través de nuestro sistema, para cada uno de los problemas de redes de distribución de agua potable de nuestro sistema.
+
+\end{itemize}
+Este proyecto no contempla la creación de la red por lo que estas deberán ser ingresadas como entradas al programa, es decir, estas deberán ser creadas usando EPANET o manualmente, pero siguiendo el formato establecido por EPANET. Además, esta herramienta únicamente podrá ser ocupada en equipos cuyo sistema operativo sea Windows debido a que se realizan llamadas a librerías nativas.
+
+
+\section{Metodología}
+%\emph{(En esta sección se deben describir y justificar los métodos que se usarán en el desarrollo del proyecto de titulación. Los métodos obligatorios que debe incluir esta seccion es: Metodología de Desarrollo/Investigación y Metodología de Evaluación.)}
+
+En esta sección se describirá y justificara la metodologías de desarrollo y evaluación que se usaran durante el desarrollo del proyecto.. 
+\subsection{Metodología de desarrollo}
+
+%\emph{(En esta subsección se deben describir y justificar los metodos de desarrollo y/o investigación que se aplicaran a lo largo del desarrollo del proyecto.)}
+
+Esta sección describe y justifica el uso de la metodología iterativo incremental.
+\subsubsection{Iterativo incremental}
+
+Esta metodología lleva a cabo el desarrollo de un proyecto de software dividiéndolo en iteraciones que generan un incremento, el cual contribuye en el desarrollo del producto final. Cada iteración se compone de las fases de análisis, diseño, implementación y testing. La fase de análisis lleva a cabo la obtención y definición de los requerimientos del software. La etapa de diseño se encarga de la conceptualización del software basado en los requerimientos definidos anteriormente. Durante la implementación se codifican las funcionalidades siguiendo las directivas establecidas durante el diseño, con el fin de satisfacer los requerimientos. Y finalmente, durante la fase de testing, se valida y verifica la correctitud de las funcionalidades implementadas, asi como el cumplimiento de los requisitos. El hecho de llevar a cabo un desarrollo iterativo permite la obtención de retroalimentación del producto que se esta desarrollando tempranamente y de esta manera poder refinar el trabajo en etapas posteriores del desarrollo. \cite{Victor2003, Mitchell2009, Martin1999,Alshamrani2015}.
+
+Debido a que la metodología esta pensada para ser llevada a cabo por un equipo de trabajo se adaptara la metodología para poder ser aplicada en el desarrollo llevado a cabo por una sola persona. Esta adaptación consiste en la disminución de la cantidad de la documentación generada, permitir llevar a cabo mas de una fase de la iteración al mismo tiempo y los roles de analista, diseñador, implementador y tester sera realizado por una sola persona. Los documentos a generar por cada fase serán:
+
+\paragraph{Análisis:} El producto generado por esta fase sera un documento de especificación de requisitos que constara de:
+\begin{itemize}
+	\item Introducción: En este apartado del documento se hará una introducción al problema que se ha identificado.
+	\item Requisitos de usuario: Consiste en la recopilación de lo requisitos de los usuarios que deben ser cumplidos al final del periodo de desarrollo.
+	\item Requisito de sistema: Son los requisitos, desde un punto de vista mas técnico, que son necesarios para satisfacer los requisitos de usuario.
+	\item Matriz de trazado requisitos de usuario vs sistema:  Matriz que permite ver la trazabilidad de los requisitos de usuario con los de sistema.
+\end{itemize}
+\paragraph{Diseño:} Esta fase generara como producto un documento de diseño que contara con los siguientes diagramas:
+\begin{itemize}
+	\item Casos de uso: Serie de diagramas que permiten ver la interacción que el usuario tendrá con el sistema.
+	\item Arquitectura lógica: Descripción a alto nivel del software y los componentes que lo componen.
+	\item Diagrama de componentes: Permite ver la división del sistema y la interacción entre los distintos componentes \cite{Bell2004}.
+	\item Diagrama de clases: Describe la relación entre las distintas clases presentes en la solución propuesta.
+\end{itemize}
+\paragraph{Implementación:} Esta fase generara el código fuente de la aplicación y un manual de usuario de la aplicación.
+\paragraph{Pruebas:} Durante esta fase de realizaran la documentación y la realización de las pruebas sobre la aplicación.
+\begin{itemize}
+	\item Se documentará las pruebas unitarias realizadas y sobre que componentes.
+	\item Se documentará las pruebas de integración y que caso de uso cubren.
+\end{itemize}
+
+La razón por la que se utilizará esta metodología sobre otras es porque el producto resultante de este proyecto esta pensado para servir como base para futuros trabajos. Debido a esto es necesario documentar correctamente para que otros programadores puedan continuar con su desarrollo más adelante. Aunque existen otras metodologías como cascada u otras tradicionales, estas son difíciles de llevar a cabo por la cantidad de documentación que se requiere, mientras que metodologías de desarrollo ágil carecen en cuanto a la documentación que se necesita para el sistema a desarrollar. Además, esta metodología nos permite obtener una retroalimentación al final de la iteración, obtener nuevos requisitos que no hayan quedado definidos en etapas anteriores o refinar los requisitos y el diseño ya existente, permitiendo así mejorar la calidad del producto final.
+
+La implementación de esta metodología para el desarrollo del proyecto se llevará a cabo repartiendo las tareas necesarias para el cumplimiento de los objetivos en iteraciones. De este modo al final de cada iteración se contará con un prototipo funcional de la aplicación sobre el que se agregaran las nuevas funcionalidades en las iteraciones siguientes.
+
+\subsection{Metodología de evaluación del proyecto}
+%\emph{(En esta subsección se deben describir y justificar los metodos de evaluación/validación que se aplicarán a lo largo del desarrollo del proyecto.)}
+
+Esta sección describe las metodologías que se aplicarán para la evaluación del proyecto. Estas serán pruebas unitarias, de integración y caso de estudio.
+
+\subsubsection{Pruebas unitarias}
+Pruebas realizadas sobre un componente del programa, ya sean métodos u objetos. Estas pruebas se llevan a cabo variando los parámetros de entrada de los componentes para comprobar que la funcionalidad haya sido correctamente implementada. Además, deben ser realizadas aisladamente sin interacción con otros componentes o sistemas.\cite{Sommerville2010}.
+
+El motivo para realizar estas pruebas sobre los componentes del sistema, es para poder detectar defectos y comprobar que el modulo se comporte de la manera esperada.
+
+\subsubsection{Pruebas de integración}
+Las pruebas de integración son utilizadas para comprobar las interfaces y las interacciones entre los módulos que conforman la aplicación \cite{Leung1990}. Este tipo de pruebas se realizan después de la realización de las pruebas unitarias y permitirá verificar que  los componentes interactúan  adecuadamente. 
+
+\subsubsection{Caso de estudio}
+ %\textbf{(Wholin Empirical software engineering reasearch, Case studies Yin)}
+La metodología de evaluación \cite{Runeson2009} que se utilizara para la investigación es mediante casos de estudio. Un caso de estudio permite aplicar los resultados de implementación en un contexto real con el objetivo de responder la pregunta de investigación planteada. Esta metodología de evaluación considera aspectos formales para obtener evidencia. Los principales aspectos son:
+
+\begin{itemize}
+\item Describir el contexto de aplicación del caso
+\item Definición de objetivos experimentales
+\item Definición de características a evaluar
+\item Definición de sujetos de prueba
+\item Definición de un protocolo para conducir el caso de estudio
+\item Aplicación de caso de estudio en un conjunto de sesiones no controladas
+\item Aplicación de herramientas de obtención de evidencia empírica
+\item Análisis y evaluación de datos empíricos
+\end{itemize}
+
+Para llevar a cabo la realización del caso de estudio sobre este sistema, se enviara el programa para que sea probado a personal de la Universidad Politécnico de Valencia junto con un manual de uso. Posteriormente, se llevara a cabo la recolección de datos usando una técnica de segundo grado, la cual sera una encuesta de preguntas cerradas, que deberá ser respondida por aquellos que hayan hecho uso del software.
+
+Como caso de estudio se tendrá el proyecto desarrollado. Mientras que el objetivo de la realización del caso de estudio será el determinar como fue recibido el proyecto, es decir, si los sujetos encontraron este útil y fácil de usar. En cuanto a los sujetos de prueba, estos serán el personal que haya utilizado el sistema desarrollado. La pregunta de investigación a la cual se buscara dar respuesta es:\\
+
+\textit{¿Como fue recibido el software por parte de profesionales del área que trabajan en redes de distribución de agua potable?}\\
+
+Debido a que el tiempo disponible para el desarrollo de este proyecto es bajo, se realizara un estudio de caso simplificado. Este estudio de caso se llevara a cabo utilizando unicamente métodos cuantitativos. Se contara con una sola fuente de datos y se simplificara el protocolo para conducir el caso de estudio.
+
+%\begin{itemize}
+%	\item \textbf{Red de New York}: Red que se compone por un deposito ubicado a 300 pies, que alimenta por gravedad al resto de la red, la cual consiste en 20 nodos y 21 tuberías.
+%	\item \textbf{Red de Go Yang}: Red compuesta por 22 nudos y 33 tuberías. Esta red posee una mínima presión de funcionamiento de 15 mca.
+%\end{itemize}
+
+
+%\paragraph{Objetivo 1:} ``Comparación de algoritmos para ..."
+%\begin{itemize}
+%\item Estudiar ...
+%\item Seleccionar ...
+%\item Comparar ...
+%\end{itemize}
+%
+%\paragraph{Objetivo 2:} ``Especificación de requisitos del software"
+%\begin{itemize}
+%\item Analizar ...
+%\item Clasificar ...
+%\item Especificar ...
+%\end{itemize}
+
+\section{Plan de trabajo}
+%\emph{(En esta sección se debe definir como organizar y planificar, en términos de etapas y tiempo, las actividades a desarrollar así como los resultados a obtener.  Cada actividad debe generar un entregable. Se entiende como entregable a la generación de artefactos que sean útiles al desarrollo del proyecto, por ejemplo: documentos bibliográficos con resumen, documentos de desarrollo de software, código fuente, planificaciones, diagramas, esquemas, algoritmos, etc.)}
+
+%\emph{(Esta sección debe incluir además una Carta Gantt, la cual define fechas de inicio y término. La longitud máxima de esta sección es de 1 página, sin considerar la Carta Gantt.)}
+
+En esta sección de detallarán las tareas a realizar para cumplir con cada uno de los objetivos así como la fecha en que estas serán realizadas. Además, junto a este documento se adjuntada una carta Gantt que refleja este plan de trabajo.
+
+\paragraph{Etapa 1:} Desarrollar el objetivo 1 (12/08-07/10)
+\begin{itemize}
+	\item Implementar algoritmo genético
+	\item Implementar operadores de selección, cruzamiento, mutación.
+	\item Evaluar las soluciones generadas con el algoritmo genético usando Epanet Toolkit a través del modulo de EPANET.
+\end{itemize}
+
+\paragraph{Etapa 2:} Desarrollar el objetivos 2 (07/10-25/11)
+\begin{itemize}
+	\item Implementar algoritmo NSGA-II.
+	\item Implementar o adaptar los operadores de cruzamiento y mutación para ser usados con el algoritmo NSGA-II.
+	\item Evaluar, usando el modulo de Epanet, las soluciones generadas a traves del algoritmo NSGA-II.
+\end{itemize}
+
+
+\paragraph{Etapa 3:} Desarrollar el objetivos 3 (02/12-27/04)
+\begin{itemize}
+	\item Diseñar la interfaz gráfica e implementarla con el fin de facilitar la interacción del usuario con la aplicación.
+	\item Probar la aplicación con usuarios para obtener una retroalimentación acerca de la interfaz y su usabilidad.
+\end{itemize}
+
+\paragraph{Etapa 4:} Desarrollar el objetivos 4 (27/04-06/07)
+\begin{itemize}
+	\item Comparar los resultados obtenidos en el problema de diseño de redes, usando el algoritmo genético, con resultados presentados por diversos autores, que han tratado el mismo problema a través de otros algoritmos.
+	\item Comparar los resultados obtenidos en el problema de operación, usando el algoritmo NSGA-II, con resultados presentados en la literatura.
+\end{itemize}
+
+
+\bibliographystyle{unsrt}
+
+\bibliography{referencias2}
+
+
+\end{document}

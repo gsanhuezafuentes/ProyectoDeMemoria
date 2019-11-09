@@ -1,0 +1,68 @@
+Con el fin de probar los algoritmos implementados en la aplicación para dar solución a los problemas presentados se utilizaran redes ya existentes y que han sido utilizadas por diversos autores. Estas son:
+
+\paragraph{Red de Hanoi}
+Red compuesta por un deposito, 31 nodos de demanda y 32 tuberías. Se puede ver su esquema en la Figura \ref{fig:hanoi}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{hanoi.png}
+	\caption{Red de Hanoi}
+	\label{fig:hanoi}
+\end{figure}
+
+Los valores asociados a cada nodo se pueden ver en la cuadro 1.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|}\hline
+	ID Nudo & Cota(m) 			& Consumo (I/s)		& ID Nudo	 & Cota(m)	        & Consumo (I/s)  \\ \hline
+	N1		&			100		&					&	 N18     &        	0       &    	373.6111 \\ \hline
+	N2      &        	0       &    	247.2222    &    N19     &        	0       &    	16.66667 \\ \hline 
+	N3      &        	0       &    	236.1111    &    N20     &        	0       &    	354.1667 \\ \hline
+	N4      &        	0       &    	36.11111    &    N21     &        	0       &    	258.3333 \\ \hline
+	N5      &        	0       &    	201.3889    &    N22     &        	0       &    	134.7222 \\ \hline
+	N6      &        	0       &    	279.1667    &    N23     &        	0       &    	290.2778 \\ \hline
+	N7      &        	0       &    	375         &    N24     &        	0       &    	227.7778 \\ \hline
+	N8      &        	0       &    	152.7778    &    N25     &        	0       &    	47.22222 \\ \hline
+	N9      &        	0       &    	145.8333    &    N26     &        	0       &    	250      \\ \hline
+	N10     &        	0       &    	145.8333    &    N27     &        	0       &    	102.7778 \\ \hline
+	N11     &        	0       &    	138.8889    &    N28     &        	0       &    	80.55556 \\ \hline
+	N12     &        	0       &    	155.5556    &    N29     &        	0       &    	100      \\ \hline
+	N13     &        	0       &    	261.1111    &    N30     &        	0       &    	100      \\ \hline
+	N14     &        	0       &    	170.8333    &    N31     &        	0       &    	29.16667 \\ \hline
+	N15     &        	0       &    	77.77778    &    N32     &        	0       &    	223.6111 \\ \hline
+	N16     &        	0       &    	86.11111    &            &                  &                \\ \hline
+	N17     &        	0       &    	240.2778    &			 &					& \\ \hline
+	\end{tabular}
+	\label{tab:hanoi}
+	\caption{Valores asociados a los nodos}
+\end{table}
+
+En cuanto a los valores asociados a las tuberías, estos se encuentran en el cuadro 2.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}\hline
+		ID			&		Nudo Inicial &		Nudo Final	&		Largo	 &			ID		   & Nudo Inicial   &	Nudo Final	    &		Largo \\ \hline
+		Línea1      &   	P1          &    	N2          &    	100      &        Línea18     &   	N18         &    	N19         &    	800     \\ \hline
+		Línea2      &   	N2          &    	N3          &    	1350     &        Línea19     &   	N19         &    	N3          &    	400     \\ \hline
+		Línea3      &   	N3          &    	N4          &    	900      &        Línea20     &   	N3          &    	N20         &    	2200    \\ \hline
+		Línea4      &   	N4          &    	N5          &    	1150     &        Línea21     &   	N20         &    	N21         &    	1500    \\ \hline
+		Línea5      &   	N5          &    	N6          &    	1450     &        Línea22     &   	N21         &    	N22         &    	500     \\ \hline
+		Línea6      &   	N6          &    	N7          &    	450      &        Línea23     &   	N20         &    	N23         &    	2650    \\ \hline
+		Línea7      &   	N7          &    	N8          &    	850      &        Línea24     &   	N23         &    	N24         &    	1230    \\ \hline
+		Línea8      &   	N8          &    	N9          &    	850      &        Línea25     &   	N24         &    	N25         &    	1300    \\ \hline
+		Línea9      &   	N9          &    	N10         &    	800      &        Línea26     &   	N25         &    	N26         &    	850     \\ \hline
+		Línea10     &   	N10         &    	N11         &    	950      &        Línea27     &   	N26         &    	N27         &    	300     \\ \hline
+		Línea11     &   	N11         &    	N12         &    	1200     &        Línea28     &   	N27         &    	N16         &    	750     \\ \hline
+		Línea12     &   	N12         &    	N13         &    	3500     &        Línea29     &   	N23         &    	N28         &    	1500    \\ \hline
+		Línea13     &   	N10         &    	N14         &    	800      &        Línea30     &   	N28         &    	N29         &    	2000    \\ \hline
+		Línea14     &   	N14         &    	N15         &    	500      &        Línea31     &   	N29         &    	N30         &    	1600    \\ \hline
+		Línea15     &   	N15         &    	N16         &    	550      &        Línea32     &   	N30         &    	N31         &    	150     \\ \hline
+		Línea16     &   	N16         &    	N17         &    	2730     &        Línea33     &   	N31         &    	N32         &    	860     \\ \hline
+		Línea17     &   	N17         &    	N18         &    	1750     &        Línea34     &   	N32         &    	N25         &    	950     \\ \hline
+		
+	\end{tabular}
+	\label{tab:hanoi-link}
+	\caption{Valores asociados a los nodos}
+\end{table}
