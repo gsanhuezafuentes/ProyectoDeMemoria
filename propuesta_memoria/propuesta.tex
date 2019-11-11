@@ -29,7 +29,7 @@ Gabriel Sanhueza Fuentes (Estudiante)\\
 Jimmy Gutierrez Bahamondes (Profesor guía)\\
 Carrera de Ingeniería Civil en Computación\\ 
 Universidad de Talca}
-\date{6 de septiembre de 2019}
+\date{09 de septiembre de 2019}
 
 \maketitle
 
@@ -41,6 +41,8 @@ Universidad de Talca}
 % Agregar una introducción a lo que viene abajo
 
 %En el presente capítulo se presentan los conceptos básicos, el problema, su contexto, y la propuesta de solución. 
+La escasez de agua potable es un problema que esta presente a nivel mundial. Por esta razón, existe la necesidad de utilizar conscientemente el recurso hidráulico y buscar maneras de optimizar su distribución. Es en este punto, en donde se puede hacer uso de algoritmos metaheurísticos que permiten obtener soluciones buenas en un periodo de tiempo reducido a problemas presentes en la redes de distribución de agua potable. Es por ello que este proyecto busca llevar a cabo el desarrollo de una herramienta que permita la visualización y la resolución de problemas presentes en las redes de distribución de agua. Durante este proyecto se abarcara el problema de costos de diseño a través de la utilización de el algoritmo genético y del régimen de bombeo usando el algoritmo NSGA-II. Además, se busca que este sistema posea una arquitectura tal que le permita actuar como una base sobre la que sea posible ir agregando nuevos problemas de distribución de agua en futuros trabajos.
+
 En el presente capítulo se presentan los conceptos básicos que son necesario tener claros durante el desarrollo de este proyecto. Posteriormente, se presenta el problema y contexto del proyecto. Finalmente, se presenta la propuesta de solución al problema identificado.
 \subsection{Conceptos básicos del proyecto} 
 
@@ -81,13 +83,13 @@ Debido a la definición de las restricciones es posible dividir el espacio de b�
 \subsection{Contexto del proyecto} 
 %\emph{Esta sección debe incluir el marco en el cual se presenta el problema y/o proyecto a desarrollar, incluyendo los fundamentos teóricos y/o prácticos necesarios para el desarrollo del proyecto.) Esta sección responde a la pregunta ¿Dónde surge el problema?}
 
-La escasez de agua potable es sin duda una problemática a nivel mundial. Dentro de este contexto, la optimización de los sistemas de distribución de agua potable es un problema sin resolver hasta la fecha. 
+La escasez de agua potable es sin duda una problemática a nivel mundial. Dentro de este contexto, la optimización de los sistemas de distribución de agua es un problema que ha sido abarcado de diversas maneras.
 
-A lo mencionado anteriormente, también se suma la escasez energética. Puesto que, es requerida para el tratamiento y distribución del agua. Es por esto que, es importante hacer un uso eficiente de la energía durante la operación del sistema.
+Otro problema que se ve afectado debido a la utilización de sistemas de distribución de agua potable es el consumo energético. Puesto que la energía, que es requerida para operar los elementos del sistema de distribución, es limitada y tiene un alto costo.
 
 La optimización de estos sistemas, a la vez, involucra la participación de múltiples criterios que deben ser tomados en cuenta a la hora de decidir. Sin embargo, la incorporación de estos criterios, involucra la generación de modelos cada vez más complejos.
 
-Los algoritmos metaheurísticos han demostrado ser un mecanismo eficiente ante problemas de este tipo. Ya que, estos reducen el tiempo necesario que toma el evaluar todas las configuraciones posibles. Dado que, juzgan un conjunto menor de valores logrando como resultado una aproximación a la solución óptima.
+Los algoritmos metaheurísticos han demostrado ser un mecanismo eficiente ante problemas de este tipo. Ya que permiten recorrer en un tiempo razonable el espacio de búsqueda del problema en busca de buenas soluciones que idealmente están próximas a la solución optima del problema.
 
 \subsection{Definición del problema} 
 %\emph{(Esta sección debe incluir la descripción del problema resolver o idea a desarrollar, y la motivación para hacerlo. Es decir, cual es la importancia, innovación, aporte, y/o beneficio para la ciencia y/o la humanidad). Esta sección responde a la pregunta ¿Cuál es el problema que voy a resolver?}
@@ -115,7 +117,7 @@ En este apartado se mostraran distintas herramientas y el enfoque utilizado para
 	\item \textbf{EPANET}: El enfoque seguido con la utilización de esta herramienta consiste en la automatización al momento de ejecutar los algoritmos y la posterior evaluación de los resultados utilizando la librería EPANET Toolkit. Este es usado en \cite{Doctoral2012} y consiste en la creación de un programa el cual implementa algoritmos metaheurísticos y los resultados obtenidos por estos son enviados a la EPANET Toolkit para evaluar la solución y determinar la factibilidad de esta. La ventaja de este enfoque es que permite una mayor flexibilidad en los algoritmos metaheuristicos utilizados y los problemas que se quieren resolver. Sin embargo, debido a que se necesita implementar los problemas y los algoritmos, este enfoque toma mucho tiempo.
 \end{itemize}
 
-Para el desarrollo de este proyecto se usa en enfoque basado en EPANET, puesto que esta ya es una librería de simulación hidráulica y permite enfocarnos en la resolución de los problemas usando algoritmos metaheurísticos.
+Para el desarrollo de este proyecto se usa el enfoque basado en EPANET, puesto que esta ya es una librería de simulación hidráulica y permite enfocarnos en la resolución de los problemas usando algoritmos metaheurísticos. Tanto Magmoredes como WaterGEMS buscan resolver temas concretos en los sistemas de distribución de agua potable y puesto que el código de estos programas no esta disponible públicamente o son un sistema que se comercializa sin permitir la modificación del sistema por parte de terceros, se busca con nuestro proyecto incorporar esta capacidad para que en futuros trabajos se pueda abarcar una mayor cantidad de problemas con nuestro sistema.
 
 \subsection{Propuesta de solución}
 %\emph{(Esta sección debe incluir el planteamiento y justificación de la solución y/o idea, incluyendo aspectos novedosos.) Esta sección responde a la pregunta ¿Cómo voy a resolver el problema planteado?}
