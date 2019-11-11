@@ -15,29 +15,27 @@ import model.metaheuristic.utils.comparator.ObjectiveComparator;
 /**
  * 
  *
- *         Base on code from https://github.com/jMetal/jMetal
+ * Base on code from https://github.com/jMetal/jMetal
  * 
- *         Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
+ * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
  * 
- *         Permission is hereby granted, free of charge, to any person obtaining
- *         a copy of this software and associated documentation files (the
- *         "Software"), to deal in the Software without restriction, including
- *         without limitation the rights to use, copy, modify, merge, publish,
- *         distribute, sublicense, and/or sell copies of the Software, and to
- *         permit persons to whom the Software is furnished to do so, subject to
- *         the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- *         The above copyright notice and this permission notice shall be
- *         included in all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  * 
- *         THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- *         EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- *         MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- *         NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
- *         BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- *         ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- *         CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *         SOFTWARE. © 2019 GitHub, Inc.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE. © 2019 GitHub, Inc.
  */
 public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	private int maxPopulationSize;
@@ -47,17 +45,38 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	private CrossoverOperator<S> crossoverOperator;
 	private MutationOperator<S> mutationOperator;
 	private DominanceComparator<S> comparator;
+	/**
+	 * Max number of evaluation
+	 */
 	private int maxEvaluations;
-	private int numberEvaluations;
+	/**
+	 * Count with the number of the number of evaluation performed
+	 */
+	private int performedEvaluationsNumber;
+	/**
+	 * Max number of evaluation without a improvement of the result
+	 */
+	private int maxNumberOfIterationWithoutImprovement;
+	/**
+	 * Count of number of evaluation without a improvement of the result
+	 */
+	private int numberOfIterationWithoutImprovement;
 
-	public GeneticAlgorithm2(Problem<S> problem, int populationSize, SelectionOperator<List<S>, List<S>> selectionOperator,
-			CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator) {
+	private S bestSolution;
+
+	public GeneticAlgorithm2(Problem<S> problem, int populationSize,
+			SelectionOperator<List<S>, List<S>> selectionOperator, CrossoverOperator<S> crossoverOperator,
+			MutationOperator<S> mutationOperator) {
 		this.problem = problem;
 		this.maxPopulationSize = populationSize;
 		this.selectionOperator = selectionOperator;
 		this.crossoverOperator = crossoverOperator;
 		this.mutationOperator = mutationOperator;
 		this.maxEvaluations = 10000;
+
+		this.maxNumberOfIterationWithoutImprovement = 0;
+		this.numberOfIterationWithoutImprovement = 0;
+
 		this.comparator = new DominanceComparator<S>();
 	}
 
@@ -83,6 +102,19 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	}
 
 	/**
+	 * Get the max number of evaluation. <br>
+	 * <br>
+	 * 
+	 * When the result returned by this method is 0 the stop condition of the
+	 * algorithm don't take into account this value and only use the
+	 * MaxNumberOfIterationWithoutImprovement
+	 * {@link GeneticAlgorithm2#getMaxNumberOfIterationWithoutImprovement()}. If the
+	 * value is other than 0 so it condition is taked into account.<br>
+	 * <br>
+	 * 
+	 * 
+	 * The default is 10000
+	 * 
 	 * @return the maxEvaluations
 	 */
 	public int getMaxEvaluations() {
@@ -90,10 +122,61 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	}
 
 	/**
+	 * Set max number of evaluation.<br>
+	 * <br>
+	 * 
+	 * MaxEvaluations and MaxNumberOfIterationWithoutImprovement equals to 0 in same
+	 * time is not valid.<br>
+	 * <br>
+	 * 
+	 * The default is 10000 <br>
+	 * <br>
+	 * 
+	 * If you want to set this to 0 to disable the stop condition using this value
+	 * so change first
+	 * {@link GeneticAlgorithm2.setMaxNumberOfIterationWithoutImprovement} to a
+	 * value other than 0
+	 * 
 	 * @param maxEvaluations the maxEvaluations to set
 	 */
 	public void setMaxEvaluations(int maxEvaluations) {
+		validateMaxStoppingConditionCounters(maxEvaluations, this.maxNumberOfIterationWithoutImprovement);
 		this.maxEvaluations = maxEvaluations;
+	}
+
+	/**
+	 * Get the max number of iteration without a improvement of the result.
+	 * 
+	 * When the result returned by this method is 0 the stop condition of the
+	 * algorithm don't take into account this value and only use the MaxEvaluation
+	 * {@link GeneticAlgorithm2#getMaxEvaluations()}. If the value is other than 0
+	 * so it condition is taked into account.
+	 * 
+	 * The default is 0.
+	 * 
+	 * @return MaxNumberOfIterationWithoutImprovement.
+	 */
+	public int getMaxNumberOfIterationWithoutImprovement() {
+		return maxNumberOfIterationWithoutImprovement;
+	}
+
+	/**
+	 * Set the max number of iteration without a improvement of the result.
+	 * 
+	 * When the result returned by this method is 0 so the stop condition of the
+	 * algorithm don't take into account this condition. If the value is other than 0
+	 * so it condition is taked into account.
+	 * 
+	 * The default is 0.
+	 * 
+	 * MaxEvaluations and MaxNumberOfIterationWithoutImprovement equals to 0 in same
+	 * time is not valid.
+	 * 
+	 * @param maxNumberOfIterationWithoutImprovement
+	 */
+	public void setMaxNumberOfIterationWithoutImprovement(int maxNumberOfIterationWithoutImprovement) {
+		validateMaxStoppingConditionCounters(this.maxEvaluations, maxNumberOfIterationWithoutImprovement);
+		this.maxNumberOfIterationWithoutImprovement = maxNumberOfIterationWithoutImprovement;
 	}
 
 	/**
@@ -121,7 +204,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 
 	}
 
-	private List<S> replacement(List<S> population, List<S> offspringPopulation) {
+	protected List<S> replacement(List<S> population, List<S> offspringPopulation) {
 
 		Collections.sort(population, comparator);
 		offspringPopulation.add(population.get(0));
@@ -139,7 +222,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	 * @param population
 	 * @return The list of selected population.
 	 */
-	private List<S> selection(List<S> population) {
+	protected List<S> selection(List<S> population) {
 		return selectionOperator.execute(population);
 	}
 
@@ -149,7 +232,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	 * @param selectionPopulation
 	 * @return The offspring population
 	 */
-	private List<S> reproduction(List<S> selectionPopulation) {
+	protected List<S> reproduction(List<S> selectionPopulation) {
 		int numberOfParents = crossoverOperator.getNumberOfRequiredParents();
 
 		checkNumberOfParents(population, numberOfParents);
@@ -177,7 +260,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	 * @param population
 	 * @return
 	 */
-	private List<S> evaluatePopulation(List<S> population) {
+	protected List<S> evaluatePopulation(List<S> population) {
 		for (S s : population) {
 			problem.evaluate(s);
 		}
@@ -195,12 +278,18 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	@Override
 	public S getResult() {
 		Collections.sort(getPopulation(), comparator);
-		System.out.println(getPopulation());
 		return population.get(0);
 	}
 
-	private boolean isStoppingConditionReached() {
-		return numberEvaluations >= getMaxEvaluations();
+	protected boolean isStoppingConditionReached() {
+		boolean result = false;
+		if (maxEvaluations > 0) {
+			result = performedEvaluationsNumber >= getMaxEvaluations();
+		}
+		if (maxNumberOfIterationWithoutImprovement > 0) {
+			result = result || (numberOfIterationWithoutImprovement >= getMaxNumberOfIterationWithoutImprovement());
+		}
+		return result;
 	}
 
 	/**
@@ -217,11 +306,50 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 		}
 	}
 
-	public void initProgress() {
-		this.numberEvaluations = getMaxPopulationSize();
+	/**
+	 * Check if maxEvaluations and maxNumberOfIterationWithoutImprovement are
+	 * valid.<br>
+	 * <br>
+	 * To be valid both can't be less than 0 and both can't be 0 at the same time.
+	 */
+	private void validateMaxStoppingConditionCounters(int maxEvaluations, int maxNumberOfIterationWithoutImprovement) {
+		if (maxEvaluations < 0) {
+			throw new RuntimeException("Wrong MaxEvaluations can't be less than 0");
+		}
+		if (maxNumberOfIterationWithoutImprovement < 0) {
+			throw new RuntimeException("Wrong MaxNumberOfIterationWithoutImprovement can't be less than 0");
+		}
+		if (maxEvaluations == 0 && maxNumberOfIterationWithoutImprovement == 0) {
+			throw new RuntimeException(
+					"Wrong MaxEvaluations and MaxNumberOfIterationWithoutImprovement can't be zero at the same time");
+		}
 	}
 
-	public void updateProgress() {
-		this.numberEvaluations += getMaxPopulationSize();
+	protected void initProgress() {
+		if (getMaxEvaluations() > 0) {
+			this.performedEvaluationsNumber = getMaxPopulationSize();
+		}
 	}
+
+	protected void updateProgress() {
+		if (getMaxEvaluations() > 0) {
+			this.performedEvaluationsNumber += getMaxPopulationSize();
+			System.out.println("performedEvaluationsNumber: "+ performedEvaluationsNumber);
+		}
+		if (getMaxNumberOfIterationWithoutImprovement() > 0) {
+			// Initialize best solution if it not exist
+			if (bestSolution == null) {
+				bestSolution = getResult();
+			}
+			S solution = getResult();
+			// Check if there is a new best solution
+			if (comparator.compare(solution, bestSolution) < 0) {
+				this.bestSolution = solution;
+				this.numberOfIterationWithoutImprovement = 0;
+			}
+			this.numberOfIterationWithoutImprovement++;
+			System.out.println("numberOfIterationWithoutImprovement: " + numberOfIterationWithoutImprovement);
+		}
+	}
+
 }
