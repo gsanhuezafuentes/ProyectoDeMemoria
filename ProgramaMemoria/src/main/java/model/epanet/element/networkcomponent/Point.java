@@ -1,4 +1,4 @@
-package model.epanet.element;
+package model.epanet.element.networkcomponent;
 
 /**
  * Class that represent a Point 2D.

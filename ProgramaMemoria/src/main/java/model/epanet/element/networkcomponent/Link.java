@@ -1,4 +1,4 @@
-package model.epanet.element;
+package model.epanet.element.networkcomponent;
 
 import java.util.ArrayList;
 import java.util.List;

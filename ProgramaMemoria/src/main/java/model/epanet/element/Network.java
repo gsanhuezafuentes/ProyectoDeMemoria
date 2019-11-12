@@ -4,6 +4,15 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.epanet.element.networkcomponent.Junction;
+import model.epanet.element.networkcomponent.Link;
+import model.epanet.element.networkcomponent.Node;
+import model.epanet.element.networkcomponent.Pipe;
+import model.epanet.element.networkcomponent.Pump;
+import model.epanet.element.networkcomponent.Reservoir;
+import model.epanet.element.networkcomponent.Tank;
+import model.epanet.element.networkcomponent.Valve;
+
 public class Network {
 	private StringBuilder title;
 	
