@@ -39,25 +39,41 @@ public class IntegerSolution implements Solution<Integer> {
 	private double[] objectives;
 	private Problem<IntegerSolution> problem;
 
+	/**
+	 * The lower bound of the decision variable.
+	 * 
+	 * @param index the index of the decision variable
+	 * @return the lower bound
+	 */
 	public int getLowerBound(int index) {
 		return (int) problem.getLowerBound(index);
 	}
 
+	/**
+	 * The upper bound of the decision variable.
+	 * 
+	 * @param index the index of the decision variable
+	 * @return the upper bound
+	 */
 	public int getUpperBound(int index) {
 		return (int) problem.getUpperBound(index);
 	}
 
+	/** Constructor */
 	public IntegerSolution(Problem<IntegerSolution> problem) {
 
 		this.problem = problem;
 		this.attributes = new HashMap<Object, Object>();
-		this.desicionVariables = new ArrayList<Integer>(problem.getNumberOfVariables()); // Cambiar por mientras esta configurado para solo un
-																// objetivos
+		this.desicionVariables = new ArrayList<Integer>(problem.getNumberOfVariables()); // Cambiar por mientras esta
+																							// configurado para solo un
+		// objetivos
 		this.objectives = new double[1]; // Cambiar por mientras esta configurado para solo un objetivos
 
 		initializeObjectives();
 		initializeDecisionVariables();
 	}
+
+	/** Constructor */
 
 	public IntegerSolution(IntegerSolution solution) {
 		this(solution.problem);
@@ -71,79 +87,93 @@ public class IntegerSolution implements Solution<Integer> {
 
 		attributes = new HashMap<Object, Object>(solution.attributes);
 	}
-	
+
+	/**
+	 * Initialize the decision variables
+	 */
 	private void initializeDecisionVariables() {
 		for (int i = 0; i < this.problem.getNumberOfVariables(); i++) {
 			this.desicionVariables.add(i, null);
 		}
 	}
 
+	/**
+	 * Initialize the objetive variables
+	 */
 	private void initializeObjectives() {
 		for (int i = 0; i < this.problem.getNumberOfObjectives(); i++) {
 			this.objectives[i] = 0.0;
 		}
 	}
 
-
+	/** {@inheritDoc} */
 	@Override
 	public Integer getVariable(int index) {
 		return desicionVariables.get(index);
 
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setVariable(int index, Integer value) {
 		desicionVariables.set(index, value);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public List<Integer> getVariables() {
 		return desicionVariables;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public double getObjective(int index) {
 		return this.objectives[index];
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setObjective(int index, double value) {
 		this.objectives[index] = value;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public double[] getObjectives() {
 		return objectives;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public Object getAttribute(Object id) {
 		return attributes.get(id);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void setAttribute(Object id, Object value) {
 		attributes.put(id, value);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public Map getAttributes() {
 		return attributes;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int getNumberOfVariables() {
 		return this.desicionVariables.size();
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int getNumberOfObjectives() {
 		return this.objectives.length;
 	}
 
-	/**
-	 * Copy the solution
-	 */
+	/** {@inheritDoc} */
 	@Override
 	public Solution<Integer> copy() {
 		return new IntegerSolution(this);
@@ -164,6 +194,11 @@ public class IntegerSolution implements Solution<Integer> {
 		return result;
 	}
 
+	/**
+	 * Compare objectives and decision variables
+	 * @param o
+	 * @return
+	 */
 	private boolean equalsIgnoringAttributes(Object o) {
 		if (this == o)
 			return true;
@@ -181,6 +216,9 @@ public class IntegerSolution implements Solution<Integer> {
 		return true;
 	}
 
+	/**
+	 * Compare solution.
+	 */
 	@Override
 	public boolean equals(Object o) {
 
