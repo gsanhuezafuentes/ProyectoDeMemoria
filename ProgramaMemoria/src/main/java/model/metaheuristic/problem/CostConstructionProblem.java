@@ -9,6 +9,7 @@ import epanet.core.Components;
 import epanet.core.EpanetAPI;
 import epanet.core.EpanetException;
 import epanet.core.LinkParameters;
+import exception.ApplicationException;
 import model.epanet.element.Gama;
 import model.epanet.parser.GamaParser;
 import model.metaheuristic.evaluator.MonoObjetiveSolutionEvaluator;
@@ -33,9 +34,9 @@ public class CostConstructionProblem implements Problem<IntegerSolution> {
 
 	private int minPressure;
 
-	public CostConstructionProblem(EpanetAPI epanet, String networkGama, int minPressure) throws IOException, EpanetException {
+	public CostConstructionProblem(EpanetAPI epanet, String networkGama, int minPressure) throws IOException, EpanetException, ApplicationException {
 		if (epanet == null) {
-			throw new RuntimeException("EpanetAPI can't be null in CostConstructionProblem");
+			throw new ApplicationException("EpanetAPI can't be null in CostConstructionProblem");
 		}
 		if (networkGama == null || networkGama.equals("")) {
 			throw new RuntimeException("The parameter networkGama neither can't be null nor empty");

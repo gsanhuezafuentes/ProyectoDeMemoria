@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import exception.ApplicationException;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.comparator.DominanceComparator;
 
@@ -17,7 +18,7 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 	public UniformSelection(double constant) {
 		this(new DominanceComparator<S>());
 		if (constant < 1.5 || constant > 2) {
-			throw new RuntimeException("constant out of range, the range value is between 1.5 and 2");
+			throw new ApplicationException("constant out of range, the range value is between 1.5 and 2");
 		}
 		this.constant = constant;
 	}
@@ -27,7 +28,7 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 	}
 	
 	
-
+	/** Execute method*/
 	@Override
 	public List<S> execute(List<S> solutionList) {
 		int populationSize = solutionList.size();

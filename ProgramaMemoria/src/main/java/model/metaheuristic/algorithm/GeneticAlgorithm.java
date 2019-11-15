@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import exception.ApplicationException;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.selection.SelectionOperator;
@@ -215,7 +216,7 @@ public class GeneticAlgorithm<S extends Solution<?>> implements Algorithm<S> {
 	 */
 	protected void checkNumberOfParents(List<S> population, int numberOfParentsForCrossover) {
 		if ((population.size() % numberOfParentsForCrossover) != 0) {
-			throw new RuntimeException("Wrong number of parents: the remainder if the " + "population size ("
+			throw new ApplicationException("Wrong number of parents: the remainder if the " + "population size ("
 					+ population.size() + ") is not divisible by " + numberOfParentsForCrossover);
 		}
 	}

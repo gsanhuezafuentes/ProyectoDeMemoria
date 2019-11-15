@@ -3,6 +3,7 @@ package model.metaheuristic.operator.selection;
 import java.util.Comparator;
 import java.util.List;
 
+import exception.ApplicationException;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.SolutionListUtils;
 import model.metaheuristic.utils.SolutionUtils;
@@ -59,9 +60,9 @@ public class TournamentSelection<S extends Solution<?>> implements SelectionOper
 	/** Execute() method */
 	public S execute(List<S> solutionList) {
 		if (null == solutionList) {
-			throw new RuntimeException("The solution list is null");
+			throw new ApplicationException("The solution list is null");
 		} else if (solutionList.isEmpty()) {
-			throw new RuntimeException("The solution list is empty");
+			throw new ApplicationException("The solution list is empty");
 		}
 
 		S result;

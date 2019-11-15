@@ -101,10 +101,22 @@ public interface Solution<Type> {
 	 */
 	public Map getAttributes();
 
+	/**
+	 * Get the number of variables
+	 * @return the number of variables
+	 */
 	int getNumberOfVariables();
 
+	/**
+	 * Get the number of objectives
+	 * @return the number of objectives
+	 */
 	int getNumberOfObjectives();
 
+	/**
+	 * Copy the solution and make a new without any reference to original solution.
+	 * @return the copy solution
+	 */
 	Solution<Type> copy();
 
 }
