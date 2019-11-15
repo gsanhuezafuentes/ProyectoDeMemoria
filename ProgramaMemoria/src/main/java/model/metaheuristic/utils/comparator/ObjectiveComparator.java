@@ -3,6 +3,7 @@ package model.metaheuristic.utils.comparator;
 import java.io.Serializable;
 import java.util.Comparator;
 
+import exception.ApplicationException;
 import model.metaheuristic.solution.Solution;
 
 /**
@@ -85,10 +86,10 @@ public class ObjectiveComparator<S extends Solution<?>> implements Comparator<S>
 		} else if (solution2 == null) {
 			result = -1;
 		} else if (solution1.getNumberOfObjectives() <= objectiveId) {
-			throw new RuntimeException("The solution1 has " + solution1.getNumberOfObjectives() + " objectives "
+			throw new ApplicationException("The solution1 has " + solution1.getNumberOfObjectives() + " objectives "
 					+ "and the objective to sort is " + objectiveId);
 		} else if (solution2.getNumberOfObjectives() <= objectiveId) {
-			throw new RuntimeException("The solution2 has " + solution2.getNumberOfObjectives() + " objectives "
+			throw new ApplicationException("The solution2 has " + solution2.getNumberOfObjectives() + " objectives "
 					+ "and the objective to sort is " + objectiveId);
 		} else {
 			Double objective1 = solution1.getObjective(this.objectiveId);

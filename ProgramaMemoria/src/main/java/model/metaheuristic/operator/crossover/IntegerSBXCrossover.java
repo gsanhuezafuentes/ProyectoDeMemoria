@@ -3,6 +3,7 @@ package model.metaheuristic.operator.crossover;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.ApplicationException;
 import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.utils.random.JavaRandom;
 import model.metaheuristic.utils.random.RandomGenerator;
@@ -39,23 +40,38 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 	private double distributionIndex;
 	private RandomGenerator<Double> random;
 
+	/**
+	 * 
+	 * Constructor
+	 * @param crossoverProbability the crossover probability
+	 * @param distributionIndex the distribution index
+	 */
 	public IntegerSBXCrossover(double crossoverProbability, double distributionIndex) {
 		this(crossoverProbability, distributionIndex, () -> JavaRandom.getInstance().nextDouble());
 
 	}
 	
+	/**
+	 * Constructor
+	 * @param crossoverProbability the crossover probability
+	 * @param distributionIndex the distribution index
+	 * @param randomGenerator a random generator
+	 */
 	public IntegerSBXCrossover(double crossoverProbability, double distributionIndex, RandomGenerator<Double> randomGenerator) {
 
 		if (crossoverProbability < 0) {
-			throw new RuntimeException("Crossover probability is negative: " + crossoverProbability);
+			throw new ApplicationException("Crossover probability is negative: " + crossoverProbability);
 		} else if (distributionIndex < 0) {
-			throw new RuntimeException("Distribution index is negative: " + distributionIndex);
+			throw new ApplicationException("Distribution index is negative: " + distributionIndex);
 		}
 		this.crossoverProbability = crossoverProbability;
 		this.distributionIndex = distributionIndex;
 		this.random = randomGenerator;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<IntegerSolution> execute(List<IntegerSolution> source) {
 		IntegerSolution parent1 = source.get(0);
@@ -149,11 +165,17 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 		return offspring;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int getNumberOfRequiredParents() {
 		return 2;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int getNumberOfGeneratedChildren() {
 		return 2;
