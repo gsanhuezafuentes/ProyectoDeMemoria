@@ -11,6 +11,14 @@ import model.metaheuristic.utils.random.JavaRandom;
  */
 public class SolutionUtils {
 
+	/**
+	 * Compare {@code solution1} and {@code solution2} using {@code comparator} and choose the better
+	 * @param <S> The type of solution
+	 * @param solution1 the first solution
+	 * @param solution2 the second solution
+	 * @param comparator the comparator to use
+	 * @return the best solution
+	 */
 	public static <S> S getBestSolution(S solution1, S solution2, Comparator<S> comparator) {
 		int result = comparator.compare(solution1, solution2);
 		if (result > 0) {

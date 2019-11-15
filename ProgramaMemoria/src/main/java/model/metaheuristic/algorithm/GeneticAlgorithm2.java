@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import exception.ApplicationException;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.comparator.DominanceComparator;
-import model.metaheuristic.utils.comparator.ObjectiveComparator;
 
 /**
  * 
@@ -37,10 +37,8 @@ import model.metaheuristic.utils.comparator.ObjectiveComparator;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. © 2019 GitHub, Inc.
  */
-public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
+public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S, S> {
 	private int maxPopulationSize;
-	private Problem<S> problem;
-	private List<S> population;
 	private SelectionOperator<List<S>, List<S>> selectionOperator;
 	private CrossoverOperator<S> crossoverOperator;
 	private MutationOperator<S> mutationOperator;
@@ -78,20 +76,6 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 		this.numberOfIterationWithoutImprovement = 0;
 
 		this.comparator = new DominanceComparator<S>();
-	}
-
-	/**
-	 * @return the population
-	 */
-	public List<S> getPopulation() {
-		return population;
-	}
-
-	/**
-	 * @param population the population to set
-	 */
-	public void setPopulation(List<S> population) {
-		this.population = population;
 	}
 
 	/**
@@ -145,7 +129,8 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	}
 
 	/**
-	 * Get the max number of iteration without a improvement of the result.
+	 * Get the max number of iteration without a improvement of the
+	 * result.
 	 * 
 	 * When the result returned by this method is 0 the stop condition of the
 	 * algorithm don't take into account this value and only use the MaxEvaluation
@@ -164,8 +149,8 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	 * Set the max number of iteration without a improvement of the result.
 	 * 
 	 * When the result returned by this method is 0 so the stop condition of the
-	 * algorithm don't take into account this condition. If the value is other than 0
-	 * so it condition is taked into account.
+	 * algorithm don't take into account this condition. If the value is other than
+	 * 0 so it condition is taked into account.
 	 * 
 	 * The default is 0.
 	 * 
@@ -182,28 +167,19 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	/**
 	 * @return the problem
 	 */
-	public Problem<S> getProblem() {
-		return problem;
-	}
-
 	@Override
-	public void run() {
-		List<S> offspringPopulation;
-		List<S> selectionPopulation;
-
-		population = createInitialPopulation();
-		population = evaluatePopulation(population);
-		initProgress();
-		while (!isStoppingConditionReached()) {
-			selectionPopulation = selection(population);
-			offspringPopulation = reproduction(selectionPopulation);
-			offspringPopulation = evaluatePopulation(offspringPopulation);
-			population = replacement(population, offspringPopulation);
-			updateProgress();
+	protected List<S> createInitialPopulation() {
+		List<S> initialPopulation = new ArrayList<S>();
+		for (int i = 0; i < getMaxPopulationSize(); i++) {
+			initialPopulation.add(problem.createSolution());
 		}
-
+		return initialPopulation;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	protected List<S> replacement(List<S> population, List<S> offspringPopulation) {
 
 		Collections.sort(population, comparator);
@@ -222,6 +198,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	 * @param population
 	 * @return The list of selected population.
 	 */
+	@Override
 	protected List<S> selection(List<S> population) {
 		return selectionOperator.execute(population);
 	}
@@ -232,6 +209,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	 * @param selectionPopulation
 	 * @return The offspring population
 	 */
+	@Override
 	protected List<S> reproduction(List<S> selectionPopulation) {
 		int numberOfParents = crossoverOperator.getNumberOfRequiredParents();
 
@@ -255,26 +233,8 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	}
 
 	/**
-	 * Evaluate population
-	 * 
-	 * @param population
-	 * @return
+	 * {@inheritDoc}
 	 */
-	protected List<S> evaluatePopulation(List<S> population) {
-		for (S s : population) {
-			problem.evaluate(s);
-		}
-		return population;
-	}
-
-	private List<S> createInitialPopulation() {
-		List<S> initialPopulation = new ArrayList<S>();
-		for (int i = 0; i < getMaxPopulationSize(); i++) {
-			initialPopulation.add(problem.createSolution());
-		}
-		return initialPopulation;
-	}
-
 	@Override
 	public S getResult() {
 		Collections.sort(getPopulation(), comparator);
@@ -301,7 +261,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	 */
 	protected void checkNumberOfParents(List<S> population, int numberOfParentsForCrossover) {
 		if ((population.size() % numberOfParentsForCrossover) != 0) {
-			throw new RuntimeException("Wrong number of parents: the remainder if the " + "population size ("
+			throw new ApplicationException("Wrong number of parents: the remainder if the " + "population size ("
 					+ population.size() + ") is not divisible by " + numberOfParentsForCrossover);
 		}
 	}
@@ -334,7 +294,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> implements Algorithm<S> {
 	protected void updateProgress() {
 		if (getMaxEvaluations() > 0) {
 			this.performedEvaluationsNumber += getMaxPopulationSize();
-			System.out.println("performedEvaluationsNumber: "+ performedEvaluationsNumber);
+			System.out.println("performedEvaluationsNumber: " + performedEvaluationsNumber);
 		}
 		if (getMaxNumberOfIterationWithoutImprovement() > 0) {
 			// Initialize best solution if it not exist
