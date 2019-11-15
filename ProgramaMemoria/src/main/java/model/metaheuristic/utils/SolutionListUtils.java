@@ -5,13 +5,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import exception.ApplicationException;
+import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
 import model.metaheuristic.utils.random.JavaRandom;
+import model.metaheuristic.utils.solutionattribute.DominanceRanking;
 
 /**
  * Some functions to apply on a List of solution
  * 
- * @author gsanh
  *
  */
 public class SolutionListUtils {
@@ -41,7 +43,7 @@ public class SolutionListUtils {
 
 		int sizeOfList = solutionList.size();
 		if (numberOfSolution > sizeOfList) {
-			throw new RuntimeException("The number of solution is greater than the solution list");
+			throw new ApplicationException("The number of solution is greater than the solution list");
 		}
 
 		Set<Integer> selectedIndex = new HashSet<Integer>();
@@ -58,4 +60,15 @@ public class SolutionListUtils {
 		}
 		return selectedSolution;
 	}
+	
+	/**
+	 * Get the nondominated solutions
+	 * @param <S> The type of solutions
+	 * @param solutionList the solution list
+	 * @return the nondominated solution
+	 */
+	public static <S extends Solution<?>> List<S> getNondominatedSolutions(List<S> solutionList) {
+		DominanceRanking<S> ranking = new DominanceRanking<S>();
+	    return ranking.computeRanking(solutionList).getSubfront(0);
+	  }
 }

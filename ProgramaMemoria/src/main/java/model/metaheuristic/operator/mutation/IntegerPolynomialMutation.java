@@ -1,5 +1,6 @@
 package model.metaheuristic.operator.mutation;
 
+import exception.ApplicationException;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.utils.random.JavaRandom;
@@ -68,9 +69,9 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 	/** Constructor */
 	public IntegerPolynomialMutation(double mutationProbability, double distributionIndex, RandomGenerator<Double> random) {
 		if (mutationProbability < 0) {
-			throw new RuntimeException("Mutation probability is negative: " + mutationProbability);
+			throw new ApplicationException("Mutation probability is negative: " + mutationProbability);
 		} else if (distributionIndex < 0) {
-			throw new RuntimeException("Distribution index is negative: " + distributionIndex);
+			throw new ApplicationException("Distribution index is negative: " + distributionIndex);
 		}
 		this.mutationProbability = mutationProbability;
 		this.distributionIndex = distributionIndex;
@@ -79,27 +80,43 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 	}
 
 	/* Getters */
+	/**
+	 * Get the mutation probability
+	 * @return the mutation probability
+	 */
 	public double getMutationProbability() {
 		return mutationProbability;
 	}
 
+	/**
+	 * Get the distribution index
+	 * @return the distribution index
+	 */
 	public double getDistributionIndex() {
 		return distributionIndex;
 	}
 
 	/* Setters */
+	/**
+	 * Set the distribution index
+	 * @param the distribution index
+	 */
 	public void setDistributionIndex(double distributionIndex) {
 		this.distributionIndex = distributionIndex;
 	}
 
+	/**
+	 * Set the mutation probability
+	 * @param the mutation probability
+	 */
 	public void setMutationProbability(double mutationProbability) {
 		this.mutationProbability = mutationProbability;
 	}
 
 	/** Execute() method */
-	public IntegerSolution execute(IntegerSolution solution) throws RuntimeException {
+	public IntegerSolution execute(IntegerSolution solution) {
 		if (null == solution) {
-			throw new RuntimeException("Null parameter");
+			throw new ApplicationException("Null parameter");
 		}
 
 		doMutation(mutationProbability, solution);
@@ -140,6 +157,14 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 		}
 	}
 
+	/**
+	 * Fix the y value.
+	 * 
+	 * @param y value to repair
+	 * @param lowerBound the lower bound
+	 * @param upperBound the upper bound
+	 * @return if y is less than lowerBound return lowerBound, if y is greater than upperBound return upperBound, otherwise return y.
+	 */
 	private double repairSolutionVariableValue(double y, double lowerBound, double upperBound) {
 		double result = y;
 		if (y < lowerBound) {

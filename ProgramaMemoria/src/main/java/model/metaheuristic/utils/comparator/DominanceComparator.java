@@ -2,6 +2,8 @@ package model.metaheuristic.utils.comparator;
 
 import java.io.Serializable;
 import java.util.Comparator;
+
+import exception.ApplicationException;
 import model.metaheuristic.solution.Solution;
 
 /**
@@ -60,11 +62,11 @@ public class DominanceComparator<S extends Solution<?>> implements Comparator<S>
 	@Override
 	public int compare(S solution1, S solution2) {
 		if (solution1 == null) {
-			throw new RuntimeException("Solution1 is null");
+			throw new ApplicationException("Solution1 is null");
 		} else if (solution2 == null) {
-			throw new RuntimeException("Solution2 is null");
+			throw new ApplicationException("Solution2 is null");
 		} else if (solution1.getNumberOfObjectives() != solution2.getNumberOfObjectives()) {
-			throw new RuntimeException("Cannot compare because solution1 has " + solution1.getNumberOfObjectives()
+			throw new ApplicationException("Cannot compare because solution1 has " + solution1.getNumberOfObjectives()
 					+ " objectives and solution2 has " + solution2.getNumberOfObjectives());
 		}
 		int result;
@@ -76,6 +78,12 @@ public class DominanceComparator<S extends Solution<?>> implements Comparator<S>
 		return result;
 	}
 
+	/**
+	 * Compare if a solution dominate other solution based in the objectives
+	 * @param solution1
+	 * @param solution2
+	 * @return
+	 */
 	private int dominanceTest(S solution1, S solution2) {
 		int bestIsOne = 0;
 		int bestIsTwo = 0;
