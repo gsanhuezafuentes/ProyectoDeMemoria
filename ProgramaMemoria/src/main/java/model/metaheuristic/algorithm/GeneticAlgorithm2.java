@@ -43,8 +43,24 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	private CrossoverOperator<S> crossoverOperator;
 	private MutationOperator<S> mutationOperator;
 	private DominanceComparator<S> comparator;
+	/**
+	 * Max number of evaluation
+	 */
 	private int maxEvaluations;
-	private int numberEvaluations;
+	/**
+	 * Count with the number of the number of evaluation performed
+	 */
+	private int performedEvaluationsNumber;
+	/**
+	 * Max number of evaluation without a improvement of the result
+	 */
+	private int maxNumberOfIterationWithoutImprovement;
+	/**
+	 * Count of number of evaluation without a improvement of the result
+	 */
+	private int numberOfIterationWithoutImprovement;
+
+	private S bestSolution;
 
 	public GeneticAlgorithm2(Problem<S> problem, int populationSize,
 			SelectionOperator<List<S>, List<S>> selectionOperator, CrossoverOperator<S> crossoverOperator,
@@ -55,6 +71,10 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 		this.crossoverOperator = crossoverOperator;
 		this.mutationOperator = mutationOperator;
 		this.maxEvaluations = 10000;
+
+		this.maxNumberOfIterationWithoutImprovement = 0;
+		this.numberOfIterationWithoutImprovement = 0;
+
 		this.comparator = new DominanceComparator<S>();
 	}
 
@@ -66,6 +86,19 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	}
 
 	/**
+	 * Get the max number of evaluation. <br>
+	 * <br>
+	 * 
+	 * When the result returned by this method is 0 the stop condition of the
+	 * algorithm don't take into account this value and only use the
+	 * MaxNumberOfIterationWithoutImprovement
+	 * {@link GeneticAlgorithm2#getMaxNumberOfIterationWithoutImprovement()}. If the
+	 * value is other than 0 so it condition is taked into account.<br>
+	 * <br>
+	 * 
+	 * 
+	 * The default is 10000
+	 * 
 	 * @return the maxEvaluations
 	 */
 	public int getMaxEvaluations() {
@@ -73,14 +106,66 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	}
 
 	/**
+	 * Set max number of evaluation.<br>
+	 * <br>
+	 * 
+	 * MaxEvaluations and MaxNumberOfIterationWithoutImprovement equals to 0 in same
+	 * time is not valid.<br>
+	 * <br>
+	 * 
+	 * The default is 10000 <br>
+	 * <br>
+	 * 
+	 * If you want to set this to 0 to disable the stop condition using this value
+	 * so change first
+	 * {@link GeneticAlgorithm2.setMaxNumberOfIterationWithoutImprovement} to a
+	 * value other than 0
+	 * 
 	 * @param maxEvaluations the maxEvaluations to set
 	 */
 	public void setMaxEvaluations(int maxEvaluations) {
+		validateMaxStoppingConditionCounters(maxEvaluations, this.maxNumberOfIterationWithoutImprovement);
 		this.maxEvaluations = maxEvaluations;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Get the max number of iteration without a improvement of the
+	 * result.
+	 * 
+	 * When the result returned by this method is 0 the stop condition of the
+	 * algorithm don't take into account this value and only use the MaxEvaluation
+	 * {@link GeneticAlgorithm2#getMaxEvaluations()}. If the value is other than 0
+	 * so it condition is taked into account.
+	 * 
+	 * The default is 0.
+	 * 
+	 * @return MaxNumberOfIterationWithoutImprovement.
+	 */
+	public int getMaxNumberOfIterationWithoutImprovement() {
+		return maxNumberOfIterationWithoutImprovement;
+	}
+
+	/**
+	 * Set the max number of iteration without a improvement of the result.
+	 * 
+	 * When the result returned by this method is 0 so the stop condition of the
+	 * algorithm don't take into account this condition. If the value is other than
+	 * 0 so it condition is taked into account.
+	 * 
+	 * The default is 0.
+	 * 
+	 * MaxEvaluations and MaxNumberOfIterationWithoutImprovement equals to 0 in same
+	 * time is not valid.
+	 * 
+	 * @param maxNumberOfIterationWithoutImprovement
+	 */
+	public void setMaxNumberOfIterationWithoutImprovement(int maxNumberOfIterationWithoutImprovement) {
+		validateMaxStoppingConditionCounters(this.maxEvaluations, maxNumberOfIterationWithoutImprovement);
+		this.maxNumberOfIterationWithoutImprovement = maxNumberOfIterationWithoutImprovement;
+	}
+
+	/**
+	 * @return the problem
 	 */
 	@Override
 	protected List<S> createInitialPopulation() {
@@ -153,16 +238,18 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	@Override
 	public S getResult() {
 		Collections.sort(getPopulation(), comparator);
-		System.out.println(getPopulation());
 		return population.get(0);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	protected boolean isStoppingConditionReached() {
-		return numberEvaluations >= getMaxEvaluations();
+		boolean result = false;
+		if (maxEvaluations > 0) {
+			result = performedEvaluationsNumber >= getMaxEvaluations();
+		}
+		if (maxNumberOfIterationWithoutImprovement > 0) {
+			result = result || (numberOfIterationWithoutImprovement >= getMaxNumberOfIterationWithoutImprovement());
+		}
+		return result;
 	}
 
 	/**
@@ -180,18 +267,49 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Check if maxEvaluations and maxNumberOfIterationWithoutImprovement are
+	 * valid.<br>
+	 * <br>
+	 * To be valid both can't be less than 0 and both can't be 0 at the same time.
 	 */
-	@Override
-	protected void initProgress() {
-		this.numberEvaluations = getMaxPopulationSize();
+	private void validateMaxStoppingConditionCounters(int maxEvaluations, int maxNumberOfIterationWithoutImprovement) {
+		if (maxEvaluations < 0) {
+			throw new RuntimeException("Wrong MaxEvaluations can't be less than 0");
+		}
+		if (maxNumberOfIterationWithoutImprovement < 0) {
+			throw new RuntimeException("Wrong MaxNumberOfIterationWithoutImprovement can't be less than 0");
+		}
+		if (maxEvaluations == 0 && maxNumberOfIterationWithoutImprovement == 0) {
+			throw new RuntimeException(
+					"Wrong MaxEvaluations and MaxNumberOfIterationWithoutImprovement can't be zero at the same time");
+		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void updateProgress() {
-		this.numberEvaluations += getMaxPopulationSize();
+	protected void initProgress() {
+		if (getMaxEvaluations() > 0) {
+			this.performedEvaluationsNumber = getMaxPopulationSize();
+		}
 	}
+
+	protected void updateProgress() {
+		if (getMaxEvaluations() > 0) {
+			this.performedEvaluationsNumber += getMaxPopulationSize();
+			System.out.println("performedEvaluationsNumber: " + performedEvaluationsNumber);
+		}
+		if (getMaxNumberOfIterationWithoutImprovement() > 0) {
+			// Initialize best solution if it not exist
+			if (bestSolution == null) {
+				bestSolution = getResult();
+			}
+			S solution = getResult();
+			// Check if there is a new best solution
+			if (comparator.compare(solution, bestSolution) < 0) {
+				this.bestSolution = solution;
+				this.numberOfIterationWithoutImprovement = 0;
+			}
+			this.numberOfIterationWithoutImprovement++;
+			System.out.println("numberOfIterationWithoutImprovement: " + numberOfIterationWithoutImprovement);
+		}
+	}
+
 }

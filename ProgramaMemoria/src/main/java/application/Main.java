@@ -55,6 +55,7 @@ public class Main extends Application {
 			Problem<IntegerSolution> problem = new CostConstructionProblem(epanet, "inp/hanoiHW.Gama", 30);
 			GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10, selection,
 					crossover, mutation);
+			algorithm.setMaxNumberOfIterationWithoutImprovement(10000);
 			algorithm.setMaxEvaluations(250000);
 			algorithm.run();
 
