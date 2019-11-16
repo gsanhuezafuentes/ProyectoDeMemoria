@@ -90,7 +90,6 @@ public class CostConstructionProblem implements Problem<IntegerSolution> {
 		try {
 			evaluator.evaluate(solution, gamas, epanet);
 		} catch (EpanetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -126,7 +125,6 @@ public class CostConstructionProblem implements Problem<IntegerSolution> {
 				length.add(value[0]);
 			}
 		} catch (EpanetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

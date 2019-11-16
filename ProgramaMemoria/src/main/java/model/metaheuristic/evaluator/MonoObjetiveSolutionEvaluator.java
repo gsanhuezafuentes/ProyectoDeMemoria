@@ -165,10 +165,8 @@ public class MonoObjetiveSolutionEvaluator {
 
 			System.out.println(integerSolution);
 		} catch (EpanetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -186,7 +184,6 @@ public class MonoObjetiveSolutionEvaluator {
 				length.add(value[0]);
 			}
 		} catch (EpanetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

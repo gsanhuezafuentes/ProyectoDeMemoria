@@ -6,36 +6,42 @@ public class Junction extends Node {
 	private double elev;
 	private double demand;
 	private Pattern pattern;
+
 	/**
 	 * @return the elev
 	 */
 	public double getElev() {
 		return elev;
 	}
+
 	/**
 	 * @param elev the elev to set
 	 */
 	public void setElev(double elev) {
 		this.elev = elev;
 	}
+
 	/**
 	 * @return the demand
 	 */
 	public double getDemand() {
 		return demand;
 	}
+
 	/**
 	 * @param demand the demand to set
 	 */
 	public void setDemand(double demand) {
 		this.demand = demand;
 	}
+
 	/**
 	 * @return the pattern
 	 */
 	public Pattern getPattern() {
 		return pattern;
 	}
+
 	/**
 	 * @param pattern the pattern to set
 	 */
@@ -43,5 +49,4 @@ public class Junction extends Node {
 		this.pattern = pattern;
 	}
 
-	
 }

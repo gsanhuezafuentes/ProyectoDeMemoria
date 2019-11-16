@@ -88,7 +88,7 @@ public class InpParser implements InputParser {
 						parsePattern(net, tokens);
 						break;
 					case "ENERGY":
-						parseEnergy(net, tokens);
+						parseEnergy(net, tokens, line);
 					case "STATUS":
 						parseStatus(net, tokens);
 						break;
@@ -105,7 +105,7 @@ public class InpParser implements InputParser {
 						parseQuality(net, tokens);
 						break;
 					case "REACTIONS":
-						parseReaction(net, tokens);
+						parseReaction(net, tokens, line);
 						break;
 					case "SOURCES":
 						parseSource(net, tokens);
@@ -114,13 +114,13 @@ public class InpParser implements InputParser {
 						parseMixing(net, tokens);
 						break;
 					case "OPTIONS":
-						parseOption(net, tokens);
+						parseOption(net, tokens, line);
 						break;
 					case "TIMES":
-						parseTime(net, tokens);
+						parseTime(net, tokens, line);
 						break;
 					case "REPORT":
-						parseReport(net, tokens);
+						parseReport(net, tokens, line);
 						break;
 					case "COORDINATES":
 						parseCoordinate(net, tokens);
@@ -132,16 +132,17 @@ public class InpParser implements InputParser {
 						parseLabel(net, tokens);
 						break;
 					case "BACKDROP":
-						parseBackdrop(net, tokens);
+						parseBackdrop(net, tokens, line);
 						break;
 					case "TAGS":
 						parseTag(net, tokens);
 						break;
-					
+
+					}
+
 				}
 
 			}
-
 		} catch (EpanetException e) {
 			throw e;
 		} catch (IOException e) {
@@ -310,7 +311,7 @@ public class InpParser implements InputParser {
 	 * @param net
 	 * @param tokens
 	 */
-	private void parseEnergy(Network net, String[] tokens) {
+	private void parseEnergy(Network net, String[] tokens, String line) {
 		// TODO Auto-generated method stub
 
 	}
@@ -380,7 +381,7 @@ public class InpParser implements InputParser {
 	 * @param net
 	 * @param tokens
 	 */
-	private void parseReaction(Network net, String[] tokens) {
+	private void parseReaction(Network net, String[] tokens, String line) {
 		// TODO Auto-generated method stub
 
 	}
@@ -417,7 +418,7 @@ public class InpParser implements InputParser {
 	 * @param net
 	 * @param tokens
 	 */
-	private void parseOption(Network net, String[] tokens) {
+	private void parseOption(Network net, String[] tokens, String line) {
 		// TODO Auto-generated method stub
 
 	}
@@ -428,7 +429,7 @@ public class InpParser implements InputParser {
 	 * @param net
 	 * @param tokens
 	 */
-	private void parseTime(Network net, String[] tokens) {
+	private void parseTime(Network net, String[] tokens, String line) {
 		// TODO Auto-generated method stub
 
 	}
@@ -439,9 +440,7 @@ public class InpParser implements InputParser {
 	 * @param net
 	 * @param tokens
 	 */
-	-
-
-	private void parseReport(Network net, String[] tokens) {
+	private void parseReport(Network net, String[] tokens, String line) {
 		// TODO Auto-generated method stub
 
 	}
@@ -498,8 +497,8 @@ public class InpParser implements InputParser {
 	 * @param net
 	 * @param tokens
 	 */
-	private void parseBackdrop(Network net, String[] tokens) {
-		Backdrop backdrop = new Backdrop();
+	private void parseBackdrop(Network net, String[] tokens, String line) {
+	
 
 	}
 

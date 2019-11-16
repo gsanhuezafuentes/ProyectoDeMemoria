@@ -274,13 +274,13 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	 */
 	private void validateMaxStoppingConditionCounters(int maxEvaluations, int maxNumberOfIterationWithoutImprovement) {
 		if (maxEvaluations < 0) {
-			throw new RuntimeException("Wrong MaxEvaluations can't be less than 0");
+			throw new ApplicationException("Wrong MaxEvaluations can't be less than 0");
 		}
 		if (maxNumberOfIterationWithoutImprovement < 0) {
-			throw new RuntimeException("Wrong MaxNumberOfIterationWithoutImprovement can't be less than 0");
+			throw new ApplicationException("Wrong MaxNumberOfIterationWithoutImprovement can't be less than 0");
 		}
 		if (maxEvaluations == 0 && maxNumberOfIterationWithoutImprovement == 0) {
-			throw new RuntimeException(
+			throw new ApplicationException(
 					"Wrong MaxEvaluations and MaxNumberOfIterationWithoutImprovement can't be zero at the same time");
 		}
 	}

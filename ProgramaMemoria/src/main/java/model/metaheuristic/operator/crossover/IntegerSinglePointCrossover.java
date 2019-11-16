@@ -105,7 +105,6 @@ public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSol
 	 */
 	@Override
 	public int getNumberOfRequiredParents() {
-		// TODO Auto-generated method stub
 		return 2;
 	}
 
@@ -114,7 +113,6 @@ public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSol
 	 */
 	@Override
 	public int getNumberOfGeneratedChildren() {
-		// TODO Auto-generated method stub
 		return 2;
 	}
 

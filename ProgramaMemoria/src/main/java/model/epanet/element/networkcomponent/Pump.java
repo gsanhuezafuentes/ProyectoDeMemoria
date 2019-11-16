@@ -12,12 +12,12 @@ public class Pump extends Link {
 	 * 
 	 *
 	 */
-	static public enum Property {
+	static public enum PumpProperty {
 		HEAD("HEAD"), SPEED("SPEED"), POWER("POWER"), PATTERN("PATTERN");
 
 		private String name;
 
-		private Property(String name) {
+		private PumpProperty(String name) {
 			this.name = name;
 		}
 
@@ -32,7 +32,7 @@ public class Pump extends Link {
 
 	private Node node1;
 	private Node node2;
-	private HashMap<Property, Object> properties;
+	private HashMap<PumpProperty, Object> properties;
 
 	/**
 	 * @return the node1
@@ -63,40 +63,40 @@ public class Pump extends Link {
 	}
 
 	/**
-	 * Get the property by key When key is {@link Property#HEAD} value has to be
+	 * Get the property by key When key is {@link PumpProperty#HEAD} value has to be
 	 * {@link Curve} <br>
 	 * <br>
-	 * When key is {@link Property#SPEED} value has to be {@link Double} <br>
+	 * When key is {@link PumpProperty#SPEED} value has to be {@link Double} <br>
 	 * <br>
-	 * When key is {@link Property#POWER} value has to be {@link Double}
+	 * When key is {@link PumpProperty#POWER} value has to be {@link Double}
 	 * 
 	 * @param key
 	 * @return value the value (Double, Curve or Pattern)
 	 */
-	public Object getProperty(Property key) {
+	public Object getProperty(PumpProperty key) {
 		return this.properties.get(key);
 	}
 
 	/**
-	 * Set the property When key is {@link Property#HEAD} value has to be
+	 * Set the property When key is {@link PumpProperty#HEAD} value has to be
 	 * {@link Curve} <br>
 	 * <br>
-	 * When key is {@link Property#SPEED} value has to be {@link Double} <br>
+	 * When key is {@link PumpProperty#SPEED} value has to be {@link Double} <br>
 	 * <br>
-	 * When key is {@link Property#POWER} value has to be {@link Double}
+	 * When key is {@link PumpProperty#POWER} value has to be {@link Double}
 	 * 
 	 * @param key   the key
 	 * @param value the value (Double, Curve or Pattern)
 	 */
-	public void setProperty(Property key, Object value) {
+	public void setProperty(PumpProperty key, Object value) {
 		if (value == null) {
 			throw new RuntimeException("value can't be null");
 		}
-		if (Property.HEAD == key) {
+		if (PumpProperty.HEAD == key) {
 			if (!(value instanceof Curve)) {
 				throw new RuntimeException("When key is " + key.getName() + " the value as to be a Curve ");
 			}
-		} else if (Property.PATTERN == key) {
+		} else if (PumpProperty.PATTERN == key) {
 			if (!(value instanceof Pattern)) {
 				throw new RuntimeException("When key is " + key.getName() + " the value as to be a Pattern ");
 			}
