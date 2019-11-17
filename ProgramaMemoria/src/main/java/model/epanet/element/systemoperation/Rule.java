@@ -6,7 +6,7 @@ package model.epanet.element.systemoperation;
  */
 public class Rule {
 	String ruleId;
-	String ruleCode;
+	String code;
 	
 	/**
 	 * @return the ruleId
@@ -23,14 +23,14 @@ public class Rule {
 	/**
 	 * @return the ruleCode
 	 */
-	public String getRuleCode() {
-		return ruleCode;
+	public String getCode() {
+		return code;
 	}
 	/**
 	 * @param ruleCode the ruleCode to set
 	 */
-	public void setRuleCode(String ruleCode) {
-		this.ruleCode = ruleCode;
+	public void setCode(String ruleCode) {
+		this.code = ruleCode;
 	}
 	
 	

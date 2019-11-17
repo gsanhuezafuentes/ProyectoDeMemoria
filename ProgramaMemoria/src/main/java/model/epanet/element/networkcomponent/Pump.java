@@ -34,6 +34,9 @@ public class Pump extends Link {
 	private Node node2;
 	private HashMap<PumpProperty, Object> properties;
 
+	public Pump() {
+		this.properties = new HashMap<Pump.PumpProperty, Object>();
+	}
 	/**
 	 * @return the node1
 	 */

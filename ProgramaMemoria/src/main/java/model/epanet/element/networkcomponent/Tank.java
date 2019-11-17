@@ -7,7 +7,7 @@ public class Tank extends Node{
 	private double initLvl;
 	private double minLvl;
 	private double maxLvl;
-	private double diam;
+	private double diameter;
 	private double minVol;
 	private Curve volCurve;
 	/**
@@ -61,14 +61,14 @@ public class Tank extends Node{
 	/**
 	 * @return the diam
 	 */
-	public double getDiam() {
-		return diam;
+	public double getDiameter() {
+		return diameter;
 	}
 	/**
 	 * @param diam the diam to set
 	 */
-	public void setDiam(double diam) {
-		this.diam = diam;
+	public void setDiameter(double diam) {
+		this.diameter = diam;
 	}
 	/**
 	 * @return the minVol

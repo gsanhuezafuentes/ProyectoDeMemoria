@@ -1,9 +1,8 @@
 package model.metaheuristic.algorithm;
 
-import java.util.ArrayList;
-
 import java.util.List;
 
+import epanet.core.EpanetException;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 
@@ -44,13 +43,16 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 	protected abstract void updateProgress();
 
 	/**
-	 * Method that initialize the count of progress of execution. It is called by {@link #run()}
+	 * Method that initialize the count of progress of execution. It is called by
+	 * {@link #run()}
 	 */
 	protected abstract void initProgress();
 
 	/**
-	 * Method to decide when the algorithm execution stop. It is called by {@link #run()}
-	 * @return
+	 * Method to decide when the algorithm execution stop. It is called by
+	 * {@link #run()}
+	 * 
+	 * @return a boolean that indicate if the algorithm execution can continue or not.
 	 */
 	protected abstract boolean isStoppingConditionReached();
 
@@ -61,12 +63,14 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 
 	/**
 	 * Create the initial population to the problem
+	 * 
 	 * @return the initial population
 	 */
 	protected abstract List<S> createInitialPopulation();
 
 	/**
 	 * Execute the crossover and mutation for the evolutionary algorithm.
+	 * 
 	 * @param selectionPopulation the population returned by selection operator
 	 * @return the offspring population
 	 */
@@ -74,20 +78,22 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 
 	/**
 	 * Execute selection operator.
+	 * 
 	 * @param population the population
 	 * @return the selected population
 	 */
 	protected abstract List<S> selection(List<S> population);
 
 	/**
-	 * Filter {@code population} and {@code offspringPopulation} to create the new population to next iteration of algorithm.
-	 * @param population the preliminary population before execute some operator
+	 * Filter {@code population} and {@code offspringPopulation} to create the new
+	 * population to next iteration of algorithm.
+	 * 
+	 * @param population          the preliminary population before execute some
+	 *                            operator
 	 * @param offspringPopulation the population after execute all the operator
 	 * @return the new population
 	 */
 	protected abstract List<S> replacement(List<S> population, List<S> offspringPopulation);
-
-
 
 	/* Setters and getters */
 	/**
@@ -96,32 +102,37 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 	public List<S> getPopulation() {
 		return population;
 	}
-	
+
 	/**
 	 * Set the population of the algorithm
 	 */
 	public void setPopulation(List<S> population) {
 		this.population = population;
 	}
-	
+
 	/**
 	 * Set the problem to execute with algorithm
+	 * 
 	 * @param problem the problem
 	 */
 	public void setProblem(Problem<S> problem) {
 		this.problem = problem;
 	}
-	
+
 	/**
 	 * Get the problem assigned to algorithm
+	 * 
 	 * @return the problem
 	 */
 	public Problem<S> getProblem() {
 		return problem;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void run() {
+	public void run() throws EpanetException {
 		List<S> offspringPopulation;
 		List<S> selectionPopulation;
 
@@ -142,9 +153,12 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 	 * Evaluate population
 	 * 
 	 * @param population
-	 * @return
+	 * @return A list of solution that already has been evaluated
+	 * @throws EpanetException If there is a problem in the simulation of solution
+	 *                         using EpanetToolkit
+	 * 
 	 */
-	protected List<S> evaluatePopulation(List<S> population) {
+	protected List<S> evaluatePopulation(List<S> population) throws EpanetException {
 		for (S s : population) {
 			problem.evaluate(s);
 		}

@@ -13,8 +13,6 @@ import model.metaheuristic.utils.random.RandomGenerator;
  * If the lower and upper bounds of a variable are the same, no mutation is
  * carried out and the bound value is returned.
  *
- * A {@link RepairDoubleSolution} object is used to decide the strategy to apply
- * when a value is out of range.
  *
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  * 
@@ -99,7 +97,7 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 	/* Setters */
 	/**
 	 * Set the distribution index
-	 * @param the distribution index
+	 * @param distributionIndex the distribution index
 	 */
 	public void setDistributionIndex(double distributionIndex) {
 		this.distributionIndex = distributionIndex;
@@ -107,7 +105,7 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 
 	/**
 	 * Set the mutation probability
-	 * @param the mutation probability
+	 * @param mutationProbability the mutation probability
 	 */
 	public void setMutationProbability(double mutationProbability) {
 		this.mutationProbability = mutationProbability;

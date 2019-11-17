@@ -1,20 +1,20 @@
 package model.epanet.element.optionsreport;
 
 public class Time {
-	String timeCode;
+	String code;
 
 	/**
 	 * @return the timeCode
 	 */
-	public String getTimeCode() {
-		return timeCode;
+	public String getCode() {
+		return code;
 	}
 
 	/**
 	 * @param timeCode the timeCode to set
 	 */
-	public void setTimeCode(String timeCode) {
-		this.timeCode = timeCode;
+	public void setCode(String timeCode) {
+		this.code = timeCode;
 	}
 	
 	

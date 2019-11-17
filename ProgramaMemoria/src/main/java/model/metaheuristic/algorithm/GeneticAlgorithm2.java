@@ -118,7 +118,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	 * 
 	 * If you want to set this to 0 to disable the stop condition using this value
 	 * so change first
-	 * {@link GeneticAlgorithm2.setMaxNumberOfIterationWithoutImprovement} to a
+	 * {@link #setMaxNumberOfIterationWithoutImprovement} to a
 	 * value other than 0
 	 * 
 	 * @param maxEvaluations the maxEvaluations to set
@@ -129,8 +129,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	}
 
 	/**
-	 * Get the max number of iteration without a improvement of the
-	 * result.
+	 * Get the max number of iteration without a improvement of the result.
 	 * 
 	 * When the result returned by this method is 0 the stop condition of the
 	 * algorithm don't take into account this value and only use the MaxEvaluation
@@ -241,6 +240,8 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 		return population.get(0);
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	protected boolean isStoppingConditionReached() {
 		boolean result = false;
 		if (maxEvaluations > 0) {
@@ -285,12 +286,16 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 		}
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	protected void initProgress() {
 		if (getMaxEvaluations() > 0) {
 			this.performedEvaluationsNumber = getMaxPopulationSize();
 		}
 	}
 
+	/** {@inheritDoc} */
+	@Override
 	protected void updateProgress() {
 		if (getMaxEvaluations() > 0) {
 			this.performedEvaluationsNumber += getMaxPopulationSize();

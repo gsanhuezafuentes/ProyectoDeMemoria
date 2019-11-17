@@ -3,18 +3,18 @@ package model.epanet.element.networkcomponent;
 import model.epanet.element.systemoperation.Pattern;
 
 public class Reservoir extends Node{
-	private int head;
+	private double head;
 	private Pattern pattern;
 	/**
 	 * @return the head
 	 */
-	public int getHead() {
+	public double getHead() {
 		return head;
 	}
 	/**
 	 * @param head the head to set
 	 */
-	public void setHead(int head) {
+	public void setHead(double head) {
 		this.head = head;
 	}
 	/**

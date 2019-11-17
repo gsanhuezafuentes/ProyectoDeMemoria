@@ -16,7 +16,7 @@ public abstract class Link {
 	/**
 	 * Get vertices that contains this links.
 	 * 
-	 * @return
+	 * @return a list with the vertices of the link
 	 */
 	public final List<Point> getVertices() {
 		return vertices;

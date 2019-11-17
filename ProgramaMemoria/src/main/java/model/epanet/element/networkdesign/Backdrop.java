@@ -1,20 +1,20 @@
 package model.epanet.element.networkdesign;
 
 public class Backdrop {
-	String backdropCode;
+	String code;
 
 	/**
 	 * @return the backdropCode
 	 */
-	public String getBackdropCode() {
-		return backdropCode;
+	public String getCode() {
+		return code;
 	}
 
 	/**
 	 * @param backdropCode the backdropCode to set
 	 */
-	public void setBackdropCode(String backdropCode) {
-		this.backdropCode = backdropCode;
+	public void setCode(String backdropCode) {
+		this.code = backdropCode;
 	}
 	
 	

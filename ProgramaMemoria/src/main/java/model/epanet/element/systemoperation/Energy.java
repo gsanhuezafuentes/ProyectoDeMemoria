@@ -1,20 +1,20 @@
 package model.epanet.element.systemoperation;
 
 public class Energy {
-	String codeline;
+	String code;
 
 	/**
 	 * @return the code
 	 */
 	public String getCode() {
-		return codeline;
+		return code;
 	}
 
 	/**
 	 * @param code the code to set
 	 */
-	public void setCode(String code) {
-		this.codeline = codeline;
+	public void setCode(String codeline) {
+		this.code = codeline;
 	}
 	
 	

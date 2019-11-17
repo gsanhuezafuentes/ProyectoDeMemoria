@@ -39,25 +39,25 @@ public class Control {
 
 	}
 
-	private String idLink;
+	private String linkId;
 	private ControlType controlType;
 	private StatType statType;
 	private double statValue;
-	private String idNodo;
-	private int value;
+	private String nodeId;
+	private double value;
 	private int time;
 	private String clocktime;
 	/**
-	 * @return the idLink
+	 * @return the link id
 	 */
-	public String getIdLink() {
-		return idLink;
+	public String getLinkId() {
+		return linkId;
 	}
 	/**
-	 * @param idLink the idLink to set
+	 * @param linkId the link id to set
 	 */
-	public void setIdLink(String idLink) {
-		this.idLink = idLink;
+	public void setLinkId(String linkId) {
+		this.linkId = linkId;
 	}
 	/**
 	 * @return the controlType
@@ -98,31 +98,31 @@ public class Control {
 		this.statValue = statValue;
 	}
 	/**
-	 * Get the id of nodo. Use only when ControlType is {@link ControlType#IF_ABOVE} or {@link ControlType#IF_BELOW}
-	 * @return the idNodo
+	 * Get the id of node. Use only when ControlType is {@link ControlType#IF_ABOVE} or {@link ControlType#IF_BELOW}
+	 * @return the node id
 	 */
-	public String getIdNodo() {
-		return idNodo;
+	public String getNodeId() {
+		return nodeId;
 	}
 	/**
-	 * Set the id of nodo. Use only when ControlType is {@link ControlType#IF_ABOVE} or {@link ControlType#IF_BELOW}
-	 * @param idNodo the idNodo to set
+	 * Set the id of node. Use only when ControlType is {@link ControlType#IF_ABOVE} or {@link ControlType#IF_BELOW}
+	 * @param NodeId the idNodo to set
 	 */
-	public void setIdNodo(String idNodo) {
-		this.idNodo = idNodo;
+	public void setNodeId(String nodeId) {
+		this.nodeId = nodeId;
 	}
 	/**
 	 * Get the value. Use only when ControlType is {@link ControlType#IF_ABOVE} or {@link ControlType#IF_BELOW}
 	 * @return the value
 	 */
-	public int getValue() {
+	public double getValue() {
 		return value;
 	}
 	/**
 	 * Set the value. Use only when ControlType is {@link ControlType#IF_ABOVE} or {@link ControlType#IF_BELOW}
 	 * @param value the value to set
 	 */
-	public void setValue(int value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 	/**

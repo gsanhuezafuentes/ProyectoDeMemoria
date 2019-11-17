@@ -47,5 +47,12 @@ public class Pattern {
 		this.multipliers.add(multiplier);
 	}
 	
-	
+	@Override
+	public String toString() {
+		String txt = this.id;
+		for (int i = 0; i < this.multipliers.size(); i++) {
+			txt += String.format("\t %f", this.multipliers.get(i));
+		}
+		return txt;
+	}
 }

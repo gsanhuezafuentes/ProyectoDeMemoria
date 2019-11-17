@@ -1,18 +1,18 @@
 package model.epanet.element.systemoperation;
 
 public class Status {
-	public static enum Setting {
-		OPEN("OPEN"), CLOSE("OPEN");
-
-		private String name;
-
-		private Setting(String name) {
-			this.name = name;
-		}
-	}
+//	public static enum Setting {
+//		OPEN("OPEN"), CLOSE("OPEN");
+//
+//		private String name;
+//
+//		private Setting(String name) {
+//			this.name = name;
+//		}
+//	}
 	
 	private String linkId;
-	private Setting status;
+	private String status;
 	/**
 	 * @return the linkId
 	 */
@@ -28,13 +28,13 @@ public class Status {
 	/**
 	 * @return the status
 	 */
-	public Setting getStatus() {
+	public String getStatus() {
 		return status;
 	}
 	/**
 	 * @param status the status to set
 	 */
-	public void setStatus(Setting status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	

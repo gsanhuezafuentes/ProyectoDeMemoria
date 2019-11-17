@@ -1,19 +1,19 @@
 package model.epanet.element.waterquality;
 
 public class Reaction {
-	private String reactionCode;
+	private String Code;
 
 	/**
 	 * @return the reactionCode
 	 */
-	public String getReactionCode() {
-		return reactionCode;
+	public String getCode() {
+		return Code;
 	}
 
 	/**
 	 * @param reactionCode the reactionCode to set
 	 */
-	public void setReactionCode(String reactionCode) {
-		this.reactionCode = reactionCode;
+	public void setCode(String reactionCode) {
+		this.Code = reactionCode;
 	}
 }

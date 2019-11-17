@@ -90,7 +90,7 @@ public class RankingAndCrowdingSelection<S extends Solution<?>> implements Selec
 	 * with
 	 * 
 	 * @param ranking
-	 * @return
+	 * @return a new list with the new population based in ranking and crowding distance
 	 */
 	protected List<S> crowdingDistanceSelection(DominanceRanking<S> ranking) {
 		CrowdingDistance<S> crowdingDistance = new CrowdingDistance<S>();

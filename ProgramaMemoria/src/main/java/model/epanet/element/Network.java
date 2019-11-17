@@ -42,14 +42,6 @@ public class Network {
 
 	private Map<String, Link> linkMap;
 	private Map<String, Node> nodesMap;
-	// Nodes
-	private Map<String, Junction> junctionsMap;
-	private Map<String, Reservoir> reservoirsMap;
-	private Map<String, Tank> tanksMap;
-	// Links
-	private Map<String, Pipe> pipesMap;
-	private Map<String, Pump> pumpsMap;
-	private Map<String, Valve> valvesMap;
 
 	private List<Junction> junctionList;
 	private List<Reservoir> reservoirList;
@@ -99,12 +91,6 @@ public class Network {
 		this.title = new StringBuilder();
 		this.linkMap = new HashMap<String, Link>();
 		this.nodesMap = new HashMap<String, Node>();
-		this.junctionsMap = new HashMap<String, Junction>();
-		this.reservoirsMap = new HashMap<String, Reservoir>();
-		this.tanksMap = new HashMap<String, Tank>();
-		this.pipesMap = new HashMap<String, Pipe>();
-		this.pumpsMap = new HashMap<String, Pump>();
-		this.valvesMap = new HashMap<String, Valve>();
 		this.junctionList = new ArrayList<>();
 		this.reservoirList = new ArrayList<>();
 		this.tankList = new ArrayList<>();
@@ -136,13 +122,10 @@ public class Network {
 	public void addLink(String id, Link link) {
 		this.linkMap.put(id, link);
 		if (link instanceof Pipe) {
-			this.pipesMap.put(id, (Pipe) link);
 			this.pipeList.add((Pipe) link);
 		} else if (link instanceof Pump) {
-			this.pumpsMap.put(id, (Pump) link);
 			this.PumpList.add((Pump) link);
 		} else {
-			this.valvesMap.put(id, (Valve) link);
 			this.valveList.add((Valve) link);
 		}
 	}
@@ -156,13 +139,10 @@ public class Network {
 	public void addNode(String id, Node node) {
 		this.nodesMap.put(id, node);
 		if (node instanceof Junction) {
-			this.junctionsMap.put(id, (Junction) node);
 			this.junctionList.add((Junction) node);
 		} else if (node instanceof Reservoir) {
-			this.reservoirsMap.put(id, (Reservoir) node);
 			this.reservoirList.add((Reservoir) node);
 		} else {
-			this.tanksMap.put(id, (Tank) node);
 			this.tankList.add((Tank) node);
 		}
 	}
@@ -194,7 +174,7 @@ public class Network {
 	 * @return Junction.
 	 */
 	public Junction getJuntion(String id) {
-		return this.junctionsMap.get(id);
+		return (Junction) this.nodesMap.get(id);
 	}
 
 	/**
@@ -204,7 +184,7 @@ public class Network {
 	 * @return Reservoir.
 	 */
 	public Reservoir getReservoir(String id) {
-		return this.reservoirsMap.get(id);
+		return (Reservoir) this.nodesMap.get(id);
 	}
 
 	/**
@@ -214,7 +194,7 @@ public class Network {
 	 * @return Tank.
 	 */
 	public Tank getTank(String id) {
-		return this.tanksMap.get(id);
+		return (Tank) this.nodesMap.get(id);
 	}
 
 	/**
@@ -224,7 +204,7 @@ public class Network {
 	 * @return Pipe.
 	 */
 	public Pipe getPipe(String id) {
-		return this.pipesMap.get(id);
+		return (Pipe) this.linkMap.get(id);
 	}
 
 	/**
@@ -234,7 +214,7 @@ public class Network {
 	 * @return Pump.
 	 */
 	public Pump getPump(String id) {
-		return this.pumpsMap.get(id);
+		return (Pump) this.linkMap.get(id);
 	}
 
 	/**
@@ -244,7 +224,7 @@ public class Network {
 	 * @return Valve.
 	 */
 	public Valve getValve(String id) {
-		return this.valvesMap.get(id);
+		return (Valve) this.linkMap.get(id);
 	}
 
 	/**
@@ -327,14 +307,16 @@ public class Network {
 	 * @return the emitterList
 	 */
 	public List<Emitter> getEmitterList() {
+		if (this.emitterList == null) {
+			this.emitterList = new ArrayList<Emitter>();
+		}
 		return Collections.unmodifiableList(emitterList);
 	}
 
 	/**
 	 * Add a emitter to network
 	 * 
-	 * @param id   id node
-	 * @param node node element
+	 * @param emitter a emitter
 	 */
 	public void addEmiter(Emitter emitter) {
 		if (this.emitterList == null) {
@@ -374,10 +356,11 @@ public class Network {
 
 	/**
 	 * Get the pattern by id.
-	 * @param the pattern id
+	 * @param id the pattern id
 	 * @return the pattern
 	 */
-	public Pattern getPattern(String id) {
+	public Pattern getPattern(String id) 
+	{
 		return this.patternMap.get(id);
 	}
 
@@ -402,6 +385,9 @@ public class Network {
 	 * @return the controlList
 	 */
 	public List<Control> getControlList() {
+		if(this.controlList == null) {
+			this.controlList = new ArrayList<>();
+		}
 		return Collections.unmodifiableList(controlList);
 	}
 
@@ -421,6 +407,9 @@ public class Network {
 	 * @return the curveList
 	 */
 	public List<Curve> getCurveList() {
+		if (this.curveList == null) {
+			this.curveList = new ArrayList<Curve>();
+		}
 		return Collections.unmodifiableList(curveList);
 	}
 
@@ -429,6 +418,9 @@ public class Network {
 	 * @return the demandList
 	 */
 	public List<Demand> getDemandList() {
+		if(this.demandList == null) {
+			this.demandList = new ArrayList<>();
+		}
 		return Collections.unmodifiableList(demandList);
 	}
 
@@ -448,6 +440,9 @@ public class Network {
 	 * @return the energyList
 	 */
 	public List<Energy> getEnergyList() {
+		if(this.energyList == null) {
+			this.energyList = new ArrayList<>();
+		}
 		return Collections.unmodifiableList(energyList);
 	}
 
@@ -467,6 +462,9 @@ public class Network {
 	 * @return the patternList
 	 */
 	public List<Pattern> getPatternList() {
+		if (this.patternList == null) {
+			this.patternList = new ArrayList<Pattern>();
+		}
 		return Collections.unmodifiableList(patternList);
 	}
 
@@ -475,6 +473,9 @@ public class Network {
 	 * @return the ruleList
 	 */
 	public List<Rule> getRuleList() {
+		if(this.ruleList == null) {
+			this.ruleList = new ArrayList<>();
+		}
 		return Collections.unmodifiableList(ruleList);
 	}
 
@@ -494,6 +495,9 @@ public class Network {
 	 * @return the statusList
 	 */
 	public List<Status> getStatusList() {
+		if(this.statusList == null) {
+			this.statusList = new ArrayList<>();
+		}
 		return Collections.unmodifiableList(statusList);
 	}
 
@@ -517,6 +521,9 @@ public class Network {
 	 * @return the mixingList
 	 */
 	public List<Mixing> getMixingList() {
+		if (this.mixingList == null) {
+			this.mixingList = new ArrayList<>();
+		}
 		return Collections.unmodifiableList(mixingList);
 	}
 
@@ -536,6 +543,9 @@ public class Network {
 	 * @return the qualityList
 	 */
 	public List<Quality> getQualityList() {
+		if (this.qualityList == null) {
+			this.qualityList = new ArrayList<>();			
+		}
 		return Collections.unmodifiableList(qualityList);
 	}
 
@@ -555,6 +565,9 @@ public class Network {
 	 * @return the sourceList
 	 */
 	public List<Source> getSourceList() {
+		if (this.sourceList == null) {
+			this.sourceList = new ArrayList<>();			
+		}
 		return Collections.unmodifiableList(sourceList);
 	}
 
@@ -662,6 +675,9 @@ public class Network {
 	 * @return the labels
 	 */
 	public List<Label> getLabels() {
+		if (this.labels == null) {
+			this.labels = new ArrayList<>();			
+		}
 		return Collections.unmodifiableList(labels);
 	}
 
@@ -681,6 +697,9 @@ public class Network {
 	 * @return the tags
 	 */
 	public List<Tag> getTags() {
+		if (this.tags == null) {
+			this.tags = new ArrayList<>();			
+		}
 		return Collections.unmodifiableList(tags);
 	}
 

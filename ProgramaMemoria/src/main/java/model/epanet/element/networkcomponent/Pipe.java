@@ -23,7 +23,7 @@ public class Pipe extends Link {
 	private Node node1;
 	private Node node2;
 	private double length;
-	private double diam;
+	private double diameter;
 	private double roughness;
 	private double mloss;
 	private PipeStatus status;
@@ -73,15 +73,15 @@ public class Pipe extends Link {
 	/**
 	 * @return the diam
 	 */
-	public double getDiam() {
-		return diam;
+	public double getDiameter() {
+		return diameter;
 	}
 
 	/**
 	 * @param diam the diam to set
 	 */
-	public void setDiam(double diam) {
-		this.diam = diam;
+	public void setDiameter(double diam) {
+		this.diameter = diam;
 	}
 
 	/**

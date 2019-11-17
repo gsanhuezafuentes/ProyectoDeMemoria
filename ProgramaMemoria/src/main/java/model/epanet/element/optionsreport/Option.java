@@ -1,20 +1,20 @@
 package model.epanet.element.optionsreport;
 
 public class Option {
-	private String codeOption;
+	private String code;
 
 	/**
 	 * @return the codeOption
 	 */
-	public String getCodeOption() {
-		return codeOption;
+	public String getCode() {
+		return code;
 	}
 
 	/**
 	 * @param codeOption the codeOption to set
 	 */
-	public void setCodeOption(String codeOption) {
-		this.codeOption = codeOption;
+	public void setCode(String codeOption) {
+		this.code = codeOption;
 	}
 	
 	

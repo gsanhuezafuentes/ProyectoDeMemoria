@@ -1,20 +1,20 @@
 package model.epanet.element.optionsreport;
 
 public class Report {
-	private String reportCode;
+	private String code;
 
 	/**
 	 * @return the reportCode
 	 */
-	public String getReportCode() {
-		return reportCode;
+	public String getCode() {
+		return code;
 	}
 
 	/**
 	 * @param reportCode the reportCode to set
 	 */
-	public void setReportCode(String reportCode) {
-		this.reportCode = reportCode;
+	public void setCode(String reportCode) {
+		this.code = reportCode;
 	}
 	
 	

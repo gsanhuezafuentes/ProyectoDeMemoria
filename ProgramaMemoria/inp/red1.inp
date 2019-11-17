@@ -1,7 +1,7 @@
 [TITLE]
 Ejemplo 1 de Red en EPANET
-Es un sencilo ejemplo de simulación de desaparición del cloro.
-Están incluidas tanto las reacciones en el seno del flujo como 
+Es un sencilo ejemplo de simulaciï¿½n de desapariciï¿½n del cloro.
+Estï¿½n incluidas tanto las reacciones en el seno del flujo como 
 en la pared.
 
 [JUNCTIONS]
@@ -41,7 +41,7 @@ en la pared.
 
 [PUMPS]
 ;ID              	Node1           	Node2           	Parameters
- 9               	9               	10              	HEAD 1	;
+ 9               	9               	10              	HEAD 1;
 
 [VALVES]
 ;ID              	Node1           	Node2           	Diameter    	Type	Setting     	MinorLoss   
@@ -56,13 +56,13 @@ en la pared.
 
 [PATTERNS]
 ;ID              	Multipliers
-;Patrón de demanda
+;Patr?n de demanda
  1               	1.0         	1.2         	1.4         	1.6         	1.4         	1.2         
  1               	1.0         	0.8         	0.6         	0.4         	0.6         	0.8         
 
 [CURVES]
 ;ID              	X-Value     	Y-Value
-;BOMBA:  PUMP:Curva Característica de la bomba 9
+;BOMBA:  PUMP:Curva Caracter?stica de la bomba 9
  1               	95.63       	76.20       
 
 [CONTROLS]
