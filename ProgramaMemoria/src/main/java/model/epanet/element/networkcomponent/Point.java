@@ -28,7 +28,7 @@ public class Point {
 	
 	@Override
 	public String toString() {
-		String text = "x-coordinate: " + getX() + " y-coordinate: " + getY() + "\n";
+		String text = getX() + "\t" + getY();
 		return text;
 	}
 	

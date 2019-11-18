@@ -17,5 +17,8 @@ public class Backdrop {
 		this.code = backdropCode;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return getCode();
+	}
 }

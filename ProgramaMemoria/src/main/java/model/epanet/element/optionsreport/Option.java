@@ -17,5 +17,8 @@ public class Option {
 		this.code = codeOption;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return getCode();
+	}
 }

@@ -10,6 +10,15 @@ public class Mixing {
 		private MixingModel(String name) {
 			this.name = name;
 		}
+
+		/**
+		 * @return the name
+		 */
+		public String getName() {
+			return name;
+		}
+		
+		
 	}
 
 	private String tankId;
@@ -66,6 +75,17 @@ public class Mixing {
 	 */
 	public void setCompartmentVolume(double compartmentVolume) {
 		this.compartmentVolume = compartmentVolume;
+	}
+	
+	@Override
+	public String toString() {
+		String txt = "";
+		txt = getTankId() + "\t";
+		txt = getModel().getName() + "\t";
+		if (getModel() == MixingModel.TWOCOMP) {
+			txt += getCompartmentVolume();
+		}
+		return txt;
 	}
 
 }

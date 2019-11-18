@@ -2,40 +2,10 @@ package model.epanet.element.networkcomponent;
 
 public class Valve extends Link {
 
-	private Node node1;
-	private Node node2;
 	private Double diameter;
 	private String type;
 	private String setting;
 	private Double minorLoss;
-
-	/**
-	 * @return the node1
-	 */
-	public Node getNode1() {
-		return node1;
-	}
-
-	/**
-	 * @param node1 the node1 to set
-	 */
-	public void setNode1(Node node1) {
-		this.node1 = node1;
-	}
-
-	/**
-	 * @return the node2
-	 */
-	public Node getNode2() {
-		return node2;
-	}
-
-	/**
-	 * @param node2 the node2 to set
-	 */
-	public void setNode2(Node node2) {
-		this.node2 = node2;
-	}
 
 	/**
 	 * @return the diameter
@@ -91,6 +61,19 @@ public class Valve extends Link {
 	 */
 	public void setMinorLoss(Double minorLoss) {
 		this.minorLoss = minorLoss;
+	}
+	
+	@Override
+	public String toString() {
+		String txt = "";
+		txt += getId() + "\t";
+		txt += getNode1().getId() + "\t";
+		txt += getNode2().getId() + "\t";
+		txt += getDiameter() +"\t";
+		txt += getType() + "\t";
+		txt += getSetting() +"\t";
+		txt += getMinorLoss();
+		return txt;
 	}
 
 }

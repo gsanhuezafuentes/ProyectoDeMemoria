@@ -108,6 +108,7 @@ public class InpParser implements InputParser {
 						break;
 					case "ENERGY":
 						parseEnergy(net, tokens, line);
+						break;
 					case "STATUS":
 						parseStatus(net, tokens);
 						break;
@@ -229,6 +230,9 @@ public class InpParser implements InputParser {
 		Junction node = new Junction();
 		node.setId(tokens[0]);
 		node.setElev(Double.parseDouble(tokens[1]));
+		if (tokens.length == 2) {
+			node.setDemand(0);
+		}
 		if (tokens.length == 3) {
 			node.setDemand(Double.parseDouble(tokens[2]));
 		}
@@ -315,8 +319,8 @@ public class InpParser implements InputParser {
 		if (from == null) {
 			throw new InputException("Don't exist the node with id " + tokens[2]);
 		}
-		link.setToNode(to);
-		link.setFromNode(from);
+		link.setNode1(to);
+		link.setNode2(from);
 
 		link.setLength(Double.parseDouble(tokens[3]));
 		link.setDiameter(Double.parseDouble(tokens[4]));
@@ -400,8 +404,8 @@ public class InpParser implements InputParser {
 			}
 		}
 
-		link.setToNode(to);
-		link.setFromNode(from);
+		link.setNode1(to);
+		link.setNode2(from);
 
 		net.addLink(id, link);
 	}
@@ -427,8 +431,8 @@ public class InpParser implements InputParser {
 		if (from == null) {
 			throw new InputException("Don't exist the node with id " + tokens[2]);
 		}
-		link.setToNode(to);
-		link.setFromNode(from);
+		link.setNode1(to);
+		link.setNode2(from);
 
 		link.setDiameter(Double.parseDouble(tokens[3]));
 		link.setType(tokens[4]);
@@ -475,7 +479,6 @@ public class InpParser implements InputParser {
 
 		x.add(Double.parseDouble(tokens[1]));
 		y.add(Double.parseDouble(tokens[2]));
-		net.addCurve(id, curve);
 	}
 
 	/**
@@ -535,10 +538,10 @@ public class InpParser implements InputParser {
 	 */
 	private void parseControl(Network net, String[] tokens) throws InputException {
 		Control control = new Control();
-		control.setLinkId(tokens[0]);
+		control.setLinkId(tokens[1]);
 		if (tokens[2].equalsIgnoreCase("OPEN")) {
 			control.setStatType(Control.StatType.OPEN);
-		} else if (tokens[2].equalsIgnoreCase("CLOSE")) {
+		} else if (tokens[2].equalsIgnoreCase("CLOSED")) {
 			control.setStatType(Control.StatType.CLOSE);
 
 		} else {
@@ -649,7 +652,7 @@ public class InpParser implements InputParser {
 	 */
 	private void parseReaction(Network net, String[] tokens, String line) {
 		Reaction reaction;
-		if (net.getBackdrop() == null) {
+		if (net.getReaction() == null) {
 			reaction = new Reaction();
 			net.setReaction(reaction);
 		} else {
@@ -740,7 +743,7 @@ public class InpParser implements InputParser {
 	 */
 	private void parseOption(Network net, String[] tokens, String line) {
 		Option option;
-		if (net.getBackdrop() == null) {
+		if (net.getOption() == null) {
 			option = new Option();
 			net.setOption(option);
 		} else {
@@ -764,7 +767,7 @@ public class InpParser implements InputParser {
 	 */
 	private void parseTime(Network net, String[] tokens, String line) {
 		Time time;
-		if (net.getBackdrop() == null) {
+		if (net.getTime() == null) {
 			time = new Time();
 			net.setTime(time);
 		} else {
@@ -788,7 +791,7 @@ public class InpParser implements InputParser {
 	 */
 	private void parseReport(Network net, String[] tokens, String line) {
 		Report report;
-		if (net.getBackdrop() == null) {
+		if (net.getReport() == null) {
 			report = new Report();
 			net.setReport(report);
 		} else {
@@ -851,9 +854,9 @@ public class InpParser implements InputParser {
 		double x = Double.parseDouble(tokens[0]);
 		double y = Double.parseDouble(tokens[1]);
 		label.setPoint(new Point(x, y));
-		label.setText(String.format("\"%s\"", tokens[2]));
-		if (tokens.length == 3) {
-			Node node = net.getNode(tokens[3]);
+		label.setLabel(String.format("\"%s\"", tokens[2]));
+		if (tokens.length == 4) {
+			Node node = net.getNode(tokens[4]);
 			if (node == null) {
 				throw new InputException("The node "+tokens[3]+ " don't exist");
 			}

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pattern {
-	String id;
-	List<Double> multipliers;
+	private String id;
+	private List<Double> multipliers;
 	
 	public Pattern() {
 		this.multipliers = new ArrayList<Double>();
@@ -49,9 +49,9 @@ public class Pattern {
 	
 	@Override
 	public String toString() {
-		String txt = this.id;
+		String txt = getId();
 		for (int i = 0; i < this.multipliers.size(); i++) {
-			txt += String.format("\t %f", this.multipliers.get(i));
+			txt += String.format("\t%f", this.multipliers.get(i));
 		}
 		return txt;
 	}

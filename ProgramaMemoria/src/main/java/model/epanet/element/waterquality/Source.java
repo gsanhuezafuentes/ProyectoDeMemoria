@@ -74,5 +74,17 @@ public class Source {
 		this.timePattern = timePattern;
 	}
 	
+	@Override
+	public String toString() {
+		String txt = "";
+		txt = getNodeId() + "\t";
+		txt = getSourceType().getName() + "\t";
+		txt = getBaselineStrenth() + "\t";
+		if (getTimePattern() != null) {
+			txt = getTimePattern().getId();
+		}
+
+		return txt;
+	}
 	
 }

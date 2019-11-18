@@ -16,4 +16,9 @@ public class Reaction {
 	public void setCode(String reactionCode) {
 		this.Code = reactionCode;
 	}
+	
+	@Override
+	public String toString() {
+		return getCode();
+	}
 }

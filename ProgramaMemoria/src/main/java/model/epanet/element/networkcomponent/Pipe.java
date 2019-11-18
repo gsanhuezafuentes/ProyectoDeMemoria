@@ -126,4 +126,17 @@ public class Pipe extends Link {
 		this.status = status;
 	}
 
+	@Override
+	public String toString() {
+		String txt = "";
+		txt += getId() + "\t";
+		txt += getNode1().getId() + "\t";
+		txt += getNode2().getId() + "\t";
+		txt += getLength() + "\t";
+		txt += getDiameter() + "\t";
+		txt += getRoughness() + "\t";
+		txt += getMloss() + "\t";
+		txt += getStatus();
+		return txt;
+	}
 }

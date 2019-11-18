@@ -17,5 +17,8 @@ public class Energy {
 		this.code = codeline;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return getCode();
+	}
 }

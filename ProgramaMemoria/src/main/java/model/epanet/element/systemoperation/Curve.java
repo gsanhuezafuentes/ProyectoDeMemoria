@@ -81,7 +81,7 @@ public class Curve {
 	public String toString() {
 		String txt = this.id;
 		for (int i = 0; i < this.x.size(); i++) {
-			txt += String.format("\t %f \t %f \n", this.x.get(0), this.y.get(0));
+			txt += String.format("\t %f \t %f", this.x.get(i), this.y.get(i));
 		}
 		return txt;
 	}

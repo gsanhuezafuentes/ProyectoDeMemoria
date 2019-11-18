@@ -1,6 +1,7 @@
 package model.epanet.element.networkcomponent;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import model.epanet.element.systemoperation.Curve;
 import model.epanet.element.systemoperation.Pattern;
@@ -30,39 +31,10 @@ public class Pump extends Link {
 
 	}
 
-	private Node node1;
-	private Node node2;
-	private HashMap<PumpProperty, Object> properties;
+	private Map<PumpProperty, Object> properties;
 
 	public Pump() {
 		this.properties = new HashMap<Pump.PumpProperty, Object>();
-	}
-	/**
-	 * @return the node1
-	 */
-	public Node getNode1() {
-		return node1;
-	}
-
-	/**
-	 * @param node1 the node1 to set
-	 */
-	public void setNode1(Node node1) {
-		this.node1 = node1;
-	}
-
-	/**
-	 * @return the node2
-	 */
-	public Node getNode2() {
-		return node2;
-	}
-
-	/**
-	 * @param node2 the node2 to set
-	 */
-	public void setNode2(Node node2) {
-		this.node2 = node2;
 	}
 
 	/**
@@ -109,6 +81,38 @@ public class Pump extends Link {
 			}
 		}
 		this.properties.put(key, value);
+	}
+
+	@Override
+	public String toString() {
+		String txt = "";
+		txt += getId() + "\t";
+		txt += getNode1().getId() + "\t";
+		txt += getNode2().getId() + "\t";
+
+		for (PumpProperty key : this.properties.keySet()) {
+			if (PumpProperty.HEAD == key) {
+				Curve curve = (Curve) this.getProperty(key);
+				txt += "HEAD" + " ";
+				txt += curve.getId() + "\t";
+
+			} else if (PumpProperty.PATTERN == key) {
+				Pattern pattern = (Pattern) this.getProperty(key);
+				txt += "PATTERN" + " ";
+				txt += pattern.getId() + "\t";
+
+			} else if (PumpProperty.POWER == key) {
+				double value = (Double) this.getProperty(key);
+				txt += "POWER" + " ";
+				txt += value + "\t";
+			} else if (PumpProperty.SPEED == key) {
+				double value = (Double) this.getProperty(key);
+				txt += "SPEED" + " ";
+				txt += value + "\t";
+			}
+		}
+
+		return txt;
 	}
 
 }

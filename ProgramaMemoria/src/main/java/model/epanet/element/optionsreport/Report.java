@@ -17,5 +17,8 @@ public class Report {
 		this.code = reportCode;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return getCode();
+	}
 }

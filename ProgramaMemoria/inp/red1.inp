@@ -166,7 +166,7 @@ en la pared.
  2               	50.00           	90.00           
 
 [VERTICES]
-;Link            	X-Coord         	Y-Coord
+;Link            	X-Coord         	Y-Coord   
 
 [LABELS]
 ;X-Coord           Y-Coord          Label & Anchor Node

@@ -17,5 +17,8 @@ public class Time {
 		this.code = timeCode;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return getCode();
+	}
 }

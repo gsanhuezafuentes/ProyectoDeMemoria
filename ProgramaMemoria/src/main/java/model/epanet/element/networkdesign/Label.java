@@ -5,7 +5,7 @@ import model.epanet.element.networkcomponent.Point;
 
 public class Label {
 	Point point;
-	String text;
+	String label;
 	Node anchorNode;
 
 	/**
@@ -25,15 +25,15 @@ public class Label {
 	/**
 	 * @return the text
 	 */
-	public String getText() {
-		return text;
+	public String getLabel() {
+		return label;
 	}
 
 	/**
 	 * @param text the text to set
 	 */
-	public void setText(String text) {
-		this.text = text;
+	public void setLabel(String text) {
+		this.label = text;
 	}
 
 	/**
@@ -50,4 +50,15 @@ public class Label {
 		this.anchorNode = anchorNode;
 	}
 
+	@Override
+	public String toString() {
+		String txt = "";
+		txt += getPoint() + "\t";
+		txt += getLabel() + "\t";
+		if (getAnchorNode() != null) {
+			txt += getAnchorNode().getId();
+		}
+		
+		return txt;
+	}
 }

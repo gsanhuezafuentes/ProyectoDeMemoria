@@ -49,4 +49,16 @@ public class Junction extends Node {
 		this.pattern = pattern;
 	}
 
+	@Override
+	public String toString() {
+		String txt = "";
+		txt += getId() + "\t";
+		txt += getElev() + "\t";
+		txt += getDemand() + "\t";
+		if (getPattern() != null) {
+			txt += getPattern().getId();
+			
+		}
+		return txt;
+	}
 }
