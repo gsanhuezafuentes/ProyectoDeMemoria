@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import epanet.core.EpanetException;
 import exception.ApplicationException;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.mutation.MutationOperator;
@@ -17,7 +18,7 @@ import model.metaheuristic.utils.comparator.DominanceComparator;
 /**
  * 
  * Class with the implementation of NSGA-II
- *
+ *<br><br>
  * Base on code from https://github.com/jMetal/jMetal
  * 
  * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
@@ -121,17 +122,6 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected List<S> evaluatePopulation(List<S> population) {
-		for (S s : population) {
-			problem.evaluate(s);
-		}
-		return population;
-	}
-
-	/**
 	 * This method iteratively applies a {@link SelectionOperator} to the population
 	 * to fill the mating pool population.
 	 *
@@ -191,7 +181,7 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 	 * This method implements a default scheme create the initial population of
 	 * genetic algorithm
 	 * 
-	 * @return
+	 * @return a list with the initial population
 	 */
 	protected List<S> createInitialPopulation() {
 		List<S> population = new ArrayList<>(getMaxPopulationSize());

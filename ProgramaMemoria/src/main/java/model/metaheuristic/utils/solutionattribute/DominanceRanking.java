@@ -76,10 +76,10 @@ public class DominanceRanking<S extends Solution<?>> extends SolutionAttribute<S
 
 	/**
 	 * Compute the ranking of solution set and save to be access used
-	 * {@link #getSubfront()} subsequently.
+	 * {@link #getSubfront(int)} subsequently.
 	 * 
 	 * @param solutionSet
-	 * @return
+	 * @return Return this object that contains the solution set splited by ranking.
 	 */
 	public DominanceRanking<S> computeRanking(List<S> solutionSet) {
 		List<S> population = solutionSet;

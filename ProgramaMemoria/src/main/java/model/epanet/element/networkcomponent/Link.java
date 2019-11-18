@@ -1,12 +1,12 @@
-package model.epanet.element;
+package model.epanet.element.networkcomponent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Link {
 	private String id;
-	private Node toNode;
-	private Node fromNode;
+	private Node node1;
+	private Node node2;
 	private List<Point> vertices;
 
 	public Link() {
@@ -16,7 +16,7 @@ public abstract class Link {
 	/**
 	 * Get vertices that contains this links.
 	 * 
-	 * @return
+	 * @return a list with the vertices of the link
 	 */
 	public final List<Point> getVertices() {
 		return vertices;
@@ -37,36 +37,36 @@ public abstract class Link {
 	}
 
 	/**
-	 * @return the to
+	 * @return the node1
 	 */
-	public Node getToNode() {
-		return toNode;
+	public Node getNode1() {
+		return node1;
 	}
 
 	/**
-	 * @param to the to to set
+	 * @param node1 the node1 to set
 	 */
-	public void setToNode(Node to) {
-		this.toNode = to;
+	public void setNode1(Node node1) {
+		this.node1 = node1;
 	}
 
 	/**
-	 * @return the from
+	 * @return the node2
 	 */
-	public Node getFromNode() {
-		return fromNode;
+	public Node getNode2() {
+		return node2;
 	}
 
 	/**
-	 * @param from the from to set
+	 * @param node2 the node2 to set
 	 */
-	public void setFromNode(Node from) {
-		this.fromNode = from;
+	public void setNode2(Node node2) {
+		this.node2 = node2;
 	}
 
 	@Override
 	public String toString() {
-		String text = "id " + id + " from-node " + fromNode.getId() + " to-node " + this.toNode.getId() + "\n";
+		String text = "id " + id + " from-node " + node1.getId() + " to-node " + this.node2.getId() + "\n";
 		if (this.getVertices().size() != 0) {
 			text += "Vertices\n";
 			for (Point point : this.getVertices()) {

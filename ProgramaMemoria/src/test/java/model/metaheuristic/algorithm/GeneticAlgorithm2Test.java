@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.mockito.Mock;
 
+import exception.ApplicationException;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.selection.SelectionOperator;
@@ -31,14 +32,14 @@ class GeneticAlgorithm2Test {
 	void setMaxEvaluations_LessThanZero_Exception() {
 		GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10,
 				selectionOperator, crossoverOperator, mutationOperator);
-		assertThrows(RuntimeException.class, () -> algorithm.setMaxEvaluations(-1));
+		assertThrows(ApplicationException.class, () -> algorithm.setMaxEvaluations(-1));
 	}
 
 	@Test
 	void setMaxNumberOfIterationWithoutImprovement_LessThanZero_Exception() {
 		GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10,
 				selectionOperator, crossoverOperator, mutationOperator);
-		assertThrows(RuntimeException.class, () -> algorithm.setMaxNumberOfIterationWithoutImprovement(-1));
+		assertThrows(ApplicationException.class, () -> algorithm.setMaxNumberOfIterationWithoutImprovement(-1));
 	}
 
 	@Test
@@ -46,7 +47,7 @@ class GeneticAlgorithm2Test {
 		GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10,
 				selectionOperator, crossoverOperator, mutationOperator);
 		assertAll(() -> algorithm.setMaxNumberOfIterationWithoutImprovement(0));
-		assertThrows(RuntimeException.class, () -> algorithm.setMaxEvaluations(0));
+		assertThrows(ApplicationException.class, () -> algorithm.setMaxEvaluations(0));
 
 	}
 	
@@ -54,7 +55,7 @@ class GeneticAlgorithm2Test {
 	void setMaxEvaluationsAndSetMaxNumberOfIterationWithoutImprovement_BothZeroChangeSetMaxEvaluations_Exception() {
 		GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10,
 				selectionOperator, crossoverOperator, mutationOperator);
-		assertThrows(RuntimeException.class, () -> algorithm.setMaxEvaluations(0));
+		assertThrows(ApplicationException.class, () -> algorithm.setMaxEvaluations(0));
 	}
 
 	@Test

@@ -55,7 +55,7 @@ public abstract class SolutionAttribute<S extends Solution<?>, V> {
 	/**
 	 * Get the attribute
 	 * @param solution the solution to extract the attribute
-	 * @return
+	 * @return the attribute or null if not exist
 	 */
 	public V getAttribute(S solution) {
 		return (V) solution.getAttribute(getAttributeIdentifier());

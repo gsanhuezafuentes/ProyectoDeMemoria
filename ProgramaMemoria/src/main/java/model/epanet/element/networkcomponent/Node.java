@@ -1,4 +1,4 @@
-package model.epanet.element;
+package model.epanet.element.networkcomponent;
 
 public abstract class Node {
 	private String id;

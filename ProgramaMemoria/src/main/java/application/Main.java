@@ -66,10 +66,8 @@ public class Main extends Application {
 			System.out.println("Result");
 			System.out.println(algorithm.getResult());
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (EpanetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
