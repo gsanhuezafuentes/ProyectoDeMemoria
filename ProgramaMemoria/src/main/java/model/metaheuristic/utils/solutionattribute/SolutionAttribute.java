@@ -37,28 +37,43 @@ public abstract class SolutionAttribute<S extends Solution<?>, V> {
 	private Object identifier;
 
 	/**
-   * Constructor
-   */
-  public SolutionAttribute() {
-    identifier = this.getClass() ;
-  }
+	 * Constructor
+	 */
+	public SolutionAttribute() {
+		identifier = this.getClass();
+	}
 
 	/**
-   * Constructor
-   * @param id Attribute identifier
-   */
-  public SolutionAttribute(Object id) {
-    this.identifier = id ;
-  }
+	 * Constructor
+	 * 
+	 * @param id Attribute identifier
+	 */
+	public SolutionAttribute(Object id) {
+		this.identifier = id;
+	}
 
+	/**
+	 * Get the attribute
+	 * @param solution the solution to extract the attribute
+	 * @return the attribute or null if not exist
+	 */
 	public V getAttribute(S solution) {
 		return (V) solution.getAttribute(getAttributeIdentifier());
 	}
 
+	/**
+	 * Set a attribute to solution
+	 * @param solution the solution to assign to solution
+	 * @param value the value assigned to solution
+	 */
 	public void setAttribute(S solution, V value) {
 		solution.setAttribute(getAttributeIdentifier(), value);
 	}
 
+	/**
+	 * Get the attribute identifier
+	 * @return the attribute identifier
+	 */
 	public Object getAttributeIdentifier() {
 		return identifier;
 	}

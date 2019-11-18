@@ -19,7 +19,7 @@ public class JavaRandom {
 	}
 
 	/**
-	 * @param seed
+	 * @param seed the seed of random generator
 	 * @see java.util.Random#setSeed(long)
 	 */
 	public void setSeed(long seed) {
@@ -27,7 +27,7 @@ public class JavaRandom {
 	}
 
 	/**
-	 * @return
+	 * @return a int
 	 * @see java.util.Random#nextInt()
 	 */
 	public int nextInt() {
@@ -36,7 +36,7 @@ public class JavaRandom {
 
 	/**
 	 * @param bound
-	 * @return
+	 * @return a int number
 	 * @see java.util.Random#nextInt(int)
 	 */
 	public int nextInt(int bound) {
@@ -47,14 +47,14 @@ public class JavaRandom {
 	 * Generate a random value between lowerBound and upperBound exclusive.
 	 * @param lowerBound the lowerBound
 	 * @param upperBound the upperBound exclusive
-	 * @return int between lowerBound and upperBound
+	 * @return int number between lowerBound and upperBound
 	 */
 	public int nextInt(int lowerBound, int upperBound) {
 		return lowerBound + random.nextInt(upperBound - lowerBound);
 	}
 
 	/**
-	 * @return
+	 * @return a long number
 	 * @see java.util.Random#nextLong()
 	 */
 	public long nextLong() {
@@ -62,7 +62,7 @@ public class JavaRandom {
 	}
 
 	/**
-	 * @return
+	 * @return a boolean
 	 * @see java.util.Random#nextBoolean()
 	 */
 	public boolean nextBoolean() {
@@ -70,7 +70,7 @@ public class JavaRandom {
 	}
 
 	/**
-	 * @return
+	 * @return a float number
 	 * @see java.util.Random#nextFloat()
 	 */
 	public float nextFloat() {
@@ -78,7 +78,7 @@ public class JavaRandom {
 	}
 
 	/**
-	 * @return
+	 * @return a double number
 	 * @see java.util.Random#nextDouble()
 	 */
 	public double nextDouble() {
@@ -86,7 +86,7 @@ public class JavaRandom {
 	}
 
 	/**
-	 * @return
+	 * @return a double number
 	 * @see java.util.Random#nextGaussian()
 	 */
 	public double nextGaussian() {

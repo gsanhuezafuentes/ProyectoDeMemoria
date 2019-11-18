@@ -1,5 +1,6 @@
 package model.metaheuristic.problem;
 
+import epanet.core.EpanetException;
 import model.metaheuristic.solution.Solution;
 
 /**
@@ -58,8 +59,9 @@ public interface Problem<S extends Solution<?>> {
 	 * Evaluate the solution
 	 * 
 	 * @param solution The solution object to evaluate
+	 * @throws EpanetException If there is a problem in EPANETToolkit to evaluate the solution.
 	 */
-	public void evaluate(S solution);
+	public void evaluate(S solution) throws EpanetException;
 
 	/**
 	 * Make a solution to this problem. This can be created randomly and be used to

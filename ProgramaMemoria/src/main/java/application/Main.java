@@ -15,6 +15,7 @@ import model.metaheuristic.algorithm.GeneticAlgorithm2;
 import model.metaheuristic.operator.crossover.IntegerSBXCrossover;
 import model.metaheuristic.operator.crossover.IntegerSinglePointCrossover;
 import model.metaheuristic.operator.mutation.IntegerPolynomialMutation;
+import model.metaheuristic.operator.mutation.IntegerRangeRandomMutation;
 import model.metaheuristic.operator.mutation.IntegerSimpleRandomMutation;
 import model.metaheuristic.operator.selection.TournamentSelection;
 import model.metaheuristic.operator.selection.UniformSelection;
@@ -49,12 +50,14 @@ public class Main extends Application {
 //			IntegerPolynomialMutation mutation = new IntegerPolynomialMutation(0.02, 20);
 			
 			IntegerSinglePointCrossover crossover = new IntegerSinglePointCrossover(0.1); //0.1
-			IntegerSimpleRandomMutation mutation = new IntegerSimpleRandomMutation(0.03); //0.03
-
+			//IntegerSimpleRandomMutation mutation = new IntegerSimpleRandomMutation(0.03); //0.03
+			IntegerRangeRandomMutation mutation = new IntegerRangeRandomMutation(0.5, 3);
+			
 			UniformSelection<IntegerSolution> selection = new UniformSelection<IntegerSolution>(1.6);//1.6
 			Problem<IntegerSolution> problem = new CostConstructionProblem(epanet, "inp/hanoiHW.Gama", 30);
 			GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10, selection,
 					crossover, mutation);
+			algorithm.setMaxNumberOfIterationWithoutImprovement(10000);
 			algorithm.setMaxEvaluations(250000);
 			algorithm.run();
 
@@ -63,10 +66,8 @@ public class Main extends Application {
 			System.out.println("Result");
 			System.out.println(algorithm.getResult());
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (EpanetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

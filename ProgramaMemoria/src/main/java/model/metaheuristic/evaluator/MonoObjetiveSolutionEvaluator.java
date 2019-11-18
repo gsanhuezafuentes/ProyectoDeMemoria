@@ -26,6 +26,14 @@ public class MonoObjetiveSolutionEvaluator {
 		this.minPressure = minPressure;
 	}
 
+	/**
+	 * Evaluate the factibility of solution. It add a {@link OverallConstraintViolation} and  {@link NumberOfViolatedConstraints} to {@code solution}.
+	 * @param solution the solution to evaluate
+	 * @param gamas the gamas to map the solution
+	 * @param epanet the simulator
+	 * @return the solution
+	 * @throws EpanetException if there is and error in the simulator
+	 */
 	public IntegerSolution evaluate(IntegerSolution solution, List<Gama> gamas, EpanetAPI epanet)
 			throws EpanetException {
 		int numberOfInfactibilities = 0;
@@ -71,7 +79,7 @@ public class MonoObjetiveSolutionEvaluator {
 		return solution;
 	}
 
-	public void RecorrerNudos(EpanetAPI epanet) throws EpanetException {
+	private void RecorrerNudos(EpanetAPI epanet) throws EpanetException {
 		int n_links = epanet.ENgetcount(Components.EN_LINKCOUNT);
 		for (int j = 1; j <= n_links; j++) {
 			String label = epanet.ENgetlinkid(j);
@@ -157,16 +165,14 @@ public class MonoObjetiveSolutionEvaluator {
 
 			System.out.println(integerSolution);
 		} catch (EpanetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
-	public static List<Float> getLenght(EpanetAPI epanet) {
+	private static List<Float> getLenght(EpanetAPI epanet) {
 		ArrayList<Float> length = new ArrayList<Float>();
 		int n_link;
 		try {
@@ -178,7 +184,6 @@ public class MonoObjetiveSolutionEvaluator {
 				length.add(value[0]);
 			}
 		} catch (EpanetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

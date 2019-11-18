@@ -1,10 +1,12 @@
 package model.metaheuristic.algorithm;
 
+import epanet.core.EpanetException;
+
 /**
  * Interface that contains method to define Algorithm
  *
  * @param <Result> The Type of result
- * 
+ * <br><br>
  *                 Base on code from https://github.com/jMetal/jMetal
  * 
  *                 Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
@@ -37,13 +39,17 @@ public interface Algorithm<Result> {
 
 	/**
 	 * Start algorithm execution
+	 * 
+	 * @throws EpanetException If there is a problem in the simulation of solution
+	 *                         using EpanetToolkit
+	 * 
 	 */
-	public void run();
+	public void run() throws EpanetException;
 
 	/**
 	 * Get the result of the algorithm execution
 	 * 
-	 * @return
+	 * @return the solution or solutions given as result of execution of algorithm
 	 */
 	public Result getResult();
 
