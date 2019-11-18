@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/main/java/model/epanet/parser/InpParser.java=UTF-8
+encoding//src/main/java/model/epanet/io/InpParser.java=UTF-8
 encoding//src/main/java/model/metaheuristic/algorithm/AbstractEvolutionaryAlgorithm.java=UTF-8
 encoding//src/main/java/model/metaheuristic/algorithm/Algorithm.java=UTF-8
 encoding//src/main/java/model/metaheuristic/algorithm/GeneticAlgorithm.java=UTF-8

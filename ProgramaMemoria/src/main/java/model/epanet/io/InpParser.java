@@ -1,4 +1,4 @@
-package model.epanet.parser;
+package model.epanet.io;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -854,7 +854,7 @@ public class InpParser implements InputParser {
 		double x = Double.parseDouble(tokens[0]);
 		double y = Double.parseDouble(tokens[1]);
 		label.setPoint(new Point(x, y));
-		label.setLabel(String.format("\"%s\"", tokens[2]));
+		label.setLabel(String.format("%s", tokens[2]));
 		if (tokens.length == 4) {
 			Node node = net.getNode(tokens[4]);
 			if (node == null) {
@@ -939,6 +939,8 @@ public class InpParser implements InputParser {
 		// File file = new File("inp/hanoi-Frankenstein2.inp");
 		try {
 			System.out.println(parse.parse(network, "inp/red1.inp"));
+			InpWriter writer = new InpWriter();
+			writer.write(network, "red1writer.inp");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

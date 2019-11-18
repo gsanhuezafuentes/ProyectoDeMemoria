@@ -892,14 +892,14 @@ public class Network {
 		text += getBackdrop().toString() + "\n";
 		text += "\n";
 
-		text += "[LABEL]\n";
+		text += "[LABELS]\n";
 		text += ";X-Coord\tY-Coord\tLabel & Anchor Node\n";
 		for (Label label : this.getLabels()) {
 			text += label.toString() + "\n";
 		}
 		text += "\n";
 
-		text += "[TAG]\n";
+		text += "[TAGS]\n";
 		text += ";Object\tID\tLabel\n";
 		for (Tag tag : this.getTags()) {
 			text += tag.toString() + "\n";

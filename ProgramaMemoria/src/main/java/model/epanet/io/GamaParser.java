@@ -1,4 +1,4 @@
-package model.epanet.parser;
+package model.epanet.io;
 
 import java.io.BufferedReader;
 import java.io.File;

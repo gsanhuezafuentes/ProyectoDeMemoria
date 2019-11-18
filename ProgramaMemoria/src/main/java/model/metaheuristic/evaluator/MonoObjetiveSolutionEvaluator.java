@@ -13,7 +13,7 @@ import epanet.core.LinkParameters;
 import epanet.core.NodeParameters;
 import epanet.core.NodeTypes;
 import model.epanet.element.Gama;
-import model.epanet.parser.GamaParser;
+import model.epanet.io.GamaParser;
 import model.metaheuristic.problem.CostConstructionProblem;
 import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.utils.solutionattribute.NumberOfViolatedConstraints;

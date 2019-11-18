@@ -11,7 +11,7 @@ import epanet.core.EpanetException;
 import epanet.core.LinkParameters;
 import exception.ApplicationException;
 import model.epanet.element.Gama;
-import model.epanet.parser.GamaParser;
+import model.epanet.io.GamaParser;
 import model.metaheuristic.evaluator.MonoObjetiveSolutionEvaluator;
 import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
