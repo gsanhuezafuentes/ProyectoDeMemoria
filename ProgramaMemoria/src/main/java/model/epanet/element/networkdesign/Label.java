@@ -4,22 +4,22 @@ import model.epanet.element.networkcomponent.Node;
 import model.epanet.element.networkcomponent.Point;
 
 public class Label {
-	Point point;
+	Point position;
 	String label;
 	Node anchorNode;
 
 	/**
 	 * @return the point
 	 */
-	public Point getPoint() {
-		return point;
+	public Point getPosition() {
+		return position;
 	}
 
 	/**
 	 * @param point the point to set
 	 */
-	public void setPoint(Point point) {
-		this.point = point;
+	public void setPosition(Point point) {
+		this.position = point;
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class Label {
 	@Override
 	public String toString() {
 		String txt = "";
-		txt += getPoint() + "\t";
+		txt += getPosition() + "\t";
 		txt += getLabel() + "\t";
 		if (getAnchorNode() != null) {
 			txt += getAnchorNode().getId();
