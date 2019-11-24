@@ -3,6 +3,7 @@ package model.metaheuristic.operator.crossover;
 import java.util.ArrayList;
 import java.util.List;
 
+import annotations.DefaultConstructor;
 import exception.ApplicationException;
 import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.utils.random.JavaRandom;
@@ -46,6 +47,7 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 	 * @param crossoverProbability the crossover probability
 	 * @param distributionIndex the distribution index
 	 */
+	@DefaultConstructor({"CrossoverProbability", "DistributionIndex"})
 	public IntegerSBXCrossover(double crossoverProbability, double distributionIndex) {
 		this(crossoverProbability, distributionIndex, () -> JavaRandom.getInstance().nextDouble());
 

@@ -5,17 +5,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import epanet.core.EpanetException;
 import exception.InputException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Menu;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import model.epanet.element.Network;
 import model.epanet.parser.InpParser;
+import model.metaheuristic.algorithm.Algorithm;
 import view.NetworkComponent;
-import view.utils.CustomDialog;
+import view.problems.ProblemRegistrar;
+import view.utils.CustomDialogs;
+import view.utils.ReflectionUtils;
 
 public class MainWindowController implements Initializable{
 	@FXML
@@ -24,18 +29,20 @@ public class MainWindowController implements Initializable{
 	private BorderPane root;
 	@FXML
 	private Pane canvasWrapper;
+	@FXML
+	private Menu problemsMenu;
 	
 	private Window ownerWindow;
 	private File inpFile;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		ProblemRegistrar.getInstance().register(this.problemsMenu, ownerWindow, this::runAlgorithm);
 	}
 	
 	/**
 	 * @return the ownerWindow
-	 */
+	 * 
 	public Window getOwnerWindow() {
 		return ownerWindow;
 	}
@@ -76,7 +83,7 @@ public class MainWindowController implements Initializable{
 			parse.parse(net, file.getAbsolutePath());
 		} catch (IOException | InputException e) {
 			net = null;
-			CustomDialog.showExceptionDialog("A ocurrido un error", "Error al cargar la red", "La red no ha podido ser cargada", e);
+			CustomDialogs.showExceptionDialog("Error", "Error al cargar la red", "La red no ha podido ser cargada", e);
 		}
 		
 		if (net != null) {
@@ -84,4 +91,15 @@ public class MainWindowController implements Initializable{
 		}
 	}
 
+	/**
+	 * Run the algorithm
+	 * @param algorithm algorithm to be executed
+	 */
+	private void runAlgorithm(Algorithm<?> algorithm) {
+		try {
+			algorithm.run();
+		} catch (EpanetException e) {
+			CustomDialogs.showExceptionDialog("Error", "Error al ejecutar el algoritmo", "A ocurrido un error durante la validación de las soluciones", e);
+		}
+	}
 }

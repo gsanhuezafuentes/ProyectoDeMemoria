@@ -1,5 +1,6 @@
 package model.metaheuristic.utils;
 
+// TODO remover
 public class NumberUtils {
 
 	/**

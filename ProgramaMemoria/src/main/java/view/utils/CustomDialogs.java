@@ -2,15 +2,31 @@ package view.utils;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import javafx.util.Callback;
 
-public class CustomDialog {
+public class CustomDialogs {
+	/**
+	 * Show a dialog. The type of dialog can be configured used type parameter.
+	 * 
+	 * @param title
+	 * @param headerText
+	 * @param contentText
+	 * @param type
+	 */
 	public static void showDialog(String title, String headerText, String contentText, AlertType type) {
 		Alert alert = new Alert(type);
 		alert.setTitle(title);
@@ -18,6 +34,14 @@ public class CustomDialog {
 		alert.setContentText(contentText);
 	}
 
+	/**
+	 * Show a dialog with the information of exception
+	 * 
+	 * @param title
+	 * @param headerText
+	 * @param contentText
+	 * @param exception
+	 */
 	public static void showExceptionDialog(String title, String headerText, String contentText, Throwable exception) {
 		Alert alert = new Alert(Alert.AlertType.ERROR);
 		alert.setTitle(title);
@@ -50,4 +74,5 @@ public class CustomDialog {
 
 		alert.showAndWait();
 	}
+
 }

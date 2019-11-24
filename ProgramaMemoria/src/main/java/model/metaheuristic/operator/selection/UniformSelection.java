@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import annotations.DefaultConstructor;
 import exception.ApplicationException;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.comparator.DominanceComparator;
@@ -15,6 +16,7 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 	private Comparator<S> comparator;
 	private double constant;
 
+	@DefaultConstructor("constant")
 	public UniformSelection(double constant) {
 		this(new DominanceComparator<S>());
 		if (constant < 1.5 || constant > 2) {

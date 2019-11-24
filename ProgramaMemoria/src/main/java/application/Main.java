@@ -34,10 +34,11 @@ public class Main extends Application {
 			BorderPane root = loader.load();
 			MainWindowController controller = loader.getController();
 			controller.setOwnerWindow(primaryStage);
-			Scene scene = new Scene(root, 900, 900);
+			Scene scene = new Scene(root);
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.sizeToScene();
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();

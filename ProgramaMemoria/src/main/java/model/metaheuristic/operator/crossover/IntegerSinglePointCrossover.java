@@ -3,6 +3,7 @@ package model.metaheuristic.operator.crossover;
 import java.util.ArrayList;
 import java.util.List;
 
+import annotations.DefaultConstructor;
 import exception.ApplicationException;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
 import model.metaheuristic.utils.random.JavaRandom;
@@ -16,6 +17,7 @@ public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSol
 	private BoundedRandomGenerator<Integer> pointRandomGenerator;
 
 	/** Constructor */
+	@DefaultConstructor("CrossoverProbability")
 	public IntegerSinglePointCrossover(double crossoverProbability) {
 		this(crossoverProbability, () -> JavaRandom.getInstance().nextDouble(),
 				(a, b) -> JavaRandom.getInstance().nextInt(a, b));
