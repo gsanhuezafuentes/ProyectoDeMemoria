@@ -33,7 +33,7 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainWindow.fxml"));
 			BorderPane root = loader.load();
 			MainWindowController controller = loader.getController();
-			controller.setOwnerWindow(primaryStage);
+			controller.setWindow(primaryStage);
 			Scene scene = new Scene(root);
 			
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

@@ -45,7 +45,7 @@ public class CostProblem implements Registrable {
 					@NumberInput(displayName = "Max number of evaluation") })
 	@SuppressWarnings("unchecked")
 	public Algorithm<IntegerSolution> create(Object selectionOperator, Object crossoverOperator,
-			Object mutationOperator, int numberWithoutImprovement, int maxEvaluations) throws Exception {
+			Object mutationOperator, int numberWithoutImprovement, double maxEvaluations) throws Exception {
 		SelectionOperator<List<IntegerSolution>, List<IntegerSolution>> selection = (SelectionOperator<List<IntegerSolution>, List<IntegerSolution>>) selectionOperator;
 		CrossoverOperator<IntegerSolution> crossover = (CrossoverOperator<IntegerSolution>) crossoverOperator;
 		MutationOperator<IntegerSolution> mutation = (MutationOperator<IntegerSolution>) mutationOperator;
@@ -58,7 +58,7 @@ public class CostProblem implements Registrable {
 		Problem<IntegerSolution> problem = new CostConstructionProblem(epanet, "inp/hanoiHW.Gama", 30);
 		algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10, selection, crossover, mutation);
 		algorithm.setMaxNumberOfIterationWithoutImprovement(numberWithoutImprovement);
-		algorithm.setMaxEvaluations(maxEvaluations);
+//		algorithm.setMaxEvaluations(maxEvaluations);
 
 		epanet.ENclose();// redondear a 2 cifras
 

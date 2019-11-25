@@ -108,7 +108,7 @@ public class ProblemRegistrar {
 			AlgorithmCreationNotification algorithmEvent) {
 		Stage stage = new Stage();
 		stage.setTitle("Configuración de algoritmo");
-		ConfigurationDynamicWindow contentLayout = new ConfigurationDynamicWindow(registrable);
+		ConfigurationDynamicWindow contentLayout = new ConfigurationDynamicWindow(registrable, stage);
 		contentLayout.setAlgorithmCreationNotification(algorithmEvent);
 		Scene scene = new Scene(contentLayout);
 		stage.setScene(scene);

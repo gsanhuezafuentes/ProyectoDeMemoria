@@ -25,16 +25,26 @@ import view.utils.CustomDialogs;
 import view.utils.ReflectionUtils;
 
 public class MainWindowController implements Initializable{
+	/**
+	 * Is the section where the network is painted
+	 */
 	@FXML
 	private NetworkComponent networkComponent;
 	@FXML
 	private BorderPane root;
+	/**
+	 * Is a pane that envolve networkComponent. Is used to resize the networkComponent automatically when screen size change
+	 */
 	@FXML
 	private Pane canvasWrapper;
+	
+	/**
+	 * Is the option of menu for the problem. It is filled using reflection through ProblemRegistrar.
+	 */
 	@FXML
 	private Menu problemsMenu;
 	
-	private Window ownerWindow;
+	private Window window;
 	private File inpFile;
 	private BooleanProperty isNetworkLoaded;
 	
@@ -44,15 +54,15 @@ public class MainWindowController implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		ProblemRegistrar.getInstance().register(this.problemsMenu, ownerWindow, this::runAlgorithm);
+		ProblemRegistrar.getInstance().register(this.problemsMenu, window, this::runAlgorithm);
 		// disable problem menu until a network is loaded
-		this.problemsMenu.disableProperty().bind(isNetworkLoaded.not());
+//		this.problemsMenu.disableProperty().bind(isNetworkLoaded.not());
 	}
 	
 	/**
 	 * @return the ownerWindow
 	 * 
-	public Window getOwnerWindow() {
+	public Window getWindow() {
 		return ownerWindow;
 	}
 
@@ -60,8 +70,8 @@ public class MainWindowController implements Initializable{
 	/**
 	 * @param ownerWindow the ownerWindow to set
 	 */
-	public void setOwnerWindow(Window ownerWindow) {
-		this.ownerWindow = ownerWindow;
+	public void setWindow(Window window) {
+		this.window = window;
 	}
 
 
@@ -70,7 +80,7 @@ public class MainWindowController implements Initializable{
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Abrir");
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("INP file", "*.inp"));
-		File file = fileChooser.showOpenDialog(this.ownerWindow);
+		File file = fileChooser.showOpenDialog(this.window);
 		if (file != null) {
 			this.inpFile = file;
 			loadNetwork(this.inpFile);
