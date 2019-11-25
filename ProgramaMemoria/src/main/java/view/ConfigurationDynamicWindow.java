@@ -1,9 +1,15 @@
 package view;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
+import annotations.DefaultConstructor;
 import annotations.NumberInput;
 import annotations.OperatorInput;
 import annotations.OperatorOption;
@@ -11,14 +17,19 @@ import annotations.Parameters;
 import exception.ApplicationException;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 import model.metaheuristic.algorithm.Algorithm;
 import view.problems.AlgorithmCreationNotification;
 import view.problems.Registrable;
@@ -33,6 +44,7 @@ public class ConfigurationDynamicWindow extends VBox {
 	private int operatorGridRowCount;
 	private int numberGridRowCount;
 	private double defaultSpace = 5;
+	
 	
 	public ConfigurationDynamicWindow(Registrable registrableProblem) {
 		this.operatorGridRowCount = 0;
@@ -114,15 +126,66 @@ public class ConfigurationDynamicWindow extends VBox {
 		configButton.disableProperty().bind(comboBox.getSelectionModel().selectedItemProperty().isNull());
 		
 		configButton.setOnAction((evt) ->{
-			configureOperator(comboBox.getSelectionModel().getSelectedItem());
+			configureOperator(operator.displayName(), comboBox.getSelectionModel().getSelectedItem());
 		});
 		
 		this.operatorLayout.addRow(operatorGridRowCount, label, comboBox, configButton); 
 		operatorGridRowCount++;
 	}
 	
-	private void configureOperator(Class<?> selectedItem) {
+	private void configureOperator(String name, Class<?> selectedItem) {
+		Dialog<List<Number>> dialog = new Dialog<>();
+		dialog.setTitle("Configuración " + name);
+		dialog.setContentText("Ingrese los valores");
+		ButtonType okButtonType = new ButtonType("Guardar", ButtonData.OK_DONE);
+		ButtonType cancelButtonType = new ButtonType("Cancelar", ButtonData.CANCEL_CLOSE);
+		dialog.getDialogPane().getButtonTypes().addAll(okButtonType, cancelButtonType);
 		
+		GridPane grid = new GridPane();
+		grid.setHgap(defaultSpace);
+		grid.setVgap(defaultSpace);
+		grid.setPadding(new Insets(defaultSpace));
+		
+		Node okButton = dialog.getDialogPane().lookupButton(okButtonType);
+		okButton.setDisable(true);
+		
+		// Add a textfild for each parameter in the constructor
+		Constructor<?> constructor = ReflectionUtils.getDefaultConstructor(selectedItem);
+		ArrayList<TextField> textFieldOfParameters = new ArrayList<>(constructor.getParameterCount());
+		if (constructor != null) {
+			DefaultConstructor annotation = constructor.getAnnotation(DefaultConstructor.class);
+			Class<?>[] parameters  = constructor.getParameterTypes();
+			for (int i = 0; i < parameters.length; i++) {
+				Label label = new Label(annotation.value()[i]);
+				TextField textfield = new TextField();
+				textfield.setPromptText("Ingrese el valor");
+				
+				textfield.textProperty().addListener((observable, oldValue, newValue) -> {
+					okButton.setDisable(newValue.trim().isEmpty());
+				});
+				
+				textFieldOfParameters.add(textfield);
+				grid.addRow(i, label, textfield);
+			}
+		}
+		
+
+		dialog.getDialogPane().setContent(grid);
+		
+		dialog.setResultConverter(dialogButton -> {
+		    if (dialogButton == okButtonType) {
+		    	NumberStringConverter converter = new NumberStringConverter();
+		    	List<Number> results = textFieldOfParameters.stream().map(textField -> converter.fromString(textField.getText())).collect(Collectors.toList());
+		        return new ArrayList<Number>(results);
+		    }
+		    return null;
+		});
+
+		Optional<List<Number>> result = dialog.showAndWait();
+		
+		result.ifPresent(results -> {
+			results.forEach(System.out::println);
+		});
 	}
 
 	/**
@@ -132,6 +195,7 @@ public class ConfigurationDynamicWindow extends VBox {
 	private void numberSection(NumberInput operator) {
 		Label label = new Label(operator.displayName());
 		TextField text = new TextField();
+		text.setPromptText("Ingrese el valor");
 		text.setMaxWidth(Double.MAX_VALUE);
 		
 		this.primitiveLayout.addRow(numberGridRowCount, label, text); 

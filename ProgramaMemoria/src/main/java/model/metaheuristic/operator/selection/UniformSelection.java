@@ -16,7 +16,7 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 	private Comparator<S> comparator;
 	private double constant;
 
-	@DefaultConstructor("constant")
+	@DefaultConstructor({"constant"})
 	public UniformSelection(double constant) {
 		this(new DominanceComparator<S>());
 		if (constant < 1.5 || constant > 2) {

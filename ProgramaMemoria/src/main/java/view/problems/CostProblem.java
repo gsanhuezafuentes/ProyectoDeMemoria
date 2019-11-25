@@ -1,11 +1,6 @@
 package view.problems;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
-
-import org.junit.jupiter.params.ParameterizedTest;
 
 import annotations.Injectable;
 import annotations.NewProblem;
@@ -14,10 +9,8 @@ import annotations.OperatorInput;
 import annotations.OperatorOption;
 import annotations.Parameters;
 import epanet.core.EpanetAPI;
-import epanet.core.EpanetException;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.algorithm.GeneticAlgorithm2;
-import model.metaheuristic.operator.Operator;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.crossover.IntegerSBXCrossover;
 import model.metaheuristic.operator.crossover.IntegerSinglePointCrossover;

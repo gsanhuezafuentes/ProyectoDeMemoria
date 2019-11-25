@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 
 import epanet.core.EpanetException;
 import exception.InputException;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
@@ -34,10 +36,17 @@ public class MainWindowController implements Initializable{
 	
 	private Window ownerWindow;
 	private File inpFile;
+	private BooleanProperty isNetworkLoaded;
+	
+	public MainWindowController() {
+		this.isNetworkLoaded = new SimpleBooleanProperty(false);
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		ProblemRegistrar.getInstance().register(this.problemsMenu, ownerWindow, this::runAlgorithm);
+		// disable problem menu until a network is loaded
+		this.problemsMenu.disableProperty().bind(isNetworkLoaded.not());
 	}
 	
 	/**
@@ -88,6 +97,7 @@ public class MainWindowController implements Initializable{
 		
 		if (net != null) {
 			networkComponent.drawNetwork(net);
+			isNetworkLoaded.set(true);
 		}
 	}
 

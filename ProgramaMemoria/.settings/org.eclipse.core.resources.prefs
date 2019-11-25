@@ -27,5 +27,6 @@ encoding//src/main/java/model/metaheuristic/utils/comparator/RankingComparator.j
 encoding//src/main/java/model/metaheuristic/utils/solutionattribute/CrowdingDistance.java=UTF-8
 encoding//src/main/java/model/metaheuristic/utils/solutionattribute/DominanceRanking.java=UTF-8
 encoding//src/main/java/model/metaheuristic/utils/solutionattribute/SolutionAttribute.java=UTF-8
+encoding//src/main/java/view/ConfigurationDynamicWindow.java=UTF-8
 encoding//src/main/java/view/problems/ProblemRegistrar.java=UTF-8
-encoding/<project>=US-ASCII
+encoding/<project>=ISO-8859-1

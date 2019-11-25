@@ -10,7 +10,6 @@ import annotations.OperatorInput;
 import annotations.OperatorOption;
 import annotations.Parameters;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -18,9 +17,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
-import model.epanet.element.networkcomponent.Link;
-import model.metaheuristic.algorithm.Algorithm;
-import model.metaheuristic.solution.IntegerSolution;
 import view.ConfigurationDynamicWindow;
 import view.utils.ReflectionUtils;
 
@@ -100,6 +96,7 @@ public class ProblemRegistrar {
 	public void register(Menu menu, Window owner, AlgorithmCreationNotification algorithmEvent) {
 		for (Registrable registrable : this.problems) {
 			ReflectionUtils.validateRegistrableProblem(registrable);
+			ReflectionUtils.validateOperators(registrable);
 			MenuItem menuItem = new MenuItem(ReflectionUtils.getNameOfProblem(registrable));
 			menu.getItems().add(menuItem);
 			menuItem.setOnAction(evt -> menuItemEventHander(evt, owner, registrable, algorithmEvent));
