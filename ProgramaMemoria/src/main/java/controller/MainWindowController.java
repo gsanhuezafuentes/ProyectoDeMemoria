@@ -116,10 +116,14 @@ public class MainWindowController implements Initializable{
 	 * @param algorithm algorithm to be executed
 	 */
 	private void runAlgorithm(Algorithm<?> algorithm) {
+		System.out.println("Ejecutar algoritmo");
 		try {
 			algorithm.run();
+			System.out.println(algorithm.getResult());
 		} catch (EpanetException e) {
 			CustomDialogs.showExceptionDialog("Error", "Error al ejecutar el algoritmo", "A ocurrido un error durante la validación de las soluciones", e);
+		}catch (Exception e) {
+			CustomDialogs.showExceptionDialog("Error", "Error al ejecutar el algoritmo", "A ocurrido un error al intentar cerrar los recursos del problema", e);
 		}
 	}
 }

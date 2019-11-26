@@ -24,9 +24,18 @@ import javafx.stage.Stage;
 //import model.metaheuristic.problem.CostConstructionProblem;
 //import model.metaheuristic.problem.Problem;
 //import model.metaheuristic.solution.IntegerSolution;
+import view.problems.ProblemRegistrar;
 
+/**
+ * This class create the principal windows and get his controller. When the
+ * controller is loaded the metaheuristics problem are readed for
+ * {@link ProblemRegistrar}
+ * 
+ * @author gsanh
+ *
+ */
 public class Main extends Application {
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -35,7 +44,7 @@ public class Main extends Application {
 			MainWindowController controller = loader.getController();
 			controller.setWindow(primaryStage);
 			Scene scene = new Scene(root);
-			
+
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.sizeToScene();

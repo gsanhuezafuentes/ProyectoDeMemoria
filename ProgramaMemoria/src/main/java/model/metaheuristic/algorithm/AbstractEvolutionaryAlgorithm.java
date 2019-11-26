@@ -130,9 +130,11 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 
 	/**
 	 * {@inheritDoc}
+	 * @throws Exception if are a problem in close of resources open in problem
+	 * @throws EpanetException if there is a error in the simulation
 	 */
 	@Override
-	public void run() throws EpanetException {
+	public void run() throws Exception, EpanetException {
 		List<S> offspringPopulation;
 		List<S> selectionPopulation;
 
@@ -146,7 +148,7 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 			population = replacement(population, offspringPopulation);
 			updateProgress();
 		}
-
+		this.problem.close();
 	}
 
 	/**

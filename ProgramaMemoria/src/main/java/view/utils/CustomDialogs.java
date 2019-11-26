@@ -32,6 +32,7 @@ public class CustomDialogs {
 		alert.setTitle(title);
 		alert.setHeaderText(headerText);
 		alert.setContentText(contentText);
+		alert.showAndWait();
 	}
 
 	/**

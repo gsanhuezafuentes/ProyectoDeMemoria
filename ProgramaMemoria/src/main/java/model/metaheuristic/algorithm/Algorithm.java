@@ -42,9 +42,9 @@ public interface Algorithm<Result> {
 	 * 
 	 * @throws EpanetException If there is a problem in the simulation of solution
 	 *                         using EpanetToolkit
-	 * 
+	 * @throws Exception If there is a problem in the close method of problem
 	 */
-	public void run() throws EpanetException;
+	public void run() throws Exception, EpanetException;
 
 	/**
 	 * Get the result of the algorithm execution

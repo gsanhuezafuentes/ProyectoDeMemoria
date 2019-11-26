@@ -127,4 +127,12 @@ public class CostConstructionProblem implements Problem<IntegerSolution> {
 
 		return length;
 	}
+
+	/**
+	 * Override the default method close. It close epanet if is called.
+	 */
+	@Override
+	public void close() throws Exception {
+		epanet.ENclose();
+	}
 }

@@ -34,18 +34,19 @@ public class CostProblem implements Registrable {
 	@Parameters(operators = {
 			@OperatorInput(displayName = "Selection Operator", value = {
 					@OperatorOption(displayName = "Uniform Selection", value = UniformSelection.class) }),
+			@OperatorInput(displayName = "Crossover Operator", value = {
+					@OperatorOption(displayName = "Integer SBX Crossover", value = IntegerSBXCrossover.class),
+					@OperatorOption(displayName = "Integer Single Point Crossover", value = IntegerSinglePointCrossover.class) }),//
 			@OperatorInput(displayName = "Mutation Operator", value = {
 					@OperatorOption(displayName = "Integer Polynomial Mutation", value = IntegerPolynomialMutation.class),
 					@OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class),
-					@OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class) }),
-			@OperatorInput(displayName = "Crossover Operator", value = {
-					@OperatorOption(displayName = "Integer SBX Crossover", value = IntegerSBXCrossover.class),
-					@OperatorOption(displayName = "Integer Single Point Crossover", value = IntegerSinglePointCrossover.class) }) }, //
+					@OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class) })},
 			numbers = { @NumberInput(displayName = "Number of iteration without improvement"),
 					@NumberInput(displayName = "Max number of evaluation") })
+	
 	@SuppressWarnings("unchecked")
 	public Algorithm<IntegerSolution> create(Object selectionOperator, Object crossoverOperator,
-			Object mutationOperator, int numberWithoutImprovement, double maxEvaluations) throws Exception {
+			Object mutationOperator, int numberWithoutImprovement, int maxEvaluations) throws Exception {
 		SelectionOperator<List<IntegerSolution>, List<IntegerSolution>> selection = (SelectionOperator<List<IntegerSolution>, List<IntegerSolution>>) selectionOperator;
 		CrossoverOperator<IntegerSolution> crossover = (CrossoverOperator<IntegerSolution>) crossoverOperator;
 		MutationOperator<IntegerSolution> mutation = (MutationOperator<IntegerSolution>) mutationOperator;
@@ -58,12 +59,7 @@ public class CostProblem implements Registrable {
 		Problem<IntegerSolution> problem = new CostConstructionProblem(epanet, "inp/hanoiHW.Gama", 30);
 		algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10, selection, crossover, mutation);
 		algorithm.setMaxNumberOfIterationWithoutImprovement(numberWithoutImprovement);
-//		algorithm.setMaxEvaluations(maxEvaluations);
-
-		epanet.ENclose();// redondear a 2 cifras
-
-		System.out.println("Result");
-		System.out.println(algorithm.getResult());
+		algorithm.setMaxEvaluations(maxEvaluations);
 
 		return algorithm;
 	}

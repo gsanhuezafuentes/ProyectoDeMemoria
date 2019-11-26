@@ -4,64 +4,70 @@ import epanet.core.EpanetException;
 import model.metaheuristic.solution.Solution;
 
 /**
+ * Class that denote a problem. <br>
+ * <br>
  * 
- *
- * @param <S>
+ * If the problem open a reso
  * 
- *            Base on code from https://github.com/jMetal/jMetal
+ * <pre>
+ * Base on code from https://github.com/jMetal/jMetal
  * 
- *            Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
+ * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
  * 
- *            Permission is hereby granted, free of charge, to any person
- *            obtaining a copy of this software and associated documentation
- *            files (the "Software"), to deal in the Software without
- *            restriction, including without limitation the rights to use, copy,
- *            modify, merge, publish, distribute, sublicense, and/or sell copies
- *            of the Software, and to permit persons to whom the Software is
- *            furnished to do so, subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- *            The above copyright notice and this permission notice shall be
- *            included in all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  * 
- *            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- *            EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- *            MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- *            NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- *            HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- *            WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *            OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- *            DEALINGS IN THE SOFTWARE. © 2019 GitHub, Inc.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE. © 2019 GitHub, Inc.
+ * </pre>
+ * 
+ * @param <S> Type of solution
+ * 
+ * 
  */
-public interface Problem<S extends Solution<?>> {
+public interface Problem<S extends Solution<?>> extends AutoCloseable {
 
 	/**
 	 * Get the number of variables associated to problem
 	 * 
 	 * @return number of variables
 	 */
-	public int getNumberOfVariables();
+	int getNumberOfVariables();
 
 	/**
 	 * Get the number of objetives that contain this problem
 	 * 
 	 * @return number of objetives
 	 */
-	public int getNumberOfObjectives();
+	int getNumberOfObjectives();
 
 	/**
 	 * Get the number of constrains to this problem
 	 * 
 	 * @return number of constrains
 	 */
-	public int getNumberOfConstraints();
+	int getNumberOfConstraints();
 
 	/**
 	 * Evaluate the solution
 	 * 
 	 * @param solution The solution object to evaluate
-	 * @throws EpanetException If there is a problem in EPANETToolkit to evaluate the solution.
+	 * @throws EpanetException If there is a problem in EPANETToolkit to evaluate
+	 *                         the solution.
 	 */
-	public void evaluate(S solution) throws EpanetException;
+	void evaluate(S solution) throws EpanetException;
 
 	/**
 	 * Make a solution to this problem. This can be created randomly and be used to
@@ -69,19 +75,31 @@ public interface Problem<S extends Solution<?>> {
 	 * 
 	 * @return Solution
 	 */
-	public S createSolution();
+	S createSolution();
 
 	/**
 	 * Setting the lower bound for each desicion variable
+	 * 
 	 * @param index the index of decision variable
 	 * @return lower bound of the decision variable
 	 */
-	public double getLowerBound(int index);
+	double getLowerBound(int index);
 
 	/**
 	 * Setting the upper bound for each desicion variable
+	 * 
 	 * @param index the index of decision variable
 	 * @return upper bound of the decision variable
 	 */
-	public double getUpperBound(int index);
+	double getUpperBound(int index);
+
+	/**
+	 * Override the close method of {@link AutoCloseable} interface. His default
+	 * implementation is a empty body<br>
+	 * <br>
+	 * If you need close a resource override this method to close it.
+	 */
+	@Override
+	default void close() throws Exception {
+	}
 }
