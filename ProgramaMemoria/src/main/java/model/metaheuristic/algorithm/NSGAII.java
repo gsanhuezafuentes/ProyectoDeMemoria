@@ -117,7 +117,7 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected boolean isStoppingConditionReached() {
+	public boolean isStoppingConditionReached() {
 		return evaluations >= maxEvaluations;
 	}
 

@@ -204,7 +204,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 
 	/** {@inheritDoc}*/
 	@Override
-	protected boolean isStoppingConditionReached() {
+	public boolean isStoppingConditionReached() {
 		return numberEvaluations >= getMaxEvaluations();
 	}
 

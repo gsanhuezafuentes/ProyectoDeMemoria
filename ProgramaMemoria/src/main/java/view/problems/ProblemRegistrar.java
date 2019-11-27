@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import view.ConfigurationDynamicWindow;
+import view.utils.AlgorithmCreationNotification;
 import view.utils.ReflectionUtils;
 
 /**
@@ -104,10 +105,20 @@ public class ProblemRegistrar {
 
 	}
 
+	/**
+	 * Event handler called when a menu item is touched. It event show a windows
+	 * created reading annotation with reflection in registrable object.
+	 * 
+	 * @param evt            the event info returned to menuItem.setOnAction
+	 * @param owner          the owner window
+	 * @param registrable    the problem class
+	 * @param algorithmEvent a event called when the window showed create the
+	 *                       algorithm
+	 */
 	private void menuItemEventHander(ActionEvent evt, Window owner, Registrable registrable,
 			AlgorithmCreationNotification algorithmEvent) {
 		Stage stage = new Stage();
-		stage.setTitle("Configuración de algoritmo");
+		stage.setTitle("Algorithm Configuration");
 		ConfigurationDynamicWindow contentLayout = new ConfigurationDynamicWindow(registrable, stage);
 		contentLayout.setAlgorithmCreationNotification(algorithmEvent);
 		Scene scene = new Scene(contentLayout);

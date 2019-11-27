@@ -36,7 +36,8 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 
 	protected Problem<S> problem;
 	protected List<S> population;
-
+	private int step = 0;
+	
 	/**
 	 * Method that update the progress. It is called by {@link #run()}.
 	 */
@@ -54,7 +55,8 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 	 * 
 	 * @return a boolean that indicate if the algorithm execution can continue or not.
 	 */
-	protected abstract boolean isStoppingConditionReached();
+	@Override
+	public abstract boolean isStoppingConditionReached();
 
 	/**
 	 * Get the result of execution of algorithm
@@ -150,6 +152,35 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 		}
 		this.problem.close();
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @throws Exception if are a problem in close of resources open in problem
+	 * @throws EpanetException if there is a error in the simulation
+	 */	
+	@Override
+	public void runSingleStep() throws Exception, EpanetException {
+		List<S> offspringPopulation;
+		List<S> selectionPopulation;
+
+		if (step == 0) {
+			population = createInitialPopulation();
+			population = evaluatePopulation(population);
+			initProgress();			
+		}
+
+		if (!isStoppingConditionReached()) {
+			selectionPopulation = selection(population);
+			offspringPopulation = reproduction(selectionPopulation);
+			offspringPopulation = evaluatePopulation(offspringPopulation);
+			population = replacement(population, offspringPopulation);
+			updateProgress();
+		}
+		else {
+			close();			
+		}
+		this.step++;
+	}
 
 	/**
 	 * Evaluate population
@@ -165,6 +196,14 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 			problem.evaluate(s);
 		}
 		return population;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void close() throws Exception {
+		this.problem.close();
 	}
 
 }

@@ -1,4 +1,4 @@
-package view.problems;
+package view.utils;
 
 import model.metaheuristic.algorithm.Algorithm;
 

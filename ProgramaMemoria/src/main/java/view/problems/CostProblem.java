@@ -24,26 +24,44 @@ import model.metaheuristic.problem.CostConstructionProblem;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.IntegerSolution;
 
+/**
+ * Class that describe the problem to be showned in menu of problem in the
+ * GUI.<br>
+ * <br>
+ * 
+ * The sistem read this class using reflection to get the annotation and create
+ * a GUI to configure the algorithm and inject the value to injectable method.
+ */
 public class CostProblem implements Registrable {
 
 	@NewProblem(displayName = "Cost problem")
 	public CostProblem() {
 	}
 
+	/**
+	 * This method create the algorithm. Using reflection the values of this method are injected.
+	 * 
+	 * @param selectionOperator - the selection operator
+	 * @param crossoverOperator - the crossover operator
+	 * @param mutationOperator - the mutation operator
+	 * @param numberWithoutImprovement - the number without improvement in the result
+	 * @param maxEvaluations - the max number of evaluation
+	 * @return The algorithm ready to be executed for MainWindowController class
+	 * @throws Exception A exception if there is some error in convert the parameters, or in the execution of algorithm.
+	 */
 	@Injectable
 	@Parameters(operators = {
 			@OperatorInput(displayName = "Selection Operator", value = {
 					@OperatorOption(displayName = "Uniform Selection", value = UniformSelection.class) }),
 			@OperatorInput(displayName = "Crossover Operator", value = {
 					@OperatorOption(displayName = "Integer SBX Crossover", value = IntegerSBXCrossover.class),
-					@OperatorOption(displayName = "Integer Single Point Crossover", value = IntegerSinglePointCrossover.class) }),//
+					@OperatorOption(displayName = "Integer Single Point Crossover", value = IntegerSinglePointCrossover.class) }), //
 			@OperatorInput(displayName = "Mutation Operator", value = {
 					@OperatorOption(displayName = "Integer Polynomial Mutation", value = IntegerPolynomialMutation.class),
 					@OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class),
-					@OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class) })},
-			numbers = { @NumberInput(displayName = "Number of iteration without improvement"),
-					@NumberInput(displayName = "Max number of evaluation") })
-	
+					@OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class) }) }, numbers = {
+							@NumberInput(displayName = "Number of iteration without improvement"),
+							@NumberInput(displayName = "Max number of evaluation") })
 	@SuppressWarnings("unchecked")
 	public Algorithm<IntegerSolution> create(Object selectionOperator, Object crossoverOperator,
 			Object mutationOperator, int numberWithoutImprovement, int maxEvaluations) throws Exception {

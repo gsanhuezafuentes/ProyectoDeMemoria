@@ -37,8 +37,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import model.metaheuristic.algorithm.Algorithm;
-import view.problems.AlgorithmCreationNotification;
 import view.problems.Registrable;
+import view.utils.AlgorithmCreationNotification;
 import view.utils.CustomDialogs;
 import view.utils.ReflectionUtils;
 
@@ -126,7 +126,7 @@ public class ConfigurationDynamicWindow extends VBox {
 	private void numberSection(NumberInput operator, Class<?> parameterType) {
 		Label label = new Label(operator.displayName());
 		TextField textfield = new TextField();
-		textfield.setPromptText("Ingrese el valor");
+		textfield.setPromptText("Enter the value");
 		textfield.setMaxWidth(Double.MAX_VALUE);
 
 		this.textFieldAdded.add(textfield);
@@ -305,8 +305,8 @@ public class ConfigurationDynamicWindow extends VBox {
 			List<Number> operatorParameters = this.resultOfOperatorConfiguration.get(operator);
 			try {
 				if (operatorParameters == null) {
-					CustomDialogs.showDialog("Error", "Error al crear el operador",
-							"El operador " + operator.getName() + " no ha sido configurado", AlertType.ERROR);
+					CustomDialogs.showDialog("Error", "Error in the creation of the operator.",
+							"The operator " + operator.getName() + " can't be configured", AlertType.ERROR);
 					return;
 				}
 				Object operatorObject = ReflectionUtils.getDefaultConstructor(operator)
@@ -314,8 +314,8 @@ public class ConfigurationDynamicWindow extends VBox {
 				parameters.add(operatorObject);
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
-				CustomDialogs.showExceptionDialog("Error", "Error al crear el operador",
-						"El operador " + operator.getName() + " no pudo ser creado", e);
+				CustomDialogs.showExceptionDialog("Error", "Error in the creation of the operator",
+						"The operator " + operator.getName() + " can't be created", e);
 				return;
 			}
 		}
@@ -330,7 +330,7 @@ public class ConfigurationDynamicWindow extends VBox {
 			closeWindow();
 			notifyAlgorithmCreation(algorithm);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			CustomDialogs.showExceptionDialog("Error", "Error al crear el algoritmo", "El algoritmo no pudo ser creado",
+			CustomDialogs.showExceptionDialog("Error", "Error in the creation of the algorithm", "The algorithm can't be created",
 					e);
 		}
 
