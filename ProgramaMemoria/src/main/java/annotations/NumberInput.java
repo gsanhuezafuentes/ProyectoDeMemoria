@@ -7,6 +7,10 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+/**
+ * It class denote a int, double or his wrapper values (Integer, Double) that can be injected to Registrable problem
+ *
+ */
 @Documented
 @Retention(RUNTIME)
 @Target(ANNOTATION_TYPE)

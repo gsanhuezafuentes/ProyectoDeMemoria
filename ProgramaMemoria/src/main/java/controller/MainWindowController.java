@@ -28,6 +28,7 @@ import model.epanet.parser.InpParser;
 import model.metaheuristic.algorithm.Algorithm;
 import view.NetworkComponent;
 import view.problems.ProblemRegistrar;
+import view.problems.Registrable;
 import view.utils.AlgorithmTask;
 import view.utils.CustomDialogs;
 import view.utils.ReflectionUtils;
@@ -123,15 +124,21 @@ public class MainWindowController implements Initializable {
 	/**
 	 * Run the algorithm
 	 * 
-	 * @param algorithm algorithm to be executed
+	 * @param registrableProblem the factory of algorithm for a problem
 	 */
-	private void runAlgorithm(Algorithm<?> algorithm) {
-		System.out.println("Ejecutar algoritmo");
-		AlgorithmTask task = new AlgorithmTask(algorithm);
-		configureAlgorithmTask(task);
-		Thread thread = new Thread(task);
-		thread.setDaemon(true);
-		thread.start();
+	private void runAlgorithm(Registrable registrableProblem) {
+		Algorithm<?> algorithm;
+		try {
+			algorithm = registrableProblem.build(this.inpFile.getAbsolutePath());
+			AlgorithmTask task = new AlgorithmTask(algorithm);
+			configureAlgorithmTask(task);
+			Thread thread = new Thread(task);
+			thread.setDaemon(true);
+			thread.start();
+		} catch (Exception e) {
+			CustomDialogs.showExceptionDialog("Error", "Error in the creation of the algorithm",
+					"The algorithm can't be created", e);
+		}
 
 	}
 
@@ -150,7 +157,7 @@ public class MainWindowController implements Initializable {
 		alert.setGraphic(progressIndicator);
 		Button button = (Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL);
 		button.setOnAction(e -> task.cancel());
-		
+
 		task.exceptionProperty().addListener((property, oldValue, newValue) -> {
 			if (newValue instanceof EpanetException) {
 				CustomDialogs.showExceptionDialog("Error", "Error in the execution of the algorithm.",

@@ -7,15 +7,20 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import model.metaheuristic.operator.Operator;
+
 /**
  * 
- * Operators
+ * This interface denote the default constructor of the {@link Operator}
  *
  */
 @Documented
 @Retention(RUNTIME)
 @Target(CONSTRUCTOR)
 public @interface DefaultConstructor {
-	// Parameters name 
+	/**
+	 * Array with the name defined for each variable
+	 * @return array with displayNames
+	 */
 	String[] value();
 }

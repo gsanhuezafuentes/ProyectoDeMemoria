@@ -3,7 +3,6 @@ package view.problems;
 import java.util.ArrayList;
 import java.util.List;
 
-import annotations.Injectable;
 import annotations.NewProblem;
 import annotations.NumberInput;
 import annotations.OperatorInput;
@@ -67,7 +66,7 @@ import view.utils.ReflectionUtils;
  */
 public class ProblemRegistrar {
 	private static ProblemRegistrar instance = new ProblemRegistrar();
-	private List<Registrable> problems;
+	private List<Class<? extends Registrable>> problems;
 
 	/**
 	 * Get a instance of this class. It is based in Singleton Pattern
@@ -82,8 +81,8 @@ public class ProblemRegistrar {
 	}
 
 	private ProblemRegistrar() {
-		this.problems = new ArrayList<Registrable>();
-		this.problems.add(new CostProblem());
+		this.problems = new ArrayList<>();
+		this.problems.add(CostProblem.class);
 	}
 
 	/**
@@ -95,7 +94,7 @@ public class ProblemRegistrar {
 	 * @param owner the owner window that will of the configuration windows created.
 	 */
 	public void register(Menu menu, Window owner, AlgorithmCreationNotification algorithmEvent) {
-		for (Registrable registrable : this.problems) {
+		for (Class<? extends Registrable> registrable : this.problems) {
 			ReflectionUtils.validateRegistrableProblem(registrable);
 			ReflectionUtils.validateOperators(registrable);
 			MenuItem menuItem = new MenuItem(ReflectionUtils.getNameOfProblem(registrable));
@@ -115,7 +114,7 @@ public class ProblemRegistrar {
 	 * @param algorithmEvent a event called when the window showed create the
 	 *                       algorithm
 	 */
-	private void menuItemEventHander(ActionEvent evt, Window owner, Registrable registrable,
+	private void menuItemEventHander(ActionEvent evt, Window owner, Class<? extends Registrable> registrable,
 			AlgorithmCreationNotification algorithmEvent) {
 		Stage stage = new Stage();
 		stage.setTitle("Algorithm Configuration");

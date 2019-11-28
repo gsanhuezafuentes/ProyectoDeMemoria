@@ -1,5 +1,6 @@
 package view;
 
+import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -14,11 +15,13 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import annotations.DefaultConstructor;
+import annotations.FileInput;
 import annotations.NumberInput;
 import annotations.OperatorInput;
 import annotations.OperatorOption;
 import annotations.Parameters;
 import exception.ApplicationException;
+import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -29,11 +32,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import model.metaheuristic.algorithm.Algorithm;
@@ -44,50 +50,54 @@ import view.utils.ReflectionUtils;
 
 public class ConfigurationDynamicWindow extends VBox {
 
+	/**
+	 * The stage of this layout
+	 */
 	private final Stage window;
 
 	private AlgorithmCreationNotification algorithmEvent;
-	private Registrable problem;
-	private GridPane operatorLayout;
-	private GridPane primitiveLayout;
-	private int operatorGridRowCount;
-	private int numberGridRowCount;
+	private Class<? extends Registrable> problemClass;
 	private double defaultSpace = 5;
 	private BooleanBinding isRunButtonDisabled;
+
+	private GridPane gridLayout;
+
+	private int gridLayoutRowCount;
+
+	// It has a reference to textfield with number input. The order of
+	// this list is the same that the order in Parameters annotation (numbers)
+	private List<TextField> numbersTextFieldAdded;
+	// It has a reference to textfield with fileInput(It shown the path of some file).The order of
+	// this list is the same that the order in Parameters annotation (files)
+	private List<TextField> filesTextFieldAdded;
+	// A map with the value of operator configured in comboBox
 	private Map<Class<?>, List<Number>> resultOfOperatorConfiguration;
-	// it has a reference to all comboboxes added in operatorLayout. The order of
+	// it has a reference to all comboboxes added. The order of
 	// this list is the same that the order in Parameters annotation (operators)
 	private List<ComboBox<Class<?>>> comboBoxesAdded;
-	// it has a reference to all textfield added in primitiveLayout. The order of
-	// this list is the same that the order in Parameters annotation (numbers)
-	private List<TextField> textFieldAdded;
 
-	public ConfigurationDynamicWindow(Registrable registrableProblem, Stage thisWindow) {
-		this.operatorGridRowCount = 0;
-		this.numberGridRowCount = 0;
-		this.problem = registrableProblem;
-		this.primitiveLayout = new GridPane();
-		this.operatorLayout = new GridPane();
+	public ConfigurationDynamicWindow(Class<? extends Registrable> registrable, Stage thisWindow) {
+		this.problemClass = registrable;
+
+		this.gridLayout = new GridPane();
+		this.gridLayout.setHgap(defaultSpace);
+		this.gridLayout.setVgap(defaultSpace);
 
 		this.window = thisWindow;
-
-		this.primitiveLayout.setHgap(defaultSpace);
-		this.primitiveLayout.setVgap(defaultSpace);
-
-		this.operatorLayout.setHgap(defaultSpace);
-		this.operatorLayout.setVgap(defaultSpace);
 
 		setSpacing(defaultSpace);
 		setPadding(new Insets(defaultSpace));
 
-		getChildren().addAll(primitiveLayout, operatorLayout);
+		getChildren().addAll(gridLayout);
 
 		this.comboBoxesAdded = new ArrayList<ComboBox<Class<?>>>();
-		this.textFieldAdded = new ArrayList<TextField>();
+		this.numbersTextFieldAdded = new ArrayList<TextField>();
+		this.filesTextFieldAdded = new ArrayList<TextField>();
 		this.resultOfOperatorConfiguration = new HashMap<Class<?>, List<Number>>();
 
 		createContentLayout();
 		addButton();
+
 	}
 
 	/**
@@ -95,28 +105,36 @@ public class ConfigurationDynamicWindow extends VBox {
 	 * problem
 	 */
 	private void createContentLayout() {
-		Method method = ReflectionUtils.getInjectableMethod(problem.getClass());
-		Parameters parameters = method.getAnnotation(Parameters.class);
+		Constructor<?> constructor = ReflectionUtils.getConstructor(problemClass);
+		Parameters parameters = constructor.getAnnotation(Parameters.class);
 		if (parameters != null) {
-			// It is assume that the order of parameter is object,... , int or double... (It
+			// It is assume that the order of parameter is object,..., file ... , int or
+			// double... (It
 			// is validated in method that create this windows in ProblemRegistrar)
 
-			int parameterIndex = 0; // count how many parameters have been readed
-
-			// Create combobox for object input
-			for (OperatorInput operator : parameters.operators()) {
-				operatorSection(operator);
-				parameterIndex++;
-			}
+			int parameterIndex = constructor.getParameterCount()-1; // What it the last index of parameter
 
 			// Create the textfield for native input (double, int, etc)
 			for (NumberInput operator : parameters.numbers()) {
-				numberSection(operator, method.getParameterTypes()[parameterIndex]);
-				parameterIndex++;
+				numberSection(operator, constructor.getParameterTypes()[parameterIndex]);
+				parameterIndex--;
 			}
+
+			// Create textfield for show the path selected in a filechooser
+			for (FileInput file : parameters.files()) {
+				fileSection(file);
+				parameterIndex--;
+			}
+			
+			// Create combobox for object input
+			for (OperatorInput operator : parameters.operators()) {
+				operatorSection(operator);
+				parameterIndex--;
+			}
+
 		}
 	}
-
+	
 	/**
 	 * Setting the number section. It section has textfield to write the numbers.
 	 * 
@@ -129,7 +147,7 @@ public class ConfigurationDynamicWindow extends VBox {
 		textfield.setPromptText("Enter the value");
 		textfield.setMaxWidth(Double.MAX_VALUE);
 
-		this.textFieldAdded.add(textfield);
+		this.numbersTextFieldAdded.add(textfield);
 		assert parameterType.getName().matches("int|Integer|double|Double");
 		if (parameterType.getName().matches("int|Integer")) {
 			textfield.setTextFormatter(createWholeTextFormatter());
@@ -139,10 +157,36 @@ public class ConfigurationDynamicWindow extends VBox {
 			textfield.setTextFormatter(createDecimalTextFormatter());
 		}
 
-		this.primitiveLayout.addRow(numberGridRowCount, label, textfield);
-		numberGridRowCount++;
+		this.gridLayout.addRow(gridLayoutRowCount++, label, textfield);
+		gridLayoutRowCount++;
 	}
 
+	/**
+	 * Setting the file section. It section has textfield and a button to
+	 * open a filechooser.
+	 * 
+	 * @param file the FileInput annotation
+	 */
+	private void fileSection(FileInput file) {
+		Label label = new Label(file.displayName());
+		TextField textfield = new TextField();
+		textfield.setMaxWidth(Double.MAX_VALUE);
+		Button button = new Button("Browse");
+		button.setMaxWidth(Double.MAX_VALUE);
+		
+		FileChooser fileChooser = new FileChooser();
+		button.setOnAction((evt) -> {
+			File f = fileChooser.showOpenDialog(this.window);
+			if (f != null) {
+				textfield.setText(f.getAbsolutePath());
+			}
+		});
+
+		this.filesTextFieldAdded.add(textfield);
+		this.gridLayout.addRow(gridLayoutRowCount, label, textfield, button);
+		gridLayoutRowCount++;
+	}
+	
 	/**
 	 * Setting the operator section. It section has comboBox to choose the operator.
 	 * It only configure one parameters.
@@ -174,7 +218,7 @@ public class ConfigurationDynamicWindow extends VBox {
 
 		this.comboBoxesAdded.add(comboBox);
 
-		Button configButton = new Button("Configurar");
+		Button configButton = new Button("Configure");
 		// If a item is selected in combobox so enable config button
 		configButton.disableProperty().bind(comboBox.getSelectionModel().selectedItemProperty().isNull());
 
@@ -193,8 +237,8 @@ public class ConfigurationDynamicWindow extends VBox {
 					comboBox.getSelectionModel().getSelectedItem());
 		});
 
-		this.operatorLayout.addRow(operatorGridRowCount, label, comboBox, configButton);
-		operatorGridRowCount++;
+		this.gridLayout.addRow(gridLayoutRowCount, label, comboBox, configButton);
+		gridLayoutRowCount++;
 	}
 
 	/**
@@ -275,19 +319,21 @@ public class ConfigurationDynamicWindow extends VBox {
 	 */
 	private void addButton() {
 
-		Button run = new Button("Ejecutar");
+		Button run = new Button("Run");
 		run.setOnAction((evt) -> {
-			createAlgorithm();
+			createRegistrableInstance();
 		});
 		run.disableProperty().bind(isRunButtonDisabled);
-		Button cancel = new Button("Cancelar");
+		Button cancel = new Button("Cancel");
 		cancel.setOnAction((evt) -> closeWindow());
 
 		HBox hbox = new HBox(run, cancel);
+		HBox.setHgrow(run, Priority.ALWAYS);
+	    HBox.setHgrow(cancel, Priority.ALWAYS);
+	    run.setMaxWidth(100);
+	    cancel.setMaxWidth(100);
 		hbox.setSpacing(defaultSpace);
 		hbox.setAlignment(Pos.CENTER_RIGHT);
-		hbox.setPadding(new Insets(defaultSpace));
-
 		getChildren().add(hbox);
 
 	}
@@ -296,7 +342,7 @@ public class ConfigurationDynamicWindow extends VBox {
 	 * Read all input field and create the algorithm based in the input field. When
 	 * the algorithm is created an {@link AlgorithmCreationNotification} is fired.
 	 */
-	private void createAlgorithm() {
+	private void createRegistrableInstance() {
 		// Read the values configurated and selected
 		List<Object> parameters = new ArrayList<>();
 
@@ -320,18 +366,23 @@ public class ConfigurationDynamicWindow extends VBox {
 			}
 		}
 
-		for (TextField textfield : this.textFieldAdded) {
+		for (TextField textfield : this.filesTextFieldAdded) {
+			parameters.add(new File(textfield.getText()));
+		}
+		
+		for (TextField textfield : this.numbersTextFieldAdded) {
 			parameters.add(textfield.getTextFormatter().getValue());
 		}
 
-		Method injectableMethod = ReflectionUtils.getInjectableMethod(this.problem.getClass());
+		Constructor<?> constructor = ReflectionUtils.getConstructor(this.problemClass);
 		try {
-			Algorithm<?> algorithm = (Algorithm<?>) injectableMethod.invoke(this.problem, parameters.toArray());
+			Registrable registrable = (Registrable) constructor.newInstance(parameters.toArray());
 			closeWindow();
-			notifyAlgorithmCreation(algorithm);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			CustomDialogs.showExceptionDialog("Error", "Error in the creation of the algorithm", "The algorithm can't be created",
-					e);
+			notifyAlgorithmCreation(registrable);
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			CustomDialogs.showExceptionDialog("Error", "Error in the creation of registrable object",
+					"Can't be created an instance of " + this.problemClass.getName(), e);
 		}
 
 	}
@@ -348,15 +399,15 @@ public class ConfigurationDynamicWindow extends VBox {
 	/**
 	 * Is a class to fire the notification when the algorithm is ready.
 	 * 
-	 * @param algorithm the algorithm
+	 * @param registrable the algorithm
 	 * @throws ApplicationException if there isn't register the notification
 	 *                              callback
 	 */
-	private void notifyAlgorithmCreation(Algorithm<?> algorithm) throws ApplicationException {
+	private void notifyAlgorithmCreation(Registrable registrable) throws ApplicationException {
 		if (algorithmEvent == null) {
 			throw new ApplicationException("There isn't register this notify function in " + this.getClass().getName());
 		}
-		algorithmEvent.notify(algorithm);
+		algorithmEvent.notify(registrable);
 	}
 
 	/**

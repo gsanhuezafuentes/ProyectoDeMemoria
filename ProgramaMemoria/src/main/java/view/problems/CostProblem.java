@@ -1,8 +1,9 @@
 package view.problems;
 
+import java.io.File;
 import java.util.List;
 
-import annotations.Injectable;
+import annotations.FileInput;
 import annotations.NewProblem;
 import annotations.NumberInput;
 import annotations.OperatorInput;
@@ -33,23 +34,30 @@ import model.metaheuristic.solution.IntegerSolution;
  * a GUI to configure the algorithm and inject the value to injectable method.
  */
 public class CostProblem implements Registrable {
-
-	@NewProblem(displayName = "Cost problem")
-	public CostProblem() {
-	}
+	private SelectionOperator<List<IntegerSolution>, List<IntegerSolution>> selection;
+	private CrossoverOperator<IntegerSolution> crossover;
+	private MutationOperator<IntegerSolution> mutation;
+	private int numberWithoutImprovement;
+	private int maxEvaluations;
+	private File gama;
 
 	/**
-	 * This method create the algorithm. Using reflection the values of this method are injected.
+	 * This constructor define the elements that will be needed to build the
+	 * algorithm.
 	 * 
-	 * @param selectionOperator - the selection operator
-	 * @param crossoverOperator - the crossover operator
-	 * @param mutationOperator - the mutation operator
-	 * @param numberWithoutImprovement - the number without improvement in the result
-	 * @param maxEvaluations - the max number of evaluation
+	 * @see Registrable
+	 * 
+	 * @param selectionOperator        - the selection operator
+	 * @param crossoverOperator        - the crossover operator
+	 * @param mutationOperator         - the mutation operator
+	 * @param numberWithoutImprovement - the number without improvement in the
+	 *                                 result
+	 * @param maxEvaluations           - the max number of evaluation
 	 * @return The algorithm ready to be executed for MainWindowController class
-	 * @throws Exception A exception if there is some error in convert the parameters, or in the execution of algorithm.
+	 * @throws Exception A exception if there is some error in convert the
+	 *                   parameters, or in the execution of algorithm.
 	 */
-	@Injectable
+	@NewProblem(displayName = "Cost problem")
 	@Parameters(operators = {
 			@OperatorInput(displayName = "Selection Operator", value = {
 					@OperatorOption(displayName = "Uniform Selection", value = UniformSelection.class) }),
@@ -59,16 +67,23 @@ public class CostProblem implements Registrable {
 			@OperatorInput(displayName = "Mutation Operator", value = {
 					@OperatorOption(displayName = "Integer Polynomial Mutation", value = IntegerPolynomialMutation.class),
 					@OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class),
-					@OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class) }) }, numbers = {
-							@NumberInput(displayName = "Number of iteration without improvement"),
-							@NumberInput(displayName = "Max number of evaluation") })
+					@OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class) }) }, //
+			files = { @FileInput(displayName = "Gama") }, //
+			numbers = { @NumberInput(displayName = "Number of iteration without improvement"),
+					@NumberInput(displayName = "Max number of evaluation") })
 	@SuppressWarnings("unchecked")
-	public Algorithm<IntegerSolution> create(Object selectionOperator, Object crossoverOperator,
-			Object mutationOperator, int numberWithoutImprovement, int maxEvaluations) throws Exception {
-		SelectionOperator<List<IntegerSolution>, List<IntegerSolution>> selection = (SelectionOperator<List<IntegerSolution>, List<IntegerSolution>>) selectionOperator;
-		CrossoverOperator<IntegerSolution> crossover = (CrossoverOperator<IntegerSolution>) crossoverOperator;
-		MutationOperator<IntegerSolution> mutation = (MutationOperator<IntegerSolution>) mutationOperator;
+	public CostProblem(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama,
+			int numberWithoutImprovement, int maxEvaluations) {
+		this.selection = (SelectionOperator<List<IntegerSolution>, List<IntegerSolution>>) selectionOperator;
+		this.crossover = (CrossoverOperator<IntegerSolution>) crossoverOperator;
+		this.mutation = (MutationOperator<IntegerSolution>) mutationOperator;
+		this.numberWithoutImprovement = numberWithoutImprovement;
+		this.maxEvaluations = maxEvaluations;
+		this.gama = gama;
+	}
 
+	@Override
+	public Algorithm<IntegerSolution> build(String inpPath) throws Exception {
 		EpanetAPI epanet;
 		GeneticAlgorithm2<IntegerSolution> algorithm = null;
 		epanet = new EpanetAPI();
