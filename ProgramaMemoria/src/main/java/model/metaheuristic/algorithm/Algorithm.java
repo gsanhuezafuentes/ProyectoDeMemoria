@@ -67,17 +67,32 @@ public interface Algorithm<Result> extends AutoCloseable {
 	boolean isStoppingConditionReached();
 
 	/**
+	 * Get a string with the status of execution. The string returned for this
+	 * method will be showed when the algorithm running in the GUI.<br>
+	 * <br>
+	 * A example of a message can be:<br>
+	 * <br>
+	 * 
+	 * Number of evaluation: 100/1000 <br>
+	 * Number of execution without improvement: 5/1000
+	 * 
+	 * @return a string with the status
+	 */
+	String getStatusOfExecution();
+
+	/**
 	 * Get the result of the algorithm execution
 	 * 
 	 * @return the solution or solutions given as result of execution of algorithm
 	 */
 	Result getResult();
-	
+
 	/**
 	 * Override the close method of {@link AutoCloseable} interface. His default
 	 * implementation is a empty body<br>
 	 * <br>
-	 * If you need close a resource used by the algorithm override this method to close it.
+	 * If you need close a resource used by the algorithm override this method to
+	 * close it.
 	 */
 	@Override
 	default void close() throws Exception {

@@ -21,6 +21,7 @@ import annotations.OperatorInput;
 import annotations.OperatorOption;
 import annotations.Parameters;
 import exception.ApplicationException;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.geometry.Insets;
@@ -291,6 +292,12 @@ public class ConfigurationDynamicWindow extends VBox {
 				textFieldOfParameters.add(textfield);
 				grid.addRow(i, label, textfield);
 			}
+		}
+		if (textFieldOfParameters.size() != 0) {
+			// give focus to first textfield
+		    Platform.runLater(() -> {
+		        textFieldOfParameters.get(0).requestFocus();
+		    });
 		}
 
 		dialog.getDialogPane().setContent(grid);

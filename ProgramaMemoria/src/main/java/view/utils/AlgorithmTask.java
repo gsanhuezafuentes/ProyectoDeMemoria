@@ -1,5 +1,6 @@
 package view.utils;
 
+import exception.ApplicationException;
 import javafx.concurrent.Task;
 import model.metaheuristic.algorithm.Algorithm;
 
@@ -13,7 +14,6 @@ public class AlgorithmTask extends Task<Object> {
 
 	@Override
 	protected Object call() throws Exception {
-		int i = 0; //borrar
 		while (!this.algorithm.isStoppingConditionReached()) {
 			// Check if the task is cancelled
 			if (this.isCancelled()) {
@@ -21,7 +21,7 @@ public class AlgorithmTask extends Task<Object> {
 				algorithm.close();
 				break;
 			}
-			updateMessage("Numero de evaluaciones realizadas " + Integer.toString(i++));
+			updateMessage(this.algorithm.getStatusOfExecution());
 			algorithm.runSingleStep();
 
 		}

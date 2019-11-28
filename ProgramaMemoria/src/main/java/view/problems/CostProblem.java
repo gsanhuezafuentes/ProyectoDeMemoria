@@ -10,6 +10,7 @@ import annotations.OperatorInput;
 import annotations.OperatorOption;
 import annotations.Parameters;
 import epanet.core.EpanetAPI;
+import exception.ApplicationException;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.algorithm.GeneticAlgorithm2;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
@@ -82,6 +83,7 @@ public class CostProblem implements Registrable {
 		this.gama = gama;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public Algorithm<IntegerSolution> build(String inpPath) throws Exception {
 		EpanetAPI epanet;
@@ -93,7 +95,7 @@ public class CostProblem implements Registrable {
 		algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10, selection, crossover, mutation);
 		algorithm.setMaxNumberOfIterationWithoutImprovement(numberWithoutImprovement);
 		algorithm.setMaxEvaluations(maxEvaluations);
-
+		
 		return algorithm;
 	}
 

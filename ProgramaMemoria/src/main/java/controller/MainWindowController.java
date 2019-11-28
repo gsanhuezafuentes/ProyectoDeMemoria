@@ -15,10 +15,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
@@ -61,13 +68,14 @@ public class MainWindowController implements Initializable {
 
 	public MainWindowController() {
 		this.isNetworkLoaded = new SimpleBooleanProperty(false);
+		
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// Register the menu item problem to problem menu and add the listener to it
 		// menuitem to show a interface,
-		ProblemRegistrar.getInstance().register(this.problemsMenu, window, this::runAlgorithm);
+		ProblemRegistrar.getInstance().register(this.problemsMenu, this::runAlgorithm);
 		// disable problem menu until a network is loaded
 //		this.problemsMenu.disableProperty().bind(isNetworkLoaded.not());
 	}
@@ -127,17 +135,24 @@ public class MainWindowController implements Initializable {
 	 * @param registrableProblem the factory of algorithm for a problem
 	 */
 	private void runAlgorithm(Registrable registrableProblem) {
-		Algorithm<?> algorithm;
+		String path = null;
+		if (this.inpFile != null) {
+			path = this.inpFile.getAbsolutePath();
+		}
+		Algorithm<?> algorithm = null;
 		try {
-			algorithm = registrableProblem.build(this.inpFile.getAbsolutePath());
-			AlgorithmTask task = new AlgorithmTask(algorithm);
-			configureAlgorithmTask(task);
-			Thread thread = new Thread(task);
-			thread.setDaemon(true);
-			thread.start();
+			algorithm = registrableProblem.build(path);
 		} catch (Exception e) {
 			CustomDialogs.showExceptionDialog("Error", "Error in the creation of the algorithm",
 					"The algorithm can't be created", e);
+		}
+		if (algorithm != null) {
+			AlgorithmTask task = new AlgorithmTask(algorithm);
+			configureAlgorithmTask(task);
+
+			Thread thread = new Thread(task);
+			thread.setDaemon(true);
+			thread.start();
 		}
 
 	}
@@ -151,7 +166,23 @@ public class MainWindowController implements Initializable {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION, "Operation in progress.", ButtonType.CANCEL);
 		alert.setTitle("Running Algorithm");
 		alert.setHeaderText("Please wait... ");
-		alert.contentTextProperty().bind(task.messageProperty());
+		
+		TextArea textArea = new TextArea();
+		textArea.setEditable(false);
+		textArea.setWrapText(true);
+
+		textArea.setMaxWidth(Double.MAX_VALUE);
+		textArea.setMaxHeight(Double.MAX_VALUE);
+		GridPane.setVgrow(textArea, Priority.ALWAYS);
+		GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+		GridPane expContent = new GridPane();
+		expContent.setMaxWidth(Double.MAX_VALUE);
+		expContent.add(textArea, 0, 0);
+
+		textArea.textProperty().bind(task.messageProperty());
+		
+		alert.getDialogPane().setContent(expContent);		
 		ProgressIndicator progressIndicator = new ProgressIndicator();
 		progressIndicator.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
 		alert.setGraphic(progressIndicator);
@@ -177,9 +208,7 @@ public class MainWindowController implements Initializable {
 			alert.close();
 		});
 
-		alert.initOwner(window);
 		alert.initStyle(StageStyle.UTILITY);
-		alert.initModality(Modality.APPLICATION_MODAL);
 		alert.show();
 	}
 }

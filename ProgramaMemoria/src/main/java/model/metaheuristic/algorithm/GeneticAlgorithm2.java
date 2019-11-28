@@ -117,9 +117,8 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	 * <br>
 	 * 
 	 * If you want to set this to 0 to disable the stop condition using this value
-	 * so change first
-	 * {@link #setMaxNumberOfIterationWithoutImprovement} to a
-	 * value other than 0
+	 * so change first {@link #setMaxNumberOfIterationWithoutImprovement} to a value
+	 * other than 0
 	 * 
 	 * @param maxEvaluations the maxEvaluations to set
 	 */
@@ -313,6 +312,15 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 			}
 			this.numberOfIterationWithoutImprovement++;
 		}
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public String getStatusOfExecution() {
+		String text = "Number of evaluations: " + this.performedEvaluationsNumber + " / " + this.maxEvaluations + "\n";
+		text += "Number of interation without improvement: " + this.numberOfIterationWithoutImprovement + " / "
+				+ this.maxNumberOfIterationWithoutImprovement;
+		return text;
 	}
 
 }

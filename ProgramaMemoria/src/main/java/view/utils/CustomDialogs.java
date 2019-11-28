@@ -32,7 +32,8 @@ public class CustomDialogs {
 		alert.setTitle(title);
 		alert.setHeaderText(headerText);
 		alert.setContentText(contentText);
-		alert.showAndWait();
+		alert.show();
+
 	}
 
 	/**
@@ -73,7 +74,7 @@ public class CustomDialogs {
 		// Set expandable Exception into the dialog pane.
 		alert.getDialogPane().setExpandableContent(expContent);
 
-		alert.showAndWait();
+		alert.show();
 	}
 
 }
