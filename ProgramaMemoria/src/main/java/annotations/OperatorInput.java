@@ -1,13 +1,11 @@
 package annotations;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Documented;
-
-import static java.lang.annotation.ElementType.*;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
 /**
  * It class describe the possible operator that can be injected into the parameter of the registrable constructor.

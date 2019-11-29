@@ -1,6 +1,5 @@
 package model.metaheuristic.utils.comparator;
 
-import java.io.Serializable;
 import java.util.Comparator;
 
 /**

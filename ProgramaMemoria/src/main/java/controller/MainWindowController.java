@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.Main;
 import epanet.core.EpanetException;
 import exception.InputException;
 import javafx.beans.property.BooleanProperty;
@@ -15,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
@@ -23,11 +21,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import model.epanet.element.Network;
@@ -38,7 +32,6 @@ import view.problems.ProblemRegistrar;
 import view.problems.Registrable;
 import view.utils.AlgorithmTask;
 import view.utils.CustomDialogs;
-import view.utils.ReflectionUtils;
 
 public class MainWindowController implements Initializable {
 	/**
@@ -77,7 +70,7 @@ public class MainWindowController implements Initializable {
 		// menuitem to show a interface,
 		ProblemRegistrar.getInstance().register(this.problemsMenu, this::runAlgorithm);
 		// disable problem menu until a network is loaded
-//		this.problemsMenu.disableProperty().bind(isNetworkLoaded.not());
+		this.problemsMenu.disableProperty().bind(isNetworkLoaded.not());
 	}
 
 	/**
@@ -209,6 +202,7 @@ public class MainWindowController implements Initializable {
 		});
 
 		alert.initStyle(StageStyle.UTILITY);
+		System.out.println("Ventana ql no se mostro");
 		alert.show();
 	}
 }

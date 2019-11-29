@@ -1,6 +1,5 @@
 package view.utils;
 
-import exception.ApplicationException;
 import javafx.concurrent.Task;
 import model.metaheuristic.algorithm.Algorithm;
 

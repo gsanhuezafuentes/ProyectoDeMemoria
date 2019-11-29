@@ -57,7 +57,7 @@ public interface Algorithm<Result> extends AutoCloseable {
 	void runSingleStep() throws Exception, EpanetException;
 
 	/**
-	 * Method to decide when the algorithm execution stop. It would be called by
+	 * Method to decide when the algorithm execution must stop. It would be called by
 	 * {@link #run()} and {@link #runSingleStep()} to verify if the algorithm can
 	 * continue his execution.
 	 * 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import epanet.core.EpanetException;
 import exception.ApplicationException;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.mutation.MutationOperator;
@@ -13,7 +12,6 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.SolutionListUtils;
-import model.metaheuristic.utils.comparator.DominanceComparator;
 
 /**
  * 

@@ -5,10 +5,10 @@ import java.util.List;
 
 import annotations.DefaultConstructor;
 import exception.ApplicationException;
+import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
 import model.metaheuristic.utils.random.JavaRandom;
 import model.metaheuristic.utils.random.RandomGenerator;
-import model.metaheuristic.solution.IntegerSolution;
 
 public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSolution> {
 

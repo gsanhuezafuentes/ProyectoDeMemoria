@@ -3,8 +3,8 @@ package model.metaheuristic.operator.mutation;
 import annotations.DefaultConstructor;
 import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
-import model.metaheuristic.utils.random.RandomGenerator;
 import model.metaheuristic.utils.random.JavaRandom;
+import model.metaheuristic.utils.random.RandomGenerator;
 
 public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolution> {
 

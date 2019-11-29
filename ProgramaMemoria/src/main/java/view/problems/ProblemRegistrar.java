@@ -16,7 +16,6 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 import view.ConfigurationDynamicWindow;
 import view.utils.AlgorithmCreationNotification;
 import view.utils.ReflectionUtils;
@@ -86,6 +85,7 @@ public class ProblemRegistrar {
 	private ProblemRegistrar() {
 		this.problems = new ArrayList<>();
 		this.problems.add(CostProblem.class);
+
 	}
 
 	/**

@@ -86,12 +86,18 @@ public class CostProblem implements Registrable {
 	/** {@inheritDoc} */
 	@Override
 	public Algorithm<IntegerSolution> build(String inpPath) throws Exception {
+		if (inpPath == null || inpPath.isEmpty()) {
+			throw new ApplicationException("There isn't a network opened");
+		}
 		EpanetAPI epanet;
 		GeneticAlgorithm2<IntegerSolution> algorithm = null;
 		epanet = new EpanetAPI();
-		epanet.ENopen("inp/hanoi-Frankenstein.INP", "inp/hanoi.rpt", "");
+		epanet.ENopen(inpPath, "inp/ejecucion.rpt", "");
 
-		Problem<IntegerSolution> problem = new CostConstructionProblem(epanet, "inp/hanoiHW.Gama", 30);
+		if (this.gama == null) {
+			throw new ApplicationException("There isn't gama file");
+		}
+		Problem<IntegerSolution> problem = new CostConstructionProblem(epanet, this.gama.getAbsolutePath(), 30);
 		algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10, selection, crossover, mutation);
 		algorithm.setMaxNumberOfIterationWithoutImprovement(numberWithoutImprovement);
 		algorithm.setMaxEvaluations(maxEvaluations);

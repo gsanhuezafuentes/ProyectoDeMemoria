@@ -2,7 +2,6 @@ package view;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import model.epanet.element.Network;
 import model.epanet.element.networkcomponent.Node;
 import view.utils.NetworkImage;
