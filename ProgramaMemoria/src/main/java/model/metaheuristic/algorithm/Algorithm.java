@@ -5,8 +5,8 @@ import epanet.core.EpanetException;
 /**
  * Interface that contains method to define Algorithm
  *
- * @param <Result> The Type of result
- * <br><br>
+ * @param <Result> The Type of result <br>
+ *                 <br>
  *                 Base on code from https://github.com/jMetal/jMetal
  * 
  *                 Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
@@ -35,22 +35,67 @@ import epanet.core.EpanetException;
  *                 GitHub, Inc.
  * 
  */
-public interface Algorithm<Result> {
+public interface Algorithm<Result> extends AutoCloseable {
 
 	/**
 	 * Start algorithm execution
 	 * 
 	 * @throws EpanetException If there is a problem in the simulation of solution
 	 *                         using EpanetToolkit
-	 * 
+	 * @throws Exception       If there is a problem in the close method of problem
 	 */
-	public void run() throws EpanetException;
+	void run() throws Exception, EpanetException;
+
+	/**
+	 * Execute a only step (iteration) of algorithm for call. It method is used by
+	 * GUI because let cancel the execution.
+	 * 
+	 * @throws EpanetException If there is a problem in the simulation of solution
+	 *                         using EpanetToolkit
+	 * @throws Exception       If there is a problem in the close method of problem
+	 */
+	void runSingleStep() throws Exception, EpanetException;
+
+	/**
+	 * Method to decide when the algorithm execution must stop. It would be called by
+	 * {@link #run()} and {@link #runSingleStep()} to verify if the algorithm can
+	 * continue his execution.
+	 * 
+	 * @return a boolean that indicate if the algorithm execution can continue or
+	 *         not.
+	 */
+	boolean isStoppingConditionReached();
+
+	/**
+	 * Get a string with the status of execution. The string returned for this
+	 * method will be showed when the algorithm running in the GUI.<br>
+	 * <br>
+	 * A example of a message can be:<br>
+	 * <br>
+	 * 
+	 * Number of evaluation: 100/1000 <br>
+	 * Number of execution without improvement: 5/1000
+	 * 
+	 * @return a string with the status
+	 */
+	String getStatusOfExecution();
 
 	/**
 	 * Get the result of the algorithm execution
 	 * 
 	 * @return the solution or solutions given as result of execution of algorithm
 	 */
-	public Result getResult();
+	Result getResult();
+
+	/**
+	 * Override the close method of {@link AutoCloseable} interface. His default
+	 * implementation is a empty body<br>
+	 * <br>
+	 * If you need close a resource used by the algorithm override this method to
+	 * close it.
+	 */
+	@Override
+	default void close() throws Exception {
+	}
 
 }

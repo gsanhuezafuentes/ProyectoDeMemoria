@@ -1,6 +1,7 @@
 package model.metaheuristic.solution;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Representation of the solution. It contain the result of objetive function

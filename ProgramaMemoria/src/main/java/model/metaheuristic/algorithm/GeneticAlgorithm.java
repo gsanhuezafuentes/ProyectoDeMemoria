@@ -202,9 +202,9 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 		return population.get(0);
 	}
 
-	/** {@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
-	protected boolean isStoppingConditionReached() {
+	public boolean isStoppingConditionReached() {
 		return numberEvaluations >= getMaxEvaluations();
 	}
 
@@ -222,16 +222,23 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 		}
 	}
 
-	/** {@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	protected void initProgress() {
 		this.numberEvaluations = getMaxPopulationSize();
 	}
 
-	/** {@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	protected void updateProgress() {
 		this.numberEvaluations += getMaxPopulationSize();
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public String getStatusOfExecution() {
+		String text = "Number of evaluations: " + this.numberEvaluations + " / " + this.maxEvaluations;
+		return text;
 	}
 
 }

@@ -51,6 +51,11 @@ public class CostConstructionProblem implements Problem<IntegerSolution> {
 		initialize();
 	}
 
+	/**
+	 * Initialize values needed to the problem.
+	 * @throws IOException
+	 * @throws EpanetException
+	 */
 	private void initialize() throws IOException, EpanetException {
 		this.numberOfVariables = epanet.ENgetcount(Components.EN_LINKCOUNT);
 		GamaParser gamaParser = new GamaParser();
@@ -58,26 +63,31 @@ public class CostConstructionProblem implements Problem<IntegerSolution> {
 		this.lowerBound = 1;
 		this.upperBound = gamas.size();
 
-		this.LenghtLinks = getLenghtLink(epanet);
+		this.LenghtLinks = getLengthLink(epanet);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int getNumberOfVariables() {
 		return numberOfVariables;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int getNumberOfObjectives() {
 		return numberOfObjectives;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public int getNumberOfConstraints() {
 		return numberOfConstrains;
 	}
 
+	/** {@inheritDoc} */
 	@Override
-	public void evaluate(IntegerSolution solution) throws EpanetException { // Puede ser necesario agregar la excepcion de epanet
+	public void evaluate(IntegerSolution solution) throws EpanetException { // Puede ser necesario agregar la excepcion
+																			// de epanet
 		MonoObjetiveSolutionEvaluator evaluator = new MonoObjetiveSolutionEvaluator(this.minPressure);
 		double cost = 0;
 
@@ -91,6 +101,7 @@ public class CostConstructionProblem implements Problem<IntegerSolution> {
 		evaluator.evaluate(solution, gamas, epanet);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public IntegerSolution createSolution() {
 		IntegerSolution solution = new IntegerSolution(this);
@@ -100,25 +111,31 @@ public class CostConstructionProblem implements Problem<IntegerSolution> {
 		return solution;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public double getLowerBound(int index) {
 		return lowerBound;
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public double getUpperBound(int index) {
 		return upperBound;
 	}
 
-	private List<Float> getLenghtLink(EpanetAPI epanet) {
+	/**
+	 * Get the length of the link. Use the epanet toolkit.
+	 * 
+	 * @param epanet
+	 * @return
+	 */
+	private List<Float> getLengthLink(EpanetAPI epanet) {
 		ArrayList<Float> length = new ArrayList<Float>();
 		int n_link;
 		try {
 			n_link = epanet.ENgetcount(Components.EN_LINKCOUNT);
-			System.out.println("Numero de links " + n_link);
 			for (int i = 1; i <= n_link; i++) {
 				float[] value = epanet.ENgetlinkvalue(i, LinkParameters.EN_LENGTH);
-				// System.out.println("Link " + i + " : " + value[0]);
 				length.add(value[0]);
 			}
 		} catch (EpanetException e) {
@@ -126,5 +143,13 @@ public class CostConstructionProblem implements Problem<IntegerSolution> {
 		}
 
 		return length;
+	}
+
+	/**
+	 * Override the default method close. It close epanet if is called.
+	 */
+	@Override
+	public void close() throws Exception {
+		epanet.ENclose();
 	}
 }

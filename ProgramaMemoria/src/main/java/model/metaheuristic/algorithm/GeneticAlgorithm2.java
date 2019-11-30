@@ -117,9 +117,8 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	 * <br>
 	 * 
 	 * If you want to set this to 0 to disable the stop condition using this value
-	 * so change first
-	 * {@link #setMaxNumberOfIterationWithoutImprovement} to a
-	 * value other than 0
+	 * so change first {@link #setMaxNumberOfIterationWithoutImprovement} to a value
+	 * other than 0
 	 * 
 	 * @param maxEvaluations the maxEvaluations to set
 	 */
@@ -242,7 +241,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 
 	/** {@inheritDoc} */
 	@Override
-	protected boolean isStoppingConditionReached() {
+	public boolean isStoppingConditionReached() {
 		boolean result = false;
 		if (maxEvaluations > 0) {
 			result = performedEvaluationsNumber >= getMaxEvaluations();
@@ -299,7 +298,6 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	protected void updateProgress() {
 		if (getMaxEvaluations() > 0) {
 			this.performedEvaluationsNumber += getMaxPopulationSize();
-			System.out.println("performedEvaluationsNumber: " + performedEvaluationsNumber);
 		}
 		if (getMaxNumberOfIterationWithoutImprovement() > 0) {
 			// Initialize best solution if it not exist
@@ -313,8 +311,16 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 				this.numberOfIterationWithoutImprovement = 0;
 			}
 			this.numberOfIterationWithoutImprovement++;
-			System.out.println("numberOfIterationWithoutImprovement: " + numberOfIterationWithoutImprovement);
 		}
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public String getStatusOfExecution() {
+		String text = "Number of evaluations: " + this.performedEvaluationsNumber + " / " + this.maxEvaluations + "\n";
+		text += "Number of interation without improvement: " + this.numberOfIterationWithoutImprovement + " / "
+				+ this.maxNumberOfIterationWithoutImprovement;
+		return text;
 	}
 
 }

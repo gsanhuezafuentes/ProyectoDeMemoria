@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import epanet.core.EpanetException;
 import exception.ApplicationException;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.mutation.MutationOperator;
@@ -13,12 +12,11 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.SolutionListUtils;
-import model.metaheuristic.utils.comparator.DominanceComparator;
 
 /**
  * 
- * Class with the implementation of NSGA-II
- *<br><br>
+ * Class with the implementation of NSGA-II <br>
+ * <br>
  * Base on code from https://github.com/jMetal/jMetal
  * 
  * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
@@ -45,7 +43,7 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 
 	protected final int maxEvaluations;
 
-	protected int evaluations;
+	protected int numberOfEvaluations;
 	protected Comparator<S> dominanceComparator;
 
 	protected int matingPoolSize;
@@ -102,7 +100,7 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 	 */
 	@Override
 	protected void initProgress() {
-		evaluations = getMaxPopulationSize();
+		numberOfEvaluations = getMaxPopulationSize();
 	}
 
 	/**
@@ -110,15 +108,15 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 	 */
 	@Override
 	protected void updateProgress() {
-		evaluations += offspringPopulationSize;
+		numberOfEvaluations += offspringPopulationSize;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected boolean isStoppingConditionReached() {
-		return evaluations >= maxEvaluations;
+	public boolean isStoppingConditionReached() {
+		return numberOfEvaluations >= maxEvaluations;
 	}
 
 	/**
@@ -227,5 +225,12 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 			throw new ApplicationException("Wrong number of parents: the remainder if the " + "population size ("
 					+ population.size() + ") is not divisible by " + numberOfParentsForCrossover);
 		}
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public String getStatusOfExecution() {
+		String text = "Number of evaluations: " + this.numberOfEvaluations + " / " + this.maxEvaluations;
+		return text;
 	}
 }

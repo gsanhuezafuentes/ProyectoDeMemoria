@@ -1,9 +1,10 @@
 package model.metaheuristic.operator.mutation;
 
+import annotations.DefaultConstructor;
 import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
-import model.metaheuristic.utils.random.RandomGenerator;
 import model.metaheuristic.utils.random.JavaRandom;
+import model.metaheuristic.utils.random.RandomGenerator;
 
 public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolution> {
 
@@ -13,6 +14,7 @@ public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolut
 	private int range;
 
 	/** Constructor */
+	@DefaultConstructor({"Probability","Range"})
 	public IntegerRangeRandomMutation(double probability, int range) {
 		this(probability, range, () -> JavaRandom.getInstance().nextDouble(),
 				(a, b) -> JavaRandom.getInstance().nextInt(a, b));

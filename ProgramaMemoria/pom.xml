@@ -5,6 +5,7 @@
 	<groupId>ProgramaMemoria</groupId>
 	<artifactId>ProgramaMemoria</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<name>jHawanetFramework</name>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>

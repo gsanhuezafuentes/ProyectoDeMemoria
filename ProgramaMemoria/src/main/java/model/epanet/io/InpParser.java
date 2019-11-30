@@ -8,8 +8,8 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import epanet.core.EpanetException;
 import exception.InputException;
-import model.epanet.EpanetException;
 import model.epanet.element.Network;
 import model.epanet.element.networkcomponent.Emitter;
 import model.epanet.element.networkcomponent.Junction;

@@ -1,5 +1,6 @@
 package model.metaheuristic.operator.mutation;
 
+import annotations.DefaultConstructor;
 import exception.ApplicationException;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.IntegerSolution;
@@ -60,6 +61,7 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 	}
 
 	/** Constructor */
+	@DefaultConstructor({"MutationProbability", "DistributionIndex"})
 	public IntegerPolynomialMutation(double mutationProbability, double distributionIndex) {
 		this(mutationProbability, distributionIndex, () -> JavaRandom.getInstance().nextDouble());
 	}
