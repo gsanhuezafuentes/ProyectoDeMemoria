@@ -20,6 +20,8 @@ mvn clean package
 ``` 
 4. Despues de terminar la ejecución del comando el lanzador se encontrara en target/jfx/
 
+5. Para volver a compilar solo hace falta ejecutar nuevamente el paso 3.
+
 ## Otras maneras de compilar
 Compile with mvn jfx:jar to create a jar -> este comando realizaria lo mismo que mvn package
 
