@@ -22,6 +22,8 @@ mvn clean package
 
 5. Para volver a compilar solo hace falta ejecutar nuevamente el paso 3.
 
+**NOTA**: Para poder ejecutar desde un IDE que permita proyectos maven se necesita haber realizado hasta el paso 2.
+
 ## Otras maneras de compilar
 Compile with mvn jfx:jar to create a jar -> este comando realizaria lo mismo que mvn package
 
