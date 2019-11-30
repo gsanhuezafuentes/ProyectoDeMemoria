@@ -25,7 +25,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import model.epanet.element.Network;
-import model.epanet.parser.InpParser;
+import model.epanet.io.InpParser;
 import model.metaheuristic.algorithm.Algorithm;
 import view.NetworkComponent;
 import view.problems.ProblemRegistrar;
@@ -202,7 +202,6 @@ public class MainWindowController implements Initializable {
 		});
 
 		alert.initStyle(StageStyle.UTILITY);
-		System.out.println("Ventana ql no se mostro");
 		alert.show();
 	}
 }

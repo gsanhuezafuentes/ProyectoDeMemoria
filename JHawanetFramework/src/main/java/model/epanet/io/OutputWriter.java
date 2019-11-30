@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import exception.InputException;
-import model.epanet.EpanetException;
 import model.epanet.element.Network;
 
 public interface OutputWriter {

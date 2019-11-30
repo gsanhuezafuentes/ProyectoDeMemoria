@@ -853,7 +853,7 @@ public class InpParser implements InputParser {
 		Label label = new Label();
 		double x = Double.parseDouble(tokens[0]);
 		double y = Double.parseDouble(tokens[1]);
-		label.setPoint(new Point(x, y));
+		label.setPosition(new Point(x, y));
 		label.setLabel(String.format("%s", tokens[2]));
 		if (tokens.length == 4) {
 			Node node = net.getNode(tokens[4]);
