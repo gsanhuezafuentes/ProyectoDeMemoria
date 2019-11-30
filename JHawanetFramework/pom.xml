@@ -3,14 +3,21 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ProgramaMemoria</groupId>
-	<artifactId>ProgramaMemoria</artifactId>
+	<artifactId>jHawanetFramework</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>jHawanetFramework</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
 	<build>
-		<sourceDirectory>src</sourceDirectory>
 		<resources>
 			<resource>
-				<directory>src/main/java</directory>
+				<directory>${project.basedir}\src\main\resources</directory>
+			</resource>
+			<resource>
+				<directory>${project.basedir}\src\main\java</directory>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
@@ -33,7 +40,7 @@
 					<vendor>YourCompany</vendor>
 					<mainClass>application.Main</mainClass>
 					<bundleArguments>
-						<icon>${project.basedir}/src/main/deploy/package/windows/Prueba.ico</icon>
+						<icon>${project.basedir}/src/main/deploy/package/windows/icon.ico</icon>
 					</bundleArguments>
 				</configuration>
 			</plugin>
@@ -61,12 +68,14 @@
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<version>5.5.2</version>
+			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<version>3.1.0</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<repositories>
