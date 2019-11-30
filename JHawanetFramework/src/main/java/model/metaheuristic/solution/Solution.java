@@ -100,7 +100,7 @@ public interface Solution<Type> {
 	 * 
 	 * @return A Map with the keys and his respectives values.
 	 */
-	public Map getAttributes();
+	public Map<Object, Object> getAttributes();
 
 	/**
 	 * Get the number of variables

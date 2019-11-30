@@ -14,7 +14,7 @@ import epanet.core.NodeParameters;
 import epanet.core.NodeTypes;
 import model.epanet.element.Gama;
 import model.epanet.io.GamaParser;
-import model.metaheuristic.problem.CostConstructionProblem;
+import model.metaheuristic.problem.InversionCostProblem;
 import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.utils.solutionattribute.NumberOfViolatedConstraints;
 import model.metaheuristic.utils.solutionattribute.OverallConstraintViolation;
@@ -94,7 +94,7 @@ public class MonoObjetiveSolutionEvaluator {
 
 //		IntegerSolution solution = new IntegerSolution(new CostConstructionProblem(epanet, "inp/hanoiHW.Gama", 30));
 		epanet.ENopen("inp/ny.inp", "inp/ny.rpt", "");
-		IntegerSolution solution = new IntegerSolution(new CostConstructionProblem(epanet, "inp/NY-HW.Gama", 30));
+		IntegerSolution solution = new IntegerSolution(new InversionCostProblem(epanet, "inp/NY-HW.Gama", 30));
 
 //		for (int i = 0; i < 34; i++) {
 //			solution.setVariable(i, 6);

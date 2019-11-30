@@ -151,7 +151,6 @@ public class ReflectionUtils {
 	 *                              fulfilled
 	 */
 	public static void validateOperators(Class<? extends Registrable> registrable) throws ApplicationException {
-		Class<?> objectClass = registrable.getClass();
 		Constructor<?> constructor = getConstructor(registrable);
 
 		Parameters annotation = constructor.getAnnotation(Parameters.class);

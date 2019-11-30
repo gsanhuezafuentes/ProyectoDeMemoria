@@ -17,7 +17,7 @@ import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
 import model.metaheuristic.utils.random.JavaRandom;
 
-public class CostConstructionProblem implements Problem<IntegerSolution> {
+public class InversionCostProblem implements Problem<IntegerSolution> {
 
 	private int numberOfVariables;
 	private int numberOfObjectives;
@@ -34,7 +34,7 @@ public class CostConstructionProblem implements Problem<IntegerSolution> {
 
 	private int minPressure;
 
-	public CostConstructionProblem(EpanetAPI epanet, String networkGama, int minPressure)
+	public InversionCostProblem(EpanetAPI epanet, String networkGama, int minPressure)
 			throws IOException, EpanetException {
 		if (epanet == null) {
 			throw new ApplicationException("EpanetAPI can't be null in CostConstructionProblem");

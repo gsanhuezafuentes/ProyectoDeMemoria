@@ -42,6 +42,11 @@
 					<bundleArguments>
 						<icon>${project.basedir}/src/main/deploy/package/windows/icon.ico</icon>
 					</bundleArguments>
+					<allPermissions>true</allPermissions>
+					<additionalAppResources>
+						${project.basedir}/lib/AdditionalResources
+					</additionalAppResources>
+					<copyAdditionalAppResourcesToJar>true</copyAdditionalAppResourcesToJar>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -58,11 +63,9 @@
 			<version>5.4.0</version>
 		</dependency>
 		<dependency>
-			<groupId>epanet</groupId>
+			<groupId>epajava</groupId>
 			<artifactId>epajava</artifactId>
 			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/epajava.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>

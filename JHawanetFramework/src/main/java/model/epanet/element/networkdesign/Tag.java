@@ -71,6 +71,6 @@ public class Tag {
 		txt += getType().getName() + "\t";
 		txt += getId() + "\t";
 		txt += getLabel();
-		return super.toString();
+		return txt;
 	}
 }

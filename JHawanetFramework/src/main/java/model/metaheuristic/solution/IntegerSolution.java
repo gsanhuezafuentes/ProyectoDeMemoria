@@ -65,10 +65,8 @@ public class IntegerSolution implements Solution<Integer> {
 
 		this.problem = problem;
 		this.attributes = new HashMap<Object, Object>();
-		this.desicionVariables = new ArrayList<Integer>(problem.getNumberOfVariables()); // Cambiar por mientras esta
-																							// configurado para solo un
-		// objetivos
-		this.objectives = new double[1]; // Cambiar por mientras esta configurado para solo un objetivos
+		this.desicionVariables = new ArrayList<Integer>(problem.getNumberOfVariables()); 
+		this.objectives = new double[problem.getNumberOfObjectives()];
 
 		initializeObjectives();
 		initializeDecisionVariables();
@@ -158,7 +156,7 @@ public class IntegerSolution implements Solution<Integer> {
 
 	/** {@inheritDoc} */
 	@Override
-	public Map getAttributes() {
+	public Map<Object, Object> getAttributes() {
 		return attributes;
 	}
 

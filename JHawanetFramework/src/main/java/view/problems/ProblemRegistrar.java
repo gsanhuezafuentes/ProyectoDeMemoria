@@ -84,7 +84,7 @@ public class ProblemRegistrar {
 
 	private ProblemRegistrar() {
 		this.problems = new ArrayList<>();
-		this.problems.add(CostProblem.class);
+		this.problems.add(InversionCostRegister.class);
 
 	}
 

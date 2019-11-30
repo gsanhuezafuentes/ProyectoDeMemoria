@@ -22,7 +22,7 @@ import model.metaheuristic.operator.mutation.IntegerSimpleRandomMutation;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.UniformSelection;
-import model.metaheuristic.problem.CostConstructionProblem;
+import model.metaheuristic.problem.InversionCostProblem;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.IntegerSolution;
 
@@ -34,7 +34,7 @@ import model.metaheuristic.solution.IntegerSolution;
  * The sistem read this class using reflection to get the annotation and create
  * a GUI to configure the algorithm and inject the value to injectable method.
  */
-public class CostProblem implements Registrable {
+public class InversionCostRegister implements Registrable {
 	private SelectionOperator<List<IntegerSolution>, List<IntegerSolution>> selection;
 	private CrossoverOperator<IntegerSolution> crossover;
 	private MutationOperator<IntegerSolution> mutation;
@@ -73,7 +73,7 @@ public class CostProblem implements Registrable {
 			numbers = { @NumberInput(displayName = "Number of iteration without improvement"),
 					@NumberInput(displayName = "Max number of evaluation") })
 	@SuppressWarnings("unchecked")
-	public CostProblem(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama,
+	public InversionCostRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama,
 			int numberWithoutImprovement, int maxEvaluations) {
 		this.selection = (SelectionOperator<List<IntegerSolution>, List<IntegerSolution>>) selectionOperator;
 		this.crossover = (CrossoverOperator<IntegerSolution>) crossoverOperator;
@@ -97,7 +97,7 @@ public class CostProblem implements Registrable {
 		if (this.gama == null) {
 			throw new ApplicationException("There isn't gama file");
 		}
-		Problem<IntegerSolution> problem = new CostConstructionProblem(epanet, this.gama.getAbsolutePath(), 30);
+		Problem<IntegerSolution> problem = new InversionCostProblem(epanet, this.gama.getAbsolutePath(), 30);
 		algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10, selection, crossover, mutation);
 		algorithm.setMaxNumberOfIterationWithoutImprovement(numberWithoutImprovement);
 		algorithm.setMaxEvaluations(maxEvaluations);
