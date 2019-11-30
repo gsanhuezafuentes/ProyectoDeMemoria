@@ -22,5 +22,6 @@ mvn clean package
 
 ## Otras maneras de compilar
 Compile with mvn jfx:jar to create a jar -> este comando realizaria lo mismo que mvn package
+
 Compile with mvn jfx:native to create a native -> genera un exe y si estan instalados los programas correctos tambien generaria un instalador.
 
