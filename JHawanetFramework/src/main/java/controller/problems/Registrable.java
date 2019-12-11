@@ -1,4 +1,4 @@
-package view.problems;
+package controller.problems;
 
 import annotations.NewProblem;
 import annotations.Parameters;

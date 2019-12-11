@@ -1,4 +1,4 @@
-package view;
+package controller;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -19,6 +19,9 @@ import annotations.NumberInput;
 import annotations.OperatorInput;
 import annotations.OperatorOption;
 import annotations.Parameters;
+import controller.problems.Registrable;
+import controller.utils.AlgorithmCreationNotification;
+import controller.utils.ReflectionUtils;
 import exception.ApplicationException;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
@@ -40,10 +43,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import view.problems.Registrable;
-import view.utils.AlgorithmCreationNotification;
 import view.utils.CustomDialogs;
-import view.utils.ReflectionUtils;
 
 public class ConfigurationDynamicWindow extends VBox {
 

@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.problems.ProblemRegistrar;
+import controller.problems.Registrable;
+import controller.utils.AlgorithmTask;
 import epanet.core.EpanetException;
 import exception.InputException;
 import javafx.beans.property.BooleanProperty;
@@ -28,9 +31,6 @@ import model.epanet.element.Network;
 import model.epanet.io.InpParser;
 import model.metaheuristic.algorithm.Algorithm;
 import view.NetworkComponent;
-import view.problems.ProblemRegistrar;
-import view.problems.Registrable;
-import view.utils.AlgorithmTask;
 import view.utils.CustomDialogs;
 
 public class MainWindowController implements Initializable {

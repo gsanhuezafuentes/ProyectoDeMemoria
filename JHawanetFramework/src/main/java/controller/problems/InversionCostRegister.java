@@ -1,4 +1,4 @@
-package view.problems;
+package controller.problems;
 
 import java.io.File;
 import java.util.List;
@@ -92,7 +92,7 @@ public class InversionCostRegister implements Registrable {
 		EpanetAPI epanet;
 		GeneticAlgorithm2<IntegerSolution> algorithm = null;
 		epanet = new EpanetAPI();
-		epanet.ENopen(inpPath, "inp/ejecucion.rpt", "");
+		epanet.ENopen(inpPath, "ejecucion.rpt", "");
 
 		if (this.gama == null) {
 			throw new ApplicationException("There isn't gama file");

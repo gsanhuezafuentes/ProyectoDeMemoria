@@ -1,6 +1,6 @@
-package view.utils;
+package controller.utils;
 
-import view.problems.Registrable;
+import controller.problems.Registrable;
 
 /**
  * It is a event called when the registrable factory of a specific problem with specific configuration is created.

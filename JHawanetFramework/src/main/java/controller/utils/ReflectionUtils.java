@@ -1,4 +1,4 @@
-package view.utils;
+package controller.utils;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -8,8 +8,8 @@ import annotations.NewProblem;
 import annotations.OperatorInput;
 import annotations.OperatorOption;
 import annotations.Parameters;
+import controller.problems.Registrable;
 import exception.ApplicationException;
-import view.problems.Registrable;
 
 /**
  * Utility class with method to get info of class using reflection.

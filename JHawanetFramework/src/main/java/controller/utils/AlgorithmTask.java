@@ -1,4 +1,4 @@
-package view.utils;
+package controller.utils;
 
 import javafx.concurrent.Task;
 import model.metaheuristic.algorithm.Algorithm;

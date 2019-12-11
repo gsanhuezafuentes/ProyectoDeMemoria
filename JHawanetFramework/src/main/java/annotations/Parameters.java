@@ -7,7 +7,7 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import view.problems.Registrable;
+import controller.problems.Registrable;
 
 /**
  * It annotation has to be used by {@link Registrable} object. And denota the

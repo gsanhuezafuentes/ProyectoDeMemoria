@@ -1,4 +1,4 @@
-package view.problems;
+package controller.problems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,9 @@ import annotations.NumberInput;
 import annotations.OperatorInput;
 import annotations.OperatorOption;
 import annotations.Parameters;
+import controller.ConfigurationDynamicWindow;
+import controller.utils.AlgorithmCreationNotification;
+import controller.utils.ReflectionUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
@@ -16,9 +19,6 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import view.ConfigurationDynamicWindow;
-import view.utils.AlgorithmCreationNotification;
-import view.utils.ReflectionUtils;
 
 /**
  * In this class are added the problems that will be added to menu using

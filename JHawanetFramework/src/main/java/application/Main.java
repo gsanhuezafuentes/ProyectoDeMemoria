@@ -3,25 +3,12 @@ package application;
 import java.io.IOException;
 
 import controller.MainWindowController;
+import controller.problems.ProblemRegistrar;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-//import model.metaheuristic.algorithm.Algorithm;
-//import model.metaheuristic.algorithm.GeneticAlgorithm;
-//import model.metaheuristic.algorithm.GeneticAlgorithm2;
-//import model.metaheuristic.operator.crossover.IntegerSBXCrossover;
-//import model.metaheuristic.operator.crossover.IntegerSinglePointCrossover;
-//import model.metaheuristic.operator.mutation.IntegerPolynomialMutation;
-//import model.metaheuristic.operator.mutation.IntegerRangeRandomMutation;
-//import model.metaheuristic.operator.mutation.IntegerSimpleRandomMutation;
-//import model.metaheuristic.operator.selection.TournamentSelection;
-//import model.metaheuristic.operator.selection.UniformSelection;
-//import model.metaheuristic.problem.CostConstructionProblem;
-//import model.metaheuristic.problem.Problem;
-//import model.metaheuristic.solution.IntegerSolution;
-import view.problems.ProblemRegistrar;
 
 /**
  * This class create the principal windows and get his controller. When the
