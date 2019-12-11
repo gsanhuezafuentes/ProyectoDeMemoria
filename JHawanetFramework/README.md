@@ -29,3 +29,10 @@ Compile with mvn jfx:jar to create a jar -> este comando realizaria lo mismo que
 
 Compile with mvn jfx:native to create a native -> genera un exe y si estan instalados los programas correctos tambien generaria un instalador.
 
+## Abrir proyecto con eclipse
+
+Abrir el proyecto desde eclipse y asegurarse de que el build path este de la siguiente manera:
+
+![BuildPath](assets/BuildPath.png)
+
+### Nota: Assest es solo una carpeta donde se suben las imagenes. No es usada por el proyecto.
