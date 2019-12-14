@@ -3,7 +3,7 @@ package model.epanet.element.networkdesign;
 import model.epanet.element.networkcomponent.Node;
 import model.epanet.element.networkcomponent.Point;
 
-public class Label {
+public final class Label {
 	Point position;
 	String label;
 	Node anchorNode;

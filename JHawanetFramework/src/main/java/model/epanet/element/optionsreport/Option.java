@@ -1,6 +1,6 @@
 package model.epanet.element.optionsreport;
 
-public class Option {
+public final class Option {
 	private String code;
 
 	/**

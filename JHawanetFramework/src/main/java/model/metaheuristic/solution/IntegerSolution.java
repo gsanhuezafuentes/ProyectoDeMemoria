@@ -65,7 +65,7 @@ public class IntegerSolution implements Solution<Integer> {
 
 		this.problem = problem;
 		this.attributes = new HashMap<Object, Object>();
-		this.desicionVariables = new ArrayList<Integer>(problem.getNumberOfVariables()); 
+		this.desicionVariables = new ArrayList<Integer>(problem.getNumberOfVariables());
 		this.objectives = new double[problem.getNumberOfObjectives()];
 
 		initializeObjectives();
@@ -195,6 +195,7 @@ public class IntegerSolution implements Solution<Integer> {
 
 	/**
 	 * Compare objectives and decision variables
+	 * 
 	 * @param o
 	 * @return
 	 */
@@ -264,5 +265,13 @@ public class IntegerSolution implements Solution<Integer> {
 		}
 
 		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = Arrays.hashCode(objectives);
+		result = 31 * result + desicionVariables.hashCode();
+		result = 31 * result + attributes.hashCode();
+		return result;
 	}
 }

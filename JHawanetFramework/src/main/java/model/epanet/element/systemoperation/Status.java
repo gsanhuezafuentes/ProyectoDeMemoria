@@ -1,6 +1,6 @@
 package model.epanet.element.systemoperation;
 
-public class Status {
+public final class Status {
 //	public static enum Setting {
 //		OPEN("OPEN"), CLOSE("OPEN");
 //

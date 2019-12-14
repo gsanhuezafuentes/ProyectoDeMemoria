@@ -1,6 +1,6 @@
 package model.epanet.element.systemoperation;
 
-public class Energy {
+public final class Energy {
 	String code;
 
 	/**

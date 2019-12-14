@@ -2,7 +2,7 @@ package model.epanet.element.systemoperation;
 
 import exception.ApplicationException;
 
-public class Control {
+public final class Control {
 	public static enum ControlType {
 		IF_ABOVE("IF_ABOVE"), IF_BELOW("IF_BELOW"), AT_TIME("AT_TIME"), AT_CLOCKTIME("AT_CLOCKTIME");
 

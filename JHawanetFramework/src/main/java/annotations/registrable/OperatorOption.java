@@ -1,4 +1,4 @@
-package annotations;
+package annotations.registrable;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;

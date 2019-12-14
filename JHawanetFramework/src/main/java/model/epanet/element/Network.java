@@ -35,7 +35,7 @@ import model.epanet.element.waterquality.Quality;
 import model.epanet.element.waterquality.Reaction;
 import model.epanet.element.waterquality.Source;
 
-public class Network {
+public final class Network {
 	/*********************************************************
 	 * Network Components
 	 *********************************************************/

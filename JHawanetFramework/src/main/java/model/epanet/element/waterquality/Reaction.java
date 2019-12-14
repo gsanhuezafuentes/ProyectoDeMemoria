@@ -1,6 +1,6 @@
 package model.epanet.element.waterquality;
 
-public class Reaction {
+public final class Reaction {
 	private String Code;
 
 	/**

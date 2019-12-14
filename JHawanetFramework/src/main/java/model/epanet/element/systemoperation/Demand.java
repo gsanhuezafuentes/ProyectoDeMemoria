@@ -1,6 +1,6 @@
 package model.epanet.element.systemoperation;
 
-public class Demand {
+public final class Demand {
 	String id;
 	double demand;
 	Pattern demandPatern;

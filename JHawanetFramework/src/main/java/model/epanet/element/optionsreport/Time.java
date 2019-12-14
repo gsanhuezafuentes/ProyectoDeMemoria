@@ -1,6 +1,6 @@
 package model.epanet.element.optionsreport;
 
-public class Time {
+public final class Time {
 	String code;
 
 	/**

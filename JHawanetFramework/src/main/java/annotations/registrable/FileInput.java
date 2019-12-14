@@ -1,4 +1,4 @@
-package annotations;
+package annotations.registrable;
 
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.RetentionPolicy.CLASS;

@@ -1,6 +1,6 @@
 package model.epanet.element.waterquality;
 
-public class Mixing {
+public final class Mixing {
 
 	public static enum MixingModel {
 		MIXED("MIXED"), TWOCOMP("2COM"), FIFO("FIFO"), LIFO("LIFO");

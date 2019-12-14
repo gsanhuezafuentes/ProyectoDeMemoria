@@ -1,6 +1,6 @@
 package model.epanet.element.networkcomponent;
 
-public class Emitter {
+public final class Emitter {
 	private String junctionID;
 	private double coefficient;
 

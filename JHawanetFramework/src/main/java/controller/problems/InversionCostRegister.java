@@ -3,12 +3,12 @@ package controller.problems;
 import java.io.File;
 import java.util.List;
 
-import annotations.FileInput;
-import annotations.NewProblem;
-import annotations.NumberInput;
-import annotations.OperatorInput;
-import annotations.OperatorOption;
-import annotations.Parameters;
+import annotations.registrable.FileInput;
+import annotations.registrable.NewProblem;
+import annotations.registrable.NumberInput;
+import annotations.registrable.OperatorInput;
+import annotations.registrable.OperatorOption;
+import annotations.registrable.Parameters;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
 import model.metaheuristic.algorithm.Algorithm;
@@ -82,6 +82,7 @@ public class InversionCostRegister implements Registrable {
 		this.maxEvaluations = maxEvaluations;
 		this.gama = gama;
 	}
+	
 
 	/** {@inheritDoc} */
 	@Override

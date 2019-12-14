@@ -3,7 +3,7 @@ package model.epanet.element.systemoperation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pattern {
+public final class Pattern {
 	private String id;
 	private List<Double> multipliers;
 	

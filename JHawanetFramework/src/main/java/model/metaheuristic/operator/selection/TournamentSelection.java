@@ -2,6 +2,7 @@ package model.metaheuristic.operator.selection;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import exception.ApplicationException;
 import model.metaheuristic.solution.Solution;
@@ -59,9 +60,8 @@ public class TournamentSelection<S extends Solution<?>> implements SelectionOper
 	@Override
 	/** Execute() method */
 	public S execute(List<S> solutionList) {
-		if (null == solutionList) {
-			throw new ApplicationException("The solution list is null");
-		} else if (solutionList.isEmpty()) {
+		Objects.requireNonNull(solutionList);
+		if (solutionList.isEmpty()) {
 			throw new ApplicationException("The solution list is empty");
 		}
 

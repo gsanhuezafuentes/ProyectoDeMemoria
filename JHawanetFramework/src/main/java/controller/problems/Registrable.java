@@ -1,7 +1,7 @@
 package controller.problems;
 
-import annotations.NewProblem;
-import annotations.Parameters;
+import annotations.registrable.NewProblem;
+import annotations.registrable.Parameters;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.operator.Operator;
 

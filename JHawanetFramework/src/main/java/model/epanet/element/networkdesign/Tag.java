@@ -1,6 +1,6 @@
 package model.epanet.element.networkdesign;
 
-public class Tag {
+public final class Tag {
 	public static enum TagType {
 		NODE("NODE"), LINK("LINK");
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import exception.ApplicationException;
 import model.metaheuristic.solution.Solution;
@@ -70,9 +71,8 @@ public class RankingAndCrowdingSelection<S extends Solution<?>> implements Selec
 
 	/** Execute() method */
 	public List<S> execute(List<S> solutionList) {
-		if (null == solutionList) {
-			throw new ApplicationException("The solution list is null");
-		} else if (solutionList.isEmpty()) {
+		Objects.requireNonNull(solutionList);
+		if (solutionList.isEmpty()) {
 			throw new ApplicationException("The solution list is empty");
 		} else if (solutionList.size() < solutionsToSelect) {
 			throw new ApplicationException("The population size (" + solutionList.size() + ") is smaller than"

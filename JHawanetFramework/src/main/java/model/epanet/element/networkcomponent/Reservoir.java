@@ -2,7 +2,7 @@ package model.epanet.element.networkcomponent;
 
 import model.epanet.element.systemoperation.Pattern;
 
-public class Reservoir extends Node {
+public final class Reservoir extends Node {
 	private double head;
 	private Pattern pattern;
 

@@ -1,6 +1,6 @@
 package model.epanet.element.networkcomponent;
 
-public class Valve extends Link {
+public final class Valve extends Link {
 
 	private Double diameter;
 	private String type;

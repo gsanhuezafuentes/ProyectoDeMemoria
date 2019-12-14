@@ -3,7 +3,7 @@ package model.metaheuristic.operator.crossover;
 import java.util.ArrayList;
 import java.util.List;
 
-import annotations.DefaultConstructor;
+import annotations.operators.DefaultConstructor;
 import exception.ApplicationException;
 import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.utils.random.JavaRandom;

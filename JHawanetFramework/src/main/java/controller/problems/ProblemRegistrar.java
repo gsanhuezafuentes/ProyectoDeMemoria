@@ -3,12 +3,12 @@ package controller.problems;
 import java.util.ArrayList;
 import java.util.List;
 
-import annotations.FileInput;
-import annotations.NewProblem;
-import annotations.NumberInput;
-import annotations.OperatorInput;
-import annotations.OperatorOption;
-import annotations.Parameters;
+import annotations.registrable.FileInput;
+import annotations.registrable.NewProblem;
+import annotations.registrable.NumberInput;
+import annotations.registrable.OperatorInput;
+import annotations.registrable.OperatorOption;
+import annotations.registrable.Parameters;
 import controller.ConfigurationDynamicWindow;
 import controller.utils.AlgorithmCreationNotification;
 import controller.utils.ReflectionUtils;
@@ -120,8 +120,7 @@ public class ProblemRegistrar {
 			AlgorithmCreationNotification algorithmEvent) {
 		Stage stage = new Stage();
 		stage.setTitle("Algorithm Configuration");
-		ConfigurationDynamicWindow contentLayout = new ConfigurationDynamicWindow(registrable, stage);
-		contentLayout.setAlgorithmCreationNotification(algorithmEvent);
+		ConfigurationDynamicWindow contentLayout = new ConfigurationDynamicWindow(registrable, stage, algorithmEvent);
 		Scene scene = new Scene(contentLayout);
 		stage.setScene(scene);
 		stage.sizeToScene();

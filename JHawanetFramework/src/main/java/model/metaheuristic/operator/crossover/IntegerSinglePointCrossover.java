@@ -2,8 +2,9 @@ package model.metaheuristic.operator.crossover;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import annotations.DefaultConstructor;
+import annotations.operators.DefaultConstructor;
 import exception.ApplicationException;
 import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
@@ -42,6 +43,7 @@ public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSol
 	/* Getter */
 	/**
 	 * Get the crossover probability
+	 * 
 	 * @return the crossover probability
 	 */
 	public double getCrossoverProbability() {
@@ -51,6 +53,7 @@ public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSol
 	/* Setter */
 	/**
 	 * Set the crossover probability
+	 * 
 	 * @param crossoverProbability the crossover probability
 	 */
 	public void setCrossoverProbability(double crossoverProbability) {
@@ -62,9 +65,8 @@ public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSol
 	 */
 	@Override
 	public List<IntegerSolution> execute(List<IntegerSolution> solutions) {
-		if (solutions == null) {
-			throw new ApplicationException("Null parameter");
-		} else if (solutions.size() != 2) {
+		Objects.requireNonNull(solutions);
+		if (solutions.size() != 2) {
 			throw new ApplicationException("There must be two parents instead of " + solutions.size());
 		}
 
@@ -73,9 +75,10 @@ public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSol
 
 	/**
 	 * Do the crossover over {@code parent1} and {@code parent2}
+	 * 
 	 * @param probability the crossover probability
-	 * @param parent1 the first parent
-	 * @param parent2 the second parent.
+	 * @param parent1     the first parent
+	 * @param parent2     the second parent.
 	 * @return the children
 	 */
 	private List<IntegerSolution> doCrossover(double probability, IntegerSolution parent1, IntegerSolution parent2) {

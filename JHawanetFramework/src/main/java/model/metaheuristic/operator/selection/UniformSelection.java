@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import annotations.DefaultConstructor;
+import annotations.operators.DefaultConstructor;
 import exception.ApplicationException;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.comparator.DominanceComparator;

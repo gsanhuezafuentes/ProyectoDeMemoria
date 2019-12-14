@@ -4,7 +4,7 @@ package model.epanet.element.systemoperation;
  * 
  *
  */
-public class Rule {
+public final class Rule {
 	String ruleId;
 	String code;
 

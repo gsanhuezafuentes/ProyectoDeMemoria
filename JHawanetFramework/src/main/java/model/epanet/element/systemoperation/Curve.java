@@ -3,7 +3,7 @@ package model.epanet.element.systemoperation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Curve {
+public final class Curve {
 
 //	public static enum Type {
 //		PUMP("PUMP"), EFFICIENCY("EFFICIENCY"), VOLUME("VOLUME"), HEADLOSS("HEADLOSS");

@@ -1,6 +1,8 @@
 package model.metaheuristic.operator.mutation;
 
-import annotations.DefaultConstructor;
+import java.util.Objects;
+
+import annotations.operators.DefaultConstructor;
 import exception.ApplicationException;
 import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
@@ -55,9 +57,7 @@ public class IntegerSimpleRandomMutation implements MutationOperator<IntegerSolu
 	 */
 	@Override
 	public IntegerSolution execute(IntegerSolution solution) {
-		if (null == solution) {
-			throw new ApplicationException("Null parameter");
-		}
+		Objects.requireNonNull(solution);
 
 		doMutation(mutationProbability, solution);
 

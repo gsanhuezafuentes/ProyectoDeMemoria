@@ -1,6 +1,6 @@
 package model.epanet.element.networkdesign;
 
-public class Backdrop {
+public final class Backdrop {
 	String code;
 
 	/**

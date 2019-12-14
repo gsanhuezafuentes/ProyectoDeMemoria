@@ -2,7 +2,7 @@ package model.epanet.element.waterquality;
 
 import model.epanet.element.systemoperation.Pattern;
 
-public class Source {
+public final class Source {
 
 	public static enum SourceType {
 		CONCEN("CONCEN"), MASS("MASS"), FLOWPACED("FLOWPACED"), SETPOINT("SETPOINT");

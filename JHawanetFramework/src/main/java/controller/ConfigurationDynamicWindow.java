@@ -8,17 +8,18 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import annotations.DefaultConstructor;
-import annotations.FileInput;
-import annotations.NumberInput;
-import annotations.OperatorInput;
-import annotations.OperatorOption;
-import annotations.Parameters;
+import annotations.operators.DefaultConstructor;
+import annotations.registrable.FileInput;
+import annotations.registrable.NumberInput;
+import annotations.registrable.OperatorInput;
+import annotations.registrable.OperatorOption;
+import annotations.registrable.Parameters;
 import controller.problems.Registrable;
 import controller.utils.AlgorithmCreationNotification;
 import controller.utils.ReflectionUtils;
@@ -73,9 +74,10 @@ public class ConfigurationDynamicWindow extends VBox {
 	// this list is the same that the order in Parameters annotation (operators)
 	private List<ComboBox<Class<?>>> comboBoxesAdded;
 
-	public ConfigurationDynamicWindow(Class<? extends Registrable> registrable, Stage thisWindow) {
-		this.problemClass = registrable;
-
+	public ConfigurationDynamicWindow(Class<? extends Registrable> registrable, Stage thisWindow, AlgorithmCreationNotification algorithmEvent) {
+				
+		this.problemClass = Objects.requireNonNull(registrable);
+		this.algorithmEvent = Objects.requireNonNull(algorithmEvent);
 		this.gridLayout = new GridPane();
 		this.gridLayout.setHgap(defaultSpace);
 		this.gridLayout.setVgap(defaultSpace);
@@ -391,15 +393,6 @@ public class ConfigurationDynamicWindow extends VBox {
 	}
 
 	/**
-	 * Add a callback to notify when the algorithm is created.
-	 * 
-	 * @param algorithmEvent
-	 */
-	public void setAlgorithmCreationNotification(AlgorithmCreationNotification algorithmEvent) {
-		this.algorithmEvent = algorithmEvent;
-	}
-
-	/**
 	 * Is a class to fire the notification when the algorithm is ready.
 	 * 
 	 * @param registrable the algorithm
@@ -407,9 +400,7 @@ public class ConfigurationDynamicWindow extends VBox {
 	 *                              callback
 	 */
 	private void notifyAlgorithmCreation(Registrable registrable) throws ApplicationException {
-		if (algorithmEvent == null) {
-			throw new ApplicationException("There isn't register this notify function in " + this.getClass().getName());
-		}
+
 		algorithmEvent.notify(registrable);
 	}
 

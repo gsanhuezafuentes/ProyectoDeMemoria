@@ -2,7 +2,7 @@ package model.epanet.element.networkcomponent;
 
 import model.epanet.element.systemoperation.Pattern;
 
-public class Junction extends Node {
+public final class Junction extends Node {
 	private double elev;
 	private double demand;
 	private Pattern pattern;

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import epanet.core.Components;
 import epanet.core.EpanetAPI;
@@ -36,11 +37,10 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 
 	public InversionCostProblem(EpanetAPI epanet, String networkGama, int minPressure)
 			throws IOException, EpanetException {
-		if (epanet == null) {
-			throw new ApplicationException("EpanetAPI can't be null in CostConstructionProblem");
-		}
-		if (networkGama == null || networkGama.equals("")) {
-			throw new ApplicationException("The parameter networkGama neither can't be null nor empty");
+		Objects.requireNonNull(epanet, "EpanetAPI can't be null in CostConstructionProblem");
+		Objects.requireNonNull(networkGama);
+		if (networkGama.equals("")) {
+			throw new ApplicationException("The parameter networkGama can't be empty");
 		}
 		this.numberOfConstrains = 1;
 		this.numberOfObjectives = 1;
@@ -53,6 +53,7 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 
 	/**
 	 * Initialize values needed to the problem.
+	 * 
 	 * @throws IOException
 	 * @throws EpanetException
 	 */

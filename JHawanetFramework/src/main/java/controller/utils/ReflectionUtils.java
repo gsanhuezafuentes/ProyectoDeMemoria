@@ -2,12 +2,13 @@ package controller.utils;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
+import java.util.HashSet;
 
-import annotations.DefaultConstructor;
-import annotations.NewProblem;
-import annotations.OperatorInput;
-import annotations.OperatorOption;
-import annotations.Parameters;
+import annotations.operators.DefaultConstructor;
+import annotations.registrable.NewProblem;
+import annotations.registrable.OperatorInput;
+import annotations.registrable.OperatorOption;
+import annotations.registrable.Parameters;
 import controller.problems.Registrable;
 import exception.ApplicationException;
 
@@ -16,10 +17,11 @@ import exception.ApplicationException;
  *
  */
 public class ReflectionUtils {
+	private static HashSet<Class<?>> verifiedOperators = new HashSet<>();
 
 	/**
-	 * Read the {@link NewProblem} annotation from a problem and get the name
-	 * of the problem.
+	 * Read the {@link NewProblem} annotation from a problem and get the name of the
+	 * problem.
 	 * 
 	 * @param registrable the problem class
 	 * @return name of the problem
@@ -52,7 +54,9 @@ public class ReflectionUtils {
 	 *  	<li>Verify if {@code registrable} as the parameters in the correct order and if the parameters are only of type Object, File, int or double or his wrapper Integer, Double. The order is (Object..., File ..., int|double ...)</li>
 	 *  	<li>Verify if {@code registrable} constructor don't have parameters when {@link Parameters} annotation isn't used</li>
 	 *  </ol>
-	 * </pre>
+	 * </pre><br><br>
+	 * 
+	 * The {@link Parameters} will be ignored if it isn't in the same constructor that the {@link NewProblem} annotation.
 	 * 
 	 * @param registrable the registrable problem class
 	 * @throws ApplicationException if any of the conditions to be verified is not
@@ -161,42 +165,48 @@ public class ReflectionUtils {
 				for (OperatorOption operatorOption : operator.value()) {
 					// Test if operator has a default constructor
 					Class<?> operatorClass = operatorOption.value();
-					Constructor<?> defaultConstructor = null;
-					int defaultConstructCount = 0;
-					for (Constructor<?> operatorConstructor : operatorClass.getConstructors()) {
-						DefaultConstructor constructorAnnotation = operatorConstructor.getAnnotation(DefaultConstructor.class);
-						if (constructorAnnotation != null) {
-							defaultConstructCount++;
-							defaultConstructor = operatorConstructor;
+					// Test if it operator has been verified before.
+					if (!verifiedOperators.contains(operatorClass)) {
+						verifiedOperators.add(operatorClass);
+
+						Constructor<?> defaultConstructor = null;
+						int defaultConstructCount = 0;
+						for (Constructor<?> operatorConstructor : operatorClass.getConstructors()) {
+							DefaultConstructor constructorAnnotation = operatorConstructor
+									.getAnnotation(DefaultConstructor.class);
+							if (constructorAnnotation != null) {
+								defaultConstructCount++;
+								defaultConstructor = operatorConstructor;
+							}
 						}
-					}
 
-					if (defaultConstructCount == 0) {
-						throw new ApplicationException(operatorClass.getName()
-								+ " hasn't a public constructor with the DefaultConstructor annotation ");
-					}
-					
-					if (defaultConstructCount > 1) {
-						throw new ApplicationException(operatorClass.getName()
-								+ " has more than one constructor with the DefaultConstructor annotation ");
-					}
+						if (defaultConstructCount == 0) {
+							throw new ApplicationException(operatorClass.getName()
+									+ " hasn't a public constructor with the DefaultConstructor annotation ");
+						}
 
-					DefaultConstructor constructorAnnotation = defaultConstructor
-							.getAnnotation(DefaultConstructor.class);
+						if (defaultConstructCount > 1) {
+							throw new ApplicationException(operatorClass.getName()
+									+ " has more than one constructor with the DefaultConstructor annotation ");
+						}
 
-					// Test if the number of parameter in default constructor are the same that the
-					// defined in DefaultConstructor annotation
-					if (defaultConstructor.getParameterCount() != constructorAnnotation.value().length) {
-						throw new ApplicationException("The default constructor of " + operatorClass.getName()
-								+ " hasn't the same number of parameter that the defined in the DefaultConstructor annotation");
+						DefaultConstructor constructorAnnotation = defaultConstructor
+								.getAnnotation(DefaultConstructor.class);
 
-					}
-
-					// Test if each parameter is one of type defined in regex expression
-					for (Class<?> type : defaultConstructor.getParameterTypes()) {
-						if (!type.getName().matches("int|Integer|double|Double")) {
+						// Test if the number of parameter in default constructor are the same that the
+						// defined in DefaultConstructor annotation
+						if (defaultConstructor.getParameterCount() != constructorAnnotation.value().length) {
 							throw new ApplicationException("The default constructor of " + operatorClass.getName()
-									+ " has parameters with a type is not valid for default constructor. The only valid type are int or double or his wrapper classes(Integer, Double)");
+									+ " hasn't the same number of parameter that the defined in the DefaultConstructor annotation");
+
+						}
+
+						// Test if each parameter is one of type defined in regex expression
+						for (Class<?> type : defaultConstructor.getParameterTypes()) {
+							if (!type.getName().matches("int|Integer|double|Double")) {
+								throw new ApplicationException("The default constructor of " + operatorClass.getName()
+										+ " has parameters with a type is not valid for default constructor. The only valid type are int or double or his wrapper classes(Integer, Double)");
+							}
 						}
 					}
 				}

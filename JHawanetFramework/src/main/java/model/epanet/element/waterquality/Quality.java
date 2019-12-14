@@ -1,6 +1,6 @@
 package model.epanet.element.waterquality;
 
-public class Quality {
+public final class Quality {
 	private String nodeId;
 	private double initialQuality;
 	

@@ -2,11 +2,12 @@ package model.epanet.element.networkcomponent;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import model.epanet.element.systemoperation.Curve;
 import model.epanet.element.systemoperation.Pattern;
 
-public class Pump extends Link {
+public final class Pump extends Link {
 
 	/**
 	 * Valid options to properties.
@@ -64,9 +65,8 @@ public class Pump extends Link {
 	 * @param value the value (Double, Curve or Pattern)
 	 */
 	public void setProperty(PumpProperty key, Object value) {
-		if (value == null) {
-			throw new RuntimeException("value can't be null");
-		}
+		Objects.requireNonNull(value);
+		
 		if (PumpProperty.HEAD == key) {
 			if (!(value instanceof Curve)) {
 				throw new RuntimeException("When key is " + key.getName() + " the value as to be a Curve ");

@@ -2,7 +2,7 @@ package model.epanet.element.networkcomponent;
 
 import model.epanet.element.systemoperation.Curve;
 
-public class Tank extends Node {
+public final class Tank extends Node {
 	private double elev;
 	private double initLvl;
 	private double minLvl;

@@ -1,4 +1,4 @@
-package annotations;
+package annotations.operators;
 
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;

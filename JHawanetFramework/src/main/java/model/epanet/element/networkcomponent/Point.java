@@ -5,7 +5,7 @@ package model.epanet.element.networkcomponent;
  * @author gsanh
  *
  */
-public class Point {
+public final class Point {
 	private double x;
 	private double y;
 	
