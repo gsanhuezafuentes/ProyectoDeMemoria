@@ -13,6 +13,10 @@ import model.epanet.element.networkcomponent.Point;
 import model.epanet.element.networkcomponent.Tank;
 import model.epanet.element.networkdesign.Label;
 
+/**
+ * This class draw on a GraphicsContext the Network.
+ *
+ */
 public class NetworkImage {
 	static private Color TANKS_FILL_COLOR = Color.web("0xcccccc");
 	static private Color TANKS_STROKE_COLOR = Color.web("0x666666");

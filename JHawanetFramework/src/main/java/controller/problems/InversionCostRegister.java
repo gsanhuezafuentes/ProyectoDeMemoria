@@ -72,7 +72,7 @@ public class InversionCostRegister implements Registrable {
 			files = { @FileInput(displayName = "Gama") }, //
 			numbers = { @NumberInput(displayName = "Number of iteration without improvement"),
 					@NumberInput(displayName = "Max number of evaluation") })
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")//The object injected are indicated in operators elements. It guarantee its types.
 	public InversionCostRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama,
 			int numberWithoutImprovement, int maxEvaluations) {
 		this.selection = (SelectionOperator<List<IntegerSolution>, List<IntegerSolution>>) selectionOperator;

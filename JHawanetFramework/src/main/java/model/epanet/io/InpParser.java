@@ -42,7 +42,6 @@ import model.epanet.element.waterquality.Source;
 /**
  * Parse the INP file to get the coordinates and vertices of the water network.
  * 
- *
  */
 public class InpParser implements InputParser {
 

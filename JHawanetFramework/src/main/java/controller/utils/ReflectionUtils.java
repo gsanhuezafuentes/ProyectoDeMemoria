@@ -13,7 +13,7 @@ import controller.problems.Registrable;
 import exception.ApplicationException;
 
 /**
- * Utility class with method to get info of class using reflection.
+ * Utility class with method to get info of class using reflection and validate the contract from operators and Registrable problems.
  *
  */
 public class ReflectionUtils {
@@ -91,6 +91,7 @@ public class ReflectionUtils {
 			int numberOfParametersInAnnotation = parametersAnnotation.operators().length
 					+ parametersAnnotation.files().length //
 					+ parametersAnnotation.numbers().length;
+			// the constructor's parameter number as to be the same that the numbers of parameters described by annotation.
 			if (constructor.getParameterCount() != numberOfParametersInAnnotation) {
 				throw new ApplicationException(registrable.getName()
 						+ " has missing parameters in the constructor or in annotation. Parameters describe in annotation are "

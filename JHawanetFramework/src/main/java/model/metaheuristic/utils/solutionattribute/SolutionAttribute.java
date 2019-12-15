@@ -5,7 +5,7 @@ import model.metaheuristic.solution.Solution;
 /**
  * Generic class for implementing {@link SolutionAttribute} classes. By default,
  * the identifier of a {@link SolutionAttribute} is the class object, but it can
- * be set to a different value when constructing an instance.
+ * be set to a different value when constructing an instance.<br><br>
  *
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  * 

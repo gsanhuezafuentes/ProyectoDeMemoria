@@ -6,6 +6,10 @@ import java.io.IOException;
 import exception.InputException;
 import model.epanet.element.Network;
 
+/**
+ * Interface to classes that read a network file.
+ *
+ */
 public interface InputParser {
 
 	/**

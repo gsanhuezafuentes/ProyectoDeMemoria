@@ -5,7 +5,7 @@ package model.metaheuristic.operator;
  *
  * @param <Source> Type of input that will be operated
  * @param <Result> Type of result
- * 
+ * <br><br>
  *                 Base on code from https://github.com/jMetal/jMetal
  * 
  *                 Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>

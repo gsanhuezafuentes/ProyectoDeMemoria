@@ -10,6 +10,10 @@ import java.io.UnsupportedEncodingException;
 import exception.InputException;
 import model.epanet.element.Network;
 
+/**
+ * Class that write in the system a inp file of the specific network object.
+ *
+ */
 public class InpWriter implements OutputWriter {
 
 	@Override

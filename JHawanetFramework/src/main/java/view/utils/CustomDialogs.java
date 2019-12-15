@@ -10,6 +10,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 
+/**
+ * This class contains static method that shows dialogs.
+ *
+ */
 public class CustomDialogs {
 	/**
 	 * Show a dialog. The type of dialog can be configured used type parameter.

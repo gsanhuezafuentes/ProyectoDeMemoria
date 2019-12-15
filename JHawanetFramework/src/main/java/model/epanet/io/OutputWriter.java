@@ -6,6 +6,11 @@ import java.io.IOException;
 import exception.InputException;
 import model.epanet.element.Network;
 
+/**
+ * Interface to classes that write a network file in system.
+ * @author gsanh
+ *
+ */
 public interface OutputWriter {
 
 	/**

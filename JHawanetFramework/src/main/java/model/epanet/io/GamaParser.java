@@ -9,9 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.epanet.element.Gama;
+import model.metaheuristic.problem.InversionCostProblem;
 
+/**
+ * Parse the gama file. It is only used for the {@link InversionCostProblem}
+ *
+ */
 public class GamaParser {
 
+	/**
+	 * Read the values from a file in system
+	 * @param file The file that contains the values
+	 * @return A list of object with the gama values.
+	 * @throws IOException If there is a exception when the file is been readed.
+	 */
 	public List<Gama> parser(File file) throws IOException {
 		ArrayList<Gama> gamas = new ArrayList<Gama>();
 		double diameter;
