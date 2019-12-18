@@ -121,7 +121,7 @@ public final class Control {
 	 * Set the id of node. Use only when ControlType is {@link ControlType#IF_ABOVE}
 	 * or {@link ControlType#IF_BELOW}
 	 * 
-	 * @param NodeId the idNodo to set
+	 * @param nodeId the idNodo to set
 	 */
 	public void setNodeId(String nodeId) {
 		this.nodeId = nodeId;

@@ -11,7 +11,7 @@ public final class Energy {
 	}
 
 	/**
-	 * @param code the code to set
+	 * @param codeline the code to set
 	 */
 	public void setCode(String codeline) {
 		this.code = codeline;

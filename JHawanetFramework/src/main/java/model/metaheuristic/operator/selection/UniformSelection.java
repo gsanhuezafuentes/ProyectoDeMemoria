@@ -10,13 +10,18 @@ import exception.ApplicationException;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.comparator.DominanceComparator;
 
-
+/**
+ * Operator class. 
+ * 
+ *
+ * @param <S> Type of solution
+ */
 public class UniformSelection<S extends Solution<?>> implements SelectionOperator<List<S>, List<S>> {
 
 	private Comparator<S> comparator;
 	private double constant;
 
-	@DefaultConstructor({"constant"})
+	@DefaultConstructor({ "constant" })
 	public UniformSelection(double constant) {
 		this(new DominanceComparator<S>());
 		if (constant < 1.5 || constant > 2) {
@@ -24,13 +29,12 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 		}
 		this.constant = constant;
 	}
-	
+
 	public UniformSelection(Comparator<S> comparator) {
 		this.comparator = comparator;
 	}
-	
-	
-	/** Execute method*/
+
+	/** Execute method */
 	@Override
 	public List<S> execute(List<S> solutionList) {
 		int populationSize = solutionList.size();
@@ -43,22 +47,22 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 		double probability;
 		double pi;
 		for (int i = 0; i < solutionList.size(); i++) {
-			pi = probabilitySelectionOfIndex(i+1, pmin, pmax, populationSize);
-			probability = pi*populationSize;
+			pi = probabilitySelectionOfIndex(i + 1, pmin, pmax, populationSize);
+			probability = pi * populationSize;
 			if (probability >= 1.5) {
-					selectedList.add(solutionList.get(i));
-					selectedList.add(solutionList.get(i));
-			}
-			else if (probability >= 0.5 && probability < 1.5) {
-					selectedList.add(solutionList.get(i));
+				selectedList.add(solutionList.get(i));
+				selectedList.add(solutionList.get(i));
+			} else if (probability >= 0.5 && probability < 1.5) {
+				selectedList.add(solutionList.get(i));
 			}
 		}
 		assert selectedList.size() == populationSize : String.format("La suma no es correcta");
 		return selectedList;
 	}
-	
+
 	/**
 	 * Calculate the max probability value on solutionList
+	 * 
 	 * @param solutionList the solutionList
 	 */
 	private double maxProbability(List<S> solutionList) {
@@ -66,27 +70,29 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 		double pmax = constant / numberOfSolution;
 		return pmax;
 	}
-	
+
 	/**
 	 * Calculate the min probability value on solutionList
+	 * 
 	 * @param solutionList the solutionList
 	 */
 	private double minProbability(List<S> solutionList) {
 		int numberOfSolution = solutionList.size();
-		double pmin = (2-constant)/numberOfSolution;
+		double pmin = (2 - constant) / numberOfSolution;
 		return pmin;
 	}
-	
+
 	/**
 	 * Calculate the probability of i-th(index) elements.
-	 * @param index the index of i-th element
-	 * @param pmin the min probability
-	 * @param pmax the max probability
+	 * 
+	 * @param index            the index of i-th element
+	 * @param pmin             the min probability
+	 * @param pmax             the max probability
 	 * @param numberOfSolution the number of solutions
 	 * @return The probability of the i-th element.
 	 */
 	private double probabilitySelectionOfIndex(int index, double pmin, double pmax, int numberOfSolution) {
-		double pi = pmin + (pmax - pmin)*(numberOfSolution-index)/(numberOfSolution-1);
+		double pi = pmin + (pmax - pmin) * (numberOfSolution - index) / (numberOfSolution - 1);
 		return pi;
 	}
 }

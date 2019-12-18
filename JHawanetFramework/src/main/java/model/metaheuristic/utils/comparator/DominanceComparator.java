@@ -13,29 +13,31 @@ import model.metaheuristic.solution.Solution;
  *
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  * 
- *         Base on code from https://github.com/jMetal/jMetal
+ *         <pre>
+ * Base on code from https://github.com/jMetal/jMetal
  * 
- *         Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
+ * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
  * 
- *         Permission is hereby granted, free of charge, to any person obtaining
- *         a copy of this software and associated documentation files (the
- *         "Software"), to deal in the Software without restriction, including
- *         without limitation the rights to use, copy, modify, merge, publish,
- *         distribute, sublicense, and/or sell copies of the Software, and to
- *         permit persons to whom the Software is furnished to do so, subject to
- *         the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
  * 
- *         The above copyright notice and this permission notice shall be
- *         included in all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- *         THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- *         EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- *         MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- *         NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
- *         BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- *         ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- *         CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *         SOFTWARE. © 2019 GitHub, Inc.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE. © 2019 GitHub, Inc.
+ *         </pre>
  */
 @SuppressWarnings("serial")
 public class DominanceComparator<S extends Solution<?>> implements Comparator<S>, Serializable {
@@ -45,7 +47,6 @@ public class DominanceComparator<S extends Solution<?>> implements Comparator<S>
 	public DominanceComparator() {
 		this(new OverallConstraintViolationComparator<S>());
 	}
-
 
 	/** Constructor */
 	public DominanceComparator(ConstraintViolationComparator<S> constraintComparator) {
@@ -62,10 +63,10 @@ public class DominanceComparator<S extends Solution<?>> implements Comparator<S>
 	 */
 	@Override
 	public int compare(S solution1, S solution2) {
-			
+
 		Objects.requireNonNull(solution1, "Solution1 is null");
 		Objects.requireNonNull(solution2, "Solution2 is null");
-		
+
 		if (solution1.getNumberOfObjectives() != solution2.getNumberOfObjectives()) {
 			throw new ApplicationException("Cannot compare because solution1 has " + solution1.getNumberOfObjectives()
 					+ " objectives and solution2 has " + solution2.getNumberOfObjectives());
@@ -81,6 +82,7 @@ public class DominanceComparator<S extends Solution<?>> implements Comparator<S>
 
 	/**
 	 * Compare if a solution dominate other solution based in the objectives
+	 * 
 	 * @param solution1
 	 * @param solution2
 	 * @return

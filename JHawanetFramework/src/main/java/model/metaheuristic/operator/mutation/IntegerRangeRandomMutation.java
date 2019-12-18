@@ -8,6 +8,10 @@ import model.metaheuristic.utils.random.BoundedRandomGenerator;
 import model.metaheuristic.utils.random.JavaRandom;
 import model.metaheuristic.utils.random.RandomGenerator;
 
+/**
+ *  Class that perform a mutation setting up each element of the solution randomly between the defined bounds and between the defined range.
+ *
+ */
 public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolution> {
 
 	private double mutationProbability;

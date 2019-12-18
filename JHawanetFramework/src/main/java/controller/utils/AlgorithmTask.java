@@ -3,6 +3,10 @@ package controller.utils;
 import javafx.concurrent.Task;
 import model.metaheuristic.algorithm.Algorithm;
 
+/**
+ * This class is used to perform the algorithm execution in other thread updating the JavaFXApplicationThread.
+ *
+ */
 public class AlgorithmTask extends Task<Object> {
 
 	private Algorithm<?> algorithm;
@@ -11,6 +15,9 @@ public class AlgorithmTask extends Task<Object> {
 		this.algorithm = algorithm;
 	}
 
+	/**
+	 * Execute the algorithm
+	 */
 	@Override
 	protected Object call() throws Exception {
 		while (!this.algorithm.isStoppingConditionReached()) {

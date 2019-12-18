@@ -15,7 +15,7 @@ public interface InputParser {
 	/**
 	 * Read the file contain the network description.
 	 * @param net Network object that will be filled.
-	 * @param file File that contain network description.
+	 * @param filename filepath to file.
 	 * @return Network net filled.
 	 * @throws InputException If there is a error in input file
 	 * @throws IOException  If an I/O error occurs

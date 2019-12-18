@@ -41,6 +41,7 @@ public class MainWindowController implements Initializable {
 	private NetworkComponent networkComponent;
 	@FXML
 	private BorderPane root;
+	
 	/**
 	 * Is a pane that envolve networkComponent. Is used to resize the
 	 * networkComponent automatically when screen size change
@@ -74,13 +75,8 @@ public class MainWindowController implements Initializable {
 	}
 
 	/**
-	 * @return the ownerWindow
+	 * @param window the windows
 	 * 
-	 *         public Window getWindow() { return ownerWindow; }
-	 * 
-	 * 
-	 *         /**
-	 * @param ownerWindow the ownerWindow to set
 	 */
 	public void setWindow(Window window) {
 		this.window = window;

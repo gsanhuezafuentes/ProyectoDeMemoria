@@ -9,6 +9,7 @@ import annotations.registrable.NewProblem;
 import annotations.registrable.OperatorInput;
 import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
+import controller.problems.ProblemRegistrar;
 import controller.problems.Registrable;
 import exception.ApplicationException;
 
@@ -26,7 +27,7 @@ public class ReflectionUtils {
 	 * @param registrable the problem class
 	 * @return name of the problem
 	 * @throws ApplicationException if the problem hasn't a constructor with
-	 *                              {@link RegisterProblem} annotation.
+	 *                              {@link ProblemRegistrar} annotation.
 	 */
 	public static String getNameOfProblem(Class<? extends Registrable> registrable) throws ApplicationException {
 		for (Constructor<?> constructor : registrable.getConstructors()) {

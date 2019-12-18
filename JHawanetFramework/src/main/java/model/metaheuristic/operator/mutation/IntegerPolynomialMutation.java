@@ -19,29 +19,31 @@ import model.metaheuristic.utils.random.RandomGenerator;
  *
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  * 
- *         Code taked and modify from https://github.com/jMetal/jMetal
+ * <pre>
+ * Code taked and modify from https://github.com/jMetal/jMetal
  * 
- *         Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
+ * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
  * 
- *         Permission is hereby granted, free of charge, to any person obtaining
- *         a copy of this software and associated documentation files (the
- *         "Software"), to deal in the Software without restriction, including
- *         without limitation the rights to use, copy, modify, merge, publish,
- *         distribute, sublicense, and/or sell copies of the Software, and to
- *         permit persons to whom the Software is furnished to do so, subject to
- *         the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
  * 
- *         The above copyright notice and this permission notice shall be
- *         included in all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- *         THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- *         EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- *         MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- *         NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
- *         BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- *         ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- *         CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *         SOFTWARE. © 2019 GitHub, Inc.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE. © 2019 GitHub, Inc.
+ * </pre>
  */
 public class IntegerPolynomialMutation implements MutationOperator<IntegerSolution> {
 	private static final double DEFAULT_PROBABILITY = 0.01;
@@ -63,13 +65,14 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 	}
 
 	/** Constructor */
-	@DefaultConstructor({"MutationProbability", "DistributionIndex"})
+	@DefaultConstructor({ "MutationProbability", "DistributionIndex" })
 	public IntegerPolynomialMutation(double mutationProbability, double distributionIndex) {
 		this(mutationProbability, distributionIndex, () -> JavaRandom.getInstance().nextDouble());
 	}
 
 	/** Constructor */
-	public IntegerPolynomialMutation(double mutationProbability, double distributionIndex, RandomGenerator<Double> random) {
+	public IntegerPolynomialMutation(double mutationProbability, double distributionIndex,
+			RandomGenerator<Double> random) {
 		if (mutationProbability < 0) {
 			throw new ApplicationException("Mutation probability is negative: " + mutationProbability);
 		} else if (distributionIndex < 0) {
@@ -84,6 +87,7 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 	/* Getters */
 	/**
 	 * Get the mutation probability
+	 * 
 	 * @return the mutation probability
 	 */
 	public double getMutationProbability() {
@@ -92,6 +96,7 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 
 	/**
 	 * Get the distribution index
+	 * 
 	 * @return the distribution index
 	 */
 	public double getDistributionIndex() {
@@ -101,6 +106,7 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 	/* Setters */
 	/**
 	 * Set the distribution index
+	 * 
 	 * @param distributionIndex the distribution index
 	 */
 	public void setDistributionIndex(double distributionIndex) {
@@ -109,6 +115,7 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 
 	/**
 	 * Set the mutation probability
+	 * 
 	 * @param mutationProbability the mutation probability
 	 */
 	public void setMutationProbability(double mutationProbability) {
@@ -160,10 +167,11 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 	/**
 	 * Fix the y value.
 	 * 
-	 * @param y value to repair
+	 * @param y          value to repair
 	 * @param lowerBound the lower bound
 	 * @param upperBound the upper bound
-	 * @return if y is less than lowerBound return lowerBound, if y is greater than upperBound return upperBound, otherwise return y.
+	 * @return if y is less than lowerBound return lowerBound, if y is greater than
+	 *         upperBound return upperBound, otherwise return y.
 	 */
 	private double repairSolutionVariableValue(double y, double lowerBound, double upperBound) {
 		double result = y;
@@ -172,7 +180,7 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 		} else if (y > upperBound) {
 			result = upperBound;
 		}
-		
+
 		return result;
 	}
 

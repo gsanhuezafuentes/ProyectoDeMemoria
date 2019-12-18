@@ -2,6 +2,10 @@ package model.metaheuristic.utils.random;
 
 import java.util.Random;
 
+/**
+ * A class that use the singleton pattern. It class contains random method.
+ *
+ */
 public class JavaRandom {
 	private static JavaRandom instance;
 	

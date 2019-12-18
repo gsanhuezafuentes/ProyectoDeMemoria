@@ -1,12 +1,16 @@
 package view;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import model.epanet.element.Network;
 import model.epanet.element.networkcomponent.Node;
 import view.utils.NetworkImage;
 
-public class NetworkComponent extends Canvas {
+public class NetworkComponent extends Canvas{
 	private Network network;
 	private Node selectedNode;
 

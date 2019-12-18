@@ -54,7 +54,6 @@ public class InversionCostRegister implements Registrable {
 	 * @param numberWithoutImprovement - the number without improvement in the
 	 *                                 result
 	 * @param maxEvaluations           - the max number of evaluation
-	 * @return The algorithm ready to be executed for MainWindowController class
 	 * @throws Exception A exception if there is some error in convert the
 	 *                   parameters, or in the execution of algorithm.
 	 */

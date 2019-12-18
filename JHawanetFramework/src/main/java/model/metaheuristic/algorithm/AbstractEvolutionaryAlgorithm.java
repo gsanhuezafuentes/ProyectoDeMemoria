@@ -8,6 +8,8 @@ import model.metaheuristic.solution.Solution;
 
 /**
  * 
+ * Class with common methods to Evolutionary Algorithms
+ * <pre>
  * Base on code from https://github.com/jMetal/jMetal
  * 
  * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
@@ -29,15 +31,17 @@ import model.metaheuristic.solution.Solution;
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. © 2019 GitHub, Inc. *
+ * </pre>
  * 
- * @param <S>
+ * @param <S> The type of solution
+ * @param <R> The type of result
  */
 public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> implements Algorithm<R> {
 
 	protected Problem<S> problem;
 	protected List<S> population;
 	private int step = 0;
-	
+
 	/**
 	 * Method that update the progress. It is called by {@link #run()}.
 	 */
@@ -53,7 +57,8 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 	 * Method to decide when the algorithm execution stop. It is called by
 	 * {@link #run()}
 	 * 
-	 * @return a boolean that indicate if the algorithm execution can continue or not.
+	 * @return a boolean that indicate if the algorithm execution can continue or
+	 *         not.
 	 */
 	@Override
 	public abstract boolean isStoppingConditionReached();
@@ -132,7 +137,9 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 
 	/**
 	 * {@inheritDoc}
-	 * @throws Exception if are a problem in close of resources open in problem
+	 * 
+	 * @throws Exception       if are a problem in close of resources open in
+	 *                         problem
 	 * @throws EpanetException if there is a error in the simulation
 	 */
 	@Override
@@ -152,12 +159,14 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 		}
 		this.problem.close();
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * @throws Exception if are a problem in close of resources open in problem
+	 * 
+	 * @throws Exception       if are a problem in close of resources open in
+	 *                         problem
 	 * @throws EpanetException if there is a error in the simulation
-	 */	
+	 */
 	@Override
 	public void runSingleStep() throws Exception, EpanetException {
 		List<S> offspringPopulation;
@@ -166,7 +175,7 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 		if (step == 0) {
 			population = createInitialPopulation();
 			population = evaluatePopulation(population);
-			initProgress();			
+			initProgress();
 		}
 
 		if (!isStoppingConditionReached()) {
@@ -175,9 +184,8 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 			offspringPopulation = evaluatePopulation(offspringPopulation);
 			population = replacement(population, offspringPopulation);
 			updateProgress();
-		}
-		else {
-			close();			
+		} else {
+			close();
 		}
 		this.step++;
 	}
@@ -197,7 +205,7 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 		}
 		return population;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

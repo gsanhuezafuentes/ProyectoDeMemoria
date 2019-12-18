@@ -9,7 +9,6 @@ import annotations.registrable.NumberInput;
 import annotations.registrable.OperatorInput;
 import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
-import controller.ConfigurationDynamicWindow;
 import controller.utils.AlgorithmCreationNotification;
 import controller.utils.ReflectionUtils;
 import javafx.event.ActionEvent;
@@ -19,6 +18,7 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import view.ConfigurationDynamicWindow;
 
 /**
  * In this class are added the problems that will be added to menu using
@@ -94,7 +94,7 @@ public class ProblemRegistrar {
 	 * windows of configuration.
 	 * 
 	 * @param menu  the menu where the problem has been added
-	 * @param owner the owner window that will of the configuration windows created.
+	 * @param algorithmEvent the event that will be fired when the RegistrableProblem is created.
 	 */
 	public void register(Menu menu, AlgorithmCreationNotification algorithmEvent) {
 		for (Class<? extends Registrable> registrable : this.problems) {

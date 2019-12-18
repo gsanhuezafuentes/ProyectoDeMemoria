@@ -11,7 +11,7 @@ import model.metaheuristic.problem.Problem;
 /**
  * 
  *
- *
+ * <pre>
  * Base on code from https://github.com/jMetal/jMetal
  * 
  * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
@@ -33,6 +33,7 @@ import model.metaheuristic.problem.Problem;
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. © 2019 GitHub, Inc.
+ * </pre>
  */
 public class IntegerSolution implements Solution<Integer> {
 	private Map<Object, Object> attributes;

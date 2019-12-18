@@ -46,6 +46,10 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import view.utils.CustomDialogs;
 
+/**
+ * This class build the interface to configure the problems. It use the Registrable class and with reflection read his metadata annotation.
+ *
+ */
 public class ConfigurationDynamicWindow extends VBox {
 
 	/**

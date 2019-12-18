@@ -14,6 +14,7 @@ import model.metaheuristic.utils.random.RandomGenerator;
  *
  * Base on code from https://github.com/jMetal/jMetal
  * 
+ * <pre>
  * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,6 +34,7 @@ import model.metaheuristic.utils.random.RandomGenerator;
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. © 2019 GitHub, Inc.
+ * </pre>
  */
 public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 	private static final double EPS = 1.0e-14;
@@ -44,22 +46,25 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 	/**
 	 * 
 	 * Constructor
+	 * 
 	 * @param crossoverProbability the crossover probability
-	 * @param distributionIndex the distribution index
+	 * @param distributionIndex    the distribution index
 	 */
-	@DefaultConstructor({"CrossoverProbability", "DistributionIndex"})
+	@DefaultConstructor({ "CrossoverProbability", "DistributionIndex" })
 	public IntegerSBXCrossover(double crossoverProbability, double distributionIndex) {
 		this(crossoverProbability, distributionIndex, () -> JavaRandom.getInstance().nextDouble());
 
 	}
-	
+
 	/**
 	 * Constructor
+	 * 
 	 * @param crossoverProbability the crossover probability
-	 * @param distributionIndex the distribution index
-	 * @param randomGenerator a random generator
+	 * @param distributionIndex    the distribution index
+	 * @param randomGenerator      a random generator
 	 */
-	public IntegerSBXCrossover(double crossoverProbability, double distributionIndex, RandomGenerator<Double> randomGenerator) {
+	public IntegerSBXCrossover(double crossoverProbability, double distributionIndex,
+			RandomGenerator<Double> randomGenerator) {
 
 		if (crossoverProbability < 0) {
 			throw new ApplicationException("Crossover probability is negative: " + crossoverProbability);

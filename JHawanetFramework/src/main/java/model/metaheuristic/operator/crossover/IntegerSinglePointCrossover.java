@@ -11,6 +11,10 @@ import model.metaheuristic.utils.random.BoundedRandomGenerator;
 import model.metaheuristic.utils.random.JavaRandom;
 import model.metaheuristic.utils.random.RandomGenerator;
 
+/**
+ * Class that pick randomly a point on both parents', and designated a 'crossover point'.
+ *
+ */
 public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSolution> {
 
 	private double crossoverProbability;

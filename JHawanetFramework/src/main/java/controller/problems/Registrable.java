@@ -69,7 +69,7 @@ public interface Registrable {
 	 * called by the GUI when resolve the problem in the network opened. The call
 	 * include the path of the inp file of the opened network.
 	 * 
-	 * @param String with the path of inp file, or null if there isn't a network opened.
+	 * @param inpPath the path of inp file, or null if there isn't a network opened.
 	 * @return the algorithm ready for execution
 	 * @throws if an exception occurs when building the algorithm
 	 */

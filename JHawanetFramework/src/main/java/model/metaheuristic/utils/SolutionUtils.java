@@ -6,7 +6,6 @@ import model.metaheuristic.utils.random.JavaRandom;
 
 /**
  * Class with function to apply on solution
- * @author gsanh
  *
  */
 public class SolutionUtils {

@@ -3,7 +3,7 @@ package model.metaheuristic.utils.comparator;
 import java.util.Comparator;
 
 /**
- * 
+ * <pre>
  * Taked from https://github.com/jMetal/jMetal
  * 
  * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
@@ -25,7 +25,7 @@ import java.util.Comparator;
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. © 2019 GitHub, Inc.
- *
+ * </pre>
  */
 public interface ConstraintViolationComparator<S> extends Comparator<S> {
 	public int compare(S solution1, S solution2);

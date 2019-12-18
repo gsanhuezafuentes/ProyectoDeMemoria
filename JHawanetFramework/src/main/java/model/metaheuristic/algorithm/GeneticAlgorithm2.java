@@ -13,8 +13,20 @@ import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.comparator.DominanceComparator;
 
 /**
+ * Class to perform algorithm genetic. <br>
+ * <br>
  * 
- *
+ * This class allows you to choose between two stopping conditions to stop the
+ * execution of the algorithm. The first condition establishes a maximum number
+ * of evaluations. The second condition sets a maximum number of iterations
+ * without improving the results of the algorithm. These configurations are
+ * mutually exclusive, i.e. if you try to configure the two conditions at the
+ * same time, the last one will prevail. <br><br>
+ * 
+ * If you do not set any stopping conditions, by default the maximum number of
+ * evaluations with a value of 10000 is set.
+ * 
+ * <pre>
  * Base on code from https://github.com/jMetal/jMetal
  * 
  * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
@@ -36,6 +48,7 @@ import model.metaheuristic.utils.comparator.DominanceComparator;
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. © 2019 GitHub, Inc.
+ * </pre>
  */
 public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S, S> {
 	private int maxPopulationSize;
@@ -71,9 +84,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 		this.crossoverOperator = crossoverOperator;
 		this.mutationOperator = mutationOperator;
 		this.maxEvaluations = 10000;
-
 		this.maxNumberOfIterationWithoutImprovement = 0;
-		this.numberOfIterationWithoutImprovement = 0;
 
 		this.comparator = new DominanceComparator<S>();
 	}
@@ -109,21 +120,16 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	 * Set max number of evaluation.<br>
 	 * <br>
 	 * 
-	 * MaxEvaluations and MaxNumberOfIterationWithoutImprovement equals to 0 in same
-	 * time is not valid.<br>
-	 * <br>
+	 * This disables the maximum number of iteration without improvement condition.
 	 * 
 	 * The default is 10000 <br>
 	 * <br>
-	 * 
-	 * If you want to set this to 0 to disable the stop condition using this value
-	 * so change first {@link #setMaxNumberOfIterationWithoutImprovement} to a value
-	 * other than 0
 	 * 
 	 * @param maxEvaluations the maxEvaluations to set
 	 */
 	public void setMaxEvaluations(int maxEvaluations) {
 		validateMaxStoppingConditionCounters(maxEvaluations, this.maxNumberOfIterationWithoutImprovement);
+		this.maxNumberOfIterationWithoutImprovement = 0;
 		this.maxEvaluations = maxEvaluations;
 	}
 
@@ -133,7 +139,8 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	 * When the result returned by this method is 0 the stop condition of the
 	 * algorithm don't take into account this value and only use the MaxEvaluation
 	 * {@link GeneticAlgorithm2#getMaxEvaluations()}. If the value is other than 0
-	 * so it condition is taked into account.
+	 * so it condition is taked into account. <br>
+	 * <br>
 	 * 
 	 * The default is 0.
 	 * 
@@ -146,19 +153,15 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	/**
 	 * Set the max number of iteration without a improvement of the result.
 	 * 
-	 * When the result returned by this method is 0 so the stop condition of the
-	 * algorithm don't take into account this condition. If the value is other than
-	 * 0 so it condition is taked into account.
+	 * This disables the maximum number of evaluations condition.
 	 * 
 	 * The default is 0.
-	 * 
-	 * MaxEvaluations and MaxNumberOfIterationWithoutImprovement equals to 0 in same
-	 * time is not valid.
 	 * 
 	 * @param maxNumberOfIterationWithoutImprovement
 	 */
 	public void setMaxNumberOfIterationWithoutImprovement(int maxNumberOfIterationWithoutImprovement) {
 		validateMaxStoppingConditionCounters(this.maxEvaluations, maxNumberOfIterationWithoutImprovement);
+		this.maxEvaluations = 0;
 		this.maxNumberOfIterationWithoutImprovement = maxNumberOfIterationWithoutImprovement;
 	}
 
@@ -246,8 +249,8 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 		if (maxEvaluations > 0) {
 			result = performedEvaluationsNumber >= getMaxEvaluations();
 		}
-		if (maxNumberOfIterationWithoutImprovement > 0) {
-			result = result || (numberOfIterationWithoutImprovement >= getMaxNumberOfIterationWithoutImprovement());
+		else if (maxNumberOfIterationWithoutImprovement > 0) {
+			result = numberOfIterationWithoutImprovement >= getMaxNumberOfIterationWithoutImprovement();
 		}
 		return result;
 	}
@@ -279,10 +282,6 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 		if (maxNumberOfIterationWithoutImprovement < 0) {
 			throw new ApplicationException("Wrong MaxNumberOfIterationWithoutImprovement can't be less than 0");
 		}
-		if (maxEvaluations == 0 && maxNumberOfIterationWithoutImprovement == 0) {
-			throw new ApplicationException(
-					"Wrong MaxEvaluations and MaxNumberOfIterationWithoutImprovement can't be zero at the same time");
-		}
 	}
 
 	/** {@inheritDoc} */
@@ -290,6 +289,8 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	protected void initProgress() {
 		if (getMaxEvaluations() > 0) {
 			this.performedEvaluationsNumber = getMaxPopulationSize();
+		} else if (getMaxNumberOfIterationWithoutImprovement() > 0 ) {
+			this.numberOfIterationWithoutImprovement = 0;
 		}
 	}
 
@@ -299,10 +300,10 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 		if (getMaxEvaluations() > 0) {
 			this.performedEvaluationsNumber += getMaxPopulationSize();
 		}
-		if (getMaxNumberOfIterationWithoutImprovement() > 0) {
+		else if (getMaxNumberOfIterationWithoutImprovement() > 0) {
 			// Initialize best solution if it not exist
-			if (bestSolution == null) {
-				bestSolution = getResult();
+			if (this.bestSolution == null) {
+				this.bestSolution = getResult();
 			}
 			S solution = getResult();
 			// Check if there is a new best solution
@@ -317,10 +318,14 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	/** {@inheritDoc} */
 	@Override
 	public String getStatusOfExecution() {
-		String text = "Number of evaluations: " + this.performedEvaluationsNumber + " / " + this.maxEvaluations + "\n";
-		text += "Number of interation without improvement: " + this.numberOfIterationWithoutImprovement + " / "
-				+ this.maxNumberOfIterationWithoutImprovement;
-		return text;
+		if (getMaxEvaluations() > 0) {
+			return "Number of evaluations: " + this.performedEvaluationsNumber + " / " + this.maxEvaluations + "\n";
+		}
+		else if (getMaxNumberOfIterationWithoutImprovement() > 0) {
+			return "Number of interation without improvement: " + this.numberOfIterationWithoutImprovement + " / "
+					+ this.maxNumberOfIterationWithoutImprovement;
+		}
+		return "No term settings were set.";
 	}
 
 }

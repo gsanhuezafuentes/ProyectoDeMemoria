@@ -17,7 +17,7 @@ public interface OutputWriter {
 	 * Create a file based on Network
 	 * 
 	 * @param net  the network
-	 * @param file path to the file
+	 * @param filename file path to save.
 	 * @throws InputException        If there is a error in the encoding
 	 * @throws IOException           If an I/O error occurs
 	 * @throws FileNotFoundException if the file exists but is a directory rather than a regular file, does not exist but cannot be created, or cannot be opened for any other reason
