@@ -300,6 +300,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	 * 
 	 * @param population
 	 * @param numberOfParentsForCrossover
+	 * @throws ApplicationException if there is a wrong number of parent
 	 */
 	protected void checkNumberOfParents(List<S> population, int numberOfParentsForCrossover) {
 		if ((population.size() % numberOfParentsForCrossover) != 0) {
@@ -313,6 +314,9 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	 * valid.<br>
 	 * <br>
 	 * To be valid both can't be less than 0 and both can't be 0 at the same time.
+	 * @param maxEvaluations the max number of evaluation for the algorithm.
+	 * @param maxNumberOfIterationWithoutImprovement the max number of iteration without improvement
+	 * @throws if some of the parameters have a negative value
 	 */
 	private void validateMaxStoppingConditionCounters(int maxEvaluations, int maxNumberOfIterationWithoutImprovement) {
 		if (maxEvaluations < 0) {

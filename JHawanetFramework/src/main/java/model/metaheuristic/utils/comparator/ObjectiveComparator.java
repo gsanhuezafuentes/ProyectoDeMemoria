@@ -75,6 +75,7 @@ public class ObjectiveComparator<S extends Solution<?>> implements Comparator<S>
 	 * @param solution2 The second solution
 	 * @return -1, or 0, or 1 if solution1 is less than, equal, or greater than
 	 *         solution2, respectively, according to the established order
+	 * @throws ApplicationException if the number of objetive in solution1 or solution2 is less than the objetiveId received in constructor.
 	 */
 	@Override
 	public int compare(S solution1, S solution2) {

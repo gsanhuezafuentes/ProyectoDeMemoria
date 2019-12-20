@@ -60,6 +60,7 @@ public class DominanceComparator<S extends Solution<?>> implements Comparator<S>
 	 * @param solution2 Object representing the second <code>Solution</code>.
 	 * @return -1, or 0, or 1 if solution1 dominates solution2, both are
 	 *         non-dominated, or solution1 is dominated by solution2, respectively.
+	 * @throws ApplicationException if the number of objetive of solution1 and solution2 is not the same.
 	 */
 	@Override
 	public int compare(S solution1, S solution2) {

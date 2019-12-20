@@ -60,8 +60,12 @@ public class TournamentSelection<S extends Solution<?>> implements SelectionOper
 		this.comparator = comparator;
 	}
 
+	/**
+	 * Execute() method.
+	 * @throws NullPointerException if solutionList is null
+	 * @throws ApplicationException if solutionList is empty
+	 */
 	@Override
-	/** Execute() method */
 	public S execute(List<S> solutionList) {
 		Objects.requireNonNull(solutionList);
 		if (solutionList.isEmpty()) {

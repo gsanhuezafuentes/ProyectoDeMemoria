@@ -245,7 +245,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	/** {@inheritDoc} */
 	@Override
 	public boolean isStoppingConditionReached() {
-		boolean result = false;
+		boolean result = true;
 		if (maxEvaluations > 0) {
 			result = performedEvaluationsNumber >= getMaxEvaluations();
 		}
@@ -261,6 +261,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	 * 
 	 * @param population
 	 * @param numberOfParentsForCrossover
+	 * @throws ApplicationException if there is a wrong number of parent
 	 */
 	protected void checkNumberOfParents(List<S> population, int numberOfParentsForCrossover) {
 		if ((population.size() % numberOfParentsForCrossover) != 0) {
@@ -274,6 +275,9 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	 * valid.<br>
 	 * <br>
 	 * To be valid both can't be less than 0 and both can't be 0 at the same time.
+	 * @param maxEvaluations the max number of evaluation for the algorithm.
+	 * @param maxNumberOfIterationWithoutImprovement the max number of iteration without improvement
+	 * @throws if some of the parameters have a negative value
 	 */
 	private void validateMaxStoppingConditionCounters(int maxEvaluations, int maxNumberOfIterationWithoutImprovement) {
 		if (maxEvaluations < 0) {

@@ -176,6 +176,7 @@ public class DominanceRanking<S extends Solution<?>> extends SolutionAttribute<S
 	 * 
 	 * @param rank - index front
 	 * @return the front
+	 * @throws ApplicationException if the rank is more than  the number of subPopulation.
 	 */
 	public List<S> getSubfront(int rank) {
 		if (rank >= rankedSubPopulations.size()) {

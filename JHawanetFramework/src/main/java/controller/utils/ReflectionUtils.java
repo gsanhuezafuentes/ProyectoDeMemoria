@@ -2,7 +2,9 @@ package controller.utils;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Parameter;
 import java.util.HashSet;
+import java.util.Objects;
 
 import annotations.operators.DefaultConstructor;
 import annotations.registrable.NewProblem;
@@ -14,7 +16,8 @@ import controller.problems.Registrable;
 import exception.ApplicationException;
 
 /**
- * Utility class with method to get info of class using reflection and validate the contract from operators and Registrable problems.
+ * Utility class with method to get info of class using reflection and validate
+ * the contract from operators and Registrable problems.
  *
  */
 public class ReflectionUtils {
@@ -28,8 +31,10 @@ public class ReflectionUtils {
 	 * @return name of the problem
 	 * @throws ApplicationException if the problem hasn't a constructor with
 	 *                              {@link ProblemRegistrar} annotation.
+	 * @throws NullPointerException if registrable is null.
 	 */
-	public static String getNameOfProblem(Class<? extends Registrable> registrable) throws ApplicationException {
+	public static String getNameOfProblem(Class<? extends Registrable> registrable) {
+		Objects.requireNonNull(registrable);
 		for (Constructor<?> constructor : registrable.getConstructors()) {
 			NewProblem annotation = constructor.getAnnotation(NewProblem.class);
 			if (annotation != null) {
@@ -55,16 +60,19 @@ public class ReflectionUtils {
 	 *  	<li>Verify if {@code registrable} as the parameters in the correct order and if the parameters are only of type Object, File, int or double or his wrapper Integer, Double. The order is (Object..., File ..., int|double ...)</li>
 	 *  	<li>Verify if {@code registrable} constructor don't have parameters when {@link Parameters} annotation isn't used</li>
 	 *  </ol>
-	 * </pre><br><br>
+	 * </pre>
 	 * 
-	 * The {@link Parameters} will be ignored if it isn't in the same constructor that the {@link NewProblem} annotation.
+	 * <br>
+	 * <br>
+	 * 
+	 * The {@link Parameters} will be ignored if it isn't in the same constructor
+	 * that the {@link NewProblem} annotation.
 	 * 
 	 * @param registrable the registrable problem class
 	 * @throws ApplicationException if any of the conditions to be verified is not
 	 *                              fulfilled
 	 */
-	public static void validateRegistrableProblem(Class<? extends Registrable> registrable)
-			throws ApplicationException {
+	public static void validateRegistrableProblem(Class<? extends Registrable> registrable) {
 
 		Constructor<?>[] constructors = registrable.getConstructors();
 
@@ -89,10 +97,9 @@ public class ReflectionUtils {
 		// are in the correct order. (object,..., file ..., int or double,...)
 		Parameters parametersAnnotation = constructor.getAnnotation(Parameters.class);
 		if (parametersAnnotation != null) {
-			int numberOfParametersInAnnotation = parametersAnnotation.operators().length
-					+ parametersAnnotation.files().length //
-					+ parametersAnnotation.numbers().length;
-			// the constructor's parameter number as to be the same that the numbers of parameters described by annotation.
+			int numberOfParametersInAnnotation = getNumberOfParameterInParameterAnnotation(parametersAnnotation);
+			// the constructor's parameter number as to be the same that the numbers of
+			// parameters described by annotation.
 			if (constructor.getParameterCount() != numberOfParametersInAnnotation) {
 				throw new ApplicationException(registrable.getName()
 						+ " has missing parameters in the constructor or in annotation. Parameters describe in annotation are "
@@ -156,7 +163,7 @@ public class ReflectionUtils {
 	 * @throws ApplicationException if any of the conditions to be verified is not
 	 *                              fulfilled
 	 */
-	public static void validateOperators(Class<? extends Registrable> registrable) throws ApplicationException {
+	public static void validateOperators(Class<? extends Registrable> registrable) {
 		Constructor<?> constructor = getConstructor(registrable);
 
 		Parameters annotation = constructor.getAnnotation(Parameters.class);
@@ -222,8 +229,10 @@ public class ReflectionUtils {
 	 * 
 	 * @param registrableClass the registrable class.
 	 * @return The constructor with {@link NewProblem} annotation
+	 * @throws NullPointerException if registrableClass is null.
 	 */
 	public static Constructor<?> getConstructor(Class<? extends Registrable> registrableClass) {
+		Objects.requireNonNull(registrableClass);
 		for (Constructor<?> constructor : registrableClass.getConstructors()) {
 			if (constructor.getAnnotation(NewProblem.class) != null) {
 				return constructor;
@@ -236,10 +245,12 @@ public class ReflectionUtils {
 	 * Search the default constructor
 	 * 
 	 * @param classType the class where find the default constructor
-	 * @return constructor with {@link DefaultConstructor} annotation if exit. Null
+	 * @return constructor with {@link DefaultConstructor} annotation if exit. null
 	 *         if it don't exist.
+	 * @throws NullPointerException if classType is null.
 	 */
 	public static Constructor<?> getDefaultConstructor(Class<?> classType) {
+		Objects.requireNonNull(classType);
 		for (Constructor<?> constructor : classType.getConstructors()) {
 			DefaultConstructor annotation = constructor.getAnnotation(DefaultConstructor.class);
 			if (annotation != null) {
@@ -247,6 +258,55 @@ public class ReflectionUtils {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Return the number of parameters in the only constructor of registrable problem.
+	 * 
+	 * @param registrable the registrable class.
+	 * @return the number of parameters in registrable problem.
+	 * @throws NullPointerException if registrable is null.
+	 */
+	public static int getNumberOfParameterInRegistrableConstructor(Class<? extends Registrable> registrable) {
+		Objects.requireNonNull(registrable);
+		Constructor<?>[] constructors = registrable.getConstructors();
+		if (constructors.length != 1) {
+			throw new ApplicationException("Registrable class has to have only one constructor.");
+			
+		}
+		Constructor<?> constructor = constructors[0];
+
+		return constructor.getParameterCount();
+	}
+	
+	/**
+	 * Return the number of parameters in the {@link Parameter} annotation.
+	 * 
+	 * @param parametersAnnotation the {@link Parameter} object.
+	 * @return the number of parameters in parameter annotation
+	 * @throws NullPointerException if parametersAnnotation is null.
+	 */
+	public static int getNumberOfParameterInParameterAnnotation(Parameters parametersAnnotation) {
+		Objects.requireNonNull(parametersAnnotation);
+		int numberOfParametersInAnnotation = parametersAnnotation.operators().length
+				+ parametersAnnotation.files().length //
+				+ parametersAnnotation.numbers().length;
+		return numberOfParametersInAnnotation;
+	}
+	
+	/**
+	 * Return the number of parameters in the operator default constructor.
+	 * 
+	 * @param classType The class where {@link DefaultConstructor} was used.
+	 * @return the number of parameters in operator default constructor.
+	 * @throws NullPointerException if classType is null or there isn't a default constructor.
+	 */
+	public static int getNumberOfParameterInDefaultConstructor(Class<?> classType) {
+		Objects.requireNonNull(classType);
+		Constructor<?> constructor = getDefaultConstructor(classType);
+		Objects.requireNonNull(constructor);
+		int numberOfParameters = constructor.getParameterCount();
+		return numberOfParameters;
 	}
 
 }

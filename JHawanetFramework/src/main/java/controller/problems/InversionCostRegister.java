@@ -74,6 +74,12 @@ public class InversionCostRegister implements Registrable {
 	@SuppressWarnings("unchecked")//The object injected are indicated in operators elements. It guarantee its types.
 	public InversionCostRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama,
 			int numberWithoutImprovement, int maxEvaluations) {
+		System.out.println(selectionOperator);
+		System.out.println(crossoverOperator);
+		System.out.println(mutationOperator);
+		System.out.println(gama);
+		System.out.println(numberWithoutImprovement);
+		System.out.println(maxEvaluations);
 		this.selection = (SelectionOperator<List<IntegerSolution>, List<IntegerSolution>>) selectionOperator;
 		this.crossover = (CrossoverOperator<IntegerSolution>) crossoverOperator;
 		this.mutation = (MutationOperator<IntegerSolution>) mutationOperator;
@@ -83,7 +89,9 @@ public class InversionCostRegister implements Registrable {
 	}
 	
 
-	/** {@inheritDoc} */
+	/** {@inheritDoc}
+	 * 	@throws ApplicationException if inpPath is empty or null or if gama file is null
+	 */
 	@Override
 	public Algorithm<IntegerSolution> build(String inpPath) throws Exception {
 		if (inpPath == null || inpPath.isEmpty()) {

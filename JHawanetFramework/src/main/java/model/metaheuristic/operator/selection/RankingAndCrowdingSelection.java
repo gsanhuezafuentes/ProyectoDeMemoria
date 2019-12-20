@@ -71,7 +71,9 @@ public class RankingAndCrowdingSelection<S extends Solution<?>> implements Selec
 		return solutionsToSelect;
 	}
 
-	/** Execute() method */
+	/** Execute() method 
+	 * @throws ApplicationException if the solutionList is empty or his size is less than solutionsToSelect recivied by constructor.
+	 */
 	public List<S> execute(List<S> solutionList) {
 		Objects.requireNonNull(solutionList);
 		if (solutionList.isEmpty()) {

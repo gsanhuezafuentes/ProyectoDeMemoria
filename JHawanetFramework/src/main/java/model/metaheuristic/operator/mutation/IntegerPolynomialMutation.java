@@ -70,7 +70,9 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 		this(mutationProbability, distributionIndex, () -> JavaRandom.getInstance().nextDouble());
 	}
 
-	/** Constructor */
+	/** Constructor 
+	 * @throws ApplicationException if mutationProbability or distributionIndex is negative
+	 */
 	public IntegerPolynomialMutation(double mutationProbability, double distributionIndex,
 			RandomGenerator<Double> random) {
 		if (mutationProbability < 0) {

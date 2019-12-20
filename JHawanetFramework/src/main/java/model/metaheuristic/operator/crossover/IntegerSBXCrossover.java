@@ -62,6 +62,7 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 	 * @param crossoverProbability the crossover probability
 	 * @param distributionIndex    the distribution index
 	 * @param randomGenerator      a random generator
+	 * @throws ApplicationException if crossover probability or distributionIndex is negative
 	 */
 	public IntegerSBXCrossover(double crossoverProbability, double distributionIndex,
 			RandomGenerator<Double> randomGenerator) {

@@ -33,7 +33,9 @@ public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSol
 		this(crossoverProbability, randomGenerator, (a, b) -> JavaRandom.getInstance().nextInt(a, b));
 	}
 
-	/** Constructor */
+	/** Constructor 
+	 * @throws ApplicationException if the crossoverProbability is negative
+	 */
 	public IntegerSinglePointCrossover(double crossoverProbability, RandomGenerator<Double> crossoverRandomGenerator,
 			BoundedRandomGenerator<Integer> pointRandomGenerator) {
 		if (crossoverProbability < 0) {
@@ -66,6 +68,8 @@ public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSol
 
 	/**
 	 * {@inheritDoc}
+	 * @throws NullPointerException if solutions is null
+	 * @throws ApplicationException if the size of solutions list is not 2.
 	 */
 	@Override
 	public List<IntegerSolution> execute(List<IntegerSolution> solutions) {

@@ -37,6 +37,7 @@ public class SolutionListUtils {
 	 * @param solutionList     the solution list
 	 * @param random           Random generator
 	 * @return selected solution
+	 * @throws ApplicationException if numberOfSolution is greater than the size of solution list.
 	 */
 	public static <S> List<S> selectNRandomDifferentSolutions(int numberOfSolution, List<S> solutionList,
 			BoundedRandomGenerator<Integer> random) {

@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -20,6 +20,7 @@ import annotations.registrable.NumberInput;
 import annotations.registrable.OperatorInput;
 import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
+import controller.ConfigurationDynamicWindowController;
 import controller.problems.Registrable;
 import controller.utils.AlgorithmCreationNotification;
 import controller.utils.ReflectionUtils;
@@ -28,6 +29,7 @@ import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
@@ -42,26 +44,26 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
 import view.utils.CustomDialogs;
 
 /**
- * This class build the interface to configure the problems. It use the Registrable class and with reflection read his metadata annotation.
+ * This class build the interface to configure the problems. It use the
+ * Registrable class and with reflection read his metadata annotation.
  *
  */
-public class ConfigurationDynamicWindow extends VBox {
+public class ConfigurationDynamicWindow extends Stage {
 
-	/**
-	 * The stage of this layout
-	 */
-	private final Stage window;
-
-	private AlgorithmCreationNotification algorithmEvent;
 	private Class<? extends Registrable> problemClass;
+	private ConfigurationDynamicWindowController controller;
+
 	private double defaultSpace = 5;
 	private BooleanBinding isRunButtonDisabled;
 
+	private VBox root;
 	private GridPane gridLayout;
 
 	private int gridLayoutRowCount;
@@ -69,7 +71,8 @@ public class ConfigurationDynamicWindow extends VBox {
 	// It has a reference to textfield with number input. The order of
 	// this list is the same that the order in Parameters annotation (numbers)
 	private List<TextField> numbersTextFieldAdded;
-	// It has a reference to textfield with fileInput(It shown the path of some file).The order of
+	// It has a reference to textfield with fileInput(It shown the path of some
+	// file).The order of
 	// this list is the same that the order in Parameters annotation (files)
 	private List<TextField> filesTextFieldAdded;
 	// A map with the value of operator configured in comboBox
@@ -78,29 +81,40 @@ public class ConfigurationDynamicWindow extends VBox {
 	// this list is the same that the order in Parameters annotation (operators)
 	private List<ComboBox<Class<?>>> comboBoxesAdded;
 
-	public ConfigurationDynamicWindow(Class<? extends Registrable> registrable, Stage thisWindow, AlgorithmCreationNotification algorithmEvent) {
-				
+	public ConfigurationDynamicWindow(ConfigurationDynamicWindowController controller,
+			Class<? extends Registrable> registrable) {
 		this.problemClass = Objects.requireNonNull(registrable);
-		this.algorithmEvent = Objects.requireNonNull(algorithmEvent);
+		this.controller = Objects.requireNonNull(controller);
+		
+		this.root = new VBox();
+		Scene scene = new Scene(root);
+		setScene(scene);
+
 		this.gridLayout = new GridPane();
 		this.gridLayout.setHgap(defaultSpace);
 		this.gridLayout.setVgap(defaultSpace);
-
-		this.window = thisWindow;
-
-		setSpacing(defaultSpace);
-		setPadding(new Insets(defaultSpace));
-
-		getChildren().addAll(gridLayout);
-
+		root.getChildren().addAll(this.gridLayout);
+		root.setSpacing(defaultSpace);
+		root.setPadding(new Insets(defaultSpace));
 		this.comboBoxesAdded = new ArrayList<ComboBox<Class<?>>>();
 		this.numbersTextFieldAdded = new ArrayList<TextField>();
 		this.filesTextFieldAdded = new ArrayList<TextField>();
 		this.resultOfOperatorConfiguration = new HashMap<Class<?>, List<Number>>();
-
+		
+		configuratedWindow();
 		createContentLayout();
 		addButton();
+	}
 
+	/**
+	 * 
+	 */
+	private void configuratedWindow() {
+		setTitle("Algorithm Configuration");
+		sizeToScene();
+		setResizable(false);
+		initModality(Modality.APPLICATION_MODAL);
+		initStyle(StageStyle.UTILITY);
 	}
 
 	/**
@@ -115,7 +129,7 @@ public class ConfigurationDynamicWindow extends VBox {
 			// double... (It
 			// is validated in method that create this windows in ProblemRegistrar)
 
-			int parameterIndex = constructor.getParameterCount()-1; // What it the last index of parameter
+			int parameterIndex = constructor.getParameterCount() - 1; // What it the last index of parameter
 
 			// Create the textfield for native input (double, int, etc)
 			for (NumberInput operator : parameters.numbers()) {
@@ -128,7 +142,7 @@ public class ConfigurationDynamicWindow extends VBox {
 				fileSection(file);
 				parameterIndex--;
 			}
-			
+
 			// Create combobox for object input
 			for (OperatorInput operator : parameters.operators()) {
 				operatorSection(operator);
@@ -137,7 +151,7 @@ public class ConfigurationDynamicWindow extends VBox {
 
 		}
 	}
-	
+
 	/**
 	 * Setting the number section. It section has textfield to write the numbers.
 	 * 
@@ -165,8 +179,8 @@ public class ConfigurationDynamicWindow extends VBox {
 	}
 
 	/**
-	 * Setting the file section. It section has textfield and a button to
-	 * open a filechooser.
+	 * Setting the file section. It section has textfield and a button to open a
+	 * filechooser.
 	 * 
 	 * @param file the FileInput annotation
 	 */
@@ -176,10 +190,10 @@ public class ConfigurationDynamicWindow extends VBox {
 		textfield.setMaxWidth(Double.MAX_VALUE);
 		Button button = new Button("Browse");
 		button.setMaxWidth(Double.MAX_VALUE);
-		
+
 		FileChooser fileChooser = new FileChooser();
 		button.setOnAction((evt) -> {
-			File f = fileChooser.showOpenDialog(this.window);
+			File f = fileChooser.showOpenDialog(this);
 			if (f != null) {
 				textfield.setText(f.getAbsolutePath());
 			}
@@ -189,7 +203,7 @@ public class ConfigurationDynamicWindow extends VBox {
 		this.gridLayout.addRow(gridLayoutRowCount, label, textfield, button);
 		gridLayoutRowCount++;
 	}
-	
+
 	/**
 	 * Setting the operator section. It section has comboBox to choose the operator.
 	 * It only configure one parameters.
@@ -297,9 +311,9 @@ public class ConfigurationDynamicWindow extends VBox {
 		}
 		if (textFieldOfParameters.size() != 0) {
 			// give focus to first textfield
-		    Platform.runLater(() -> {
-		        textFieldOfParameters.get(0).requestFocus();
-		    });
+			Platform.runLater(() -> {
+				textFieldOfParameters.get(0).requestFocus();
+			});
 		}
 
 		dialog.getDialogPane().setContent(grid);
@@ -330,82 +344,21 @@ public class ConfigurationDynamicWindow extends VBox {
 
 		Button run = new Button("Run");
 		run.setOnAction((evt) -> {
-			createRegistrableInstance();
+			sendParatemetersToController();
 		});
 		run.disableProperty().bind(isRunButtonDisabled);
 		Button cancel = new Button("Cancel");
-		cancel.setOnAction((evt) -> closeWindow());
+		cancel.setOnAction((evt) -> close());
 
 		HBox hbox = new HBox(run, cancel);
 		HBox.setHgrow(run, Priority.ALWAYS);
-	    HBox.setHgrow(cancel, Priority.ALWAYS);
-	    run.setMaxWidth(100);
-	    cancel.setMaxWidth(100);
+		HBox.setHgrow(cancel, Priority.ALWAYS);
+		run.setMaxWidth(100);
+		cancel.setMaxWidth(100);
 		hbox.setSpacing(defaultSpace);
 		hbox.setAlignment(Pos.CENTER_RIGHT);
-		getChildren().add(hbox);
+		this.root.getChildren().add(hbox);
 
-	}
-
-	/**
-	 * Read all input field and create the algorithm based in the input field. When
-	 * the algorithm is created an {@link AlgorithmCreationNotification} is fired.
-	 */
-	private void createRegistrableInstance() {
-		// Read the values configurated and selected
-		List<Object> parameters = new ArrayList<>();
-
-		for (ComboBox<Class<?>> comboBox : this.comboBoxesAdded) {
-			Class<?> operator = comboBox.getSelectionModel().getSelectedItem();
-			List<Number> operatorParameters = this.resultOfOperatorConfiguration.get(operator);
-			try {
-				if (operatorParameters == null) {
-					CustomDialogs.showDialog("Error", "Error in the creation of the operator.",
-							"The operator " + operator.getName() + " can't be configured", AlertType.ERROR);
-					return;
-				}
-				Object operatorObject = ReflectionUtils.getDefaultConstructor(operator)
-						.newInstance(operatorParameters.toArray());
-				parameters.add(operatorObject);
-			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-					| InvocationTargetException e) {
-				CustomDialogs.showExceptionDialog("Error", "Error in the creation of the operator",
-						"The operator " + operator.getName() + " can't be created", e);
-				return;
-			}
-		}
-
-		for (TextField textfield : this.filesTextFieldAdded) {
-			parameters.add(new File(textfield.getText()));
-		}
-		
-		for (TextField textfield : this.numbersTextFieldAdded) {
-			parameters.add(textfield.getTextFormatter().getValue());
-		}
-
-		Constructor<?> constructor = ReflectionUtils.getConstructor(this.problemClass);
-		try {
-			Registrable registrable = (Registrable) constructor.newInstance(parameters.toArray());
-			closeWindow();
-			notifyAlgorithmCreation(registrable);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			CustomDialogs.showExceptionDialog("Error", "Error in the creation of registrable object",
-					"Can't be created an instance of " + this.problemClass.getName(), e);
-		}
-
-	}
-
-	/**
-	 * Is a class to fire the notification when the algorithm is ready.
-	 * 
-	 * @param registrable the algorithm
-	 * @throws ApplicationException if there isn't register the notification
-	 *                              callback
-	 */
-	private void notifyAlgorithmCreation(Registrable registrable) throws ApplicationException {
-
-		algorithmEvent.notify(registrable);
 	}
 
 	/**
@@ -486,7 +439,44 @@ public class ConfigurationDynamicWindow extends VBox {
 		return textFormatter;
 	}
 
-	private void closeWindow() {
-		this.window.close();
+	/**
+	 * Prepare to send the user input to controller.
+	 */
+	private void sendParatemetersToController() {
+		Map<Class<?>, List<Number>> operatorsAndConfig= new LinkedHashMap<Class<?>, List<Number>>(this.comboBoxesAdded.size());
+		File[] files = new File[this.filesTextFieldAdded.size()];
+		Number[] numberInputs = new Number[this.numbersTextFieldAdded.size()];
+//		Number[] toggleInputs = new Number[this.numbersToogleFieldAdded.size()];
+//		int[] selectedToogleIndex = new int[this.numbersToogleFieldAdded.size()];
+
+		int i = 0;
+		for (ComboBox<Class<?>> comboBox : this.comboBoxesAdded) {
+			Class<?> operator = comboBox.getSelectionModel().getSelectedItem();
+			List<Number> operatorParameters = this.resultOfOperatorConfiguration.get(operator);
+			if (operatorParameters == null) {
+				CustomDialogs.showDialog("Error", "Error in the creation of the operator.",
+						"The operator " + operator.getName() + " can't be configured", AlertType.ERROR);
+				return;
+			}
+			operatorsAndConfig.put(operator, operatorParameters);
+			
+		}
+
+		i = 0; // reset the counter
+		for (TextField textfield : this.filesTextFieldAdded) {
+			if (textfield.getText().isEmpty()) {
+				files[i++] = null;
+			}
+			else {
+				files[i++] = new File(textfield.getText());
+			}
+		}
+
+		i = 0; // reset the counter
+		for (TextField textfield : this.numbersTextFieldAdded) {
+			numberInputs[i++] = (Number) textfield.getTextFormatter().getValue();
+		}
+		controller.onRunButtonClick(operatorsAndConfig, files, numberInputs);
 	}
+
 }

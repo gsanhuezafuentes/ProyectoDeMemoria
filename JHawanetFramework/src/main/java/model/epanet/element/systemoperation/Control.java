@@ -183,6 +183,7 @@ public final class Control {
 	 * 12:00
 	 * 
 	 * @param clocktime the clocktime to set in hrs:min format
+	 * @throws if clocktime hasn't a valid format. The regex used is "([1-9]|1?[1-2])(:[0-5][0-9])? (AM|PM)".
 	 */
 	public void setClocktime(String clocktime) {
 		if (!clocktime.matches("([1-9]|1?[1-2])(:[0-5][0-9])? (AM|PM)")) {

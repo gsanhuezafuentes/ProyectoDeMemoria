@@ -12,6 +12,7 @@ import epanet.core.EpanetException;
 import exception.InputException;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.concurrent.Worker.State;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -41,7 +42,7 @@ public class MainWindowController implements Initializable {
 	private NetworkComponent networkComponent;
 	@FXML
 	private BorderPane root;
-	
+
 	/**
 	 * Is a pane that envolve networkComponent. Is used to resize the
 	 * networkComponent automatically when screen size change
@@ -62,7 +63,7 @@ public class MainWindowController implements Initializable {
 
 	public MainWindowController() {
 		this.isNetworkLoaded = new SimpleBooleanProperty(false);
-		
+
 	}
 
 	@Override
@@ -152,10 +153,11 @@ public class MainWindowController implements Initializable {
 	 * @param task the task
 	 */
 	private void configureAlgorithmTask(AlgorithmTask task) {
-		Alert alert = new Alert(Alert.AlertType.INFORMATION, "Operation in progress.", ButtonType.CANCEL);
+		Alert alert = new Alert(Alert.AlertType.INFORMATION, "Operation in progress.", ButtonType.CANCEL,
+				ButtonType.CLOSE);
 		alert.setTitle("Running Algorithm");
 		alert.setHeaderText("Please wait... ");
-		
+
 		TextArea textArea = new TextArea();
 		textArea.setEditable(false);
 		textArea.setWrapText(true);
@@ -170,13 +172,22 @@ public class MainWindowController implements Initializable {
 		expContent.add(textArea, 0, 0);
 
 		textArea.textProperty().bind(task.messageProperty());
-		
-		alert.getDialogPane().setContent(expContent);		
+
+		alert.getDialogPane().setContent(expContent);
 		ProgressIndicator progressIndicator = new ProgressIndicator();
 		progressIndicator.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
 		alert.setGraphic(progressIndicator);
-		Button button = (Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL);
-		button.setOnAction(e -> task.cancel());
+		Button cancelButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL);
+		cancelButton.disableProperty().bind(task.stateProperty().isNotEqualTo(State.RUNNING));
+		cancelButton.setOnAction(e -> task.cancel());
+
+		Button closeButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CLOSE);
+		closeButton.setOnAction(e -> {
+			if (!task.isCancelled()) {
+				task.cancel();				
+			}
+			alert.close();
+		});
 
 		task.exceptionProperty().addListener((property, oldValue, newValue) -> {
 			if (newValue instanceof EpanetException) {
@@ -187,14 +198,16 @@ public class MainWindowController implements Initializable {
 						"An error has occurred while trying to close the resources of the problem.", newValue);
 			}
 		});
-
+		
+		task.runningProperty().addListener((prop, old, newv) -> {
+			if(!newv) {
+				alert.setTitle("Execution Finished");
+				progressIndicator.setProgress(1);
+			}
+		});
+		
 		task.setOnSucceeded(e -> {
 			System.out.println(e.getSource().getValue());
-			alert.close();
-		});
-
-		task.setOnFailed(e -> {
-			alert.close();
 		});
 
 		alert.initStyle(StageStyle.UTILITY);

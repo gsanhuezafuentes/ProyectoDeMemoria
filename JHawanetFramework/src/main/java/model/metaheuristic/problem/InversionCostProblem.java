@@ -39,6 +39,16 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 
 	private int minPressure;
 
+	/**
+	 * Constructor
+	 * @param epanet
+	 * @param networkGama
+	 * @param minPressure
+	 * @throws IOException if there is a error in the io operator over the gama.
+	 * @throws EpanetException if there is a error in epatoolkit
+	 * @throws NullPointerException if epanet is null or networkGama is null
+	 * @throws ApplicationException if networkGama is empty
+	 */
 	public InversionCostProblem(EpanetAPI epanet, String networkGama, int minPressure)
 			throws IOException, EpanetException {
 		Objects.requireNonNull(epanet, "EpanetAPI can't be null in CostConstructionProblem");
@@ -58,8 +68,8 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 	/**
 	 * Initialize values needed to the problem.
 	 * 
-	 * @throws IOException
-	 * @throws EpanetException
+	 * @throws IOException if there is a error in the io operator over the gama.
+	 * @throws EpanetException if there is a error in epatoolkit.
 	 */
 	private void initialize() throws IOException, EpanetException {
 		this.numberOfVariables = epanet.ENgetcount(Components.EN_LINKCOUNT);

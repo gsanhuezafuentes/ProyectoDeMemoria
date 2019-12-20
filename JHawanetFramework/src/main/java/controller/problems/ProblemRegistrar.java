@@ -9,6 +9,7 @@ import annotations.registrable.NumberInput;
 import annotations.registrable.OperatorInput;
 import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
+import controller.ConfigurationDynamicWindowController;
 import controller.utils.AlgorithmCreationNotification;
 import controller.utils.ReflectionUtils;
 import javafx.event.ActionEvent;
@@ -36,24 +37,26 @@ import view.ConfigurationDynamicWindow;
  * <br>
  * 
  * The same constructor with {@link NewProblem} annotation also has to have the
- * {@link Parameters} annotation if it has parameters. {@link Parameters} add the info
- * about the parameters received by the method. {@link Parameters} has a
- * operators property, files property and numbers property. The operators property receive
- * {@link OperatorInput}, the files property receive {@link FileInput} and numbers receive {@link NumberInput}.
+ * {@link Parameters} annotation if it has parameters. {@link Parameters} add
+ * the info about the parameters received by the method. {@link Parameters} has
+ * a operators property, files property and numbers property. The operators
+ * property receive {@link OperatorInput}, the files property receive
+ * {@link FileInput} and numbers receive {@link NumberInput}.
  * 
  * {@link OperatorInput} denote which operator will be received. The
  * {@link OperatorInput} let one or more {@link OperatorOption} that indicate
  * what Operator can be used in this problem.<br>
  * <br>
  * 
- * {@link FileInput} denote a file. it let indicate files with information to execute the algorithm.
+ * {@link FileInput} denote a file. it let indicate files with information to
+ * execute the algorithm.
  * 
  * {@link NumberInput} denote a int or a double value that are received by the
  * constructor.<br>
  * <br>
  *
- * The constructor has to have first all operator parameters, next to all files parameter and the last all the
- * number parameters.<br>
+ * The constructor has to have first all operator parameters, next to all files
+ * parameter and the last all the number parameters.<br>
  * <br>
  * 
  * For example: <br>
@@ -85,6 +88,7 @@ public class ProblemRegistrar {
 	private ProblemRegistrar() {
 		this.problems = new ArrayList<>();
 		this.problems.add(InversionCostRegister.class);
+		this.problems.add(TestProblemRegister.class);
 
 	}
 
@@ -93,8 +97,9 @@ public class ProblemRegistrar {
 	 * setOnAction to add menuItem and when it event will be detected show the
 	 * windows of configuration.
 	 * 
-	 * @param menu  the menu where the problem has been added
-	 * @param algorithmEvent the event that will be fired when the RegistrableProblem is created.
+	 * @param menu           the menu where the problem has been added
+	 * @param algorithmEvent the event that will be fired when the
+	 *                       RegistrableProblem is created.
 	 */
 	public void register(Menu menu, AlgorithmCreationNotification algorithmEvent) {
 		for (Class<? extends Registrable> registrable : this.problems) {
@@ -118,16 +123,10 @@ public class ProblemRegistrar {
 	 */
 	private void menuItemEventHander(ActionEvent evt, Class<? extends Registrable> registrable,
 			AlgorithmCreationNotification algorithmEvent) {
-		Stage stage = new Stage();
-		stage.setTitle("Algorithm Configuration");
-		ConfigurationDynamicWindow contentLayout = new ConfigurationDynamicWindow(registrable, stage, algorithmEvent);
-		Scene scene = new Scene(contentLayout);
-		stage.setScene(scene);
-		stage.sizeToScene();
-		stage.setResizable(false);
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.initStyle(StageStyle.UTILITY);
-		stage.show();
+
+		ConfigurationDynamicWindowController configurationController = new ConfigurationDynamicWindowController(
+				registrable, algorithmEvent);
+		configurationController.showAssociatedWindow();
 	}
 
 }

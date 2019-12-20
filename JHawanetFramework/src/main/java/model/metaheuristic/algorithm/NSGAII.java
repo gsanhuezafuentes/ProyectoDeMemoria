@@ -222,6 +222,7 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 	 * 
 	 * @param population
 	 * @param numberOfParentsForCrossover
+	 * @throws ApplicationException if there is a wrong number of parent
 	 */
 	protected void checkNumberOfParents(List<S> population, int numberOfParentsForCrossover) {
 		if ((population.size() % numberOfParentsForCrossover) != 0) {
