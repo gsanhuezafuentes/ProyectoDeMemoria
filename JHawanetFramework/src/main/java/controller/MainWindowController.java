@@ -103,16 +103,17 @@ public class MainWindowController implements Initializable {
 	 * @return network or null if the network can't be loaded
 	 */
 	private void loadNetwork(File file) {
-		Network net = new Network();
+		Network net = null;
 		InpParser parse = new InpParser();
 
 		try {
+			net = new Network();
 			parse.parse(net, file.getAbsolutePath());
 		} catch (IOException | InputException e) {
-			net = null;
 			CustomDialogs.showExceptionDialog("Error", "Error loading the network", "The network can't be loaded", e);
 		}
 
+		// If the network was loaded so show it
 		if (net != null) {
 			networkComponent.drawNetwork(net);
 			isNetworkLoaded.set(true);
@@ -184,7 +185,7 @@ public class MainWindowController implements Initializable {
 		Button closeButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CLOSE);
 		closeButton.setOnAction(e -> {
 			if (!task.isCancelled()) {
-				task.cancel();				
+				task.cancel();
 			}
 			alert.close();
 		});
@@ -198,14 +199,14 @@ public class MainWindowController implements Initializable {
 						"An error has occurred while trying to close the resources of the problem.", newValue);
 			}
 		});
-		
+
 		task.runningProperty().addListener((prop, old, newv) -> {
-			if(!newv) {
+			if (!newv) {
 				alert.setTitle("Execution Finished");
 				progressIndicator.setProgress(1);
 			}
 		});
-		
+
 		task.setOnSucceeded(e -> {
 			System.out.println(e.getSource().getValue());
 		});

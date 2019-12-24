@@ -1,7 +1,9 @@
 package controller.utils;
 
 import java.io.File;
+import java.lang.annotation.Inherited;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Parameter;
 import java.util.HashSet;
 import java.util.Objects;
@@ -14,6 +16,7 @@ import annotations.registrable.Parameters;
 import controller.problems.ProblemRegistrar;
 import controller.problems.Registrable;
 import exception.ApplicationException;
+import view.utils.CustomDialogs;
 
 /**
  * Utility class with method to get info of class using reflection and validate
@@ -259,9 +262,10 @@ public class ReflectionUtils {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Return the number of parameters in the only constructor of registrable problem.
+	 * Return the number of parameters in the only constructor of registrable
+	 * problem.
 	 * 
 	 * @param registrable the registrable class.
 	 * @return the number of parameters in registrable problem.
@@ -272,13 +276,13 @@ public class ReflectionUtils {
 		Constructor<?>[] constructors = registrable.getConstructors();
 		if (constructors.length != 1) {
 			throw new ApplicationException("Registrable class has to have only one constructor.");
-			
+
 		}
 		Constructor<?> constructor = constructors[0];
 
 		return constructor.getParameterCount();
 	}
-	
+
 	/**
 	 * Return the number of parameters in the {@link Parameter} annotation.
 	 * 
@@ -293,13 +297,14 @@ public class ReflectionUtils {
 				+ parametersAnnotation.numbers().length;
 		return numberOfParametersInAnnotation;
 	}
-	
+
 	/**
 	 * Return the number of parameters in the operator default constructor.
 	 * 
 	 * @param classType The class where {@link DefaultConstructor} was used.
 	 * @return the number of parameters in operator default constructor.
-	 * @throws NullPointerException if classType is null or there isn't a default constructor.
+	 * @throws NullPointerException if classType is null or there isn't a default
+	 *                              constructor.
 	 */
 	public static int getNumberOfParameterInDefaultConstructor(Class<?> classType) {
 		Objects.requireNonNull(classType);
@@ -307,6 +312,46 @@ public class ReflectionUtils {
 		Objects.requireNonNull(constructor);
 		int numberOfParameters = constructor.getParameterCount();
 		return numberOfParameters;
+	}
+
+	/**
+	 * Create a new instance of Registrable problem.
+	 * 
+	 * @param problemClass the registrable class
+	 * @param parameters   the parameters of constructor of registrable class
+	 * @return the registrable instance
+	 * @throws ApplicationException      if there are any exceptions when the new
+	 *                                   instance is being created
+	 * @throws InvocationTargetException if the underlying constructor throws an
+	 *                                   exception.
+	 */
+	public static Registrable createRegistrableInstance(Class<? extends Registrable> problemClass, Object[] parameters)
+			throws InvocationTargetException {
+
+		Constructor<?> constructor = ReflectionUtils.getConstructor(problemClass);
+		Registrable registrable;
+		try {
+			registrable = (Registrable) constructor.newInstance(parameters);
+			return registrable;
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException e) {
+			throw new ApplicationException("Error in reflection call", e);
+		}
+	}
+
+	/**
+	 * Create a new instance of Registrable problem.
+	 * 
+	 * @param problemClass the registrable class
+	 * @return the registrable instance
+	 * @throws ApplicationException      if there are any exceptions when the new
+	 *                                   instance is being createds
+	 * @throws InvocationTargetException if the underlying constructor throws an
+	 *                                   exception.
+	 */
+	public static Registrable createRegistrableInstance(Class<? extends Registrable> problemClass)
+			throws InvocationTargetException {
+		Registrable registrable = (Registrable) createRegistrableInstance(problemClass, new Object[0]);
+		return registrable;
 	}
 
 }

@@ -34,7 +34,7 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 		}
 		this.constant = constant;
 	}
-
+	
 	public UniformSelection(Comparator<S> comparator) {
 		this.comparator = comparator;
 	}

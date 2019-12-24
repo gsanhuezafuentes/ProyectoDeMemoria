@@ -55,10 +55,7 @@ public class GamaParser {
 				cost = Double.parseDouble(tokens[3]);
 				gamas.add(new Gama(diameter, cost));
 			}
-		} catch (IOException e) {
-			throw e;
 		} 
-
 		return gamas;
 
 	}

@@ -1,5 +1,6 @@
 package controller.problems;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import view.ConfigurationDynamicWindow;
+import view.utils.CustomDialogs;
 
 /**
  * In this class are added the problems that will be added to menu using
@@ -124,9 +126,21 @@ public class ProblemRegistrar {
 	private void menuItemEventHander(ActionEvent evt, Class<? extends Registrable> registrable,
 			AlgorithmCreationNotification algorithmEvent) {
 
-		ConfigurationDynamicWindowController configurationController = new ConfigurationDynamicWindowController(
-				registrable, algorithmEvent);
-		configurationController.showAssociatedWindow();
+		// If the registrable class has a constructor with parameters so a new window to configure its is created,
+		if (ReflectionUtils.getNumberOfParameterInRegistrableConstructor(registrable) > 0) {
+			ConfigurationDynamicWindowController configurationController = new ConfigurationDynamicWindowController(
+					registrable, algorithmEvent);
+			configurationController.showAssociatedWindow();
+		}
+		else { // If the registrable class has a constructor without parameters algorithmEvent.notify is called.
+			try {
+				Registrable registrableInstance = ReflectionUtils.createRegistrableInstance(registrable);
+				algorithmEvent.notify(registrableInstance);
+			} catch (InvocationTargetException e) {
+				CustomDialogs.showExceptionDialog("Error", "Exception throw by the constructor",
+						"Can't be created an instance of " + registrable.getName(), e.getCause());
+			}
+		}
 	}
 
 }

@@ -84,15 +84,13 @@ public class ConfigurationDynamicWindowController {
 			parameters[i++] = numberInput;
 		}
 
-		Constructor<?> constructor = ReflectionUtils.getConstructor(this.problemClass);
 		try {
-			Registrable registrable = (Registrable) constructor.newInstance(parameters);
+			Registrable registrable = ReflectionUtils.createRegistrableInstance(this.problemClass, parameters);
 			this.view.close();
 			notifyAlgorithmCreation(registrable);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			CustomDialogs.showExceptionDialog("Error", "Error in the creation of registrable object",
-					"Can't be created an instance of " + this.problemClass.getName(), e);
+		} catch (InvocationTargetException e) {
+			CustomDialogs.showExceptionDialog("Error", "Exception throw by the constructor",
+					"Can't be created an instance of " + this.problemClass.getName(), e.getCause());
 		}
 
 	}

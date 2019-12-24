@@ -143,19 +143,17 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 	 * 
 	 * @param epanet
 	 * @return
+	 * @throws EpanetException if there is an error with EpaToolkit function.
 	 */
-	private List<Float> getLengthLink(EpanetAPI epanet) {
+	private List<Float> getLengthLink(EpanetAPI epanet) throws EpanetException {
 		ArrayList<Float> length = new ArrayList<Float>();
 		int n_link;
-		try {
 			n_link = epanet.ENgetcount(Components.EN_LINKCOUNT);
 			for (int i = 1; i <= n_link; i++) {
 				float[] value = epanet.ENgetlinkvalue(i, LinkParameters.EN_LENGTH);
 				length.add(value[0]);
 			}
-		} catch (EpanetException e) {
-			e.printStackTrace();
-		}
+		
 
 		return length;
 	}

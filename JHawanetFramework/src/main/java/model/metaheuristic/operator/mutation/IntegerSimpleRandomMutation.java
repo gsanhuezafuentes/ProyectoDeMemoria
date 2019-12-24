@@ -26,7 +26,7 @@ public class IntegerSimpleRandomMutation implements MutationOperator<IntegerSolu
 		this(probability, () -> JavaRandom.getInstance().nextDouble(),
 				(a, b) -> JavaRandom.getInstance().nextInt(a, b));
 	}
-
+	
 	/** Constructor 
 	 * @throws ApplicationException if probability is negative
 	 */

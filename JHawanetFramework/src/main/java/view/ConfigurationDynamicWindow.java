@@ -27,6 +27,8 @@ import controller.utils.ReflectionUtils;
 import exception.ApplicationException;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -55,7 +57,7 @@ import view.utils.CustomDialogs;
  * Registrable class and with reflection read his metadata annotation.
  *
  */
-public class ConfigurationDynamicWindow extends Stage {
+public final class ConfigurationDynamicWindow extends Stage {
 
 	private Class<? extends Registrable> problemClass;
 	private ConfigurationDynamicWindowController controller;
@@ -236,11 +238,20 @@ public class ConfigurationDynamicWindow extends Stage {
 		this.comboBoxesAdded.add(comboBox);
 
 		Button configButton = new Button("Configure");
-		// If a item is selected in combobox so enable config button
-		configButton.disableProperty().bind(comboBox.getSelectionModel().selectedItemProperty().isNull());
-
+		// Disable by default until select an Operator in comboBox that have parameters.
+		configButton.setDisable(true);
+		
+		comboBox.getSelectionModel().selectedItemProperty().addListener((prop, oldv, newv) ->{
+			if (ReflectionUtils.getNumberOfParameterInDefaultConstructor(newv) > 0) {
+				configButton.setDisable(false);
+			}
+			else {
+				configButton.setDisable(true);
+			}
+		});
+		
 		// Update the isRunButtonDisable property to bind the combobox created in this
-		// execution of method
+		// execution of method. So if all combobox are a selected item the run button is enable.
 		if (isRunButtonDisabled == null) {
 			this.isRunButtonDisabled = comboBox.getSelectionModel().selectedItemProperty().isNull();
 		} else {
@@ -478,5 +489,4 @@ public class ConfigurationDynamicWindow extends Stage {
 		}
 		controller.onRunButtonClick(operatorsAndConfig, files, numberInputs);
 	}
-
 }
