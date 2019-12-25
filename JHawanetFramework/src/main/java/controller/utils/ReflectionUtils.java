@@ -1,7 +1,6 @@
 package controller.utils;
 
 import java.io.File;
-import java.lang.annotation.Inherited;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Parameter;
@@ -16,7 +15,6 @@ import annotations.registrable.Parameters;
 import controller.problems.ProblemRegistrar;
 import controller.problems.Registrable;
 import exception.ApplicationException;
-import view.utils.CustomDialogs;
 
 /**
  * Utility class with method to get info of class using reflection and validate

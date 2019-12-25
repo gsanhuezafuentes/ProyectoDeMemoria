@@ -1,9 +1,7 @@
 package controller;
 
 import java.io.File;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -12,9 +10,6 @@ import controller.problems.Registrable;
 import controller.utils.AlgorithmCreationNotification;
 import controller.utils.ReflectionUtils;
 import exception.ApplicationException;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import view.ConfigurationDynamicWindow;
 import view.utils.CustomDialogs;
 
@@ -96,10 +91,10 @@ public class ConfigurationDynamicWindowController {
 	}
 	
 	/**
-	 * Get the associated window to this controller.
+	 * Get the associated view component to this controller.
 	 * @return the window.
 	 */
-	public ConfigurationDynamicWindow getAssociatedWindow() {
+	public ConfigurationDynamicWindow getAssociatedView() {
 		return this.view;
 	}
 	

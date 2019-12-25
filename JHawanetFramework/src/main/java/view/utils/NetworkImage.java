@@ -111,6 +111,8 @@ public class NetworkImage {
 	public static void drawNetwork(GraphicsContext g, double w, double h, Network net, Node selNode) {
 		Rectangle2D.Double bounds = null;
 		boolean drawTanks = true, drawPipes = true, drawNodes = true;
+		
+		// Create a rectangle whose size is modified when a new point is added. The size of rectangle is taked from the lower and greatest point added.
 		for (Node node : net.getNodes()) {
 			if (node.getPosition() != null) {
 				if (bounds == null)
@@ -132,7 +134,7 @@ public class NetworkImage {
 				}
 			}
 		}
-
+		
 //		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		// g.setColor(new Color(0x99, 0x99, 0x99));
 		// g.drawRect(0, 0, w - 1, h - 1);

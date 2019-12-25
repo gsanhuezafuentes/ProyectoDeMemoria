@@ -100,6 +100,10 @@ public final class Network {
 		this.valveList = new ArrayList<>();
 
 	}
+	
+	public boolean isEmpty() {
+		return linkMap.size() + nodesMap.size() == 0;
+	}
 
 	/*********************************************************
 	 * Network Components

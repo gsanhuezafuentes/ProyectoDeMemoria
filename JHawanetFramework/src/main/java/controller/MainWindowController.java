@@ -34,6 +34,13 @@ import model.metaheuristic.algorithm.Algorithm;
 import view.NetworkComponent;
 import view.utils.CustomDialogs;
 
+/**
+ * The controller of the main window view.
+ * 
+ * From this class is opened the RunningWindow when the problem is selected in
+ * menu item.
+ *
+ */
 public class MainWindowController implements Initializable {
 	/**
 	 * Is the section where the network is painted
@@ -60,6 +67,7 @@ public class MainWindowController implements Initializable {
 	private Window window;
 	private File inpFile;
 	private BooleanProperty isNetworkLoaded;
+	private Network network;
 
 	public MainWindowController() {
 		this.isNetworkLoaded = new SimpleBooleanProperty(false);
@@ -103,19 +111,19 @@ public class MainWindowController implements Initializable {
 	 * @return network or null if the network can't be loaded
 	 */
 	private void loadNetwork(File file) {
-		Network net = null;
+		this.network = null;
 		InpParser parse = new InpParser();
 
 		try {
-			net = new Network();
-			parse.parse(net, file.getAbsolutePath());
+			this.network = new Network();
+			parse.parse(this.network, file.getAbsolutePath());
 		} catch (IOException | InputException e) {
 			CustomDialogs.showExceptionDialog("Error", "Error loading the network", "The network can't be loaded", e);
 		}
 
 		// If the network was loaded so show it
-		if (net != null) {
-			networkComponent.drawNetwork(net);
+		if (this.network != null && !this.network.isEmpty()) {
+			networkComponent.drawNetwork(this.network);
 			isNetworkLoaded.set(true);
 		}
 	}
@@ -138,80 +146,9 @@ public class MainWindowController implements Initializable {
 					"The algorithm can't be created", e);
 		}
 		if (algorithm != null) {
-			AlgorithmTask task = new AlgorithmTask(algorithm);
-			configureAlgorithmTask(task);
-
-			Thread thread = new Thread(task);
-			thread.setDaemon(true);
-			thread.start();
+			RunningDialogController runningDialogController = new RunningDialogController(algorithm, this.network);
+			runningDialogController.showWindowAndRunAlgorithm();
 		}
 
-	}
-
-	/**
-	 * Configure the task adding all listeners
-	 * 
-	 * @param task the task
-	 */
-	private void configureAlgorithmTask(AlgorithmTask task) {
-		Alert alert = new Alert(Alert.AlertType.INFORMATION, "Operation in progress.", ButtonType.CANCEL,
-				ButtonType.CLOSE);
-		alert.setTitle("Running Algorithm");
-		alert.setHeaderText("Please wait... ");
-
-		TextArea textArea = new TextArea();
-		textArea.setEditable(false);
-		textArea.setWrapText(true);
-
-		textArea.setMaxWidth(Double.MAX_VALUE);
-		textArea.setMaxHeight(Double.MAX_VALUE);
-		GridPane.setVgrow(textArea, Priority.ALWAYS);
-		GridPane.setHgrow(textArea, Priority.ALWAYS);
-
-		GridPane expContent = new GridPane();
-		expContent.setMaxWidth(Double.MAX_VALUE);
-		expContent.add(textArea, 0, 0);
-
-		textArea.textProperty().bind(task.messageProperty());
-
-		alert.getDialogPane().setContent(expContent);
-		ProgressIndicator progressIndicator = new ProgressIndicator();
-		progressIndicator.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
-		alert.setGraphic(progressIndicator);
-		Button cancelButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL);
-		cancelButton.disableProperty().bind(task.stateProperty().isNotEqualTo(State.RUNNING));
-		cancelButton.setOnAction(e -> task.cancel());
-
-		Button closeButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CLOSE);
-		closeButton.setOnAction(e -> {
-			if (!task.isCancelled()) {
-				task.cancel();
-			}
-			alert.close();
-		});
-
-		task.exceptionProperty().addListener((property, oldValue, newValue) -> {
-			if (newValue instanceof EpanetException) {
-				CustomDialogs.showExceptionDialog("Error", "Error in the execution of the algorithm.",
-						"An error has occurred during the validation of the solutions.", newValue);
-			} else {
-				CustomDialogs.showExceptionDialog("Error", "Error in the execution of the algorithm",
-						"An error has occurred while trying to close the resources of the problem.", newValue);
-			}
-		});
-
-		task.runningProperty().addListener((prop, old, newv) -> {
-			if (!newv) {
-				alert.setTitle("Execution Finished");
-				progressIndicator.setProgress(1);
-			}
-		});
-
-		task.setOnSucceeded(e -> {
-			System.out.println(e.getSource().getValue());
-		});
-
-		alert.initStyle(StageStyle.UTILITY);
-		alert.show();
 	}
 }

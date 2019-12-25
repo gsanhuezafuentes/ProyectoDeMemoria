@@ -1,9 +1,5 @@
 package model.metaheuristic.evaluator;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
 import epanet.core.Components;
@@ -13,8 +9,6 @@ import epanet.core.LinkParameters;
 import epanet.core.NodeParameters;
 import epanet.core.NodeTypes;
 import model.epanet.element.Gama;
-import model.epanet.io.GamaParser;
-import model.metaheuristic.problem.InversionCostProblem;
 import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.utils.solutionattribute.NumberOfViolatedConstraints;
 import model.metaheuristic.utils.solutionattribute.OverallConstraintViolation;

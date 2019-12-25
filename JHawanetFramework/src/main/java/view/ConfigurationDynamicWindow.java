@@ -2,7 +2,6 @@ package view;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -22,13 +21,9 @@ import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
 import controller.ConfigurationDynamicWindowController;
 import controller.problems.Registrable;
-import controller.utils.AlgorithmCreationNotification;
 import controller.utils.ReflectionUtils;
-import exception.ApplicationException;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -70,24 +65,36 @@ public final class ConfigurationDynamicWindow extends Stage {
 
 	private int gridLayoutRowCount;
 
-	// It has a reference to textfield with number input. The order of
-	// this list is the same that the order in Parameters annotation (numbers)
+	/*
+	 * It has a reference to textfield with number input. The order of this list is
+	 * the same that the order in Parameters annotation (numbers)
+	 */
 	private List<TextField> numbersTextFieldAdded;
-	// It has a reference to textfield with fileInput(It shown the path of some
-	// file).The order of
-	// this list is the same that the order in Parameters annotation (files)
+	/*
+	 * It has a reference to textfield with fileInput(It shown the path of some
+	 * file).The order of this list is the same that the order in Parameters
+	 * annotation (files)
+	 */
 	private List<TextField> filesTextFieldAdded;
+
 	// A map with the value of operator configured in comboBox
 	private Map<Class<?>, List<Number>> resultOfOperatorConfiguration;
-	// it has a reference to all comboboxes added. The order of
-	// this list is the same that the order in Parameters annotation (operators)
+	/*
+	 * it has a reference to all comboboxes added. The order of this list is the
+	 * same that the order in Parameters annotation (operators)
+	 */
 	private List<ComboBox<Class<?>>> comboBoxesAdded;
 
+	/**
+	 * Constructor.
+	 * @param controller the controller associated to this view.
+	 * @param registrable the registrable class to analize.
+	 */
 	public ConfigurationDynamicWindow(ConfigurationDynamicWindowController controller,
 			Class<? extends Registrable> registrable) {
 		this.problemClass = Objects.requireNonNull(registrable);
 		this.controller = Objects.requireNonNull(controller);
-		
+
 		this.root = new VBox();
 		Scene scene = new Scene(root);
 		setScene(scene);
@@ -102,16 +109,16 @@ public final class ConfigurationDynamicWindow extends Stage {
 		this.numbersTextFieldAdded = new ArrayList<TextField>();
 		this.filesTextFieldAdded = new ArrayList<TextField>();
 		this.resultOfOperatorConfiguration = new HashMap<Class<?>, List<Number>>();
-		
-		configuratedWindow();
+
+		configurateWindow();
 		createContentLayout();
 		addButton();
 	}
 
 	/**
-	 * 
+	 * Setting the stage properties.
 	 */
-	private void configuratedWindow() {
+	private void configurateWindow() {
 		setTitle("Algorithm Configuration");
 		sizeToScene();
 		setResizable(false);
@@ -240,18 +247,18 @@ public final class ConfigurationDynamicWindow extends Stage {
 		Button configButton = new Button("Configure");
 		// Disable by default until select an Operator in comboBox that have parameters.
 		configButton.setDisable(true);
-		
-		comboBox.getSelectionModel().selectedItemProperty().addListener((prop, oldv, newv) ->{
+
+		comboBox.getSelectionModel().selectedItemProperty().addListener((prop, oldv, newv) -> {
 			if (ReflectionUtils.getNumberOfParameterInDefaultConstructor(newv) > 0) {
 				configButton.setDisable(false);
-			}
-			else {
+			} else {
 				configButton.setDisable(true);
 			}
 		});
-		
+
 		// Update the isRunButtonDisable property to bind the combobox created in this
-		// execution of method. So if all combobox are a selected item the run button is enable.
+		// execution of method. So if all combobox are a selected item the run button is
+		// enable.
 		if (isRunButtonDisabled == null) {
 			this.isRunButtonDisabled = comboBox.getSelectionModel().selectedItemProperty().isNull();
 		} else {
@@ -277,6 +284,7 @@ public final class ConfigurationDynamicWindow extends Stage {
 	 * @param selectedItem the class of operator
 	 */
 	private void createAndShowOperatorConfigureDialog(String name, Class<?> selectedItem) {
+		//Create a custom dialog to configure the operator's parameters.
 		Dialog<List<Number>> dialog = new Dialog<>();
 		dialog.setTitle("Configuración " + name);
 		dialog.setContentText("Ingrese los valores");
@@ -332,6 +340,7 @@ public final class ConfigurationDynamicWindow extends Stage {
 		// method used to convert the element in dialog in a result
 		dialog.setResultConverter(dialogButton -> {
 			if (dialogButton == okButtonType) {
+				//Get the value of each textfield in the dialog
 				List<Number> results = textFieldOfParameters.stream()
 						.map(textField -> (Number) textField.getTextFormatter().getValue())
 						.collect(Collectors.toList());
@@ -349,7 +358,7 @@ public final class ConfigurationDynamicWindow extends Stage {
 	}
 
 	/**
-	 * Add button at the last of window
+	 * Add button cancel and run at the last of window.
 	 */
 	private void addButton() {
 
@@ -451,10 +460,11 @@ public final class ConfigurationDynamicWindow extends Stage {
 	}
 
 	/**
-	 * Prepare to send the user input to controller.
+	 * Prepare to send the user input to controller when the run button is pressed.
 	 */
 	private void sendParatemetersToController() {
-		Map<Class<?>, List<Number>> operatorsAndConfig= new LinkedHashMap<Class<?>, List<Number>>(this.comboBoxesAdded.size());
+		Map<Class<?>, List<Number>> operatorsAndConfig = new LinkedHashMap<Class<?>, List<Number>>(
+				this.comboBoxesAdded.size());
 		File[] files = new File[this.filesTextFieldAdded.size()];
 		Number[] numberInputs = new Number[this.numbersTextFieldAdded.size()];
 //		Number[] toggleInputs = new Number[this.numbersToogleFieldAdded.size()];
@@ -470,15 +480,14 @@ public final class ConfigurationDynamicWindow extends Stage {
 				return;
 			}
 			operatorsAndConfig.put(operator, operatorParameters);
-			
+
 		}
 
 		i = 0; // reset the counter
 		for (TextField textfield : this.filesTextFieldAdded) {
 			if (textfield.getText().isEmpty()) {
 				files[i++] = null;
-			}
-			else {
+			} else {
 				files[i++] = new File(textfield.getText());
 			}
 		}

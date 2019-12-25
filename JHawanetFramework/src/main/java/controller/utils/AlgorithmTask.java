@@ -24,12 +24,12 @@ public class AlgorithmTask extends Task<Object> {
 		updateMessage(this.algorithm.getStatusOfExecution());
 		while (!this.algorithm.isStoppingConditionReached()) {
 			// Check if the task is cancelled
-			updateMessage(this.algorithm.getStatusOfExecution());
 			if (this.isCancelled()) {
 				algorithm.close();
 				break;
 			}
 			algorithm.runSingleStep();
+			updateMessage(this.algorithm.getStatusOfExecution());
 
 		}
 		return algorithm.getResult();

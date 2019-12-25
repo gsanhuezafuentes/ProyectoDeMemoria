@@ -14,13 +14,8 @@ import controller.ConfigurationDynamicWindowController;
 import controller.utils.AlgorithmCreationNotification;
 import controller.utils.ReflectionUtils;
 import javafx.event.ActionEvent;
-import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import view.ConfigurationDynamicWindow;
 import view.utils.CustomDialogs;
 
 /**
