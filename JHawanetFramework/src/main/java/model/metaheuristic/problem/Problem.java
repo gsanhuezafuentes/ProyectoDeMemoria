@@ -47,9 +47,9 @@ public interface Problem<S extends Solution<?>> extends AutoCloseable {
 	int getNumberOfVariables();
 
 	/**
-	 * Get the number of objetives that contain this problem
+	 * Get the number of objectives that contain this problem
 	 * 
-	 * @return number of objetives
+	 * @return number of objectives
 	 */
 	int getNumberOfObjectives();
 
@@ -78,7 +78,7 @@ public interface Problem<S extends Solution<?>> extends AutoCloseable {
 	S createSolution();
 
 	/**
-	 * Setting the lower bound for each desicion variable
+	 * Setting the lower bound for each decision variable
 	 * 
 	 * @param index the index of decision variable
 	 * @return lower bound of the decision variable
@@ -86,7 +86,7 @@ public interface Problem<S extends Solution<?>> extends AutoCloseable {
 	double getLowerBound(int index);
 
 	/**
-	 * Setting the upper bound for each desicion variable
+	 * Setting the upper bound for each decision variable
 	 * 
 	 * @param index the index of decision variable
 	 * @return upper bound of the decision variable

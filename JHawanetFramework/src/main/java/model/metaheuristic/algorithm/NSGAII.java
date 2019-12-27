@@ -42,7 +42,7 @@ import model.metaheuristic.utils.SolutionListUtils;
  * SOFTWARE. © 2019 GitHub, Inc.
  * </pre>
  */
-public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S, List<S>> {
+public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S> {
 
 	protected final int maxEvaluations;
 

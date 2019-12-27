@@ -34,9 +34,8 @@ import model.metaheuristic.solution.Solution;
  * </pre>
  * 
  * @param <S> The type of solution
- * @param <R> The type of result
  */
-public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> implements Algorithm<R> {
+public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>> implements Algorithm<S> {
 
 	protected Problem<S> problem;
 	protected List<S> population;
@@ -66,7 +65,8 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>, R> im
 	/**
 	 * Get the result of execution of algorithm
 	 */
-	public abstract R getResult();
+	@Override
+	public abstract List<S> getResult();
 
 	/**
 	 * Create the initial population to the problem

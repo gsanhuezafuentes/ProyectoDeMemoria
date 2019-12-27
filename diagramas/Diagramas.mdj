@@ -226,7 +226,7 @@
 													"top": 518,
 													"width": 257.4150390625,
 													"height": 13,
-													"text": "+getResult(): Result",
+													"text": "+getResult(): List<Result>",
 													"horizontalAlignment": 0
 												}
 											],
@@ -2539,7 +2539,7 @@
 											"_parent": {
 												"$ref": "AAAAAAFtOY9UoHiT7IY="
 											},
-											"type": "Result",
+											"type": "List<Result>",
 											"direction": "return"
 										}
 									]

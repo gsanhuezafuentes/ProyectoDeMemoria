@@ -129,7 +129,11 @@ public class MainWindowController implements Initializable {
 	}
 
 	/**
-	 * Run the algorithm
+	 * Run the algorithm.<br><br>
+	 * 
+	 * <br><br><strong>Notes:</strong> <br>
+	 * This method is called by ConfigurationDynamicWindow when the algorithm is successfully created.
+	 * When this method is executed open a RunningDialog that show the progress of execution of algorithm.
 	 * 
 	 * @param registrableProblem the factory of algorithm for a problem
 	 */

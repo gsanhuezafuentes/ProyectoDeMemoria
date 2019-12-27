@@ -1,6 +1,7 @@
 package model.metaheuristic.algorithm;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -50,7 +51,7 @@ import model.metaheuristic.utils.comparator.DominanceComparator;
  * SOFTWARE. © 2019 GitHub, Inc.
  * </pre>
  */
-public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S, S> {
+public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S> {
 	private int maxPopulationSize;
 	private SelectionOperator<List<S>, List<S>> selectionOperator;
 	private CrossoverOperator<S> crossoverOperator;
@@ -237,9 +238,9 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	 * {@inheritDoc}
 	 */
 	@Override
-	public S getResult() {
+	public List<S> getResult() {
 		Collections.sort(getPopulation(), comparator);
-		return population.get(0);
+		return Arrays.asList(this.getPopulation().get(0));
 	}
 
 	/** {@inheritDoc} */
@@ -307,9 +308,9 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 		else if (getMaxNumberOfIterationWithoutImprovement() > 0) {
 			// Initialize best solution if it not exist
 			if (this.bestSolution == null) {
-				this.bestSolution = getResult();
+				this.bestSolution = getResult().get(0);
 			}
-			S solution = getResult();
+			S solution = getResult().get(0);
 			// Check if there is a new best solution
 			if (comparator.compare(solution, bestSolution) < 0) {
 				this.bestSolution = solution;

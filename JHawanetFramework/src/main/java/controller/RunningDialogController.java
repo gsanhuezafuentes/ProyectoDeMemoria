@@ -30,6 +30,7 @@ import view.utils.CustomDialogs;
 public class RunningDialogController {
 
 	private RunningDialog view;
+	private Algorithm<?> algorithm;
 	private AlgorithmTask task;
 
 	/**
@@ -41,6 +42,7 @@ public class RunningDialogController {
 	public RunningDialogController(Algorithm<?> algorithm, Network network) {
 		Objects.requireNonNull(algorithm);
 		Objects.requireNonNull(network);
+		this.algorithm = algorithm;
 		this.task = new AlgorithmTask(algorithm);
 		this.view = new RunningDialog(this, task);
 
@@ -62,25 +64,10 @@ public class RunningDialogController {
 			}
 		});
 
-		// listener when task finishes succesfully
+		// listener when task finishes successfully
 		task.setOnSucceeded(e -> {
-			Object solutionOrSolutionList = e.getSource().getValue();
-			System.out.println(solutionOrSolutionList);
-			List<Solution<?>> solutionList;
-			// test if returned solution is a list
-			if (solutionOrSolutionList instanceof List<?>) {
-				solutionList = (List<Solution<?>>) solutionOrSolutionList;
-			} //if it isn't a list so test if it is a solution.
-			else if (solutionOrSolutionList instanceof Solution<?>) {
-				Solution<?> solution = (Solution<?>) solutionOrSolutionList;
-				solutionList = new ArrayList<>();
-				solutionList.add(solution);
-			}
-			else {
-				throw new ApplicationException("The returned solution neither a list of solution nor a solution instance");
-			}
-			
-			ResultWindowController resultWindowController = new ResultWindowController(solutionList);
+			List<? extends Solution<?>> solutions = task.getValue();			
+			ResultWindowController resultWindowController = new ResultWindowController(solutions);
 			resultWindowController.showAssociatedWindow();
 		});
 	}
