@@ -71,8 +71,12 @@ public class RankingAndCrowdingSelection<S extends Solution<?>> implements Selec
 		return solutionsToSelect;
 	}
 
-	/** Execute() method 
-	 * @throws ApplicationException if the solutionList is empty or his size is less than solutionsToSelect recivied by constructor.
+	/** 
+	 * Execute() method 
+	 * Select solution from  solutionList based in ranking and crowing distance.
+	 * 
+	 * @param solutionList the list of solutions from which to select.
+	 * @throws NullPointerException if the solutionList is empty or his size is less than solutionsToSelect received by constructor.
 	 */
 	public List<S> execute(List<S> solutionList) {
 		Objects.requireNonNull(solutionList);
@@ -90,8 +94,7 @@ public class RankingAndCrowdingSelection<S extends Solution<?>> implements Selec
 	}
 
 	/**
-	 * Calculate the crowing distance (Density Estimator) and selects the solution
-	 * with
+	 * Calculate the crowing distance (Density Estimator) and select whose solutions which less crowing distance.
 	 * 
 	 * @param ranking
 	 * @return a new list with the new population based in ranking and crowding distance

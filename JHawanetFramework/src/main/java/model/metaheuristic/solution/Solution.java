@@ -105,11 +105,11 @@ public interface Solution<Type> {
 	public Map<Object, Object> getAttributes();
 
 	/**
-	 * Get the number of variables
+	 * Get the number of decision variables
 	 * 
 	 * @return the number of variables
 	 */
-	int getNumberOfVariables();
+	int getNumberOfDecisionVariables();
 
 	/**
 	 * Get the number of objectives

@@ -15,7 +15,6 @@ import javafx.stage.Stage;
  * controller is loaded the metaheuristics problem are readed for
  * {@link ProblemRegistrar}
  * 
- * @author gsanh
  *
  */
 public class Main extends Application {
@@ -33,7 +32,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.sizeToScene();
 			primaryStage.show();
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

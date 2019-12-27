@@ -32,7 +32,7 @@ public class MonoObjetiveSolutionEvaluator {
 			throws EpanetException {
 		int numberOfInfactibilities = 0;
 		double infactibilityGrade = 0;
-		int nDecisionVariables = solution.getNumberOfVariables();
+		int nDecisionVariables = solution.getNumberOfDecisionVariables();
 
 		// long t, tstep;
 		long[] tstep = { 1 };

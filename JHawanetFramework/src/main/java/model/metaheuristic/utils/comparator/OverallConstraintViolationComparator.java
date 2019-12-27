@@ -50,7 +50,7 @@ public class OverallConstraintViolationComparator<S extends Solution<?>> impleme
 	 * Compares two solutions. If the solutions has no constraints the method return
 	 * 0
 	 * 
-	 * If both constrains are greather than 0 then this method return 0.
+	 * If both constrains are greater than 0 then this method return 0.
 	 * 
 	 * @param solution1 Object representing the first <code>Solution</code>.
 	 * @param solution2 Object representing the second <code>Solution</code>.

@@ -163,7 +163,7 @@ public class IntegerSolution implements Solution<Integer> {
 
 	/** {@inheritDoc} */
 	@Override
-	public int getNumberOfVariables() {
+	public int getNumberOfDecisionVariables() {
 		return this.desicionVariables.size();
 	}
 

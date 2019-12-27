@@ -1,11 +1,18 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
+
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 import controller.utils.AlgorithmTask;
 import epanet.core.EpanetException;
+import exception.ApplicationException;
 import model.epanet.element.Network;
 import model.metaheuristic.algorithm.Algorithm;
+import model.metaheuristic.solution.Solution;
 import view.RunningDialog;
 import view.utils.CustomDialogs;
 
@@ -57,7 +64,24 @@ public class RunningDialogController {
 
 		// listener when task finishes succesfully
 		task.setOnSucceeded(e -> {
-			System.out.println(e.getSource().getValue());
+			Object solutionOrSolutionList = e.getSource().getValue();
+			System.out.println(solutionOrSolutionList);
+			List<Solution<?>> solutionList;
+			// test if returned solution is a list
+			if (solutionOrSolutionList instanceof List<?>) {
+				solutionList = (List<Solution<?>>) solutionOrSolutionList;
+			} //if it isn't a list so test if it is a solution.
+			else if (solutionOrSolutionList instanceof Solution<?>) {
+				Solution<?> solution = (Solution<?>) solutionOrSolutionList;
+				solutionList = new ArrayList<>();
+				solutionList.add(solution);
+			}
+			else {
+				throw new ApplicationException("The returned solution neither a list of solution nor a solution instance");
+			}
+			
+			ResultWindowController resultWindowController = new ResultWindowController(solutionList);
+			resultWindowController.showAssociatedWindow();
 		});
 	}
 

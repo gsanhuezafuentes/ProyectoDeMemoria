@@ -25,13 +25,13 @@ public class AlgorithmTask extends Task<Object> {
 		while (!this.algorithm.isStoppingConditionReached()) {
 			// Check if the task is cancelled
 			if (this.isCancelled()) {
-				algorithm.close();
 				break;
 			}
 			algorithm.runSingleStep();
 			updateMessage(this.algorithm.getStatusOfExecution());
 
 		}
+		algorithm.close();
 		return algorithm.getResult();
 	}
 

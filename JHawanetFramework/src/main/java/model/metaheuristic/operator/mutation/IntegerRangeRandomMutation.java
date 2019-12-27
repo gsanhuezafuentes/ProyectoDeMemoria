@@ -63,7 +63,7 @@ public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolut
 
 	/** Implements the mutation operation */
 	private void doMutation(double probability, int range, IntegerSolution solution) {
-		for (int i = 0; i < solution.getNumberOfVariables(); i++) {
+		for (int i = 0; i < solution.getNumberOfDecisionVariables(); i++) {
 			if (randomGenerator.getRandomValue() <= probability) {
 				Integer value = solution.getVariable(i);
 				int minValue = solution.getLowerBound(i);

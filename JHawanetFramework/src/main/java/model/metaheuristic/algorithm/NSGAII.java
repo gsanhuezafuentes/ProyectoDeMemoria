@@ -49,10 +49,10 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 	protected int numberOfEvaluations;
 	protected Comparator<S> dominanceComparator;
 
+	protected int maxPopulationSize;
 	protected int matingPoolSize;
 	protected int offspringPopulationSize;
 
-	protected int maxPopulationSize;
 	protected SelectionOperator<List<S>, S> selectionOperator;
 	protected CrossoverOperator<S> crossoverOperator;
 	protected MutationOperator<S> mutationOperator;
@@ -61,6 +61,15 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 
 	/**
 	 * Constructor
+	 * @param problem the problem to solve
+	 * @param maxEvaluations the max number of evaluation to realize
+	 * @param populationSize the population size
+	 * @param matingPoolSize the mating pool size
+	 * @param offspringPopulationSize the offspring population size
+	 * @param crossoverOperator the crossover operator
+	 * @param mutationOperator the mutation operator
+	 * @param selectionOperator the selection operator
+	 * @param dominanceComparator the dominance operator
 	 */
 	public NSGAII(Problem<S> problem, int maxEvaluations, int populationSize, int matingPoolSize,
 			int offspringPopulationSize, CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator,

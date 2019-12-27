@@ -8,7 +8,7 @@ import epanet.core.EpanetException;
  * @param <Result> The Type of result <br>
  *                 <br>
  * 
- * <pre>
+ *                 <pre>
  * Base on code from https://github.com/jMetal/jMetal
  * 
  * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
@@ -35,7 +35,7 @@ import epanet.core.EpanetException;
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. © 2019
  * GitHub, Inc.
- * </pre>
+ *                 </pre>
  */
 public interface Algorithm<Result> extends AutoCloseable {
 
@@ -69,14 +69,18 @@ public interface Algorithm<Result> extends AutoCloseable {
 	boolean isStoppingConditionReached();
 
 	/**
-	 * Get a string with the status of execution. The string returned for this
-	 * method will be showed when the algorithm running in the GUI.<br>
+	 * Get a string with the status of execution.<br>
 	 * <br>
 	 * A example of a message can be:<br>
 	 * <br>
 	 * 
 	 * Number of evaluation: 100/1000 <br>
-	 * Number of execution without improvement: 5/1000
+	 * 
+	 * <br>
+	 * <br>
+	 * <strong>Notes:</strong> <br>
+	 * The string returned for this method will be showed when the algorithm running
+	 * in the GUI.
 	 * 
 	 * @return a string with the status
 	 */
@@ -91,10 +95,13 @@ public interface Algorithm<Result> extends AutoCloseable {
 
 	/**
 	 * Override the close method of {@link AutoCloseable} interface. His default
-	 * implementation is a empty body<br>
+	 * implementation is empty<br>
 	 * <br>
 	 * If you need close a resource used by the algorithm override this method to
 	 * close it.
+	 * 
+	 * <br><br><strong>Notes:</strong> <br>
+	 * It will be called when the algorithm finished the execution
 	 */
 	@Override
 	default void close() throws Exception {
