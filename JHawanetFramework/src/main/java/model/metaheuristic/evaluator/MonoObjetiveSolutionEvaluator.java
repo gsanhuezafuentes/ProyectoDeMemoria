@@ -40,11 +40,12 @@ public class MonoObjetiveSolutionEvaluator {
 
 		epanet.ENopenH();
 		epanet.ENinitH(0);
+		// Set the diameter of network to the solutions
+		for (int i = 0; i < nDecisionVariables; i++) {
+			float diameter = (float) gamas.get(solution.getVariable(i) - 1).getDiameter();
+			epanet.ENsetlinkvalue(i + 1, LinkParameters.EN_DIAMETER, diameter);
+		}
 		do {
-			for (int i = 0; i < nDecisionVariables; i++) {
-				float diameter = (float) gamas.get(solution.getVariable(i) - 1).getDiameter();
-				epanet.ENsetlinkvalue(i + 1, LinkParameters.EN_DIAMETER, diameter);
-			}
 //			RecorrerNudos(epanet); // Borrar es solo para probar
 //			System.out.println(solution);
 			epanet.ENrunH(t);

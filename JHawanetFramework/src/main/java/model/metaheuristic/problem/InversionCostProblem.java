@@ -12,14 +12,15 @@ import epanet.core.EpanetException;
 import epanet.core.LinkParameters;
 import exception.ApplicationException;
 import model.epanet.element.Gama;
+import model.epanet.element.Network;
 import model.epanet.io.GamaParser;
 import model.metaheuristic.evaluator.MonoObjetiveSolutionEvaluator;
 import model.metaheuristic.solution.IntegerSolution;
+import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
 import model.metaheuristic.utils.random.JavaRandom;
 /**
  * Class that implement the problem of inversion cost.
- * @author gsanh
  *
  */
 public class InversionCostProblem implements Problem<IntegerSolution> {
@@ -164,5 +165,10 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 	@Override
 	public void close() throws Exception {
 		epanet.ENclose();
+	}
+
+	@Override
+	public Network applySolutionToNetwork(Network network, Solution<IntegerSolution> solution) {
+		return null;
 	}
 }

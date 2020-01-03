@@ -11,7 +11,6 @@ import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
-import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.algorithm.GeneticAlgorithm2;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.crossover.IntegerSBXCrossover;
@@ -23,7 +22,6 @@ import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.UniformSelection;
 import model.metaheuristic.problem.InversionCostProblem;
-import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.IntegerSolution;
 
 /**
@@ -41,6 +39,7 @@ public class InversionCostRegister implements Registrable {
 	private int numberWithoutImprovement;
 	private int maxEvaluations;
 	private File gama;
+	private InversionCostProblem problem;
 
 	/**
 	 * This constructor define the elements that will be needed to build the
@@ -93,24 +92,32 @@ public class InversionCostRegister implements Registrable {
 	 * 	@throws ApplicationException if inpPath is empty or null or if gama file is null
 	 */
 	@Override
-	public Algorithm<IntegerSolution> build(String inpPath) throws Exception {
+	public GeneticAlgorithm2<IntegerSolution> build(String inpPath) throws Exception {
 		if (inpPath == null || inpPath.isEmpty()) {
 			throw new ApplicationException("There isn't a network opened");
 		}
-		EpanetAPI epanet;
 		GeneticAlgorithm2<IntegerSolution> algorithm = null;
-		epanet = new EpanetAPI();
+		EpanetAPI epanet = new EpanetAPI();
 		epanet.ENopen(inpPath, "ejecucion.rpt", "");
 
 		if (this.gama == null) {
 			throw new ApplicationException("There isn't gama file");
 		}
-		Problem<IntegerSolution> problem = new InversionCostProblem(epanet, this.gama.getAbsolutePath(), 30);
-		algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10, selection, crossover, mutation);
+		if (this.problem == null) {
+			this.problem = new InversionCostProblem(epanet, this.gama.getAbsolutePath(), 30);		
+
+		}
+		algorithm = new GeneticAlgorithm2<IntegerSolution>(this.problem, 10, selection, crossover, mutation);
 		algorithm.setMaxNumberOfIterationWithoutImprovement(numberWithoutImprovement);
 		algorithm.setMaxEvaluations(maxEvaluations);
 		
 		return algorithm;
+	}
+
+	/** {@inheritDoc}*/
+	@Override
+	public InversionCostProblem getProblem() {
+		return this.problem;
 	}
 
 }

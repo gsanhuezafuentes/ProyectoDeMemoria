@@ -31,6 +31,7 @@ import javafx.stage.Window;
 import model.epanet.element.Network;
 import model.epanet.io.InpParser;
 import model.metaheuristic.algorithm.Algorithm;
+import model.metaheuristic.problem.Problem;
 import view.NetworkComponent;
 import view.utils.CustomDialogs;
 
@@ -117,15 +118,15 @@ public class MainWindowController implements Initializable {
 		try {
 			this.network = new Network();
 			parse.parse(this.network, file.getAbsolutePath());
+			// If the network was loaded so show it
+			if (!this.network.isEmpty()) {
+				networkComponent.drawNetwork(this.network);
+				isNetworkLoaded.set(true);
+			}
 		} catch (IOException | InputException e) {
 			CustomDialogs.showExceptionDialog("Error", "Error loading the network", "The network can't be loaded", e);
 		}
 
-		// If the network was loaded so show it
-		if (this.network != null && !this.network.isEmpty()) {
-			networkComponent.drawNetwork(this.network);
-			isNetworkLoaded.set(true);
-		}
 	}
 
 	/**
@@ -150,7 +151,8 @@ public class MainWindowController implements Initializable {
 					"The algorithm can't be created", e);
 		}
 		if (algorithm != null) {
-			RunningDialogController runningDialogController = new RunningDialogController(algorithm, this.network);
+			Problem<?> problem = registrableProblem.getProblem();
+			RunningDialogController runningDialogController = new RunningDialogController(algorithm, problem, this.network);
 			runningDialogController.showWindowAndRunAlgorithm();
 		}
 

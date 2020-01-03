@@ -2,6 +2,7 @@ package model.metaheuristic.algorithm;
 
 import java.util.List;
 
+import controller.utils.AlgorithmTask;
 import epanet.core.EpanetException;
 import model.metaheuristic.solution.Solution;
 
@@ -92,9 +93,10 @@ public interface Algorithm<Result extends Solution<?>> extends AutoCloseable {
 	/**
 	 * Get the result of the algorithm execution.
 	 * 
-	 * A monoobjetive metaheuristics should return a list with only one solution.
-	 * In case of multiobjetive metaheuristics it should return a list with more than one solution.
-	 * In the rare case that there is no solution a empty list has to be returned.
+	 * A monoobjetive metaheuristics should return a list with only one solution. In
+	 * case of multiobjetive metaheuristics it should return a list with more than
+	 * one solution. In the rare case that there is no solution a empty list has to
+	 * be returned.
 	 * 
 	 * @return the solution or solutions given as result of execution of algorithm
 	 */
@@ -104,13 +106,13 @@ public interface Algorithm<Result extends Solution<?>> extends AutoCloseable {
 	 * Override the close method of {@link AutoCloseable} interface. His default
 	 * implementation is empty<br>
 	 * <br>
-	 * If you need close a resource used by the algorithm override this method to
+	 * If you need close a resource used by the algorithm or the problem override this method to
 	 * close it.
 	 * 
 	 * <br>
 	 * <br>
 	 * <strong>Notes:</strong> <br>
-	 * It will be called when the algorithm finished the execution
+	 * It will be called when the algorithm finished the execution for {@link AlgorithmTask}.
 	 */
 	@Override
 	default void close() throws Exception {

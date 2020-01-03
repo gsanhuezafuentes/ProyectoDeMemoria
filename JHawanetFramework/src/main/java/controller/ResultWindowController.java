@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 
 public class ResultWindowController {
@@ -33,11 +34,11 @@ public class ResultWindowController {
 
 	/**
 	 * Constructor.
-	 * 
-	 * @param a list with solution to show
+	 * @param problem the problem that was solve by the algorithm.
+	 * @param solutions a list with solution to show
 	 * @throws NullPointerException if solutions is null
 	 */
-	public ResultWindowController(List<? extends Solution<?>> solutions) {
+	public ResultWindowController(List<? extends Solution<?>> solutions, Problem<?> problem) {
 		Objects.requireNonNull(solutions);
 		this.root = loadFXML();
 		this.solutionList = solutions;
@@ -45,23 +46,27 @@ public class ResultWindowController {
 		addBinding();
 	}
 
+	/**
+	 * Configure the table view and the element that will be showned.
+	 */
 	private void configureResultTable() {
 		if (!this.solutionList.isEmpty()) {
 			this.resultTable.getItems().addAll(this.solutionList);
 			this.resultTable.getItems().addAll(this.solutionList);
 			this.resultTable.getItems().addAll(this.solutionList);
 			this.resultTable.getItems().addAll(this.solutionList);
-			
+
 			this.resultTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-			
+
 			int numberOfObjectives = this.solutionList.get(0).getNumberOfObjectives();
 			int numberOfDecisionVariables = this.solutionList.get(0).getNumberOfDecisionVariables();
-			
+
 			// add column for the objetives
 			for (int i = 0; i < numberOfObjectives; i++) {
 				final int index = i;
 				TableColumn<Solution<?>, String> column = new TableColumn<Solution<?>, String>("Objective " + (i + 1));
 				resultTable.getColumns().add(column);
+				// tell from where get the value for the column
 				column.setCellValueFactory(
 						(CellDataFeatures<Solution<?>, String> solutionData) -> new ReadOnlyObjectWrapper(
 								solutionData.getValue().getObjective(index)));
@@ -72,13 +77,17 @@ public class ResultWindowController {
 				final int index = i;
 				TableColumn<Solution<?>, String> column = new TableColumn<Solution<?>, String>("X" + (i + 1));
 				resultTable.getColumns().add(column);
+				// tell from where get the value for the column
 				column.setCellValueFactory(
 						(CellDataFeatures<Solution<?>, String> solutionData) -> new ReadOnlyObjectWrapper(
 								solutionData.getValue().getVariable(index)));
 			}
 		}
 	}
-	
+
+	/**
+	 * Method to add binding to nodes
+	 */
 	private void addBinding() {
 		saveAsINPButton.disableProperty().bind(this.resultTable.getSelectionModel().selectedItemProperty().isNull());
 	}
@@ -107,7 +116,7 @@ public class ResultWindowController {
 	@SuppressWarnings("unused") // is configure from fxml file
 	@FXML
 	private void onSaveAsINPButtonClick(ActionEvent event) {
-		
+
 		for (Solution<?> solution : this.resultTable.getSelectionModel().getSelectedItems()) {
 			System.out.println(solution);
 		}

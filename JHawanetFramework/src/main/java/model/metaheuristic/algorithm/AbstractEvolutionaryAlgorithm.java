@@ -9,6 +9,7 @@ import model.metaheuristic.solution.Solution;
 /**
  * 
  * Class with common methods to Evolutionary Algorithms
+ * 
  * <pre>
  * Base on code from https://github.com/jMetal/jMetal
  * 
@@ -138,6 +139,11 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>> imple
 	/**
 	 * {@inheritDoc}
 	 * 
+	 * <br>
+	 * <br>
+	 * <strong>Notes:</strong> <br>
+	 * Using this method you can rerun the algorithm.
+	 * 
 	 * @throws Exception       if are a problem in close of resources open in
 	 *                         problem
 	 * @throws EpanetException if there is a error in the simulation
@@ -157,11 +163,16 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>> imple
 			population = replacement(population, offspringPopulation);
 			updateProgress();
 		}
-		this.problem.close();
 	}
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * <br>
+	 * <br>
+	 * <strong>Notes:</strong> <br>
+	 * Using this method you can't rerun the algorithm. If rerun the algorithm is
+	 * needed you have to create a new algorithm instance.
 	 * 
 	 * @throws Exception       if are a problem in close of resources open in
 	 *                         problem
@@ -184,9 +195,8 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>> imple
 			offspringPopulation = evaluatePopulation(offspringPopulation);
 			population = replacement(population, offspringPopulation);
 			updateProgress();
-		} else {
-			close();
 		}
+		
 		this.step++;
 	}
 

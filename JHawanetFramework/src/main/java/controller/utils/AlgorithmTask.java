@@ -7,7 +7,8 @@ import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.solution.Solution;
 
 /**
- * This class is used to perform the algorithm execution in other thread updating the JavaFXApplicationThread.
+ * This class is used to perform the algorithm execution in other thread
+ * updating the JavaFXApplicationThread.
  *
  */
 public class AlgorithmTask extends Task<List<? extends Solution<?>>> {

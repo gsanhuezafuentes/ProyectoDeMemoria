@@ -4,6 +4,7 @@ import annotations.registrable.NewProblem;
 import annotations.registrable.Parameters;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.operator.Operator;
+import model.metaheuristic.problem.Problem;
 
 /**
  * It class let configure the algorithm and his operator to a problem give to
@@ -74,4 +75,15 @@ public interface Registrable {
 	 * @throws if an exception occurs when building the algorithm
 	 */
 	Algorithm<?> build(String inpPath) throws Exception;
+
+	/**
+	 * Get the problem associated to {@link Algorithm} when {@link #build(String)}
+	 * was called or null if it hasn't be called.
+	 * 
+	 * @return the associated problem if the algorithm already was created, i.e.,
+	 *         {@link #build(String) already was called} by {@link #build(String)}
+	 *         or null in other case.
+	 */
+	Problem<?> getProblem();
+
 }

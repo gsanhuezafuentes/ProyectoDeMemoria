@@ -12,6 +12,7 @@ import epanet.core.EpanetException;
 import exception.ApplicationException;
 import model.epanet.element.Network;
 import model.metaheuristic.algorithm.Algorithm;
+import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import view.RunningDialog;
 import view.utils.CustomDialogs;
@@ -31,20 +32,23 @@ public class RunningDialogController {
 
 	private RunningDialog view;
 	private Algorithm<?> algorithm;
+	private Problem<?> problem;
 	private AlgorithmTask task;
 
 	/**
 	 * Constructor
 	 * 
 	 * @param algorithm the algorithm to execute
-	 * @param network   the network opened.
+	 * @param problem the problem that the algorithm has configured
+	 * @param network the network opened.
 	 */
-	public RunningDialogController(Algorithm<?> algorithm, Network network) {
+	public RunningDialogController(Algorithm<?> algorithm, Problem<?> problem, Network network) {
 		Objects.requireNonNull(algorithm);
 		Objects.requireNonNull(network);
 		this.algorithm = algorithm;
+		this.problem = problem;
 		this.task = new AlgorithmTask(algorithm);
-		this.view = new RunningDialog(this, task);
+		this.view = new RunningDialog(this, problem.getNumberOfObjectives(), task);
 
 		addBindingAndListener();
 	}
@@ -67,7 +71,7 @@ public class RunningDialogController {
 		// listener when task finishes successfully
 		task.setOnSucceeded(e -> {
 			List<? extends Solution<?>> solutions = task.getValue();			
-			ResultWindowController resultWindowController = new ResultWindowController(solutions);
+			ResultWindowController resultWindowController = new ResultWindowController(solutions, this.problem);
 			resultWindowController.showAssociatedWindow();
 		});
 	}

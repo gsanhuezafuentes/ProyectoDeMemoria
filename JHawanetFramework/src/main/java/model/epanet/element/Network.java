@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -90,8 +91,8 @@ public final class Network {
 
 	public Network() {
 		this.title = new StringBuilder();
-		this.linkMap = new HashMap<String, Link>();
-		this.nodesMap = new HashMap<String, Node>();
+		this.linkMap = new LinkedHashMap<String, Link>();
+		this.nodesMap = new LinkedHashMap<String, Node>();
 		this.junctionList = new ArrayList<>();
 		this.reservoirList = new ArrayList<>();
 		this.tankList = new ArrayList<>();
@@ -235,6 +236,7 @@ public final class Network {
 	/**
 	 * Get all links no matter what they are. <br>
 	 * The collection is unmodifiable.
+	 * The elements of the collection are in the order in which they were added
 	 * 
 	 * @return the links
 	 */
@@ -245,6 +247,7 @@ public final class Network {
 	/**
 	 * Get all nodes no matter what they are <br>
 	 * The collection is unmodifiable.
+	 * The elements of the collection are in the order in which they were added
 	 * 
 	 * @return the nodes
 	 */
@@ -756,200 +759,200 @@ public final class Network {
 
 	@Override
 	public String toString() {
-		String text;
-		text = "[TITLE]\n";
-		text += this.title + "\n";
+		StringBuilder text = new StringBuilder();
+		text.append("[TITLE]\n");
+		text.append(this.title + "\n");
 
-		text += "[JUNCTION]\n";
-		text += ";ID\tElev\tDemand\tPattern\n";
+		text.append("[JUNCTION]\n");
+		text.append(";ID\tElev\tDemand\tPattern\n");
 		for (Junction junction : getJunctions()) {
-			text += junction.toString() + "\n";
+			text.append(junction.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[RESERVOIR]\n";
-		text += ";ID\tHead\tPattern\n";
+		text.append("[RESERVOIR]\n");
+		text.append(";ID\tHead\tPattern\n");
 		for (Reservoir reservoir : getReservoirs()) {
-			text += reservoir.toString() + "\n";
+			text.append(reservoir.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[TANK]\n";
-		text += ";ID\tElevation\tInitLevel\tMinLevel\tMaxLevel\tDiameter\tMinVol\tVolCurve\n";
+		text.append("[TANK]\n");
+		text.append(";ID\tElevation\tInitLevel\tMinLevel\tMaxLevel\tDiameter\tMinVol\tVolCurve\n");
 		for (Tank tank : getTanks()) {
-			text += tank.toString() + "\n";
+			text.append(tank.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[PIPE]\n";
-		text += ";ID\tNode1\tNode2\tLength\tDiameter\tRoughness\tMinorLoss\tStatus\n";
+		text.append("[PIPE]\n");
+		text.append(";ID\tNode1\tNode2\tLength\tDiameter\tRoughness\tMinorLoss\tStatus\n");
 		for (Pipe pipe : getPipes()) {
-			text += pipe.toString() + "\n";
+			text.append(pipe.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[PUMP]\n";
-		text += ";ID\tNode1\tNode2\tParameters\n";
+		text.append("[PUMP]\n");
+		text.append(";ID\tNode1\tNode2\tParameters\n");
 		for (Pump pump : getPumps()) {
-			text += pump.toString() + "\n";
+			text.append(pump.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[VALVE]\n";
-		text += ";ID\tNode2\tDiameter\tType\tSetting\tMinorLoss\n";
+		text.append("[VALVE]\n");
+		text.append(";ID\tNode2\tDiameter\tType\tSetting\tMinorLoss\n");
 		for (Valve valve : getValves()) {
-			text += valve.toString() + "\n";
+			text.append(valve.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[EMITTER]\n";
-		text += ";Junction\tCoefficient\n";
+		text.append("[EMITTER]\n");
+		text.append(";Junction\tCoefficient\n");
 		for (Emitter emitter : getEmitterList()) {
-			text += emitter.toString() + "\n";
+			text.append(emitter.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[CONTROL]\n";
+		text.append("[CONTROL]\n");
 		for (Control control : getControlList()) {
-			text += control.toString() + "\n";
+			text.append(control.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[CURVE]\n";
-		text += ";ID\tX-Value\tY-Value\n";
+		text.append("[CURVE]\n");
+		text.append(";ID\tX-Value\tY-Value\n");
 		for (Curve curve : getCurveList()) {
-			text += curve.toString() + "\n";
+			text.append(curve.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[DEMAND]\n";
-		text += ";Junction\tDemand\tPattern\tCategory\n";
+		text.append("[DEMAND]\n");
+		text.append(";Junction\tDemand\tPattern\tCategory\n");
 		for (Demand demand : getDemandList()) {
-			text += demand.toString() + "\n";
+			text.append(demand.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[ENERGY]\n";
+		text.append("[ENERGY]\n");
 		for (Energy energy : getEnergyList()) {
-			text += energy.toString() + "\n";
+			text.append(energy.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[PATTERN]\n";
-		text += ";ID\tMultipliers\n";
+		text.append("[PATTERN]\n");
+		text.append(";ID\tMultipliers\n");
 		for (Pattern pattern : getPatternList()) {
-			text += pattern.toString() + "\n";
+			text.append(pattern.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[RULE]\n";
+		text.append("[RULE]\n");
 		for (Rule rule : getRuleList()) {
-			text += rule.toString() + "\n";
+			text.append(rule.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[STATUS]\n";
-		text += ";ID\tStatus/Setting\n";
+		text.append("[STATUS]\n");
+		text.append(";ID\tStatus/Setting\n");
 		for (Status status : getStatusList()) {
-			text += status.toString() + "\n";
+			text.append(status.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[MIXING]\n";
-		text += ";Tank\tModel\n";
+		text.append("[MIXING]\n");
+		text.append(";Tank\tModel\n");
 		for (Mixing mixing : getMixingList()) {
-			text += mixing.toString() + "\n";
+			text.append(mixing.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[QUALITY]\n";
-		text += ";Node\tInitQual\n";
+		text.append("[QUALITY]\n");
+		text.append(";Node\tInitQual\n");
 		for (Quality quality : getQualityList()) {
-			text += quality.toString() + "\n";
+			text.append(quality.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[REACTION]\n";
-		text += getReaction() + "\n";
-		text += "\n";
+		text.append("[REACTION]\n");
+		text.append(getReaction() + "\n");
+		text.append("\n");
 
-		text += "[SOURCE]\n";
-		text += ";Node\tType\tQuality\tPattern\n";
+		text.append("[SOURCE]\n");
+		text.append(";Node\tType\tQuality\tPattern\n");
 		for (Source source : this.getSourceList()) {
-			text += source.toString() + "\n";
+			text.append(source.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[OPTION]\n";
-		text += getOption().toString() + "\n";
-		text += "\n";
+		text.append("[OPTION]\n");
+		text.append(getOption().toString() + "\n");
+		text.append("\n");
 
-		text += "[REPORT]\n";
-		text += getReport().toString() + "\n";
-		text += "\n";
+		text.append("[REPORT]\n");
+		text.append(getReport().toString() + "\n");
+		text.append("\n");
 
-		text += "[TIME]\n";
-		text += getTime().toString() + "\n";
-		text += "\n";
+		text.append("[TIME]\n");
+		text.append(getTime().toString() + "\n");
+		text.append("\n");
 
-		text += "[BACKDROP]\n";
-		text += getBackdrop().toString() + "\n";
-		text += "\n";
+		text.append("[BACKDROP]\n");
+		text.append(getBackdrop().toString() + "\n");
+		text.append("\n");
 
-		text += "[LABELS]\n";
-		text += ";X-Coord\tY-Coord\tLabel & Anchor Node\n";
+		text.append("[LABELS]\n");
+		text.append(";X-Coord\tY-Coord\tLabel & Anchor Node\n");
 		for (Label label : this.getLabels()) {
-			text += label.toString() + "\n";
+			text.append(label.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[TAGS]\n";
-		text += ";Object\tID\tLabel\n";
+		text.append("[TAGS]\n");
+		text.append(";Object\tID\tLabel\n");
 		for (Tag tag : this.getTags()) {
-			text += tag.toString() + "\n";
+			text.append(tag.toString() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[COORDINATES]\n";
-		text += ";Node\tX-Coord\tY-Coord\n";
+		text.append("[COORDINATES]\n");
+		text.append(";Node\tX-Coord\tY-Coord\n");
 		for (Junction junction : getJunctions()) {
-			text += junction.getId() + "\t";
-			text += junction.getPosition() + "\n";
+			text.append(junction.getId() + "\t");
+			text.append(junction.getPosition() + "\n");
 		}
 		for (Reservoir reservoir : getReservoirs()) {
-			text += reservoir.getId() + "\t";
-			text += reservoir.getPosition() + "\n";
+			text.append(reservoir.getId() + "\t");
+			text.append(reservoir.getPosition() + "\n");
 		}
 		for (Tank tank : getTanks()) {
-			text += tank.getId() + "\t";
-			text += tank.getPosition() + "\n";
+			text.append(tank.getId() + "\t");
+			text.append(tank.getPosition() + "\n");
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[VERTICES]\n";
-		text += ";Node\tX-Coord\tY-Coord\n";
+		text.append("[VERTICES]\n");
+		text.append(";Node\tX-Coord\tY-Coord\n");
 		for (Pipe pipe : getPipes()) {
 			for (Point point : pipe.getVertices()) {
-				text += pipe.getId() + "\t";
-				text += point + "\n";
+				text.append(pipe.getId() + "\t");
+				text.append(point + "\n");
 			}
 		}
 		for (Pump pump : getPumps()) {
 			for (Point point : pump.getVertices()) {
-				text += pump.getId() + "\t";
-				text += point + "\n";
+				text.append(pump.getId() + "\t");
+				text.append(point + "\n");
 			}
 		}
 		for (Valve valve : getValves()) {
 			for (Point point : valve.getVertices()) {
-				text += valve.getId() + "\t";
-				text += point + "\n";
+				text.append(valve.getId() + "\t");
+				text.append(point + "\n");
 			}
 		}
-		text += "\n";
+		text.append("\n");
 
-		text += "[END]";
-		return text;
+		text.append("[END]");
+		return text.toString();
 	}
 
 }

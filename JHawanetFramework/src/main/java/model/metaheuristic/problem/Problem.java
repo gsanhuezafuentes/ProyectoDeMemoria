@@ -1,13 +1,14 @@
 package model.metaheuristic.problem;
 
 import epanet.core.EpanetException;
+import model.epanet.element.Network;
 import model.metaheuristic.solution.Solution;
 
 /**
  * Class that denote a problem. <br>
  * <br>
  * 
- * If the problem open a reso
+ * If the problem open a resource override the close method to close its.
  * 
  * <pre>
  * Base on code from https://github.com/jMetal/jMetal
@@ -92,12 +93,25 @@ public interface Problem<S extends Solution<?>> extends AutoCloseable {
 	 * @return upper bound of the decision variable
 	 */
 	double getUpperBound(int index);
+	
+	/**
+	 * Apply the solution to the network.
+	 * 
+	 * <br><br><strong>Notes:</strong> <br>
+	 * This method is used to save the solution as a inp from the ResultWindow.
+	 * 
+	 * @param network a network instance configure with data of inp.
+	 * @param solution the solution to be setting in the network
+	 * @return a copy of the network configured with solution
+	 */
+	Network applySolutionToNetwork(Network network, Solution<S> solution);
 
 	/**
 	 * Override the close method of {@link AutoCloseable} interface. His default
 	 * implementation is a empty body<br>
 	 * <br>
 	 * If you need close a resource override this method to close it.
+	 * 
 	 */
 	@Override
 	default void close() throws Exception {

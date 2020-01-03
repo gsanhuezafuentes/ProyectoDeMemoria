@@ -18,13 +18,21 @@ import javafx.stage.StageStyle;
 public class RunningDialog extends Dialog<Void> {
 	private RunningDialogController controller;
 	private AlgorithmTask task;
-	ProgressIndicator progressIndicator;
+	private ProgressIndicator progressIndicator;
 	private TextArea textArea;
 	private ButtonType showChartButtonType;
+	private int numberOfProblemObjectives;
 
-	public RunningDialog(RunningDialogController controller, AlgorithmTask task) {
+	/**
+	 * 
+	 * @param controller the controller class for this view
+	 * @param numberOfProblemObjectives the number of objectives of problem.
+	 * @param task the task to be running
+	 */
+	public RunningDialog(RunningDialogController controller, int numberOfProblemObjectives, AlgorithmTask task) {
 		this.controller = Objects.requireNonNull(controller);
 		this.task = Objects.requireNonNull(task);
+		this.numberOfProblemObjectives = numberOfProblemObjectives;
 		configurateWindow();
 		createContentLayout();
 		AddButton();
@@ -69,10 +77,16 @@ public class RunningDialog extends Dialog<Void> {
 	 * Add button to dialog
 	 */
 	private void AddButton() {
-		//create a custom button
-		showChartButtonType = new ButtonType("Show Chart", ButtonData.OTHER);
+		/**
+		 * Only add the the showChartButton if the number of objectives is less than 2.
+		 */
+		if (this.numberOfProblemObjectives <= 2) {
+			//create a custom button
+			showChartButtonType = new ButtonType("Show Chart", ButtonData.OTHER);
+			getDialogPane().getButtonTypes().addAll(showChartButtonType);
+		}
 		// Add the three button, the custom, the cancel button and the close button.
-		getDialogPane().getButtonTypes().addAll(showChartButtonType, ButtonType.CANCEL, ButtonType.CLOSE);
+		getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL, ButtonType.CLOSE);
 	}
 
 	/**
