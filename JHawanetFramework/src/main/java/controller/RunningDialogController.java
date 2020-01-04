@@ -34,6 +34,7 @@ public class RunningDialogController {
 	private Algorithm<?> algorithm;
 	private Problem<?> problem;
 	private AlgorithmTask task;
+private Network network;
 
 	/**
 	 * Constructor
@@ -41,12 +42,15 @@ public class RunningDialogController {
 	 * @param algorithm the algorithm to execute
 	 * @param problem the problem that the algorithm has configured
 	 * @param network the network opened.
+	 * @throws NullPointerException if algorithm is null or problem is null or network is null
 	 */
 	public RunningDialogController(Algorithm<?> algorithm, Problem<?> problem, Network network) {
 		Objects.requireNonNull(algorithm);
+		Objects.requireNonNull(problem);
 		Objects.requireNonNull(network);
 		this.algorithm = algorithm;
 		this.problem = problem;
+		this.network = network;
 		this.task = new AlgorithmTask(algorithm);
 		this.view = new RunningDialog(this, problem.getNumberOfObjectives(), task);
 
@@ -71,7 +75,7 @@ public class RunningDialogController {
 		// listener when task finishes successfully
 		task.setOnSucceeded(e -> {
 			List<? extends Solution<?>> solutions = task.getValue();			
-			ResultWindowController resultWindowController = new ResultWindowController(solutions, this.problem);
+			ResultWindowController resultWindowController = new ResultWindowController(solutions, this.problem, this.network);
 			resultWindowController.showAssociatedWindow();
 		});
 	}

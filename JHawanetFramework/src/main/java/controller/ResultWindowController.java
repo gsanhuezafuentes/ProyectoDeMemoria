@@ -1,10 +1,13 @@
 package controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
 import exception.ApplicationException;
+import exception.InputException;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,9 +19,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.epanet.element.Network;
+import model.epanet.io.InpWriter;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
+import view.utils.CustomDialogs;
 
 public class ResultWindowController {
 	private Pane root;
@@ -32,16 +39,29 @@ public class ResultWindowController {
 
 	private List<? extends Solution<?>> solutionList;
 
+	private Problem<?> problem;
+
+	private Network network;
+
 	/**
 	 * Constructor.
-	 * @param problem the problem that was solve by the algorithm.
+	 * 
+	 * @param problem   the problem that was solve by the algorithm.
 	 * @param solutions a list with solution to show
-	 * @throws NullPointerException if solutions is null
+	 * @param network
+	 * @throws NullPointerException if solutions is null or problem is null or
+	 *                              network is null.
 	 */
-	public ResultWindowController(List<? extends Solution<?>> solutions, Problem<?> problem) {
+	public ResultWindowController(List<? extends Solution<?>> solutions, Problem<?> problem, Network network) {
 		Objects.requireNonNull(solutions);
+		Objects.requireNonNull(problem);
+		Objects.requireNonNull(network);
+
 		this.root = loadFXML();
 		this.solutionList = solutions;
+		this.problem = problem;
+		this.network = network;
+
 		configureResultTable();
 		addBinding();
 	}
@@ -54,9 +74,6 @@ public class ResultWindowController {
 			this.resultTable.getItems().addAll(this.solutionList);
 			this.resultTable.getItems().addAll(this.solutionList);
 			this.resultTable.getItems().addAll(this.solutionList);
-			this.resultTable.getItems().addAll(this.solutionList);
-
-			this.resultTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 			int numberOfObjectives = this.solutionList.get(0).getNumberOfObjectives();
 			int numberOfDecisionVariables = this.solutionList.get(0).getNumberOfDecisionVariables();
@@ -116,9 +133,20 @@ public class ResultWindowController {
 	@SuppressWarnings("unused") // is configure from fxml file
 	@FXML
 	private void onSaveAsINPButtonClick(ActionEvent event) {
+		Solution<?> solution = this.resultTable.getSelectionModel().getSelectedItem();
 
-		for (Solution<?> solution : this.resultTable.getSelectionModel().getSelectedItems()) {
-			System.out.println(solution);
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Save solution as INP");
+		File file = fileChooser.showSaveDialog(this.saveButton.getScene().getWindow());
+		if (file != null) {
+			Network netCopy = this.problem.applySolutionToNetwork(this.network.copy(), solution);
+			InpWriter inpWriter = new InpWriter();
+			try {
+				inpWriter.write(netCopy, file.getAbsolutePath());
+			} catch (IOException e) {
+				CustomDialogs.showExceptionDialog("Error", "Error in the creation of the inp file",
+						"The file can't be created", e);
+			}
 		}
 	}
 

@@ -114,15 +114,15 @@ public final class Network {
 		this.title = new StringBuilder(network.getTitle());
 
 		// copy the curves
-		for (String curveKey : network.curveMap.keySet()) {
-			Curve curve = network.curveMap.get(curveKey).copy();
-			addCurve(curveKey, curve);
+		for (Curve curve : network.getCurveList()) {
+			Curve copy = curve.copy();
+			addCurve(copy.getId(), copy);
 		}
 
 		// copy the pattern
-		for (String patternKey : network.patternMap.keySet()) {
-			Pattern pattern = network.patternMap.get(patternKey).copy();
-			addPattern(patternKey, pattern);
+		for (Pattern pattern : network.getPatternList()) {
+			Pattern copy = pattern.copy();
+			addPattern(copy.getId(), copy);
 		}
 
 		// copy the nodes

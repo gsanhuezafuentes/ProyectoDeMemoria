@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
+import exception.ApplicationException;
 import exception.InputException;
 import model.epanet.element.Network;
 
@@ -17,12 +18,12 @@ import model.epanet.element.Network;
 public class InpWriter implements OutputWriter {
 
 	@Override
-	public void write(Network net, String filename) throws FileNotFoundException, IOException, InputException {
+	public void write(Network net, String filename) throws FileNotFoundException, IOException {
 		try (BufferedWriter buffReader = new BufferedWriter(
 				new OutputStreamWriter(new FileOutputStream(filename), "ISO-8859-1"))) {
 			buffReader.write(net.toString());
 		} catch (UnsupportedEncodingException e) {
-			throw new InputException("Error in encoding file", e);
+			throw new ApplicationException("Error in encoding file", e);
 		}
 	}
 

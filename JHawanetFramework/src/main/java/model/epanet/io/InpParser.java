@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import epanet.core.EpanetException;
+import exception.ApplicationException;
 import exception.InputException;
 import model.epanet.element.Network;
 import model.epanet.element.networkcomponent.Emitter;
@@ -47,7 +48,10 @@ public class InpParser implements InputParser {
 
 	private Rule currentRule;
 
-	/** {@inheritDoc} */
+	/**
+	 * {@inheritDoc}
+	 * @throws ApplicationException if there is a error in encoding
+	 */
 	@Override
 	public Network parse(Network net, String filename) throws FileNotFoundException, IOException, InputException {
 		parsePatternAndCurve(net, filename);
@@ -163,13 +167,18 @@ public class InpParser implements InputParser {
 
 			}
 		} catch (UnsupportedEncodingException e) {
-			throw new InputException("Error in encoding file", e);
+			throw new ApplicationException("Error in encoding string name", e);
 		}
 		return net;
 	}
-
-	private Network parsePatternAndCurve(Network net, String filename)
-			throws FileNotFoundException, IOException, InputException {
+	
+	/**
+	 * Parse the PATTERN and CURVE section.
+	 * @throws IOException  If an I/O error occurs
+	 * @throws FileNotFoundException If file don't exist
+	 * @throws ApplicationException if there is a error in encoding
+	 */
+	private Network parsePatternAndCurve(Network net, String filename) throws FileNotFoundException, IOException {
 		try (BufferedReader buffReader = new BufferedReader(
 				new InputStreamReader(new FileInputStream(filename), "ISO-8859-1"))) {
 			String line;
@@ -208,7 +217,10 @@ public class InpParser implements InputParser {
 					}
 				}
 			}
+		} catch (UnsupportedEncodingException e) {
+			throw new ApplicationException("Error in encoding string name", e);
 		}
+
 		return net;
 	}
 
@@ -857,11 +869,11 @@ public class InpParser implements InputParser {
 		if (tokens.length == 4) {
 			Node node = net.getNode(tokens[4]);
 			if (node == null) {
-				throw new InputException("The node "+tokens[3]+ " don't exist");
+				throw new InputException("The node " + tokens[3] + " don't exist");
 			}
 			label.setAnchorNode(node);
 		}
-		
+
 		net.addLabel(label);
 	}
 
@@ -906,8 +918,7 @@ public class InpParser implements InputParser {
 		}
 		if (tokens[0].equalsIgnoreCase("LINK")) {
 			tag.setType(Tag.TagType.LINK);
-		}
-		else {
+		} else {
 			throw new InputException(tokens[0] + " isn't a valid token for TAGS section");
 		}
 		tag.setId(tokens[1]);

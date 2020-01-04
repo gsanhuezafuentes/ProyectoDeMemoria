@@ -93,18 +93,22 @@ public interface Problem<S extends Solution<?>> extends AutoCloseable {
 	 * @return upper bound of the decision variable
 	 */
 	double getUpperBound(int index);
-	
+
 	/**
 	 * Apply the solution to the network.
 	 * 
-	 * <br><br><strong>Notes:</strong> <br>
+	 * <br>
+	 * <br>
+	 * <strong>Notes:</strong> <br>
 	 * This method is used to save the solution as a inp from the ResultWindow.
 	 * 
-	 * @param network a network instance configure with data of inp.
-	 * @param solution the solution to be setting in the network
-	 * @return a copy of the network configured with solution
+	 * @param network  a copy of the network instance opened configured with inp
+	 *                 setting up.
+	 * @param solution the solution to be setting in the network. It solution is the
+	 *                 same type of S, so you can cast it.
+	 * @return the network received and modified.
 	 */
-	Network applySolutionToNetwork(Network network, S solution);
+	Network applySolutionToNetwork(Network network, Solution<?> solution);
 
 	/**
 	 * Override the close method of {@link AutoCloseable} interface. His default

@@ -3,6 +3,7 @@ package model.metaheuristic.problem;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,12 +14,16 @@ import epanet.core.LinkParameters;
 import exception.ApplicationException;
 import model.epanet.element.Gama;
 import model.epanet.element.Network;
+import model.epanet.element.networkcomponent.Link;
+import model.epanet.element.networkcomponent.Pipe;
+import model.epanet.element.networkcomponent.Valve;
 import model.epanet.io.GamaParser;
 import model.metaheuristic.evaluator.MonoObjetiveSolutionEvaluator;
 import model.metaheuristic.solution.IntegerSolution;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
 import model.metaheuristic.utils.random.JavaRandom;
+
 /**
  * Class that implement the problem of inversion cost.
  *
@@ -42,11 +47,13 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 
 	/**
 	 * Constructor
+	 * 
 	 * @param epanet
 	 * @param networkGama
 	 * @param minPressure
-	 * @throws IOException if there is a error in the io operator over the gama.
-	 * @throws EpanetException if there is a error in epatoolkit
+	 * @throws IOException          if there is a error in the io operator over the
+	 *                              gama.
+	 * @throws EpanetException      if there is a error in epatoolkit
 	 * @throws NullPointerException if epanet is null or networkGama is null
 	 * @throws ApplicationException if networkGama is empty
 	 */
@@ -69,7 +76,7 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 	/**
 	 * Initialize values needed to the problem.
 	 * 
-	 * @throws IOException if there is a error in the io operator over the gama.
+	 * @throws IOException     if there is a error in the io operator over the gama.
 	 * @throws EpanetException if there is a error in epatoolkit.
 	 */
 	private void initialize() throws IOException, EpanetException {
@@ -78,6 +85,8 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 		this.gamas = gamaParser.parser(new File(networkGama));
 		this.lowerBound = 1;
 		this.upperBound = gamas.size();
+
+		System.out.println("t " + this.numberOfVariables);
 
 		this.LenghtLinks = getLengthLink(epanet);
 	}
@@ -149,12 +158,12 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 	private List<Float> getLengthLink(EpanetAPI epanet) throws EpanetException {
 		ArrayList<Float> length = new ArrayList<Float>();
 		int n_link;
-			n_link = epanet.ENgetcount(Components.EN_LINKCOUNT);
-			for (int i = 1; i <= n_link; i++) {
-				float[] value = epanet.ENgetlinkvalue(i, LinkParameters.EN_LENGTH);
-				length.add(value[0]);
-			}
-		
+		n_link = epanet.ENgetcount(Components.EN_LINKCOUNT);
+		for (int i = 1; i <= n_link; i++) {
+			float[] value = epanet.ENgetlinkvalue(i, LinkParameters.EN_LENGTH);
+			length.add(value[0]);
+			System.out.println(i + " " + value[0]);
+		}
 
 		return length;
 	}
@@ -167,8 +176,29 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 		epanet.ENclose();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Network applySolutionToNetwork(Network network, Solution<IntegerSolution> solution) {
-		return null;
+	public Network applySolutionToNetwork(Network network, Solution<?> solution) {
+		IntegerSolution iSolution = (IntegerSolution) solution;
+		Collection<Link> links = network.getLinks();
+		int i = 0;
+		for (Link link : links) {
+			double diameter = (float) this.gamas.get(iSolution.getVariable(i) - 1).getDiameter();
+			/*
+			 * Only pipe and valve has diameter. For this only in that elements the diameter
+			 * is set. If link is a Pump so the diameter of this is ignored.
+			 */
+			if (link instanceof Pipe) {
+				Pipe pipe = (Pipe) link;
+				pipe.setDiameter(diameter);
+			} else if (link instanceof Valve) {
+				Valve valve = (Valve) link;
+				valve.setDiameter(diameter);
+			}
+			i++;
+		}
+		return network;
 	}
 }
