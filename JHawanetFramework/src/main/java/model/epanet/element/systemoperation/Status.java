@@ -14,6 +14,19 @@ public final class Status {
 	private String linkId;
 	private String status;
 
+	public Status() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * Copy constructor.
+	 * @param status the object to copy
+	 */
+	public Status(Status status) {
+		this.linkId = status.linkId;
+		this.status = status.status;
+	}
+
 	/**
 	 * @return the linkId
 	 */
@@ -48,6 +61,14 @@ public final class Status {
 		txt += getLinkId() + "\t";
 		txt += getStatus();
 		return txt;
+	}
+	
+	/**
+	 * Create a copy of this object.
+	 * @return the copy
+	 */
+	public Status copy() {
+		return new Status(this);
 	}
 
 }

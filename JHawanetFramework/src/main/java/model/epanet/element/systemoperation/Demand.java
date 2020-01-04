@@ -6,6 +6,26 @@ public final class Demand {
 	Pattern demandPatern;
 	String demandCategory;
 
+	public Demand() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * Create a demand with same values that the demand received. This is a shallow
+	 * copy, i.e., If the field value is a reference to an object (e.g., a memory
+	 * address) it copies the reference. If it is necessary for the object to be
+	 * completely independent of the original you must ensure that you replace the
+	 * reference to the contained objects.
+	 * 
+	 * @param demand the demand to copy
+	 */
+	public Demand(Demand demand) {
+		this.id = demand.id;
+		this.demand = demand.demand;
+		this.demandPatern = demand.demandPatern;
+		this.demandCategory = demand.demandCategory;
+	}
+
 	/**
 	 * @return the id
 	 */
@@ -74,5 +94,14 @@ public final class Demand {
 			txt += getDemandCategory();
 		}
 		return txt;
+	}
+
+	/**
+	 * Copy this instance. This is a shallow copy.
+	 * 
+	 * @return the copy
+	 */
+	public Demand copy() {
+		return new Demand(this);
 	}
 }

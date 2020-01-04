@@ -4,6 +4,20 @@ public final class Quality {
 	private String nodeId;
 	private double initialQuality;
 	
+	public Quality() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	/**
+	 * Copy constructor
+	 * @param quality the object to copy
+	 */
+	public Quality(Quality quality) {
+		this.nodeId = quality.nodeId;
+		this.initialQuality = quality.initialQuality;
+	}
+	
+	
 	/**
 	 * @return the nodeId
 	 */
@@ -41,5 +55,13 @@ public final class Quality {
 		txt += getInitialQuality() + "\t";
 
 		return txt;
+	}
+	
+	/**
+	 * Create a copy of this object.
+	 * @return the copy
+	 */
+	public Quality copy() {
+		return new Quality(this);
 	}
 }

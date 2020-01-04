@@ -2,6 +2,18 @@ package model.epanet.element.optionsreport;
 
 public final class Option {
 	private String code;
+	
+	public Option() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	/**
+	 * Copy constructor. 
+	 * @param option
+	 */
+	public Option(Option option) {
+		this.code = option.code;
+	}
 
 	/**
 	 * @return the codeOption
@@ -20,5 +32,13 @@ public final class Option {
 	@Override
 	public String toString() {
 		return getCode();
+	}
+	
+	/**
+	 * Copy this object.
+	 * @return the copy.
+	 */
+	public Option copy() {
+		return new Option(this);
 	}
 }

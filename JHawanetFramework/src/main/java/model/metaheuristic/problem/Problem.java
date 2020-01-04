@@ -104,7 +104,7 @@ public interface Problem<S extends Solution<?>> extends AutoCloseable {
 	 * @param solution the solution to be setting in the network
 	 * @return a copy of the network configured with solution
 	 */
-	Network applySolutionToNetwork(Network network, Solution<S> solution);
+	Network applySolutionToNetwork(Network network, S solution);
 
 	/**
 	 * Override the close method of {@link AutoCloseable} interface. His default

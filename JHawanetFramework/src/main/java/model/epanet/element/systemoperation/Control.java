@@ -48,6 +48,25 @@ public final class Control {
 	private int time;
 	private String clocktime;
 
+	public Control() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	/**
+	 * Copy constructor.
+	 * @param control the object to copy
+	 */
+	public Control(Control control) {
+		this.linkId = control.linkId;
+		this.controlType = control.controlType;
+		this.statType = control.statType;
+		this.statValue = control.statValue;
+		this.nodeId = control.nodeId;
+		this.value = control.value;
+		this.time = control.time;
+		this.clocktime = control.clocktime;
+	}
+	
 	/**
 	 * @return the link id
 	 */
@@ -222,6 +241,14 @@ public final class Control {
 			txt += getClocktime();
 		}
 		return txt;
+	}
+	
+	/**
+	 * Copy the object.
+	 * @return a copy of this object
+	 */
+	public Control copy() {
+		return new Control(this);
 	}
 
 }

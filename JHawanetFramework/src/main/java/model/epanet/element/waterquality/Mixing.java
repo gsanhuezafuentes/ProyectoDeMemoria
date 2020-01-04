@@ -24,6 +24,20 @@ public final class Mixing {
 	private String tankId;
 	private MixingModel model;
 	private double compartmentVolume;
+	
+	public Mixing() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	/**
+	 * Copy constructor
+	 * @param mixing the object to copy
+	 */
+	public Mixing(Mixing mixing) {
+		this.tankId = mixing.tankId;
+		this.model = mixing.model;
+		this.compartmentVolume = mixing.compartmentVolume;
+	}
 
 	/**
 	 * @return the tankId
@@ -86,6 +100,15 @@ public final class Mixing {
 			txt += getCompartmentVolume();
 		}
 		return txt;
+	}
+	
+	/**
+	 * Create a copy of this object.
+	 * 
+	 * @return the copy
+	 */
+	public Mixing copy() {
+		return new Mixing(this);
 	}
 
 }

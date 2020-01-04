@@ -34,6 +34,17 @@ public final class Curve {
 	}
 
 	/**
+	 * Copy constructor
+	 * @param curve the object to copy
+	 */
+	public Curve(Curve curve) {
+		this();
+		this.id = curve.id;
+		this.x.addAll(curve.x);
+		this.y.addAll(curve.y);
+	}
+	
+	/**
 	 * @return the id
 	 */
 	public String getId() {
@@ -84,5 +95,13 @@ public final class Curve {
 			txt += String.format("\t %f \t %f", this.x.get(i), this.y.get(i));
 		}
 		return txt;
+	}
+	
+	/**
+	 * Copy this object.
+	 * @return a copy of this object
+	 */
+	public Curve copy() {
+		return new Curve(this);
 	}
 }

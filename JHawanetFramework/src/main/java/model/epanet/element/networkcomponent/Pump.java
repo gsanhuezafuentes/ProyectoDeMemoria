@@ -3,6 +3,7 @@ package model.epanet.element.networkcomponent;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import model.epanet.element.systemoperation.Curve;
 import model.epanet.element.systemoperation.Pattern;
@@ -39,6 +40,20 @@ public final class Pump extends Link {
 	}
 
 	/**
+	 * Create a pump with same values that the pump received. This is a shallow
+	 * copy, i.e., If the field value is a reference to an object (e.g., a memory
+	 * address) it copies the reference. If it is necessary for the object to be
+	 * completely independent of the original you must ensure that you replace the
+	 * reference to the contained objects.
+	 * 
+	 * @param pump the pump to copy
+	 */
+	public Pump(Pump pump) {
+		super(pump);
+		this.properties = new HashMap<Pump.PumpProperty, Object>(pump.properties);
+	}
+
+	/**
 	 * Get the property by key When key is {@link PumpProperty#HEAD} value has to be
 	 * {@link Curve} <br>
 	 * <br>
@@ -66,7 +81,7 @@ public final class Pump extends Link {
 	 */
 	public void setProperty(PumpProperty key, Object value) {
 		Objects.requireNonNull(value);
-		
+
 		if (PumpProperty.HEAD == key) {
 			if (!(value instanceof Curve)) {
 				throw new RuntimeException("When key is " + key.getName() + " the value as to be a Curve ");
@@ -81,6 +96,14 @@ public final class Pump extends Link {
 			}
 		}
 		this.properties.put(key, value);
+	}
+	
+	/**
+	 * Get the keys of properties configured.
+	 * @return the keys
+	 */
+	public Set<PumpProperty> getPropertyKeys() {
+		return this.properties.keySet();
 	}
 
 	@Override
@@ -113,6 +136,14 @@ public final class Pump extends Link {
 		}
 
 		return txt;
+	}
+
+	/**
+	 * Copy this instance. This is a shallow copy. return the copy
+	 */
+	@Override
+	public Pump copy() {
+		return new Pump(this);
 	}
 
 }

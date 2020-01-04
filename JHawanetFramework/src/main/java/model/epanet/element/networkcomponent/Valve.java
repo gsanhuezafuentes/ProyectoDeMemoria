@@ -7,6 +7,26 @@ public final class Valve extends Link {
 	private String setting;
 	private Double minorLoss;
 
+	public Valve() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * Copy constructor. This is a shallow copy, i.e., If the field value is a
+	 * reference to an object (e.g., a memory address) it copies the reference. If
+	 * it is necessary for the object to be completely independent of the original
+	 * you must ensure that you replace the reference to the contained objects.
+	 * 
+	 * @param valve
+	 */
+	public Valve(Valve valve) {
+		super(valve);
+		this.diameter = valve.diameter;
+		this.type = valve.type;
+		this.setting = valve.setting;
+		this.minorLoss = valve.minorLoss;
+	}
+
 	/**
 	 * @return the diameter
 	 */
@@ -62,18 +82,27 @@ public final class Valve extends Link {
 	public void setMinorLoss(Double minorLoss) {
 		this.minorLoss = minorLoss;
 	}
-	
+
 	@Override
 	public String toString() {
 		String txt = "";
 		txt += getId() + "\t";
 		txt += getNode1().getId() + "\t";
 		txt += getNode2().getId() + "\t";
-		txt += getDiameter() +"\t";
+		txt += getDiameter() + "\t";
 		txt += getType() + "\t";
-		txt += getSetting() +"\t";
+		txt += getSetting() + "\t";
 		txt += getMinorLoss();
 		return txt;
+	}
+
+	/**
+	 * Copy the object realizing a shallow copy of this.
+	 */
+	@Override
+	public Valve copy() {
+		// TODO Auto-generated method stub
+		return new Valve(this);
 	}
 
 }

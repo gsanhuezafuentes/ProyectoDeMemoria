@@ -91,8 +91,8 @@ public final class Network {
 
 	public Network() {
 		this.title = new StringBuilder();
-		this.linkMap = new LinkedHashMap<String, Link>();
 		this.nodesMap = new LinkedHashMap<String, Node>();
+		this.linkMap = new LinkedHashMap<String, Link>();
 		this.junctionList = new ArrayList<>();
 		this.reservoirList = new ArrayList<>();
 		this.tankList = new ArrayList<>();
@@ -101,7 +101,187 @@ public final class Network {
 		this.valveList = new ArrayList<>();
 
 	}
-	
+
+	/**
+	 * Copy constructor. Create a copy of the network received. This method create a
+	 * copy totally independent of the original network, i.e., a deep copy.
+	 * 
+	 * @param network
+	 */
+	public Network(Network network) {
+		this();
+		// copy the title
+		this.title = new StringBuilder(network.getTitle());
+
+		// copy the curves
+		for (String curveKey : network.curveMap.keySet()) {
+			Curve curve = network.curveMap.get(curveKey).copy();
+			addCurve(curveKey, curve);
+		}
+
+		// copy the pattern
+		for (String patternKey : network.patternMap.keySet()) {
+			Pattern pattern = network.patternMap.get(patternKey).copy();
+			addPattern(patternKey, pattern);
+		}
+
+		// copy the nodes
+		for (String nodeKey : network.nodesMap.keySet()) {
+			Node node = network.nodesMap.get(nodeKey).copy();
+			if (node instanceof Junction) {
+				Junction junction = (Junction) node;
+				// the copy is shallow for this the pattern is replaced by a new created to this
+				// object.
+				if (junction.getPattern() != null) {
+					Pattern pattern = getPattern(junction.getPattern().getId());
+					junction.setPattern(pattern);
+				}
+			} else if (node instanceof Tank) {
+				Tank tank = (Tank) node;
+				// the copy is shallow for this the pattern is replaced by a new created to this
+				// object.
+				if (tank.getVolCurve() != null) {
+					Curve volCurve = getCurve(tank.getVolCurve().getId());
+					tank.setVolCurve(volCurve);
+				}
+			} else {
+				Reservoir reservoir = (Reservoir) node;
+				// the copy is shallow for this the pattern is replaced by a new created to this
+				// object.
+				if (reservoir.getPattern() != null) {
+					Pattern pattern = getPattern(reservoir.getPattern().getId());
+					reservoir.setPattern(pattern);
+				}
+			}
+			addNode(nodeKey, node);
+		}
+
+		// copy the links and replace the references
+		for (String linkKey : network.linkMap.keySet()) {
+			Link link = network.linkMap.get(linkKey).copy();
+			addLink(linkKey, link);
+			// Replace the nodes in link for the nodes created for this copy of network
+			link.setNode1(getNode(link.getNode1().getId()));
+			link.setNode2(getNode(link.getNode2().getId()));
+
+			if (link instanceof Pump) {
+				Pump pump = (Pump) link;
+				/**
+				 * If link is pump it can have object references in his property. So is needed
+				 * replace the reference to the created for this network.
+				 */
+				for (Pump.PumpProperty key : pump.getPropertyKeys()) {
+					if (key == Pump.PumpProperty.HEAD) {
+						Curve curve = (Curve) pump.getProperty(key);
+						// replace the curve used in original object for the copy of the curve
+						pump.setProperty(key, getCurve(curve.getId()));
+					} else if (key == Pump.PumpProperty.PATTERN) {
+						Pattern pattern = (Pattern) pump.getProperty(key);
+						// replace the pattern used in original object for the copy of the pattern
+						pump.setProperty(key, getPattern(pattern.getId()));
+					}
+				}
+			}
+		}
+
+		// copy emitter
+		for (Emitter emitter : network.getEmitterList()) {
+			addEmiter(emitter.copy());
+		}
+
+		// copy backdrop
+		Backdrop backdrop = network.getBackdrop();
+		if (backdrop != null) {
+			setBackdrop(backdrop.copy());
+		}
+
+		// copy label
+		for (Label label : network.getLabels()) {
+			Label copy = label.copy();
+			if (label.getAnchorNode() != null) {
+				copy.setAnchorNode(getNode(label.getAnchorNode().getId()));
+			}
+			addLabel(copy);
+		}
+
+		// copy tag
+		for (Tag tag : network.getTags()) {
+			addTag(tag.copy());
+		}
+
+		// copy option
+		Option option = network.getOption();
+		if (option != null) {
+			setOption(option.copy());
+		}
+
+		// copy report
+		Report report = network.getReport();
+		if (report != null) {
+			setReport(report.copy());
+		}
+
+		// copy time
+		Time time = network.getTime();
+		if (time != null) {
+			setTime(network.getTime().copy());
+		}
+
+		// copy control
+		for (Control control : network.getControlList()) {
+			addControl(control);
+		}
+
+		// copy demand
+		for (Demand demand : network.getDemandList()) {
+			Demand copy = demand.copy();
+			if (demand.getDemandPatern() != null) {
+				copy.setDemandPatern(getPattern(demand.getDemandPatern().getId()));
+			}
+			addDemand(copy);
+		}
+
+		// copy energy
+		for (Energy energy : network.getEnergyList()) {
+			addEnergy(energy);
+		}
+
+		// copy rule
+		for (Rule rule : network.getRuleList()) {
+			addRule(rule.copy());
+		}
+
+		// copy status
+		for (Status status : network.getStatusList()) {
+			addStatus(status.copy());
+		}
+
+		// copy mixing
+		for (Mixing mixing : network.getMixingList()) {
+			addMixing(mixing.copy());
+		}
+
+		// copy quality
+		for (Quality quality : network.getQualityList()) {
+			addQuality(quality.copy());
+		}
+
+		// copy reaction
+		Reaction reaction = network.getReaction();
+		if (reaction != null) {
+			setReaction(reaction.copy());
+		}
+
+		// copy source
+		for (Source source : network.getSourceList()) {
+			Source copy = source.copy();
+			if (source.getTimePattern() != null) {
+				copy.setTimePattern(getPattern(source.getTimePattern().getId()));
+			}
+			addSource(copy);
+		}
+	}
+
 	public boolean isEmpty() {
 		return linkMap.size() + nodesMap.size() == 0;
 	}
@@ -109,6 +289,15 @@ public final class Network {
 	/*********************************************************
 	 * Network Components
 	 *********************************************************/
+
+	/**
+	 * Get the title
+	 * 
+	 * @return the title
+	 */
+	public String getTitle() {
+		return title.toString();
+	}
 
 	/**
 	 * Set a title for this network
@@ -235,8 +424,8 @@ public final class Network {
 
 	/**
 	 * Get all links no matter what they are. <br>
-	 * The collection is unmodifiable.
-	 * The elements of the collection are in the order in which they were added
+	 * The collection is unmodifiable. The elements of the collection are in the
+	 * order in which they were added
 	 * 
 	 * @return the links
 	 */
@@ -246,8 +435,8 @@ public final class Network {
 
 	/**
 	 * Get all nodes no matter what they are <br>
-	 * The collection is unmodifiable.
-	 * The elements of the collection are in the order in which they were added
+	 * The collection is unmodifiable. The elements of the collection are in the
+	 * order in which they were added
 	 * 
 	 * @return the nodes
 	 */
@@ -341,7 +530,7 @@ public final class Network {
 	 * Get a curve by id
 	 * 
 	 * @param id the curve id
-	 * @return the curve
+	 * @return the curve or null if not exist
 	 */
 	public Curve getCurve(String id) {
 		return this.curveMap.get(id);
@@ -368,7 +557,7 @@ public final class Network {
 	 * Get the pattern by id.
 	 * 
 	 * @param id the pattern id
-	 * @return the pattern
+	 * @return the pattern or null if not exist
 	 */
 	public Pattern getPattern(String id) {
 		return this.patternMap.get(id);
@@ -614,7 +803,7 @@ public final class Network {
 	/**
 	 * Get the reaction configurations.
 	 * 
-	 * @return the reaction
+	 * @return the reaction or null if not exist
 	 */
 	public Reaction getReaction() {
 		return reaction;
@@ -634,16 +823,16 @@ public final class Network {
 	 *********************************************************/
 
 	/**
-	 * Get the option configuration
+	 * Get the option configuration.
 	 * 
-	 * @return the option
+	 * @return the option or null if not exist
 	 */
 	public Option getOption() {
 		return option;
 	}
 
 	/**
-	 * Set the option configuration
+	 * Set the option configuration.
 	 * 
 	 * @param option the option to set
 	 */
@@ -652,7 +841,7 @@ public final class Network {
 	}
 
 	/**
-	 * Get the time configuration
+	 * Get the time configuration or null if not exist.
 	 * 
 	 * @return the time
 	 */
@@ -661,7 +850,7 @@ public final class Network {
 	}
 
 	/**
-	 * Set the time configuration
+	 * Set the time configuration.
 	 * 
 	 * @param time the time to set
 	 */
@@ -670,7 +859,7 @@ public final class Network {
 	}
 
 	/**
-	 * Get the report configuration
+	 * Get the report configuration or null if not exist.
 	 * 
 	 * @return the report
 	 */
@@ -679,7 +868,7 @@ public final class Network {
 	}
 
 	/**
-	 * Set report configuration
+	 * Set report configuration or null if not exist.
 	 * 
 	 * @param report the report to set
 	 */
@@ -692,7 +881,7 @@ public final class Network {
 	 *********************************************************/
 
 	/**
-	 * Get the backdrop.
+	 * Get the backdrop or null if not exist.
 	 * 
 	 * @return the backdrop
 	 */
@@ -761,7 +950,7 @@ public final class Network {
 	public String toString() {
 		StringBuilder text = new StringBuilder();
 		text.append("[TITLE]\n");
-		text.append(this.title + "\n");
+		text.append(getTitle() + "\n");
 
 		text.append("[JUNCTION]\n");
 		text.append(";ID\tElev\tDemand\tPattern\n");
@@ -873,7 +1062,9 @@ public final class Network {
 		text.append("\n");
 
 		text.append("[REACTION]\n");
-		text.append(getReaction() + "\n");
+		if (getReaction() != null) {
+			text.append(getReaction() + "\n");
+		}
 		text.append("\n");
 
 		text.append("[SOURCE]\n");
@@ -884,19 +1075,27 @@ public final class Network {
 		text.append("\n");
 
 		text.append("[OPTION]\n");
-		text.append(getOption().toString() + "\n");
+		if (getOption() != null) {
+			text.append(getOption().toString() + "\n");
+		}
 		text.append("\n");
 
 		text.append("[REPORT]\n");
-		text.append(getReport().toString() + "\n");
+		if (getReport() != null) {
+			text.append(getReport().toString() + "\n");
+		}
 		text.append("\n");
 
 		text.append("[TIME]\n");
-		text.append(getTime().toString() + "\n");
+		if (getTime() != null) {
+			text.append(getTime().toString() + "\n");
+		}
 		text.append("\n");
 
 		text.append("[BACKDROP]\n");
-		text.append(getBackdrop().toString() + "\n");
+		if (getBackdrop() != null) {
+			text.append(getBackdrop().toString() + "\n");
+		}
 		text.append("\n");
 
 		text.append("[LABELS]\n");
@@ -953,6 +1152,15 @@ public final class Network {
 
 		text.append("[END]");
 		return text.toString();
+	}
+
+	/**
+	 * Create a independent copy of this network
+	 * 
+	 * @return the copy
+	 */
+	public Network copy() {
+		return new Network(this);
 	}
 
 }

@@ -23,6 +23,17 @@ public final class Tag {
 	private String id;
 	private String label;
 
+	public Tag() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Tag(Tag tag) {
+		this.type = tag.type;
+		this.id = tag.id;
+		this.label = tag.label;
+	}
+	
+	
 	/**
 	 * @return the type
 	 */
@@ -72,5 +83,13 @@ public final class Tag {
 		txt += getId() + "\t";
 		txt += getLabel();
 		return txt;
+	}
+	
+	/**
+	 * Copy this object.
+	 * @return the copy.
+	 */
+	public Tag copy() {
+		return new Tag(this);
 	}
 }

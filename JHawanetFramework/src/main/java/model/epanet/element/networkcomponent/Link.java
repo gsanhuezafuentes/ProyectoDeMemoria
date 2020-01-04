@@ -14,6 +14,23 @@ public abstract class Link {
 	}
 
 	/**
+	 * Copy constructor. Realize a copy setting the same values that the link
+	 * received. This is a shallow copy, i.e., If the field value is a reference to
+	 * an object (e.g., a memory address) it copies the reference. If it is
+	 * necessary for the object to be completely independent of the original you
+	 * must ensure that you replace the reference to the contained objects.
+	 * 
+	 * @param link the object to copy
+	 */
+	public Link(Link link) {
+		this();
+		this.id = link.id;
+		this.node1 = link.node1;
+		this.node2 = link.node2;
+		this.vertices.addAll(link.vertices);
+	}
+
+	/**
 	 * Get vertices that contains this links.
 	 * 
 	 * @return a list with the vertices of the link
@@ -75,5 +92,12 @@ public abstract class Link {
 		}
 		return text;
 	}
+
+	/**
+	 * Copy this link realizing a shallow copy
+	 * 
+	 * @return the copy
+	 */
+	public abstract Link copy();
 
 }

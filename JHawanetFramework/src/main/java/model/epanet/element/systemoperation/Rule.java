@@ -8,6 +8,19 @@ public final class Rule {
 	String ruleId;
 	String code;
 
+	public Rule() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * Copy constructor.
+	 * @param rule the object to copy
+	 */
+	public Rule(Rule rule) {
+		this.ruleId = rule.ruleId;
+		this.code = rule.code;
+	}
+
 	/**
 	 * @return the ruleId
 	 */
@@ -38,9 +51,17 @@ public final class Rule {
 
 	@Override
 	public String toString() {
-		String txt = "RULE"+ "\t" + getRuleId() + "\t";
+		String txt = "RULE" + "\t" + getRuleId() + "\t";
 		txt = getCode();
 		return txt;
+	}
+	
+	/**
+	 * Create a copy of this object.
+	 * @return the copy;
+	 */
+	public Rule copy() {
+		return new Rule(this);
 	}
 
 }

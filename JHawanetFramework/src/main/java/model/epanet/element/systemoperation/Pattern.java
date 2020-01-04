@@ -10,6 +10,17 @@ public final class Pattern {
 	public Pattern() {
 		this.multipliers = new ArrayList<Double>();
 	}
+	
+	/**
+	 * Copy constructor.
+	 * @param pattern the object to copy
+	 */
+	public Pattern(Pattern pattern) {
+		this();
+		this.id = pattern.id;
+		this.multipliers.addAll(pattern.multipliers);
+	}
+
 
 	/**
 	 * @return the id
@@ -54,5 +65,13 @@ public final class Pattern {
 			txt += String.format("\t%f", this.multipliers.get(i));
 		}
 		return txt;
+	}
+	
+	/**
+	 * Create a copy of this object.
+	 * @return the copy
+	 */
+	public Pattern copy() {
+		return new Pattern(this);
 	}
 }

@@ -74,7 +74,6 @@ public class IntegerSolution implements Solution<Integer> {
 	}
 
 	/** Constructor */
-
 	public IntegerSolution(IntegerSolution solution) {
 		this(solution.problem);
 		for (int i = 0; i < problem.getNumberOfVariables(); i++) {

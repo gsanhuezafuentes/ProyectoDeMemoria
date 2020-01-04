@@ -25,6 +25,26 @@ public final class Source {
 	private SourceType sourceType;
 	private double baselineStrenth;
 	private Pattern timePattern;
+	
+	public Source() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	/**
+	 * Create a new source with the same values that the source received. This is a
+	 * shallow copy, i.e., If the field value is a reference to an object (e.g., a
+	 * memory address) it copies the reference. If it is necessary for the object to
+	 * be completely independent of the original you must ensure that you replace
+	 * the reference to the contained objects.
+	 * @param source the object to copy
+	 */
+	public Source(Source source) {
+		this.nodeId = source.nodeId;
+		this.sourceType = source.sourceType;
+		this.baselineStrenth = source.baselineStrenth;
+		this.timePattern = source.timePattern;
+	}
+	
 	/**
 	 * @return the nodeId
 	 */
@@ -85,6 +105,14 @@ public final class Source {
 		}
 
 		return txt;
+	}
+	
+	/**
+	 * Create a copy of this object
+	 * @return the object to copy
+	 */
+	public Source copy() {
+		return new Source(this);
 	}
 	
 }
