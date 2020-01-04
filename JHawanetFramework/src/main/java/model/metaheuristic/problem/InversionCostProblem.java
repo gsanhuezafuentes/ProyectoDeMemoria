@@ -86,7 +86,7 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 		this.lowerBound = 1;
 		this.upperBound = gamas.size();
 
-		System.out.println("t " + this.numberOfVariables);
+//		System.out.println("t " + this.numberOfVariables);
 
 		this.LenghtLinks = getLengthLink(epanet);
 	}
@@ -162,7 +162,7 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 		for (int i = 1; i <= n_link; i++) {
 			float[] value = epanet.ENgetlinkvalue(i, LinkParameters.EN_LENGTH);
 			length.add(value[0]);
-			System.out.println(i + " " + value[0]);
+//			System.out.println(i + " " + value[0]);
 		}
 
 		return length;

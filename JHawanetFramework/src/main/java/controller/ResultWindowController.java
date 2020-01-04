@@ -22,11 +22,21 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.epanet.element.Network;
-import model.epanet.io.InpWriter;
+import model.epanet.io.OutputInpWriter;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
+import model.metaheuristic.utils.io.SolutionListOutput;
 import view.utils.CustomDialogs;
 
+/**
+ * This class is the controller of result window. <br>
+ * <br>
+ * From this class is saved as inp the solution and saved the element has FUN
+ * and VAR.
+ * 
+ * @author gsanh
+ *
+ */
 public class ResultWindowController {
 	private Pane root;
 
@@ -64,6 +74,22 @@ public class ResultWindowController {
 
 		configureResultTable();
 		addBinding();
+	}
+
+	/**
+	 * Load the FXML view associated to this controller.
+	 * 
+	 * @return the root pane.
+	 * @throws ApplicationException if there is an error in load the .fxml.
+	 */
+	private Pane loadFXML() {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ResultWindow.fxml"));
+		fxmlLoader.setController(this);
+		try {
+			return fxmlLoader.load();
+		} catch (IOException exception) {
+			throw new ApplicationException(exception);
+		}
 	}
 
 	/**
@@ -110,22 +136,6 @@ public class ResultWindowController {
 	}
 
 	/**
-	 * Load the FXML view associated to this controller.
-	 * 
-	 * @return the root pane.
-	 * @throws ApplicationException if there is an error in load the .fxml.
-	 */
-	private Pane loadFXML() {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ResultWindow.fxml"));
-		fxmlLoader.setController(this);
-		try {
-			return fxmlLoader.load();
-		} catch (IOException exception) {
-			throw new ApplicationException(exception);
-		}
-	}
-
-	/**
 	 * Event handler when save as inp button is pressed.
 	 * 
 	 * @param event the event
@@ -137,12 +147,13 @@ public class ResultWindowController {
 
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Save solution as INP");
+
 		File file = fileChooser.showSaveDialog(this.saveButton.getScene().getWindow());
 		if (file != null) {
 			Network netCopy = this.problem.applySolutionToNetwork(this.network.copy(), solution);
-			InpWriter inpWriter = new InpWriter();
+			OutputInpWriter outputInpWriter = new OutputInpWriter();
 			try {
-				inpWriter.write(netCopy, file.getAbsolutePath());
+				outputInpWriter.write(netCopy, file.getAbsolutePath());
 			} catch (IOException e) {
 				CustomDialogs.showExceptionDialog("Error", "Error in the creation of the inp file",
 						"The file can't be created", e);
@@ -158,7 +169,19 @@ public class ResultWindowController {
 	@SuppressWarnings("unused") // is configure from fxml file
 	@FXML
 	private void onSaveButtonClick(ActionEvent event) {
-		System.out.println(event);
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Save table");
+
+		File file = fileChooser.showSaveDialog(this.saveButton.getScene().getWindow());
+		if (file != null) {
+			SolutionListOutput output = new SolutionListOutput();
+			try {
+				output.write(this.solutionList, file.getAbsolutePath());
+			} catch (IOException e) {
+				CustomDialogs.showExceptionDialog("Error", "Error in the creation of fun/var file",
+						"The file can't be created", e);
+			}
+		}
 	}
 
 	/**

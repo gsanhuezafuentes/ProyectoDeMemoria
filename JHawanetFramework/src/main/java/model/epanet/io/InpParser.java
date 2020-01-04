@@ -949,7 +949,7 @@ public class InpParser implements InputParser {
 		// File file = new File("inp/hanoi-Frankenstein2.inp");
 		try {
 			System.out.println(parse.parse(network, "inp/red1.inp"));
-			InpWriter writer = new InpWriter();
+			OutputInpWriter writer = new OutputInpWriter();
 			writer.write(network, "red1writer.inp");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
