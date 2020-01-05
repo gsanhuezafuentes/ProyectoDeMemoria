@@ -57,10 +57,10 @@ public final class Status {
 
 	@Override
 	public String toString() {
-		String txt = "";
-		txt += getLinkId() + "\t";
-		txt += getStatus();
-		return txt;
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s\t", getLinkId()));
+		txt.append(String.format("%-10s\t", getStatus()));
+		return txt.toString();
 	}
 	
 	/**

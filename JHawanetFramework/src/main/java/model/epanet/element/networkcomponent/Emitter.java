@@ -45,6 +45,14 @@ public final class Emitter {
 		this.coefficient = coefficient;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s\t", getJunctionID()));
+		txt.append(String.format("%-10f", getCoefficient()));
+		return txt.toString();
+	}
+
 	/**
 	 * Create a copy of this emitter.
 	 * 

@@ -84,16 +84,16 @@ public final class Demand {
 
 	@Override
 	public String toString() {
-		String txt = "";
-		txt += getId() + "\t";
-		txt += getDemand() + "\t";
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s\t", getId()));
+		txt.append(String.format("%-10f\t", getDemand()));
 		if (getDemandPatern() != null) {
-			txt += getDemandPatern().getId() + "\t";
+			txt.append(String.format("%-10s\t", getDemandPatern().getId()));
 		}
 		if (getDemandCategory() != null) {
-			txt += getDemandCategory();
+			txt.append(String.format("%-10s\t", getDemandCategory()));
 		}
-		return txt;
+		return txt.toString();
 	}
 
 	/**

@@ -93,13 +93,13 @@ public final class Mixing {
 	
 	@Override
 	public String toString() {
-		String txt = "";
-		txt = getTankId() + "\t";
-		txt = getModel().getName() + "\t";
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s\t", getTankId()));
+		txt.append(String.format("%-10s\t", getModel().getName()));
 		if (getModel() == MixingModel.TWOCOMP) {
-			txt += getCompartmentVolume();
+			txt.append(String.format("%-10f", getCompartmentVolume()));
 		}
-		return txt;
+		return txt.toString();
 	}
 	
 	/**

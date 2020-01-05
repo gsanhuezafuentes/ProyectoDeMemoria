@@ -78,11 +78,11 @@ public final class Tag {
 
 	@Override
 	public String toString() {
-		String txt = "";
-		txt += getType().getName() + "\t";
-		txt += getId() + "\t";
-		txt += getLabel();
-		return txt;
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s\t", getType().getName()));
+		txt.append(String.format("%-10s\t", getId()));
+		txt.append(String.format("%-10s", getLabel()));
+		return txt.toString();
 	}
 	
 	/**

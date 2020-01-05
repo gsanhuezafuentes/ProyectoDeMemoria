@@ -70,14 +70,14 @@ public final class Label {
 
 	@Override
 	public String toString() {
-		String txt = "";
-		txt += getPosition() + "\t";
-		txt += getLabel() + "\t";
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%s\t", getPosition()));
+		txt.append(String.format("%-10s\t", getLabel()));
 		if (getAnchorNode() != null) {
-			txt += getAnchorNode().getId();
+			txt.append(String.format("%-10s", getAnchorNode().getId()));
 		}
 
-		return txt;
+		return txt.toString();
 	}
 
 	/**

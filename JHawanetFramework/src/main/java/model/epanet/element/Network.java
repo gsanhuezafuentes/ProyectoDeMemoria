@@ -8,6 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.sun.javafx.binding.StringFormatter;
+
 import model.epanet.element.networkcomponent.Emitter;
 import model.epanet.element.networkcomponent.Junction;
 import model.epanet.element.networkcomponent.Link;
@@ -953,49 +955,52 @@ public final class Network {
 		text.append(getTitle() + "\n");
 
 		text.append("[JUNCTION]\n");
-		text.append(";ID\tElev\tDemand\tPattern\n");
+		text.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\n", "ID", "Elev", "Demand", "Pattern"));
 		for (Junction junction : getJunctions()) {
 			text.append(junction.toString() + "\n");
 		}
 		text.append("\n");
 
 		text.append("[RESERVOIR]\n");
-		text.append(";ID\tHead\tPattern\n");
+		text.append(String.format(";%-10s\t%-10s\t%-10s\n", "ID", "Head", "Pattern"));
 		for (Reservoir reservoir : getReservoirs()) {
 			text.append(reservoir.toString() + "\n");
 		}
 		text.append("\n");
 
 		text.append("[TANK]\n");
-		text.append(";ID\tElevation\tInitLevel\tMinLevel\tMaxLevel\tDiameter\tMinVol\tVolCurve\n");
+		text.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\n", "ID", "Elevation",
+				"InitLevel", "MinLevel", "MaxLevel", "Diameter", "MinVol", "VolCurve"));
 		for (Tank tank : getTanks()) {
 			text.append(tank.toString() + "\n");
 		}
 		text.append("\n");
 
 		text.append("[PIPE]\n");
-		text.append(";ID\tNode1\tNode2\tLength\tDiameter\tRoughness\tMinorLoss\tStatus\n");
+		text.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\n", "ID", "Node1", "Node2",
+				"Length", "Diameter", "Roughness", "MinorLoss", "Status"));
 		for (Pipe pipe : getPipes()) {
 			text.append(pipe.toString() + "\n");
 		}
 		text.append("\n");
 
 		text.append("[PUMP]\n");
-		text.append(";ID\tNode1\tNode2\tParameters\n");
+		text.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\n", "ID", "Node1", "Node2", "Parameters"));
 		for (Pump pump : getPumps()) {
 			text.append(pump.toString() + "\n");
 		}
 		text.append("\n");
 
 		text.append("[VALVE]\n");
-		text.append(";ID\tNode2\tDiameter\tType\tSetting\tMinorLoss\n");
+		text.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\n", "ID", "Node1", "Node2",
+				"Diameter", "Type", "Setting", "MinorLoss"));
 		for (Valve valve : getValves()) {
 			text.append(valve.toString() + "\n");
 		}
 		text.append("\n");
 
 		text.append("[EMITTER]\n");
-		text.append(";Junction\tCoefficient\n");
+		text.append(String.format(";%-10s\t%-10s\n", "Junction", "Coefficient"));
 		for (Emitter emitter : getEmitterList()) {
 			text.append(emitter.toString() + "\n");
 		}
@@ -1008,14 +1013,14 @@ public final class Network {
 		text.append("\n");
 
 		text.append("[CURVE]\n");
-		text.append(";ID\tX-Value\tY-Value\n");
+		text.append(String.format(";%-10s\t%-10s\t%-10s\n", "ID", "X-Value", "Y-Value"));
 		for (Curve curve : getCurveList()) {
 			text.append(curve.toString() + "\n");
 		}
 		text.append("\n");
 
 		text.append("[DEMAND]\n");
-		text.append(";Junction\tDemand\tPattern\tCategory\n");
+		text.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\n", "Junction", "Demand", "Pattern", "Category"));
 		for (Demand demand : getDemandList()) {
 			text.append(demand.toString() + "\n");
 		}
@@ -1028,7 +1033,7 @@ public final class Network {
 		text.append("\n");
 
 		text.append("[PATTERN]\n");
-		text.append(";ID\tMultipliers\n");
+		text.append(String.format(";%-10s\t%-10s\n", "ID", "Multipliers"));
 		for (Pattern pattern : getPatternList()) {
 			text.append(pattern.toString() + "\n");
 		}
@@ -1041,21 +1046,21 @@ public final class Network {
 		text.append("\n");
 
 		text.append("[STATUS]\n");
-		text.append(";ID\tStatus/Setting\n");
+		text.append(String.format(";%-10s\t%-10s\n", "ID", "Status/Setting"));
 		for (Status status : getStatusList()) {
 			text.append(status.toString() + "\n");
 		}
 		text.append("\n");
 
 		text.append("[MIXING]\n");
-		text.append(";Tank\tModel\n");
+		text.append(String.format(";%-10s\t%-10s\n", "Tank", "Model"));
 		for (Mixing mixing : getMixingList()) {
 			text.append(mixing.toString() + "\n");
 		}
 		text.append("\n");
 
 		text.append("[QUALITY]\n");
-		text.append(";Node\tInitQual\n");
+		text.append(String.format(";%-10s\t%-10s\n", "Node", "InitQual"));
 		for (Quality quality : getQualityList()) {
 			text.append(quality.toString() + "\n");
 		}
@@ -1068,7 +1073,7 @@ public final class Network {
 		text.append("\n");
 
 		text.append("[SOURCE]\n");
-		text.append(";Node\tType\tQuality\tPattern\n");
+		text.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\n", "Node", "Type", "Quality", "Pattern"));
 		for (Source source : this.getSourceList()) {
 			text.append(source.toString() + "\n");
 		}
@@ -1099,53 +1104,49 @@ public final class Network {
 		text.append("\n");
 
 		text.append("[LABELS]\n");
-		text.append(";X-Coord\tY-Coord\tLabel & Anchor Node\n");
+		text.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\n", "X-Coord", "Y-Coord", "Label", "Anchor Node"));
 		for (Label label : this.getLabels()) {
 			text.append(label.toString() + "\n");
 		}
 		text.append("\n");
 
 		text.append("[TAGS]\n");
-		text.append(";Object\tID\tLabel\n");
+		text.append(String.format(";%-10s\t%-10s\t%-10s\n", "Object", "ID", "Label"));
 		for (Tag tag : this.getTags()) {
 			text.append(tag.toString() + "\n");
 		}
 		text.append("\n");
 
 		text.append("[COORDINATES]\n");
-		text.append(";Node\tX-Coord\tY-Coord\n");
+		text.append(String.format(";%-10s\t%-10s\t%-10s\n", "Node", "X-Coord", "Y-Coord"));
 		for (Junction junction : getJunctions()) {
-			text.append(junction.getId() + "\t");
-			text.append(junction.getPosition() + "\n");
+			text.append(String.format("%-10s\t%s\n", junction.getId(), junction.getPosition()));
 		}
 		for (Reservoir reservoir : getReservoirs()) {
-			text.append(reservoir.getId() + "\t");
-			text.append(reservoir.getPosition() + "\n");
+			text.append(String.format("%-10s\t%s\n", reservoir.getId(), reservoir.getPosition()));
+
 		}
 		for (Tank tank : getTanks()) {
-			text.append(tank.getId() + "\t");
-			text.append(tank.getPosition() + "\n");
+			text.append(String.format("%-10s\t%s\n", tank.getId(), tank.getPosition()));
+
 		}
 		text.append("\n");
 
 		text.append("[VERTICES]\n");
-		text.append(";Node\tX-Coord\tY-Coord\n");
+		text.append(String.format(";%-10s\t%-10s\t%-10s\n", "Node", "X-Coord", "Y-Coord"));
 		for (Pipe pipe : getPipes()) {
 			for (Point point : pipe.getVertices()) {
-				text.append(pipe.getId() + "\t");
-				text.append(point + "\n");
+				text.append(String.format("%-10s\t%s\n", pipe.getId(), point));
 			}
 		}
 		for (Pump pump : getPumps()) {
 			for (Point point : pump.getVertices()) {
-				text.append(pump.getId() + "\t");
-				text.append(point + "\n");
+				text.append(String.format("%-10s\t%s\n", pump.getId(), point));
 			}
 		}
 		for (Valve valve : getValves()) {
 			for (Point point : valve.getVertices()) {
-				text.append(valve.getId() + "\t");
-				text.append(point + "\n");
+				text.append(String.format("%-10s\t%s\n", valve.getId(), point));
 			}
 		}
 		text.append("\n");

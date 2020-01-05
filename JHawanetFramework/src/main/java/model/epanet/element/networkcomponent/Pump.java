@@ -108,34 +108,32 @@ public final class Pump extends Link {
 
 	@Override
 	public String toString() {
-		String txt = "";
-		txt += getId() + "\t";
-		txt += getNode1().getId() + "\t";
-		txt += getNode2().getId() + "\t";
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s\t", getId()));
+		txt.append(String.format("%-10s\t", getNode1().getId()));
+		txt.append(String.format("%-10s\t", getNode2().getId()));
 
 		for (PumpProperty key : this.properties.keySet()) {
 			if (PumpProperty.HEAD == key) {
 				Curve curve = (Curve) this.getProperty(key);
-				txt += "HEAD" + " ";
-				txt += curve.getId() + "\t";
-
+				txt.append(String.format("HEAD %-10s\t", curve.getId()));
+				
 			} else if (PumpProperty.PATTERN == key) {
 				Pattern pattern = (Pattern) this.getProperty(key);
-				txt += "PATTERN" + " ";
-				txt += pattern.getId() + "\t";
+				txt.append(String.format("PATTERN %-10s\t", pattern.getId()));
 
 			} else if (PumpProperty.POWER == key) {
 				double value = (Double) this.getProperty(key);
-				txt += "POWER" + " ";
-				txt += value + "\t";
+				txt.append(String.format("POWER %-10f\t", value));
+
 			} else if (PumpProperty.SPEED == key) {
 				double value = (Double) this.getProperty(key);
-				txt += "SPEED" + " ";
-				txt += value + "\t";
+				txt.append(String.format("SPEED %-10f\t", value));
+
 			}
 		}
 
-		return txt;
+		return txt.toString();
 	}
 
 	/**

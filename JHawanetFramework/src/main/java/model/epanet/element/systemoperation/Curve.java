@@ -90,11 +90,12 @@ public final class Curve {
 	
 	@Override
 	public String toString() {
-		String txt = this.id;
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s\t", this.id));
 		for (int i = 0; i < this.x.size(); i++) {
-			txt += String.format("\t %f \t %f", this.x.get(i), this.y.get(i));
+			txt.append(String.format("%-10f \t %-10f", this.x.get(i), this.y.get(i)));
 		}
-		return txt;
+		return txt.toString();
 	}
 	
 	/**

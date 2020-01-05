@@ -60,11 +60,12 @@ public final class Pattern {
 	
 	@Override
 	public String toString() {
-		String txt = getId();
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s", getId()));
 		for (int i = 0; i < this.multipliers.size(); i++) {
-			txt += String.format("\t%f", this.multipliers.get(i));
+			txt.append(String.format("\t%f", this.multipliers.get(i)));
 		}
-		return txt;
+		return txt.toString();
 	}
 	
 	/**

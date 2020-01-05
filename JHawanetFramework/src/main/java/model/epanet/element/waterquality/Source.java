@@ -25,17 +25,18 @@ public final class Source {
 	private SourceType sourceType;
 	private double baselineStrenth;
 	private Pattern timePattern;
-	
+
 	public Source() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * Create a new source with the same values that the source received. This is a
 	 * shallow copy, i.e., If the field value is a reference to an object (e.g., a
 	 * memory address) it copies the reference. If it is necessary for the object to
 	 * be completely independent of the original you must ensure that you replace
 	 * the reference to the contained objects.
+	 * 
 	 * @param source the object to copy
 	 */
 	public Source(Source source) {
@@ -44,75 +45,83 @@ public final class Source {
 		this.baselineStrenth = source.baselineStrenth;
 		this.timePattern = source.timePattern;
 	}
-	
+
 	/**
 	 * @return the nodeId
 	 */
 	public String getNodeId() {
 		return nodeId;
 	}
+
 	/**
 	 * @param nodeId the nodeId to set
 	 */
 	public void setNodeId(String nodeId) {
 		this.nodeId = nodeId;
 	}
+
 	/**
 	 * @return the sourceType
 	 */
 	public SourceType getSourceType() {
 		return sourceType;
 	}
+
 	/**
 	 * @param sourceType the sourceType to set
 	 */
 	public void setSourceType(SourceType sourceType) {
 		this.sourceType = sourceType;
 	}
+
 	/**
 	 * @return the baselineStrenth
 	 */
 	public double getBaselineStrenth() {
 		return baselineStrenth;
 	}
+
 	/**
 	 * @param baselineStrenth the baselineStrenth to set
 	 */
 	public void setBaselineStrenth(double baselineStrenth) {
 		this.baselineStrenth = baselineStrenth;
 	}
+
 	/**
 	 * @return the timePattern
 	 */
 	public Pattern getTimePattern() {
 		return timePattern;
 	}
+
 	/**
 	 * @param timePattern the timePattern to set
 	 */
 	public void setTimePattern(Pattern timePattern) {
 		this.timePattern = timePattern;
 	}
-	
+
 	@Override
 	public String toString() {
-		String txt = "";
-		txt = getNodeId() + "\t";
-		txt = getSourceType().getName() + "\t";
-		txt = getBaselineStrenth() + "\t";
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s\t", getNodeId()));
+		txt.append(String.format("%-10s\t", getSourceType().getName()));
+		txt.append(String.format("%-10f\t", getBaselineStrenth()));
 		if (getTimePattern() != null) {
-			txt = getTimePattern().getId();
+			txt.append(String.format("%-10s", getTimePattern().getId()));
 		}
 
-		return txt;
+		return txt.toString();
 	}
-	
+
 	/**
 	 * Create a copy of this object
+	 * 
 	 * @return the object to copy
 	 */
 	public Source copy() {
 		return new Source(this);
 	}
-	
+
 }

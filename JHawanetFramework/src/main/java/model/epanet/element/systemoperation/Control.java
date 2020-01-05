@@ -51,9 +51,10 @@ public final class Control {
 	public Control() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * Copy constructor.
+	 * 
 	 * @param control the object to copy
 	 */
 	public Control(Control control) {
@@ -66,7 +67,7 @@ public final class Control {
 		this.time = control.time;
 		this.clocktime = control.clocktime;
 	}
-	
+
 	/**
 	 * @return the link id
 	 */
@@ -202,7 +203,8 @@ public final class Control {
 	 * 12:00
 	 * 
 	 * @param clocktime the clocktime to set in hrs:min format
-	 * @throws if clocktime hasn't a valid format. The regex used is "([1-9]|1?[1-2])(:[0-5][0-9])? (AM|PM)".
+	 * @throws if clocktime hasn't a valid format. The regex used is
+	 *            "([1-9]|1?[1-2])(:[0-5][0-9])? (AM|PM)".
 	 */
 	public void setClocktime(String clocktime) {
 		if (!clocktime.matches("([1-9]|1?[1-2])(:[0-5][0-9])? (AM|PM)")) {
@@ -213,38 +215,40 @@ public final class Control {
 
 	@Override
 	public String toString() {
-		String txt = "LINK ";
-		txt += getLinkId() + " ";
+		StringBuilder txt = new StringBuilder();
+		txt.append("LINK ");
+		txt.append(getLinkId() + " ");
 		if (!(getStatType() == StatType.VALUE)) {
-			txt += getStatType().getName() + " ";
+			txt.append(getStatType().getName() + " ");
 		} else {
-			txt += getStatValue() + " ";
+			txt.append(getStatValue() + " ");
 		}
 		if (getControlType() == ControlType.IF_ABOVE) {
-			txt += "IF NODE ";
-			txt += getNodeId() + " ";
-			txt += "ABOVE ";
-			txt += getValue();
+			txt.append("IF NODE ");
+			txt.append(getNodeId() + " ");
+			txt.append("ABOVE ");
+			txt.append(getValue());
 		}
 		if (getControlType() == ControlType.IF_BELOW) {
-			txt += "IF NODE ";
-			txt += getNodeId() + " ";
-			txt += "BELOW ";
-			txt += getValue();
+			txt.append("IF NODE ");
+			txt.append(getNodeId() + " ");
+			txt.append("BELOW ");
+			txt.append(getValue());
 		}
 		if (getControlType() == ControlType.AT_TIME) {
-			txt += "AT TIME ";
-			txt += getTime();
+			txt.append("AT TIME ");
+			txt.append(getTime());
 		}
 		if (getControlType() == ControlType.AT_CLOCKTIME) {
-			txt += "AT CLOCKTIME ";
-			txt += getClocktime();
+			txt.append("AT CLOCKTIME ");
+			txt.append(getClocktime());
 		}
-		return txt;
+		return txt.toString();
 	}
-	
+
 	/**
 	 * Copy the object.
+	 * 
 	 * @return a copy of this object
 	 */
 	public Control copy() {

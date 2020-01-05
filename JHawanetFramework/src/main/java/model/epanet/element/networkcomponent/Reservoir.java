@@ -55,13 +55,13 @@ public final class Reservoir extends Node {
 
 	@Override
 	public String toString() {
-		String txt = "";
-		txt += getId() + "\t";
-		txt += getHead() + "\t";
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s\t", getId()));
+		txt.append(String.format("%-10f\t", getHead()));
 		if (getPattern() != null) {
-			txt += getPattern().getId() + "\t";
+			txt.append(String.format("%-10s\t", getPattern().getId()));
 		}
-		return txt;
+		return txt.toString();
 	}
 
 	/**

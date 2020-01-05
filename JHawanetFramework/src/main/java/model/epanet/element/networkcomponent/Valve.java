@@ -86,13 +86,13 @@ public final class Valve extends Link {
 	@Override
 	public String toString() {
 		String txt = "";
-		txt += getId() + "\t";
-		txt += getNode1().getId() + "\t";
-		txt += getNode2().getId() + "\t";
-		txt += getDiameter() + "\t";
-		txt += getType() + "\t";
-		txt += getSetting() + "\t";
-		txt += getMinorLoss();
+		txt += String.format("%-10s\t", getId());
+		txt += String.format("%-10s\t", getNode1().getId());
+		txt += String.format("%-10s\t", getNode2().getId());
+		txt += String.format("%-10f\t", getDiameter());
+		txt += String.format("%-10s\t", getType());
+		txt += String.format("%-10s\t", getSetting());
+		txt += String.format("%-10f", getMinorLoss());
 		return txt;
 	}
 

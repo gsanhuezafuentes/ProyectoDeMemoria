@@ -50,11 +50,11 @@ public final class Quality {
 	
 	@Override
 	public String toString() {
-		String txt = "";
-		txt += getNodeId() + "\t";
-		txt += getInitialQuality() + "\t";
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s\t", getNodeId()));
+		txt.append(String.format("%-10f", getInitialQuality()));
 
-		return txt;
+		return txt.toString();
 	}
 	
 	/**

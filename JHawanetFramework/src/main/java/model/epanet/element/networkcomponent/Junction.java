@@ -70,15 +70,14 @@ public final class Junction extends Node {
 
 	@Override
 	public String toString() {
-		String txt = "";
-		txt += getId() + "\t";
-		txt += getElev() + "\t";
-		txt += getDemand() + "\t";
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s\t", getId()));
+		txt.append(String.format("%-10f\t", getElev()));
+		txt.append(String.format("%-10f\t", getDemand()));
 		if (getPattern() != null) {
-			txt += getPattern().getId();
-
+			txt.append(String.format("%-10s", getPattern().getId()));
 		}
-		return txt;
+		return txt.toString();
 	}
 
 	/**

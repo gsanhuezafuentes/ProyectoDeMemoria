@@ -119,16 +119,16 @@ public final class Pipe extends Link {
 
 	@Override
 	public String toString() {
-		String txt = "";
-		txt += getId() + "\t";
-		txt += getNode1().getId() + "\t";
-		txt += getNode2().getId() + "\t";
-		txt += getLength() + "\t";
-		txt += getDiameter() + "\t";
-		txt += getRoughness() + "\t";
-		txt += getMloss() + "\t";
-		txt += getStatus();
-		return txt;
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s\t", getId()));
+		txt.append(String.format("%-10s\t", getNode1().getId()));
+		txt.append(String.format("%-10s\t", getNode2().getId()));
+		txt.append(String.format("%-10f\t", getLength()));
+		txt.append(String.format("%-10f\t", getDiameter()));
+		txt.append(String.format("%-10f\t", getRoughness()));
+		txt.append(String.format("%-10f\t", getMloss()));
+		txt.append(String.format("%-10s", getStatus().getName()));
+		return txt.toString();
 	}
 
 	/**

@@ -135,18 +135,18 @@ public final class Tank extends Node {
 
 	@Override
 	public String toString() {
-		String txt = "";
-		txt += getId() + "\t";
-		txt += getElev() + "\t";
-		txt += getInitLvl() + "\t";
-		txt += getMinLvl() + "\t";
-		txt += getMaxLvl() + "\t";
-		txt += getDiameter() + "\t";
-		txt += getMinVol() + "\t";
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s\t", getId()));
+		txt.append(String.format("%-10f\t", getElev()));
+		txt.append(String.format("%-10f\t", getInitLvl()));
+		txt.append(String.format("%-10f\t", getMinLvl()));
+		txt.append(String.format("%-10f\t", getMaxLvl()));
+		txt.append(String.format("%-10f\t", getDiameter()));
+		txt.append(String.format("%-10f\t", getMinVol()));
 		if (getVolCurve() != null) {
-			txt += getVolCurve().getId();
+			txt.append(String.format("%-10s", getVolCurve().getId()));
 		}
-		return txt;
+		return txt.toString();
 	}
 
 	/**
