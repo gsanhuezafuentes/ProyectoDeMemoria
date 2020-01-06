@@ -152,7 +152,7 @@ public class MainWindowController implements Initializable {
 		}
 		if (algorithm != null) {
 			Problem<?> problem = registrableProblem.getProblem();
-			RunningDialogController runningDialogController = new RunningDialogController(algorithm, problem, this.network);
+			RunningWindowController runningDialogController = new RunningWindowController(algorithm, problem, this.network);
 			runningDialogController.showWindowAndRunAlgorithm();
 		}
 

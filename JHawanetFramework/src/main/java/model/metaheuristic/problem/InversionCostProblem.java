@@ -185,7 +185,7 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 		Collection<Link> links = network.getLinks();
 		int i = 0;
 		for (Link link : links) {
-			double diameter = (float) this.gamas.get(iSolution.getVariable(i) - 1).getDiameter();
+			double diameter = this.gamas.get(iSolution.getVariable(i) - 1).getDiameter();
 			/*
 			 * Only pipe and valve has diameter. For this only in that elements the diameter
 			 * is set. If link is a Pump so the diameter of this is ignored.
