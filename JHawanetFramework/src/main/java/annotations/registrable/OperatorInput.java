@@ -8,8 +8,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * It class describe the possible operator that can be injected into the parameter of the registrable constructor.
- *
+ * It class describe the possible operator that can be injected into the
+ * parameter of the registrable constructor. It will show a combobox whose value
+ * will be the operator configured with {@link OperatorOption}
  */
 @Documented
 @Retention(RUNTIME)

@@ -8,7 +8,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * It class denote a int, double or his wrapper values (Integer, Double) that can be injected to Registrable problem
+ * It class denote a int, double or his wrapper values (Integer, Double) that can be injected to Registrable problem.
+ * It will show in GUI a TextField that will inject the writed value to constructor.
  *
  */
 @Documented
