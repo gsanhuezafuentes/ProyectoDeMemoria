@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 import annotations.operators.DefaultConstructor;
 import annotations.registrable.FileInput;
 import annotations.registrable.NumberInput;
+import annotations.registrable.NumberToggleInput;
 import annotations.registrable.OperatorInput;
 import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
@@ -34,8 +35,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -66,10 +69,18 @@ public final class ConfigurationDynamicWindow extends Stage {
 	private int gridLayoutRowCount;
 
 	/*
-	 * It has a reference to textfield with number input. The order of this list is
+	 * It has references to textfield with number input. The order of this list is
 	 * the same that the order in Parameters annotation (numbers)
 	 */
 	private List<TextField> numbersTextFieldAdded;
+
+	/*
+	 * It has references to textfield with number input of the number toogle
+	 * section. The order of this list is the same that the order in Parameters
+	 * annotation (numbersToogle).
+	 */
+	private List<TextField> numbersToogleTextFieldAdded;
+
 	/*
 	 * It has a reference to textfield with fileInput(It shown the path of some
 	 * file).The order of this list is the same that the order in Parameters
@@ -85,9 +96,16 @@ public final class ConfigurationDynamicWindow extends Stage {
 	 */
 	private List<ComboBox<Class<?>>> comboBoxesAdded;
 
+	/*
+	 * Used by numberToogleSection to persist the group created from one call to
+	 * other of the method.
+	 */
+	private Map<String, ToggleGroup> numberToggleGroupAdded;
+
 	/**
 	 * Constructor.
-	 * @param controller the controller associated to this view.
+	 * 
+	 * @param controller  the controller associated to this view.
 	 * @param registrable the registrable class to analize.
 	 */
 	public ConfigurationDynamicWindow(ConfigurationDynamicWindowController controller,
@@ -105,9 +123,6 @@ public final class ConfigurationDynamicWindow extends Stage {
 		root.getChildren().addAll(this.gridLayout);
 		root.setSpacing(defaultSpace);
 		root.setPadding(new Insets(defaultSpace));
-		this.comboBoxesAdded = new ArrayList<ComboBox<Class<?>>>();
-		this.numbersTextFieldAdded = new ArrayList<TextField>();
-		this.filesTextFieldAdded = new ArrayList<TextField>();
 		this.resultOfOperatorConfiguration = new HashMap<Class<?>, List<Number>>();
 
 		configurateWindow();
@@ -134,28 +149,34 @@ public final class ConfigurationDynamicWindow extends Stage {
 		Constructor<?> constructor = ReflectionUtils.getConstructor(problemClass);
 		Parameters parameters = constructor.getAnnotation(Parameters.class);
 		if (parameters != null) {
-			// It is assume that the order of parameter is object,..., file ... , int or
-			// double... (It
-			// is validated in method that create this windows in ProblemRegistrar)
-
-			int parameterIndex = constructor.getParameterCount() - 1; // What it the last index of parameter
+			/*
+			 * It is assume that the order of parameter is object,..., file ... , int or
+			 * double... (It is validated in method that create this windows in
+			 * ProblemRegistrar). Get the index when int and double input start.
+			 */
+			int parameterIndex = constructor.getParameterCount() - parameters.numbers().length
+					- parameters.numbersToggle().length; // What it the last index of parameter
 
 			// Create the textfield for native input (double, int, etc)
-			for (NumberInput operator : parameters.numbers()) {
-				numberSection(operator, constructor.getParameterTypes()[parameterIndex]);
-				parameterIndex--;
+			for (NumberInput annotation : parameters.numbers()) {
+				numberSection(annotation, constructor.getParameterTypes()[parameterIndex]);
+				parameterIndex++;
+			}
+
+			// Create the textfield for native input exclusive each other (double, int, etc)
+			for (NumberToggleInput annotation : parameters.numbersToggle()) {
+				numberToggleSection(annotation, constructor.getParameterTypes()[parameterIndex]);
+				parameterIndex++;
 			}
 
 			// Create textfield for show the path selected in a filechooser
-			for (FileInput file : parameters.files()) {
-				fileSection(file);
-				parameterIndex--;
+			for (FileInput annotation : parameters.files()) {
+				fileSection(annotation);
 			}
 
 			// Create combobox for object input
-			for (OperatorInput operator : parameters.operators()) {
-				operatorSection(operator);
-				parameterIndex--;
+			for (OperatorInput annotation : parameters.operators()) {
+				operatorSection(annotation);
 			}
 
 		}
@@ -164,11 +185,16 @@ public final class ConfigurationDynamicWindow extends Stage {
 	/**
 	 * Setting the number section. It section has textfield to write the numbers.
 	 * 
-	 * @param operator      the NumberInput annotation
+	 * @param annotation    the NumberInput annotation
 	 * @param parameterType the type of parameter
 	 */
-	private void numberSection(NumberInput operator, Class<?> parameterType) {
-		Label label = new Label(operator.displayName());
+	private void numberSection(NumberInput annotation, Class<?> parameterType) {
+		// lazy initialization of list
+		if (this.numbersTextFieldAdded == null) {
+			this.numbersTextFieldAdded = new ArrayList<TextField>();
+		}
+
+		Label label = new Label(annotation.displayName());
 		TextField textfield = new TextField();
 		textfield.setPromptText("Enter the value");
 		textfield.setMaxWidth(Double.MAX_VALUE);
@@ -187,14 +213,62 @@ public final class ConfigurationDynamicWindow extends Stage {
 		gridLayoutRowCount++;
 	}
 
+	private void numberToggleSection(NumberToggleInput annotation, Class<?> parameterType) {
+		// lazy initialization of list
+		if (this.numbersToogleTextFieldAdded == null) {
+			this.numbersToogleTextFieldAdded = new ArrayList<TextField>();
+		}
+		if (this.numberToggleGroupAdded == null) {
+			this.numberToggleGroupAdded = new HashMap<String, ToggleGroup>();
+		}
+		if (!this.numberToggleGroupAdded.containsKey(annotation.groupID())) {
+			ToggleGroup toggleGroup = new ToggleGroup();
+			this.numberToggleGroupAdded.put(annotation.groupID(), toggleGroup);
+
+			Label groupTitle = new Label(annotation.groupID());
+			this.gridLayout.addRow(gridLayoutRowCount, groupTitle);
+			gridLayoutRowCount++;
+		}
+		ToggleGroup toggleGroup = this.numberToggleGroupAdded.get(annotation.groupID());
+
+		RadioButton radioButton = new RadioButton(annotation.displayName());
+		radioButton.setToggleGroup(toggleGroup);
+		// if the radio button is the first element in group so select it by default
+		if (toggleGroup.getToggles().size() == 1) {
+			radioButton.setSelected(true);
+		}
+
+		TextField textfield = new TextField();
+		textfield.getProperties().put("type", parameterType);
+
+		textfield.disableProperty().bind(radioButton.selectedProperty().not());
+		textfield.setMaxWidth(Double.MAX_VALUE);
+
+		this.numbersToogleTextFieldAdded.add(textfield);
+		assert parameterType.getName().matches("int|Integer|double|Double");
+		if (parameterType.getName().matches("int|Integer")) {
+			textfield.setTextFormatter(createWholeTextFormatter());
+		} else if (parameterType.getName().matches("double|Double")) {
+			textfield.setTextFormatter(createDecimalTextFormatter());
+		}
+
+		this.gridLayout.addRow(gridLayoutRowCount++, radioButton, textfield);
+		gridLayoutRowCount++;
+
+	}
+
 	/**
 	 * Setting the file section. It section has textfield and a button to open a
 	 * filechooser.
 	 * 
-	 * @param file the FileInput annotation
+	 * @param annotation the FileInput annotation
 	 */
-	private void fileSection(FileInput file) {
-		Label label = new Label(file.displayName());
+	private void fileSection(FileInput annotation) {
+		// lazy initialization of list
+		if (this.filesTextFieldAdded == null) {
+			this.filesTextFieldAdded = new ArrayList<TextField>();
+		}
+		Label label = new Label(annotation.displayName());
 		TextField textfield = new TextField();
 		textfield.setMaxWidth(Double.MAX_VALUE);
 		Button button = new Button("Browse");
@@ -217,15 +291,19 @@ public final class ConfigurationDynamicWindow extends Stage {
 	 * Setting the operator section. It section has comboBox to choose the operator.
 	 * It only configure one parameters.
 	 * 
-	 * @param operator the operator annotation that contains the option of combobox
+	 * @param annotation the operator annotation that contains the option of
+	 *                   combobox
 	 */
-	private void operatorSection(OperatorInput operator) {
-		Map<Class<?>, String> operatorMap = new LinkedHashMap<>(operator.value().length);
-		for (OperatorOption option : operator.value()) {
+	private void operatorSection(OperatorInput annotation) {
+		if (this.comboBoxesAdded == null) {
+			this.comboBoxesAdded = new ArrayList<ComboBox<Class<?>>>();
+		}
+		Map<Class<?>, String> operatorMap = new LinkedHashMap<>(annotation.value().length);
+		for (OperatorOption option : annotation.value()) {
 			operatorMap.put(option.value(), option.displayName());
 		}
 
-		Label label = new Label(operator.displayName());
+		Label label = new Label(annotation.displayName());
 		ComboBox<Class<?>> comboBox = new ComboBox<>();
 		comboBox.setMaxWidth(Double.MAX_VALUE);
 		comboBox.getItems().addAll(operatorMap.keySet());
@@ -268,7 +346,7 @@ public final class ConfigurationDynamicWindow extends Stage {
 
 		// show a window to configure the operator
 		configButton.setOnAction((evt) -> {
-			createAndShowOperatorConfigureDialog(operator.displayName(),
+			createAndShowOperatorConfigureDialog(annotation.displayName(),
 					comboBox.getSelectionModel().getSelectedItem());
 		});
 
@@ -284,7 +362,7 @@ public final class ConfigurationDynamicWindow extends Stage {
 	 * @param selectedItem the class of operator
 	 */
 	private void createAndShowOperatorConfigureDialog(String name, Class<?> selectedItem) {
-		//Create a custom dialog to configure the operator's parameters.
+		// Create a custom dialog to configure the operator's parameters.
 		Dialog<List<Number>> dialog = new Dialog<>();
 		dialog.setTitle("Configuración " + name);
 		dialog.setContentText("Ingrese los valores");
@@ -340,7 +418,7 @@ public final class ConfigurationDynamicWindow extends Stage {
 		// method used to convert the element in dialog in a result
 		dialog.setResultConverter(dialogButton -> {
 			if (dialogButton == okButtonType) {
-				//Get the value of each textfield in the dialog
+				// Get the value of each textfield in the dialog
 				List<Number> results = textFieldOfParameters.stream()
 						.map(textField -> (Number) textField.getTextFormatter().getValue())
 						.collect(Collectors.toList());
@@ -467,8 +545,7 @@ public final class ConfigurationDynamicWindow extends Stage {
 				this.comboBoxesAdded.size());
 		File[] files = new File[this.filesTextFieldAdded.size()];
 		Number[] numberInputs = new Number[this.numbersTextFieldAdded.size()];
-//		Number[] toggleInputs = new Number[this.numbersToogleFieldAdded.size()];
-//		int[] selectedToogleIndex = new int[this.numbersToogleFieldAdded.size()];
+		Number[] toggleInputs = new Number[this.numbersToogleTextFieldAdded.size()];
 
 		int i = 0;
 		for (ComboBox<Class<?>> comboBox : this.comboBoxesAdded) {
@@ -496,6 +573,20 @@ public final class ConfigurationDynamicWindow extends Stage {
 		for (TextField textfield : this.numbersTextFieldAdded) {
 			numberInputs[i++] = (Number) textfield.getTextFormatter().getValue();
 		}
-		controller.onRunButtonClick(operatorsAndConfig, files, numberInputs);
+
+		i = 0; // reset the counter
+		for (TextField textfield : this.numbersToogleTextFieldAdded) {
+			if (!textfield.isDisable()) {
+				toggleInputs[i++] = (Number) textfield.getTextFormatter().getValue();
+			} else {
+				Class<?> parameterType = (Class<?>) textfield.getProperties().get("type");
+				if (parameterType.getName().matches("int|Integer")) {
+					toggleInputs[i++] = Integer.MIN_VALUE;
+				} else if (parameterType.getName().matches("double|Double")) {
+					toggleInputs[i++] = Double.MIN_VALUE;
+				} 
+			}
+		}
+		controller.onRunButtonClick(operatorsAndConfig, files, numberInputs, toggleInputs);
 	}
 }

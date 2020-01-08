@@ -43,4 +43,12 @@ public @interface Parameters {
 	 * @return the NumberInput annotation
 	 */
 	NumberInput[] numbers() default {};
+	
+	/**
+	 * Get the number toggle input annotation. The number will be injected in registrable
+	 * problem in the parameter of type int or double.
+	 * 
+	 * @return the NumberInput annotation
+	 */
+	NumberToggleInput[] numbersToggle() default {};
 }

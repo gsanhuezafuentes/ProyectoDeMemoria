@@ -6,6 +6,7 @@ import java.util.List;
 import annotations.registrable.FileInput;
 import annotations.registrable.NewProblem;
 import annotations.registrable.NumberInput;
+import annotations.registrable.NumberToggleInput;
 import annotations.registrable.OperatorInput;
 import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
@@ -68,15 +69,20 @@ public class InversionCostRegister implements Registrable {
 					@OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class),
 					@OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class) }) }, //
 			files = { @FileInput(displayName = "Gama") }, //
-			numbers = { @NumberInput(displayName = "Number of iteration without improvement"),
-					@NumberInput(displayName = "Max number of evaluation") })
-	@SuppressWarnings("unchecked")//The object injected are indicated in operators elements. It guarantee its types.
-	public InversionCostRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama,
+			numbers = { @NumberInput(displayName = "Min pressure"),
+					@NumberInput(displayName = "Population Size") }, //
+			numbersToggle = { @NumberToggleInput(groupID = "Finish Condition", displayName = "Number of iteration without improvement"),
+					@NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation") })
+	@SuppressWarnings("unchecked") // The object injected are indicated in operators elements. It guarantee its
+									// types.
+	public InversionCostRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama, int minPressure, int populationSize,
 			int numberWithoutImprovement, int maxEvaluations) {
 		System.out.println(selectionOperator);
 		System.out.println(crossoverOperator);
 		System.out.println(mutationOperator);
 		System.out.println(gama);
+		System.out.println(minPressure);
+		System.out.println(populationSize);
 		System.out.println(numberWithoutImprovement);
 		System.out.println(maxEvaluations);
 		this.selection = (SelectionOperator<List<IntegerSolution>, List<IntegerSolution>>) selectionOperator;
@@ -86,10 +92,12 @@ public class InversionCostRegister implements Registrable {
 		this.maxEvaluations = maxEvaluations;
 		this.gama = gama;
 	}
-	
 
-	/** {@inheritDoc}
-	 * 	@throws ApplicationException if inpPath is empty or null or if gama file is null
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @throws ApplicationException if inpPath is empty or null or if gama file is
+	 *                              null
 	 */
 	@Override
 	public GeneticAlgorithm2<IntegerSolution> build(String inpPath) throws Exception {
@@ -104,17 +112,17 @@ public class InversionCostRegister implements Registrable {
 			throw new ApplicationException("There isn't gama file");
 		}
 		if (this.problem == null) {
-			this.problem = new InversionCostProblem(epanet, this.gama.getAbsolutePath(), 30);		
+			this.problem = new InversionCostProblem(epanet, this.gama.getAbsolutePath(), 30);
 
 		}
 		algorithm = new GeneticAlgorithm2<IntegerSolution>(this.problem, 10, selection, crossover, mutation);
 		algorithm.setMaxNumberOfIterationWithoutImprovement(numberWithoutImprovement);
 		algorithm.setMaxEvaluations(maxEvaluations);
-		
+
 		return algorithm;
 	}
 
-	/** {@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public InversionCostProblem getProblem() {
 		return this.problem;
