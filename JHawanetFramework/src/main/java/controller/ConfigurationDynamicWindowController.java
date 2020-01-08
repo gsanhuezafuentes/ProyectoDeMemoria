@@ -38,23 +38,32 @@ public class ConfigurationDynamicWindowController {
 	}
 
 	/**
-	 * Is called when the run button is pressed in view. It method create the registrable instance based in the input field. When
-	 * the algorithm is created an {@link AlgorithmCreationNotification} is fired.
+	 * Is called when the run button is pressed in view. It method create the
+	 * registrable instance based in the input field. When the algorithm is created
+	 * an {@link AlgorithmCreationNotification} is fired.
 	 * 
 	 * @param operatorsAndConfig A map where the key are the operators and the
-	 *                           values are the configuration. If there isn't operator configurated an empty map has to be send.
-	 * @param fileInputs              An array with file inputs. If there isn't file inputs so
-	 *                           receive a empty array of File[]. If there are file
-	 *                           inputs but some hasn't been setting up with a path return null in the respective index.
-	 * @param numberInputs       An array with the number setting in the view. If there isn't number inputs so
+	 *                           values are the configuration. If there isn't
+	 *                           operator configurated an empty map has to be send.
+	 * @param fileInputs         An array with file inputs. If there isn't file
+	 *                           inputs so receive a empty array of File[]. If there
+	 *                           are file inputs but some hasn't been setting up
+	 *                           with a path return null in the respective index.
+	 * @param numberInputs       An array with the number setting in the view. If
+	 *                           there isn't number inputs so receive a empty array
+	 *                           of Number[].
+	 * @param toggleInputs       An array with the number setting in view for the
+	 *                           toggle input.If there isn't number inputs so
 	 *                           receive a empty array of Number[].
 	 */
-	public void onRunButtonClick(Map<Class<?>, List<Number>> operatorsAndConfig, File[] fileInputs, Number[] numberInputs) {
+	public void onRunButtonClick(Map<Class<?>, List<Number>> operatorsAndConfig, File[] fileInputs,
+			Number[] numberInputs, Number[] toggleInputs) {
 		Objects.requireNonNull(operatorsAndConfig);
 		Objects.requireNonNull(fileInputs);
 		Objects.requireNonNull(numberInputs);
-		
-		int parameterSize = operatorsAndConfig.size() + fileInputs.length + numberInputs.length;
+		Objects.requireNonNull(toggleInputs);
+
+		int parameterSize = operatorsAndConfig.size() + fileInputs.length + numberInputs.length + toggleInputs.length;
 		Object[] parameters = new Object[parameterSize];
 		int i = 0;
 		// create the operators and add to parameters array
@@ -74,9 +83,13 @@ public class ConfigurationDynamicWindowController {
 		for (File file : fileInputs) {
 			parameters[i++] = file;
 		}
-		
+
 		for (Number numberInput : numberInputs) {
 			parameters[i++] = numberInput;
+		}
+		
+		for (Number toggleInput : toggleInputs) {
+			parameters[i++] = toggleInput;
 		}
 
 		try {
@@ -89,15 +102,16 @@ public class ConfigurationDynamicWindowController {
 		}
 
 	}
-	
+
 	/**
 	 * Get the associated view component to this controller.
+	 * 
 	 * @return the window.
 	 */
 	public ConfigurationDynamicWindow getAssociatedView() {
 		return this.view;
 	}
-	
+
 	/**
 	 * Show the associated window
 	 */

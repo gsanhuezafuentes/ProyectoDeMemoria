@@ -6,9 +6,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Parameter;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import annotations.operators.DefaultConstructor;
 import annotations.registrable.NewProblem;
+import annotations.registrable.NumberToggleInput;
 import annotations.registrable.OperatorInput;
 import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
@@ -139,6 +141,21 @@ public class ReflectionUtils {
 							+ ". Only can be used object, file, int(or Integer) or double(Double)");
 				}
 			}
+			// checks that entries with the same group id are consecutively
+			if (parametersAnnotation.numbersToggle().length != 0) {
+				Set<String> addedGroupId = new HashSet<String>();
+				String lastAdded = null;
+				for (NumberToggleInput numberToggle : parametersAnnotation.numbersToggle()) {
+					if (!numberToggle.groupID().equals(lastAdded)) {
+						addedGroupId.add(lastAdded);
+						lastAdded = numberToggle.groupID();
+						if (addedGroupId.contains(lastAdded)) {
+							throw new ApplicationException("The NumberToggleInput with the same group id are not consecutive");
+						}
+					}
+				}
+			}
+
 		} else if (constructor.getParameterCount() != 0) {
 			throw new ApplicationException("The constructor of " + registrable.getName()
 					+ " has input parameters but there isn't a ParameterAnnotation describing it");
@@ -292,7 +309,8 @@ public class ReflectionUtils {
 		Objects.requireNonNull(parametersAnnotation);
 		int numberOfParametersInAnnotation = parametersAnnotation.operators().length
 				+ parametersAnnotation.files().length //
-				+ parametersAnnotation.numbers().length;
+				+ parametersAnnotation.numbers().length//
+				+ parametersAnnotation.numbersToggle().length;
 		return numberOfParametersInAnnotation;
 	}
 
