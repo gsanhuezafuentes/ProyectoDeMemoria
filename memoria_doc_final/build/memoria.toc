@@ -1,0 +1,54 @@
+\babel@toc {spanish}{}
+\babel@toc {spanish}{}
+\contentsline {chapter}{Dedicatoria}{\es@scroman {i}}% 
+\contentsline {chapter}{Agradecimientos}{\es@scroman {ii}}% 
+\contentsline {chapter}{Tabla de Contenidos}{\es@scroman {iii}}% 
+\contentsline {chapter}{\'Indice de Figuras}{\es@scroman {v}}% 
+\contentsline {chapter}{\'Indice de Tablas}{\es@scroman {vi}}% 
+\contentsline {chapter}{Resumen}{\es@scroman {vii}}% 
+\contentsline {chapter}{\numberline {1}Introducci\'on}{8}% 
+\contentsline {section}{\numberline {1.1}Presentaci\'on del problema}{8}% 
+\contentsline {subsection}{\numberline {1.1.1}La primera subsecci\'on de la primera secci\'on del cap\IeC {\'\i }tulo 1}{8}% 
+\contentsline {subsection}{\numberline {1.1.2}La segunda subsecci\'on de la primera secci\'on del cap\IeC {\'\i }tulo 1}{8}% 
+\contentsline {section}{\numberline {1.2}Objetivos}{8}% 
+\contentsline {section}{\numberline {1.3}Propuesta de soluci\'on}{8}% 
+\contentsline {section}{\numberline {1.4}Alcances}{8}% 
+\contentsline {section}{\numberline {1.5}Trabajo relacionado}{8}% 
+\contentsline {chapter}{\numberline {2}Marco Te\'orico}{9}% 
+\contentsline {section}{\numberline {2.1}Metodolog\IeC {\'\i }a de desarrollo}{10}% 
+\contentsline {subsection}{\numberline {2.1.1}Metodolog\IeC {\'\i }a iterativo e incremental}{10}% 
+\contentsline {section}{\numberline {2.2}Metodolog\IeC {\'\i }a de evaluaci\'on}{10}% 
+\contentsline {subsection}{\numberline {2.2.1}Casos de estudio}{10}% 
+\contentsline {section}{\numberline {2.3}Herramientas para la implementaci\'on del software}{10}% 
+\contentsline {subsubsection}{Java}{10}% 
+\contentsline {subsubsection}{Java Reflection}{10}% 
+\contentsline {subsubsection}{Java Annotation}{10}% 
+\contentsline {section}{\numberline {2.4}Red de distribuci\'on de agua potable}{10}% 
+\contentsline {subsection}{\numberline {2.4.1}Elementos de la red}{10}% 
+\contentsline {subsubsection}{Conexi\'on}{10}% 
+\contentsline {subsubsection}{Embalse}{10}% 
+\contentsline {subsubsection}{Deposito}{10}% 
+\contentsline {subsubsection}{Tuber\IeC {\'\i }a}{10}% 
+\contentsline {subsubsection}{Bomba}{10}% 
+\contentsline {subsubsection}{V\'alvula}{10}% 
+\contentsline {subsection}{\numberline {2.4.2}Epanet}{10}% 
+\contentsline {section}{\numberline {2.5}Metaheur\IeC {\'\i }stica}{10}% 
+\contentsline {subsection}{\numberline {2.5.1}Algoritmos Evolutivos}{10}% 
+\contentsline {subsubsection}{Poblaci\'on}{10}% 
+\contentsline {subsubsection}{Selecci\'on}{10}% 
+\contentsline {subsubsection}{Cruzamiento}{10}% 
+\contentsline {subsubsection}{Mutaci\'on}{10}% 
+\contentsline {subsection}{\numberline {2.5.2}Algoritmo Gen\'etico}{10}% 
+\contentsline {subsection}{\numberline {2.5.3}Algoritmo NSGA-II}{10}% 
+\contentsline {chapter}{\numberline {3}Propuesta De Soluci\'on}{11}% 
+\contentsline {chapter}{\numberline {4}Evaluaci\'on De La Soluci\'on}{12}% 
+\contentsline {chapter}{\numberline {5}Conclusiones Y Trabajos Futuros}{13}% 
+\contentsline {chapter}{Glosario}{14}% 
+\contentsline {chapter}{Bibliograf\'{\i }a}{15}% 
+\contentsline {chapter}{Anexos}{}
+\contentsline {chapter}{A:\hspace {1em}El Primer Anexo}{17}% 
+\contentsline {section}{\numberline {A.1}La primera secci\'on del primer anexo}{17}% 
+\contentsline {section}{\numberline {A.2}La segunda secci\'on del primer anexo}{17}% 
+\contentsline {subsection}{\numberline {A.2.1}La primera subsecci\'on de la segunda secci\'on del primer anexo}{17}% 
+\contentsline {chapter}{B:\hspace {1em}El segundo Anexo}{18}% 
+\contentsline {section}{\numberline {B.1}La primera secci\'on del segundo anexo}{18}% 
