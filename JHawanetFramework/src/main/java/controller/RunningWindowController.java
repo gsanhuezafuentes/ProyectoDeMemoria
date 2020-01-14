@@ -17,6 +17,7 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.epanet.element.Network;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.problem.Problem;
@@ -178,8 +179,11 @@ public class RunningWindowController {
 	public void showWindowAndRunAlgorithm() {
 		Stage stage = new Stage();
 		stage.setScene(new Scene(this.root));
+		stage.initStyle(StageStyle.UTILITY);
+		stage.setOnCloseRequest((e) -> onCloseButtonClick());
 		stage.show();
 		this.window = stage;
+		
 		Thread t = new Thread(task);
 		t.setDaemon(true);
 		t.start();

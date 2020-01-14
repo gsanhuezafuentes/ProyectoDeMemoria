@@ -3,7 +3,9 @@ package model.epanet.element.networkcomponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Link {
+import model.epanet.element.Selectable;
+
+public abstract class Link implements Selectable{
 	private String id;
 	private Node node1;
 	private Node node2;

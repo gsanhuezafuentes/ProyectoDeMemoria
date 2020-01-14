@@ -1,5 +1,6 @@
 package view;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import model.epanet.element.Network;

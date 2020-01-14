@@ -1,6 +1,8 @@
 package model.epanet.element.networkcomponent;
 
-public abstract class Node {
+import model.epanet.element.Selectable;
+
+public abstract class Node implements Selectable{
 	private String id;
 	private Point position;
 
