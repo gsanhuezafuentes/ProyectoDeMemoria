@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.epanet.element.Network;
+import model.epanet.element.Selectable;
 import model.epanet.element.networkcomponent.Link;
 import model.epanet.element.networkcomponent.Node;
 import model.epanet.element.networkcomponent.Point;
@@ -108,7 +109,7 @@ public class NetworkImage {
 	 * @param net     Epanet network.
 	 * @param selNode Reference to the selected node.
 	 */
-	public static void drawNetwork(GraphicsContext g, double w, double h, Network net, Node selNode) {
+	public static void drawNetwork(GraphicsContext g, double w, double h, Network net, Selectable selected) {
 		Rectangle2D.Double bounds = null;
 		boolean drawTanks = true, drawPipes = true, drawNodes = true;
 		
@@ -235,7 +236,9 @@ public class NetworkImage {
 			g.fillText(l.getLabel(), (int) point.getX(), (int) point.getY());
 		}
 
-		if (selNode != null) {
+		
+		if (selected != null) {
+			Node selNode = (Node) selected;
 			Point point = new Point((int) ((selNode.getPosition().getX() - dx) * factor),
 					(int) ((-selNode.getPosition().getY() - dy) * factor));
 

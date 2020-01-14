@@ -4,34 +4,24 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import controller.problems.ProblemRegistrar;
 import controller.problems.Registrable;
-import controller.utils.AlgorithmTask;
-import epanet.core.EpanetException;
 import exception.InputException;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.concurrent.Worker.State;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
-import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import model.epanet.element.Network;
 import model.epanet.io.InpParser;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.problem.Problem;
+import view.ElementViewer;
 import view.NetworkComponent;
 import view.utils.CustomDialogs;
 
@@ -43,20 +33,35 @@ import view.utils.CustomDialogs;
  *
  */
 public class MainWindowController implements Initializable {
-	/**
-	 * Is the section where the network is painted
-	 */
-	@FXML
-	private NetworkComponent networkComponent;
 	@FXML
 	private BorderPane root;
+	
+	/**
+	 * The SplitPane where the NetworkComponent and the ElementViewer are
+	 */
+	@FXML
+	private SplitPane splitPane;
 
+	
 	/**
 	 * Is a pane that envolve networkComponent. Is used to resize the
 	 * networkComponent automatically when screen size change
 	 */
 	@FXML
 	private Pane canvasWrapper;
+
+	/**
+	 * Is the section where the network is painted
+	 */
+	@FXML
+	private NetworkComponent networkComponent;
+	
+	/**
+	 * It is a pane that show the element of network
+	 */
+	@FXML
+	private ElementViewer elementViewer;
+
 
 	/**
 	 * Is the option of menu for the problem. It is filled using reflection through
@@ -82,6 +87,8 @@ public class MainWindowController implements Initializable {
 		ProblemRegistrar.getInstance().register(this.problemsMenu, this::runAlgorithm);
 		// disable problem menu until a network is loaded
 		this.problemsMenu.disableProperty().bind(isNetworkLoaded.not());
+		
+		elementViewer.selectedProperty().bindBidirectional(networkComponent.selectedProperty());
 	}
 
 	/**
@@ -121,6 +128,7 @@ public class MainWindowController implements Initializable {
 			// If the network was loaded so show it
 			if (!this.network.isEmpty()) {
 				networkComponent.drawNetwork(this.network);
+				elementViewer.setNetwork(network);
 				isNetworkLoaded.set(true);
 			}
 		} catch (IOException | InputException e) {
