@@ -90,16 +90,17 @@ public final class Pipe extends Link {
 	}
 
 	/**
+	 * Get loss coeficient
 	 * @return the mloss
 	 */
-	public double getMloss() {
+	public double getMinorLoss() {
 		return mloss;
 	}
 
 	/**
 	 * @param mloss the mloss to set
 	 */
-	public void setMloss(double mloss) {
+	public void setMinorLoss(double mloss) {
 		this.mloss = mloss;
 	}
 
@@ -126,8 +127,12 @@ public final class Pipe extends Link {
 		txt.append(String.format("%-10f\t", getLength()));
 		txt.append(String.format("%-10f\t", getDiameter()));
 		txt.append(String.format("%-10f\t", getRoughness()));
-		txt.append(String.format("%-10f\t", getMloss()));
+		txt.append(String.format("%-10f\t", getMinorLoss()));
 		txt.append(String.format("%-10s", getStatus().getName()));
+		String description = getDescription();
+		if (description != null) {
+			txt.append(String.format(";%s", description));
+		}
 		return txt.toString();
 	}
 

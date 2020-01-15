@@ -50,6 +50,7 @@ public class InpParser implements InputParser {
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @throws ApplicationException if there is a error in encoding
 	 */
 	@Override
@@ -67,9 +68,11 @@ public class InpParser implements InputParser {
 					continue;
 				}
 
+				String comment = "";
 				int semicolonIndex = line.indexOf(";");
 				if (semicolonIndex != -1) {
 					if (semicolonIndex > 0) {
+						comment = line.substring(semicolonIndex + 1).trim();
 						line = line.substring(0, semicolonIndex);
 					} else {
 						continue;
@@ -89,22 +92,22 @@ public class InpParser implements InputParser {
 						net.addLineToTitle(line + "\n");
 						break;
 					case "JUNCTIONS":
-						parseJunction(net, tokens);
+						parseJunction(net, tokens, comment);
 						break;
 					case "RESERVOIRS":
-						parseReservoir(net, tokens);
+						parseReservoir(net, tokens, comment);
 						break;
 					case "TANKS":
-						parseTanks(net, tokens);
+						parseTanks(net, tokens, comment);
 						break;
 					case "PIPES":
-						parsePipe(net, tokens);
+						parsePipe(net, tokens, comment);
 						break;
 					case "PUMPS":
-						parsePump(net, tokens);
+						parsePump(net, tokens, comment);
 						break;
 					case "VALVES":
-						parseValve(net, tokens);
+						parseValve(net, tokens, comment);
 						break;
 					case "EMITTERS":
 						parseEmmiter(net, tokens);
@@ -171,12 +174,13 @@ public class InpParser implements InputParser {
 		}
 		return net;
 	}
-	
+
 	/**
 	 * Parse the PATTERN and CURVE section.
-	 * @throws IOException  If an I/O error occurs
+	 * 
+	 * @throws IOException           If an I/O error occurs
 	 * @throws FileNotFoundException If file don't exist
-	 * @throws ApplicationException if there is a error in encoding
+	 * @throws ApplicationException  if there is a error in encoding
 	 */
 	private Network parsePatternAndCurve(Network net, String filename) throws FileNotFoundException, IOException {
 		try (BufferedReader buffReader = new BufferedReader(
@@ -233,13 +237,19 @@ public class InpParser implements InputParser {
 	 * 
 	 * @param net    network
 	 * @param tokens token of the line being read
+	 * @param description the description of element
 	 * @throws EpanetException
 	 */
-	private void parseJunction(Network net, String[] tokens) throws InputException {
+	private void parseJunction(Network net, String[] tokens, String description) throws InputException {
 		if (net.getNode(tokens[0]) != null)
 			throw new InputException("Junction " + tokens[0] + " is duplicated");
 		Junction node = new Junction();
 		node.setId(tokens[0]);
+		
+		if (description.length() != 0) {
+			node.setDescription(description);
+		}
+		
 		node.setElev(Double.parseDouble(tokens[1]));
 		if (tokens.length == 2) {
 			node.setDemand(0);
@@ -262,15 +272,20 @@ public class InpParser implements InputParser {
 	 * 
 	 * @param net    network
 	 * @param tokens token of the line being read
+	 * @param description the description of element
 	 * @throws EpanetException
 	 */
-	private void parseReservoir(Network net, String[] tokens) throws InputException {
+	private void parseReservoir(Network net, String[] tokens, String description) throws InputException {
 		if (net.getNode(tokens[0]) != null)
 			throw new InputException("Reservoir " + tokens[0] + " is duplicated");
 		Reservoir node = new Reservoir();
 		node.setId(tokens[0]);
 		node.setHead(Double.parseDouble(tokens[1]));
 
+		if (description.length() != 0) {
+			node.setDescription(description);
+		}
+		
 		if (tokens.length == 3) {
 			Pattern pattern = net.getPattern(tokens[2]);
 			if (pattern == null) {
@@ -286,13 +301,19 @@ public class InpParser implements InputParser {
 	 * 
 	 * @param net    network
 	 * @param tokens token of the line being read
+	 * @param description the description of element
 	 * @throws EpanetException
 	 */
-	private void parseTanks(Network net, String[] tokens) throws InputException {
+	private void parseTanks(Network net, String[] tokens, String description) throws InputException {
 		if (net.getNode(tokens[0]) != null)
 			throw new InputException("Tank " + tokens[0] + " is duplicated");
 		Tank node = new Tank();
 		node.setId(tokens[0]);
+		
+		if (description.length() != 0) {
+			node.setDescription(description);
+		}
+		
 		node.setElev(Double.parseDouble(tokens[1]));
 		node.setInitLvl(Double.parseDouble(tokens[2]));
 		node.setMinLvl(Double.parseDouble(tokens[3]));
@@ -312,16 +333,21 @@ public class InpParser implements InputParser {
 	/**
 	 * Parse the PIPES section of inp file
 	 * 
-	 * @param net    network
-	 * @param tokens token of the line being read
+	 * @param net         network
+	 * @param tokens      token of the line being read
+	 * @param description the description of element
 	 * @throws EpanetException
 	 */
-	private void parsePipe(Network net, String[] tokens) throws InputException {
+	private void parsePipe(Network net, String[] tokens, String description) throws InputException {
 		if (net.getLink(tokens[0]) != null)
 			throw new InputException("Pipe " + tokens[0] + " is duplicated");
 		Pipe link = new Pipe();
 		link.setId(tokens[0]);
 
+		if (description.length() != 0) {
+			link.setDescription(description);
+		}
+		
 		Node to = net.getNode(tokens[1]);
 		if (to == null) {
 			throw new InputException("Don't exist the node with id " + tokens[1]);
@@ -338,7 +364,7 @@ public class InpParser implements InputParser {
 		link.setRoughness(Double.parseDouble(tokens[5]));
 
 		if (tokens.length == 8) {
-			link.setMloss(Double.parseDouble(tokens[6]));
+			link.setMinorLoss(Double.parseDouble(tokens[6]));
 
 			if (tokens[7].equalsIgnoreCase("OPEN")) {
 				link.setStatus(Pipe.PipeStatus.OPEN);
@@ -353,7 +379,7 @@ public class InpParser implements InputParser {
 			}
 		} else {
 			// Set the value by defect if it isn't in inp file
-			link.setMloss(0.0);
+			link.setMinorLoss(0.0);
 			link.setStatus(Pipe.PipeStatus.OPEN);
 
 		}
@@ -363,11 +389,12 @@ public class InpParser implements InputParser {
 	/**
 	 * Parse the PUMPS section of inp file
 	 * 
-	 * @param net    network
-	 * @param tokens token of the line being read
+	 * @param net         network
+	 * @param tokens      token of the line being read
+	 * @param description the description of element
 	 * @throws EpanetException
 	 */
-	private void parsePump(Network net, String[] tokens) throws InputException {
+	private void parsePump(Network net, String[] tokens, String description) throws InputException {
 		String id = tokens[0];
 		if (net.getLink(tokens[0]) != null)
 			throw new InputException("Pump " + tokens[0] + " is duplicated");
@@ -376,7 +403,11 @@ public class InpParser implements InputParser {
 		}
 		Pump link = new Pump();
 		link.setId(id);
-
+		
+		if (description.length() != 0) {
+			link.setDescription(description);
+		}
+		
 		Node to = net.getNode(tokens[1]);
 		if (to == null) {
 			throw new InputException("Don't exist the node with id " + tokens[1]);
@@ -424,14 +455,18 @@ public class InpParser implements InputParser {
 	/**
 	 * Parse the VALVES section of inp file
 	 * 
-	 * @param net    network
-	 * @param tokens token of the line being read
+	 * @param net         network
+	 * @param tokens      token of the line being read
+	 * @param description the description of element
 	 * @throws EpanetException
 	 */
-	private void parseValve(Network net, String[] tokens) throws InputException {
+	private void parseValve(Network net, String[] tokens, String description) throws InputException {
 		if (net.getLink(tokens[0]) != null)
 			throw new InputException("Valve " + tokens[0] + " is duplicated");
 		Valve link = new Valve();
+		if (description.length() != 0) {
+			link.setDescription(description);
+		}
 		link.setId(tokens[0]);
 
 		Node to = net.getNode(tokens[1]);

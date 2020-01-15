@@ -82,8 +82,8 @@ public class RunningWindowController {
 		/**
 		 * Only add the the showChartButton if the number of objectives is less than 2.
 		 */
-		if (this.problem.getNumberOfObjectives() <= 2) {
-			this.showChartButton.setVisible(false);
+		if (this.problem.getNumberOfObjectives() == 1 || this.problem.getNumberOfObjectives() == 2) {
+			this.showChartButton.setVisible(true);
 		}
 
 		

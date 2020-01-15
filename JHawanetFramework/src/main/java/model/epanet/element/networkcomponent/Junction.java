@@ -77,6 +77,10 @@ public final class Junction extends Node {
 		if (getPattern() != null) {
 			txt.append(String.format("%-10s", getPattern().getId()));
 		}
+		String description = getDescription();
+		if (description != null) {
+			txt.append(String.format(";%s", description));
+		}
 		return txt.toString();
 	}
 

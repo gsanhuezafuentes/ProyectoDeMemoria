@@ -88,7 +88,7 @@ public class MainWindowController implements Initializable {
 		// disable problem menu until a network is loaded
 		this.problemsMenu.disableProperty().bind(isNetworkLoaded.not());
 		
-		elementViewer.selectedProperty().bindBidirectional(networkComponent.selectedProperty());
+		networkComponent.selectedProperty().bindBidirectional(elementViewer.selectedProperty());
 	}
 
 	/**

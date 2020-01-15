@@ -2,11 +2,13 @@ package model.epanet.element.networkcomponent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import model.epanet.element.Selectable;
 
 public abstract class Link implements Selectable{
 	private String id;
+	private String description;
 	private Node node1;
 	private Node node2;
 	private List<Point> vertices;
@@ -53,6 +55,23 @@ public abstract class Link implements Selectable{
 	 */
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+
+	/**
+	 * @return the description or null if not exist
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 * @throws NullPointerException if description is null
+	 */
+	public void setDescription(String description) {
+		Objects.requireNonNull(description);
+		this.description = description;
 	}
 
 	/**

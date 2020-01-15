@@ -61,6 +61,10 @@ public final class Reservoir extends Node {
 		if (getPattern() != null) {
 			txt.append(String.format("%-10s\t", getPattern().getId()));
 		}
+		String description = getDescription();
+		if (description != null) {
+			txt.append(String.format(";%s", description));
+		}
 		return txt.toString();
 	}
 

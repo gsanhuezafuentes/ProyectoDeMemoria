@@ -31,7 +31,19 @@ public class NetworkComponent extends Canvas {
 				Selectable selected = NetworkImage.peekNearest(getWidth(), getHeight(), evt.getX(), evt.getY(),
 						this.network);
 				setSelected(selected);
+
+				if (selected != null) {
+					DataDisplayWindow dataWindow = DataDisplayWindow.getInstance();
+					
+					if (dataWindow.isShowing()) {
+						dataWindow.setData(selected);
+					} else if(evt.getClickCount() == 2) {
+						dataWindow.setData(selected);
+						dataWindow.show();
+					}
+				}
 			}
+
 		});
 
 		this.selected.addListener((prop, newv, oldv) -> {
