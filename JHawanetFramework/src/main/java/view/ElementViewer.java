@@ -210,12 +210,10 @@ public class ElementViewer extends VBox {
 
 				}
 			}
-			if (getSelected() != null) {
+			if (newV != null) {
 				DataDisplayWindow dataWindow = DataDisplayWindow.getInstance();
 
-				if (dataWindow.isShowing()) {
-					dataWindow.setData(getSelected());
-				}
+				dataWindow.setData(getSelected());
 			}
 		});
 

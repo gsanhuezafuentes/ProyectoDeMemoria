@@ -98,7 +98,13 @@ public class DataDisplayWindow extends Stage {
 	 */
 	private void addBindAndListener() {
 		this.data.addListener((prop, oldv, newv) -> {
-			updateData(newv);
+			if (isShowing()) {
+				updateData(newv);
+			}
+		});
+		
+		showingProperty().addListener((prop, oldv, newv) -> {
+			updateData(this.data.get());
 		});
 	}
 
