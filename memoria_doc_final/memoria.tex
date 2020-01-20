@@ -35,29 +35,81 @@ Agradecimientos a ...
 
 %% resumen
 \begin{resumen}
-Aquí va el resumen (en Castellano)... 
+La escasez de agua potable es un problema que esta presente a nivel mundial y que es de difícil solución. Por esta razón, existe la necesidad de utilizar conscientemente el recurso hidráulico y buscar maneras de optimizar su distribución. %Es en este punto, en donde se puede hacer uso de algoritmos metaheurísticos que permiten obtener soluciones buenas en un periodo de tiempo reducido a problemas presentes en la redes de distribución de agua potable.
+
+Dentro de las redes de distribución de agua potable, encontramos diferentes tipos de problema. Estos problemas pueden agruparse principalmente en dos clases, las cuales son diseño y operación. La primera busca la optimización en la configuración y elección de los elementos que componen la red previo a su construcción. En cuanto a la segunda, esta busca la optimización de las características operacionales de una red ya construida.
+ 
+Los algoritmos metaheurísticos han demostrado ser un mecanismo eficiente y con un buen desempeño en la resolución de problemas asociados a la redes de distribución de agua potable. Esto debido a que permiten recorrer el espacio de búsqueda del problema en busca de soluciones factibles.
+
+Con el fin de afrontar este problema se llevara a cabo el desarrollo de un sistema el cual permita buscar y evaluar la factibilidad de las soluciones a problemas presentes en las redes de distribución de agua potable. Este sistema abordara dos problemas, uno de diseño y uno de operación. El primero de estos consiste en la optimización de los costos de inversión, para el cual se utilizara un enfoque monoobjetivo. En cuanto al segundo, este sera la optimización de los costos energéticos y el régimen de bombeo utilizando un enfoque multiobjetivo.
+
+Adicionalmente se pretende que el sistema a desarrollar pueda ser ampliado en futuros trabajos, lo cual permitirá agregar nuevos algoritmos metaheurísticos y operadores asociados a estos, así como la implementación de nuevos problemas a resolver dentro de las redes de distribución de agua potable.
+
+Para el desarrollo de este proyecto se opto por utilizar la metodología de desarrollo Iterativo e Incremental.
+
+Para la evaluación del sistema a desarrollar se usara la metodología de caso de estudio cuyo resultado permitirá determinar la utilidad del software desarrollado. 
 \end{resumen}
 
 %% abstract
 
 %% contenido del primer capítulo
 \chapter{Introducción}
-Aquí va el texto del capítulo 1...
+En la actualidad la escasez de agua potable es 
 
 \section{Presentación del problema}
-Aquí va el texto de la primera sección del capítulo 1... 
+Los encargados de implementar sistemas de distribución de agua potable, no cuentan con suficientes herramientas y tiempo para su correcta gestión. Por lo tanto, no es posible utilizar los recursos asociados de forma eficiente. Además, las herramientas existentes no satisfacen las necesidades de usabilidad y costo, debido a que son poco intuitivas y de pago.
 
-\subsection{La primera subsección de la primera sección del capítulo 1}
-Aquí va el texto de la primera subsección de la primera sección del capítulo 1... 
+El escoger las especificaciones de una red de agua potable ya es de por sí difícil debido a que hay que evaluar el rendimiento general del sistema alternando entre distintas configuraciones en busca de una solución que sea eficaz. Debido a esto, el uso de herramientas automatizadas que evalúen el rendimiento de las diversas combinaciones posibles viene a ser necesario.
 
-\subsection{La segunda subsección de la primera sección del capítulo 1}
-Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
+A lo anterior se suma el hecho de que los interesados en esta área no manejan herramientas informáticas.
+
+\section{Hipótesis}
 
 \section{Objetivos}
-Aquí va el texto de la segunda sección del capítulo 1...
-
+Para abarcar la problemática se fijan los siguientes objetivos
+\subsubsection{Objetivo general}
+\begin{itemize}
+	%\item Desarrollar un sistema web que permita administrar la asignación de salas de clase de forma automática y eficiente.
+	\item Diseñar y desarrollar una aplicación de apoyo a la toma de decisiones, integrando algoritmos de optimización aplicados al problema de diseño y operación en redes de distribución de agua potable.
+\end{itemize}
+\subsubsection{Objetivos especificos}
+\begin{enumerate}
+	\item Generar soluciones frente al problema monoobjetivo de diseño de redes de distribución de agua potable a través de la implementación de algoritmos genéticos.
+	\item Generar soluciones frente al problema multiobjetivo de operación de redes de distribución de agua potable a través de la implementación de NSGA-II.
+	\item Diseñar he implementar la interfaz gráfica del sistema de optimización de redes de agua potable desarrollado durante este proyecto.
+	\item Evaluar el desempeño de los algoritmos, contrastando los resultados obtenidos en redes de benchmarking con óptimos conocidos.
+	
+\end{enumerate}
 \section{Propuesta de solución}
+La solución que se propone para abordar el problema consiste en el desarrollo de una aplicación que 
+que permita buscar soluciones a dos de los problemas existentes en las redes de agua potable. Además, de hacer uso de una arquitectura que permita fácilmente extender el programa para abarcar nuevos problemas. Para lograr esto  último la aplicación debe quedar bien documentada. Por lo tanto, lo que se tendrá al termino del desarrollo del proyecto será un software escalable que tratara con dos problemas relacionados a la distribución de agua potable y que podrá ser ampliado en futuros trabajos.
+
+Los problemas que se abordaran en el contexto de optimización de redes de agua potable serán:
+\begin{itemize}
+	\item \textbf{Problema de diseño:} Se trata este problema desde un enfoque monoobjetivo implementando un algoritmo genético que buscará la optimización de los costo de inversión variando el diámetro de las tuberías.  
+	\item \textbf{Problema de operación:} Este problema se abordara desde el enfoque multiobjetivo. Para esto se implementara el algoritmo NSGA-II y se buscará la optimización de los objetivos de costos energéticos y el número de encendidos y apagados de las bombas.
+\end{itemize}
+
+Tanto el algoritmo genético como el NSGA-II, permiten la utilización de distintos operadores de cruzamiento y mutación que también serán implementados para ser utilizados. 
+
+La solución planteada supone además el diseño e implementación de una interfaz gráfica para ayudar al usuario en el uso de la herramienta.
 \section{Alcances}
+Los alcances propuestos para este proyecto serán los siguientes:
+\begin{itemize}
+	
+	\item El sistema permitirá la carga y la visualización de la red gráficamente.
+	\item El sistema permitirá visualizar la configuración básica almacenada en el archivo inp de los elementos de la red.
+	\item El sistema solo resolverá dos clases de problemas de optimización, uno mono-objetivo y el otro multiobjetivo. El problema monoobjetivo será el de los costos de inversión. En cuanto al problema multiobjetivo, este será el de los costos energéticos y el número de encendidos y apagado de las bombas.  
+	\item El sistema únicamente contara con dos algoritmos implementados los cuales serán el algoritmo genético y NSGA-II. El algoritmo genético será el usado para tratar el problema monoobjetivo, mientras que NSGA-II será aplicado al multiobjetivo.
+	\item El sistema permitirá visualizar el o los resultados obtenidos al finalizar la ejecución del algoritmo.
+	\item El sistema permitirá generar archivos .inp con la configuración de la solución obtenida a través de los algoritmos. Debido a que el archivo .inp establece una gran cantidad de configuraciones, las únicas que se permitirán modificar serán las configuraciones asociadas a los conexiones (junctions) y tuberías (pipes).
+	\item El sistema permitirá generar archivos con las soluciones obtenidas para cada problema, es decir, el valor de los objetivos y las variables de decisión involucradas.
+	\item El sistema permitirá la visualización de una gráfica la cual permitirá visualizar la variación de la solución durante la ejecución de los algoritmos.
+	\item La grafica unicamente estará disponible en problemas con uno o dos objetivos.
+	\item La comparación con las redes de benchmarking consistirá unicamente, en presentar una tabla comparativa entre los resultados presentes en la literatura y los obtenidos a través de nuestro sistema, para cada uno de los problemas de redes de distribución de agua potable de nuestro sistema.
+	
+\end{itemize}
+Este proyecto no contempla la creación de la red por lo que estas deberán ser ingresadas como entradas al programa, es decir, estas deberán ser creadas usando EPANET o manualmente, pero siguiendo el formato establecido por EPANET. Además, esta herramienta únicamente podrá ser ocupada en equipos cuyo sistema operativo sea Windows debido a que se realizan llamadas a librerías nativas.
 \section{Trabajo relacionado}
 
 %% contenido del segundo capítulo
@@ -68,18 +120,61 @@ Aquí va el texto de la segunda sección del capítulo 1...
 \subsection{Casos de estudio}
 \section{Herramientas para la implementación del software}
 \subsubsection{Java}
+Java es un lenguaje de programación de alto nivel orientado a objetos y de propósito general. Un programa java se ejecuta sobre la maquina virtual llamada la Java Virtual Machine, la cual le da a este lenguaje la característica de ser multiplataforma. Adicionalmente, java incorpora el soporte para multi-hilos, una poderosa herramienta que permite la ejecución de distintas instrucciones de código al mismo tiempo \cite{Gosling2015}. Ademas. este lenguaje también incorpora una característica conocida como el recolector de basura, el cual se encarga de limpiar la memoria de objetos que ya no están siendo utilizados.  Fue anunciado por Sun Microsystems en Mayo de 1995 \cite{3java}. 
+
 \subsubsection{Java Reflection}
+Característica de java que permite que un programa se auto examine. Esta característica está disponible a través de la Java Reflection API, la cual cuenta con métodos para obtener los meta-object de las clases, métodos, constructores, campos o parámetros. Esta API también permite crear nuevos objetos cuyo tipo era desconocido al momento de compilar el programa \cite{Braux1999}.
 \subsubsection{Java Annotation}
+Característica de java para agregar metadatos a elementos de java (clases, métodos, parámetros, etc.) [7]. Las anotaciones no tienen efecto directo sobre el código, pero cuando son usadas junto con otras herramientas pueden llegar a ser muy útiles. Estas herramientas pueden analizar estas anotaciones y realizar acciones en base a estas, por ejemplo, generar archivos adicionales como clases de java, archivos xml, entre otras; ser analizadas durante la ejecución del programa vía Java Reflection, para crear objetos cuyo tipo no conocemos en tiempo de compilación; etc. 
 \section{Red de distribución de agua potable}
-\subsection{Elementos de la red}
-\subsubsection{Conexión}
+Conjunto de elementos enlazados de tal manera que permite suministrar cierta cantidad de agua a una presión establecida \cite{Doctoral2012}.
+
+\subsubsection{Caudal}
+Cantidad de agua que se mueve a través de un segmento de la red.
+
+\subsection{Componentes físicos de una red}
+A continuación se define los componentes que conforman una red de agua potable \cite{Rossman2017}, los cuales se aprecian en \ref{fig:componentesfisicos}:
+
+
+\begin{figure}[h]
+	\includegraphics{componentesfisicosred.eps}
+	\centering
+	\caption{Componentes físicos de un sistema de distribución de agua \cite{Rossman2017}}
+	\label{fig:componentesfisicos}
+\end{figure}
+\subsubsection{Nudos de caudal}
+
+Son los puntos o extremos de una tubería, los cuales también permiten que estas se unan. Estos nudos pueden actuar como nudos de demanda a través de los cuales el flujo abandona la red.
+
 \subsubsection{Embalse}
+Es una fuente de alimentación externa.
 \subsubsection{Deposito}
+Son elementos con la capacidad de almacenar agua.
 \subsubsection{Tubería}
+ Son los elementos a través de los cuales transita el agua de un nudo a otro.
 \subsubsection{Bomba}
+Elementos que permiten impulsar el liquido con el fin de elevarlo a una posición superior.
 \subsubsection{Válvula}
+Elementos que limitan la presión o el caudal que transita en un punto de la red.
 \subsection{Epanet}
+Software que permite simular el comportamiento hidráulico y la calidad del agua en redes de distribución de aguas compuesta por tuberías, nodos, bombas, válvulas y tanques de almacenamiento \cite{Rossman2017}. 
+\section{Optimización}
+La optimización consiste en maximizar o minimizar un conjunto de funciones que matemáticamente pueden ser expresadas de la siguiente forma:
+$$f_1(x),f_2(x), ..., f_N(x),\ x=(x_1,...,x_d) | x \in X$$
+sujeto a una serie de condiciones
+$$h_j(x) = 0, j=1,2,...,J$$
+$$g_k(x) \leq 0, k=1,2,...,K$$
+siendo $f_1,...,f_N$ funciones objetivos; $x_1, ..., x_d$ variables de decisión, pertenecientes al espacio de búsqueda $X$; y $h_j$ junto con $g_k$, una serie de restricciones \cite{Yang2015}. De acuerdo a la cantidad de funciones objetivos que se tenga, se establece que si $N=1$ la optimización es \textbf{monoobjetivo}, mientras que para $N\geq 2$ se conoce como \textbf{multiobjetivo} \cite{Yang2015}. En este punto se debe tener en cuenta que los objetivos planteados deben encontrarse en contradicción. 
+
+Debido a la definición de las restricciones es posible dividir el espacio de búsqueda en dos regiones \cite{Bozorg-Haddad2017}:
+\begin{itemize}
+	\item Soluciones factibles: Compuesto por los elementos pertenecientes al espacio de búsqueda que satisfacen todas las restricciones.
+	\item Soluciones no factibles: Integrado por aquellos elementos que no complen todas las restricciones.
+\end{itemize}
+\section{Heurística}
+Técnicas estocásticas que permitan acotar la búsqueda de soluciones en problemas cuyo espacio de búsqueda es de gran tamaño y que hacen inviable la aplicación de técnicas deterministas por el costo de tiempo que implican. Con la utilización de estas técnicas se espera encontrar soluciones buenas en un tiempo razonable, pero esto no esta garantizado \cite{Yang2015,Romanycia1985}.
 \section{Metaheurística}
+Algoritmos que permiten resolver un amplio rango de problemas de optimización empleando técnicas con algún grado de aleatoriedad para encontrar soluciones a un problema. Estos algoritmos no garantizan que la solución encontrada sea la óptima, pero permiten obtener generalmente aproximaciones a esta. La diferencia entra heurísticas y metaheurísticas, es que esta ultima puede ser aplicado a un amplio conjunto de problemas sin necesidad de realizar grandes cambios en el algoritmo, mientras que las heurísticas generalmente son aplicadas a un dominio especifico \cite{Yang2015,Boussaid2013,Luke2013}.
 \subsection{Algoritmos Evolutivos}
 \subsubsection{Población}
 \subsubsection{Selección}
