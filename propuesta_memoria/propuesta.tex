@@ -35,7 +35,7 @@ Universidad de Talca}
 
 
 \section{Descripción de la propuesta}
-%\emph{(Esta sección debe incluir una presentación general del problema a investigar y/o idea a desarrollar. En esta sección se debe incluir aquellas referencias bibliográficas vinculadas al contexto del proyecto. Para esto último se recomienda el uso de un archivo *.bib, el cual usa el formato BibTex \cite{1} para codificar  referencias sobre libros \cite{2}, artículos en revistas científicas \cite{3}, artículos en conferencias o workshops \cite{4}, reportes técnicos \cite{5}, capítulos en libros \cite{6}, y páginas Web \cite{7}.
+%\emph{(Esta sección debe incluir una presentación general del problema a investigar y/o idea a desarrollar. En esta sección se debe incluir aquellas referencias bibliográficas vinculadas al contexto del proyecto. Para esto último se recomienda el uso de un archivo *.bib, el cual usa el formato BibTex \cite{1} para codificar referencias sobre libros \cite{2}, artículos en revistas científicas \cite{3}, artículos en conferencias o workshops \cite{4}, reportes técnicos \cite{5}, capítulos en libros \cite{6}, y páginas Web \cite{7}.
 %La longitud máxima de esta sección es de 2.5 páginas.)
 
 % Agregar una introducción a lo que viene abajo
@@ -67,7 +67,7 @@ Debido a la definición de las restricciones es posible dividir el espacio de b�
 
 \item \textbf{Metaheurísticas}: Algoritmos que permiten resolver un amplio rango de problemas de optimización empleando técnicas con algún grado de aleatoriedad para encontrar soluciones a un problema. Estos algoritmos no garantizan que la solución encontrada sea la óptima, pero permiten obtener generalmente aproximaciones a esta. La diferencia entra heurísticas y metaheurísticas, es que esta ultima puede ser aplicado a un amplio conjunto de problemas sin necesidad de realizar grandes cambios en el algoritmo, mientras que las heurísticas generalmente son aplicadas a un dominio especifico \cite{Yang2015,Boussaid2013,Luke2013}.
 
-\item \textbf{Algoritmos genéticos}: Estrategia de búsqueda de soluciones basada en la teoría de la evolución de Darwin. Para realizar esto, el algoritmo  parte desde un conjunto de soluciones denominada población he iterativamente, lleva a cabo un proceso de reproducción, generando nuevas soluciones \cite{Heiss-Czedik1997}.
+\item \textbf{Algoritmos genéticos}: Estrategia de búsqueda de soluciones basada en la teoría de la evolución de Darwin. Para realizar esto, el algoritmo parte desde un conjunto de soluciones denominada población he iterativamente, lleva a cabo un proceso de reproducción, generando nuevas soluciones \cite{Heiss-Czedik1997}.
 %\item \textbf{Optimización Multiobjetivo}: Problemas que poseen múltiples funciones objetivos.
 
 \item \textbf{NSGA-II}: Algoritmo que utiliza el cruzamiento, mutación y reproducción para encontrar un conjunto de soluciones optimas a problemas que cuentan con más de un objetivo \cite{Deb2002}. 
@@ -92,13 +92,13 @@ Los algoritmos metaheurísticos han demostrado ser un mecanismo eficiente ante p
 \subsection{Definición del problema} 
 %\emph{(Esta sección debe incluir la descripción del problema resolver o idea a desarrollar, y la motivación para hacerlo. Es decir, cual es la importancia, innovación, aporte, y/o beneficio para la ciencia y/o la humanidad). Esta sección responde a la pregunta ¿Cuál es el problema que voy a resolver?}
 
-Los encargados de implementar sistemas de distribución de agua potable, no cuentan con suficientes herramientas y  tiempo para su correcta gestión. Por lo tanto, no es posible utilizar los recursos asociados de forma eficiente. Además, las herramientas existentes no satisfacen las necesidades de usabilidad y costo, debido a que son poco intuitivas y de pago.
+Los encargados de implementar sistemas de distribución de agua potable, no cuentan con suficientes herramientas y tiempo para su correcta gestión. Por lo tanto, no es posible utilizar los recursos asociados de forma eficiente. Además, las herramientas existentes no satisfacen las necesidades de usabilidad y costo, debido a que son poco intuitivas y de pago.
 
 El escoger las especificaciones de una red de agua potable ya es de por sí difícil debido a que hay que evaluar el rendimiento general del sistema alternando entre distintas configuraciones en busca de una solución que sea eficaz. Debido a esto, el uso de herramientas automatizadas que evalúen el rendimiento de las diversas combinaciones posibles viene a ser necesario.
 
 A lo anterior se suma el hecho de que los interesados en esta área no manejan herramientas informáticas.
 
-%Es por esto que con la realización de este trabajo se busca lograr la implementación de  una herramienta que ayude a los encargados a evaluar el diseño y la operación de la red de agua potable utilizando un enfoque especifico, contribuyendo a la ves al uso eficiente del agua y energía.
+%Es por esto que con la realización de este trabajo se busca lograr la implementación de una herramienta que ayude a los encargados a evaluar el diseño y la operación de la red de agua potable utilizando un enfoque especifico, contribuyendo a la ves al uso eficiente del agua y energía.
 
 
 
@@ -110,7 +110,7 @@ En este apartado se mostraran distintas herramientas y el enfoque utilizado para
 \begin{itemize}
 	\item \textbf{Magmoredes}: En \cite{Edwin2017} se describe la existencia de un software de diseño basado en micro-algoritmos genéticos multiobjetivos, que de acuerdo al autor, tiene un mejor rendimiento y es más eficiente que el algoritmo NSGA-II, debido a que requiere una menor cantidad de memoria y tiene un mejor tiempo de computo. Este programa puede cargar cualquier red y realiza los cálculos utilizando librerías de java. Las funciones objetivos que este sistema intenta resolver son la optimización de los costo y la confiabilidad final de la red.
 	
-	\item \textbf{WaterGEMS}: Software comercial que permite la  construcción de modelos geoespaciales; optimización de diseño, ciclos de bombeo y calibración automática del modelo; y la  gestión de activos. Este software a sido usado en \cite{Mehta2017} para llevar a cabo las simulaciones necesarias para su estudio. La metodología seguida para la utilización de este sistema consiste en ingresar los datos a WaterGEMS para correr las simulaciones. La limitación de este programa es que no permite la adición de nuevos algoritmos por parte del usuario, en el caso de que se quiera probar o mejorar algún algoritmo ya existente. Sin embargo, este sistema también tiene sus ventajas, por que ya incorpora algunos algoritmos predefinidos para resolver ciertos problemas. Ademas, de que cuenta con diversas funcionalidades como conexión con datos externos, operaciones de análisis espaciales, intercambio de datos con dispositivos o programas de administración, entre otros.
+	\item \textbf{WaterGEMS}: Software comercial que permite la construcción de modelos geoespaciales; optimización de diseño, ciclos de bombeo y calibración automática del modelo; y la gestión de activos. Este software a sido usado en \cite{Mehta2017} para llevar a cabo las simulaciones necesarias para su estudio. La metodología seguida para la utilización de este sistema consiste en ingresar los datos a WaterGEMS para correr las simulaciones. La limitación de este programa es que no permite la adición de nuevos algoritmos por parte del usuario, en el caso de que se quiera probar o mejorar algún algoritmo ya existente. Sin embargo, este sistema también tiene sus ventajas, por que ya incorpora algunos algoritmos predefinidos para resolver ciertos problemas. Ademas, de que cuenta con diversas funcionalidades como conexión con datos externos, operaciones de análisis espaciales, intercambio de datos con dispositivos o programas de administración, entre otros.
 	
 	\item \textbf{EPANET}: El enfoque seguido con la utilización de esta herramienta consiste en la automatización al momento de ejecutar los algoritmos y la posterior evaluación de los resultados utilizando la librería EPANET Toolkit. Este es usado en \cite{Doctoral2012} y consiste en la creación de un programa el cual implementa algoritmos metaheurísticos y los resultados obtenidos por estos son enviados a la EPANET Toolkit para evaluar la solución y determinar la factibilidad de esta. La ventaja de este enfoque es que permite una mayor flexibilidad en los algoritmos metaheuristicos utilizados y los problemas que se quieren resolver. Sin embargo, debido a que se necesita implementar los problemas y los algoritmos, este enfoque toma mucho tiempo.
 \end{itemize}
@@ -122,12 +122,12 @@ Para el desarrollo de este proyecto se usa el enfoque basado en EPANET, puesto q
 
 %La solución que se propone para solventar el problema que motiva este trabajo es el desarrollo de una aplicación que sirva como una base sobre la cual poder agregar nuevas funcionalidades. Para esto la aplicación debe quedar bien documentada. Por lo tanto, lo que se tendrá al termino del desarrollo del proyecto será un software escalable que tratara con dos problemas relacionados a la distribución de agua potable y que podrá ser ampliado en futuros trabajos.
 
-La solución que se propone para solventar el problema consiste en el desarrollo de una aplicación que 
-que permita buscar soluciones a dos de los problemas existentes en las redes de agua potable. Además, de hacer uso de una arquitectura que permita fácilmente extender el programa para abarcar nuevos problemas. Para lograr esto  último la aplicación debe quedar bien documentada. Por lo tanto, lo que se tendrá al termino del desarrollo del proyecto será un software escalable que tratara con dos problemas relacionados a la distribución de agua potable y que podrá ser ampliado en futuros trabajos.
+La solución que se propone para abordar el problema consiste en el desarrollo de una aplicación que 
+que permita buscar soluciones a dos de los problemas existentes en las redes de agua potable. Además, de hacer uso de una arquitectura que permita fácilmente extender el programa para abarcar nuevos problemas. Para lograr esto último la aplicación debe quedar bien documentada. Por lo tanto, lo que se tendrá al termino del desarrollo del proyecto será un software escalable que tratara con dos problemas relacionados a la distribución de agua potable y que podrá ser ampliado en futuros trabajos.
 
 Los problemas que se abordaran en el contexto de optimización de redes de agua potable serán:
 \begin{itemize}
-	\item \textbf{Problema de diseño:} Se trata este problema desde un enfoque monoobjetivo implementando un algoritmo genético que buscará la optimización de los costo de inversión variando el diámetro de las tuberías.  
+	\item \textbf{Problema de diseño:} Se trata este problema desde un enfoque monoobjetivo implementando un algoritmo genético que buscará la optimización de los costo de inversión variando el diámetro de las tuberías. 
 	\item \textbf{Problema de operación:} Este problema se abordara desde el enfoque multiobjetivo. Para esto se implementara el algoritmo NSGA-II y se buscará la optimización de los objetivos de costos energéticos y el número de encendidos y apagados de las bombas.
 \end{itemize}
 
@@ -180,9 +180,14 @@ Al final del periodo de desarrollo la herramienta contara con las siguientes pre
 \begin{itemize}
 
 \item El sistema permitirá la carga y la visualización de la red gráficamente.
-\item El sistema solo resolverá dos clases de problemas de optimización, uno mono-objetivo y el otro multiobjetivo. El problema monoobjetivo será el de los costos de inversión. En cuanto al problema multiobjetivo, este será el de los costos energéticos y el número de encendidos y apagado de las bombas.  
+\item El sistema permitirá visualizar la configuración básica almacenada en el archivo inp de los elementos de la red.
+\item El sistema solo resolverá dos clases de problemas de optimización, uno mono-objetivo y el otro multiobjetivo. El problema monoobjetivo será el de los costos de inversión. En cuanto al problema multiobjetivo, este será el de los costos energéticos y el número de encendidos y apagado de las bombas. 
 \item El sistema únicamente contara con dos algoritmos implementados los cuales serán el algoritmo genético y NSGA-II. El algoritmo genético será el usado para tratar el problema monoobjetivo, mientras que NSGA-II será aplicado al multiobjetivo.
+\item El sistema permitirá visualizar el o los resultados obtenidos al finalizar la ejecución del algoritmo.
 \item El sistema permitirá generar archivos .inp con la configuración de la solución obtenida a través de los algoritmos. Debido a que el archivo .inp establece una gran cantidad de configuraciones, las únicas que se permitirán modificar serán las configuraciones asociadas a los conexiones (junctions) y tuberías (pipes).
+\item El sistema permitirá generar archivos con las soluciones obtenidas para cada problema, es decir, el valor de los objetivos y las variables de decisión involucradas.
+\item El sistema permitirá la visualización de una gráfica la cual permitirá visualizar la variación de la solución durante la ejecución de los algoritmos.
+\item La grafica unicamente estará disponible en problemas con uno o dos objetivos.
 \item La comparación con las redes de benchmarking consistirá unicamente, en presentar una tabla comparativa entre los resultados presentes en la literatura y los obtenidos a través de nuestro sistema, para cada uno de los problemas de redes de distribución de agua potable de nuestro sistema.
 
 \end{itemize}
@@ -209,7 +214,7 @@ Debido a que la metodología esta pensada para ser llevada a cabo por un equipo 
 	\item Introducción: En este apartado del documento se hará una introducción al problema que se ha identificado.
 	\item Requisitos de usuario: Consiste en la recopilación de lo requisitos de los usuarios que deben ser cumplidos al final del periodo de desarrollo.
 	\item Requisito de sistema: Son los requisitos, desde un punto de vista mas técnico, que son necesarios para satisfacer los requisitos de usuario.
-	\item Matriz de trazado requisitos de usuario vs sistema:  Matriz que permite ver la trazabilidad de los requisitos de usuario con los de sistema.
+	\item Matriz de trazado requisitos de usuario vs sistema: Matriz que permite ver la trazabilidad de los requisitos de usuario con los de sistema.
 \end{itemize}
 \paragraph{Diseño:} Esta fase generara como producto un documento de diseño que contara con los siguientes diagramas:
 \begin{itemize}
@@ -240,7 +245,7 @@ Pruebas realizadas sobre un componente del programa, ya sean métodos u objetos.
 El motivo para realizar estas pruebas sobre los componentes del sistema, es para poder detectar defectos y comprobar que el modulo se comporte de la manera esperada.
 
 \subsubsection{Pruebas de integración}
-Las pruebas de integración son utilizadas para comprobar las interfaces y las interacciones entre los módulos que conforman la aplicación \cite{Leung1990}. Este tipo de pruebas se realizan después de la realización de las pruebas unitarias y permitirá verificar que  los componentes interactúan  adecuadamente. 
+Las pruebas de integración son utilizadas para comprobar las interfaces y las interacciones entre los módulos que conforman la aplicación \cite{Leung1990}. Este tipo de pruebas se realizan después de la realización de las pruebas unitarias y permitirá verificar que los componentes interactúan adecuadamente. 
 
 \subsubsection{Caso de estudio}
  %\textbf{(Wholin Empirical software engineering reasearch, Case studies Yin)}
@@ -286,7 +291,7 @@ Debido a que el tiempo disponible para el desarrollo de este proyecto es bajo, s
 %\end{itemize}
 
 \section{Plan de trabajo}
-%\emph{(En esta sección se debe definir como organizar y planificar, en términos de etapas y tiempo, las actividades a desarrollar así como los resultados a obtener.  Cada actividad debe generar un entregable. Se entiende como entregable a la generación de artefactos que sean útiles al desarrollo del proyecto, por ejemplo: documentos bibliográficos con resumen, documentos de desarrollo de software, código fuente, planificaciones, diagramas, esquemas, algoritmos, etc.)}
+%\emph{(En esta sección se debe definir como organizar y planificar, en términos de etapas y tiempo, las actividades a desarrollar así como los resultados a obtener. Cada actividad debe generar un entregable. Se entiende como entregable a la generación de artefactos que sean útiles al desarrollo del proyecto, por ejemplo: documentos bibliográficos con resumen, documentos de desarrollo de software, código fuente, planificaciones, diagramas, esquemas, algoritmos, etc.)}
 
 %\emph{(Esta sección debe incluir además una Carta Gantt, la cual define fechas de inicio y término. La longitud máxima de esta sección es de 1 página, sin considerar la Carta Gantt.)}
 
