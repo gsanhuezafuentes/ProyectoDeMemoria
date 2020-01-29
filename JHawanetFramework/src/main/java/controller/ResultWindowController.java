@@ -98,8 +98,6 @@ public class ResultWindowController {
 	private void configureResultTable() {
 		if (!this.solutionList.isEmpty()) {
 			this.resultTable.getItems().addAll(this.solutionList);
-			this.resultTable.getItems().addAll(this.solutionList);
-			this.resultTable.getItems().addAll(this.solutionList);
 
 			int numberOfObjectives = this.solutionList.get(0).getNumberOfObjectives();
 			int numberOfDecisionVariables = this.solutionList.get(0).getNumberOfDecisionVariables();

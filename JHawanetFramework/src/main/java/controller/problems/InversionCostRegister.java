@@ -57,7 +57,7 @@ public class InversionCostRegister implements Registrable {
 	 * @throws Exception A exception if there is some error in convert the
 	 *                   parameters, or in the execution of algorithm.
 	 */
-	@NewProblem(displayName = "Cost problem")
+	@NewProblem(displayName = "Pipe optimizing - Genetic Algorithm")
 	@Parameters(operators = {
 			@OperatorInput(displayName = "Selection Operator", value = {
 					@OperatorOption(displayName = "Uniform Selection", value = UniformSelection.class) }),
@@ -116,8 +116,13 @@ public class InversionCostRegister implements Registrable {
 
 		}
 		algorithm = new GeneticAlgorithm2<IntegerSolution>(this.problem, 10, selection, crossover, mutation);
-		algorithm.setMaxNumberOfIterationWithoutImprovement(numberWithoutImprovement);
-		algorithm.setMaxEvaluations(maxEvaluations);
+		if (numberWithoutImprovement > 0) {
+			algorithm.setMaxNumberOfIterationWithoutImprovement(numberWithoutImprovement);			
+		}
+		else {
+			algorithm.setMaxEvaluations(maxEvaluations);
+			
+		}
 
 		return algorithm;
 	}
