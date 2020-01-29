@@ -85,15 +85,19 @@ public final class Valve extends Link {
 
 	@Override
 	public String toString() {
-		String txt = "";
-		txt += String.format("%-10s\t", getId());
-		txt += String.format("%-10s\t", getNode1().getId());
-		txt += String.format("%-10s\t", getNode2().getId());
-		txt += String.format("%-10f\t", getDiameter());
-		txt += String.format("%-10s\t", getType());
-		txt += String.format("%-10s\t", getSetting());
-		txt += String.format("%-10f", getMinorLoss());
-		return txt;
+		StringBuilder txt = new StringBuilder();
+		txt.append(String.format("%-10s\t", getId()));
+		txt.append(String.format("%-10s\t", getNode1().getId()));
+		txt.append(String.format("%-10s\t", getNode2().getId()));
+		txt.append(String.format("%-10f\t", getDiameter()));
+		txt.append(String.format("%-10s\t", getType()));
+		txt.append(String.format("%-10s\t", getSetting()));
+		txt.append(String.format("%-10f", getMinorLoss()));
+		String description = getDescription();
+		if (description != null) {
+			txt.append(String.format(";%s", description));
+		}
+		return txt.toString();
 	}
 
 	/**

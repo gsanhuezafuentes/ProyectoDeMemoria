@@ -1,11 +1,14 @@
 package controller.problems;
 
+import java.util.List;
+
 import annotations.registrable.NewProblem;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
 import model.metaheuristic.algorithm.GeneticAlgorithm2;
 import model.metaheuristic.operator.crossover.IntegerSinglePointCrossover;
 import model.metaheuristic.operator.mutation.IntegerSimpleRandomMutation;
+import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.UniformSelection;
 import model.metaheuristic.problem.InversionCostProblem;
 import model.metaheuristic.solution.IntegerSolution;
@@ -29,14 +32,14 @@ public class TestProblemRegister implements Registrable {
 		GeneticAlgorithm2<IntegerSolution> algorithm = null;
 		epanet = new EpanetAPI();
 		epanet.ENopen(inpPath, "ejecucion.rpt", "");
-
+		SelectionOperator<List<IntegerSolution>, List<IntegerSolution>> selection = new UniformSelection<IntegerSolution>(1.6);
 		IntegerSinglePointCrossover crossover = new IntegerSinglePointCrossover(0.1); //0.1
 		IntegerSimpleRandomMutation mutation = new IntegerSimpleRandomMutation(0.03); //0.03
-		UniformSelection<IntegerSolution> selection = new UniformSelection<IntegerSolution>(1.6);//1.6
 
 		if (this.problem == null) {
 			problem = new InversionCostProblem(epanet, "inp/hanoiHW.Gama", 30);
 		}
+	
 		algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10, selection, crossover, mutation);
 		algorithm.setMaxEvaluations(10000);
 		

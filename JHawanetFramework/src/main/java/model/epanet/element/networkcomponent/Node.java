@@ -1,7 +1,12 @@
 package model.epanet.element.networkcomponent;
 
-public abstract class Node {
+import java.util.Objects;
+
+import model.epanet.element.Selectable;
+
+public abstract class Node implements Selectable{
 	private String id;
+	private String description;
 	private Point position;
 
 	public Node() {
@@ -40,6 +45,20 @@ public abstract class Node {
 	 */
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	/**
+	 * @return the description or null if not exist
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override

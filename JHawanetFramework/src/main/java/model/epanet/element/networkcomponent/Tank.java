@@ -146,6 +146,10 @@ public final class Tank extends Node {
 		if (getVolCurve() != null) {
 			txt.append(String.format("%-10s", getVolCurve().getId()));
 		}
+		String description = getDescription();
+		if (description != null) {
+			txt.append(String.format(";%s", description));
+		}
 		return txt.toString();
 	}
 

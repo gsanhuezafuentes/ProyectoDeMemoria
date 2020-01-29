@@ -17,6 +17,7 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.epanet.element.Network;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.problem.Problem;
@@ -81,8 +82,8 @@ public class RunningWindowController {
 		/**
 		 * Only add the the showChartButton if the number of objectives is less than 2.
 		 */
-		if (this.problem.getNumberOfObjectives() <= 2) {
-			this.showChartButton.setVisible(false);
+		if (this.problem.getNumberOfObjectives() == 1 || this.problem.getNumberOfObjectives() == 2) {
+			this.showChartButton.setVisible(true);
 		}
 
 		
@@ -178,8 +179,11 @@ public class RunningWindowController {
 	public void showWindowAndRunAlgorithm() {
 		Stage stage = new Stage();
 		stage.setScene(new Scene(this.root));
+		stage.initStyle(StageStyle.UTILITY);
+		stage.setOnCloseRequest((e) -> onCloseButtonClick());
 		stage.show();
 		this.window = stage;
+		
 		Thread t = new Thread(task);
 		t.setDaemon(true);
 		t.start();
