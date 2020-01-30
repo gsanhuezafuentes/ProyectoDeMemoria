@@ -16,7 +16,7 @@ import model.metaheuristic.solution.IntegerSolution;
 public class TestProblemRegister implements Registrable {
 	private InversionCostProblem problem;
 
-	@NewProblem(displayName = "Test")
+	@NewProblem(displayName = "Pipe Optimizing Hanoi", algorithmName = "Genetic Algorithm")
 	public TestProblemRegister() {
 	}
 	

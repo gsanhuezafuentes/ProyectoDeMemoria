@@ -49,6 +49,28 @@ public class ReflectionUtils {
 	}
 
 	/**
+	 * Read the {@link NewProblem} annotation from a problem and get the name of the
+	 * algorithm.
+	 * 
+	 * @param registrable the problem class
+	 * @return name of the algorithm
+	 * @throws ApplicationException if the problem hasn't a constructor with
+	 *                              {@link ProblemRegistrar} annotation.
+	 * @throws NullPointerException if registrable is null.
+	 */
+	public static String getNameOfAlgorithm(Class<? extends Registrable> registrable) {
+		Objects.requireNonNull(registrable);
+		for (Constructor<?> constructor : registrable.getConstructors()) {
+			NewProblem annotation = constructor.getAnnotation(NewProblem.class);
+			if (annotation != null) {
+				return annotation.algorithmName();
+			}
+		}
+
+		throw new ApplicationException(registrable.getName() + " hasn't a constructor with NewProblem annotation");
+	}
+
+	/**
 	 * Validate a Registrable problem. <br>
 	 * <br>
 	 * 
@@ -150,7 +172,8 @@ public class ReflectionUtils {
 						addedGroupId.add(lastAdded);
 						lastAdded = numberToggle.groupID();
 						if (addedGroupId.contains(lastAdded)) {
-							throw new ApplicationException("The NumberToggleInput with the same group id are not consecutive");
+							throw new ApplicationException(
+									"The NumberToggleInput with the same group id are not consecutive");
 						}
 					}
 				}

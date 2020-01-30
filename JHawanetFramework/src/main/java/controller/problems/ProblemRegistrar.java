@@ -2,7 +2,11 @@ package controller.problems;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import annotations.registrable.FileInput;
 import annotations.registrable.NewProblem;
@@ -99,11 +103,19 @@ public class ProblemRegistrar {
 	 *                       RegistrableProblem is created.
 	 */
 	public void register(Menu menu, AlgorithmCreationNotification algorithmEvent) {
+		Map<String, Menu> addedMenu = new HashMap<>();
 		for (Class<? extends Registrable> registrable : this.problems) {
 			ReflectionUtils.validateRegistrableProblem(registrable);
 			ReflectionUtils.validateOperators(registrable);
-			MenuItem menuItem = new MenuItem(ReflectionUtils.getNameOfProblem(registrable));
-			menu.getItems().add(menuItem);
+			String problemName = ReflectionUtils.getNameOfProblem(registrable);
+			if (!addedMenu.containsKey(problemName)) {
+				Menu newMenu = new Menu(problemName);
+				menu.getItems().add(newMenu);
+				addedMenu.put(problemName, newMenu);
+			}
+			Menu problemMenu = addedMenu.get(problemName);
+			MenuItem menuItem = new MenuItem(ReflectionUtils.getNameOfAlgorithm(registrable));
+			problemMenu.getItems().add(menuItem);
 			menuItem.setOnAction(evt -> menuItemEventHander(evt, registrable, algorithmEvent));
 		}
 
@@ -121,13 +133,14 @@ public class ProblemRegistrar {
 	private void menuItemEventHander(ActionEvent evt, Class<? extends Registrable> registrable,
 			AlgorithmCreationNotification algorithmEvent) {
 
-		// If the registrable class has a constructor with parameters so a new window to configure its is created,
+		// If the registrable class has a constructor with parameters so a new window to
+		// configure its is created,
 		if (ReflectionUtils.getNumberOfParameterInRegistrableConstructor(registrable) > 0) {
 			ConfigurationDynamicWindowController configurationController = new ConfigurationDynamicWindowController(
 					registrable, algorithmEvent);
 			configurationController.showAssociatedWindow();
-		}
-		else { // If the registrable class has a constructor without parameters algorithmEvent.notify is called.
+		} else { // If the registrable class has a constructor without parameters
+					// algorithmEvent.notify is called.
 			try {
 				Registrable registrableInstance = ReflectionUtils.createRegistrableInstance(registrable);
 				algorithmEvent.notify(registrableInstance);

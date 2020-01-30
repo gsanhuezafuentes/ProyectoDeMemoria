@@ -15,7 +15,13 @@ import controller.problems.Registrable;
 @Target(ElementType.CONSTRUCTOR)
 public @interface NewProblem {
 	/**
-	 * Problem name
+	 * Problem name. It is used as a category name.
 	 */
 	String displayName();
+	
+	/**
+	 * Algorithm name.
+	 */
+	String algorithmName();
+	
 }

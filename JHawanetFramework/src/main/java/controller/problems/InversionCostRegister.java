@@ -57,7 +57,7 @@ public class InversionCostRegister implements Registrable {
 	 * @throws Exception A exception if there is some error in convert the
 	 *                   parameters, or in the execution of algorithm.
 	 */
-	@NewProblem(displayName = "Pipe optimizing - Genetic Algorithm")
+	@NewProblem(displayName = "Pipe optimizing", algorithmName = "Genetic Algorithm")
 	@Parameters(operators = {
 			@OperatorInput(displayName = "Selection Operator", value = {
 					@OperatorOption(displayName = "Uniform Selection", value = UniformSelection.class) }),
@@ -69,14 +69,14 @@ public class InversionCostRegister implements Registrable {
 					@OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class),
 					@OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class) }) }, //
 			files = { @FileInput(displayName = "Gama") }, //
-			numbers = { @NumberInput(displayName = "Min pressure"),
-					@NumberInput(displayName = "Population Size") }, //
-			numbersToggle = { @NumberToggleInput(groupID = "Finish Condition", displayName = "Number of iteration without improvement"),
+			numbers = { @NumberInput(displayName = "Min pressure"), @NumberInput(displayName = "Population Size") }, //
+			numbersToggle = {
+					@NumberToggleInput(groupID = "Finish Condition", displayName = "Number of iteration without improvement"),
 					@NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation") })
 	@SuppressWarnings("unchecked") // The object injected are indicated in operators elements. It guarantee its
 									// types.
-	public InversionCostRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama, int minPressure, int populationSize,
-			int numberWithoutImprovement, int maxEvaluations) {
+	public InversionCostRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama,
+			int minPressure, int populationSize, int numberWithoutImprovement, int maxEvaluations) {
 		System.out.println(selectionOperator);
 		System.out.println(crossoverOperator);
 		System.out.println(mutationOperator);
@@ -117,11 +117,10 @@ public class InversionCostRegister implements Registrable {
 		}
 		algorithm = new GeneticAlgorithm2<IntegerSolution>(this.problem, 10, selection, crossover, mutation);
 		if (numberWithoutImprovement > 0) {
-			algorithm.setMaxNumberOfIterationWithoutImprovement(numberWithoutImprovement);			
-		}
-		else {
+			algorithm.setMaxNumberOfIterationWithoutImprovement(numberWithoutImprovement);
+		} else {
 			algorithm.setMaxEvaluations(maxEvaluations);
-			
+
 		}
 
 		return algorithm;
