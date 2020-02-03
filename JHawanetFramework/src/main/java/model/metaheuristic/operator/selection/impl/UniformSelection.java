@@ -1,4 +1,4 @@
-package model.metaheuristic.operator.selection;
+package model.metaheuristic.operator.selection.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,6 +7,7 @@ import java.util.List;
 
 import annotations.operators.DefaultConstructor;
 import exception.ApplicationException;
+import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.comparator.DominanceComparator;
 

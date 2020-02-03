@@ -1,22 +1,26 @@
 package controller.problems;
 
+import annotations.registrable.FileInput;
 import annotations.registrable.NewProblem;
+import annotations.registrable.NumberInput;
+import annotations.registrable.NumberToggleInput;
+import annotations.registrable.OperatorInput;
+import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.operator.Operator;
 import model.metaheuristic.problem.Problem;
 
 /**
- * It class let configure the algorithm and his operator to a problem give to
- * know the problem to the GUI. <br>
+ * It class let configure the algorithm and his operator to a monoobjective
+ * problem give to know the problem to the GUI. <br>
  * <br>
  * 
- * It interface is based in factory pattern. The class that implement this
- * interface has to have a only public constructor that declare the parameters
- * that is needed to configure the algorithm and the problem. Also the
- * constructor has to add a series of annotation. Based in the parameters added
- * in the constructor the algorithm have to be configured and returned when
- * {@link #build(String)} will be called.<br>
+ * The class that implement this interface has to have a only public constructor
+ * that declare the parameters that is needed to configure the algorithm and the
+ * problem. Also the constructor has to add a series of annotation. Based in the
+ * parameters added in the constructor the algorithm have to be configured and
+ * returned when {@link #build(String)} will be called.<br>
  * <br>
  * 
  * The annotation that the constructor has to have are:<br>
@@ -24,8 +28,9 @@ import model.metaheuristic.problem.Problem;
  * 
  * <ul>
  * <li>{@link NewProblem} : It annotation is used to assign the name to the
- * problem that will be showned in the menu in the GUI. It annotation is
- * mandatory.</li>
+ * problem and the name to the algorithm used. It will be showed in the menu in
+ * the GUI. It annotation is mandatory.</li>
+ * 
  * <li>{@link Parameters} : It annotation declare that in this constructor will
  * be injected the parameters. It injection is realized from
  * ConfigurationDynamicWindow that is a GUI dynamically built from the
@@ -56,11 +61,33 @@ import model.metaheuristic.problem.Problem;
  * <li>int(or Integer)|double(or Double): It describe a value needed to
  * configure the problem. Eg. the number of iterations, or the number of
  * iteration without improvement. It is described using
- * {@link Parameters#numbers()}</li>
+ * {@link Parameters#numbers()} or {@link Parameters#numbersToggle()}</li>
  * </ol>
  * 
+ * {@link Parameters} has a operators property, files property and numbers
+ * property and numberToggle property. The operators property receive
+ * {@link OperatorInput}, the files property receive {@link FileInput} and
+ * numbers receive {@link NumberInput} and the numberToggle receive
+ * {@link NumberToggleInput}.
  * 
+ * {@link OperatorInput} denote which operator will be received. The
+ * {@link OperatorInput} let one or more {@link OperatorOption} that indicate
+ * what Operator can be used in this problem.<br>
+ * <br>
  * 
+ * {@link FileInput} denote a file. it let indicate files with information to
+ * execute the algorithm.
+ * 
+ * {@link NumberInput} denote a int or a double value that are received by the
+ * constructor.<br>
+ * <br>
+ * 
+ * {@link NumberToggleInput} denote a int or a double value that are received by
+ * the constructor but it are mutually exclusive if is
+ * {@link NumberToggleInput#groupID()} are the same. <br>
+ * <br>
+ * 
+ * A example is showed in the class {@link PipeOptimizingRegister}.
  *
  */
 public interface Registrable {

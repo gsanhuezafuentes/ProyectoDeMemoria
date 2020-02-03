@@ -9,11 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import exception.ApplicationException;
+import model.metaheuristic.algorithm.monoobjective.GeneticAlgorithm2;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.problem.Problem;
-import model.metaheuristic.solution.IntegerSolution;
+import model.metaheuristic.solution.impl.IntegerSolution;
 
 class GeneticAlgorithm2Test {
 

@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import controller.problems.ProblemRegistrar;
 import controller.problems.Registrable;
+import controller.utils.ProblemMenuConfiguration;
 import exception.InputException;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -17,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
+import javafx.util.Callback;
 import model.epanet.element.Network;
 import model.epanet.io.InpParser;
 import model.metaheuristic.algorithm.Algorithm;
@@ -35,14 +36,13 @@ import view.utils.CustomDialogs;
 public class MainWindowController implements Initializable {
 	@FXML
 	private BorderPane root;
-	
+
 	/**
 	 * The SplitPane where the NetworkComponent and the ElementViewer are
 	 */
 	@FXML
 	private SplitPane splitPane;
 
-	
 	/**
 	 * Is a pane that envolve networkComponent. Is used to resize the
 	 * networkComponent automatically when screen size change
@@ -55,13 +55,12 @@ public class MainWindowController implements Initializable {
 	 */
 	@FXML
 	private NetworkComponent networkComponent;
-	
+
 	/**
 	 * It is a pane that show the element of network
 	 */
 	@FXML
 	private ElementViewer elementViewer;
-
 
 	/**
 	 * Is the option of menu for the problem. It is filled using reflection through
@@ -84,7 +83,9 @@ public class MainWindowController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// Register the menu item problem to problem menu and add the listener to it
 		// menuitem to show a interface,
-		ProblemRegistrar.getInstance().register(this.problemsMenu, this::runAlgorithm);
+		ProblemMenuConfiguration problemRegistrar = new ProblemMenuConfiguration();
+		problemRegistrar.addMonoObjectiveProblems(this.problemsMenu, this::runAlgorithm);
+				
 		// disable problem menu until a network is loaded
 		this.problemsMenu.disableProperty().bind(isNetworkLoaded.not());
 		
@@ -138,11 +139,15 @@ public class MainWindowController implements Initializable {
 	}
 
 	/**
-	 * Run the algorithm.<br><br>
+	 * Run the algorithm.<br>
+	 * <br>
 	 * 
-	 * <br><br><strong>Notes:</strong> <br>
-	 * This method is called by ConfigurationDynamicWindow when the algorithm is successfully created.
-	 * When this method is executed open a RunningDialog that show the progress of execution of algorithm.
+	 * <br>
+	 * <br>
+	 * <strong>Notes:</strong> <br>
+	 * This method is called by ConfigurationDynamicWindow when the algorithm is
+	 * successfully created. When this method is executed open a RunningDialog that
+	 * show the progress of execution of algorithm.
 	 * 
 	 * @param registrableProblem the factory of algorithm for a problem
 	 */
@@ -160,7 +165,8 @@ public class MainWindowController implements Initializable {
 		}
 		if (algorithm != null) {
 			Problem<?> problem = registrableProblem.getProblem();
-			RunningWindowController runningDialogController = new RunningWindowController(algorithm, problem, this.network);
+			RunningWindowController runningDialogController = new RunningWindowController(algorithm, problem,
+					this.network);
 			runningDialogController.showWindowAndRunAlgorithm();
 		}
 

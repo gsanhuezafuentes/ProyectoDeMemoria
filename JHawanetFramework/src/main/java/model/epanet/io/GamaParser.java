@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.epanet.element.Gama;
-import model.metaheuristic.problem.InversionCostProblem;
+import model.metaheuristic.problem.impl.PipeOptimizing;
 
 /**
- * Parse the gama file. It is only used for the {@link InversionCostProblem}
+ * Parse the gama file. It is only used for the {@link PipeOptimizing}
  *
  */
 public class GamaParser {

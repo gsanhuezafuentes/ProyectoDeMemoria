@@ -5,16 +5,16 @@ import java.util.List;
 import annotations.registrable.NewProblem;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
-import model.metaheuristic.algorithm.GeneticAlgorithm2;
-import model.metaheuristic.operator.crossover.IntegerSinglePointCrossover;
-import model.metaheuristic.operator.mutation.IntegerSimpleRandomMutation;
+import model.metaheuristic.algorithm.monoobjective.GeneticAlgorithm2;
+import model.metaheuristic.operator.crossover.impl.IntegerSinglePointCrossover;
+import model.metaheuristic.operator.mutation.impl.IntegerSimpleRandomMutation;
 import model.metaheuristic.operator.selection.SelectionOperator;
-import model.metaheuristic.operator.selection.UniformSelection;
-import model.metaheuristic.problem.InversionCostProblem;
-import model.metaheuristic.solution.IntegerSolution;
+import model.metaheuristic.operator.selection.impl.UniformSelection;
+import model.metaheuristic.problem.impl.PipeOptimizing;
+import model.metaheuristic.solution.impl.IntegerSolution;
 
 public class TestProblemRegister implements Registrable {
-	private InversionCostProblem problem;
+	private PipeOptimizing problem;
 
 	@NewProblem(displayName = "Pipe Optimizing Hanoi", algorithmName = "Genetic Algorithm")
 	public TestProblemRegister() {
@@ -37,7 +37,7 @@ public class TestProblemRegister implements Registrable {
 		IntegerSimpleRandomMutation mutation = new IntegerSimpleRandomMutation(0.03); //0.03
 
 		if (this.problem == null) {
-			problem = new InversionCostProblem(epanet, "inp/hanoiHW.Gama", 30);
+			problem = new PipeOptimizing(epanet, "inp/hanoiHW.Gama", 30);
 		}
 	
 		algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10, selection, crossover, mutation);
@@ -48,7 +48,7 @@ public class TestProblemRegister implements Registrable {
 
 	/** {@inheritDoc}*/
 	@Override
-	public InversionCostProblem getProblem() {
+	public PipeOptimizing getProblem() {
 		return this.problem;
 	}
 }

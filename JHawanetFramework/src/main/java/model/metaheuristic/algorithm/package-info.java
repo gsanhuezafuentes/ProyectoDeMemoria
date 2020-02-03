@@ -1,6 +1,6 @@
 
 /**
- * This package contains all implemented algorithms.
+ * This package contains class to implements algorithms.
  *
  */
 package model.metaheuristic.algorithm;

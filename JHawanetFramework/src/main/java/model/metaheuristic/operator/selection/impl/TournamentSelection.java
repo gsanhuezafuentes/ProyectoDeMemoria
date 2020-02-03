@@ -1,10 +1,11 @@
-package model.metaheuristic.operator.selection;
+package model.metaheuristic.operator.selection.impl;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
 import exception.ApplicationException;
+import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.SolutionListUtils;
 import model.metaheuristic.utils.SolutionUtils;

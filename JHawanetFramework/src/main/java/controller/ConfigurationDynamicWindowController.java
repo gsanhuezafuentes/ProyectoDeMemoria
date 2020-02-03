@@ -7,19 +7,19 @@ import java.util.Map;
 import java.util.Objects;
 
 import controller.problems.Registrable;
-import controller.utils.AlgorithmCreationNotification;
+import controller.utils.CustomCallback;
 import controller.utils.ReflectionUtils;
 import exception.ApplicationException;
 import view.ConfigurationDynamicWindow;
 import view.utils.CustomDialogs;
 
 public class ConfigurationDynamicWindowController {
-	private AlgorithmCreationNotification algorithmEvent;
+	private CustomCallback algorithmEvent;
 	private Class<? extends Registrable> problemClass;
 	private ConfigurationDynamicWindow view;
 
 	public ConfigurationDynamicWindowController(Class<? extends Registrable> registrable,
-			AlgorithmCreationNotification algorithmEvent) {
+			CustomCallback algorithmEvent) {
 		this.problemClass = Objects.requireNonNull(registrable);
 		this.algorithmEvent = Objects.requireNonNull(algorithmEvent);
 		this.view = new ConfigurationDynamicWindow(this, registrable);
@@ -40,7 +40,7 @@ public class ConfigurationDynamicWindowController {
 	/**
 	 * Is called when the run button is pressed in view. It method create the
 	 * registrable instance based in the input field. When the algorithm is created
-	 * an {@link AlgorithmCreationNotification} is fired.
+	 * an {@link CustomCallback} is fired.
 	 * 
 	 * @param operatorsAndConfig A map where the key are the operators and the
 	 *                           values are the configuration. If there isn't

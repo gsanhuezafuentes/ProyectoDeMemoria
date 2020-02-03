@@ -3,7 +3,7 @@ package application;
 import java.io.IOException;
 
 import controller.MainWindowController;
-import controller.problems.ProblemRegistrar;
+import controller.utils.ProblemMenuConfiguration;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 /**
  * This class create the principal windows and get his controller. When the
  * controller is loaded the metaheuristics problem are readed for
- * {@link ProblemRegistrar}
+ * {@link ProblemMenuConfiguration}
  * 
  *
  */

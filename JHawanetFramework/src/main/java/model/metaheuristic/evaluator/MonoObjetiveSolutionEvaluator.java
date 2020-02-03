@@ -9,7 +9,7 @@ import epanet.core.LinkParameters;
 import epanet.core.NodeParameters;
 import epanet.core.NodeTypes;
 import model.epanet.element.Gama;
-import model.metaheuristic.solution.IntegerSolution;
+import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.solutionattribute.NumberOfViolatedConstraints;
 import model.metaheuristic.utils.solutionattribute.OverallConstraintViolation;
 

@@ -14,7 +14,6 @@ import annotations.registrable.NumberToggleInput;
 import annotations.registrable.OperatorInput;
 import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
-import controller.problems.ProblemRegistrar;
 import controller.problems.Registrable;
 import exception.ApplicationException;
 
@@ -33,7 +32,7 @@ public class ReflectionUtils {
 	 * @param registrable the problem class
 	 * @return name of the problem
 	 * @throws ApplicationException if the problem hasn't a constructor with
-	 *                              {@link ProblemRegistrar} annotation.
+	 *                              {@link NewProblem} annotation.
 	 * @throws NullPointerException if registrable is null.
 	 */
 	public static String getNameOfProblem(Class<? extends Registrable> registrable) {
@@ -55,7 +54,7 @@ public class ReflectionUtils {
 	 * @param registrable the problem class
 	 * @return name of the algorithm
 	 * @throws ApplicationException if the problem hasn't a constructor with
-	 *                              {@link ProblemRegistrar} annotation.
+	 *                              {@link NewProblem} annotation.
 	 * @throws NullPointerException if registrable is null.
 	 */
 	public static String getNameOfAlgorithm(Class<? extends Registrable> registrable) {

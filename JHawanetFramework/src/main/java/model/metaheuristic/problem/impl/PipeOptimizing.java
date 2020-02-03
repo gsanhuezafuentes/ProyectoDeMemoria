@@ -1,4 +1,4 @@
-package model.metaheuristic.problem;
+package model.metaheuristic.problem.impl;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,8 +19,9 @@ import model.epanet.element.networkcomponent.Pipe;
 import model.epanet.element.networkcomponent.Valve;
 import model.epanet.io.GamaParser;
 import model.metaheuristic.evaluator.MonoObjetiveSolutionEvaluator;
-import model.metaheuristic.solution.IntegerSolution;
+import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
+import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
 import model.metaheuristic.utils.random.JavaRandom;
 
@@ -28,7 +29,7 @@ import model.metaheuristic.utils.random.JavaRandom;
  * Class that implement the problem of inversion cost.
  *
  */
-public class InversionCostProblem implements Problem<IntegerSolution> {
+public class PipeOptimizing implements Problem<IntegerSolution> {
 
 	private int numberOfVariables;
 	private int numberOfObjectives;
@@ -57,7 +58,7 @@ public class InversionCostProblem implements Problem<IntegerSolution> {
 	 * @throws NullPointerException if epanet is null or networkGama is null
 	 * @throws ApplicationException if networkGama is empty
 	 */
-	public InversionCostProblem(EpanetAPI epanet, String networkGama, int minPressure)
+	public PipeOptimizing(EpanetAPI epanet, String networkGama, int minPressure)
 			throws IOException, EpanetException {
 		Objects.requireNonNull(epanet, "EpanetAPI can't be null in CostConstructionProblem");
 		Objects.requireNonNull(networkGama);

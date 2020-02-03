@@ -1,11 +1,12 @@
-package model.metaheuristic.operator.crossover;
+package model.metaheuristic.operator.crossover.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import annotations.operators.DefaultConstructor;
 import exception.ApplicationException;
-import model.metaheuristic.solution.IntegerSolution;
+import model.metaheuristic.operator.crossover.CrossoverOperator;
+import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.random.JavaRandom;
 import model.metaheuristic.utils.random.RandomGenerator;
 

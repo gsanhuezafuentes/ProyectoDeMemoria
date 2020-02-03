@@ -1,4 +1,4 @@
-package model.metaheuristic.solution;
+package model.metaheuristic.solution.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import model.metaheuristic.problem.Problem;
+import model.metaheuristic.solution.Solution;
 
 /**
  * 

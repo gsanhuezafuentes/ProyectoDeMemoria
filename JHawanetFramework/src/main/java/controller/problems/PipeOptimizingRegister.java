@@ -12,18 +12,18 @@ import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
-import model.metaheuristic.algorithm.GeneticAlgorithm2;
+import model.metaheuristic.algorithm.monoobjective.GeneticAlgorithm2;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
-import model.metaheuristic.operator.crossover.IntegerSBXCrossover;
-import model.metaheuristic.operator.crossover.IntegerSinglePointCrossover;
-import model.metaheuristic.operator.mutation.IntegerPolynomialMutation;
-import model.metaheuristic.operator.mutation.IntegerRangeRandomMutation;
-import model.metaheuristic.operator.mutation.IntegerSimpleRandomMutation;
+import model.metaheuristic.operator.crossover.impl.IntegerSBXCrossover;
+import model.metaheuristic.operator.crossover.impl.IntegerSinglePointCrossover;
 import model.metaheuristic.operator.mutation.MutationOperator;
+import model.metaheuristic.operator.mutation.impl.IntegerPolynomialMutation;
+import model.metaheuristic.operator.mutation.impl.IntegerRangeRandomMutation;
+import model.metaheuristic.operator.mutation.impl.IntegerSimpleRandomMutation;
 import model.metaheuristic.operator.selection.SelectionOperator;
-import model.metaheuristic.operator.selection.UniformSelection;
-import model.metaheuristic.problem.InversionCostProblem;
-import model.metaheuristic.solution.IntegerSolution;
+import model.metaheuristic.operator.selection.impl.UniformSelection;
+import model.metaheuristic.problem.impl.PipeOptimizing;
+import model.metaheuristic.solution.impl.IntegerSolution;
 
 /**
  * Class that describe the problem to be showned in menu of problem in the
@@ -33,14 +33,14 @@ import model.metaheuristic.solution.IntegerSolution;
  * The sistem read this class using reflection to get the annotation and create
  * a GUI to configure the algorithm and inject the value to injectable method.
  */
-public class InversionCostRegister implements Registrable {
+public class PipeOptimizingRegister implements Registrable {
 	private SelectionOperator<List<IntegerSolution>, List<IntegerSolution>> selection;
 	private CrossoverOperator<IntegerSolution> crossover;
 	private MutationOperator<IntegerSolution> mutation;
 	private int numberWithoutImprovement;
 	private int maxEvaluations;
 	private File gama;
-	private InversionCostProblem problem;
+	private PipeOptimizing problem;
 
 	/**
 	 * This constructor define the elements that will be needed to build the
@@ -75,7 +75,7 @@ public class InversionCostRegister implements Registrable {
 					@NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation") })
 	@SuppressWarnings("unchecked") // The object injected are indicated in operators elements. It guarantee its
 									// types.
-	public InversionCostRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama,
+	public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama,
 			int minPressure, int populationSize, int numberWithoutImprovement, int maxEvaluations) {
 		System.out.println(selectionOperator);
 		System.out.println(crossoverOperator);
@@ -112,7 +112,7 @@ public class InversionCostRegister implements Registrable {
 			throw new ApplicationException("There isn't gama file");
 		}
 		if (this.problem == null) {
-			this.problem = new InversionCostProblem(epanet, this.gama.getAbsolutePath(), 30);
+			this.problem = new PipeOptimizing(epanet, this.gama.getAbsolutePath(), 30);
 
 		}
 		algorithm = new GeneticAlgorithm2<IntegerSolution>(this.problem, 10, selection, crossover, mutation);
@@ -128,7 +128,7 @@ public class InversionCostRegister implements Registrable {
 
 	/** {@inheritDoc} */
 	@Override
-	public InversionCostProblem getProblem() {
+	public PipeOptimizing getProblem() {
 		return this.problem;
 	}
 

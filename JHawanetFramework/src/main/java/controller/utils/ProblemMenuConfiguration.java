@@ -1,4 +1,4 @@
-package controller.problems;
+package controller.utils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -14,9 +14,9 @@ import annotations.registrable.NumberInput;
 import annotations.registrable.OperatorInput;
 import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
+import application.Configuration;
 import controller.ConfigurationDynamicWindowController;
-import controller.utils.AlgorithmCreationNotification;
-import controller.utils.ReflectionUtils;
+import controller.problems.Registrable;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -27,71 +27,13 @@ import view.utils.CustomDialogs;
  * reflection. <br>
  * <br>
  * 
- * To add a new problem modify the constructor and add the problem to list of
- * problems. Using reflection API, the problem and his annotation will be readed
+ * To add a new problem go to {@link Configuration}. Using reflection API, the problem and his annotation will be readed
  * to generate a GUI.<br>
  * <br>
  * 
- * A problem class has to extend the interface {@link Registrable}. The problem
- * class has to have a public constructor with the {@link NewProblem}
- * annotation.<br>
- * <br>
- * 
- * The same constructor with {@link NewProblem} annotation also has to have the
- * {@link Parameters} annotation if it has parameters. {@link Parameters} add
- * the info about the parameters received by the method. {@link Parameters} has
- * a operators property, files property and numbers property. The operators
- * property receive {@link OperatorInput}, the files property receive
- * {@link FileInput} and numbers receive {@link NumberInput}.
- * 
- * {@link OperatorInput} denote which operator will be received. The
- * {@link OperatorInput} let one or more {@link OperatorOption} that indicate
- * what Operator can be used in this problem.<br>
- * <br>
- * 
- * {@link FileInput} denote a file. it let indicate files with information to
- * execute the algorithm.
- * 
- * {@link NumberInput} denote a int or a double value that are received by the
- * constructor.<br>
- * <br>
- *
- * The constructor has to have first all operator parameters, next to all files
- * parameter and the last all the number parameters.<br>
- * <br>
- * 
- * For example: <br>
- * <br>
- * {@code CostProblem(Object selectionOperator, Object crossoverOperator,
-			Object mutationOperator, File gama, int numberWithoutImprovement, int maxEvaluations)}<br>
- * <br>
- * The problem added in this class isn't the model.metaheuristic.problem used by
- * algorithm. It is a class that only is used to describe the problem to be
- * parsed using reflection.
  * 
  */
-public class ProblemRegistrar {
-	private static ProblemRegistrar instance = new ProblemRegistrar();
-	private List<Class<? extends Registrable>> problems;
-
-	/**
-	 * Get a instance of this class. It is based in Singleton Pattern
-	 * 
-	 * @return the instance of this class.
-	 */
-	public static ProblemRegistrar getInstance() {
-		if (instance == null) {
-			instance = new ProblemRegistrar();
-		}
-		return instance;
-	}
-
-	private ProblemRegistrar() {
-		this.problems = new ArrayList<>();
-		this.problems.add(InversionCostRegister.class);
-		this.problems.add(TestProblemRegister.class);
-
-	}
+public class ProblemMenuConfiguration {
 
 	/**
 	 * Add to menu a menu item for each problem registered. Also it method add the
@@ -102,9 +44,9 @@ public class ProblemRegistrar {
 	 * @param algorithmEvent the event that will be fired when the
 	 *                       RegistrableProblem is created.
 	 */
-	public void register(Menu menu, AlgorithmCreationNotification algorithmEvent) {
+	public void addMonoObjectiveProblems(Menu menu, CustomCallback algorithmEvent) {
 		Map<String, Menu> addedMenu = new HashMap<>();
-		for (Class<? extends Registrable> registrable : this.problems) {
+		for (Class<? extends Registrable> registrable : Configuration.MONOOBJECTIVES_PROBLEMS) {
 			ReflectionUtils.validateRegistrableProblem(registrable);
 			ReflectionUtils.validateOperators(registrable);
 			String problemName = ReflectionUtils.getNameOfProblem(registrable);
@@ -131,7 +73,7 @@ public class ProblemRegistrar {
 	 *                       algorithm
 	 */
 	private void menuItemEventHander(ActionEvent evt, Class<? extends Registrable> registrable,
-			AlgorithmCreationNotification algorithmEvent) {
+			CustomCallback algorithmEvent) {
 
 		// If the registrable class has a constructor with parameters so a new window to
 		// configure its is created,
