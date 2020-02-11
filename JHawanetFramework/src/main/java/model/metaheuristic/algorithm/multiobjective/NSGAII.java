@@ -247,4 +247,9 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 		String text = "Number of evaluations: " + this.numberOfEvaluations + " / " + this.maxEvaluations;
 		return text;
 	}
+	
+	@Override
+	public String getName() {
+		return "NSGA-II";
+	}
 }

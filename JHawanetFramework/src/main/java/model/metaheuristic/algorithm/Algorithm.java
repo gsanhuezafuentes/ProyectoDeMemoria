@@ -118,4 +118,10 @@ public interface Algorithm<Result extends Solution<?>> extends AutoCloseable {
 	default void close() throws Exception {
 	}
 
+	/**
+	 * Get the name of algorithm
+	 * @return the name of algorithm
+	 */
+	String getName();
+
 }

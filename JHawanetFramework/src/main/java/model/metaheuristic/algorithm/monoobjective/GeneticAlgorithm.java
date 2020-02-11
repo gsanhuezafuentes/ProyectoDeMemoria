@@ -373,4 +373,9 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 		return "No term settings were set.";
 	}
 
+	@Override
+	public String getName() {
+		return "Genetic Algorithm";
+	}
+
 }

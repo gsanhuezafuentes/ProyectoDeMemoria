@@ -87,21 +87,22 @@ public final class Pump extends Link {
 	 * 
 	 * @param key   the key
 	 * @param value the value (Double, Curve or Pattern)
+	 * @throws IllegalArgumentException if value type is not valid to key used.
 	 */
 	public void setProperty(PumpProperty key, Object value) {
 		Objects.requireNonNull(value);
 
 		if (PumpProperty.HEAD == key) {
 			if (!(value instanceof Curve)) {
-				throw new RuntimeException("When key is " + key.getName() + " the value as to be a Curve ");
+				throw new IllegalArgumentException("The value of the key "+ key.getName() + "is not of type Curve");
 			}
 		} else if (PumpProperty.PATTERN == key) {
 			if (!(value instanceof Pattern)) {
-				throw new RuntimeException("When key is " + key.getName() + " the value as to be a Pattern ");
+				throw new IllegalArgumentException("The value of the key "+ key.getName() + "is not of type Pattern");
 			}
 		} else {
 			if (!(value instanceof Double)) {
-				throw new RuntimeException("When key is " + key.getName() + " the value as to be a Double ");
+				throw new IllegalArgumentException("The value of the key "+ key.getName() + "is not of type Double");
 			}
 		}
 		this.properties.put(key, value);
