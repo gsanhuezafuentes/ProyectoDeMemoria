@@ -2,7 +2,7 @@ package model.epanet.element.networkcomponent;
 
 public final class Pipe extends Link {
 
-	static public enum PipeStatus {
+	public static enum PipeStatus {
 		OPEN("OPEN"), CLOSED("CLOSED"), CV("CV");
 
 		private String name;

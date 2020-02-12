@@ -15,7 +15,7 @@ public final class Pump extends Link {
 	 * 
 	 *
 	 */
-	static public enum PumpProperty {
+	public static enum PumpProperty {
 		HEAD("HEAD"), SPEED("SPEED"), POWER("POWER"), PATTERN("PATTERN");
 
 		private String name;
