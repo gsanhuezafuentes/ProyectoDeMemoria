@@ -28,7 +28,6 @@ public class AlgorithmTask extends Task<AlgorithmTask.Result> {
 	@Override
 	protected AlgorithmTask.Result call() throws Exception {
 		int numberOfIteration = 0;
-		
 		algorithm.runSingleStep(); // run the first step
 		updateMessage(this.algorithm.getStatusOfExecution());
 		while (!this.algorithm.isStoppingConditionReached()) {
@@ -47,6 +46,10 @@ public class AlgorithmTask extends Task<AlgorithmTask.Result> {
 		return new Result(Collections.unmodifiableList(algorithm.getResult()), numberOfIteration);
 	}
 
+	/**
+	 * This inner class is used to return a pair of values.
+	 *
+	 */
 	public static class Result{
 		private List<? extends Solution<?>> solution;
 		private int numberOfIterations;

@@ -85,9 +85,9 @@ public class PipeOptimizingRegister implements Registrable {
 		System.out.println(populationSize);
 		System.out.println(numberWithoutImprovement);
 		System.out.println(maxEvaluations);
-		this.selection = (SelectionOperator<List<IntegerSolution>, List<IntegerSolution>>) selectionOperator;
-		this.crossover = (CrossoverOperator<IntegerSolution>) crossoverOperator;
-		this.mutation = (MutationOperator<IntegerSolution>) mutationOperator;
+		this.selection = (SelectionOperator<List<IntegerSolution>, List<IntegerSolution>>) selectionOperator; // unchecked cast
+		this.crossover = (CrossoverOperator<IntegerSolution>) crossoverOperator; // unchecked cast
+		this.mutation = (MutationOperator<IntegerSolution>) mutationOperator; // unchecked cast
 		this.numberWithoutImprovement = numberWithoutImprovement;
 		this.maxEvaluations = maxEvaluations;
 		this.gama = gama;
@@ -122,7 +122,6 @@ public class PipeOptimizingRegister implements Registrable {
 			algorithm.setMaxEvaluations(maxEvaluations);
 
 		}
-
 		return algorithm;
 	}
 

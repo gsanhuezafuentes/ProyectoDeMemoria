@@ -106,8 +106,8 @@ public class ResultWindowController {
 				resultTable.getColumns().add(column);
 				// tell from where get the value for the column
 				column.setCellValueFactory(
-						(CellDataFeatures<Solution<?>, String> solutionData) -> new ReadOnlyObjectWrapper(
-								solutionData.getValue().getObjective(index)));
+						(CellDataFeatures<Solution<?>, String> solutionData) -> new ReadOnlyObjectWrapper<String>(
+								Double.toString(solutionData.getValue().getObjective(index))));
 			}
 
 			// add column for the decision variables
@@ -117,8 +117,8 @@ public class ResultWindowController {
 				resultTable.getColumns().add(column);
 				// tell from where get the value for the column
 				column.setCellValueFactory(
-						(CellDataFeatures<Solution<?>, String> solutionData) -> new ReadOnlyObjectWrapper(
-								solutionData.getValue().getVariable(index)));
+						(CellDataFeatures<Solution<?>, String> solutionData) -> new ReadOnlyObjectWrapper<String>(
+								solutionData.getValue().getVariable(index).toString()));
 			}
 		}
 	}
@@ -135,7 +135,7 @@ public class ResultWindowController {
 	 * 
 	 * @param event the event
 	 */
-	@SuppressWarnings("unused") // is configure from fxml file
+	@SuppressWarnings("unused") // This method is configure from fxml file
 	@FXML
 	private void onSaveAsINPButtonClick(ActionEvent event) {
 		Solution<?> solution = this.resultTable.getSelectionModel().getSelectedItem();

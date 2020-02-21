@@ -202,4 +202,9 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 		}
 		return network;
 	}
+
+	@Override
+	public String getName() {
+		return "Pipe Optimizing";
+	}
 }

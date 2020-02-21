@@ -111,6 +111,13 @@ public interface Problem<S extends Solution<?>> extends AutoCloseable {
 	Network applySolutionToNetwork(Network network, Solution<?> solution);
 
 	/**
+	 * Get the name of the problem
+	 * 
+	 * @return the name of problem algorithm
+	 */
+	String getName();
+
+	/**
 	 * Override the close method of {@link AutoCloseable} interface. His default
 	 * implementation is a empty body<br>
 	 * <br>
