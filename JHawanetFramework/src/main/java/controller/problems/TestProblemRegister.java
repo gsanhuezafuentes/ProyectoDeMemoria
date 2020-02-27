@@ -13,7 +13,7 @@ import model.metaheuristic.operator.selection.impl.UniformSelection;
 import model.metaheuristic.problem.impl.PipeOptimizing;
 import model.metaheuristic.solution.impl.IntegerSolution;
 
-public class TestProblemRegister implements Registrable {
+public final class TestProblemRegister extends MonoObjectiveRegistrable {
 	private PipeOptimizing problem;
 
 	@NewProblem(displayName = "Pipe Optimizing Hanoi", algorithmName = "Genetic Algorithm")

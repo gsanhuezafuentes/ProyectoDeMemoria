@@ -17,10 +17,16 @@ import java.lang.annotation.Target;
 @Retention(CLASS)
 @Target(CONSTRUCTOR)
 public @interface FileInput {
+	public enum FileType{
+		OPEN, SAVE
+	}
+
 	/**
 	 * A name of the parameter.
 	 * 
 	 * @return the name
 	 */
 	String displayName();
+	
+	FileType type() default FileType.OPEN;
 }

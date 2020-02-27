@@ -77,8 +77,10 @@ public class ResultPlotWindowController {
 	 * objectives and the number of iteration. If the number of objectives is 2, so
 	 * the plot was between objective1 and objective2.
 	 * 
-	 * @param solutionList
-	 * @param iterationNumber
+	 * @param solutionList    the solution list
+	 * @param iterationNumber a number used has the x-axis when the solution is of a
+	 *                        monoobjetive problem. if solution is multiobjective
+	 *                        this number is ignored.
 	 * @throws NullPointerException if solutionList is null
 	 */
 	public void addData(List<? extends Solution<?>> solutionList, int iterationNumber) {

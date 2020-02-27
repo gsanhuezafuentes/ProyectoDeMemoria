@@ -109,7 +109,7 @@ public interface Solution<Type> {
 	 * 
 	 * @return the number of variables
 	 */
-	int getNumberOfDecisionVariables();
+	int getNumberOfVariables();
 
 	/**
 	 * Get the number of objectives

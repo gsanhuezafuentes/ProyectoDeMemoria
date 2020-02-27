@@ -13,16 +13,16 @@ import exception.ApplicationException;
 import view.ConfigurationDynamicWindow;
 import view.utils.CustomDialogs;
 
-public class ConfigurationDynamicWindowController {
-	private CustomCallback algorithmEvent;
-	private Class<? extends Registrable> problemClass;
-	private ConfigurationDynamicWindow view;
+public class ConfigurationDynamicWindowController<T extends Registrable<?>> {
+	private CustomCallback<T> algorithmEvent;
+	private Class<? extends T> problemClass;
+	private ConfigurationDynamicWindow<T> view;
 
-	public ConfigurationDynamicWindowController(Class<? extends Registrable> registrable,
-			CustomCallback algorithmEvent) {
+	public ConfigurationDynamicWindowController(Class<? extends T> registrable,
+			CustomCallback<T> algorithmEvent) {
 		this.problemClass = Objects.requireNonNull(registrable);
 		this.algorithmEvent = Objects.requireNonNull(algorithmEvent);
-		this.view = new ConfigurationDynamicWindow(this, registrable);
+		this.view = new ConfigurationDynamicWindow<T>(this, registrable);
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class ConfigurationDynamicWindowController {
 	 * @throws ApplicationException if there isn't register the notification
 	 *                              callback
 	 */
-	private void notifyAlgorithmCreation(Registrable registrable) throws ApplicationException {
+	private void notifyAlgorithmCreation(T registrable) throws ApplicationException {
 
 		algorithmEvent.notify(registrable);
 	}
@@ -93,7 +93,7 @@ public class ConfigurationDynamicWindowController {
 		}
 
 		try {
-			Registrable registrable = ReflectionUtils.createRegistrableInstance(this.problemClass, parameters);
+			T registrable = ReflectionUtils.createRegistrableInstance(this.problemClass, parameters);
 			this.view.close();
 			notifyAlgorithmCreation(registrable);
 		} catch (InvocationTargetException e) {
@@ -108,7 +108,7 @@ public class ConfigurationDynamicWindowController {
 	 * 
 	 * @return the window.
 	 */
-	public ConfigurationDynamicWindow getAssociatedView() {
+	public ConfigurationDynamicWindow<T> getAssociatedView() {
 		return this.view;
 	}
 

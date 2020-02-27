@@ -36,8 +36,15 @@
 						<MenuItem mnemonicParsing="false" text="Close" />
 					</items>
 				</Menu>
-				<Menu fx:id="problemsMenu" mnemonicParsing="false"
-					text="Problems">
+				<Menu fx:id="monoobjectiveMenu" mnemonicParsing="false"
+					text="Monoobjective Problems">
+				</Menu>
+				<Menu fx:id="multiobjectiveMenu" mnemonicParsing="false" text="Multiobjective Problems">
+				</Menu>
+				<Menu fx:id="runMenu" mnemonicParsing="false" text="Run">
+					<items>
+						<MenuItem fx:id="runMenuItem" mnemonicParsing="false" text="Run" />
+					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Help">
 					<items>

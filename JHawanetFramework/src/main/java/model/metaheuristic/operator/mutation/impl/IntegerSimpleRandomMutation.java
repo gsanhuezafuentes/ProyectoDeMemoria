@@ -75,7 +75,7 @@ public class IntegerSimpleRandomMutation implements MutationOperator<IntegerSolu
 	/** Implements the mutation operation */
 	private void doMutation(double probability, IntegerSolution solution) {
 
-		for (int i = 0; i < solution.getNumberOfDecisionVariables(); i++) {
+		for (int i = 0; i < solution.getNumberOfVariables(); i++) {
 			if (randomGenerator.getRandomValue() <= probability) {
 				Integer value = pointRandomGenerator.getRandomValue(solution.getLowerBound(i),
 						solution.getUpperBound(i) + 1); // The last element is exclude for it is needed the +1

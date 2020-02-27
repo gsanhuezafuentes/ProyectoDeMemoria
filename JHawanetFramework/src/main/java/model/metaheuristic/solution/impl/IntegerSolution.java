@@ -1,16 +1,14 @@
 package model.metaheuristic.solution.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
+import model.metaheuristic.utils.random.BoundedRandomGenerator;
+import model.metaheuristic.utils.random.JavaRandom;
 
 /**
- * 
+ * A solution whose variables are Integer
  *
  * <pre>
  * Base on code from https://github.com/jMetal/jMetal
@@ -36,12 +34,29 @@ import model.metaheuristic.solution.Solution;
  * SOFTWARE. © 2019 GitHub, Inc.
  * </pre>
  */
-public class IntegerSolution implements Solution<Integer> {
-	private Map<Object, Object> attributes;
-	private List<Integer> desicionVariables;
-	private double[] objectives;
-	private Problem<IntegerSolution> problem;
+public class IntegerSolution extends AbstractGenericSolution<Integer, Problem<IntegerSolution>> {
 
+	/** Constructor */
+	public IntegerSolution(Problem<IntegerSolution> problem) {
+		super(problem);
+		
+		initializeDecisionVariables();
+	}
+
+	/** Constructor */
+	public IntegerSolution(IntegerSolution solution) {
+		this(solution.problem);
+		for (int i = 0; i < problem.getNumberOfVariables(); i++) {
+			setVariable(i, solution.getVariable(i));
+		}
+
+		for (int i = 0; i < problem.getNumberOfObjectives(); i++) {
+			setObjective(i, solution.getObjective(i));
+		}
+
+		attributes = new HashMap<Object, Object>(solution.attributes);
+	}
+	
 	/**
 	 * The lower bound of the decision variable.
 	 * 
@@ -62,115 +77,17 @@ public class IntegerSolution implements Solution<Integer> {
 		return (int) problem.getUpperBound(index);
 	}
 
-	/** Constructor */
-	public IntegerSolution(Problem<IntegerSolution> problem) {
-
-		this.problem = problem;
-		this.attributes = new HashMap<Object, Object>();
-		this.desicionVariables = new ArrayList<Integer>(problem.getNumberOfVariables());
-		this.objectives = new double[problem.getNumberOfObjectives()];
-
-		initializeObjectives();
-		initializeDecisionVariables();
-	}
-
-	/** Constructor */
-	public IntegerSolution(IntegerSolution solution) {
-		this(solution.problem);
-		for (int i = 0; i < problem.getNumberOfVariables(); i++) {
-			setVariable(i, solution.getVariable(i));
-		}
-
-		for (int i = 0; i < problem.getNumberOfObjectives(); i++) {
-			setObjective(i, solution.getObjective(i));
-		}
-
-		attributes = new HashMap<Object, Object>(solution.attributes);
-	}
-
 	/**
 	 * Initialize the decision variables
 	 */
 	private void initializeDecisionVariables() {
+		BoundedRandomGenerator<Integer> random = (lowerBound, upperBound) -> JavaRandom.getInstance().nextInt(lowerBound, upperBound);
+		
 		for (int i = 0; i < this.problem.getNumberOfVariables(); i++) {
-			this.desicionVariables.add(i, null);
+			setVariable(i, random.getRandomValue(getLowerBound(i), getUpperBound(i) + 1));
 		}
-	}
-
-	/**
-	 * Initialize the objetive variables
-	 */
-	private void initializeObjectives() {
-		for (int i = 0; i < this.problem.getNumberOfObjectives(); i++) {
-			this.objectives[i] = 0.0;
-		}
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public Integer getVariable(int index) {
-		return desicionVariables.get(index);
-
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public void setVariable(int index, Integer value) {
-		desicionVariables.set(index, value);
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public List<Integer> getVariables() {
-		return desicionVariables;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public double getObjective(int index) {
-		return this.objectives[index];
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public void setObjective(int index, double value) {
-		this.objectives[index] = value;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public double[] getObjectives() {
-		return objectives;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public Object getAttribute(Object id) {
-		return attributes.get(id);
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public void setAttribute(Object id, Object value) {
-		attributes.put(id, value);
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public Map<Object, Object> getAttributes() {
-		return attributes;
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public int getNumberOfDecisionVariables() {
-		return this.desicionVariables.size();
-	}
-
-	/** {@inheritDoc} */
-	@Override
-	public int getNumberOfObjectives() {
-		return this.objectives.length;
+		
+	
 	}
 
 	/** {@inheritDoc} */
@@ -179,100 +96,4 @@ public class IntegerSolution implements Solution<Integer> {
 		return new IntegerSolution(this);
 	}
 
-	@Override
-	public String toString() {
-		String result = "Variables: ";
-		for (int var : this.desicionVariables) {
-			result += "" + var + " ";
-		}
-		result += "Objectives: ";
-		for (Double obj : this.objectives) {
-			result += "" + String.format("%f", obj) + " ";
-		}
-		result += "AlgorithmAttributes: " + attributes + "\n";
-
-		return result;
-	}
-
-	/**
-	 * Compare objectives and decision variables
-	 * 
-	 * @param o
-	 * @return
-	 */
-	private boolean equalsIgnoringAttributes(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-
-		IntegerSolution that = (IntegerSolution) o;
-
-		if (!Arrays.equals(this.objectives, that.objectives))
-			return false;
-
-		if (!this.desicionVariables.equals(that.desicionVariables))
-			return false;
-
-		return true;
-	}
-
-	/**
-	 * Compare solution.
-	 */
-	@Override
-	public boolean equals(Object o) {
-
-		if (!this.equalsIgnoringAttributes(o)) {
-			return false;
-		}
-
-		IntegerSolution that = (IntegerSolution) o;
-		// avoid recursive infinite comparisons when solution as attribute
-
-		// examples when problems would arise with a simple comparison
-		// attributes.equals(that.attributes):
-		// if A contains itself as Attribute
-		// If A contains B as attribute, B contains A as attribute
-		//
-		// the following implementation takes care of this by considering solutions as
-		// attributes as a special case
-
-		if (attributes.size() != that.attributes.size()) {
-			return false;
-		}
-
-		for (Object key : attributes.keySet()) {
-			Object value = attributes.get(key);
-			Object valueThat = that.attributes.get(key);
-
-			if (value != valueThat) { // it only makes sense comparing when having different references
-
-				if (value == null) {
-					return false;
-				} else if (valueThat == null) {
-					return false;
-				} else { // both not null
-
-					boolean areAttributeValuesEqual;
-
-					areAttributeValuesEqual = !value.equals(valueThat);
-
-					if (!areAttributeValuesEqual) {
-						return false;
-					} // if equal the next attributeValue will be checked
-				}
-			}
-		}
-
-		return true;
-	}
-
-	@Override
-	public int hashCode() {
-		int result = Arrays.hashCode(objectives);
-		result = 31 * result + desicionVariables.hashCode();
-		result = 31 * result + attributes.hashCode();
-		return result;
-	}
 }

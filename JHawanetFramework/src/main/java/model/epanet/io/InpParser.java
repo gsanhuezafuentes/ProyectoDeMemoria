@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import java.util.List;
 
 import epanet.core.EpanetException;
@@ -519,6 +520,12 @@ public class InpParser implements InputParser {
 			net.addCurve(id, curve);
 		} else {
 			curve = net.getCurve(id);
+			
+			if (curve == null) {
+				curve = new Curve();
+				curve.setId(id);
+				net.addCurve(id, curve);
+			}
 		}
 		List<Double> x = curve.getX();
 		List<Double> y = curve.getY();
@@ -539,14 +546,21 @@ public class InpParser implements InputParser {
 		if (net.getPatternList().size() == 0) {
 			pattern = new Pattern();
 			pattern.setId(id);
+			net.addPattern(id, pattern);
+			
 		} else {
 			pattern = net.getPattern(id);
+			
+			if (pattern == null) {
+				pattern = new Pattern();
+				pattern.setId(id);
+				net.addPattern(id, pattern);
+			}
 		}
 
 		for (int i = 1; i < tokens.length; i++) {
 			pattern.addMultipliers(Double.parseDouble(tokens[i]));
 		}
-		net.addPattern(id, pattern);
 	}
 
 	/**
@@ -902,7 +916,7 @@ public class InpParser implements InputParser {
 		label.setPosition(new Point(x, y));
 		label.setLabel(String.format("%s", tokens[2]));
 		if (tokens.length == 4) {
-			Node node = net.getNode(tokens[4]);
+			Node node = net.getNode(tokens[3]);
 			if (node == null) {
 				throw new InputException("The node " + tokens[3] + " don't exist");
 			}

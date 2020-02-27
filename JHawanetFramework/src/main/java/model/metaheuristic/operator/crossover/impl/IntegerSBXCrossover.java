@@ -99,7 +99,7 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 		int valueX1, valueX2;
 
 		if (random.getRandomValue() <= crossoverProbability) {
-			for (i = 0; i < parent1.getNumberOfDecisionVariables(); i++) {
+			for (i = 0; i < parent1.getNumberOfVariables(); i++) {
 				valueX1 = parent1.getVariable(i);
 				valueX2 = parent2.getVariable(i);
 				if (random.getRandomValue() <= 0.5) {

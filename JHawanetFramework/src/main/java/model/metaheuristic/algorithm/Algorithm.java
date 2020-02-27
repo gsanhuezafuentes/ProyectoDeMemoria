@@ -3,6 +3,7 @@ package model.metaheuristic.algorithm;
 import java.util.List;
 
 import controller.utils.AlgorithmTask;
+import controller.utils.ExperimentTask;
 import epanet.core.EpanetException;
 import model.metaheuristic.solution.Solution;
 
@@ -112,7 +113,7 @@ public interface Algorithm<Result extends Solution<?>> extends AutoCloseable {
 	 * <br>
 	 * <br>
 	 * <strong>Notes:</strong> <br>
-	 * It will be called when the algorithm finished the execution for {@link AlgorithmTask}.
+	 * It will be called when the algorithm finished the execution for {@link AlgorithmTask} or {@link ExperimentTask}.
 	 */
 	@Override
 	default void close() throws Exception {

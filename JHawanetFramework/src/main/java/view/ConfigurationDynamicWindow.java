@@ -20,6 +20,7 @@ import annotations.registrable.NumberToggleInput;
 import annotations.registrable.OperatorInput;
 import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
+import annotations.registrable.FileInput.FileType;
 import controller.ConfigurationDynamicWindowController;
 import controller.problems.Registrable;
 import controller.utils.ReflectionUtils;
@@ -55,10 +56,10 @@ import view.utils.CustomDialogs;
  * Registrable class and with reflection read his metadata annotation.
  *
  */
-public final class ConfigurationDynamicWindow extends Stage {
+public final class ConfigurationDynamicWindow<T extends Registrable<?>> extends Stage {
 
-	private Class<? extends Registrable> problemClass;
-	private ConfigurationDynamicWindowController controller;
+	private Class<? extends T> problemClass;
+	private ConfigurationDynamicWindowController<T> controller;
 
 	private double defaultSpace = 5;
 	private BooleanBinding isRunButtonDisabled;
@@ -108,8 +109,8 @@ public final class ConfigurationDynamicWindow extends Stage {
 	 * @param controller  the controller associated to this view.
 	 * @param registrable the registrable class to analize.
 	 */
-	public ConfigurationDynamicWindow(ConfigurationDynamicWindowController controller,
-			Class<? extends Registrable> registrable) {
+	public ConfigurationDynamicWindow(ConfigurationDynamicWindowController<T> controller,
+			Class<? extends T> registrable) {
 		this.problemClass = Objects.requireNonNull(registrable);
 		this.controller = Objects.requireNonNull(controller);
 
@@ -273,10 +274,18 @@ public final class ConfigurationDynamicWindow extends Stage {
 		textfield.setMaxWidth(Double.MAX_VALUE);
 		Button button = new Button("Browse");
 		button.setMaxWidth(Double.MAX_VALUE);
-
 		FileChooser fileChooser = new FileChooser();
+
 		button.setOnAction((evt) -> {
-			File f = fileChooser.showOpenDialog(this);
+			File f;
+			
+			if (annotation.type() == FileType.OPEN) {
+				f = fileChooser.showOpenDialog(this);
+			}
+			else {
+				f = fileChooser.showSaveDialog(this);
+			}
+			
 			if (f != null) {
 				textfield.setText(f.getAbsolutePath());
 			}

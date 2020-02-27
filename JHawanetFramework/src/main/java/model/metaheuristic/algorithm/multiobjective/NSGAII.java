@@ -78,7 +78,6 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 		setProblem(problem);
 		this.maxEvaluations = maxEvaluations;
 		setMaxPopulationSize(populationSize);
-		;
 
 		this.crossoverOperator = crossoverOperator;
 		this.mutationOperator = mutationOperator;
@@ -173,7 +172,7 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 		for (int i = 0; i < matingPool.size(); i += numberOfParents) {
 			List<S> parents = new ArrayList<>(numberOfParents);
 			for (int j = 0; j < numberOfParents; j++) {
-				parents.add(population.get(i + j));
+				parents.add(matingPool.get(i + j));
 			}
 
 			List<S> offspring = crossoverOperator.execute(parents);

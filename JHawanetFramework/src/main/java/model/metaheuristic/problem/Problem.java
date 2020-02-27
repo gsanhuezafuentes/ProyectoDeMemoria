@@ -101,12 +101,13 @@ public interface Problem<S extends Solution<?>> extends AutoCloseable {
 	 * <br>
 	 * <strong>Notes:</strong> <br>
 	 * This method is used to save the solution as a inp from the ResultWindow.
+	 * Return null if you don't want use this method
 	 * 
 	 * @param network  a copy of the network instance opened configured with inp
 	 *                 setting up.
 	 * @param solution the solution to be setting in the network. It solution is the
 	 *                 same type of S, so you can cast it.
-	 * @return the network received and modified.
+	 * @return the network received and modified or null.
 	 */
 	Network applySolutionToNetwork(Network network, Solution<?> solution);
 

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import annotations.registrable.FileInput;
+import annotations.registrable.FileInput.FileType;
 import annotations.registrable.NewProblem;
 import annotations.registrable.NumberInput;
 import annotations.registrable.NumberToggleInput;
@@ -33,7 +34,7 @@ import model.metaheuristic.solution.impl.IntegerSolution;
  * The sistem read this class using reflection to get the annotation and create
  * a GUI to configure the algorithm and inject the value to injectable method.
  */
-public class PipeOptimizingRegister implements Registrable {
+public final class PipeOptimizingRegister extends MonoObjectiveRegistrable {
 	private SelectionOperator<List<IntegerSolution>, List<IntegerSolution>> selection;
 	private CrossoverOperator<IntegerSolution> crossover;
 	private MutationOperator<IntegerSolution> mutation;
@@ -68,14 +69,14 @@ public class PipeOptimizingRegister implements Registrable {
 					@OperatorOption(displayName = "Integer Polynomial Mutation", value = IntegerPolynomialMutation.class),
 					@OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class),
 					@OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class) }) }, //
-			files = { @FileInput(displayName = "Gama") }, //
+			files = { @FileInput(displayName = "Gama"), @FileInput(displayName = "Salida", type = FileType.SAVE)}, //
 			numbers = { @NumberInput(displayName = "Min pressure"), @NumberInput(displayName = "Population Size") }, //
 			numbersToggle = {
 					@NumberToggleInput(groupID = "Finish Condition", displayName = "Number of iteration without improvement"),
 					@NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation") })
 	@SuppressWarnings("unchecked") // The object injected are indicated in operators elements. It guarantee its
 									// types.
-	public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama,
+	public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama,File save,
 			int minPressure, int populationSize, int numberWithoutImprovement, int maxEvaluations) {
 		System.out.println(selectionOperator);
 		System.out.println(crossoverOperator);

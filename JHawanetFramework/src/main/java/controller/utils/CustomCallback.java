@@ -8,6 +8,6 @@ import view.ConfigurationDynamicWindow;
  *
  */
 @FunctionalInterface
-public interface CustomCallback {
-	void notify(Registrable registrableProblem);
+public interface CustomCallback<T> {
+	void notify(T element);
 }

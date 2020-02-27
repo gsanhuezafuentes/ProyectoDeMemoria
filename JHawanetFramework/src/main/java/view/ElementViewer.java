@@ -1,7 +1,5 @@
 package view;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
-
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Accordion;
@@ -20,7 +18,7 @@ import model.epanet.element.networkcomponent.Tank;
 import model.epanet.element.networkcomponent.Valve;
 
 /**
- * Graphics component that show the element of the network.
+ * Component that show the element of the network in the main window.
  *
  */
 public class ElementViewer extends VBox {

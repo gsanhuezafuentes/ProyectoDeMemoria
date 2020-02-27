@@ -97,7 +97,7 @@ public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSol
 
 		if (crossoverRandomGenerator.getRandomValue() < probability) {
 			// 1. Get the total number of bits
-			int totalNumberOfVariables = parent1.getNumberOfDecisionVariables();
+			int totalNumberOfVariables = parent1.getNumberOfVariables();
 
 			// 2. Calculate the point to make the crossover
 			int crossoverPoint = pointRandomGenerator.getRandomValue(0, totalNumberOfVariables); // Random between 0 and

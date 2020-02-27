@@ -90,7 +90,7 @@ import model.metaheuristic.problem.Problem;
  * A example is showed in the class {@link PipeOptimizingRegister}.
  *
  */
-public interface Registrable {
+public interface Registrable<R> {
 
 	/**
 	 * Builds a new algorithm and leaves it ready for execution. This method will be
@@ -101,7 +101,7 @@ public interface Registrable {
 	 * @return the algorithm ready for execution
 	 * @throws if an exception occurs when building the algorithm
 	 */
-	Algorithm<?> build(String inpPath) throws Exception;
+	R build(String inpPath) throws Exception;
 
 	/**
 	 * Get the problem associated to {@link Algorithm} when {@link #build(String)}

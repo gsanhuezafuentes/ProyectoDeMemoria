@@ -9,7 +9,9 @@ import java.util.Objects;
 import java.util.Set;
 
 import annotations.operators.DefaultConstructor;
+import annotations.registrable.FileInput;
 import annotations.registrable.NewProblem;
+import annotations.registrable.NumberInput;
 import annotations.registrable.NumberToggleInput;
 import annotations.registrable.OperatorInput;
 import annotations.registrable.OperatorOption;
@@ -34,8 +36,9 @@ public class ReflectionUtils {
 	 * @throws ApplicationException if the problem hasn't a constructor with
 	 *                              {@link NewProblem} annotation.
 	 * @throws NullPointerException if registrable is null.
+	 * @throws ApplicationException if registrable doesn't have {@link NewProblem} annotation
 	 */
-	public static String getNameOfProblem(Class<? extends Registrable> registrable) {
+	public static String getNameOfProblem(Class<? extends Registrable<?>> registrable) {
 		Objects.requireNonNull(registrable);
 		for (Constructor<?> constructor : registrable.getConstructors()) {
 			NewProblem annotation = constructor.getAnnotation(NewProblem.class);
@@ -57,7 +60,7 @@ public class ReflectionUtils {
 	 *                              {@link NewProblem} annotation.
 	 * @throws NullPointerException if registrable is null.
 	 */
-	public static String getNameOfAlgorithm(Class<? extends Registrable> registrable) {
+	public static String getNameOfAlgorithm(Class<? extends Registrable<?>> registrable) {
 		Objects.requireNonNull(registrable);
 		for (Constructor<?> constructor : registrable.getConstructors()) {
 			NewProblem annotation = constructor.getAnnotation(NewProblem.class);
@@ -81,8 +84,9 @@ public class ReflectionUtils {
 	 *  	<li>Verify if {@code registrable} has only a public constructor</li>
 	 *  	<li>Verify if {@code registrable} has {@link NewProblem} annotation in his only one constructor </li>
 	 *  	<li>Verify if {@code registrable} has the same number of parameters has values defined in {@link Parameters} annotation in the constructor</li>
-	 *  	<li>Verify if {@code registrable} as the parameters in the correct order and if the parameters are only of type Object, File, int or double or his wrapper Integer, Double. The order is (Object..., File ..., int|double ...)</li>
-	 *  	<li>Verify if {@code registrable} constructor don't have parameters when {@link Parameters} annotation isn't used</li>
+	 *  	<li>Verify if {@code registrable} has the parameters in the correct order and if the parameters are only of type Object, File, int or double or his wrapper Integer, Double. The order is (Object..., File ..., int|double ...)</li>
+	 *	 	<li>Verify if {@code registrable}'s constructor parameters correspond to the type defined by {@link Parameters}</li>
+	 *  	<li>Verify if {@code registrable} constructor doesn't have parameters when {@link Parameters} annotation isn't used</li>
 	 *  </ol>
 	 * </pre>
 	 * 
@@ -96,7 +100,7 @@ public class ReflectionUtils {
 	 * @throws ApplicationException if any of the conditions to be verified is not
 	 *                              fulfilled
 	 */
-	public static void validateRegistrableProblem(Class<? extends Registrable> registrable) {
+	public static void validateRegistrableProblem(Class<? extends Registrable<?>> registrable) {
 
 		Constructor<?>[] constructors = registrable.getConstructors();
 
@@ -134,7 +138,7 @@ public class ReflectionUtils {
 			// Test the order of the parameters
 			// Order: Object, File, int | double
 			Class<?>[] parameterTypes = constructor.getParameterTypes();
-
+			int objectCount = 0;
 			int fileCount = 0;
 			int numberCount = 0;
 			for (int i = 0; i < parameterTypes.length; i++) {
@@ -146,6 +150,7 @@ public class ReflectionUtils {
 										+ registrable.getName());
 
 					}
+					objectCount++;
 				} else if (parameterType == File.class) {
 					if (numberCount != 0) {
 						throw new ApplicationException(
@@ -162,6 +167,22 @@ public class ReflectionUtils {
 							+ ". Only can be used object, file, int(or Integer) or double(Double)");
 				}
 			}
+			// checks if the type of parameters correspond to the type of annotation in
+			// Parameters annotation
+			if (objectCount != parametersAnnotation.operators().length) {
+				throw new ApplicationException("The number of " + OperatorInput.class.getName()
+						+ "doesn't correspond to the number of Object parameter in constructor");
+			}
+			if (fileCount != parametersAnnotation.files().length) {
+				throw new ApplicationException("The number of " + FileInput.class.getName()
+						+ "doesn't correspond to the number of File parameter in constructor");
+			}
+			if (numberCount != parametersAnnotation.numbers().length + parametersAnnotation.numbersToggle().length) {
+				throw new ApplicationException("The number of " + NumberInput.class.getName() + "plus the number of "
+						+ NumberToggleInput.class.getName()
+						+ "doesn't correspond to the number of int|Integer or double|Double parameter in constructor");
+			}
+			
 			// checks that entries with the same group id are consecutively
 			if (parametersAnnotation.numbersToggle().length != 0) {
 				Set<String> addedGroupId = new HashSet<String>();
@@ -203,7 +224,7 @@ public class ReflectionUtils {
 	 * @throws ApplicationException if any of the conditions to be verified is not
 	 *                              fulfilled
 	 */
-	public static void validateOperators(Class<? extends Registrable> registrable) {
+	public static void validateOperators(Class<? extends Registrable<?>> registrable) {
 		Constructor<?> constructor = getConstructor(registrable);
 
 		Parameters annotation = constructor.getAnnotation(Parameters.class);
@@ -264,14 +285,14 @@ public class ReflectionUtils {
 	}
 
 	/**
-	 * Get the constructor with NewProblem annotation. If it constructor don't exist
-	 * so return null.
+	 * Get the constructor with NewProblem annotation. If it constructor doesn't
+	 * exist so return null.
 	 * 
 	 * @param registrableClass the registrable class.
 	 * @return The constructor with {@link NewProblem} annotation
 	 * @throws NullPointerException if registrableClass is null.
 	 */
-	public static Constructor<?> getConstructor(Class<? extends Registrable> registrableClass) {
+	public static Constructor<?> getConstructor(Class<? extends Registrable<?>> registrableClass) {
 		Objects.requireNonNull(registrableClass);
 		for (Constructor<?> constructor : registrableClass.getConstructors()) {
 			if (constructor.getAnnotation(NewProblem.class) != null) {
@@ -286,7 +307,7 @@ public class ReflectionUtils {
 	 * 
 	 * @param classType the class where find the default constructor
 	 * @return constructor with {@link DefaultConstructor} annotation if exit. null
-	 *         if it don't exist.
+	 *         if it doesn't exist.
 	 * @throws NullPointerException if classType is null.
 	 */
 	public static Constructor<?> getDefaultConstructor(Class<?> classType) {
@@ -308,7 +329,7 @@ public class ReflectionUtils {
 	 * @return the number of parameters in registrable problem.
 	 * @throws NullPointerException if registrable is null.
 	 */
-	public static int getNumberOfParameterInRegistrableConstructor(Class<? extends Registrable> registrable) {
+	public static int getNumberOfParameterInRegistrableConstructor(Class<? extends Registrable<?>> registrable) {
 		Objects.requireNonNull(registrable);
 		Constructor<?>[] constructors = registrable.getConstructors();
 		if (constructors.length != 1) {
@@ -363,14 +384,14 @@ public class ReflectionUtils {
 	 * @throws InvocationTargetException if the underlying constructor throws an
 	 *                                   exception.
 	 */
-	public static Registrable createRegistrableInstance(Class<? extends Registrable> problemClass, Object[] parameters)
-			throws InvocationTargetException {
+	public static <T extends Registrable<?>> T createRegistrableInstance(Class<? extends Registrable<?>> problemClass,
+			Object[] parameters) throws InvocationTargetException {
 
 		Constructor<?> constructor = ReflectionUtils.getConstructor(problemClass);
-		Registrable registrable;
+		Object registrable;
 		try {
-			registrable = (Registrable) constructor.newInstance(parameters);
-			return registrable;
+			registrable = constructor.newInstance(parameters);
+			return (T) registrable;// unchecked cast
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException e) {
 			throw new ApplicationException("Error in reflection call", e);
 		}
@@ -386,10 +407,10 @@ public class ReflectionUtils {
 	 * @throws InvocationTargetException if the underlying constructor throws an
 	 *                                   exception.
 	 */
-	public static Registrable createRegistrableInstance(Class<? extends Registrable> problemClass)
+	public static <T extends Registrable<?>> T createRegistrableInstance(Class<T> problemClass)
 			throws InvocationTargetException {
-		Registrable registrable = (Registrable) createRegistrableInstance(problemClass, new Object[0]);
-		return registrable;
+		Object registrable = createRegistrableInstance(problemClass, new Object[0]);
+		return (T) registrable; // unchecked cast
 	}
 
 }

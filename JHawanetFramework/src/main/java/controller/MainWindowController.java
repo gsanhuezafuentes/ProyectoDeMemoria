@@ -4,7 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import controller.problems.Registrable;
+
+import controller.monoobjectives.MonoObjectiveRunningWindowController;
+import controller.multiobjectives.MultiObjectiveRunningWindowController;
+import controller.problems.MonoObjectiveRegistrable;
+import controller.problems.MultiObjectiveRegistrable;
 import controller.utils.ProblemMenuConfiguration;
 import exception.InputException;
 import javafx.beans.property.BooleanProperty;
@@ -12,15 +16,16 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
-import javafx.util.Callback;
 import model.epanet.element.Network;
 import model.epanet.io.InpParser;
 import model.metaheuristic.algorithm.Algorithm;
+import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.problem.Problem;
 import view.ElementViewer;
 import view.NetworkComponent;
@@ -63,12 +68,24 @@ public class MainWindowController implements Initializable {
 	private ElementViewer elementViewer;
 
 	/**
-	 * Is the option of menu for the problem. It is filled using reflection through
+	 * Is the option of menu for monoobjective problems. It is filled using reflection through
 	 * ProblemRegistrar.
 	 */
 	@FXML
-	private Menu problemsMenu;
+	private Menu monoobjectiveMenu;
+	/**
+	 * Is the option of menu for multiobjectives problem. It is filled using reflection through
+	 * ProblemRegistrar.
+	 */
+	@FXML
+	private Menu multiobjectiveMenu;
 
+	@FXML
+	private Menu runMenu;
+	
+	@FXML
+	private MenuItem runMenuItem;
+	
 	private Window window;
 	private File inpFile;
 	private BooleanProperty isNetworkLoaded;
@@ -84,10 +101,14 @@ public class MainWindowController implements Initializable {
 		// Register the menu item problem to problem menu and add the listener to it
 		// menuitem to show a interface,
 		ProblemMenuConfiguration problemRegistrar = new ProblemMenuConfiguration();
-		problemRegistrar.addMonoObjectiveProblems(this.problemsMenu, this::runAlgorithm);
-				
+		problemRegistrar.addMonoObjectiveProblems(this.monoobjectiveMenu, this::runAlgorithm);
+		problemRegistrar.addMultiObjectiveProblems(this.multiobjectiveMenu, this::runExperiment);
+
 		// disable problem menu until a network is loaded
-		this.problemsMenu.disableProperty().bind(isNetworkLoaded.not());
+		this.monoobjectiveMenu.disableProperty().bind(isNetworkLoaded.not());
+		this.multiobjectiveMenu.disableProperty().bind(isNetworkLoaded.not());
+		this.runMenu.disableProperty().bind(isNetworkLoaded.not());
+
 		
 		networkComponent.selectedProperty().bindBidirectional(elementViewer.selectedProperty());
 	}
@@ -151,7 +172,7 @@ public class MainWindowController implements Initializable {
 	 * 
 	 * @param registrableProblem the factory of algorithm for a problem
 	 */
-	private void runAlgorithm(Registrable registrableProblem) {
+	private void runAlgorithm(MonoObjectiveRegistrable registrableProblem) {
 		String path = null;
 		if (this.inpFile != null) {
 			path = this.inpFile.getAbsolutePath();
@@ -165,7 +186,41 @@ public class MainWindowController implements Initializable {
 		}
 		if (algorithm != null) {
 			Problem<?> problem = registrableProblem.getProblem();
-			RunningWindowController runningDialogController = new RunningWindowController(algorithm, problem,
+			MonoObjectiveRunningWindowController runningDialogController = new MonoObjectiveRunningWindowController(algorithm, problem,
+					this.network);
+			runningDialogController.showWindowAndRunAlgorithm();
+		}
+
+	}
+	
+	/**
+	 * Run the experiment.<br>
+	 * <br>
+	 * 
+	 * <br>
+	 * <br>
+	 * <strong>Notes:</strong> <br>
+	 * This method is called by ConfigurationDynamicWindow when the experiment is
+	 * successfully created. When this method is executed open a RunningDialog that
+	 * show the progress of execution of algorithm.
+	 * 
+	 * @param registrableProblem the factory of algorithm for a problem
+	 */
+	private void runExperiment(MultiObjectiveRegistrable registrableProblem) {
+		String path = null;
+		if (this.inpFile != null) {
+			path = this.inpFile.getAbsolutePath();
+		}
+		Experiment<?> experiment = null;
+		try {
+			experiment = registrableProblem.build(path);
+		} catch (Exception e) {
+			CustomDialogs.showExceptionDialog("Error", "Error in the creation of the experiment",
+					"The algorithm can't be created", e);
+		}
+		if (experiment != null) {
+			Problem<?> problem = registrableProblem.getProblem();
+			MultiObjectiveRunningWindowController runningDialogController = new MultiObjectiveRunningWindowController(experiment, problem,
 					this.network);
 			runningDialogController.showWindowAndRunAlgorithm();
 		}

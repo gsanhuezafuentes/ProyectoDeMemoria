@@ -138,7 +138,7 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 		Double rnd, delta1, delta2, mutPow, deltaq;
 		double y, yl, yu, val, xy;
 
-		for (int i = 0; i < solution.getNumberOfDecisionVariables(); i++) {
+		for (int i = 0; i < solution.getNumberOfVariables(); i++) {
 			if (random.getRandomValue() <= probability) {
 				y = (double) solution.getVariable(i);
 				yl = (double) solution.getLowerBound(i);

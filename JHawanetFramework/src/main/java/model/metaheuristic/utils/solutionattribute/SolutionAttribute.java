@@ -36,7 +36,7 @@ import model.metaheuristic.solution.Solution;
  * SOFTWARE. © 2019 GitHub, Inc.
  *         </pre>
  */
-public abstract class SolutionAttribute<S extends Solution<?>, V> {
+public class SolutionAttribute<S extends Solution<?>, V> {
 	private Object identifier;
 
 	/**

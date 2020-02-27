@@ -3,7 +3,10 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.problems.MonoObjectiveRegistrable;
+import controller.problems.MultiObjectiveRegistrable;
 import controller.problems.PipeOptimizingRegister;
+import controller.problems.PumpSchedulingRegister;
 import controller.problems.Registrable;
 import controller.problems.TestProblemRegister;
 
@@ -12,8 +15,8 @@ import controller.problems.TestProblemRegister;
  *
  */
 public final class Configuration {
-	public static final List<Class<? extends Registrable>> MONOOBJECTIVES_PROBLEMS = new ArrayList<>();
-	public static final List<Class<? extends Registrable>> MULTIOBJECTIVES_PROBLEMS = new ArrayList<>();
+	public static final List<Class<? extends MonoObjectiveRegistrable>> MONOOBJECTIVES_PROBLEMS = new ArrayList<>();
+	public static final List<Class<? extends MultiObjectiveRegistrable>> MULTIOBJECTIVES_PROBLEMS = new ArrayList<>();
 
 	//Add here the Registrable clases (Monoobjective).
 	static {
@@ -23,7 +26,7 @@ public final class Configuration {
 	
 	// Multiobjectives
 	static {
-		
+		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingRegister.class);
 	}
  
 }

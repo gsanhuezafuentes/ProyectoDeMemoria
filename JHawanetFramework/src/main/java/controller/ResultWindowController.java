@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -97,7 +99,7 @@ public class ResultWindowController {
 			this.resultTable.getItems().addAll(this.solutionList);
 
 			int numberOfObjectives = this.solutionList.get(0).getNumberOfObjectives();
-			int numberOfDecisionVariables = this.solutionList.get(0).getNumberOfDecisionVariables();
+			int numberOfDecisionVariables = this.solutionList.get(0).getNumberOfVariables();
 
 			// add column for the objetives
 			for (int i = 0; i < numberOfObjectives; i++) {
@@ -146,13 +148,22 @@ public class ResultWindowController {
 		File file = fileChooser.showSaveDialog(this.saveButton.getScene().getWindow());
 		if (file != null) {
 			Network netCopy = this.problem.applySolutionToNetwork(this.network.copy(), solution);
-			OutputInpWriter outputInpWriter = new OutputInpWriter();
-			try {
-				outputInpWriter.write(netCopy, file.getAbsolutePath());
-			} catch (IOException e) {
-				CustomDialogs.showExceptionDialog("Error", "Error in the creation of the inp file",
-						"The file can't be created", e);
+			if (netCopy != null) {
+				OutputInpWriter outputInpWriter = new OutputInpWriter();
+				try {
+					outputInpWriter.write(netCopy, file.getAbsolutePath());
+				} catch (IOException e) {
+					CustomDialogs.showExceptionDialog("Error", "Error in the creation of the inp file",
+							"The file can't be created", e);
+				}
+			} else {
+				CustomDialogs.showDialog("Unsupported Operation",
+						"The save as inp operation is not supported by this problem",
+						"The method applySolutionToNetwork of " + problem.getName()
+								+ " has returned null. To support this operation you need return a Network",
+						AlertType.WARNING);
 			}
+
 		}
 	}
 
@@ -169,9 +180,10 @@ public class ResultWindowController {
 
 		File file = fileChooser.showSaveDialog(this.saveButton.getScene().getWindow());
 		if (file != null) {
-			SolutionListOutput output = new SolutionListOutput();
+			SolutionListOutput output = new SolutionListOutput(this.solutionList)
+					.setFunFileName("FUN_" + file.getAbsolutePath()).setVarFileName("VAR_" + file.getAbsolutePath());
 			try {
-				output.write(this.solutionList, file.getAbsolutePath());
+				output.write();
 			} catch (IOException e) {
 				CustomDialogs.showExceptionDialog("Error", "Error in the creation of fun/var file",
 						"The file can't be created", e);

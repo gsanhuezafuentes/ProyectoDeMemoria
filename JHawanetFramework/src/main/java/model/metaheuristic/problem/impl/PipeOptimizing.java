@@ -39,7 +39,6 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	private String networkGama;
 
 	private EpanetAPI epanet;
-	BoundedRandomGenerator<Integer> random;
 
 	private List<Gama> gamas;
 	private List<Float> LenghtLinks;
@@ -58,8 +57,7 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	 * @throws NullPointerException if epanet is null or networkGama is null
 	 * @throws ApplicationException if networkGama is empty
 	 */
-	public PipeOptimizing(EpanetAPI epanet, String networkGama, int minPressure)
-			throws IOException, EpanetException {
+	public PipeOptimizing(EpanetAPI epanet, String networkGama, int minPressure) throws IOException, EpanetException {
 		Objects.requireNonNull(epanet, "EpanetAPI can't be null in CostConstructionProblem");
 		Objects.requireNonNull(networkGama);
 		if (networkGama.equals("")) {
@@ -69,7 +67,6 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 		this.numberOfObjectives = 1;
 		this.networkGama = networkGama;
 		this.epanet = epanet;
-		this.random = (lowerBound, upperBound) -> JavaRandom.getInstance().nextInt(lowerBound, upperBound);
 		this.minPressure = minPressure;
 		initialize();
 	}
@@ -131,9 +128,6 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	@Override
 	public IntegerSolution createSolution() {
 		IntegerSolution solution = new IntegerSolution(this);
-		for (int i = 0; i < getNumberOfVariables(); i++) {
-			solution.setVariable(i, random.getRandomValue(this.lowerBound, this.upperBound + 1));
-		}
 		return solution;
 	}
 

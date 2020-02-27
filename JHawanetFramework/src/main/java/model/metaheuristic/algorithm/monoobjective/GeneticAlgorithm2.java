@@ -216,14 +216,14 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	protected List<S> reproduction(List<S> selectionPopulation) {
 		int numberOfParents = crossoverOperator.getNumberOfRequiredParents();
 
-		checkNumberOfParents(population, numberOfParents);
+		checkNumberOfParents(selectionPopulation, numberOfParents);
 
 		List<S> offspringPopulation = new ArrayList<S>(getMaxPopulationSize());
 
 		for (int i = 0; i < getMaxPopulationSize(); i += numberOfParents) {
 			List<S> parents = new ArrayList<S>();
 			for (int j = 0; j < numberOfParents; j++) {
-				parents.add(population.get(i + j));
+				parents.add(selectionPopulation.get(i + j));
 			}
 
 			List<S> offspring = crossoverOperator.execute(parents);
