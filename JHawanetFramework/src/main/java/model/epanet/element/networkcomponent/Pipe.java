@@ -1,7 +1,19 @@
 package model.epanet.element.networkcomponent;
 
+import java.util.Objects;
+
 public final class Pipe extends Link {
 
+	/**
+	 * A enumerator that to define the status of Pipe.
+	 * 
+	 * <br>
+	 * <br>
+	 * <strong>Notes:</strong> <br>
+	 * The section [Status] only can setting OPEN and CLOSED. CV have to be
+	 * configured directly in [PUMP] section.
+	 * 
+	 */
 	public static enum PipeStatus {
 		OPEN("OPEN"), CLOSED("CLOSED"), CV("CV");
 
@@ -17,24 +29,55 @@ public final class Pipe extends Link {
 		public String getName() {
 			return name;
 		}
-
+		
+		/**
+		 * Parse the name to a object of the enum class if exist. if name no exist in enum class so return null;
+		 * @param name the name of object
+		 * @return the object of enum class or null if no exist
+		 */
+		public static PipeStatus parse(String name) {
+			for (PipeStatus object : PipeStatus.values()) {
+				if (object.getName().equalsIgnoreCase(name)) {
+					return object;
+				}
+			}
+			return null;
+		}
 	}
+
+	public static final double DEFAULT_LENGTH = 1000;
+	public static final double DEFAULT_DIAMETER = 12;
+	public static final double DEFAULT_ROUGHNESS = 100;
+	public static final double DEFAULT_LOSS_COEFFICIENT = 0;
+	public static final PipeStatus DEFAULT_STATUS = PipeStatus.OPEN;
 
 	private double length;
 	private double diameter;
 	private double roughness;
-	private double mloss;
-	private PipeStatus status;
+	private double lossCoefficient;
+	private PipeStatus status; // the default value
+	/*
+	 * This parameter is save [Reaction] section with the label BULK
+	 */
+	private Double bulkCoefficient;
+	/*
+	 * This parameter is save [Reaction] section with the label WALL
+	 */
+	private Double wallCoefficient;
 
 	public Pipe() {
+		this.length = DEFAULT_LENGTH;
+		this.diameter = DEFAULT_DIAMETER;
+		this.roughness = DEFAULT_ROUGHNESS;
+		this.lossCoefficient = DEFAULT_LOSS_COEFFICIENT;
+		this.status = DEFAULT_STATUS;
 	}
 
 	/**
 	 * Create a new pipe with the same values that the pipe received. This is a
-	 * shallow copy, i.e., If the field value is a reference to an object (e.g., a
-	 * memory address) it copies the reference. If it is necessary for the object to
-	 * be completely independent of the original you must ensure that you replace
-	 * the reference to the contained objects.
+	 * shallow copy because inherits of LINK.
+	 * 
+	 * You must replace node1 and node2 to do the copy independent of the original
 	 * 
 	 * @param pipe the pipe to copy
 	 */
@@ -43,8 +86,10 @@ public final class Pipe extends Link {
 		this.length = pipe.length;
 		this.diameter = pipe.diameter;
 		this.roughness = pipe.roughness;
-		this.mloss = pipe.mloss;
+		this.lossCoefficient = pipe.lossCoefficient;
 		this.status = pipe.status;
+		this.bulkCoefficient = pipe.bulkCoefficient;
+		this.wallCoefficient = pipe.wallCoefficient;
 	}
 
 	/**
@@ -90,21 +135,24 @@ public final class Pipe extends Link {
 	}
 
 	/**
-	 * Get loss coeficient
-	 * @return the mloss
+	 * Get loss coefficient
+	 * 
+	 * @return the loss coefficient
 	 */
-	public double getMinorLoss() {
-		return mloss;
+	public double getLossCoefficient() {
+		return lossCoefficient;
 	}
 
 	/**
-	 * @param mloss the mloss to set
+	 * @param mloss the loss coefficient to set
 	 */
-	public void setMinorLoss(double mloss) {
-		this.mloss = mloss;
+	public void setLossCoefficient(double mloss) {
+		this.lossCoefficient = mloss;
 	}
 
 	/**
+	 * Get the status of this pipe
+	 * 
 	 * @return the status
 	 */
 	public PipeStatus getStatus() {
@@ -112,10 +160,52 @@ public final class Pipe extends Link {
 	}
 
 	/**
+	 * Set the status of this pipe
+	 * 
 	 * @param status the status to set
+	 * @throws NullPointerException if status is null
 	 */
 	public void setStatus(PipeStatus status) {
+		Objects.requireNonNull(status);
 		this.status = status;
+	}
+
+	/**
+	 * Get the bulk coefficient
+	 * 
+	 * @return the bulkCoefficient or null if not exist
+	 */
+	public Double getBulkCoefficient() {
+		return bulkCoefficient;
+	}
+
+	/**
+	 * Set the bulk coefficient
+	 * 
+	 * @param bulkCoefficient the bulkCoefficient to set or null if there isn't a
+	 *                        value
+	 */
+	public void setBulkCoefficient(Double bulkCoefficient) {
+		this.bulkCoefficient = bulkCoefficient;
+	}
+
+	/**
+	 * Get the wall coefficient
+	 * 
+	 * @return the wallCoefficient or null if not exist
+	 */
+	public Double getWallCoefficient() {
+		return wallCoefficient;
+	}
+
+	/**
+	 * Set the wall coefficient
+	 * 
+	 * @param wallCoefficient the wallCoefficient to set or null if there isn't a
+	 *                        value
+	 */
+	public void setWallCoefficient(Double wallCoefficient) {
+		this.wallCoefficient = wallCoefficient;
 	}
 
 	@Override
@@ -127,7 +217,7 @@ public final class Pipe extends Link {
 		txt.append(String.format("%-10f\t", getLength()));
 		txt.append(String.format("%-10f\t", getDiameter()));
 		txt.append(String.format("%-10f\t", getRoughness()));
-		txt.append(String.format("%-10f\t", getMinorLoss()));
+		txt.append(String.format("%-10f\t", getLossCoefficient()));
 		txt.append(String.format("%-10s", getStatus().getName()));
 		String description = getDescription();
 		if (description != null) {

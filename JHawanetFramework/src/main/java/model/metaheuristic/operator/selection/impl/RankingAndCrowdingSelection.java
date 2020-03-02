@@ -89,7 +89,7 @@ public class RankingAndCrowdingSelection<S extends Solution<?>> implements Selec
 		}
 
 		DominanceRanking<S> ranking = new DominanceRanking<S>(dominanceComparator);
-		ranking.computeRanking(solutionList);
+		ranking.computeRanking(solutionList); // fast-dominated-sorting
 
 		return crowdingDistanceSelection(ranking);
 	}

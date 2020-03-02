@@ -35,4 +35,5 @@ Abrir el proyecto desde eclipse y asegurarse de que el build path este de la sig
 
 ![BuildPath](assets/BuildPath.png)
 
-### Nota: Assest es solo una carpeta donde se suben las imagenes. No es usada por el proyecto.
+### Nota1: Assest es solo una carpeta donde se suben las imagenes. No es usada por el proyecto.
+### Nota2: La version en ingles y la version en español de epanet a veces ocupan distintas palabras claves (Ej: Feet en ingles y Pies en español). Este programa lee el formato inp de la version en ingles.

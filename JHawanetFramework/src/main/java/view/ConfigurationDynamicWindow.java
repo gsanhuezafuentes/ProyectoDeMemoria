@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 
 import annotations.operators.DefaultConstructor;
 import annotations.registrable.FileInput;
+import annotations.registrable.FileInput.FileType;
 import annotations.registrable.NumberInput;
 import annotations.registrable.NumberToggleInput;
 import annotations.registrable.OperatorInput;
 import annotations.registrable.OperatorOption;
 import annotations.registrable.Parameters;
-import annotations.registrable.FileInput.FileType;
 import controller.ConfigurationDynamicWindowController;
 import controller.problems.Registrable;
 import controller.utils.ReflectionUtils;

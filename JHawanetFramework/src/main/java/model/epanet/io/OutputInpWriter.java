@@ -8,8 +8,8 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
 import exception.ApplicationException;
-import exception.InputException;
 import model.epanet.element.Network;
+import model.epanet.element.utils.ParseNetworkToINPString;
 
 /**
  * Class that write in the system a inp file of the specific network object.
@@ -21,7 +21,7 @@ public class OutputInpWriter implements OutputWriter {
 	public void write(Network net, String filename) throws FileNotFoundException, IOException {
 		try (BufferedWriter buffWriter = new BufferedWriter(
 				new OutputStreamWriter(new FileOutputStream(filename), "ISO-8859-1"))) {
-			buffWriter.write(net.toString());
+			buffWriter.write(ParseNetworkToINPString.parse(net));
 		} catch (UnsupportedEncodingException e) {
 			throw new ApplicationException("Error in encoding file", e);
 		}

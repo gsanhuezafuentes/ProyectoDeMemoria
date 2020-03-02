@@ -1,5 +1,7 @@
 package model.epanet.element.waterquality;
 
+import java.util.Objects;
+
 import model.epanet.element.systemoperation.Pattern;
 
 public final class Source {
@@ -19,45 +21,43 @@ public final class Source {
 		public String getName() {
 			return name;
 		}
+		
+		/**
+		 * Parse the name to a object of the enum class if exist. if name no exist in enum class so return null;
+		 * @param name the name of object
+		 * @return the object of enum class or null if no exist
+		 */
+		public static SourceType parse(String name) {
+			for (SourceType object : SourceType.values()) {
+				if (object.getName().equalsIgnoreCase(name)) {
+					return object;
+				}
+			}
+			return null;
+		}
 	}
 
-	private String nodeId;
 	private SourceType sourceType;
 	private double baselineStrenth;
-	private Pattern timePattern;
+	private String timePattern; // ID to Pattern
 
 	public Source() {
-		// TODO Auto-generated constructor stub
+		this.timePattern = "";
 	}
 
 	/**
 	 * Create a new source with the same values that the source received. This is a
-	 * shallow copy, i.e., If the field value is a reference to an object (e.g., a
-	 * memory address) it copies the reference. If it is necessary for the object to
-	 * be completely independent of the original you must ensure that you replace
-	 * the reference to the contained objects.
+	 * deep copy.
+	 * 
+	 * If you want that the object will be totally independent you need set the
+	 * timePattern ({@link #setTimePattern(Pattern)}).
 	 * 
 	 * @param source the object to copy
 	 */
 	public Source(Source source) {
-		this.nodeId = source.nodeId;
 		this.sourceType = source.sourceType;
 		this.baselineStrenth = source.baselineStrenth;
 		this.timePattern = source.timePattern;
-	}
-
-	/**
-	 * @return the nodeId
-	 */
-	public String getNodeId() {
-		return nodeId;
-	}
-
-	/**
-	 * @param nodeId the nodeId to set
-	 */
-	public void setNodeId(String nodeId) {
-		this.nodeId = nodeId;
 	}
 
 	/**
@@ -89,27 +89,32 @@ public final class Source {
 	}
 
 	/**
-	 * @return the timePattern
+	 * Get the time pattern. This is an id of the {@link Pattern}
+	 * 
+	 * @return the timePattern or a empty string if it does not exist
 	 */
-	public Pattern getTimePattern() {
+	public String getTimePattern() {
 		return timePattern;
 	}
 
 	/**
+	 * Set the time pattern id.
+	 * 
 	 * @param timePattern the timePattern to set
+	 * @throws NullPointerException if timePattern is null
 	 */
-	public void setTimePattern(Pattern timePattern) {
+	public void setTimePattern(String timePattern) {
+		Objects.requireNonNull(timePattern);
 		this.timePattern = timePattern;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", getNodeId()));
 		txt.append(String.format("%-10s\t", getSourceType().getName()));
 		txt.append(String.format("%-10f\t", getBaselineStrenth()));
 		if (getTimePattern() != null) {
-			txt.append(String.format("%-10s", getTimePattern().getId()));
+			txt.append(String.format("%-10s", getTimePattern()));
 		}
 
 		return txt.toString();
@@ -117,6 +122,8 @@ public final class Source {
 
 	/**
 	 * Create a copy of this object
+	 * 
+	 * @see Source#Source(Source)
 	 * 
 	 * @return the object to copy
 	 */

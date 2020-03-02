@@ -20,7 +20,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import model.epanet.element.Network;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.problem.Problem;

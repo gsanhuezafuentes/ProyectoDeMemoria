@@ -51,7 +51,7 @@ public class CustomDialogs {
 		exception.printStackTrace(pw);
 		String exceptionText = sw.toString();
 
-		Label label = new Label("La traza de la excepcion fue");
+		Label label = new Label("The trace of exception was:");
 
 		TextArea textArea = new TextArea(exceptionText);
 		textArea.setEditable(false);

@@ -22,8 +22,6 @@ import model.metaheuristic.evaluator.MonoObjetiveSolutionEvaluator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.random.BoundedRandomGenerator;
-import model.metaheuristic.utils.random.JavaRandom;
 
 /**
  * Class that implement the problem of inversion cost.

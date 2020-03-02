@@ -1,5 +1,7 @@
 package model.epanet.element.waterquality;
 
+import java.util.Objects;
+
 public final class Mixing {
 
 	public static enum MixingModel {
@@ -18,15 +20,26 @@ public final class Mixing {
 			return name;
 		}
 		
-		
+		/**
+		 * Parse the name to a object of the enum class if exist. if name no exist in enum class so return null;
+		 * @param name the name of object
+		 * @return the object of enum class or null if no exist
+		 */
+		public static MixingModel parse(String name) {
+			for (MixingModel object : MixingModel.values()) {
+				if (object.getName().equalsIgnoreCase(name)) {
+					return object;
+				}
+			}
+			return null;
+		}
 	}
 
-	private String tankId;
 	private MixingModel model;
-	private double compartmentVolume;
+	private Double mixingFraction;
 	
 	public Mixing() {
-		// TODO Auto-generated constructor stub
+		this.model = MixingModel.MIXED;
 	}
 	
 	/**
@@ -34,23 +47,8 @@ public final class Mixing {
 	 * @param mixing the object to copy
 	 */
 	public Mixing(Mixing mixing) {
-		this.tankId = mixing.tankId;
 		this.model = mixing.model;
-		this.compartmentVolume = mixing.compartmentVolume;
-	}
-
-	/**
-	 * @return the tankId
-	 */
-	public String getTankId() {
-		return tankId;
-	}
-
-	/**
-	 * @param tankId the tankId to set
-	 */
-	public void setTankId(String tankId) {
-		this.tankId = tankId;
+		this.mixingFraction = mixing.mixingFraction;
 	}
 
 	/**
@@ -62,42 +60,43 @@ public final class Mixing {
 
 	/**
 	 * @param model the model to set
+	 * @throws NullPointerException if model is null
 	 */
 	public void setModel(MixingModel model) {
+		Objects.requireNonNull(model);
 		this.model = model;
 	}
 
 	/**
-	 * Get Compartment volume value. <br>
+	 * Get mixing fraction value. <br>
 	 * <br>
-	 * This value only should have assigned a value when the mixing model is
-	 * {@link MixingModel#TWOCOMP}
+	 * This value should be assigned when the mixing model is not
+	 * {@link MixingModel#MIXED}
 	 * 
-	 * @return the compartmentVolume
+	 * @return the compartmentVolume or null if it is not assigned
 	 */
-	public double getCompartmentVolume() {
-		return compartmentVolume;
+	public Double getMixingFraction() {
+		return mixingFraction;
 	}
 
 	/**
-	 * Set Compartment volume value. <br>
+	 * Set mixing fraction value. <br>
 	 * <br>
-	 * Only should assigned a value when the mixing model is
-	 * {@link MixingModel#TWOCOMP}
+	 * This value should be assigned when the mixing model is not
+	 * {@link MixingModel#MIXED}
 	 * 
-	 * @param compartmentVolume the compartmentVolume to set
+	 * @param mixingFraction the mixing fraction or null if it is not assigned
 	 */
-	public void setCompartmentVolume(double compartmentVolume) {
-		this.compartmentVolume = compartmentVolume;
+	public void setMixingFraction(Double mixingFraction) {
+		this.mixingFraction = mixingFraction;
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", getTankId()));
 		txt.append(String.format("%-10s\t", getModel().getName()));
-		if (getModel() == MixingModel.TWOCOMP) {
-			txt.append(String.format("%-10f", getCompartmentVolume()));
+		if (getModel() != MixingModel.MIXED) {
+			txt.append(String.format("%-10f", getMixingFraction()));
 		}
 		return txt.toString();
 	}

@@ -1,104 +1,149 @@
 package model.epanet.element.networkcomponent;
 
-import model.epanet.element.systemoperation.Curve;
+import java.util.Objects;
 
+import model.epanet.element.systemoperation.Curve;
+import model.epanet.element.waterquality.Mixing;
+
+/**
+ * This class represent a tank.
+ *
+ */
 public final class Tank extends Node {
-	private double elev;
-	private double initLvl;
-	private double minLvl;
-	private double maxLvl;
+	public static final double DEFAULT_ELEVATION = 0;
+	public static final double DEFAULT_INITIAL_LEVEL = 10;
+	public static final double DEFAULT_MINIMUM_LEVEL = 0;
+	public static final double DEFAULT_MAXIMUM_LEVEL = 20;
+	public static final double DEFAULT_DIAMETER = 50;
+	public static final double DEFAULT_MINIMUM_VOLUME = 0;
+
+	private double elevation;
+	private double initialLevel;
+	private double minimumLevel;
+	private double maximumLevel;
 	private double diameter;
-	private double minVol;
-	private Curve volCurve;
+	private double minimumVolume;
+	private String volumeCurve; // A id to the Curve
+	private Mixing mixing;
+	/*
+	 * This parameter is save [Reaction] section with the label TANK
+	 */
+	private Double reactionCoefficient;
 
 	public Tank() {
-		// TODO Auto-generated constructor stub
+		this.elevation = DEFAULT_ELEVATION;
+		this.initialLevel = DEFAULT_INITIAL_LEVEL;
+		this.minimumLevel = DEFAULT_MINIMUM_LEVEL;
+		this.maximumLevel = DEFAULT_MAXIMUM_LEVEL;
+		this.diameter = DEFAULT_DIAMETER;
+		this.minimumVolume = DEFAULT_MINIMUM_VOLUME;
+		this.volumeCurve = "";
+		this.mixing = new Mixing(); // This by default set the model has mixing
 	}
 
 	/**
-	 * Create a new tank copy the values of tank received. This is a shallow copy,
-	 * i.e., If the field value is a reference to an object (e.g., a memory address)
-	 * it copies the reference. If it is necessary for the object to be completely
-	 * independent of the original you must ensure that you replace the reference to
-	 * the contained objects.
+	 * Create a new tank copy the values of tank received. This is a deep copy.
 	 * 
 	 * @param tank the tank to copy
 	 */
 	public Tank(Tank tank) {
 		super(tank);
-		this.elev = tank.elev;
-		this.initLvl = tank.initLvl;
-		this.minLvl = tank.minLvl;
-		this.maxLvl = tank.maxLvl;
+		this.elevation = tank.elevation;
+		this.initialLevel = tank.initialLevel;
+		this.minimumLevel = tank.minimumLevel;
+		this.maximumLevel = tank.maximumLevel;
 		this.diameter = tank.diameter;
-		this.minVol = tank.minVol;
-		this.volCurve = tank.volCurve;
+		this.minimumVolume = tank.minimumVolume;
+		this.volumeCurve = tank.volumeCurve;
+		this.mixing = tank.mixing.copy();
+		this.reactionCoefficient = tank.reactionCoefficient;
+
 	}
 
 	/**
-	 * @return the elev
+	 * Get the elevation
+	 * 
+	 * @return the elevation
 	 */
-	public double getElev() {
-		return elev;
+	public double getElevation() {
+		return elevation;
 	}
 
 	/**
-	 * @param elev the elev to set
+	 * Set the elevation
+	 * 
+	 * @param elev the elevation to set
 	 */
-	public void setElev(double elev) {
-		this.elev = elev;
+	public void setElevation(double elev) {
+		this.elevation = elev;
 	}
 
 	/**
-	 * @return the initLvl
+	 * Get the initial level
+	 * 
+	 * @return the initLevel
 	 */
-	public double getInitLvl() {
-		return initLvl;
+	public double getInitialLevel() {
+		return initialLevel;
 	}
 
 	/**
-	 * @param initLvl the initLvl to set
+	 * Set the initial level
+	 * 
+	 * @param initLvl the initial level to set
 	 */
-	public void setInitLvl(double initLvl) {
-		this.initLvl = initLvl;
+	public void setInitialLevel(double initLvl) {
+		this.initialLevel = initLvl;
 	}
 
 	/**
-	 * @return the minLvl
+	 * Get the minimum level
+	 * 
+	 * @return the minLevel
 	 */
-	public double getMinLvl() {
-		return minLvl;
+	public double getMinimumLevel() {
+		return this.minimumLevel;
 	}
 
 	/**
-	 * @param minLvl the minLvl to set
+	 * Set the minimum level
+	 * 
+	 * @param minLvl the minLevel to set
 	 */
-	public void setMinLvl(double minLvl) {
-		this.minLvl = minLvl;
+	public void setMinimumLevel(double minLvl) {
+		this.minimumLevel = minLvl;
 	}
 
 	/**
-	 * @return the maxLvl
+	 * Get the maximum level
+	 * 
+	 * @return the maxLevel
 	 */
-	public double getMaxLvl() {
-		return maxLvl;
+	public double getMaximumLevel() {
+		return maximumLevel;
 	}
 
 	/**
-	 * @param maxLvl the maxLvl to set
+	 * Set the maximum level
+	 * 
+	 * @param maxLvl the maxLevel to set
 	 */
-	public void setMaxLvl(double maxLvl) {
-		this.maxLvl = maxLvl;
+	public void setMaximumLevel(double maxLvl) {
+		this.maximumLevel = maxLvl;
 	}
 
 	/**
-	 * @return the diam
+	 * Set the diameter
+	 * 
+	 * @return the diameter
 	 */
 	public double getDiameter() {
 		return diameter;
 	}
 
 	/**
+	 * Get the diameter
+	 * 
 	 * @param diam the diam to set
 	 */
 	public void setDiameter(double diam) {
@@ -106,45 +151,83 @@ public final class Tank extends Node {
 	}
 
 	/**
+	 * Get the minimum volume
+	 * 
 	 * @return the minVol
 	 */
-	public double getMinVol() {
-		return minVol;
+	public double getMinimumVolume() {
+		return minimumVolume;
 	}
 
 	/**
+	 * Set the minimum volume
+	 * 
 	 * @param minVol the minVol to set
 	 */
-	public void setMinVol(double minVol) {
-		this.minVol = minVol;
+	public void setMinimumVolume(double minVol) {
+		this.minimumVolume = minVol;
 	}
 
 	/**
-	 * @return the volCurve
+	 * Get the curve id. The id of {@link Curve} or a empty string if it doesn't exist.
+	 * 
+	 * @return the volCurve or a empty string if it doesn't exist
 	 */
-	public Curve getVolCurve() {
-		return volCurve;
+	public String getVolumeCurve() {
+		return volumeCurve;
 	}
 
 	/**
+	 * Set the curve id. The id of {@link Curve}.
+	 * 
 	 * @param volCurve the volCurve to set
+	 * @throws if volCurve is null
 	 */
-	public void setVolCurve(Curve volCurve) {
-		this.volCurve = volCurve;
+	public void setVolumeCurve(String volCurve) {
+		Objects.requireNonNull(volCurve);
+		this.volumeCurve = volCurve;
+	}
+
+	/**
+	 * Get the mixing
+	 * 
+	 * @return the mixing
+	 */
+	public Mixing getMixing() {
+		return mixing;
+	}
+
+	/**
+	 * Get the reaction coefficient
+	 * 
+	 * @return the reactionCoefficient or null if does not exist
+	 */
+	public Double getReactionCoefficient() {
+		return reactionCoefficient;
+	}
+
+	/**
+	 * Set the reaction coefficient
+	 * 
+	 * @param reactionCoefficient the reactionCoefficient to set or null if there
+	 *                            isn't a reaction value
+	 */
+	public void setReactionCoefficient(Double reactionCoefficient) {
+		this.reactionCoefficient = reactionCoefficient;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder txt = new StringBuilder();
 		txt.append(String.format("%-10s\t", getId()));
-		txt.append(String.format("%-10f\t", getElev()));
-		txt.append(String.format("%-10f\t", getInitLvl()));
-		txt.append(String.format("%-10f\t", getMinLvl()));
-		txt.append(String.format("%-10f\t", getMaxLvl()));
+		txt.append(String.format("%-10f\t", getElevation()));
+		txt.append(String.format("%-10f\t", getInitialLevel()));
+		txt.append(String.format("%-10f\t", getMinimumLevel()));
+		txt.append(String.format("%-10f\t", getMaximumLevel()));
 		txt.append(String.format("%-10f\t", getDiameter()));
-		txt.append(String.format("%-10f\t", getMinVol()));
-		if (getVolCurve() != null) {
-			txt.append(String.format("%-10s", getVolCurve().getId()));
+		txt.append(String.format("%-10f\t", getMinimumVolume()));
+		if (getVolumeCurve() != null) {
+			txt.append(String.format("%-10s", getVolumeCurve()));
 		}
 		String description = getDescription();
 		if (description != null) {

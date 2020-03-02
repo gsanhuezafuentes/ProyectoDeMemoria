@@ -6,40 +6,51 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 import java.util.List;
 
 import epanet.core.EpanetException;
 import exception.ApplicationException;
 import exception.InputException;
 import model.epanet.element.Network;
+import model.epanet.element.networkcomponent.Component;
 import model.epanet.element.networkcomponent.Emitter;
 import model.epanet.element.networkcomponent.Junction;
 import model.epanet.element.networkcomponent.Link;
 import model.epanet.element.networkcomponent.Node;
 import model.epanet.element.networkcomponent.Pipe;
-import model.epanet.element.networkcomponent.Point;
+import model.epanet.element.networkcomponent.Pipe.PipeStatus;
 import model.epanet.element.networkcomponent.Pump;
+import model.epanet.element.networkcomponent.Pump.PumpStatus;
 import model.epanet.element.networkcomponent.Reservoir;
 import model.epanet.element.networkcomponent.Tank;
 import model.epanet.element.networkcomponent.Valve;
+import model.epanet.element.networkcomponent.Valve.ValveStatus;
+import model.epanet.element.networkcomponent.Valve.ValveType;
 import model.epanet.element.networkdesign.Backdrop;
+import model.epanet.element.networkdesign.Backdrop.Unit;
 import model.epanet.element.networkdesign.Label;
 import model.epanet.element.networkdesign.Tag;
 import model.epanet.element.optionsreport.Option;
+import model.epanet.element.optionsreport.Option.FlowUnit;
+import model.epanet.element.optionsreport.Option.HeadlossFormule;
+import model.epanet.element.optionsreport.QualityOption;
+import model.epanet.element.optionsreport.QualityOption.MassUnit;
 import model.epanet.element.optionsreport.Report;
 import model.epanet.element.optionsreport.Time;
 import model.epanet.element.systemoperation.Control;
 import model.epanet.element.systemoperation.Curve;
 import model.epanet.element.systemoperation.Demand;
-import model.epanet.element.systemoperation.Energy;
+import model.epanet.element.systemoperation.EnergyOption;
 import model.epanet.element.systemoperation.Pattern;
 import model.epanet.element.systemoperation.Rule;
-import model.epanet.element.systemoperation.Status;
+import model.epanet.element.utils.ParseNetworkToINPString;
+import model.epanet.element.utils.Point;
 import model.epanet.element.waterquality.Mixing;
+import model.epanet.element.waterquality.Mixing.MixingModel;
 import model.epanet.element.waterquality.Quality;
-import model.epanet.element.waterquality.Reaction;
+import model.epanet.element.waterquality.ReactionOption;
 import model.epanet.element.waterquality.Source;
+import model.epanet.element.waterquality.Source.SourceType;
 
 /**
  * Parse the INP file to get the coordinates and vertices of the water network.
@@ -47,7 +58,7 @@ import model.epanet.element.waterquality.Source;
  */
 public class InpParser implements InputParser {
 
-	private Rule currentRule;
+	private Junction lastJunctionWithDemandAdded;
 
 	/**
 	 * {@inheritDoc}
@@ -120,7 +131,7 @@ public class InpParser implements InputParser {
 						parseStatus(net, tokens);
 						break;
 					case "CONTROLS":
-						parseControl(net, tokens);
+						parseControl(net, tokens, line);
 						break;
 					case "RULES":
 						parseRule(net, tokens, line);
@@ -236,8 +247,8 @@ public class InpParser implements InputParser {
 	/**
 	 * Parse the JUNCTIONS section of inp file
 	 * 
-	 * @param net    network
-	 * @param tokens token of the line being read
+	 * @param net         network
+	 * @param tokens      token of the line being read
 	 * @param description the description of element
 	 * @throws EpanetException
 	 */
@@ -246,24 +257,24 @@ public class InpParser implements InputParser {
 			throw new InputException("Junction " + tokens[0] + " is duplicated");
 		Junction node = new Junction();
 		node.setId(tokens[0]);
-		
+
 		if (description.length() != 0) {
 			node.setDescription(description);
 		}
-		
-		node.setElev(Double.parseDouble(tokens[1]));
+
+		node.setElevation(Double.parseDouble(tokens[1]));
 		if (tokens.length == 2) {
-			node.setDemand(0);
+			node.setBaseDemand(0);
 		}
 		if (tokens.length == 3) {
-			node.setDemand(Double.parseDouble(tokens[2]));
+			node.setBaseDemand(Double.parseDouble(tokens[2]));
 		}
 		if (tokens.length == 4) {
 			Pattern pattern = net.getPattern(tokens[3]);
 			if (pattern == null) {
 				throw new InputException("Don't exist the pattern " + tokens[3] + " for this junction");
 			}
-			node.setPattern(pattern);
+			node.setDemandPattern(pattern.getId());
 		}
 		net.addNode(tokens[0], node);
 	}
@@ -271,8 +282,8 @@ public class InpParser implements InputParser {
 	/**
 	 * Parse the RESERVOIRS section of inp file
 	 * 
-	 * @param net    network
-	 * @param tokens token of the line being read
+	 * @param net         network
+	 * @param tokens      token of the line being read
 	 * @param description the description of element
 	 * @throws EpanetException
 	 */
@@ -281,18 +292,18 @@ public class InpParser implements InputParser {
 			throw new InputException("Reservoir " + tokens[0] + " is duplicated");
 		Reservoir node = new Reservoir();
 		node.setId(tokens[0]);
-		node.setHead(Double.parseDouble(tokens[1]));
+		node.setTotalHead(Double.parseDouble(tokens[1]));
 
 		if (description.length() != 0) {
 			node.setDescription(description);
 		}
-		
+
 		if (tokens.length == 3) {
 			Pattern pattern = net.getPattern(tokens[2]);
 			if (pattern == null) {
 				throw new InputException("Don't exist the pattern " + tokens[2] + " for this reservoir");
 			}
-			node.setPattern(pattern);
+			node.setHeadPattern(pattern.getId());
 		}
 		net.addNode(tokens[0], node);
 	}
@@ -300,8 +311,8 @@ public class InpParser implements InputParser {
 	/**
 	 * Parse the TANKS section of inp file
 	 * 
-	 * @param net    network
-	 * @param tokens token of the line being read
+	 * @param net         network
+	 * @param tokens      token of the line being read
 	 * @param description the description of element
 	 * @throws EpanetException
 	 */
@@ -310,23 +321,23 @@ public class InpParser implements InputParser {
 			throw new InputException("Tank " + tokens[0] + " is duplicated");
 		Tank node = new Tank();
 		node.setId(tokens[0]);
-		
+
 		if (description.length() != 0) {
 			node.setDescription(description);
 		}
-		
-		node.setElev(Double.parseDouble(tokens[1]));
-		node.setInitLvl(Double.parseDouble(tokens[2]));
-		node.setMinLvl(Double.parseDouble(tokens[3]));
-		node.setMaxLvl(Double.parseDouble(tokens[4]));
+
+		node.setElevation(Double.parseDouble(tokens[1]));
+		node.setInitialLevel(Double.parseDouble(tokens[2]));
+		node.setMinimumLevel(Double.parseDouble(tokens[3]));
+		node.setMaximumLevel(Double.parseDouble(tokens[4]));
 		node.setDiameter(Double.parseDouble(tokens[5]));
-		node.setMinVol(Double.parseDouble(tokens[6]));
+		node.setMinimumVolume(Double.parseDouble(tokens[6]));
 		if (tokens.length == 3) {
 			Curve curve = net.getCurve(tokens[2]);
 			if (curve == null) {
 				throw new InputException("Don't exist the curve " + tokens[7] + " for this reservoir");
 			}
-			node.setVolCurve(curve);
+			node.setVolumeCurve(curve.getId());
 		}
 		net.addNode(tokens[0], node);
 	}
@@ -348,7 +359,7 @@ public class InpParser implements InputParser {
 		if (description.length() != 0) {
 			link.setDescription(description);
 		}
-		
+
 		Node to = net.getNode(tokens[1]);
 		if (to == null) {
 			throw new InputException("Don't exist the node with id " + tokens[1]);
@@ -365,7 +376,7 @@ public class InpParser implements InputParser {
 		link.setRoughness(Double.parseDouble(tokens[5]));
 
 		if (tokens.length == 8) {
-			link.setMinorLoss(Double.parseDouble(tokens[6]));
+			link.setLossCoefficient(Double.parseDouble(tokens[6]));
 
 			if (tokens[7].equalsIgnoreCase("OPEN")) {
 				link.setStatus(Pipe.PipeStatus.OPEN);
@@ -380,7 +391,7 @@ public class InpParser implements InputParser {
 			}
 		} else {
 			// Set the value by defect if it isn't in inp file
-			link.setMinorLoss(0.0);
+			link.setLossCoefficient(0.0);
 			link.setStatus(Pipe.PipeStatus.OPEN);
 
 		}
@@ -404,11 +415,11 @@ public class InpParser implements InputParser {
 		}
 		Pump link = new Pump();
 		link.setId(id);
-		
+
 		if (description.length() != 0) {
 			link.setDescription(description);
 		}
-		
+
 		Node to = net.getNode(tokens[1]);
 		if (to == null) {
 			throw new InputException("Don't exist the node with id " + tokens[1]);
@@ -429,13 +440,13 @@ public class InpParser implements InputParser {
 				if (curve == null)
 					throw new InputException("Don't exist the curve " + tokens[i + 1] + "that is used in pump " + id);
 
-				link.setProperty(Pump.PumpProperty.HEAD, curve);
+				link.setProperty(Pump.PumpProperty.HEAD, curve.getId());
 			} else if (tokens[i].equalsIgnoreCase("PATTERN")) {
 				Pattern pattern = net.getPattern(tokens[i + 1]);
 				if (pattern == null)
 					throw new InputException("Don't exist the pattern " + tokens[i + 1] + "that is used in pump " + id);
 
-				link.setProperty(Pump.PumpProperty.PATTERN, pattern);
+				link.setProperty(Pump.PumpProperty.PATTERN, pattern.getId());
 
 			} else if (tokens[i].equalsIgnoreCase("SPEED")) {
 				link.setProperty(Pump.PumpProperty.SPEED, Double.parseDouble(tokens[i + 1]));
@@ -482,9 +493,13 @@ public class InpParser implements InputParser {
 		link.setNode2(from);
 
 		link.setDiameter(Double.parseDouble(tokens[3]));
-		link.setType(tokens[4]);
+		ValveType type = ValveType.parse(tokens[4]);
+		if (type == null) {
+			throw new InputException("There no exist the ValveType " + tokens[4]);
+		}
+		link.setType(type);
 		link.setSetting(tokens[5]);
-		link.setMinorLoss(Double.parseDouble(tokens[6]));
+		link.setLossCoefficient(Double.parseDouble(tokens[6]));
 		net.addLink(tokens[0], link);
 	}
 
@@ -493,12 +508,16 @@ public class InpParser implements InputParser {
 	 * 
 	 * @param net
 	 * @param tokens
+	 * @throws InputException if the node of emitter does not exist
 	 */
-	private void parseEmmiter(Network net, String[] tokens) {
+	private void parseEmmiter(Network net, String[] tokens) throws InputException {
 		Emitter emitter = new Emitter();
-		emitter.setJunctionID(tokens[0]);
 		emitter.setCoefficient(Double.parseDouble(tokens[1]));
-		net.addEmiter(emitter);
+		Junction junction = net.getJuntion(tokens[0]);
+		if (junction != null) {
+			junction.setEmitter(emitter);
+		}
+		throw new InputException("There is not junction " + tokens[1]);
 	}
 
 	/*********************************************************
@@ -520,18 +539,15 @@ public class InpParser implements InputParser {
 			net.addCurve(id, curve);
 		} else {
 			curve = net.getCurve(id);
-			
+
 			if (curve == null) {
 				curve = new Curve();
 				curve.setId(id);
 				net.addCurve(id, curve);
 			}
 		}
-		List<Double> x = curve.getX();
-		List<Double> y = curve.getY();
 
-		x.add(Double.parseDouble(tokens[1]));
-		y.add(Double.parseDouble(tokens[2]));
+		curve.addPointToCurve(Double.parseDouble(tokens[1]), Double.parseDouble(tokens[2]));
 	}
 
 	/**
@@ -547,10 +563,10 @@ public class InpParser implements InputParser {
 			pattern = new Pattern();
 			pattern.setId(id);
 			net.addPattern(id, pattern);
-			
+
 		} else {
 			pattern = net.getPattern(id);
-			
+
 			if (pattern == null) {
 				pattern = new Pattern();
 				pattern.setId(id);
@@ -568,11 +584,43 @@ public class InpParser implements InputParser {
 	 * 
 	 * @param net
 	 * @param tokens
+	 * @throws InputException if there is no pump or a WORD is not valid
 	 */
-	private void parseEnergy(Network net, String[] tokens, String line) {
-		Energy energy = new Energy();
-		energy.setCode(line);
-		net.addEnergy(energy);
+	private void parseEnergy(Network net, String[] tokens, String line) throws InputException {
+		EnergyOption energy = net.getEnergyOption();
+		if (energy == null) {
+			energy = new EnergyOption();
+			net.setEnergyOption(energy);
+		}
+		if (tokens[0].equalsIgnoreCase("Global")) {
+			if (tokens[1].equalsIgnoreCase("Efficiency")) {
+				energy.setGlobalEfficiency(Double.parseDouble(tokens[2]));
+			}
+			if (tokens[1].equalsIgnoreCase("Price")) {
+				energy.setGlobalPrice(Double.parseDouble(tokens[2]));
+			}
+			if (tokens[1].equalsIgnoreCase("Pattern")) {
+				energy.setGlobalPattern(tokens[2]);
+			}
+		}
+		if (tokens[0].equalsIgnoreCase("Demand")) {
+			energy.setDemandCharge(Double.parseDouble(tokens[2]));
+		}
+		if (tokens[0].equalsIgnoreCase("Pump")) {
+			Pump pump = net.getPump(tokens[1]);
+			if (pump == null) {
+				throw new InputException("There is not pump " + tokens[1]);
+			}
+			if (tokens[2].equalsIgnoreCase("Efficiency")) {
+				pump.setEfficiencyCurve(tokens[3]);
+			} else if (tokens[2].equalsIgnoreCase("Price")) {
+				pump.setEnergyPrice(Double.parseDouble(tokens[3]));
+			} else if (tokens[2].equalsIgnoreCase("Pattern")) {
+				pump.setPatternPrice(tokens[3]);
+			} else {
+				throw new InputException("There isn't exist " + tokens[2]);
+			}
+		}
 	}
 
 	/**
@@ -580,13 +628,33 @@ public class InpParser implements InputParser {
 	 * 
 	 * @param net
 	 * @param tokens
+	 * @throws InputException if the status in unknown
 	 */
-	private void parseStatus(Network net, String[] tokens) {
-		Status status = new Status();
-		status.setLinkId(tokens[0]);
-		status.setStatus(tokens[1]);
-
-		net.addStatus(status);
+	private void parseStatus(Network net, String[] tokens) throws InputException {
+		String linkId = tokens[0];
+		Link link = net.getLink(linkId);
+		if (link instanceof Pipe) {
+			Pipe pipe = (Pipe) link;
+			PipeStatus status = PipeStatus.parse(tokens[1]);
+			if (status == null) {
+				throw new InputException("There is no status " + tokens[1]);
+			}
+			pipe.setStatus(status);
+		} else if (link instanceof Pump) {
+			Pump pump = (Pump) link;
+			PumpStatus status = PumpStatus.parse(tokens[1]);
+			if (status == null) {
+				throw new InputException("There is no status " + tokens[1]);
+			}
+			pump.setStatus(status);
+		} else {
+			Valve valve = (Valve) link;
+			ValveStatus status = ValveStatus.parse(tokens[1]);
+			if (status == null) {
+				throw new InputException("There is no status " + tokens[1]);
+			}
+			valve.setFixedStatus(status);
+		}
 	}
 
 	/**
@@ -596,48 +664,20 @@ public class InpParser implements InputParser {
 	 * @param tokens
 	 * @throws InputException if there is a error in controls section
 	 */
-	private void parseControl(Network net, String[] tokens) throws InputException {
-		Control control = new Control();
-		control.setLinkId(tokens[1]);
-		if (tokens[2].equalsIgnoreCase("OPEN")) {
-			control.setStatType(Control.StatType.OPEN);
-		} else if (tokens[2].equalsIgnoreCase("CLOSED")) {
-			control.setStatType(Control.StatType.CLOSE);
-
-		} else {
-			control.setStatType(Control.StatType.VALUE);
-			control.setStatValue(Double.parseDouble(tokens[2]));
+	private void parseControl(Network net, String[] tokens, String line) throws InputException {
+		Control control = net.getControl();
+		if (control == null) {
+			control = new Control();
+			net.setControl(control);
 		}
-
-		if (tokens[3].equalsIgnoreCase("IF")) { // LINK linkID status IF NODE nodeID ABOVE/BELOW value
-			if (tokens[4].equalsIgnoreCase("NODE")) {
-				control.setNodeId(tokens[5]);
-				if (tokens[6].equalsIgnoreCase("ABOVE")) {
-					control.setControlType(Control.ControlType.IF_ABOVE);
-				} else if (tokens[6].equalsIgnoreCase("BELOW")) {
-					control.setControlType(Control.ControlType.IF_BELOW);
-				} else {
-					throw new InputException(tokens[6] + "isn't a valid token for CONTROL section");
-				}
-				control.setValue(Double.parseDouble(tokens[7]));
-			} else {
-				throw new InputException(tokens[4] + "isn't a valid token for CONTROL section");
-			}
-
-		} else if (tokens[3].equalsIgnoreCase("AT")) {
-			if (tokens[4].equalsIgnoreCase("TIME")) { // LINK linkID status AT TIME time
-				control.setTime(Integer.parseInt(tokens[5]));
-				control.setControlType(Control.ControlType.AT_TIME);
-			} else if (tokens[4].equalsIgnoreCase("CLOCKTIME")) { // LINK linkID status AT CLOCKTIME clocktime AM/PM
-				control.setClocktime(tokens[5] + " " + tokens[6]); // Example 12:32 AM
-				control.setControlType(Control.ControlType.AT_CLOCKTIME);
-			} else {
-				throw new InputException(tokens[4] + "isn't a valid token for CONTROL section");
-			}
+		String code = control.getCode();
+		if (code.isEmpty()) {
+			code = line;
 		} else {
-			throw new InputException(tokens[3] + "isn't a valid token for CONTROL section");
+			code = "\n" + line;
 		}
-		net.addControl(control);
+		control.setCode(code);
+
 	}
 
 	/**
@@ -647,20 +687,20 @@ public class InpParser implements InputParser {
 	 * @param tokens
 	 */
 	private void parseRule(Network net, String[] tokens, String line) {
-		if (tokens[0].equalsIgnoreCase("RULE")) {
-			currentRule = new Rule();
-			currentRule.setRuleId(tokens[1]);
-			net.addRule(currentRule);
+		Rule rule = net.getRule();
+		if (rule == null) {
+			rule = new Rule();
+			net.setRule(rule);
 
-		} else if (currentRule != null) {
-			String code = currentRule.getCode();
-			if (code == null) {
-				code = line;
-			} else {
-				code = "\n" + line;
-			}
-			currentRule.setCode(code);
 		}
+
+		String code = rule.getCode();
+		if (code.isEmpty()) {
+			code = line;
+		} else {
+			code = "\n" + line;
+		}
+		rule.setCode(code);
 
 	}
 
@@ -669,21 +709,27 @@ public class InpParser implements InputParser {
 	 * 
 	 * @param net
 	 * @param tokens
+	 * @throws InputException if there is no junction
 	 */
-	private void parseDemand(Network net, String[] tokens) {
+	private void parseDemand(Network net, String[] tokens) throws InputException {
 		Demand demand = new Demand();
-		demand.setId(tokens[0]);
 		demand.setDemand(Double.parseDouble(tokens[1]));
 		if (tokens.length > 3) {
-			if (net.getPattern(tokens[2]) != null) {
-				demand.setDemandPatern(net.getPattern(tokens[2]));
-			}
+			demand.setDemandPattern(tokens[2]);
 		}
 		if (tokens.length == 4) {
 			demand.setDemandCategory(";MISS");
 		}
 
-		net.addDemand(demand);
+		if (lastJunctionWithDemandAdded == null || !lastJunctionWithDemandAdded.getId().equals(tokens[0])) {
+			lastJunctionWithDemandAdded = net.getJuntion(tokens[0]);
+			List<Demand> demandList = lastJunctionWithDemandAdded.getDemandCategories();
+			demandList.clear();
+			demandList.add(demand);
+		} else {
+			lastJunctionWithDemandAdded.getDemandCategories().add(demand);
+		}
+
 	}
 
 	/*********************************************************
@@ -695,13 +741,17 @@ public class InpParser implements InputParser {
 	 * 
 	 * @param net
 	 * @param tokens
+	 * @throws InputException if there is no node with the id in tokens
 	 */
-	private void parseQuality(Network net, String[] tokens) {
+	private void parseQuality(Network net, String[] tokens) throws InputException {
+		Node node = net.getNode(tokens[0]);
+		if (node == null) {
+			throw new InputException("There is no node with id " + tokens[0]);
+		}
 		Quality quality = new Quality();
-		quality.setNodeId(tokens[0]);
 		quality.setInitialQuality(Double.parseDouble(tokens[1]));
+		node.setInitialQuality(quality);
 
-		net.addQuality(quality);
 	}
 
 	/**
@@ -709,22 +759,64 @@ public class InpParser implements InputParser {
 	 * 
 	 * @param net
 	 * @param tokens
+	 * @throws InputException if there is no a pipe or tank with the id or there is
+	 *                        a bad key word.
 	 */
-	private void parseReaction(Network net, String[] tokens, String line) {
-		Reaction reaction;
-		if (net.getReaction() == null) {
-			reaction = new Reaction();
-			net.setReaction(reaction);
-		} else {
-			reaction = net.getReaction();
+	private void parseReaction(Network net, String[] tokens, String line) throws InputException {
+		if (tokens[0].equalsIgnoreCase("Bulk")) {
+			Pipe pipe = net.getPipe(tokens[1]);
+			if (pipe == null) {
+				throw new InputException("There is no a pipe with id " + tokens[1]);
+			}
+			pipe.setBulkCoefficient(Double.parseDouble(tokens[2]));
+			return;
+		} else if (tokens[0].equalsIgnoreCase("Wall")) {
+			Pipe pipe = net.getPipe(tokens[1]);
+			if (pipe == null) {
+				throw new InputException("There is no a pipe with id " + tokens[1]);
+			}
+			pipe.setWallCoefficient(Double.parseDouble(tokens[2]));
+			return;
+		} else if (tokens[0].equalsIgnoreCase("Tank")) {
+			Tank tank = net.getTank(tokens[1]);
+			if (tank == null) {
+				throw new InputException("There is no a tank with id " + tokens[1]);
+			}
+			tank.setReactionCoefficient(Double.parseDouble(tokens[2]));
+			return;
 		}
-		// Add lines with configuration
-		String code = reaction.getCode();
 
-		if (code == null) {
-			reaction.setCode(line);
+		ReactionOption reaction = net.getReactionOption();
+
+		if (reaction == null) {
+			reaction = new ReactionOption();
+			net.setReactionOption(reaction);
 		} else {
-			reaction.setCode(code + "\n" + line);
+			if (tokens[0].equalsIgnoreCase("Order")) {
+				if (tokens[1].equalsIgnoreCase("Bulk")) {
+					reaction.setOrderBulk(Double.parseDouble(tokens[2]));
+				} else if (tokens[1].equalsIgnoreCase("Tank")) {
+					reaction.setOrderTank(Double.parseDouble(tokens[2]));
+				} else if (tokens[1].equalsIgnoreCase("Wall")) {
+					reaction.setOrderWall(Integer.parseInt(tokens[2]));
+				} else {
+					throw new InputException("There is no a key word " + tokens[1]);
+				}
+			} else if (tokens[0].equalsIgnoreCase("Global")) {
+				if (tokens[1].equalsIgnoreCase("Bulk")) {
+					reaction.setGlobalBulk(Double.parseDouble(tokens[2]));
+				} else if (tokens[1].equalsIgnoreCase("Wall")) {
+					reaction.setGlobalWall(Double.parseDouble(tokens[2]));
+				} else {
+					throw new InputException("There is no a key word " + tokens[1]);
+				}
+			} else if (tokens[0].equalsIgnoreCase("Limiting")) {
+				reaction.setLimitingPotential(Double.parseDouble(tokens[2]));
+			} else if (tokens[0].equalsIgnoreCase("Roughness")) {
+				reaction.setRoughnessCorrelation(Double.parseDouble(tokens[2]));
+			} else {
+				throw new InputException("There is no a key word " + tokens[0]);
+			}
 		}
 
 	}
@@ -737,19 +829,17 @@ public class InpParser implements InputParser {
 	 * @throws InputException if there is a error in SOURCE SECTION
 	 */
 	private void parseSource(Network net, String[] tokens) throws InputException {
-		Source source = new Source();
-		source.setNodeId(tokens[0]);
-		if (tokens[1].equalsIgnoreCase("CONCEN")) {
-			source.setSourceType(Source.SourceType.CONCEN);
-		} else if (tokens[1].equalsIgnoreCase("MASS")) {
-			source.setSourceType(Source.SourceType.MASS);
-		} else if (tokens[1].equalsIgnoreCase("FLOWPACED")) {
-			source.setSourceType(Source.SourceType.FLOWPACED);
-		} else if (tokens[1].equalsIgnoreCase("SETPOINT")) {
-			source.setSourceType(Source.SourceType.SETPOINT);
-		} else {
-			throw new InputException(tokens[1] + " isn't a valid token for SOURCE section");
+		Node node = net.getNode(tokens[0]);
+		if (node == null) {
+			throw new InputException("There is no node with id " + tokens[0]);
 		}
+
+		Source source = new Source();
+		SourceType sourceType = Source.SourceType.parse(tokens[1]);
+		if (sourceType == null) {
+			throw new InputException("There is no a source type " + tokens[1]);
+		}
+		source.setSourceType(sourceType);
 
 		source.setBaselineStrenth(Double.parseDouble(tokens[2]));
 
@@ -757,10 +847,10 @@ public class InpParser implements InputParser {
 			if (net.getPattern(tokens[4]) == null) {
 				throw new InputException("Don't exist the pattern " + tokens[4] + " for this source");
 			}
-			source.setTimePattern(net.getPattern(tokens[4]));
+			source.setTimePattern(net.getPattern(tokens[4]).getId());
 		}
 
-		net.addSource(source);
+		node.setSourceQuality(source);
 	}
 
 	/**
@@ -771,24 +861,17 @@ public class InpParser implements InputParser {
 	 * @throws InputException If there is a error in MIXING section
 	 */
 	private void parseMixing(Network net, String[] tokens) throws InputException {
-		Mixing mixing = new Mixing();
-		mixing.setTankId(tokens[0]);
-
-		if (tokens[1].equalsIgnoreCase("MIXED")) {
-			mixing.setModel(Mixing.MixingModel.MIXED);
-		} else if (tokens[1].equalsIgnoreCase("2COMP")) {
-			mixing.setModel(Mixing.MixingModel.TWOCOMP);
-			mixing.setCompartmentVolume(Double.parseDouble(tokens[2]));
-		} else if (tokens[1].equalsIgnoreCase("FIFO")) {
-			mixing.setModel(Mixing.MixingModel.FIFO);
-
-		} else if (tokens[1].equalsIgnoreCase("LIFO")) {
-			mixing.setModel(Mixing.MixingModel.LIFO);
-
-		} else {
-			throw new InputException(tokens[1] + "isn't a valid token in MIXING section");
+		Tank tank = net.getTank(tokens[0]);
+		if (tank == null) {
+			throw new InputException("There is no a tank with the id " + tokens[0]);
 		}
 
+		Mixing mixing = new Mixing();
+		MixingModel mixingModel = Mixing.MixingModel.parse(tokens[1]);
+		if (mixingModel == null) {
+			throw new InputException("There is no a mixing model " + tokens[1]);
+		}
+		mixing.setModel(mixingModel);
 	}
 
 	/*********************************************************
@@ -800,23 +883,88 @@ public class InpParser implements InputParser {
 	 * 
 	 * @param net
 	 * @param tokens
+	 * @throws InputException if there is a error in a key word
 	 */
-	private void parseOption(Network net, String[] tokens, String line) {
-		Option option;
-		if (net.getOption() == null) {
+	private void parseOption(Network net, String[] tokens, String line) throws InputException {
+		Option option = net.getOption();
+		if (option == null) {
 			option = new Option();
 			net.setOption(option);
-		} else {
-			option = net.getOption();
 		}
-		// Add lines with configuration
-		String code = option.getCode();
+		if (tokens[0].equalsIgnoreCase("Units")) {
+			FlowUnit flowUnit = FlowUnit.parse(tokens[1]);
+			if (flowUnit == null) {
+				throw new InputException("There is no a flow unit called " + tokens[1]);
+			}
+			option.setFlowUnit(flowUnit);
+		} else if (tokens[0].equalsIgnoreCase("Headloss")) {
+			HeadlossFormule headlossFormule = HeadlossFormule.parse(tokens[1]);
+			if (headlossFormule == null) {
+				throw new InputException("There is no a headloss formule called " + tokens[1]);
+			}
+			option.setHeadlossFormule(headlossFormule);
+		} else if (tokens[0].equalsIgnoreCase("Specific")) {
+			option.setSpecificGravity(Double.parseDouble(tokens[2]));
+		} else if (tokens[0].equalsIgnoreCase("Viscosity")) {
+			option.setViscosity(Double.parseDouble(tokens[1]));
 
-		if (code == null) {
-			option.setCode(line);
-		} else {
-			option.setCode(code + "\n" + line);
+		} else if (tokens[0].equalsIgnoreCase("Trials")) {
+			option.setTrials(Double.parseDouble(tokens[1]));
+
+		} else if (tokens[0].equalsIgnoreCase("Accuracy")) {
+			option.setAccuracy(Double.parseDouble(tokens[1]));
+		} else if (tokens[0].equalsIgnoreCase("CHECKFREQ")) {
+			option.setCheckfreq(Double.parseDouble(tokens[1]));
+
+		} else if (tokens[0].equalsIgnoreCase("MAXCHECK")) {
+			option.setMaxcheck(Double.parseDouble(tokens[1]));
+
+		} else if (tokens[0].equalsIgnoreCase("DAMPLIMIT")) {
+			option.setDamplimit(Double.parseDouble(tokens[1]));
+
+		} else if (tokens[0].equalsIgnoreCase("Unbalanced")) {
+			if (tokens.length == 3) {
+				option.setUnbalanced(String.join(" ", tokens[1], tokens[2]));
+			} else if (tokens.length == 2) {
+				option.setUnbalanced(tokens[1]);
+			}
+		} else if (tokens[0].equalsIgnoreCase("Pattern")) {
+			option.setPattern(tokens[1]);
+		} else if (tokens[0].equalsIgnoreCase("Demand")) {
+			option.setDemandMultiplier(Double.parseDouble(tokens[2]));
+		} else if (tokens[0].equalsIgnoreCase("Emitter")) {
+			option.setEmitterExponent(Double.parseDouble(tokens[2]));
+		} else if (tokens[0].equalsIgnoreCase("Hydraulics")) {
+			option.setHydraulic(String.join(" ", tokens[1], tokens[2]));
+
+		} else if (tokens[0].equalsIgnoreCase("Map")) {
+			option.setMap(tokens[1]);
 		}
+
+		QualityOption qualityOption = net.getQualityOption();
+		if (qualityOption == null) {
+			qualityOption = new QualityOption();
+			net.setQualityOption(qualityOption);
+		}
+		if (tokens[0].equalsIgnoreCase("Quality")) {
+			qualityOption.setParameter(tokens[1]);
+			if (!tokens[1].equalsIgnoreCase("Trace")) {
+				if (tokens.length == 3) {
+					qualityOption.setTraceNodeID(tokens[2]);
+				}
+			} else {
+				MassUnit massUnit = MassUnit.parse(tokens[2]);
+				if (massUnit == null) {
+					throw new InputException("There is no a mass unit called " + tokens[2]);
+				}
+				qualityOption.setMassUnit(massUnit);
+			}
+		} else if (tokens[0].equalsIgnoreCase("Diffusivity")) {
+			qualityOption.setRelativeDiffusivity(Double.parseDouble(tokens[1]));
+		} else if (tokens[0].equalsIgnoreCase("Tolerance")) {
+			qualityOption.setQualityTolerance(Double.parseDouble(tokens[1]));
+		}
+
 	}
 
 	/**
@@ -826,20 +974,10 @@ public class InpParser implements InputParser {
 	 * @param tokens
 	 */
 	private void parseTime(Network net, String[] tokens, String line) {
-		Time time;
-		if (net.getTime() == null) {
+		Time time = net.getTime();
+		if (time == null) {
 			time = new Time();
 			net.setTime(time);
-		} else {
-			time = net.getTime();
-		}
-		// Add lines with configuration
-		String code = time.getCode();
-
-		if (code == null) {
-			time.setCode(line);
-		} else {
-			time.setCode(code + "\n" + line);
 		}
 	}
 
@@ -920,7 +1058,7 @@ public class InpParser implements InputParser {
 			if (node == null) {
 				throw new InputException("The node " + tokens[3] + " don't exist");
 			}
-			label.setAnchorNode(node);
+			label.setAnchorNode(node.getId());
 		}
 
 		net.addLabel(label);
@@ -931,22 +1069,36 @@ public class InpParser implements InputParser {
 	 * 
 	 * @param net
 	 * @param tokens
+	 * @throws InputException if the key work isn't valid
 	 */
-	private void parseBackdrop(Network net, String[] tokens, String line) {
-		Backdrop backdrop;
-		if (net.getBackdrop() == null) {
+	private void parseBackdrop(Network net, String[] tokens, String line) throws InputException {
+		Backdrop backdrop = net.getBackdrop();
+		if (backdrop == null) {
 			backdrop = new Backdrop();
 			net.setBackdrop(backdrop);
-		} else {
-			backdrop = net.getBackdrop();
 		}
-		// Add lines with configuration
-		String code = backdrop.getCode();
-
-		if (code == null) {
-			backdrop.setCode(line);
+		if (tokens[0].equalsIgnoreCase("DIMENSIONS")) {
+			double xBottomLeft = Double.parseDouble(tokens[1]);
+			double yBottomLeft = Double.parseDouble(tokens[2]);
+			double xUpperRight = Double.parseDouble(tokens[3]);
+			double yUpperRight = Double.parseDouble(tokens[4]);
+			backdrop.setDimension(xBottomLeft, yBottomLeft, xUpperRight, yUpperRight);
+		} else if (tokens[0].equalsIgnoreCase("UNITS")) {
+			Unit unit = Unit.parse(tokens[1]);
+			if (unit == null) {
+				unit = Unit.NONE;
+			}
+			backdrop.setUnit(unit);
+		} else if (tokens[0].equalsIgnoreCase("FILE")) {
+			if (tokens.length == 2) {
+				backdrop.setFile(tokens[1]);
+			}
+		} else if (tokens[0].equalsIgnoreCase("OFFSET")) {
+			double xOffset = Double.parseDouble(tokens[1]);
+			double yOffset = Double.parseDouble(tokens[2]);
+			backdrop.setOffset(xOffset, yOffset);
 		} else {
-			backdrop.setCode(code + "\n" + line);
+			throw new InputException("No valid key work " + tokens[0]);
 		}
 	}
 
@@ -958,24 +1110,29 @@ public class InpParser implements InputParser {
 	 * @throws InputException if there is a error in TAGS section
 	 */
 	private void parseTag(Network net, String[] tokens) throws InputException {
+		Component component;
 		Tag tag = new Tag();
 		if (tokens.length != 3) {
 			throw new InputException("There are a error in TAGS section associed with the number of parameters");
 		}
 		if (tokens[0].equalsIgnoreCase("NODE")) {
+			component = net.getNode(tokens[1]);
 			tag.setType(Tag.TagType.NODE);
-		}
-		if (tokens[0].equalsIgnoreCase("LINK")) {
+		} else if (tokens[0].equalsIgnoreCase("LINK")) {
+			component = net.getLink(tokens[1]);
 			tag.setType(Tag.TagType.LINK);
 		} else {
 			throw new InputException(tokens[0] + " isn't a valid token for TAGS section");
 		}
-		tag.setId(tokens[1]);
+
+		if (component == null) {
+			throw new InputException("There is no a node or link with id " + tokens[1]);
+		}
 		tag.setLabel(tokens[2]);
-		net.addTag(tag);
+		component.setTag(tag);
 	}
 
-	public String identifySectionType(String token) {
+	private String identifySectionType(String token) {
 		int endIndex = token.indexOf("]");
 		return token.substring(1, endIndex);
 	}
@@ -997,7 +1154,8 @@ public class InpParser implements InputParser {
 		Network network = new Network();
 		// File file = new File("inp/hanoi-Frankenstein2.inp");
 		try {
-			System.out.println(parse.parse(network, "inp/red1.inp"));
+			network = parse.parse(network, "inp/vanzylOriginal.inp");
+			System.out.println(ParseNetworkToINPString.parse(network));
 			OutputInpWriter writer = new OutputInpWriter();
 			writer.write(network, "red1writer.inp");
 		} catch (FileNotFoundException e) {

@@ -12,10 +12,10 @@ import model.epanet.element.Selectable;
 import model.epanet.element.networkcomponent.Junction;
 import model.epanet.element.networkcomponent.Link;
 import model.epanet.element.networkcomponent.Node;
-import model.epanet.element.networkcomponent.Point;
 import model.epanet.element.networkcomponent.Reservoir;
 import model.epanet.element.networkcomponent.Tank;
 import model.epanet.element.networkdesign.Label;
+import model.epanet.element.utils.Point;
 
 /**
  * This class draw on a GraphicsContext the Network.

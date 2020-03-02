@@ -1,22 +1,20 @@
 package model.epanet.element.networkdesign;
 
-import model.epanet.element.networkcomponent.Node;
-import model.epanet.element.networkcomponent.Point;
+import java.util.Objects;
+
+import model.epanet.element.utils.Point;
 
 public final class Label {
-	Point position;
-	String label;
-	Node anchorNode;
+	private Point position;
+	private String label;
+	private String anchorNode; // This is the ID of a Node (Junction or Reservoir or Tank)
 
 	public Label() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Copy constructor. This is a shallow copy, i.e., If the field value is a
-	 * reference to an object (e.g., a memory address) it copies the reference. If
-	 * it is necessary for the object to be completely independent of the original
-	 * you must ensure that you replace the reference to the contained objects.
+	 * Copy constructor. This is a deep copy.
 	 * 
 	 * @param label the object to copy
 	 */
@@ -49,22 +47,30 @@ public final class Label {
 
 	/**
 	 * @param text the text to set
+	 * @throws if text is null
 	 */
 	public void setLabel(String text) {
+		Objects.requireNonNull(text);
 		this.label = text;
 	}
 
 	/**
+	 * Get the anchor Node id
+	 * 
 	 * @return the anchorNode
 	 */
-	public Node getAnchorNode() {
+	public String getAnchorNode() {
 		return anchorNode;
 	}
 
 	/**
+	 * Set the anchor node id
+	 * 
 	 * @param anchorNode the anchorNode to set
+	 * @throws if anchorNode is null
 	 */
-	public void setAnchorNode(Node anchorNode) {
+	public void setAnchorNode(String anchorNode) {
+		Objects.requireNonNull(anchorNode);
 		this.anchorNode = anchorNode;
 	}
 
@@ -74,7 +80,7 @@ public final class Label {
 		txt.append(String.format("%s\t", getPosition()));
 		txt.append(String.format("%-10s\t", getLabel()));
 		if (getAnchorNode() != null) {
-			txt.append(String.format("%-10s", getAnchorNode().getId()));
+			txt.append(String.format("%-10s", getAnchorNode()));
 		}
 
 		return txt.toString();

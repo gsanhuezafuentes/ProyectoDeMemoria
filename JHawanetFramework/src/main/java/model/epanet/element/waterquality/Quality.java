@@ -1,7 +1,6 @@
 package model.epanet.element.waterquality;
 
 public final class Quality {
-	private String nodeId;
 	private double initialQuality;
 	
 	public Quality() {
@@ -13,26 +12,8 @@ public final class Quality {
 	 * @param quality the object to copy
 	 */
 	public Quality(Quality quality) {
-		this.nodeId = quality.nodeId;
 		this.initialQuality = quality.initialQuality;
 	}
-	
-	
-	/**
-	 * @return the nodeId
-	 */
-	public String getNodeId() {
-		return nodeId;
-	}
-
-	/**
-	 * @param nodeId the nodeId to set
-	 */
-	public void setNodeId(String nodeId) {
-		this.nodeId = nodeId;
-	}
-	
-	
 	
 	/**
 	 * @return the initialQuality
@@ -51,8 +32,7 @@ public final class Quality {
 	@Override
 	public String toString() {
 		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", getNodeId()));
-		txt.append(String.format("%-10f", getInitialQuality()));
+		txt.append(String.format("Initial Quality %-10f", getInitialQuality()));
 
 		return txt.toString();
 	}

@@ -7,7 +7,6 @@ import controller.problems.MonoObjectiveRegistrable;
 import controller.problems.MultiObjectiveRegistrable;
 import controller.problems.PipeOptimizingRegister;
 import controller.problems.PumpSchedulingRegister;
-import controller.problems.Registrable;
 import controller.problems.TestProblemRegister;
 
 /**

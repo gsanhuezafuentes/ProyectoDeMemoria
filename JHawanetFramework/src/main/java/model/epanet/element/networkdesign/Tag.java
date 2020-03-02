@@ -1,5 +1,7 @@
 package model.epanet.element.networkdesign;
 
+import java.util.Objects;
+
 public final class Tag {
 	public static enum TagType {
 		NODE("NODE"), LINK("LINK");
@@ -16,25 +18,36 @@ public final class Tag {
 		public String getName() {
 			return name;
 		}
+		
+		public static TagType parse(String name) {
+			for (TagType object : TagType.values()) {
+				if (object.getName().equalsIgnoreCase(name)) {
+					return object;
+				}
+			}
+			throw new IllegalArgumentException("There are not a valid element with the name " + name);
+		}
 
 	}
 
 	private TagType type;
-	private String id;
 	private String label;
 
 	public Tag() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
+	/**
+	 * Copy constructor
+	 * @param tag the tag to cop 
+	 */
 	public Tag(Tag tag) {
 		this.type = tag.type;
-		this.id = tag.id;
 		this.label = tag.label;
 	}
-	
-	
+
 	/**
+	 * Get the type
 	 * @return the type
 	 */
 	public TagType getType() {
@@ -43,23 +56,11 @@ public final class Tag {
 
 	/**
 	 * @param type the type to set
+	 * @throws NullPointerException if type is null 
 	 */
 	public void setType(TagType type) {
+		Objects.requireNonNull(type);
 		this.type = type;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	/**
@@ -71,8 +72,10 @@ public final class Tag {
 
 	/**
 	 * @param label the label to set
+	 * @throws if label is null
 	 */
 	public void setLabel(String label) {
+		Objects.requireNonNull(label);
 		this.label = label;
 	}
 
@@ -80,13 +83,13 @@ public final class Tag {
 	public String toString() {
 		StringBuilder txt = new StringBuilder();
 		txt.append(String.format("%-10s\t", getType().getName()));
-		txt.append(String.format("%-10s\t", getId()));
 		txt.append(String.format("%-10s", getLabel()));
 		return txt.toString();
 	}
-	
+
 	/**
 	 * Copy this object.
+	 * 
 	 * @return the copy.
 	 */
 	public Tag copy() {

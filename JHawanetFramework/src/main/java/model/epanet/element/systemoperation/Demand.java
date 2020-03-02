@@ -1,43 +1,27 @@
 package model.epanet.element.systemoperation;
 
+import java.util.Objects;
+
 public final class Demand {
-	String id;
-	double demand;
-	Pattern demandPatern;
-	String demandCategory;
+	private double demand;
+	private String demandPattern; // ID to the Pattern
+	private String demandCategory;
 
 	public Demand() {
-		// TODO Auto-generated constructor stub
+		this.demandPattern = "";
+		this.demandCategory = "";
 	}
 
 	/**
-	 * Create a demand with same values that the demand received. This is a shallow
-	 * copy, i.e., If the field value is a reference to an object (e.g., a memory
-	 * address) it copies the reference. If it is necessary for the object to be
-	 * completely independent of the original you must ensure that you replace the
-	 * reference to the contained objects.
+	 * Create a demand with same values that the demand received. This is a deep
+	 * copy.
 	 * 
 	 * @param demand the demand to copy
 	 */
 	public Demand(Demand demand) {
-		this.id = demand.id;
 		this.demand = demand.demand;
-		this.demandPatern = demand.demandPatern;
+		this.demandPattern = demand.demandPattern;
 		this.demandCategory = demand.demandCategory;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	/**
@@ -55,17 +39,20 @@ public final class Demand {
 	}
 
 	/**
+	 * Get the ID to the {@link Pattern}
 	 * @return the demandPatern
 	 */
-	public Pattern getDemandPatern() {
-		return demandPatern;
+	public String getDemandPattern() {
+		return demandPattern;
 	}
 
 	/**
-	 * @param demandPatern the demandPatern to set
+	 * Set the ID to the {@link Pattern}
+	 * @param demandPattern the demand pattern to set or empty string if it does not exist
 	 */
-	public void setDemandPatern(Pattern demandPatern) {
-		this.demandPatern = demandPatern;
+	public void setDemandPattern(String demandPattern) {
+		Objects.requireNonNull(demandPattern);
+		this.demandPattern = demandPattern;
 	}
 
 	/**
@@ -76,19 +63,19 @@ public final class Demand {
 	}
 
 	/**
-	 * @param demandCategory the demandCategory to set
+	 * @param demandCategory the demandCategory to set or null if it does not exist
 	 */
 	public void setDemandCategory(String demandCategory) {
+		Objects.requireNonNull(demandCategory);
 		this.demandCategory = demandCategory;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", getId()));
 		txt.append(String.format("%-10f\t", getDemand()));
-		if (getDemandPatern() != null) {
-			txt.append(String.format("%-10s\t", getDemandPatern().getId()));
+		if (getDemandPattern() != null) {
+			txt.append(String.format("%-10s\t", getDemandPattern()));
 		}
 		if (getDemandCategory() != null) {
 			txt.append(String.format("%-10s\t", getDemandCategory()));

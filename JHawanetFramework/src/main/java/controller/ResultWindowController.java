@@ -12,11 +12,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -181,7 +181,8 @@ public class ResultWindowController {
 		File file = fileChooser.showSaveDialog(this.saveButton.getScene().getWindow());
 		if (file != null) {
 			SolutionListOutput output = new SolutionListOutput(this.solutionList)
-					.setFunFileName("FUN_" + file.getAbsolutePath()).setVarFileName("VAR_" + file.getAbsolutePath());
+					.setFunFileName(Paths.get(file.getParent(), "FUN_" + file.getName()).toString())
+					.setVarFileName(Paths.get(file.getParent(), "VAR_" + file.getName()).toString());
 			try {
 				output.write();
 			} catch (IOException e) {

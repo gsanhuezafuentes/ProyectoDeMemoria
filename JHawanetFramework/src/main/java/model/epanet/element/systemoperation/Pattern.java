@@ -2,6 +2,7 @@ package model.epanet.element.systemoperation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public final class Pattern {
 	private String id;
@@ -33,6 +34,7 @@ public final class Pattern {
 	 * @param id the id to set
 	 */
 	public void setId(String id) {
+		Objects.requireNonNull(id);
 		this.id = id;
 	}
 

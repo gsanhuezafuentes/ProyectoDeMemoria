@@ -1,65 +1,72 @@
 package model.epanet.element.networkcomponent;
 
-import model.epanet.element.systemoperation.Pattern;
+import java.util.Objects;
 
 public final class Reservoir extends Node {
-	private double head;
-	private Pattern pattern;
+	public static final double DEFAULT_TOTAL_HEAD = 0;
+
+	private double totalHead;
+	private String headPattern; // Pattern ID
 
 	public Reservoir() {
-		// TODO Auto-generated constructor stub
+		totalHead = DEFAULT_TOTAL_HEAD;
+		headPattern = "";
 	}
 
 	/**
-	 * Create a new reservoir copy the reservoir received.This is a shallow copy,
-	 * i.e., If the field value is a reference to an object (e.g., a memory address)
-	 * it copies the reference. If it is necessary for the object to be completely
-	 * independent of the original you must ensure that you replace the reference to
-	 * the contained objects.
+	 * Create a new reservoir copy the reservoir received.This is a deep copy.
 	 * 
 	 * @param reservoir the reservoir to copy.
 	 */
 	public Reservoir(Reservoir reservoir) {
 		super(reservoir);
-		head = reservoir.head;
-		pattern = reservoir.pattern;
+		totalHead = reservoir.totalHead;
+		headPattern = reservoir.headPattern;
 	}
 
 	/**
+	 * Get the head value
 	 * @return the head
 	 */
-	public double getHead() {
-		return head;
+	public double getTotalHead() {
+		return totalHead;
 	}
 
 	/**
+	 * Set the head value
 	 * @param head the head to set
 	 */
-	public void setHead(double head) {
-		this.head = head;
+	public void setTotalHead(double head) {
+		this.totalHead = head;
 	}
 
 	/**
-	 * @return the pattern
+	 * Get the pattern id or a empty string if it doesn't exist
+	 * 
+	 * @return the pattern id or a empty string if it doesn't exist
 	 */
-	public Pattern getPattern() {
-		return pattern;
+	public String getHeadPattern() {
+		return headPattern;
 	}
 
 	/**
+	 * Set the pattern id
+	 * 
 	 * @param pattern the pattern to set
+	 * @throws NullPointerException if pattern is null
 	 */
-	public void setPattern(Pattern pattern) {
-		this.pattern = pattern;
+	public void setHeadPattern(String pattern) {
+		Objects.requireNonNull(pattern);
+		this.headPattern = pattern;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder txt = new StringBuilder();
 		txt.append(String.format("%-10s\t", getId()));
-		txt.append(String.format("%-10f\t", getHead()));
-		if (getPattern() != null) {
-			txt.append(String.format("%-10s\t", getPattern().getId()));
+		txt.append(String.format("%-10f\t", getTotalHead()));
+		if (getHeadPattern() != null) {
+			txt.append(String.format("%-10s\t", getHeadPattern()));
 		}
 		String description = getDescription();
 		if (description != null) {

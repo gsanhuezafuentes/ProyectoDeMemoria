@@ -1,6 +1,11 @@
 package model.epanet.element.optionsreport;
 
+/**
+ * This class contains the value of [REPORT] section of a inp.
+ *
+ */
 public final class Report {
+	//code contains the code of all report section
 	private String code;
 	
 	public Report() {

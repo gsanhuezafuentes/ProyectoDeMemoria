@@ -5,15 +5,16 @@ import java.util.List;
 import java.util.Objects;
 
 import model.epanet.element.Selectable;
+import model.epanet.element.utils.Point;
 
-public abstract class Link implements Selectable{
+public abstract class Link extends Component implements Selectable {
 	private String id;
-	private String description;
 	private Node node1;
 	private Node node2;
 	private List<Point> vertices;
 
 	public Link() {
+		this.id = "";
 		this.vertices = new ArrayList<Point>();
 	}
 
@@ -24,13 +25,16 @@ public abstract class Link implements Selectable{
 	 * necessary for the object to be completely independent of the original you
 	 * must ensure that you replace the reference to the contained objects.
 	 * 
+	 * You must replace node1 and node2 to do the copy independent of the original
+	 * 
 	 * @param link the object to copy
 	 */
 	public Link(Link link) {
-		this();
+		super(link);
+		this.vertices = new ArrayList<Point>();
 		this.id = link.id;
-		this.node1 = link.node1;
-		this.node2 = link.node2;
+		this.node1 = link.node1; //shallow copy
+		this.node2 = link.node2; //shallow copy
 		this.vertices.addAll(link.vertices);
 	}
 
@@ -44,37 +48,26 @@ public abstract class Link implements Selectable{
 	}
 
 	/**
-	 * @return the id
+	 * Get the id
+	 * @return the id or a empty string if it doesn't exist
 	 */
 	public String getId() {
 		return id;
 	}
 
 	/**
+	 * Set the id
 	 * @param id the id to set
+	 * @throws NullPointerException if id is null
 	 */
 	public void setId(String id) {
+		Objects.requireNonNull(id);
 		this.id = id;
 	}
-	
 
 	/**
-	 * @return the description or null if not exist
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * @param description the description to set
-	 * @throws NullPointerException if description is null
-	 */
-	public void setDescription(String description) {
-		Objects.requireNonNull(description);
-		this.description = description;
-	}
-
-	/**
+	 * Get the start node
+	 * 
 	 * @return the node1
 	 */
 	public Node getNode1() {
@@ -82,13 +75,19 @@ public abstract class Link implements Selectable{
 	}
 
 	/**
+	 * Set the start node
+	 * 
 	 * @param node1 the node1 to set
+	 * @throws NullPointerException if node1 is null
 	 */
 	public void setNode1(Node node1) {
+		Objects.requireNonNull(node1);
 		this.node1 = node1;
 	}
 
 	/**
+	 * Get the end node
+	 * 
 	 * @return the node2
 	 */
 	public Node getNode2() {
@@ -96,9 +95,13 @@ public abstract class Link implements Selectable{
 	}
 
 	/**
+	 * Set the end node
+	 * 
 	 * @param node2 the node2 to set
+	 * @throws NullPointerException if node2 is null
 	 */
 	public void setNode2(Node node2) {
+		Objects.requireNonNull(node2);
 		this.node2 = node2;
 	}
 
