@@ -5,15 +5,14 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import model.epanet.element.Network;
-import model.epanet.element.Selectable;
 import view.utils.NetworkImage;
 
 public class NetworkComponent extends Canvas {
 	private Network network;
-	private ObjectProperty<Selectable> selected;
+	private ObjectProperty<Object> selected;
 
 	public NetworkComponent() {
-		this.selected = new SimpleObjectProperty<Selectable>();
+		this.selected = new SimpleObjectProperty<Object>();
 
 		widthProperty().addListener((evt) -> {
 			if (network != null) {
@@ -28,16 +27,16 @@ public class NetworkComponent extends Canvas {
 
 		setOnMouseClicked(evt -> {
 			if (this.network != null) {
-				Selectable selected = NetworkImage.peekNearest(getWidth(), getHeight(), evt.getX(), evt.getY(),
+				Object selected = NetworkImage.peekNearest(getWidth(), getHeight(), evt.getX(), evt.getY(),
 						this.network);
 				setSelected(selected);
 
 				if (selected != null) {
 					DataDisplayWindow dataWindow = DataDisplayWindow.getInstance();
-					
+
 					if (dataWindow.isShowing()) {
 						dataWindow.setData(selected);
-					} else if(evt.getClickCount() == 2) {
+					} else if (evt.getClickCount() == 2) {
 						dataWindow.setData(selected);
 						dataWindow.show();
 					}
@@ -51,15 +50,27 @@ public class NetworkComponent extends Canvas {
 		});
 	}
 
-	public ObjectProperty<Selectable> selectedProperty() {
+	/**
+	 * Get the observable property for the selected item
+	 * @return the property
+	 */
+	public ObjectProperty<Object> selectedProperty() {
 		return this.selected;
 	}
 
-	public void setSelected(Selectable selected) {
+	/**
+	 * Change the selected element
+	 * @param selected the selected element
+	 */
+	public void setSelected(Object selected) {
 		this.selected.set(selected);
 	}
 
-	public Selectable getSelected() {
+	/**
+	 * Get the selected element
+	 * @return
+	 */
+	public Object getSelected() {
 		return this.selected.get();
 	}
 

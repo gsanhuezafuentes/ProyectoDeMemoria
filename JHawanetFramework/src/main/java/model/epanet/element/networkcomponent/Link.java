@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import model.epanet.element.Selectable;
 import model.epanet.element.utils.Point;
 
-public abstract class Link extends Component implements Selectable {
+public abstract class Link extends Component  {
 	private String id;
 	private Node node1;
 	private Node node2;

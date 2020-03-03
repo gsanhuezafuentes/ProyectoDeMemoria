@@ -9,20 +9,27 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import model.epanet.element.Network;
-import model.epanet.element.Selectable;
 import model.epanet.element.networkcomponent.Junction;
 import model.epanet.element.networkcomponent.Pipe;
 import model.epanet.element.networkcomponent.Pump;
 import model.epanet.element.networkcomponent.Reservoir;
 import model.epanet.element.networkcomponent.Tank;
 import model.epanet.element.networkcomponent.Valve;
+import model.epanet.element.optionsreport.Option;
+import model.epanet.element.optionsreport.QualityOption;
+import model.epanet.element.optionsreport.Report;
+import model.epanet.element.optionsreport.Time;
+import model.epanet.element.systemoperation.Curve;
+import model.epanet.element.systemoperation.EnergyOption;
+import model.epanet.element.systemoperation.Pattern;
+import model.epanet.element.waterquality.ReactionOption;
 
 /**
- * Component that show the element of the network in the main window.
+ * Component that show the selected element of the network in the main window.
  *
  */
 public class ElementViewer extends VBox {
-	private ObjectProperty<Selectable> selected;
+	private ObjectProperty<Object> selected;
 	private Accordion accordion;
 	private ListView<Junction> junctionList;
 	private ListView<Reservoir> reservoirList;
@@ -30,6 +37,13 @@ public class ElementViewer extends VBox {
 	private ListView<Pipe> pipeList;
 	private ListView<Pump> pumpList;
 	private ListView<Valve> valveList;
+	private ListView<Curve> curveList;
+	private ListView<Pattern> patternList;
+	/*
+	 * This list contains Option, QualityOption, ReactionOption, Time, EnergyOption,
+	 * Report
+	 */
+	private ListView<Object> optionList;
 	private ObjectProperty<Network> network;
 	private TitledPane junctionTitled;
 	private TitledPane reservoirTitled;
@@ -37,9 +51,12 @@ public class ElementViewer extends VBox {
 	private TitledPane pipeTitled;
 	private TitledPane pumpTitled;
 	private TitledPane valveTitled;
+	private TitledPane curveTitled;
+	private TitledPane patternTitled;
+	private TitledPane optionTitled;
 
 	public ElementViewer() {
-		this.selected = new SimpleObjectProperty<Selectable>();
+		this.selected = new SimpleObjectProperty<Object>();
 		this.network = new SimpleObjectProperty<Network>();
 		this.accordion = new Accordion();
 
@@ -49,6 +66,9 @@ public class ElementViewer extends VBox {
 		this.pipeList = new ListView<Pipe>();
 		this.pumpList = new ListView<Pump>();
 		this.valveList = new ListView<Valve>();
+		this.curveList = new ListView<Curve>();
+		this.patternList = new ListView<Pattern>();
+		this.optionList = new ListView<Object>();
 
 		this.junctionTitled = new TitledPane("Junction", junctionList);
 		this.reservoirTitled = new TitledPane("Reservoir", reservoirList);
@@ -56,6 +76,9 @@ public class ElementViewer extends VBox {
 		this.pipeTitled = new TitledPane("Pipe", pipeList);
 		this.pumpTitled = new TitledPane("Pump", pumpList);
 		this.valveTitled = new TitledPane("Valve", valveList);
+		this.curveTitled = new TitledPane("Curve", curveList);
+		this.patternTitled = new TitledPane("Pattern", patternList);
+		this.optionTitled = new TitledPane("Option", optionList);
 
 		VBox.setVgrow(accordion, Priority.ALWAYS);
 		configureElementViewer();
@@ -66,14 +89,22 @@ public class ElementViewer extends VBox {
 	 * Configure the elements in the component
 	 */
 	private void configureElementViewer() {
+		// add the titled to the accordion
 		accordion.getPanes().add(this.junctionTitled);
 		accordion.getPanes().add(this.reservoirTitled);
 		accordion.getPanes().add(this.tankTitled);
 		accordion.getPanes().add(this.pipeTitled);
 		accordion.getPanes().add(this.pumpTitled);
 		accordion.getPanes().add(this.valveTitled);
+		accordion.getPanes().add(this.curveTitled);
+		accordion.getPanes().add(this.patternTitled);
+		accordion.getPanes().add(this.optionTitled);
 		getChildren().add(this.accordion);
 
+		/*
+		 * Configure what will be showed for each element: Node and link, curves and
+		 * pattern show the id of element. Option show the category name
+		 */
 		this.junctionList.setCellFactory((listView) -> new ListCell<Junction>() {
 			@Override
 			protected void updateItem(Junction item, boolean empty) {
@@ -144,12 +175,65 @@ public class ElementViewer extends VBox {
 			}
 		});
 
+		this.patternList.setCellFactory((listView) -> new ListCell<Pattern>() {
+			@Override
+			protected void updateItem(Pattern item, boolean empty) {
+				super.updateItem(item, empty);
+				if (item != null) {
+					setText(item.getId());
+				} else {
+					setText("");
+				}
+			}
+		});
+
+		this.curveList.setCellFactory((listView) -> new ListCell<Curve>() {
+			@Override
+			protected void updateItem(Curve item, boolean empty) {
+				super.updateItem(item, empty);
+				if (item != null) {
+					setText(item.getId());
+				} else {
+					setText("");
+				}
+			}
+		});
+
+		this.optionList.setCellFactory((listView) -> new ListCell<Object>() {
+			@Override
+			protected void updateItem(Object item, boolean empty) {
+				super.updateItem(item, empty);
+				if (item != null) {
+					if (item instanceof Option) {
+						setText("Hydraulic");
+
+					} else if (item instanceof QualityOption) {
+						setText("Quality");
+					} else if (item instanceof ReactionOption) {
+						setText("Reaction");
+
+					} else if (item instanceof Time) {
+						setText("Time");
+
+					} else if (item instanceof EnergyOption) {
+						setText("Energy");
+
+					} else if (item instanceof Report) {
+						setText("Report");
+					}
+				} else {
+					setText("");
+				}
+			}
+		});
+
 	}
 
 	/**
 	 * Add the binding and listener to element in this component
 	 */
 	private void addBindingAndListener() {
+		// Configure the action when the selected element change
 		this.selected.addListener((prop, oldV, newV) -> {
 			/*
 			 * If the selected element of this element viewer isn't the selected element of
@@ -215,6 +299,7 @@ public class ElementViewer extends VBox {
 			}
 		});
 
+		// When the network is loaded or change so update the element viewer
 		this.network.addListener((prop, oldV, newV) -> {
 			cleanLists();
 			setSelected(null);
@@ -272,10 +357,37 @@ public class ElementViewer extends VBox {
 				}
 			}
 		});
+		this.curveTitled.expandedProperty().addListener((prop, oldv, newv) -> {
+			if (newv) {
+				Curve selected = this.curveList.getSelectionModel().getSelectedItem();
+				if (selected != null) {
+					setSelected(selected);
+				}
+			}
+		});
+		this.patternTitled.expandedProperty().addListener((prop, oldv, newv) -> {
+			if (newv) {
+				Pattern selected = this.patternList.getSelectionModel().getSelectedItem();
+				if (selected != null) {
+					setSelected(selected);
+				}
+			}
+		});
+		this.optionTitled.expandedProperty().addListener((prop, oldv, newv) -> {
+			if (newv) {
+				Object selected = this.optionList.getSelectionModel().getSelectedItem();
+				if (selected != null) {
+					setSelected(selected);
+				}
+			}
+		});
 
+		/*
+		 * Listener for junction list to change the selected object
+		 */
 		this.junctionList.setOnMouseClicked(e -> {
 			setSelected(this.junctionList.getSelectionModel().getSelectedItem());
-			
+
 			if (getSelected() != null && e.getClickCount() == 2) {
 				DataDisplayWindow dataWindow = DataDisplayWindow.getInstance();
 				dataWindow.show();
@@ -320,10 +432,31 @@ public class ElementViewer extends VBox {
 				dataWindow.show();
 			}
 		});
+		this.curveList.setOnMouseClicked(e -> {
+			setSelected(this.curveList.getSelectionModel().getSelectedItem());
+			if (getSelected() != null && e.getClickCount() == 2) {
+				DataDisplayWindow dataWindow = DataDisplayWindow.getInstance();
+				dataWindow.show();
+			}
+		});
+		this.patternList.setOnMouseClicked(e -> {
+			setSelected(this.patternList.getSelectionModel().getSelectedItem());
+			if (getSelected() != null && e.getClickCount() == 2) {
+				DataDisplayWindow dataWindow = DataDisplayWindow.getInstance();
+				dataWindow.show();
+			}
+		});
+		this.optionList.setOnMouseClicked(e -> {
+			setSelected(this.optionList.getSelectionModel().getSelectedItem());
+			if (getSelected() != null && e.getClickCount() == 2) {
+				DataDisplayWindow dataWindow = DataDisplayWindow.getInstance();
+				dataWindow.show();
+			}
+		});
 	}
 
 	/**
-	 * Fill the listview with the element of network
+	 * Fill the listview with the element of network and select a element by default
 	 * 
 	 * @param network
 	 */
@@ -346,6 +479,16 @@ public class ElementViewer extends VBox {
 
 		valveList.getItems().addAll(network.getValves());
 		valveList.getSelectionModel().select(0);
+
+		curveList.getItems().addAll(network.getCurveList());
+		curveList.getSelectionModel().select(0);
+
+		patternList.getItems().addAll(network.getPatternList());
+		patternList.getSelectionModel().select(0);
+
+		optionList.getItems().addAll(network.getOption(), network.getQualityOption(), network.getReactionOption(),
+				network.getTime(), network.getEnergyOption());
+		optionList.getSelectionModel().select(0);
 	}
 
 	/**
@@ -358,15 +501,18 @@ public class ElementViewer extends VBox {
 		pipeList.getItems().clear();
 		pumpList.getItems().clear();
 		valveList.getItems().clear();
+		curveList.getItems().clear();
+		patternList.getItems().clear();
+		optionList.getItems().clear();
 
 	}
 
 	/**
 	 * The selected property
 	 * 
-	 * @return
+	 * @return the selected property
 	 */
-	public ObjectProperty<Selectable> selectedProperty() {
+	public ObjectProperty<Object> selectedProperty() {
 		return this.selected;
 	}
 
@@ -375,7 +521,7 @@ public class ElementViewer extends VBox {
 	 * 
 	 * @return the selectedItem
 	 */
-	public Selectable getSelected() {
+	public Object getSelected() {
 		return selected.get();
 	}
 
@@ -384,7 +530,7 @@ public class ElementViewer extends VBox {
 	 * 
 	 * @param selectedItem the selectedItem to set
 	 */
-	public void setSelected(Selectable selectedItem) {
+	public void setSelected(Object selectedItem) {
 		this.selected.set(selectedItem);
 	}
 

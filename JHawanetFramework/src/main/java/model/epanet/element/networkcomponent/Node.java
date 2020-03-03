@@ -2,12 +2,11 @@ package model.epanet.element.networkcomponent;
 
 import java.util.Objects;
 
-import model.epanet.element.Selectable;
 import model.epanet.element.utils.Point;
 import model.epanet.element.waterquality.Quality;
 import model.epanet.element.waterquality.Source;
 
-public abstract class Node extends Component implements Selectable {
+public abstract class Node extends Component {
 	private String id;
 	private Point position;
 	private Quality initialQuality;

@@ -8,7 +8,6 @@ import java.util.Objects;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.epanet.element.Network;
-import model.epanet.element.Selectable;
 import model.epanet.element.networkcomponent.Junction;
 import model.epanet.element.networkcomponent.Link;
 import model.epanet.element.networkcomponent.Node;
@@ -41,7 +40,7 @@ public class NetworkImage {
 	static private Color LABEL_COLOR = Color.rgb(0, 0, 0);
 
 	/**
-	 * Get the nearest node to the mouse cursor position.
+	 * Get the nearest node or link to the mouse cursor position.
 	 * 
 	 * @param w   Canvas width.
 	 * @param h   Canvas height.
@@ -50,12 +49,12 @@ public class NetworkImage {
 	 * @param net Epanet network.
 	 * @return reference to the nearest element or null if there isn't a selected.
 	 */
-	public static Selectable peekNearest(double w, double h, double x, double y, Network net) {
+	public static Object peekNearest(double w, double h, double x, double y, Network net) {
 		if (net == null)
 			return null;
 
 		Rectangle2D.Double bounds = getBounds(net);
-		
+
 		double factor = (bounds.width / bounds.height) < (((double) w) / h) ? h / bounds.height : w / bounds.width;
 
 		double dx = bounds.getMinX();
@@ -114,16 +113,20 @@ public class NetworkImage {
 	}
 
 	/**
-	 * Render the network in the canvas.
+	 * Render the network in the canvas and draw a marker on selected element.<br>
+	 * <br>
+	 * 
+	 * The selected object can be a element that is not showed in the canvas, i.e.,
+	 * is not a node or link, so it method does not mark the selected item.
 	 * 
 	 * @param g       Reference to the canvas graphics.
 	 * @param w       Canvas width.
 	 * @param h       Canvas height.
 	 * @param net     Epanet network.
-	 * @param selNode Reference to the selected node. null if there isn't a selected
-	 *                item
+	 * @param selNode Reference to the selected element of the network. null if
+	 *                there isn't a selected item.
 	 */
-	public static void drawNetwork(GraphicsContext g, double w, double h, Network net, Selectable selected) {
+	public static void drawNetwork(GraphicsContext g, double w, double h, Network net, Object selected) {
 		Rectangle2D.Double bounds = getBounds(net);
 
 		double factor = (bounds.width / bounds.height) < (((double) w) / h) ? h / bounds.height : w / bounds.width;
@@ -230,7 +233,7 @@ public class NetworkImage {
 
 				g.setFill(LABEL_COLOR);
 				g.fillText(selNode.getId(), (int) point.getX() + 20, (int) point.getY() + 20);
-			} else {// is a link
+			} else if (selected instanceof Link) {// is a link
 				Link selLink = (Link) selected;
 				List<Point> vertices = new ArrayList<Point>(selLink.getVertices());
 				Node node1 = selLink.getNode1();
@@ -254,13 +257,15 @@ public class NetworkImage {
 			}
 		}
 	}
-	
+
 	/**
-	 * Calculate the bounds. The bounds are the lower and greatest point off all component.
+	 * Calculate the bounds. The bounds are the lower and greatest point off all
+	 * component.
+	 * 
 	 * @param net the network
-	 * @return the bounds 
+	 * @return the bounds
 	 */
-	private static Rectangle2D.Double getBounds(Network net){
+	private static Rectangle2D.Double getBounds(Network net) {
 		Rectangle2D.Double bounds = null;
 
 		/*

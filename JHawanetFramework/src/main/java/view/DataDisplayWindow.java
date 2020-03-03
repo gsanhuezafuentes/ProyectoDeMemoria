@@ -15,7 +15,6 @@ import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Pair;
-import model.epanet.element.Selectable;
 import model.epanet.element.networkcomponent.Junction;
 import model.epanet.element.networkcomponent.Node;
 import model.epanet.element.networkcomponent.Pipe;
@@ -30,7 +29,8 @@ import model.epanet.element.networkcomponent.Valve;
  * the Singleton pattern because only one instance can be created at the same
  * time but it can be called from many other views.
  * 
- * The classes that call to this are {@link ElementViewer} and {@link NetworkComponent}.
+ * The classes that call to this are {@link ElementViewer} and
+ * {@link NetworkComponent}.
  */
 public class DataDisplayWindow extends Stage {
 
@@ -44,7 +44,7 @@ public class DataDisplayWindow extends Stage {
 	private static DataDisplayWindow instance;
 	HBox root;
 
-	private ObjectProperty<Selectable> data;
+	private ObjectProperty<Object> data;
 	private TableView<Pair<String, String>> tableView;
 
 	private DataDisplayWindow() {
@@ -57,22 +57,24 @@ public class DataDisplayWindow extends Stage {
 
 		this.tableView = new TableView<Pair<String, String>>();
 		this.tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
 		TableColumn<Pair<String, String>, String> propertyColumn = new TableColumn<Pair<String, String>, String>(
 				"Property");
 		propertyColumn.setCellValueFactory(
 				(CellDataFeatures<Pair<String, String>, String> solutionData) -> new ReadOnlyObjectWrapper<String>(
 						solutionData.getValue().getKey()));
-		TableColumn<Pair<String, String>, String> valueColumn = new TableColumn<Pair<String, String>, String>("Value");
 
+		TableColumn<Pair<String, String>, String> valueColumn = new TableColumn<Pair<String, String>, String>("Value");
 		valueColumn.setCellValueFactory(
 				(CellDataFeatures<Pair<String, String>, String> solutionData) -> new ReadOnlyObjectWrapper<String>(
 						solutionData.getValue().getValue()));
+
 		this.tableView.getColumns().add(propertyColumn);
 		this.tableView.getColumns().add(valueColumn);
 
 		this.root = new HBox(this.tableView);
 		HBox.setHgrow(tableView, Priority.ALWAYS);
-		this.data = new SimpleObjectProperty<Selectable>();
+		this.data = new SimpleObjectProperty<Object>();
 		addBindAndListener();
 
 		Scene scene = new Scene(this.root);
@@ -95,12 +97,14 @@ public class DataDisplayWindow extends Stage {
 	 * Add the bind and listener to nodes in this stage
 	 */
 	private void addBindAndListener() {
+		// update the element in the display
 		this.data.addListener((prop, oldv, newv) -> {
 			if (isShowing()) {
 				updateData(newv);
 			}
 		});
-		
+
+		// if window is been showed so show the data
 		showingProperty().addListener((prop, oldv, newv) -> {
 			updateData(this.data.get());
 		});
@@ -111,7 +115,7 @@ public class DataDisplayWindow extends Stage {
 	 * 
 	 * @param selectedItem
 	 */
-	private void fillData(Selectable selectedItem) {
+	private void fillData(Object selectedItem) {
 		ObservableList<Pair<String, String>> list = this.tableView.getItems();
 		if (selectedItem instanceof Node) {
 			if (selectedItem instanceof Junction) {
@@ -226,8 +230,7 @@ public class DataDisplayWindow extends Stage {
 
 				}
 				if (link.getProperty(PumpProperty.PATTERN) != null) { // should return a id to the pattern
-					list.add(new Pair<String, String>("Pattern",
-							((String) link.getProperty(PumpProperty.PATTERN))));
+					list.add(new Pair<String, String>("Pattern", ((String) link.getProperty(PumpProperty.PATTERN))));
 				} else {
 					list.add(new Pair<String, String>("Pattern", ""));
 				}
@@ -257,7 +260,7 @@ public class DataDisplayWindow extends Stage {
 	 * 
 	 * @param element
 	 */
-	private void updateData(Selectable element) {
+	private void updateData(Object element) {
 		this.tableView.getItems().clear();
 		// fill the labels added
 		fillData(element);
@@ -269,7 +272,7 @@ public class DataDisplayWindow extends Stage {
 	 * @param data the data to show
 	 * @throws NullPointerException if data is null
 	 */
-	public void setData(Selectable data) {
+	public void setData(Object data) {
 		Objects.requireNonNull(data);
 		this.data.setValue(data);
 	}
