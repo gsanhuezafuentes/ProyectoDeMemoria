@@ -262,7 +262,7 @@ public final class ParseNetworkToINPString {
 				out.append(String.format("%-10s\t%-10s\t%-10s\t%-10f\n", "Pump", pump.getId(), "Price", energyPrice));
 			}
 
-			String patternPrice = pump.getPatternPrice();
+			String patternPrice = pump.getPricePattern();
 			if (!patternPrice.isEmpty()) {
 				out.append(
 						String.format("%-10s\t%-10s\t%-10s\t%-10s\n", "Pump", pump.getId(), "Pattern", patternPrice));

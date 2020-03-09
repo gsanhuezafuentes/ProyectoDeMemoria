@@ -110,12 +110,12 @@ public final class Pump extends Link {
 	/*
 	 * This field is saved in [Energy] section using the key Pump
 	 */
-	private String patternPrice;
+	private String pricePattern;
 
 	public Pump() {
 		this.status = DEFAULT_STATUS;
 		this.efficiencyCurve = "";
-		this.patternPrice = "";
+		this.pricePattern = "";
 		this.properties = new HashMap<Pump.PumpProperty, Object>();
 	}
 
@@ -136,7 +136,7 @@ public final class Pump extends Link {
 		this.properties = new HashMap<Pump.PumpProperty, Object>(pump.properties);
 		this.energyPrice = pump.energyPrice;
 		this.efficiencyCurve = pump.efficiencyCurve;
-		this.patternPrice = pump.patternPrice;
+		this.pricePattern = pump.pricePattern;
 	}
 
 	/**
@@ -273,19 +273,19 @@ public final class Pump extends Link {
 	 * 
 	 * @return the patternPrice or null if not exist
 	 */
-	public String getPatternPrice() {
-		return patternPrice;
+	public String getPricePattern() {
+		return pricePattern;
 	}
 
 	/**
-	 * Set the pattern price
+	 * Set the price pattern. A id to a Pattern
 	 * 
-	 * @param patternPrice the patternPrice to set or a empty string if it doesn't exist
-	 * @throws if patternPrice is null
+	 * @param pricePattern the price pattern id to set or a empty string if it doesn't exist
+	 * @throws if pricePattern is null
 	 */
-	public void setPatternPrice(String patternPrice) {
-		Objects.requireNonNull(patternPrice);
-		this.patternPrice = patternPrice;
+	public void setPricePattern(String pricePattern) {
+		Objects.requireNonNull(pricePattern);
+		this.pricePattern = pricePattern;
 	}
 
 	@Override

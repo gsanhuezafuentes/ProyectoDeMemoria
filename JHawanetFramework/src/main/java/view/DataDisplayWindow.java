@@ -15,6 +15,7 @@ import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Pair;
+import model.epanet.element.networkcomponent.Emitter;
 import model.epanet.element.networkcomponent.Junction;
 import model.epanet.element.networkcomponent.Node;
 import model.epanet.element.networkcomponent.Pipe;
@@ -23,6 +24,9 @@ import model.epanet.element.networkcomponent.Pump.PumpProperty;
 import model.epanet.element.networkcomponent.Reservoir;
 import model.epanet.element.networkcomponent.Tank;
 import model.epanet.element.networkcomponent.Valve;
+import model.epanet.element.waterquality.Mixing;
+import model.epanet.element.waterquality.Quality;
+import model.epanet.element.waterquality.Source;
 
 /**
  * View that show the setting up of the elements of the network. It class use
@@ -55,6 +59,10 @@ public class DataDisplayWindow extends Stage {
 		setWidth(defaultWidth);
 		setHeight(defaulHeight);
 
+		/**
+		 * Si quieren editar los valores que muestra este componente para cada elemento
+		 * de la red recomiendo reemplazar el tableView por label y textfield
+		 */
 		this.tableView = new TableView<Pair<String, String>>();
 		this.tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -126,6 +134,7 @@ public class DataDisplayWindow extends Stage {
 				list.add(new Pair<String, String>("X-Coordinates", Double.toString(node.getPosition().getX())));
 				list.add(new Pair<String, String>("Y-Coordinates", Double.toString(node.getPosition().getY())));
 				list.add(new Pair<String, String>("Description", node.getDescription()));
+				list.add(new Pair<String, String>("Tag", node.getTag() != null ? node.getTag().getLabel() : ""));
 
 				// specific property of junction
 				list.add(new Pair<String, String>("Elevation", Double.toString(node.getElevation())));
@@ -134,8 +143,26 @@ public class DataDisplayWindow extends Stage {
 					list.add(new Pair<String, String>("Demand Pattern", node.getDemandPattern()));
 				} else {
 					list.add(new Pair<String, String>("Demand Pattern", ""));
-
 				}
+				list.add(new Pair<String, String>("Demand Categories",
+						Integer.toString(node.getDemandCategories().size())));
+				Emitter emitter = node.getEmitter();
+				list.add(new Pair<String, String>("Emitter Coeff.",
+						emitter != null ? Double.toString(emitter.getCoefficient()) : ""));
+				Quality quality = node.getInitialQuality();
+				list.add(new Pair<String, String>("Initial Quality",
+						quality != null ? Double.toString(quality.getInitialQuality()) : ""));
+				Source source = node.getSourceQuality();
+				list.add(new Pair<String, String>("Source Quality",
+						source != null ? Double.toString(source.getBaselineStrenth()) : ""));
+//				list.add(new Pair<String, String>("Actual Demand",
+//						Integer.toString(node.getDemandCategories().size())));
+//				list.add(new Pair<String, String>("Total Head",
+//						Integer.toString(node.getDemandCategories().size())));
+//				list.add(new Pair<String, String>("Pressure",
+//						Integer.toString(node.getDemandCategories().size())));
+//				list.add(new Pair<String, String>("Quality",
+//						Integer.toString(node.getDemandCategories().size())));
 
 			}
 			if (selectedItem instanceof Reservoir) {
@@ -146,15 +173,30 @@ public class DataDisplayWindow extends Stage {
 				list.add(new Pair<String, String>("X-Coordinates", Double.toString(node.getPosition().getX())));
 				list.add(new Pair<String, String>("Y-Coordinates", Double.toString(node.getPosition().getY())));
 				list.add(new Pair<String, String>("Description", node.getDescription()));
+				list.add(new Pair<String, String>("Tag", node.getTag() != null ? node.getTag().getLabel() : ""));
 
 				// specific property of reservoir
-				list.add(new Pair<String, String>("Head", Double.toString(node.getTotalHead())));
+				list.add(new Pair<String, String>("Total Head", Double.toString(node.getTotalHead())));
 
 				if (node.getHeadPattern() != null) {
 					list.add(new Pair<String, String>("Head Pattern", node.getHeadPattern()));
 				} else {
 					list.add(new Pair<String, String>("Head Pattern", ""));
 				}
+				Quality quality = node.getInitialQuality();
+				list.add(new Pair<String, String>("Initial Quality",
+						quality != null ? Double.toString(quality.getInitialQuality()) : ""));
+				Source source = node.getSourceQuality();
+				list.add(new Pair<String, String>("Source Quality",
+						source != null ? Double.toString(source.getBaselineStrenth()) : ""));
+//				list.add(new Pair<String, String>("Net Flow",
+//						Integer.toString(node.getDemandCategories().size())));
+//				list.add(new Pair<String, String>("Elevation",
+//						Integer.toString(node.getDemandCategories().size())));
+//				list.add(new Pair<String, String>("Pressure",
+//						Integer.toString(node.getDemandCategories().size())));
+//				list.add(new Pair<String, String>("Quality",
+//						Integer.toString(node.getDemandCategories().size())));
 
 			}
 			if (selectedItem instanceof Tank) {
@@ -165,19 +207,41 @@ public class DataDisplayWindow extends Stage {
 				list.add(new Pair<String, String>("X-Coordinates", Double.toString(node.getPosition().getX())));
 				list.add(new Pair<String, String>("Y-Coordinates", Double.toString(node.getPosition().getY())));
 				list.add(new Pair<String, String>("Description", node.getDescription()));
+				list.add(new Pair<String, String>("Tag", node.getTag() != null ? node.getTag().getLabel() : ""));
 
 				// specific property of reservoir
 				list.add(new Pair<String, String>("Elevation", Double.toString(node.getElevation())));
 				list.add(new Pair<String, String>("Initial Level", Double.toString(node.getInitialLevel())));
-				list.add(new Pair<String, String>("Min Level", Double.toString(node.getMinimumLevel())));
-				list.add(new Pair<String, String>("Max Level", Double.toString(node.getMaximumLevel())));
+				list.add(new Pair<String, String>("Minumum Level", Double.toString(node.getMinimumLevel())));
+				list.add(new Pair<String, String>("Maximum Level", Double.toString(node.getMaximumLevel())));
 				list.add(new Pair<String, String>("Diameter", Double.toString(node.getDiameter())));
-				list.add(new Pair<String, String>("Min Vol", Double.toString(node.getMinimumVolume())));
+				list.add(new Pair<String, String>("Minimum Volume", Double.toString(node.getMinimumVolume())));
 				if (node.getVolumeCurve() != null) {
-					list.add(new Pair<String, String>("Volumen Curve", node.getVolumeCurve()));
+					list.add(new Pair<String, String>("Volume Curve", node.getVolumeCurve()));
 				} else {
-					list.add(new Pair<String, String>("Volumen Curve", ""));
+					list.add(new Pair<String, String>("Volume Curve", ""));
 				}
+				Mixing mixing = node.getMixing();
+				list.add(new Pair<String, String>("Mixing Model", mixing.getModel().getName()));
+				list.add(new Pair<String, String>("Mixing Fraction",
+						mixing.getMixingFraction() != null ? Double.toString(mixing.getMixingFraction()) : ""));
+				Double reactionCoeff = node.getReactionCoefficient();
+				list.add(new Pair<String, String>("Reaction Coeff.",
+						reactionCoeff != null ? reactionCoeff.toString() : ""));
+				Quality quality = node.getInitialQuality();
+				list.add(new Pair<String, String>("Initial Quality",
+						quality != null ? Double.toString(quality.getInitialQuality()) : ""));
+				Source source = node.getSourceQuality();
+				list.add(new Pair<String, String>("Source Quality",
+						source != null ? Double.toString(source.getBaselineStrenth()) : ""));
+//				list.add(new Pair<String, String>("Net Flow",
+//				Integer.toString(node.getDemandCategories().size())));
+//		list.add(new Pair<String, String>("Elevation",
+//				Integer.toString(node.getDemandCategories().size())));
+//		list.add(new Pair<String, String>("Pressure",
+//				Integer.toString(node.getDemandCategories().size())));
+//		list.add(new Pair<String, String>("Quality",
+//				Integer.toString(node.getDemandCategories().size())));
 			}
 
 		} else {
@@ -189,13 +253,23 @@ public class DataDisplayWindow extends Stage {
 				list.add(new Pair<String, String>("Initial Node", link.getNode1().getId()));
 				list.add(new Pair<String, String>("Final Node", link.getNode2().getId()));
 				list.add(new Pair<String, String>("Description", link.getDescription()));
+				list.add(new Pair<String, String>("Tag", link.getTag() != null ? link.getTag().getLabel() : ""));
 
 				// specific properties for pipe
 				list.add(new Pair<String, String>("Lenght", Double.toString(link.getLength())));
 				list.add(new Pair<String, String>("Diameter", Double.toString(link.getDiameter())));
 				list.add(new Pair<String, String>("Roughness", Double.toString(link.getRoughness())));
 				list.add(new Pair<String, String>("Loss Coeficient", Double.toString(link.getLossCoefficient())));
-				list.add(new Pair<String, String>("Status", link.getStatus().getName()));
+				list.add(new Pair<String, String>("Initial Status", link.getStatus().getName()));
+				list.add(new Pair<String, String>("Bulk Coefficient", link.getWallCoefficient() != null ? link.getBulkCoefficient().toString():""));
+				list.add(new Pair<String, String>("Bulk Wall", link.getWallCoefficient() != null ? link.getWallCoefficient().toString():""));
+//				list.add(new Pair<String, String>("Flow", link.getStatus().getName()));
+//				list.add(new Pair<String, String>("Velocity", link.getStatus().getName()));
+//				list.add(new Pair<String, String>("Unit Headloss", link.getStatus().getName()));
+//				list.add(new Pair<String, String>("Friction Factor", link.getStatus().getName()));
+//				list.add(new Pair<String, String>("Reaction Rate", link.getStatus().getName()));
+//				list.add(new Pair<String, String>("Quality", link.getStatus().getName()));
+//				list.add(new Pair<String, String>("Status", link.getStatus().getName()));
 
 			}
 
@@ -207,14 +281,15 @@ public class DataDisplayWindow extends Stage {
 				list.add(new Pair<String, String>("Initial Node", link.getNode1().getId()));
 				list.add(new Pair<String, String>("Final Node", link.getNode2().getId()));
 				list.add(new Pair<String, String>("Description", link.getDescription()));
+				list.add(new Pair<String, String>("Tag", link.getTag() != null ? link.getTag().getLabel() : ""));
 
 				// specific properties for pump
 
 				if (link.getProperty(PumpProperty.HEAD) != null) { // should return id to the curve
-					list.add(new Pair<String, String>("Characteristic curve",
+					list.add(new Pair<String, String>("Pump curve",
 							((String) link.getProperty(PumpProperty.HEAD))));
 				} else {
-					list.add(new Pair<String, String>("Characteristic curve", ""));
+					list.add(new Pair<String, String>("Pump curve", ""));
 				}
 				if (link.getProperty(PumpProperty.POWER) != null) { // should return double
 					list.add(new Pair<String, String>("Power", link.getProperty(PumpProperty.POWER).toString()));
@@ -223,10 +298,10 @@ public class DataDisplayWindow extends Stage {
 
 				}
 				if (link.getProperty(PumpProperty.SPEED) != null) { // should return double
-					list.add(new Pair<String, String>("Relative speed",
+					list.add(new Pair<String, String>("Speed",
 							link.getProperty(PumpProperty.SPEED).toString()));
 				} else {
-					list.add(new Pair<String, String>("Relative speed", ""));
+					list.add(new Pair<String, String>("Speed", ""));
 
 				}
 				if (link.getProperty(PumpProperty.PATTERN) != null) { // should return a id to the pattern
@@ -234,6 +309,14 @@ public class DataDisplayWindow extends Stage {
 				} else {
 					list.add(new Pair<String, String>("Pattern", ""));
 				}
+				list.add(new Pair<String, String>("Initial Status", link.getStatus().getName()));
+				list.add(new Pair<String, String>("Effic. Curve", link.getEfficiencyCurve()));
+				list.add(new Pair<String, String>("Energy Price", link.getEnergyPrice() != null ? link.getEnergyPrice().toString() : ""));
+				list.add(new Pair<String, String>("Price Pattern", link.getPricePattern()));
+//				list.add(new Pair<String, String>("Flow", link.getStatus().getName()));
+//				list.add(new Pair<String, String>("Headloss", link.getStatus().getName()));
+//				list.add(new Pair<String, String>("Quality", link.getStatus().getName()));
+//				list.add(new Pair<String, String>("Status", link.getStatus().getName()));
 
 			}
 			if (selectedItem instanceof Valve) {
@@ -244,13 +327,19 @@ public class DataDisplayWindow extends Stage {
 				list.add(new Pair<String, String>("Initial Node", link.getNode1().getId()));
 				list.add(new Pair<String, String>("Final Node", link.getNode2().getId()));
 				list.add(new Pair<String, String>("Description", link.getDescription()));
+				list.add(new Pair<String, String>("Tag", link.getTag() != null ? link.getTag().getLabel() : ""));
 
 				// specific properties for valve
 				list.add(new Pair<String, String>("Diameter", Double.toString(link.getDiameter())));
 				list.add(new Pair<String, String>("Type", link.getType().getName()));
 				list.add(new Pair<String, String>("Setting", link.getSetting()));
 				list.add(new Pair<String, String>("Loss Coeficient", Double.toString(link.getLossCoefficient())));
-
+				list.add(new Pair<String, String>("Fixed Status", link.getFixedStatus().getName()));
+//				list.add(new Pair<String, String>("Flow", link.getStatus().getName()));
+//				list.add(new Pair<String, String>("Velocity", link.getStatus().getName()));
+//				list.add(new Pair<String, String>("Headloss", link.getStatus().getName()));
+//				list.add(new Pair<String, String>("Quality", link.getStatus().getName()));
+//				list.add(new Pair<String, String>("Status", link.getStatus().getName()));
 			}
 		}
 	}

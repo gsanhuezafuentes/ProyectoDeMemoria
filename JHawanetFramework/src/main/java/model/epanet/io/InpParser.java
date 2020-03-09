@@ -616,7 +616,7 @@ public class InpParser implements InputParser {
 			} else if (tokens[2].equalsIgnoreCase("Price")) {
 				pump.setEnergyPrice(Double.parseDouble(tokens[3]));
 			} else if (tokens[2].equalsIgnoreCase("Pattern")) {
-				pump.setPatternPrice(tokens[3]);
+				pump.setPricePattern(tokens[3]);
 			} else {
 				throw new InputException("There isn't exist " + tokens[2]);
 			}

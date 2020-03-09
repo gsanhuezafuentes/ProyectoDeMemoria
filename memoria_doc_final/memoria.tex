@@ -1,9 +1,9 @@
 %% inicio, la clase del documento es iccmemoria.cls
 \documentclass{iccmemoria}
-\usepackage[spanish, commentsnumbered, linesnumbered, boxed, ruled]{algorithm2e}
+\usepackage[spanish, onelanguage, commentsnumbered, linesnumbered, boxed, ruled]{algorithm2e}
 \usepackage{pdfpages}
 \usepackage{amsfonts}
-
+\usepackage{amssymb}
 
 %% datos generales y para la tapa
 \titulo{Herramienta para la optimización de redes de distribución de agua potable}
@@ -197,33 +197,67 @@ Algoritmos que permiten resolver un amplio rango de problemas de optimización em
 Conjunto de algoritmos inspirado en la teoría de la evolución de Darwin acerca de la capacidad de la naturaleza para evolucionar seres vivos bien adaptados a su entorno. Estos algoritmos hacen uso de diversos mecanismos entre los que se encuentra la selección, mutación y cruzamiento sobre los individuos de una población con el fin de generar una nueva generación de individuos \cite{Boussaid2013}. En la Figura \ref{fig:EA} muestra un un pseudocodigo de los pasos generales de un algoritmo evolutivo.
 
 
+%\begin{figure}[h]
+%	\begin{algorithm}[H]
+%		\caption{Algoritmo Evolutivo}
+%		\DontPrintSemicolon
+%		\SetKwFunction{CreateInitialPopulation}{createInitialPopulation}
+%		\SetKwFunction{EvaluatePopulation}{evaluatePopulation}
+%		\SetKwFunction{Selection}{selection}
+%		\SetKwFunction{Crossover}{crossover}
+%		\SetKwFunction{Mutation}{mutation}
+%		\SetKwFunction{Replace}{replace}
+%		\SetKwData{PopulationVar}{population}
+%		\SetKwData{SelectionVar}{selection}
+%		\SetKwData{OffspringVar}{offspringPopulation}
+%		
+%		\PopulationVar $\leftarrow$ \CreateInitialPopulation{}\;
+%		\EvaluatePopulation{\PopulationVar}\;
+%		
+%		\While{is not stopping condition reached}{
+%			\SelectionVar $\leftarrow$ \Selection{\PopulationVar}\;
+%			\OffspringVar $\leftarrow$ \Crossover{\SelectionVar}\;
+%			\OffspringVar $\leftarrow$ \Mutation(\OffspringVar)\;
+%			\OffspringVar $\leftarrow$ \EvaluatePopulation(\OffspringVar)\;
+%			\PopulationVar $\leftarrow$ \Replace(\PopulationVar, \OffspringVar)\;
+%		}
+%		
+%	\end{algorithm}
+%	\caption{Pseudocodigo algoritmo evolutivo}
+%	\label{fig:EA}
+%\end{figure}
+
 \begin{figure}[h]
 	\begin{algorithm}[H]
 		\caption{Algoritmo Evolutivo}
 		\DontPrintSemicolon
-		\SetKwFunction{CreateInitialPopulation}{createInitialPopulation}
-		\SetKwFunction{EvaluatePopulation}{evaluatePopulation}
-		\SetKwFunction{Selection}{selection}
-		\SetKwFunction{Crossover}{crossover}
-		\SetKwFunction{Mutation}{mutation}
-		\SetKwData{PopulationVar}{population}
-		\SetKwData{SelectionVar}{selection}
-		\SetKwData{OffspringVar}{offspringPopulation}
+		\SetKwFunction{CreateInitialPopulation}{crearPoblaciónInicial}
+		\SetKwFunction{EvaluatePopulation}{evaluarPoblación}
+		\SetKwFunction{Selection}{selección}
+		\SetKwFunction{Crossover}{cruzamiento}
+		\SetKwFunction{Mutation}{mutación}
+		\SetKwFunction{Replace}{remplazar}
+		\SetKwData{PopulationVar}{población}
+		\SetKwData{SelectionVar}{poblacionSeleccionada}
+		\SetKwData{OffspringVar}{poblaciónDecendiente}
 		
 		\PopulationVar $\leftarrow$ \CreateInitialPopulation{}\;
 		\EvaluatePopulation{\PopulationVar}\;
 		
-		\While{is not stopping condition reached}{
-			\SelectionVar $\leftarrow$ \Selection{population}\;
-			\OffspringVar $\leftarrow$ \Crossover{population}\;
-			\OffspringVar $\leftarrow$ \Mutation(offpringPopulation)\;
-			\PopulationVar $\leftarrow$ \OffspringVar\;
+		\While{la condición de termino no ha sido alcanzada}{
+			\SelectionVar $\leftarrow$ \Selection{\PopulationVar}\;
+			\OffspringVar $\leftarrow$ \Crossover{\SelectionVar}\;
+			\OffspringVar $\leftarrow$ \Mutation(\OffspringVar)\;
+			\OffspringVar $\leftarrow$ \EvaluatePopulation(\OffspringVar)\;
+			\PopulationVar $\leftarrow$ \Replace(\PopulationVar, \OffspringVar)\;
 		}
 		
 	\end{algorithm}
 	\caption{Pseudocodigo algoritmo evolutivo}
 	\label{fig:EA}
 \end{figure}
+
+Primero, se crea la población inicial. Luego, se evalúan los objetivos de dicha población y se itera hasta que la condición de termino haya sido alcanzada. La condición de término puede ser, por ejemplo un máximo numero de evaluaciones o evaluaciones sin mejoras en los resultados.  Dentro del ciclo se realiza la selección sobre la población con el fin de determinar las soluciones que serán usadas en los operadores de cruzamiento y mutación. Finalmente, se remplaza la población inicial con la descendiente.
 
 \subsubsection{Población}
 Conjunto de soluciones candidatas sobre las cual opera el algoritmo. Durante cada iteración del algoritmo se generan nuevas soluciones que son agregadas a la población a la vez que se remueven otras. Una solución en la población se conoce como individuo \cite{Heiss-Czedik1997}. 
@@ -245,14 +279,141 @@ El cruzamiento es un mecanismo usado para generar nuevos soluciones a partir de 
 La mutación es un operador el cual permite mantener la diversidad en la descendencia \cite{Boussaid2013} realizando modificaciones en ciertas partes de la solución.
 
 \subsection{Algoritmo Genético}
-El algoritmo genético es una estrategia de búsqueda de soluciones. Para realizar esto, el algoritmo parte desde un conjunto de soluciones denominada población he iterativamente, lleva a cabo un proceso de reproducción, generando nuevas soluciones \cite{Heiss-Czedik1997}. Este algoritmo pertenece a la categoría de algoritmos evolutivos.
+El algoritmo genético es una estrategia de búsqueda de soluciones. Para realizar esto, el algoritmo parte desde un conjunto de soluciones denominada población he iterativamente, lleva a cabo un proceso de reproducción, generando nuevas soluciones \cite{Heiss-Czedik1997}. Este algoritmo pertenece a la categoría de algoritmos evolutivos y por lo tanto puede usar el mismo esquema presentado en la figura \ref{fig:EA}.
 
 Los individuos en el contexto del algoritmo genético son llamados cromosomas, los cuales como se menciono en la sección de los algoritmos evolutivos pueden ser representados de diversas maneras.
 
-\subsection{Algoritmo NSGA-II (Nondominated Genetic Algorithm)}
-El algoritmo NSGA-II cae dentro de la categoría de los algoritmos evolutivos multiobjetivo (MOEA). (Falta rellenar)
+\subsection{Conceptos para la optimización multiobjetivo}
+Como resultado de un proceso de optimización multiobjetivo no existe una única solución a un problema, sino que se tiene un conjunto de soluciones. Es por ello que a continuación se presentaran una serie de criterios que permitirán analizar y determinar el conjunto de soluciones optimas. Los criterios son los siguientes \cite{VanVeldhuizen1998}:
+ 
+\subsubsection{Dominancia de Pareto}
 
-\subsubsection{Frente de pareto}
+Sean $u$ y $v$ vectores pertenecientes a $\Re^n$, se dice que $u$ domina a $v$ (se denota como $u \preceq v$) si, y sólo si (en el caso de minimización):
+$\forall i \in \{1,2,...,n\} | f_i(u) \leq f_i(v) \wedge \exists j \in \{1,2,...,n\} | f_j(u) < f_j(v)$
+
+Es decir, para que una solución domine a otra, cada uno de sus objetivos debe ser mejores o iguales y al menos en uno de ellos este debe ser mejor.
+
+En el ejemplo de la figura \ref{fig:dominancia} se muestra los vectores A,B,C,D de los cuales C y B dominan a D, y A domina a C B y D. Nótese que C y B no son dominantes entre sí. 
+
+\subsubsection{Optimo de Pareto}
+Una solución $u$ es un optimo de Pareto si no hay otra solución $v$ en el espacio $\Omega$, tal que v domine a u, es decir, para $u , v \in \Re^n\ \  \nexists v \preceq u $. Los óptimos de pareto también se conocen bajo el nombre de solución no-dominada. En la figura \ref{fig:dominancia} el vector A sería un optimo de Pareto.
+
+\begin{figure}[h]
+	\includegraphics{dominancia.eps}
+	\centering
+	\caption{Ejemplo de dominancia y óptimo de Pareto}
+	\label{fig:dominancia}
+\end{figure}
+
+\subsubsection{Frontera de Pareto}
+La frontera de Pareto es el conjunto de todas las soluciones no dominadas las cuales componen las soluciones óptimas al problema multiobjetivo. En la figura \ref{fig:frente_pareto} los puntos rojos componen la frontera de Pareto.
+
+\begin{figure}[h]
+	\includegraphics{frontera-pareto.eps}
+	\centering
+	\caption{Ejemplo frente de Pareto}
+	\label{fig:frente_pareto}
+\end{figure}
+\subsection{Algoritmo NSGA-II (Nondominated Genetic Algorithm)}
+El algoritmo NSGA-II \cite{Deb2002} pertenece a la categoría de algoritmo evolutivo multiobjetivo (MOEA). Este algoritmo al igual que el algoritmo genético hace uso de los operadores de cruzamiento, mutación y reproducción para encontrar un conjunto de soluciones optimas a problemas que cuentan con más de un objetivo. Adicionalmente, NSGA-II añade conceptos y operadores adicionales los cuales permiten mejorar su rendimiento y la calidad de las soluciones obtenidas. NSGA-II puede ser implementado siguiendo los mismos pasos de el algoritmo evolutivo mostrados en la figura \ref{fig:EA}, utilizando la función de remplazo mostrada en la figura \ref{fig:RemplaceNSGAII}.
+
+En la figura \ref{fig:RemplaceNSGAII} se puede ver que el proceso de remplazo dentro del algoritmo genético consiste en unir la población actual y la población descendiente (formada por los elementos resultantes del operador de selección y sobre la que se han aplicado el cruzamiento y la mutación) en un solo elemento llamada unionPoblación. Luego, esta  es enviada a un procedimiento el cual ordena y categoriza la población en diversos frentes de acuerdo al concepto de dominancia de Pereto. Después, de que la población a sido categorizada se procede a iterar sobre los frentes y añadir sus elementos a una nueva población con el cuidado de no sobrepasar el tamaño de la población deseada ($N$). En caso de que uno de los frentes no pueda ser añadido en su totalidad por sobrepasar dicho tamaño, se llevara a cabo un proceso por el cual se ordenaran las soluciones en dicho frente basadas en un criterio conocido como densidad de las soluciones. Una vez las soluciones se encuentren ordenadas se rellenara la nueva población hasta alcanzar el tamaño de deseado $N$. Se puede ver un ejemplo de este procedimiento gráficamente en la figura \ref{fig:procedimientoNSGAII}.
+
+\begin{figure}[h]
+	\begin{algorithm}[H]
+		\caption{Función de remplazo para el algoritmo NSGA-II}
+		\DontPrintSemicolon
+		\SetKwData{PopulationVar}{población}
+		\SetKwData{OffspringVar}{poblaciónDescendiente}
+		\SetKwData{JoinVar}{unionPoblacion}
+		\SetKwData{Front}{$F$}
+		\SetKwData{NewPopulation}{nuevaPoblacion}
+
+		\SetKwFunction{FastNonDominatingSorting}{ordenarPorFrentesNoDominados}
+		\SetKwFunction{CrowdingDistanceAssignament}{asignarDensidad}
+		\SetKwFunction{Sort}{ordernar}
+
+		\SetKwProg{Fn}{Function}{}{fin}
+		\Fn{remplazar(\PopulationVar, \OffspringVar)}{
+		
+		$\JoinVar \leftarrow \PopulationVar \cup \OffspringVar$\;
+		\Front $\leftarrow$ \FastNonDominatingSorting(\JoinVar) \tcc*[f]{$F = (F_1,F_2, ...)$}\;
+		\NewPopulation $\leftarrow \emptyset$ \;
+		$i = i+1$\;
+		\;
+		\tcc*[h]{Hasta que \NewPopulation este lleno}\;
+		\While{$(|\NewPopulation| +|F_i|) \leq N$}{
+			\tcc{Calcular y asignar la densidad a cada solución del frente $F_i$}
+			\CrowdingDistanceAssignament($F_i$)\;
+			\tcc{Añadir a \NewPopulation las soluciones del frente $F_i$}
+			\NewPopulation $\leftarrow$ \NewPopulation $\cup$ $F_i$ \;
+			$i = i+1$\;
+		}\;
+		\tcc{Ordenar el frente $F_i$ usando el comparador de densidad}
+		\Sort($F_i$, $\prec_n$) \;
+		\tcc{Elegir los primeros $N -|\NewPopulation|]$ }
+		\NewPopulation $\leftarrow$ \NewPopulation $\cup$ $F_i[1: N -|\NewPopulation|]$ \;
+		retornar \NewPopulation\;
+	}
+		
+	\end{algorithm}
+	\caption{Pseudocodigo de la función de remplazo utilizada en el algoritmo NSGA-II \cite{Deb2002}}
+	\label{fig:RemplaceNSGAII}
+\end{figure}
+
+
+\begin{figure}[h]
+	\includegraphics{ProcedimientoNSGA-II.eps}
+	\centering
+	\caption{Procedimiento NSGA-II \cite{Deb2002}}
+	\label{fig:procedimientoNSGAII}
+\end{figure}
+
+\subsubsection{Ordenamiento de soluciones en frentes no dominados}
+Uno de los procedimientos presentados en la figura \ref{fig:RemplaceNSGAII} consistía en ordenar las soluciones en lo denominado como frentes no dominados. El proceso para llevar a cabo esto se presenta en \cite{Deb2002} y consiste en:
+
+\begin{figure}[h]
+	\begin{algorithm}[H]
+		\caption{Función de remplazo para el algoritmo NSGA-II}
+		\DontPrintSemicolon
+		\SetKwData{PopulationVar}{población}
+		\SetKwData{Front}{$F$}
+		\SetKwData{NewPopulation}{nuevaPoblacion}
+		
+		\SetKwFunction{FastNonDominatingSorting}{ordenarPorFrentesNoDominados}
+
+
+		
+		\SetKwProg{Fn}{Function}{}{fin}
+		\Fn{\FastNonDominatingSorting(\PopulationVar)}{
+		$\Front \leftarrow \emptyset$\;
+			\ForEach{$p \in \PopulationVar$}{
+				$p.S_p = \emptyset$\;
+				$p.n_p = 0$\;
+				\ForEach{$q \in \PopulationVar$}{
+					\uIf{$p \prec q$}{
+						$p.S_p = p.S_p \cup \{q\}$\;
+					}\ElseIf{$q \prec p$}{
+						$p.n_p = p.n_p + 1$\;
+					}
+					\If{$p.n_p = 0$}{
+						$p.rank = 1$\;
+						$F_1 = F_1 \cup \{p\}$\;
+					}	
+				}
+			}
+		
+		}
+		
+	\end{algorithm}
+	\caption{Pseudocodigo de la función de remplazo utilizada en el algoritmo NSGA-II \cite{Deb2002}}
+	\label{fig:RemplaceNSGAII}
+\end{figure}
+
+\subsubsection{Densidad de estimación (Crowing Distance)}
+Otra funcion presente en la figura \ref{fig:RemplaceNSGAII} es la asignación de densidad cuyo procedimiento es mostrado en la figura ...
+\subsubsection{Comparador de densidad (Crowing Distance comparator)}
+Este operador compara las soluciones basados en dos conceptos los cuales son el ranking de dominación y la densidad de soluciones.
 
 %% contenido del tercer capítulo
 \chapter{Propuesta De Solución}
