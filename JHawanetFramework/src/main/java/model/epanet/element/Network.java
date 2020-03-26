@@ -126,25 +126,6 @@ public final class Network {
 			// Replace the nodes in link for the nodes created for this copy of network
 			link.setNode1(getNode(link.getNode1().getId()));
 			link.setNode2(getNode(link.getNode2().getId()));
-
-			if (link instanceof Pump) {
-				Pump pump = (Pump) link;
-				/**
-				 * If link is pump it can have object references in his property. So is needed
-				 * replace the reference to the created for this network.
-				 */
-				for (Pump.PumpProperty key : pump.getPropertyKeys()) {
-					if (key == Pump.PumpProperty.HEAD) {
-						Curve curve = (Curve) pump.getProperty(key);
-						// replace the curve used in original object for the copy of the curve
-						pump.setProperty(key, getCurve(curve.getId()));
-					} else if (key == Pump.PumpProperty.PATTERN) {
-						Pattern pattern = (Pattern) pump.getProperty(key);
-						// replace the pattern used in original object for the copy of the pattern
-						pump.setProperty(key, getPattern(pattern.getId()));
-					}
-				}
-			}
 		}
 
 		// copy backdrop

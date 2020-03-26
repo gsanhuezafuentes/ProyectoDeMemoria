@@ -60,7 +60,7 @@ public class PumpSchedulingRegister implements MultiObjectiveRegistrable {
 
 		this.problem = vanzylObj;
 
-		// Ingreso de valores a través de archivo PSE (comentar en caso de ingresar
+		// Ingreso de valores a travï¿½s de archivo PSE (comentar en caso de ingresar
 		// manualmente)
 		// String psePath = "src/resources/Sotelo2001.pse";
 		// PumpScheduling pumpScheduling = new PumpScheduling(psePath, inpPath);
@@ -108,7 +108,7 @@ public class PumpSchedulingRegister implements MultiObjectiveRegistrable {
 						1.0 / problemList.get(i).getProblem().getNumberOfVariables(), 20);
 				Comparator<IntegerSolution> comparator = new DominanceComparator<IntegerSolution>();
 
-				Algorithm<IntegerSolution> algorithm = new NSGAII<>(problem, 5000, 100, 100, 100, crossover, mutation,
+				Algorithm<IntegerSolution> algorithm = new NSGAII<>(problem, 1000, 100, 100, 100, crossover, mutation,
 						selection, comparator);
 				algorithms.add(new ExperimentAlgorithm<>(algorithm, problemList.get(i), run));
 			}

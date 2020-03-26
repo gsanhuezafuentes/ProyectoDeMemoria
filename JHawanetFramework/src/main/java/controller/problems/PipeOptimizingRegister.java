@@ -69,14 +69,14 @@ public final class PipeOptimizingRegister extends MonoObjectiveRegistrable {
 					@OperatorOption(displayName = "Integer Polynomial Mutation", value = IntegerPolynomialMutation.class),
 					@OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class),
 					@OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class) }) }, //
-			files = { @FileInput(displayName = "Gama"), @FileInput(displayName = "Salida", type = FileType.SAVE)}, //
+			files = { @FileInput(displayName = "Gama")}, //
 			numbers = { @NumberInput(displayName = "Min pressure"), @NumberInput(displayName = "Population Size") }, //
 			numbersToggle = {
 					@NumberToggleInput(groupID = "Finish Condition", displayName = "Number of iteration without improvement"),
 					@NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation") })
 	@SuppressWarnings("unchecked") // The object injected are indicated in operators elements. It guarantee its
 									// types.
-	public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama,File save,
+	public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama,
 			int minPressure, int populationSize, int numberWithoutImprovement, int maxEvaluations) {
 		System.out.println(selectionOperator);
 		System.out.println(crossoverOperator);
