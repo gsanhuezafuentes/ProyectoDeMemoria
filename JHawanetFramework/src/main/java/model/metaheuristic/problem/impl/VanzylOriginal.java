@@ -112,7 +112,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 
 	@Override
 	public void evaluate(IntegerSolution solution) {
-		System.out.println(solution);
+//		System.out.println(solution);
 
 		int[][] binaryMatrixSolution;
 		binaryMatrixSolution = generateBinaryMatrix(solution);
@@ -134,9 +134,9 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 
 		fitness1 = energyCost(binaryMatrixSolution);
 		fitness2 = maintenanceCost(binaryMatrixSolution);
-		System.out.println("");
+//		System.out.println("");
 
-		System.out.println("F1: " + fitness1 + " F2:" + fitness2);
+//		System.out.println("F1: " + fitness1 + " F2:" + fitness2);
 
 		solution.setObjective(0, fitness1);
 		solution.setObjective(1, fitness2);
@@ -175,12 +175,12 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 		overallConstraintViolation = Math.round(overallConstraintViolation * 100.0) / 100.0;
 		violatedConstraints = listNodeViolated.size() + listPumpsViolated.size() + listTanksViolated.size();
 
-		System.out.println(
-				"Total de violaciones: " + overallConstraintViolation + "Num Violaciones " + violatedConstraints);
-		System.out.println("Violacion en nodos: " + listNodeViolated.size());
-		System.out.println("Violacion en bombas: " + listPumpsViolated.size());
-		System.out.println("Violacion en tanques: " + listTanksViolated.size());
-		System.out.println("");
+//		System.out.println(
+//				"Total de violaciones: " + overallConstraintViolation + "Num Violaciones " + violatedConstraints);
+//		System.out.println("Violacion en nodos: " + listNodeViolated.size());
+//		System.out.println("Violacion en bombas: " + listPumpsViolated.size());
+//		System.out.println("Violacion en tanques: " + listTanksViolated.size());
+//		System.out.println("");
 
 		overallConstraintViolationDegree.setAttribute(solution, overallConstraintViolation);
 		numberOfViolatedConstraints.setAttribute(solution, violatedConstraints);
