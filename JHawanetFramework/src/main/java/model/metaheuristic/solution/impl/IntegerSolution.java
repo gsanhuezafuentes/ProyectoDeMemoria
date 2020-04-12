@@ -96,4 +96,9 @@ public class IntegerSolution extends AbstractGenericSolution<Integer, Problem<In
 		return new IntegerSolution(this);
 	}
 
+	@Override
+	public String getVariableAsString(int index) {
+		return Integer.toString(getVariable(index));
+	}
+
 }

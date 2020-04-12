@@ -173,4 +173,9 @@ public class ObjectSolution implements Solution<Object> {
 	public Map<Object, Object> getAttributes() {
 		return attributes;
 	}
+
+	@Override
+	public String getVariableAsString(int index) {
+		return getVariable(index).toString();
+	}
 }

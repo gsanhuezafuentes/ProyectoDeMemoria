@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.List;
 
 import annotations.registrable.FileInput;
-import annotations.registrable.FileInput.FileType;
 import annotations.registrable.NewProblem;
 import annotations.registrable.NumberInput;
 import annotations.registrable.NumberToggleInput;

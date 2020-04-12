@@ -120,7 +120,7 @@ public class ResultWindowController {
 				// tell from where get the value for the column
 				column.setCellValueFactory(
 						(CellDataFeatures<Solution<?>, String> solutionData) -> new ReadOnlyObjectWrapper<String>(
-								solutionData.getValue().getVariable(index).toString()));
+								solutionData.getValue().getVariableAsString(index)));
 			}
 		}
 	}

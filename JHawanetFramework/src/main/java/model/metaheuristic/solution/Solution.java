@@ -53,6 +53,16 @@ public interface Solution<Type> {
 	public void setVariable(int index, Type value);
 
 	/**
+	 * Get the variable as a String <br>
+	 * <br>
+	 * <br><br><strong>Notes:</strong> <br>
+	 * This method is used by the result window to get the variable values
+	 * @param index the index of variable to return
+	 * @return the variable
+	 */
+	public String getVariableAsString(int index);
+
+	/**
 	 * Get all variables
 	 * 
 	 * @return a list with the value of variables

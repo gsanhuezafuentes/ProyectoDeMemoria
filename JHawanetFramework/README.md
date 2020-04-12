@@ -30,10 +30,14 @@ Compile with mvn jfx:jar to create a jar -> este comando realizaria lo mismo que
 Compile with mvn jfx:native to create a native -> genera un exe y si estan instalados los programas correctos tambien generaria un instalador.
 
 ## Abrir proyecto con eclipse
+Abrir el proyecto desde eclipse y agregar la ruta lib/additionalResources al *build path*. Para ello, seleccione la carpeta y muestre el menú contextual. Luego, en la opción *Build path* seleccione la opción *Use as source folder* (Puede configurarlo tambien desde *Configure build path*). Esto se muestra en la imagen a continuación:
 
-Abrir el proyecto desde eclipse y asegurarse de que el build path este de la siguiente manera:
+![addPath](assets/addPath.png.png)
+
+El *build path* deberia mostrarse de la siguiente manera:
 
 ![BuildPath](assets/BuildPath.png)
+
 
 ### Nota1: Assets es solo una carpeta donde se suben las imagenes. No es usada por el proyecto.
 ### Nota2: La version en ingles y la version en español de epanet a veces ocupan distintas palabras claves (Ej: Feet en ingles y Pies en español). Este programa lee el formato inp de la version en ingles.
