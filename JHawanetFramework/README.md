@@ -32,7 +32,7 @@ Compile with mvn jfx:native to create a native -> genera un exe y si estan insta
 ## Abrir proyecto con eclipse
 Abrir el proyecto desde eclipse y agregar la ruta lib/additionalResources al *build path*. Para ello, seleccione la carpeta y muestre el menú contextual. Luego, en la opción *Build path* seleccione la opción *Use as source folder* (Puede configurarlo tambien desde *Configure build path*). Esto se muestra en la imagen a continuación:
 
-![addPath](assets/addPath.png.png)
+![addPath](assets/addPath.png)
 
 El *build path* deberia mostrarse de la siguiente manera:
 
