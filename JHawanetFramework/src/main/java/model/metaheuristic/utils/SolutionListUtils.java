@@ -14,7 +14,6 @@ import model.metaheuristic.utils.solutionattribute.DominanceRanking;
 /**
  * Some functions to apply on a List of solution
  * 
- *
  */
 public class SolutionListUtils {
 
@@ -23,6 +22,7 @@ public class SolutionListUtils {
 	 * 
 	 * @param numberOfSolution number of diferent solution
 	 * @param solutionList     the solution list
+	 * @param <S> the type of solution
 	 * @return selected solution
 	 */
 	public static <S> List<S> selectNRandomDifferentSolutions(int numberOfSolution, List<S> solutionList) {
@@ -36,6 +36,7 @@ public class SolutionListUtils {
 	 * @param numberOfSolution number of different solution
 	 * @param solutionList     the solution list
 	 * @param random           Random generator
+	 * @param <S> the type of solution
 	 * @return selected solution
 	 * @throws ApplicationException if numberOfSolution is greater than the size of solution list.
 	 */

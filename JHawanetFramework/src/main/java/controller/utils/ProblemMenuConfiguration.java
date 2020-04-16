@@ -61,7 +61,7 @@ public class ProblemMenuConfiguration {
 	 * windows of configuration.
 	 * 
 	 * @param menu           the menu where the problem has been added
-	 * @param algorithmEvent the event that will be fired when the
+	 * @param experimentEvent the event that will be fired when the
 	 *                       RegistrableProblem is created.
 	 */
 	public void addMultiObjectiveProblems(Menu menu, CustomCallback<MultiObjectiveRegistrable> experimentEvent) {

@@ -30,7 +30,8 @@ public class ObjectSolution implements Solution<Object> {
 	/**
 	 * Constructor
 	 *
-	 * @param numberOfObjectives
+	 * @param numberOfObjectives the number of objectives
+	 * @param numberOfVariables the number of variables
 	 */
 	public ObjectSolution(int numberOfObjectives, int numberOfVariables) {
 		this.numberOfObjectives = numberOfObjectives;
@@ -46,9 +47,9 @@ public class ObjectSolution implements Solution<Object> {
 	}
 
 	/**
-	 * Constructor
+	 * Copy constructor
 	 *
-	 * @param solution
+	 * @param solution the solution to copy
 	 */
 	public ObjectSolution(Solution<?> solution) {
 		this.numberOfObjectives = solution.getNumberOfObjectives();

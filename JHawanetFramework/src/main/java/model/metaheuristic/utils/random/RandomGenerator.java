@@ -2,9 +2,8 @@ package model.metaheuristic.utils.random;
 
 /**
  * A functional interfaces to wrapper a Random function;
- * @author gsanh
  *
- * @param <S>
+ * @param <S> the type of to object to generate
  */
 @FunctionalInterface
 public interface RandomGenerator<S extends Number> {

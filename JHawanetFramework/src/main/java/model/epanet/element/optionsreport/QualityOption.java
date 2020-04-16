@@ -193,7 +193,7 @@ public class QualityOption {
 	/**
 	 * Copy this object
 	 * 
-	 * @return
+	 * @return the copy of the called object
 	 */
 	public QualityOption copy() {
 		return new QualityOption(this);

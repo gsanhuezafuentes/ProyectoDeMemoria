@@ -50,7 +50,7 @@ public final class Source {
 	 * deep copy.
 	 * 
 	 * If you want that the object will be totally independent you need set the
-	 * timePattern ({@link #setTimePattern(Pattern)}).
+	 * timePattern ({@link #setTimePattern}).
 	 * 
 	 * @param source the object to copy
 	 */

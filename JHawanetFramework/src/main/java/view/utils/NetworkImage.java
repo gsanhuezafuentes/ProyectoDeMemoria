@@ -123,7 +123,7 @@ public class NetworkImage {
 	 * @param w       Canvas width.
 	 * @param h       Canvas height.
 	 * @param net     Epanet network.
-	 * @param selNode Reference to the selected element of the network. null if
+	 * @param selected Reference to the selected element of the network. null if
 	 *                there isn't a selected item.
 	 */
 	public static void drawNetwork(GraphicsContext g, double w, double h, Network net, Object selected) {

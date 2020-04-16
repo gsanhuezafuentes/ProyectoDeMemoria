@@ -30,7 +30,7 @@ public final class Control {
 	/**
 	 * Set the code
 	 * @param code the code to set or a empty string if there is no code control
-	 * @throws if code is null
+	 * @throws NullPointerException if code is null
 	 */
 	public void setCode(String code) {
 		Objects.requireNonNull(code);

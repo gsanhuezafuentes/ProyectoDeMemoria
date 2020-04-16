@@ -69,7 +69,7 @@ public class MultiObjectiveRunningWindowController {
 	/**
 	 * Constructor
 	 * 
-	 * @param algorithm the algorithm to execute
+	 * @param experiment the experiment to execute
 	 * @param problem   the problem that the algorithm has configured
 	 * @param network   the network opened.
 	 * @throws NullPointerException if algorithm is null or problem is null or

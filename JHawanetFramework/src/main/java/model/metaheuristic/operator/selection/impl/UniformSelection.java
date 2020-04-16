@@ -13,7 +13,6 @@ import model.metaheuristic.utils.comparator.DominanceComparator;
 
 /**
  * Operator class. 
- * 
  *
  * @param <S> Type of solution
  */
@@ -24,7 +23,7 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 
 	/**
 	 * Constructor
-	 * @param constant
+	 * @param constant the value constant. it has to be between the range [1.5, 2]
 	 * @throws ApplicationException if constant is not between the range [1.5, 2]
 	 */
 	@DefaultConstructor({ "constant" })

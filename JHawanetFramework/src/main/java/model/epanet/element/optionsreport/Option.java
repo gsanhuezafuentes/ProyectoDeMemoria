@@ -151,7 +151,7 @@ public final class Option {
 	/**
 	 * Copy constructor.
 	 * 
-	 * @param option
+	 * @param option the option object
 	 */
 	public Option(Option option) {
 		this.flowUnit = option.flowUnit;
@@ -317,7 +317,7 @@ public final class Option {
 	 * 
 	 * @param unbalanced the unbalanced to set or a empty string if it does not
 	 *                   exist
-	 * @throws if unbalanced is null
+	 * @throws NullPointerException if unbalanced is null
 	 */
 	public void setUnbalanced(String unbalanced) {
 		Objects.requireNonNull(unbalanced);
@@ -336,8 +336,8 @@ public final class Option {
 	/**
 	 * Set the pattern
 	 * 
-	 * @param pattern the pattern to set
-	 * @throws if patternID is null
+	 * @param patternID the pattern id to set
+	 * @throws NullPointerException if patternID is null
 	 */
 	public void setPattern(String patternID) {
 		Objects.requireNonNull(patternID);
@@ -393,7 +393,7 @@ public final class Option {
 	 * Set the map
 	 * 
 	 * @param filepath the map to set
-	 * @throws if filepath is null
+	 * @throws NullPointerException if filepath is null
 	 */
 	public void setMap(String filepath) {
 		Objects.requireNonNull(filepath);

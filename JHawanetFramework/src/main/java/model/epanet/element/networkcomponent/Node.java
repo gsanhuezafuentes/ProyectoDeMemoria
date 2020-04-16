@@ -22,7 +22,7 @@ public abstract class Node extends Component {
 	 * it is necessary for the object to be completely independent of the original
 	 * you must ensure that you replace the reference to the contained objects.
 	 * 
-	 * @param node
+	 * @param node the node to copy
 	 */
 	public Node(Node node) {
 		super(node);

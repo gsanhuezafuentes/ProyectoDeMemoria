@@ -1,3 +1,31 @@
+/*
+ * Base on code from https://github.com/jMetal/jMetal
+ *
+ * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated
+ * documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to
+ * whom the Software is furnished to do so, subject to the
+ * following conditions:
+ *
+ * The above copyright notice and this permission notice shall
+ * be included in all copies or substantial portions of the
+ * Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+ * KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. © 2019
+ * GitHub, Inc.
+ */
 package model.metaheuristic.utils.comparator;
 
 import java.io.Serializable;
@@ -11,33 +39,6 @@ import model.metaheuristic.solution.Solution;
  * This class implements a solution comparator taking into account the violation
  * constraints
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
- * 
- *         <pre>
- * Base on code from https://github.com/jMetal/jMetal
- * 
- * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- * 
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
- * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE. © 2019 GitHub, Inc.
- *         </pre>
  */
 @SuppressWarnings("serial")
 public class DominanceComparator<S extends Solution<?>> implements Comparator<S>, Serializable {
@@ -48,7 +49,10 @@ public class DominanceComparator<S extends Solution<?>> implements Comparator<S>
 		this(new OverallConstraintViolationComparator<S>());
 	}
 
-	/** Constructor */
+	/**
+	 *  Constructor
+	 *  @param constraintComparator the constraint comparator to use
+	 */
 	public DominanceComparator(ConstraintViolationComparator<S> constraintComparator) {
 		constraintViolationComparator = constraintComparator;
 	}
@@ -84,9 +88,9 @@ public class DominanceComparator<S extends Solution<?>> implements Comparator<S>
 	/**
 	 * Compare if a solution dominate other solution based in the objectives
 	 * 
-	 * @param solution1
-	 * @param solution2
-	 * @return
+	 * @param solution1 the first solution to be compared
+	 * @param solution2 the second solution to be compared
+	 * @return -1 if solution1 is less than solution2; 1 if solution1 is greater than solution2; 0 in otherwise
 	 */
 	private int dominanceTest(S solution1, S solution2) {
 		int bestIsOne = 0;

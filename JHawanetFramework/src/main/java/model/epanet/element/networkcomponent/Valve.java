@@ -97,7 +97,7 @@ public final class Valve extends Link {
 	 * 
 	 * You must replace node1 and node2 to do the copy independent of the original
 	 * 
-	 * @param valve
+	 * @param valve the valve to copy
 	 */
 	public Valve(Valve valve) {
 		super(valve);
@@ -134,7 +134,7 @@ public final class Valve extends Link {
 	 * Set the type
 	 * 
 	 * @param type the type to set
-	 * @throws if type is null
+	 * @throws NullPointerException if type is null
 	 */
 	public void setType(ValveType type) {
 		Objects.requireNonNull(type);

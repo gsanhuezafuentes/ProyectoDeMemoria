@@ -47,7 +47,7 @@ public final class Label {
 
 	/**
 	 * @param text the text to set
-	 * @throws if text is null
+	 * @throws NullPointerException if text is null
 	 */
 	public void setLabel(String text) {
 		Objects.requireNonNull(text);
@@ -67,7 +67,7 @@ public final class Label {
 	 * Set the anchor node id
 	 * 
 	 * @param anchorNode the anchorNode to set
-	 * @throws if anchorNode is null
+	 * @throws NullPointerException if anchorNode is null
 	 */
 	public void setAnchorNode(String anchorNode) {
 		Objects.requireNonNull(anchorNode);

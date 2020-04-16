@@ -26,7 +26,7 @@ public class ResultPlotWindowController {
 	/**
 	 * Constructor of the controller of ResultPlotWindow
 	 * 
-	 * @param numberOfObjectives
+	 * @param numberOfObjectives the number of objectives
 	 * @throws IllegalArgumentException if the number of objectives is distinct to
 	 *                                  one or two.
 	 */

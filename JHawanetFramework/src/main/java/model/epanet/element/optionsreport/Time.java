@@ -266,7 +266,7 @@ public final class Time {
 	 * Set the start clockTime
 	 * 
 	 * @param startClockTime the start clockTime to set
-	 * @throws if startClockTime is null
+	 * @throws NullPointerException if startClockTime is null
 	 */
 	public void setStartClockTime(String startClockTime) {
 		Objects.requireNonNull(startClockTime);

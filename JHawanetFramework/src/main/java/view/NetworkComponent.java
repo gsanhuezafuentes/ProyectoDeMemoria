@@ -68,7 +68,7 @@ public class NetworkComponent extends Canvas {
 
 	/**
 	 * Get the selected element
-	 * @return
+	 * @return return the selected element
 	 */
 	public Object getSelected() {
 		return this.selected.get();

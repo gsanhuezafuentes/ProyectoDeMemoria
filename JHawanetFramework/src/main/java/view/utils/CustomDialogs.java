@@ -18,10 +18,10 @@ public class CustomDialogs {
 	/**
 	 * Show a dialog. The type of dialog can be configured used type parameter.
 	 * 
-	 * @param title
-	 * @param headerText
-	 * @param contentText
-	 * @param type
+	 * @param title the title
+	 * @param headerText the header text
+	 * @param contentText the content text
+	 * @param type the type of alert
 	 */
 	public static void showDialog(String title, String headerText, String contentText, AlertType type) {
 		Alert alert = new Alert(type);
@@ -34,11 +34,11 @@ public class CustomDialogs {
 
 	/**
 	 * Show a dialog with the information of exception
-	 * 
-	 * @param title
-	 * @param headerText
-	 * @param contentText
-	 * @param exception
+	 *
+	 * @param title the title
+	 * @param headerText the header text
+	 * @param contentText the content tex
+	 * @param exception the exception throw
 	 */
 	public static void showExceptionDialog(String title, String headerText, String contentText, Throwable exception) {
 		Alert alert = new Alert(Alert.AlertType.ERROR);

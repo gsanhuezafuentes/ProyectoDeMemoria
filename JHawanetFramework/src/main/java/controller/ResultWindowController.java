@@ -57,7 +57,7 @@ public class ResultWindowController {
 	 * 
 	 * @param problem   the problem that was solve by the algorithm.
 	 * @param solutions a list with solution to show
-	 * @param network
+	 * @param network the network object
 	 * @throws NullPointerException if solutions is null or problem is null or
 	 *                              network is null.
 	 */

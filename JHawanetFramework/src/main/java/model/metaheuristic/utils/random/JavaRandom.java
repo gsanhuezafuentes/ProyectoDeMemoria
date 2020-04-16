@@ -39,7 +39,7 @@ public class JavaRandom {
 	}
 
 	/**
-	 * @param bound
+	 * @param bound the upper bound (exclusive). Must be positive
 	 * @return a int number
 	 * @see java.util.Random#nextInt(int)
 	 */

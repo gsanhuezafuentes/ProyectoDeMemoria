@@ -79,17 +79,15 @@ public class ReflectionUtils {
 	 * It validation in: <br>
 	 * <br>
 	 * 
-	 * <pre>
-	 *  <ol>
-	 *  	<li>Verify if {@code registrable} has only a public constructor</li>
-	 *  	<li>Verify if {@code registrable} has {@link NewProblem} annotation in his only one constructor </li>
-	 *  	<li>Verify if {@code registrable} has the same number of parameters has values defined in {@link Parameters} annotation in the constructor</li>
-	 *  	<li>Verify if {@code registrable} has the parameters in the correct order and if the parameters are only of type Object, File, int or double or his wrapper Integer, Double. The order is (Object..., File ..., int|double ...)</li>
-	 *	 	<li>Verify if {@code registrable}'s constructor parameters correspond to the type defined by {@link Parameters}</li>
-	 *  	<li>Verify if {@code registrable} constructor doesn't have parameters when {@link Parameters} annotation isn't used</li>
-	 *  </ol>
-	 * </pre>
-	 * 
+	 * <ol>
+	 * 		<li>Verify if {@code registrable} has only a public constructor</li>
+	 * 		<li>Verify if {@code registrable} has {@link NewProblem} annotation in his only one constructor </li>
+	 * 		<li>Verify if {@code registrable} has the same number of parameters has values defined in {@link Parameters} annotation in the constructor</li>
+	 * 		<li>Verify if {@code registrable} has the parameters in the correct order and if the parameters are only of type Object, File, int or double or his wrapper Integer, Double. The order is (Object..., File ..., int|double ...)</li>
+	 *		<li>Verify if {@code registrable}'s constructor parameters correspond to the type defined by {@link Parameters}</li>
+	 * 		<li>Verify if {@code registrable} constructor doesn't have parameters when {@link Parameters} annotation isn't used</li>
+	 * </ol>
+	 *
 	 * <br>
 	 * <br>
 	 * 
@@ -378,6 +376,7 @@ public class ReflectionUtils {
 	 * 
 	 * @param problemClass the registrable class
 	 * @param parameters   the parameters of constructor of registrable class
+	 * @param <T> The type of class
 	 * @return the registrable instance
 	 * @throws ApplicationException      if there are any exceptions when the new
 	 *                                   instance is being created
@@ -401,6 +400,7 @@ public class ReflectionUtils {
 	 * Create a new instance of Registrable problem.
 	 * 
 	 * @param problemClass the registrable class
+	 * @param <T> The type of class
 	 * @return the registrable instance
 	 * @throws ApplicationException      if there are any exceptions when the new
 	 *                                   instance is being createds

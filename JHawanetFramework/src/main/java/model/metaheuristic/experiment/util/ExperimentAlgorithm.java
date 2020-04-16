@@ -1,3 +1,31 @@
+/*
+ * Base on code from https://github.com/jMetal/jMetal
+ *
+ * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated
+ * documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to
+ * whom the Software is furnished to do so, subject to the
+ * following conditions:
+ *
+ * The above copyright notice and this permission notice shall
+ * be included in all copies or substantial portions of the
+ * Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+ * KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. Â© 2019
+ * GitHub, Inc.
+ */
 package model.metaheuristic.experiment.util;
 
 import java.io.File;
@@ -25,30 +53,7 @@ import model.metaheuristic.utils.io.SolutionListOutput;
  * calling {@link #prepareToRun(Experiment)}, so call
  * {@link #runASingleStepOfAlgorithm()} until {@link #algorithmHasANextStep()}
  * will be false and finalize calling {@link #saveSolutionList()}.
- * 
- * <pre>
- * Base on code from https://github.com/jMetal/jMetal
- * 
- * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE. © 2019 GitHub, Inc.
- * </pre>
+ *
  */
 public class ExperimentAlgorithm<S extends Solution<?>> {
 	private Algorithm<S> algorithm;
@@ -111,7 +116,7 @@ public class ExperimentAlgorithm<S extends Solution<?>> {
 	/**
 	 * Create a output directory to save the result of execution of algorithm
 	 * 
-	 * @param experimentData
+	 * @param experimentData the experiment data
 	 */
 	public void prepareToRun(Experiment<?> experimentData) {
 		String outputDirectoryName = experimentData.getExperimentBaseDirectory() + "/data/" + algorithmTag + "/"
@@ -145,7 +150,7 @@ public class ExperimentAlgorithm<S extends Solution<?>> {
 
 	/**
 	 * Save the solution of the algorithm in the directory configure for
-	 * {@link #prepareToRun()}
+	 * {@link #prepareToRun}
 	 * 
 	 * @throws IOException           If an I/O error occurs
 	 * @throws FileNotFoundException if the file exists but is a directory rather
@@ -169,7 +174,7 @@ public class ExperimentAlgorithm<S extends Solution<?>> {
 	/**
 	 * Return if the algorithm can execute other iteration
 	 * 
-	 * @return
+	 * @return true if algorithm can execute
 	 */
 	public boolean algorithmHasANextStep() {
 		return !algorithm.isStoppingConditionReached();

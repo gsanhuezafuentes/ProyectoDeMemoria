@@ -46,9 +46,9 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	/**
 	 * Constructor
 	 * 
-	 * @param epanet
-	 * @param networkGama
-	 * @param minPressure
+	 * @param epanet the hydraulic simulation api
+	 * @param networkGama the name of file with additional data of the network
+	 * @param minPressure the min pressure of network
 	 * @throws IOException          if there is a error in the io operator over the
 	 *                              gama.
 	 * @throws EpanetException      if there is a error in epatoolkit

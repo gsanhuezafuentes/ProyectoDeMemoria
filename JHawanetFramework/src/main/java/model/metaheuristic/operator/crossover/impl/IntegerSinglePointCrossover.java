@@ -14,120 +14,133 @@ import model.metaheuristic.utils.random.RandomGenerator;
 
 /**
  * Class that pick randomly a point on both parents', and designated a 'crossover point'.
- *
  */
 public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSolution> {
 
-	private double crossoverProbability;
-	private RandomGenerator<Double> crossoverRandomGenerator;
-	private BoundedRandomGenerator<Integer> pointRandomGenerator;
+    private double crossoverProbability;
+    private RandomGenerator<Double> crossoverRandomGenerator;
+    private BoundedRandomGenerator<Integer> pointRandomGenerator;
 
-	/** Constructor */
-	@DefaultConstructor("CrossoverProbability")
-	public IntegerSinglePointCrossover(double crossoverProbability) {
-		this(crossoverProbability, () -> JavaRandom.getInstance().nextDouble(),
-				(a, b) -> JavaRandom.getInstance().nextInt(a, b));
-	}
+    /**
+     * Constructor
+     * @param crossoverProbability the crossover probability
+     */
+    @DefaultConstructor("CrossoverProbability")
+    public IntegerSinglePointCrossover(double crossoverProbability) {
+        this(crossoverProbability, () -> JavaRandom.getInstance().nextDouble(),
+                (a, b) -> JavaRandom.getInstance().nextInt(a, b));
+    }
 
-	/** Constructor */
-	public IntegerSinglePointCrossover(double crossoverProbability, RandomGenerator<Double> randomGenerator) {
-		this(crossoverProbability, randomGenerator, (a, b) -> JavaRandom.getInstance().nextInt(a, b));
-	}
+    /**
+     * Constructor
+     * @param crossoverProbability the crossover probability
+     * @param randomGenerator the random generator
+     */
+    public IntegerSinglePointCrossover(double crossoverProbability, RandomGenerator<Double> randomGenerator) {
+        this(crossoverProbability, randomGenerator, (a, b) -> JavaRandom.getInstance().nextInt(a, b));
+    }
 
-	/** Constructor 
-	 * @throws ApplicationException if the crossoverProbability is negative
-	 */
-	public IntegerSinglePointCrossover(double crossoverProbability, RandomGenerator<Double> crossoverRandomGenerator,
-			BoundedRandomGenerator<Integer> pointRandomGenerator) {
-		if (crossoverProbability < 0) {
-			throw new ApplicationException("Crossover probability is negative: " + crossoverProbability);
-		}
-		this.crossoverProbability = crossoverProbability;
-		this.crossoverRandomGenerator = crossoverRandomGenerator;
-		this.pointRandomGenerator = pointRandomGenerator;
-	}
+    /**
+     * Constructor
+     * @param crossoverProbability     the probability of mutation
+     * @param crossoverRandomGenerator the random function to use
+     * @param pointRandomGenerator a random generator that generate numbers between a lower and a upper bound
+     * @throws ApplicationException if the crossoverProbability is negative
+     */
+    public IntegerSinglePointCrossover(double crossoverProbability, RandomGenerator<Double> crossoverRandomGenerator,
+                                       BoundedRandomGenerator<Integer> pointRandomGenerator) {
+        if (crossoverProbability < 0) {
+            throw new ApplicationException("Crossover probability is negative: " + crossoverProbability);
+        }
+        this.crossoverProbability = crossoverProbability;
+        this.crossoverRandomGenerator = crossoverRandomGenerator;
+        this.pointRandomGenerator = pointRandomGenerator;
+    }
 
-	/* Getter */
-	/**
-	 * Get the crossover probability
-	 * 
-	 * @return the crossover probability
-	 */
-	public double getCrossoverProbability() {
-		return crossoverProbability;
-	}
+    /* Getter */
 
-	/* Setter */
-	/**
-	 * Set the crossover probability
-	 * 
-	 * @param crossoverProbability the crossover probability
-	 */
-	public void setCrossoverProbability(double crossoverProbability) {
-		this.crossoverProbability = crossoverProbability;
-	}
+    /**
+     * Get the crossover probability
+     *
+     * @return the crossover probability
+     */
+    public double getCrossoverProbability() {
+        return crossoverProbability;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 * @throws NullPointerException if solutions is null
-	 * @throws ApplicationException if the size of solutions list is not 2.
-	 */
-	@Override
-	public List<IntegerSolution> execute(List<IntegerSolution> solutions) {
-		Objects.requireNonNull(solutions);
-		if (solutions.size() != 2) {
-			throw new ApplicationException("There must be two parents instead of " + solutions.size());
-		}
+    /* Setter */
 
-		return doCrossover(crossoverProbability, solutions.get(0), solutions.get(1));
-	}
+    /**
+     * Set the crossover probability
+     *
+     * @param crossoverProbability the crossover probability
+     */
+    public void setCrossoverProbability(double crossoverProbability) {
+        this.crossoverProbability = crossoverProbability;
+    }
 
-	/**
-	 * Do the crossover over {@code parent1} and {@code parent2}
-	 * 
-	 * @param probability the crossover probability
-	 * @param parent1     the first parent
-	 * @param parent2     the second parent.
-	 * @return the children
-	 */
-	private List<IntegerSolution> doCrossover(double probability, IntegerSolution parent1, IntegerSolution parent2) {
-		List<IntegerSolution> offspring = new ArrayList<>(2);
-		offspring.add((IntegerSolution) parent1.copy());
-		offspring.add((IntegerSolution) parent2.copy());
+    /**
+     * {@inheritDoc}
+     *
+     * @throws NullPointerException if solutions is null
+     * @throws ApplicationException if the size of solutions list is not 2.
+     */
+    @Override
+    public List<IntegerSolution> execute(List<IntegerSolution> solutions) {
+        Objects.requireNonNull(solutions);
+        if (solutions.size() != 2) {
+            throw new ApplicationException("There must be two parents instead of " + solutions.size());
+        }
 
-		if (crossoverRandomGenerator.getRandomValue() < probability) {
-			// 1. Get the total number of bits
-			int totalNumberOfVariables = parent1.getNumberOfVariables();
+        return doCrossover(crossoverProbability, solutions.get(0), solutions.get(1));
+    }
 
-			// 2. Calculate the point to make the crossover
-			int crossoverPoint = pointRandomGenerator.getRandomValue(0, totalNumberOfVariables); // Random between 0 and
-																									// (totalNumberOfVariables
-																									// - 1)
+    /**
+     * Do the crossover over {@code parent1} and {@code parent2}
+     *
+     * @param probability the crossover probability
+     * @param parent1     the first parent
+     * @param parent2     the second parent.
+     * @return the children
+     */
+    private List<IntegerSolution> doCrossover(double probability, IntegerSolution parent1, IntegerSolution parent2) {
+        List<IntegerSolution> offspring = new ArrayList<>(2);
+        offspring.add((IntegerSolution) parent1.copy());
+        offspring.add((IntegerSolution) parent2.copy());
 
-			// crossover
-			for (int i = crossoverPoint; i < totalNumberOfVariables; i++) {
-				offspring.get(0).setVariable(i, parent2.getVariable(i));
-				offspring.get(1).setVariable(i, parent1.getVariable(i));
-			}
-		}
+        if (crossoverRandomGenerator.getRandomValue() < probability) {
+            // 1. Get the total number of bits
+            int totalNumberOfVariables = parent1.getNumberOfVariables();
 
-		return offspring;
-	}
+            // 2. Calculate the point to make the crossover
+            int crossoverPoint = pointRandomGenerator.getRandomValue(0, totalNumberOfVariables); // Random between 0 and
+            // (totalNumberOfVariables
+            // - 1)
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int getNumberOfRequiredParents() {
-		return 2;
-	}
+            // crossover
+            for (int i = crossoverPoint; i < totalNumberOfVariables; i++) {
+                offspring.get(0).setVariable(i, parent2.getVariable(i));
+                offspring.get(1).setVariable(i, parent1.getVariable(i));
+            }
+        }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int getNumberOfGeneratedChildren() {
-		return 2;
-	}
+        return offspring;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getNumberOfRequiredParents() {
+        return 2;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getNumberOfGeneratedChildren() {
+        return 2;
+    }
 
 }

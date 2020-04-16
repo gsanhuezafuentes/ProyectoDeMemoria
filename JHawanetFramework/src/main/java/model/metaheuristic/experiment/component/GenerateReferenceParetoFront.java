@@ -1,3 +1,30 @@
+/* Base on code from https://github.com/jMetal/jMetal
+ *
+ * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated
+ * documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to
+ * whom the Software is furnished to do so, subject to the
+ * following conditions:
+ *
+ * The above copyright notice and this permission notice shall
+ * be included in all copies or substantial portions of the
+ * Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+ * KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. Â© 2019
+ * GitHub, Inc.
+ */
 package model.metaheuristic.experiment.component;
 
 import java.io.BufferedReader;
@@ -9,7 +36,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
-
 import exception.ApplicationException;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentComponent;
@@ -22,7 +48,7 @@ import model.metaheuristic.utils.solutionattribute.SolutionAttribute;
 /**
  * This class computes a reference Pareto front from a set of files. Once the
  * algorithms of an experiment have been executed through running an instance of
- * class {@link ExecuteAlgorithms}, all the obtained fronts of all the
+ * class {@link controller.utils.ExperimentTask}, all the obtained fronts of all the
  * algorithms are gathered per problem; then, the dominated solutions are
  * removed and the final result is a file per problem containing the reference
  * Pareto front.
@@ -30,207 +56,187 @@ import model.metaheuristic.utils.solutionattribute.SolutionAttribute;
  * By default, the files are stored in a directory called "referenceFront",
  * which is located in the experiment base directory. Each front is named
  * following the scheme "problemName.rf".
- *
- * <pre>
- * Base on code from https://github.com/jMetal/jMetal
- * 
- * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE. © 2019 GitHub, Inc.
- * </pre>
  */
 public class GenerateReferenceParetoFront implements ExperimentComponent {
-	private final Experiment<?> experiment;
-	private List<ObjectSolution> paretoFront;
+    private final Experiment<?> experiment;
+    private List<ObjectSolution> paretoFront;
 
-	public GenerateReferenceParetoFront(Experiment<?> experimentConfiguration) {
-		this.experiment = experimentConfiguration;
+    public GenerateReferenceParetoFront(Experiment<?> experimentConfiguration) {
+        this.experiment = experimentConfiguration;
 
-		experiment.removeDuplicatedAlgorithms();
-	}
+        experiment.removeDuplicatedAlgorithms();
+    }
 
-	/**
-	 * The run() method creates de output directory and compute the fronts
-	 */
-	@Override
-	public void run() throws IOException {
-		String outputDirectoryName = experiment.getReferenceFrontDirectory();
-		createOutputDirectory(outputDirectoryName);
+    /**
+     * Get a solution list with the element of pareto front.
+     *
+     * @return a list with element of pareto front or a empty list if there is no
+     * element or {@link #run()} has not been executed
+     */
+    public List<ObjectSolution> getReferenceToParetoFront() {
+        if (this.paretoFront == null) {
+            return new ArrayList<ObjectSolution>();
+        }
+        return this.paretoFront;
+    }
 
-		List<String> referenceFrontFileNames = new LinkedList<>();
-		for (ExperimentProblem<?> problem : experiment.getProblemList()) {
-			NonDominatedSolutionListArchive<ObjectSolution> nonDominatedSolutionArchive = new NonDominatedSolutionListArchive<>();
+    /**
+     * The run() method creates de output directory and compute the fronts
+     */
+    @Override
+    public void run() throws IOException {
+        String outputDirectoryName = experiment.getReferenceFrontDirectory();
+        createOutputDirectory(outputDirectoryName);
 
-			for (ExperimentAlgorithm<?> algorithm : experiment.getAlgorithmList()) {
-				String problemDirectory = experiment.getExperimentBaseDirectory() + "/data/"
-						+ algorithm.getAlgorithmTag() + "/" + problem.getTag();
+        List<String> referenceFrontFileNames = new LinkedList<>();
+        for (ExperimentProblem<?> problem : experiment.getProblemList()) {
+            NonDominatedSolutionListArchive<ObjectSolution> nonDominatedSolutionArchive = new NonDominatedSolutionListArchive<>();
 
-				for (int i = 0; i < experiment.getIndependentRuns(); i++) {
-					String frontFileName = problemDirectory + "/" + experiment.getOutputParetoFrontFileName() + i
-							+ ".tsv";
-					String setFileName = problemDirectory + "/" + experiment.getOutputParetoSetFileName() + i + ".tsv";
+            for (ExperimentAlgorithm<?> algorithm : experiment.getAlgorithmList()) {
+                String problemDirectory = experiment.getExperimentBaseDirectory() + "/data/"
+                                          + algorithm.getAlgorithmTag() + "/" + problem.getTag();
 
-					List<ObjectSolution> solutionList = readSolutionFromFiles(frontFileName, setFileName);
-					SolutionAttribute<ObjectSolution, String> solutionAttribute = new SolutionAttribute<ObjectSolution, String>();
+                for (int i = 0; i < experiment.getIndependentRuns(); i++) {
+                    String frontFileName = problemDirectory + "/" + experiment.getOutputParetoFrontFileName() + i
+                                           + ".tsv";
+                    String setFileName = problemDirectory + "/" + experiment.getOutputParetoSetFileName() + i + ".tsv";
 
-					for (ObjectSolution solution : solutionList) {
-						solutionAttribute.setAttribute(solution, algorithm.getAlgorithmTag());
-						nonDominatedSolutionArchive.add(solution);
-					}
-				}
-			}
+                    List<ObjectSolution> solutionList = readSolutionFromFiles(frontFileName, setFileName);
+                    SolutionAttribute<ObjectSolution, String> solutionAttribute = new SolutionAttribute<ObjectSolution, String>();
 
-			String referenceSetFileName = outputDirectoryName + "/" + problem.getTag() + ".pf";
-			referenceFrontFileNames.add(problem.getTag() + ".pf");
+                    for (ObjectSolution solution : solutionList) {
+                        solutionAttribute.setAttribute(solution, algorithm.getAlgorithmTag());
+                        nonDominatedSolutionArchive.add(solution);
+                    }
+                }
+            }
 
-			this.paretoFront = nonDominatedSolutionArchive.getSolutionList();
-			new SolutionListOutput(this.paretoFront).printObjectivesToFile(referenceSetFileName);
+            String referenceSetFileName = outputDirectoryName + "/" + problem.getTag() + ".pf";
+            referenceFrontFileNames.add(problem.getTag() + ".pf");
 
-			writeFilesWithTheSolutionsContributedByEachAlgorithm(outputDirectoryName, problem, this.paretoFront);
+            this.paretoFront = nonDominatedSolutionArchive.getSolutionList();
+            new SolutionListOutput(this.paretoFront).printObjectivesToFile(referenceSetFileName);
 
-		}
+            writeFilesWithTheSolutionsContributedByEachAlgorithm(outputDirectoryName, problem, this.paretoFront);
 
-	}
+        }
 
-	/**
-	 * Read the objectives of a FUN file and return a list with solution.
-	 * 
-	 * @param frontFileName file path
-	 * @param problem
-	 * @return the list of solution
-	 * @throws IOException           if I/O errors occurs
-	 * @throws FileNotFoundException if the named file does not exist,is a directory
-	 *                               rather than a regular file,or for some other
-	 *                               reason cannot be opened for reading.
-	 */
-	private List<ObjectSolution> readSolutionFromFiles(String frontFileName, String setFileName)
-			throws FileNotFoundException, IOException {
+    }
 
-		List<ObjectSolution> list = new ArrayList<ObjectSolution>();
-		int numberOfObjectives = 0;
-		int numberOfVariables = 0;
+    /**
+     * Read the objectives of a FUN file and return a list with solution.
+     *
+     * @param frontFileName file path to FUN file
+     * @param setFileName   file path to VAR file
+     * @return the list of solution
+     * @throws IOException           if I/O errors occurs
+     * @throws FileNotFoundException if the named file does not exist,is a directory
+     *                               rather than a regular file,or for some other
+     *                               reason cannot be opened for reading.
+     */
+    private List<ObjectSolution> readSolutionFromFiles(String frontFileName, String setFileName)
+            throws FileNotFoundException, IOException {
 
-		try (FileReader frontFile = new FileReader(frontFileName);
-				BufferedReader frontBuffer = new BufferedReader(frontFile);
-				FileReader setFile = new FileReader(setFileName);
-				BufferedReader setBuffer = new BufferedReader(setFile)) {
+        List<ObjectSolution> list = new ArrayList<ObjectSolution>();
+        int numberOfObjectives = 0;
+        int numberOfVariables = 0;
 
-			String frontLine = null;
-			String setLine = null;
+        try (FileReader frontFile = new FileReader(frontFileName);
+             BufferedReader frontBuffer = new BufferedReader(frontFile);
+             FileReader setFile = new FileReader(setFileName);
+             BufferedReader setBuffer = new BufferedReader(setFile)) {
 
-			while ((frontLine = frontBuffer.readLine()) != null) {
-				setLine = setBuffer.readLine();
-				if (setLine == null) {
-					throw new ApplicationException("Missing decision variables in file " + setFileName);
-				}
+            String frontLine = null;
+            String setLine = null;
 
-				// split the line in tokens
-				StringTokenizer frontTokenizer = new StringTokenizer(frontLine);
-				StringTokenizer setTokenizer = new StringTokenizer(setLine);
+            while ((frontLine = frontBuffer.readLine()) != null) {
+                setLine = setBuffer.readLine();
+                if (setLine == null) {
+                    throw new ApplicationException("Missing decision variables in file " + setFileName);
+                }
 
-				// initialize the number of objectives
-				if (numberOfObjectives == 0) {
-					numberOfObjectives = frontTokenizer.countTokens();
+                // split the line in tokens
+                StringTokenizer frontTokenizer = new StringTokenizer(frontLine);
+                StringTokenizer setTokenizer = new StringTokenizer(setLine);
 
-				} else if (numberOfObjectives != frontTokenizer.countTokens()) {
-					throw new ApplicationException("Invalid number of objectives in a line. Expected "
-							+ numberOfObjectives + " objectives but received " + frontTokenizer.countTokens());
-				}
-				// initialize the number of variables
-				if (numberOfVariables == 0) {
-					numberOfVariables = setTokenizer.countTokens();
+                // initialize the number of objectives
+                if (numberOfObjectives == 0) {
+                    numberOfObjectives = frontTokenizer.countTokens();
 
-				} else if (numberOfVariables != setTokenizer.countTokens()) {
-					throw new ApplicationException("Invalid number of variables in a line. Expected "
-							+ numberOfVariables + " objectives but received " + setTokenizer.countTokens());
-				}
+                } else if (numberOfObjectives != frontTokenizer.countTokens()) {
+                    throw new ApplicationException("Invalid number of objectives in a line. Expected "
+                                                   + numberOfObjectives + " objectives but received " + frontTokenizer
+                                                           .countTokens());
+                }
+                // initialize the number of variables
+                if (numberOfVariables == 0) {
+                    numberOfVariables = setTokenizer.countTokens();
 
-				// try create the object more appropiated, i.e. if variable are integer create a
-				// IntegerSolution.
-				ObjectSolution objectSolution = new ObjectSolution(numberOfObjectives, numberOfVariables);
+                } else if (numberOfVariables != setTokenizer.countTokens()) {
+                    throw new ApplicationException("Invalid number of variables in a line. Expected "
+                                                   + numberOfVariables + " objectives but received " + setTokenizer
+                                                           .countTokens());
+                }
 
-				int i = 0;
-				while (frontTokenizer.hasMoreTokens()) {
-					double value = Double.parseDouble(frontTokenizer.nextToken());
-					objectSolution.setObjective(i++, value);
-				}
+                // try create the object more appropiated, i.e. if variable are integer create a
+                // IntegerSolution.
+                ObjectSolution objectSolution = new ObjectSolution(numberOfObjectives, numberOfVariables);
 
-				i = 0;
-				while (setTokenizer.hasMoreTokens()) {
-					Object value = setTokenizer.nextToken();
-					objectSolution.setVariable(i++, value);
-				}
+                int i = 0;
+                while (frontTokenizer.hasMoreTokens()) {
+                    double value = Double.parseDouble(frontTokenizer.nextToken());
+                    objectSolution.setObjective(i++, value);
+                }
 
-				list.add(objectSolution);
-			}
-		}
+                i = 0;
+                while (setTokenizer.hasMoreTokens()) {
+                    Object value = setTokenizer.nextToken();
+                    objectSolution.setVariable(i++, value);
+                }
 
-		return list;
-	}
+                list.add(objectSolution);
+            }
+        }
 
-	/**
-	 * Create a new directory to save solution
-	 * 
-	 * @param outputDirectoryName the directory name
-	 * @return the created File
-	 * @throws ApplicationException if the directory cannot be created even if there
-	 *                              is no directory with that name
-	 */
-	private File createOutputDirectory(String outputDirectoryName) {
-		File outputDirectory;
-		outputDirectory = new File(outputDirectoryName);
-		if (!outputDirectory.exists()) {
-			boolean result = new File(outputDirectoryName).mkdir();
-			throw new ApplicationException("Creating " + outputDirectoryName + ". Status = " + result);
-		}
+        return list;
+    }
 
-		return outputDirectory;
-	}
+    /**
+     * Create a new directory to save solution
+     *
+     * @param outputDirectoryName the directory name
+     * @return the created File
+     * @throws ApplicationException if the directory cannot be created even if there
+     *                              is no directory with that name
+     */
+    private File createOutputDirectory(String outputDirectoryName) {
+        File outputDirectory;
+        outputDirectory = new File(outputDirectoryName);
+        if (!outputDirectory.exists()) {
+            boolean result = new File(outputDirectoryName).mkdir();
+            throw new ApplicationException("Creating " + outputDirectoryName + ". Status = " + result);
+        }
 
-	private void writeFilesWithTheSolutionsContributedByEachAlgorithm(String outputDirectoryName,
-			ExperimentProblem<?> problem, List<ObjectSolution> nonDominatedSolutions) throws IOException {
+        return outputDirectory;
+    }
 
-		SolutionAttribute<ObjectSolution, String> solutionAttribute = new SolutionAttribute<ObjectSolution, String>();
+    private void writeFilesWithTheSolutionsContributedByEachAlgorithm(String outputDirectoryName,
+                                                                      ExperimentProblem<?> problem,
+                                                                      List<ObjectSolution> nonDominatedSolutions) throws
+                                                                                                                  IOException {
 
-		for (ExperimentAlgorithm<?> algorithm : experiment.getAlgorithmList()) {
-			List<ObjectSolution> solutionsPerAlgorithm = new ArrayList<>();
-			for (ObjectSolution solution : nonDominatedSolutions) {
-				if (algorithm.getAlgorithmTag().equals(solutionAttribute.getAttribute(solution))) {
-					solutionsPerAlgorithm.add(solution);
-				}
-			}
+        SolutionAttribute<ObjectSolution, String> solutionAttribute = new SolutionAttribute<ObjectSolution, String>();
 
-			new SolutionListOutput(solutionsPerAlgorithm).printObjectivesToFile(
-					outputDirectoryName + "/" + problem.getTag() + "." + algorithm.getAlgorithmTag() + ".pf");
-		}
-	}
+        for (ExperimentAlgorithm<?> algorithm : experiment.getAlgorithmList()) {
+            List<ObjectSolution> solutionsPerAlgorithm = new ArrayList<>();
+            for (ObjectSolution solution : nonDominatedSolutions) {
+                if (algorithm.getAlgorithmTag().equals(solutionAttribute.getAttribute(solution))) {
+                    solutionsPerAlgorithm.add(solution);
+                }
+            }
 
-	/**
-	 * Get a solution list with the element of pareto front.
-	 * 
-	 * @return a list with element of pareto front or a empty list if there is no
-	 *         element or {@link #run()} has not been executed
-	 */
-	public List<ObjectSolution> getReferenceToParetoFront() {
-		if (this.paretoFront == null) {
-			return new ArrayList<ObjectSolution>();
-		}
-		return this.paretoFront;
-	}
+            new SolutionListOutput(solutionsPerAlgorithm).printObjectivesToFile(
+                    outputDirectoryName + "/" + problem.getTag() + "." + algorithm.getAlgorithmTag() + ".pf");
+        }
+    }
 }

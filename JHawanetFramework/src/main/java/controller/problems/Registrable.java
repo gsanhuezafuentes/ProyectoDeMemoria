@@ -99,7 +99,7 @@ public interface Registrable<R> {
 	 * 
 	 * @param inpPath the path of inp file, or null if there isn't a network opened.
 	 * @return the algorithm ready for execution
-	 * @throws if an exception occurs when building the algorithm
+	 * @throws Exception if an exception occurs when building the algorithm
 	 */
 	R build(String inpPath) throws Exception;
 

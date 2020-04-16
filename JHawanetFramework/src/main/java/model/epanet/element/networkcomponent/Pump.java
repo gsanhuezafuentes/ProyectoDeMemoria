@@ -152,7 +152,7 @@ public final class Pump extends Link {
 	 * <br>
 	 * When key is null so the property isn't setting up
 	 * 
-	 * @param key
+	 * @param key the key of property
 	 * @return value the value (Double, Curve or Pattern or null)
 	 */
 	public Object getProperty(PumpProperty key) {
@@ -281,7 +281,7 @@ public final class Pump extends Link {
 	 * Set the price pattern. A id to a Pattern
 	 * 
 	 * @param pricePattern the price pattern id to set or a empty string if it doesn't exist
-	 * @throws if pricePattern is null
+	 * @throws NullPointerException if pricePattern is null
 	 */
 	public void setPricePattern(String pricePattern) {
 		Objects.requireNonNull(pricePattern);

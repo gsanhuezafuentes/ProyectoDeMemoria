@@ -1,3 +1,31 @@
+/*
+ * Base on code from https://github.com/jMetal/jMetal
+ *
+ * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated
+ * documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to
+ * whom the Software is furnished to do so, subject to the
+ * following conditions:
+ *
+ * The above copyright notice and this permission notice shall
+ * be included in all copies or substantial portions of the
+ * Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+ * KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. © 2019
+ * GitHub, Inc.
+ */
 package model.metaheuristic.utils.solutionattribute;
 
 import java.util.ArrayList;
@@ -19,36 +47,6 @@ import model.metaheuristic.utils.comparator.OverallConstraintViolationComparator
  * subset 0 contains the non-dominated solutions, subset 1 contains the
  * non-dominated solutions after removing those belonging to subset 0, and so
  * on.
- *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
- * @author Juan J. Durillo <br>
- *         <br>
- * 
- *         <pre>
- * Extract of code from https://github.com/jMetal/jMetal
- * 
- * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- * 
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
- * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE. © 2019 GitHub, Inc.
- *         </pre>
  */
 public class DominanceRanking<S extends Solution<?>> extends SolutionAttribute<S, Integer> {
 	private Comparator<S> dominanceComparator;
@@ -58,6 +56,7 @@ public class DominanceRanking<S extends Solution<?>> extends SolutionAttribute<S
 
 	/**
 	 * Constructor
+	 * @param comparator the comparator to use to compare solution
 	 */
 	public DominanceRanking(Comparator<S> comparator) {
 		this.dominanceComparator = comparator;
@@ -80,7 +79,7 @@ public class DominanceRanking<S extends Solution<?>> extends SolutionAttribute<S
 	 * Compute the ranking of solution set and save to be access used
 	 * {@link #getSubfront(int)} subsequently.
 	 * 
-	 * @param solutionSet
+	 * @param solutionSet the solution set
 	 * @return Return this object that contains the solution set splited by ranking.
 	 */
 	public DominanceRanking<S> computeRanking(List<S> solutionSet) {

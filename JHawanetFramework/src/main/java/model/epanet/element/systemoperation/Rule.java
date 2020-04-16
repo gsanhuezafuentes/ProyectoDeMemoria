@@ -30,7 +30,7 @@ public final class Rule {
 
 	/**
 	 * @param ruleCode the ruleCode to set or a empty string if this doesn't exist
-	 * @throws if ruleCode is null
+	 * @throws NullPointerException if ruleCode is null
 	 */
 	public void setCode(String ruleCode) {
 		Objects.requireNonNull(ruleCode);

@@ -72,7 +72,7 @@ public final class Tag {
 
 	/**
 	 * @param label the label to set
-	 * @throws if label is null
+	 * @throws NullPointerException if label is null
 	 */
 	public void setLabel(String label) {
 		Objects.requireNonNull(label);

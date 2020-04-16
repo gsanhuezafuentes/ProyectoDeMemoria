@@ -181,7 +181,7 @@ public final class Tank extends Node {
 	 * Set the curve id. The id of {@link Curve}.
 	 * 
 	 * @param volCurve the volCurve to set
-	 * @throws if volCurve is null
+	 * @throws NullPointerException if volCurve is null
 	 */
 	public void setVolumeCurve(String volCurve) {
 		Objects.requireNonNull(volCurve);

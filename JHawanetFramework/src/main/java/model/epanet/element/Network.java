@@ -94,7 +94,7 @@ public final class Network {
 	 * Copy constructor. Create a copy of the network received. This method create a
 	 * copy totally independent of the original network, i.e., a deep copy.
 	 * 
-	 * @param network
+	 * @param network the network object to copy
 	 */
 	public Network(Network network) {
 		this();

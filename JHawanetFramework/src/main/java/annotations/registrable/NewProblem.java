@@ -1,9 +1,6 @@
 package annotations.registrable;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 import controller.problems.Registrable;
 
@@ -13,14 +10,17 @@ import controller.problems.Registrable;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.CONSTRUCTOR)
+@Documented
 public @interface NewProblem {
 	/**
-	 * Problem name. It is used as a category name.
+	 * Problem name. It is used as a category name in the GUI.
+	 * @return the name of algorithm
 	 */
 	String displayName();
 	
 	/**
 	 * Algorithm name.
+	 * @return the name of algorithm used to solve the problem
 	 */
 	String algorithmName();
 	
