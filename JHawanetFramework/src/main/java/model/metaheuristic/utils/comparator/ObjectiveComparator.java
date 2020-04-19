@@ -42,11 +42,11 @@ import model.metaheuristic.solution.Solution;
 public class ObjectiveComparator<S extends Solution<?>> implements Comparator<S>, Serializable {
 	public enum Ordering {
 		ASCENDING, DESCENDING
-	};
+	}
 
-	private int objectiveId;
+	private final int objectiveId;
 
-	private Ordering order;
+	private final Ordering order;
 
 	/**
 	 * Constructor.
@@ -96,8 +96,8 @@ public class ObjectiveComparator<S extends Solution<?>> implements Comparator<S>
 			throw new ApplicationException("The solution2 has " + solution2.getNumberOfObjectives() + " objectives "
 					+ "and the objective to sort is " + objectiveId);
 		} else {
-			Double objective1 = solution1.getObjective(this.objectiveId);
-			Double objective2 = solution2.getObjective(this.objectiveId);
+			double objective1 = solution1.getObjective(this.objectiveId);
+			double objective2 = solution2.getObjective(this.objectiveId);
 			if (order == Ordering.ASCENDING) {
 				result = Double.compare(objective1, objective2);
 			} else {

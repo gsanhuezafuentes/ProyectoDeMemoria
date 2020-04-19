@@ -44,9 +44,9 @@ import model.metaheuristic.utils.comparator.EqualSolutionsComparator;
  */
 @SuppressWarnings("serial")
 public class NonDominatedSolutionListArchive<S extends Solution<?>> implements Archive<S> {
-	private List<S> solutionList;
-	private Comparator<S> dominanceComparator;
-	private Comparator<S> equalSolutions = new EqualSolutionsComparator<S>();
+	private final List<S> solutionList;
+	private final Comparator<S> dominanceComparator;
+	private final Comparator<S> equalSolutions = new EqualSolutionsComparator<S>();
 
 	/**
 	 * Constructor
@@ -88,9 +88,9 @@ public class NonDominatedSolutionListArchive<S extends Solution<?>> implements A
 			while (((!isDominated) && (!isContained)) && (iterator.hasNext())) {
 				S listIndividual = iterator.next();
 				int flag = dominanceComparator.compare(solution, listIndividual);
-				if (flag == -1) {
+				if (flag < 0) {
 					iterator.remove();
-				} else if (flag == 1) {
+				} else if (flag > 0) {
 					isDominated = true; // dominated by one in the list
 				} else if (flag == 0) {
 					int equalflag = equalSolutions.compare(solution, listIndividual);
@@ -103,8 +103,6 @@ public class NonDominatedSolutionListArchive<S extends Solution<?>> implements A
 				solutionList.add(solution);
 				solutionInserted = true;
 			}
-
-			return solutionInserted;
 		}
 
 		return solutionInserted;

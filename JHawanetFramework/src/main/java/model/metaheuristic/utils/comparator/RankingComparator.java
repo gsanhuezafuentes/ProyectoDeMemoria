@@ -38,7 +38,7 @@ import model.metaheuristic.utils.solutionattribute.DominanceRanking;
  * 
  */
 public class RankingComparator<S extends Solution<?>> implements Comparator<S> {
-	private DominanceRanking<S> ranking = new DominanceRanking<S>();
+	private final DominanceRanking<S> ranking = new DominanceRanking<S>();
 
 	/**
 	 * Compares two solutions according to the ranking attribute. The lower the
@@ -65,11 +65,11 @@ public class RankingComparator<S extends Solution<?>> implements Comparator<S> {
 			int rank2 = Integer.MAX_VALUE;
 
 			if (ranking.getAttribute(solution1) != null) {
-				rank1 = (int) ranking.getAttribute(solution1);
+				rank1 = ranking.getAttribute(solution1);
 			}
 
 			if (ranking.getAttribute(solution2) != null) {
-				rank2 = (int) ranking.getAttribute(solution2);
+				rank2 = ranking.getAttribute(solution2);
 			}
 
 			if (rank1 < rank2) {

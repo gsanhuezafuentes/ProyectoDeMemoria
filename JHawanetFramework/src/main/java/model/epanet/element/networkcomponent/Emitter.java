@@ -1,5 +1,13 @@
 package model.epanet.element.networkcomponent;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public final class Emitter {
 	private double coefficient;
 
@@ -10,8 +18,10 @@ public final class Emitter {
 	 * Create a emitter with same values that the emitter passed.
 	 * 
 	 * @param emitter the emitter to copy
+	 * @throws NullPointerException if emitter is null
 	 */
-	public Emitter(Emitter emitter) {
+	public Emitter(@NotNull Emitter emitter) {
+		Objects.requireNonNull(emitter);
 		this.coefficient = emitter.coefficient;
 	}
 
@@ -32,9 +42,11 @@ public final class Emitter {
 
 	@Override
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10f", getCoefficient()));
-		return txt.toString();
+		Map<String, Object> map = new LinkedHashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		map.put("coefficient", coefficient);
+		return gson.toJson(map);
 	}
 
 	/**
@@ -42,7 +54,8 @@ public final class Emitter {
 	 * 
 	 * @return the copy
 	 */
-	public Emitter copy() {
+	public @NotNull Emitter copy() {
 		return new Emitter(this);
 	}
+
 }

@@ -1,9 +1,15 @@
 package model.epanet.element.networkcomponent;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import model.epanet.element.systemoperation.Curve;
 import model.epanet.element.waterquality.Mixing;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * This class represent a tank.
@@ -23,12 +29,12 @@ public final class Tank extends Node {
 	private double maximumLevel;
 	private double diameter;
 	private double minimumVolume;
-	private String volumeCurve; // A id to the Curve
-	private Mixing mixing;
+	@NotNull private String volumeCurve; // A id to the Curve
+	@NotNull private final Mixing mixing;
 	/*
 	 * This parameter is save [Reaction] section with the label TANK
 	 */
-	private Double reactionCoefficient;
+	@Nullable private Double reactionCoefficient;
 
 	public Tank() {
 		this.elevation = DEFAULT_ELEVATION;
@@ -46,7 +52,7 @@ public final class Tank extends Node {
 	 * 
 	 * @param tank the tank to copy
 	 */
-	public Tank(Tank tank) {
+	public Tank(@NotNull Tank tank) {
 		super(tank);
 		this.elevation = tank.elevation;
 		this.initialLevel = tank.initialLevel;
@@ -173,7 +179,7 @@ public final class Tank extends Node {
 	 * 
 	 * @return the volCurve or a empty string if it doesn't exist
 	 */
-	public String getVolumeCurve() {
+	public @NotNull String getVolumeCurve() {
 		return volumeCurve;
 	}
 
@@ -183,7 +189,7 @@ public final class Tank extends Node {
 	 * @param volCurve the volCurve to set
 	 * @throws NullPointerException if volCurve is null
 	 */
-	public void setVolumeCurve(String volCurve) {
+	public void setVolumeCurve(@NotNull String volCurve) {
 		Objects.requireNonNull(volCurve);
 		this.volumeCurve = volCurve;
 	}
@@ -193,7 +199,7 @@ public final class Tank extends Node {
 	 * 
 	 * @return the mixing
 	 */
-	public Mixing getMixing() {
+	public @NotNull Mixing getMixing() {
 		return mixing;
 	}
 
@@ -202,7 +208,7 @@ public final class Tank extends Node {
 	 * 
 	 * @return the reactionCoefficient or null if does not exist
 	 */
-	public Double getReactionCoefficient() {
+	public @Nullable Double getReactionCoefficient() {
 		return reactionCoefficient;
 	}
 
@@ -212,35 +218,37 @@ public final class Tank extends Node {
 	 * @param reactionCoefficient the reactionCoefficient to set or null if there
 	 *                            isn't a reaction value
 	 */
-	public void setReactionCoefficient(Double reactionCoefficient) {
+	public void setReactionCoefficient(@Nullable Double reactionCoefficient) {
 		this.reactionCoefficient = reactionCoefficient;
 	}
 
 	@Override
+	@SuppressWarnings("unchecked") // the superclass also use Gson to generate the string
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", getId()));
-		txt.append(String.format("%-10f\t", getElevation()));
-		txt.append(String.format("%-10f\t", getInitialLevel()));
-		txt.append(String.format("%-10f\t", getMinimumLevel()));
-		txt.append(String.format("%-10f\t", getMaximumLevel()));
-		txt.append(String.format("%-10f\t", getDiameter()));
-		txt.append(String.format("%-10f\t", getMinimumVolume()));
-		if (getVolumeCurve() != null) {
-			txt.append(String.format("%-10s", getVolumeCurve()));
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		Map<String, Object> map = new LinkedHashMap<String, Object>(gson.fromJson(super.toString(), LinkedHashMap.class)); //unchecked
+		map.put("elevation", elevation);
+		map.put("initialLevel", initialLevel);
+		map.put("minimumLevel", minimumLevel);
+		map.put("maximumLevel", maximumLevel);
+		map.put("diameter", diameter);
+		map.put("minimumVolume", minimumVolume);
+		map.put("volumeCurve", volumeCurve);
+		map.put("mixing", gson.fromJson(mixing.toString(), LinkedHashMap.class)); //unchecked
+		if (reactionCoefficient == null) {
+			map.put("reactionCoefficient", "");
+		} else {
+			map.put("reactionCoefficient", reactionCoefficient);//
 		}
-		String description = getDescription();
-		if (description != null) {
-			txt.append(String.format(";%s", description));
-		}
-		return txt.toString();
+		return gson.toJson(map);
 	}
 
 	/**
 	 * Copy this object realizing a shallow copy.
 	 */
 	@Override
-	public Tank copy() {
+	public @NotNull Tank copy() {
 		return new Tank(this);
 	}
 }

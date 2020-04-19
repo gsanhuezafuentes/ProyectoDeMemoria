@@ -41,14 +41,14 @@ import model.metaheuristic.solution.Solution;
  *
  */
 public class Experiment<S extends Solution<?>> {
-	private String experimentName;
+	private final String experimentName;
 	private List<ExperimentAlgorithm<S>> algorithmList;
-	private List<ExperimentProblem<S>> problemList;
-	private String experimentBaseDirectory;
+	private final List<ExperimentProblem<S>> problemList;
+	private final String experimentBaseDirectory;
 
-	private String outputParetoFrontFileName;
-	private String outputParetoSetFileName;
-	private int independentRuns;
+	private final String outputParetoFrontFileName;
+	private final String outputParetoSetFileName;
+	private final int independentRuns;
 
 	private String referenceFrontDirectory;
 

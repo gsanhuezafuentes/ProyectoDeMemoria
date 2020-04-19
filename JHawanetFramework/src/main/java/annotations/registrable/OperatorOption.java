@@ -21,7 +21,7 @@ public @interface OperatorOption {
 	 * Operator name
 	 * @return name
 	 */
-	String displayName();
+	String displayName() default "";
 	/**
 	 * The operator class
 	 * Class of operator.<br><br>

@@ -88,7 +88,6 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
         String outputDirectoryName = experiment.getReferenceFrontDirectory();
         createOutputDirectory(outputDirectoryName);
 
-        List<String> referenceFrontFileNames = new LinkedList<>();
         for (ExperimentProblem<?> problem : experiment.getProblemList()) {
             NonDominatedSolutionListArchive<ObjectSolution> nonDominatedSolutionArchive = new NonDominatedSolutionListArchive<>();
 
@@ -111,11 +110,10 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
                 }
             }
 
-            String referenceSetFileName = outputDirectoryName + "/" + problem.getTag() + ".pf";
-            referenceFrontFileNames.add(problem.getTag() + ".pf");
+            String referenceFrontFileName = outputDirectoryName + "/" + problem.getTag() + ".pf";
 
             this.paretoFront = nonDominatedSolutionArchive.getSolutionList();
-            new SolutionListOutput(this.paretoFront).printObjectivesToFile(referenceSetFileName);
+            new SolutionListOutput(this.paretoFront).printObjectivesToFile(referenceFrontFileName);
 
             writeFilesWithTheSolutionsContributedByEachAlgorithm(outputDirectoryName, problem, this.paretoFront);
 
@@ -124,7 +122,7 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
     }
 
     /**
-     * Read the objectives of a FUN file and return a list with solution.
+     * Read the objectives and variables of a FUN and VAR file and return a list with solution.
      *
      * @param frontFileName file path to FUN file
      * @param setFileName   file path to VAR file

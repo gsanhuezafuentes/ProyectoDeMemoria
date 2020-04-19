@@ -16,12 +16,12 @@ public @interface NewProblem {
 	 * Problem name. It is used as a category name in the GUI.
 	 * @return the name of algorithm
 	 */
-	String displayName();
+	String displayName() default "";
 	
 	/**
 	 * Algorithm name.
 	 * @return the name of algorithm used to solve the problem
 	 */
-	String algorithmName();
+	String algorithmName() default "";
 	
 }

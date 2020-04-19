@@ -39,6 +39,5 @@ import model.metaheuristic.operator.Operator;
  */
 public interface CrossoverOperator<Source> extends Operator<List<Source>, List<Source>> {
 	int getNumberOfRequiredParents();
-
 	int getNumberOfGeneratedChildren();
 }

@@ -24,11 +24,9 @@
 package model.metaheuristic.algorithm.monoobjective;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import epanet.core.EpanetException;
 import exception.ApplicationException;
 import model.metaheuristic.algorithm.AbstractEvolutionaryAlgorithm;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
@@ -37,6 +35,7 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.comparator.ObjectiveComparator;
+import model.metaheuristic.operator.selection.impl.TournamentSelection;
 
 /**
  * Class to perform algorithm genetic. <br>
@@ -53,15 +52,17 @@ import model.metaheuristic.utils.comparator.ObjectiveComparator;
  * If you do not set any stopping conditions, by default the maximum number of
  * evaluations with a value of 10000 is set.
  *
+ * This class is a copy of GeneticAlgorithm2 but let use {@link TournamentSelection}
+ *
  */
 public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S> {
-	private int maxPopulationSize;
-	private Problem<S> problem;
+	private final int maxPopulationSize;
+	private final Problem<S> problem;
 	private List<S> population;
-	private SelectionOperator<List<S>, S> selectionOperator;
-	private CrossoverOperator<S> crossoverOperator;
-	private MutationOperator<S> mutationOperator;
-	private ObjectiveComparator<S> comparator;
+	private final SelectionOperator<List<S>, S> selectionOperator;
+	private final CrossoverOperator<S> crossoverOperator;
+	private final MutationOperator<S> mutationOperator;
+	private final ObjectiveComparator<S> comparator;
 	/**
 	 * Max number of evaluation
 	 */
@@ -182,24 +183,6 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 		return problem;
 	}
 
-	@Override
-	public void run() throws EpanetException {
-		List<S> offspringPopulation;
-		List<S> selectionPopulation;
-
-		population = createInitialPopulation();
-		population = evaluatePopulation(population);
-		initProgress();
-		while (!isStoppingConditionReached()) {
-			selectionPopulation = selection(population);
-			offspringPopulation = reproduction(selectionPopulation);
-			offspringPopulation = evaluatePopulation(offspringPopulation);
-			population = replacement(population, offspringPopulation);
-			updateProgress();
-		}
-
-	}
-
 	/**
 	 * @return the problem
 	 */
@@ -279,7 +262,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	@Override
 	public List<S> getResult() {
 		Collections.sort(getPopulation(), comparator);
-		return Arrays.asList(this.getPopulation().get(0));
+		return Collections.singletonList(this.getPopulation().get(0));
 	}
 
 	/** {@inheritDoc} */

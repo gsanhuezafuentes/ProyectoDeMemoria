@@ -88,7 +88,7 @@ public class MainWindowController implements Initializable {
 	
 	private Window window;
 	private File inpFile;
-	private BooleanProperty isNetworkLoaded;
+	private final BooleanProperty isNetworkLoaded;
 	private Network network;
 
 	public MainWindowController() {
@@ -138,7 +138,6 @@ public class MainWindowController implements Initializable {
 	 * Load the network
 	 * 
 	 * @param file the file
-	 * @return network or null if the network can't be loaded
 	 */
 	private void loadNetwork(File file) {
 		this.network = null;

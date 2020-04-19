@@ -1,17 +1,22 @@
 package model.epanet.element.waterquality;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import model.epanet.element.systemoperation.Pattern;
+import org.jetbrains.annotations.NotNull;
 
 public final class Source {
 
-	public static enum SourceType {
+	public enum SourceType {
 		CONCEN("CONCEN"), MASS("MASS"), FLOWPACED("FLOWPACED"), SETPOINT("SETPOINT");
 
-		private String name;
+		private final String name;
 
-		private SourceType(String name) {
+		SourceType(String name) {
 			this.name = name;
 		}
 
@@ -25,24 +30,27 @@ public final class Source {
 		/**
 		 * Parse the name to a object of the enum class if exist. if name no exist in enum class so return null;
 		 * @param name the name of object
-		 * @return the object of enum class or null if no exist
+		 * @return the object of enum class
+		 * @throws IllegalArgumentException if name is not valid
 		 */
-		public static SourceType parse(String name) {
+		public static @NotNull SourceType parse(String name) {
 			for (SourceType object : SourceType.values()) {
 				if (object.getName().equalsIgnoreCase(name)) {
 					return object;
 				}
 			}
-			return null;
+			throw new IllegalArgumentException();
 		}
 	}
 
-	private SourceType sourceType;
-	private double baselineStrenth;
-	private String timePattern; // ID to Pattern
+	@NotNull private SourceType sourceType;
+	private double sourceQuality;
+	@NotNull private String timePattern; // ID to Pattern
 
 	public Source() {
 		this.timePattern = "";
+		this.sourceType = SourceType.CONCEN; //default value
+
 	}
 
 	/**
@@ -53,39 +61,43 @@ public final class Source {
 	 * timePattern ({@link #setTimePattern}).
 	 * 
 	 * @param source the object to copy
+	 * @throws NullPointerException if source is null
 	 */
-	public Source(Source source) {
+	public Source(@NotNull Source source) {
+		Objects.requireNonNull(source);
 		this.sourceType = source.sourceType;
-		this.baselineStrenth = source.baselineStrenth;
+		this.sourceQuality = source.sourceQuality;
 		this.timePattern = source.timePattern;
 	}
 
 	/**
+	 * Get the source type. The default value is {@link SourceType#CONCEN}.
 	 * @return the sourceType
 	 */
-	public SourceType getSourceType() {
+	public @NotNull SourceType getSourceType() {
 		return sourceType;
 	}
 
 	/**
 	 * @param sourceType the sourceType to set
 	 */
-	public void setSourceType(SourceType sourceType) {
+	public void setSourceType(@NotNull SourceType sourceType) {
 		this.sourceType = sourceType;
 	}
 
 	/**
-	 * @return the baselineStrenth
+	 * Get the Baseline source strength
+	 * @return the source quality
 	 */
-	public double getBaselineStrenth() {
-		return baselineStrenth;
+	public double getSourceQuality() {
+		return sourceQuality;
 	}
 
 	/**
-	 * @param baselineStrenth the baselineStrenth to set
+	 * @param sourceQuality the Baseline source strength to set
 	 */
-	public void setBaselineStrenth(double baselineStrenth) {
-		this.baselineStrenth = baselineStrenth;
+	public void setSourceQuality(double sourceQuality) {
+		this.sourceQuality = sourceQuality;
 	}
 
 	/**
@@ -93,7 +105,7 @@ public final class Source {
 	 * 
 	 * @return the timePattern or a empty string if it does not exist
 	 */
-	public String getTimePattern() {
+	public @NotNull String getTimePattern() {
 		return timePattern;
 	}
 
@@ -103,21 +115,20 @@ public final class Source {
 	 * @param timePattern the timePattern to set
 	 * @throws NullPointerException if timePattern is null
 	 */
-	public void setTimePattern(String timePattern) {
+	public void setTimePattern(@NotNull String timePattern) {
 		Objects.requireNonNull(timePattern);
 		this.timePattern = timePattern;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", getSourceType().getName()));
-		txt.append(String.format("%-10f\t", getBaselineStrenth()));
-		if (getTimePattern() != null) {
-			txt.append(String.format("%-10s", getTimePattern()));
-		}
+		Map<String, Object> map = new LinkedHashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-		return txt.toString();
+		map.put("sourceType", sourceType);
+		map.put("sourceQuality", sourceQuality);
+		map.put("timePattern", timePattern);
+		return gson.toJson(map);
 	}
 
 	/**
@@ -127,7 +138,7 @@ public final class Source {
 	 * 
 	 * @return the object to copy
 	 */
-	public Source copy() {
+	public @NotNull Source copy() {
 		return new Source(this);
 	}
 

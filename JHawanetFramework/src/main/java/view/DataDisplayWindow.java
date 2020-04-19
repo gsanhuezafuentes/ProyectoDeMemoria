@@ -154,7 +154,7 @@ public class DataDisplayWindow extends Stage {
 						quality != null ? Double.toString(quality.getInitialQuality()) : ""));
 				Source source = node.getSourceQuality();
 				list.add(new Pair<String, String>("Source Quality",
-						source != null ? Double.toString(source.getBaselineStrenth()) : ""));
+						source != null ? Double.toString(source.getSourceQuality()) : ""));
 //				list.add(new Pair<String, String>("Actual Demand",
 //						Integer.toString(node.getDemandCategories().size())));
 //				list.add(new Pair<String, String>("Total Head",
@@ -188,7 +188,7 @@ public class DataDisplayWindow extends Stage {
 						quality != null ? Double.toString(quality.getInitialQuality()) : ""));
 				Source source = node.getSourceQuality();
 				list.add(new Pair<String, String>("Source Quality",
-						source != null ? Double.toString(source.getBaselineStrenth()) : ""));
+						source != null ? Double.toString(source.getSourceQuality()) : ""));
 //				list.add(new Pair<String, String>("Net Flow",
 //						Integer.toString(node.getDemandCategories().size())));
 //				list.add(new Pair<String, String>("Elevation",
@@ -233,7 +233,7 @@ public class DataDisplayWindow extends Stage {
 						quality != null ? Double.toString(quality.getInitialQuality()) : ""));
 				Source source = node.getSourceQuality();
 				list.add(new Pair<String, String>("Source Quality",
-						source != null ? Double.toString(source.getBaselineStrenth()) : ""));
+						source != null ? Double.toString(source.getSourceQuality()) : ""));
 //				list.add(new Pair<String, String>("Net Flow",
 //				Integer.toString(node.getDemandCategories().size())));
 //		list.add(new Pair<String, String>("Elevation",

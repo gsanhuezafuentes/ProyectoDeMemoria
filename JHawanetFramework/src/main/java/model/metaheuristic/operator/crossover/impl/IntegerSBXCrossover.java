@@ -45,9 +45,9 @@ import model.metaheuristic.utils.random.RandomGenerator;
 public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 	private static final double EPS = 1.0e-14;
 
-	private double crossoverProbability;
-	private double distributionIndex;
-	private RandomGenerator<Double> random;
+	private final double crossoverProbability;
+	private final double distributionIndex;
+	private final RandomGenerator<Double> random;
 
 	/**
 	 * 
@@ -108,7 +108,8 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 				valueX1 = parent1.getVariable(i);
 				valueX2 = parent2.getVariable(i);
 				if (random.getRandomValue() <= 0.5) {
-					if (Math.abs(valueX1 - valueX2) > EPS) {
+					if (Math.abs(valueX1 - valueX2) > EPS) // noinspection DuplicatedCode
+					{
 
 						if (valueX1 < valueX2) {
 							y1 = valueX1;

@@ -1,12 +1,18 @@
 package model.epanet.element.networkcomponent;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public final class Reservoir extends Node {
 	public static final double DEFAULT_TOTAL_HEAD = 0;
 
 	private double totalHead;
-	private String headPattern; // Pattern ID
+	@NotNull private String headPattern; // Pattern ID
 
 	public Reservoir() {
 		totalHead = DEFAULT_TOTAL_HEAD;
@@ -17,9 +23,10 @@ public final class Reservoir extends Node {
 	 * Create a new reservoir copy the reservoir received.This is a deep copy.
 	 * 
 	 * @param reservoir the reservoir to copy.
+	 * @throws NullPointerException if reservoir is null
 	 */
-	public Reservoir(Reservoir reservoir) {
-		super(reservoir);
+	public Reservoir(@NotNull Reservoir reservoir) {
+		super(Objects.requireNonNull(reservoir));
 		totalHead = reservoir.totalHead;
 		headPattern = reservoir.headPattern;
 	}
@@ -45,7 +52,7 @@ public final class Reservoir extends Node {
 	 * 
 	 * @return the pattern id or a empty string if it doesn't exist
 	 */
-	public String getHeadPattern() {
+	public @NotNull String getHeadPattern() {
 		return headPattern;
 	}
 
@@ -55,31 +62,27 @@ public final class Reservoir extends Node {
 	 * @param pattern the pattern to set
 	 * @throws NullPointerException if pattern is null
 	 */
-	public void setHeadPattern(String pattern) {
+	public void setHeadPattern(@NotNull String pattern) {
 		Objects.requireNonNull(pattern);
 		this.headPattern = pattern;
 	}
 
 	@Override
+	@SuppressWarnings("unchecked") // the superclass also use Gson to generate the string
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", getId()));
-		txt.append(String.format("%-10f\t", getTotalHead()));
-		if (getHeadPattern() != null) {
-			txt.append(String.format("%-10s\t", getHeadPattern()));
-		}
-		String description = getDescription();
-		if (description != null) {
-			txt.append(String.format(";%s", description));
-		}
-		return txt.toString();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		Map<String, Object> map = new LinkedHashMap<String, Object>(gson.fromJson(super.toString(), LinkedHashMap.class)); //unchecked
+		map.put("totalHead", totalHead);
+		map.put("headPattern", headPattern);
+		return gson.toJson(map);
 	}
 
 	/**
 	 * Copy this object realizing a shallow copy.
 	 */
 	@Override
-	public Reservoir copy() {
+	public @NotNull Reservoir copy() {
 		return new Reservoir(this);
 	}
 

@@ -15,7 +15,7 @@ import model.metaheuristic.solution.Solution;
  */
 public class AlgorithmTask extends Task<AlgorithmTask.Result> {
 
-	private Algorithm<?> algorithm;
+	private final Algorithm<?> algorithm;
 	
 
 	public AlgorithmTask(Algorithm<?> algorithm) {
@@ -51,8 +51,8 @@ public class AlgorithmTask extends Task<AlgorithmTask.Result> {
 	 *
 	 */
 	public static class Result{
-		private List<? extends Solution<?>> solution;
-		private int numberOfIterations;
+		private final List<? extends Solution<?>> solution;
+		private final int numberOfIterations;
 		
 		/**
 		 * 

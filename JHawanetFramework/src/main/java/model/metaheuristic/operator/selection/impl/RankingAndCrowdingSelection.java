@@ -153,9 +153,7 @@ public class RankingAndCrowdingSelection<S extends Solution<?>> implements Selec
 
         front = ranking.getSubfront(rank);
 
-        for (int i = 0; i < front.size(); i++) {
-            population.add(front.get(i));
-        }
+        population.addAll(front);
     }
 
     /**

@@ -1,80 +1,101 @@
 package model.epanet.element.systemoperation;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.*;
 
 public final class Pattern {
-	private String id;
-	private List<Double> multipliers;
-	
-	public Pattern() {
-		this.multipliers = new ArrayList<Double>();
-	}
-	
-	/**
-	 * Copy constructor.
-	 * @param pattern the object to copy
-	 */
-	public Pattern(Pattern pattern) {
-		this();
-		this.id = pattern.id;
-		this.multipliers.addAll(pattern.multipliers);
-	}
+    @NotNull
+    private String id;
+    @NotNull
+    private List<Double> multipliers;
+
+    public Pattern() {
+        this.id = "";
+        this.multipliers = new ArrayList<>();
+    }
+
+    /**
+     * Copy constructor.
+     *
+     * @param pattern the object to copy
+     * @throws NullPointerException if pattern is null
+     */
+    public Pattern(@NotNull Pattern pattern) {
+        this();
+        Objects.requireNonNull(pattern);
+        this.id = pattern.id;
+        this.multipliers.addAll(pattern.multipliers);
+    }
 
 
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
+    /**
+     * Get the id
+     * @return the id
+     */
+    public @NotNull String getId() {
+        return id;
+    }
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		Objects.requireNonNull(id);
-		this.id = id;
-	}
+    /**
+     * Set the id
+     * @param id the id to set
+     * @throws NullPointerException if id is null
+     */
+    public void setId(@NotNull String id) {
+        Objects.requireNonNull(id);
+        this.id = id;
+    }
 
-	/**
-	 * @return the multipliers
-	 */
-	public List<Double> getMultipliers() {
-		return multipliers;
-	}
+    /**
+     * @return the multipliers
+     */
+    public @NotNull List<Double> getMultipliers() {
+        return multipliers;
+    }
 
-	/**
-	 * @param multipliers the multipliers to set
-	 */
-	public void setMultipliers(List<Double> multipliers) {
-		this.multipliers = multipliers;
-	}
-	
-	/**
-	 * Add a multiplier to multipliers list
-	 * @param multiplier the multiplier to add
-	 */
-	public void addMultipliers(double multiplier) {
-		this.multipliers.add(multiplier);
-	}
-	
-	@Override
-	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s", getId()));
-		for (int i = 0; i < this.multipliers.size(); i++) {
-			txt.append(String.format("\t%f", this.multipliers.get(i)));
-		}
-		return txt.toString();
-	}
-	
-	/**
-	 * Create a copy of this object.
-	 * @return the copy
-	 */
-	public Pattern copy() {
-		return new Pattern(this);
-	}
+    /**
+     * Set the multipliers
+     *
+     * @param multipliers the multipliers to set
+     * @throws NullPointerException if multipliers is null
+     */
+    public void setMultipliers(@NotNull List<Double> multipliers) {
+        Objects.requireNonNull(multipliers);
+        this.multipliers = multipliers;
+    }
+
+    /**
+     * Add a multiplier to multipliers list
+     *
+     * @param multiplier the multiplier to add
+     */
+    public void addMultipliers(double multiplier) {
+        this.multipliers.add(multiplier);
+    }
+
+    @Override
+    public String toString() {
+        Map<String, Object> map = new LinkedHashMap<>();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        map.put("id", id);
+        if (multipliers.isEmpty()) {
+            map.put("multipliers", "");
+        } else {
+            map.put("multipliers", multipliers);
+        }
+        return gson.toJson(map);
+    }
+
+    /**
+     * Create a copy of this object.
+     *
+     * @return the copy
+     */
+    public @NotNull Pattern copy() {
+        return new Pattern(this);
+    }
 }

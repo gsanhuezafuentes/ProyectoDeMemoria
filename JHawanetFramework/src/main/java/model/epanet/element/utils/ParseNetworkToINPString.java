@@ -55,9 +55,9 @@ public final class ParseNetworkToINPString {
 		createValve(out, network.getValves());
 		createEmmiter(out, network.getJunctions());
 		createEnergy(out, network.getEnergyOption(), network.getPumps());
-		createStatus(out, network.getPipes(), network.getPumps(), network.getValves());
-		createPattern(out, network.getPatternList());
-		createCurves(out, network.getCurveList());
+		createStatus(out, network.getPumps(), network.getValves());
+		createPattern(out, network.getPatterns());
+		createCurves(out, network.getCurves());
 		createControl(out, network.getControl());
 		createRule(out, network.getRule());
 		createDemand(out, network.getJunctions());
@@ -81,7 +81,7 @@ public final class ParseNetworkToINPString {
 
 	private static void createTitle(StringBuilder out, String title) {
 		out.append("[TITLE]\n");
-		out.append(title + "\n");
+		out.append(title).append("\n");
 
 	}
 
@@ -149,7 +149,9 @@ public final class ParseNetworkToINPString {
 				"Length", "Diameter", "Roughness", "MinorLoss", "Status"));
 		for (Pipe pipe : pipes) {
 			out.append(String.format("%-10s\t", pipe.getId()));
+			assert pipe.getNode1() != null;
 			out.append(String.format("%-10s\t", pipe.getNode1().getId()));
+			assert pipe.getNode2() != null;
 			out.append(String.format("%-10s\t", pipe.getNode2().getId()));
 			out.append(String.format("%-10f\t", pipe.getLength()));
 			out.append(String.format("%-10f\t", pipe.getDiameter()));
@@ -171,7 +173,9 @@ public final class ParseNetworkToINPString {
 		out.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\n", "ID", "Node1", "Node2", "Parameters"));
 		for (Pump pump : pumps) {
 			out.append(String.format("%-10s\t", pump.getId()));
+			assert pump.getNode1() != null;
 			out.append(String.format("%-10s\t", pump.getNode1().getId()));
+			assert pump.getNode2() != null;
 			out.append(String.format("%-10s\t", pump.getNode2().getId()));
 
 			for (PumpProperty key : pump.getPropertyKeys()) {
@@ -209,7 +213,9 @@ public final class ParseNetworkToINPString {
 				"Diameter", "Type", "Setting", "MinorLoss"));
 		for (Valve valve : valves) {
 			out.append(String.format("%-10s\t", valve.getId()));
+			assert valve.getNode1() != null;
 			out.append(String.format("%-10s\t", valve.getNode1().getId()));
+			assert valve.getNode2() != null;
 			out.append(String.format("%-10s\t", valve.getNode2().getId()));
 			out.append(String.format("%-10f\t", valve.getDiameter()));
 			out.append(String.format("%-10s\t", valve.getType()));
@@ -272,7 +278,7 @@ public final class ParseNetworkToINPString {
 		out.append("\n");
 	}
 
-	private static void createStatus(StringBuilder out, List<Pipe> pipes, List<Pump> pumps, List<Valve> valves) {
+	private static void createStatus(StringBuilder out, List<Pump> pumps, List<Valve> valves) {
 		out.append("[STATUS]\n");
 		out.append(String.format(";%-10s\t%-10s\n", "ID", "Status/Setting"));
 		for (Pump pump : pumps) {
@@ -295,7 +301,7 @@ public final class ParseNetworkToINPString {
 		out.append("\n");
 	}
 
-	private static void createPattern(StringBuilder out, List<Pattern> patternList) {
+	private static void createPattern(StringBuilder out, Collection<Pattern> patternList) {
 		out.append("[PATTERN]\n");
 		out.append(String.format(";%-10s\t%-10s\n", "ID", "Multipliers"));
 		for (Pattern pattern : patternList) {
@@ -315,7 +321,7 @@ public final class ParseNetworkToINPString {
 		out.append("\n");
 	}
 
-	private static void createCurves(StringBuilder out, List<Curve> curveList) {
+	private static void createCurves(StringBuilder out, Collection<Curve> curveList) {
 		out.append("[CURVE]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\n", "ID", "X-Value", "Y-Value"));
 		for (Curve curve : curveList) {
@@ -332,7 +338,6 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createControl(StringBuilder out, Control control) {
-		// TODO REVISAR esto (Deberia cambiarlo a string?)
 		out.append("[CONTROL]\n");
 		if (control != null) {
 			out.append(control.getCode());
@@ -448,7 +453,7 @@ public final class ParseNetworkToINPString {
 			if (source != null) {
 				out.append(String.format("%-10s\t", junction.getId()));
 				out.append(String.format("%-10s\t", source.getSourceType().getName()));
-				out.append(String.format("%-10f\t", source.getBaselineStrenth()));
+				out.append(String.format("%-10f\t", source.getSourceQuality()));
 				if (!source.getTimePattern().isEmpty()) {
 					out.append(String.format("%-10s", source.getTimePattern()));
 				}
@@ -460,7 +465,7 @@ public final class ParseNetworkToINPString {
 			if (source != null) {
 				out.append(String.format("%-10s\t", reservoir.getId()));
 				out.append(String.format("%-10s\t", source.getSourceType().getName()));
-				out.append(String.format("%-10f\t", source.getBaselineStrenth()));
+				out.append(String.format("%-10f\t", source.getSourceQuality()));
 				if (!source.getTimePattern().isEmpty()) {
 					out.append(String.format("%-10s", source.getTimePattern()));
 				}
@@ -472,7 +477,7 @@ public final class ParseNetworkToINPString {
 			if (source != null) {
 				out.append(String.format("%-10s\t", tank.getId()));
 				out.append(String.format("%-10s\t", source.getSourceType().getName()));
-				out.append(String.format("%-10f\t", source.getBaselineStrenth()));
+				out.append(String.format("%-10f\t", source.getSourceQuality()));
 				if (!source.getTimePattern().isEmpty()) {
 					out.append(String.format("%-10s", source.getTimePattern()));
 				}
@@ -528,15 +533,13 @@ public final class ParseNetworkToINPString {
 		if (qualityOption != null) {
 			out.append(String.format("%-18s\t%s ", "QUALITY", qualityOption.getParameter()));
 			if (qualityOption.getParameter().equalsIgnoreCase("TRACE")) {
-				if (qualityOption.getTraceNodeID() != null) {
+				if (!qualityOption.getTraceNodeID().isEmpty()) {
 					out.append(String.format("%-10s", qualityOption.getTraceNodeID()));
 				}
-				out.append("\n");
 			} else {
 				out.append(String.format("%-10s", qualityOption.getMassUnit().getName()));
-				out.append("\n");
-
 			}
+			out.append("\n");
 			out.append(String.format("%-18s\t%-10f\n", "DIFFUSIVITY", qualityOption.getRelativeDiffusivity()));
 			out.append(String.format("%-18s\t%-10f\n", "TOLERANCE", qualityOption.getQualityTolerance()));
 		}
@@ -562,7 +565,7 @@ public final class ParseNetworkToINPString {
 	private static void createReport(StringBuilder out, Report report) {
 		out.append("[REPORT]\n");
 		if (report != null) {
-			out.append(report.getCode() + "\n");
+			out.append(report.getCode()).append("\n");
 		}
 		out.append("\n");
 	}
@@ -593,7 +596,7 @@ public final class ParseNetworkToINPString {
 		out.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\n", "X-Coord", "Y-Coord", "Label", "Anchor Node"));
 		for (Label label : labels) {
 			out.append(String.format("%s\t", label.getPosition()));
-			out.append(String.format("%-10s\t", label.getLabel()));
+			out.append(String.format("%-10s\t", "\"" + label.getLabel())).append("\""); // save the label between ""
 			if (!label.getAnchorNode().isEmpty()) {
 				out.append(String.format("%-10s", label.getAnchorNode()));
 			}
@@ -608,7 +611,7 @@ public final class ParseNetworkToINPString {
 			out.append(String.format("%-15s%-10f\t%-10f\t%-10f\t%-10f\n", "DIMENSION", backdrop.getXBottomLeft(),
 					backdrop.getYBottomLeft(), backdrop.getXUpperRight(), backdrop.getYUpperRight()));
 			out.append(String.format("%-15s%-10s\t\n", "UNITS", backdrop.getUnit().getName()));
-			out.append(String.format("%-15s%s\n", "FILE", backdrop.getFile() != null ? backdrop.getFile() : ""));
+			out.append(String.format("%-15s%s\n", "FILE", backdrop.getFile()));
 			out.append(String.format("%-15s%-10f\t %-10f\n", "OFFSET", backdrop.getXOffset(), backdrop.getYOffset()));
 		}
 		out.append("\n");
@@ -620,7 +623,7 @@ public final class ParseNetworkToINPString {
 		for (Node node : nodes) {
 			Tag tag = node.getTag();
 			if (tag != null) {
-				out.append(String.format("%-10s\t", tag.getType().getName()));
+				out.append(String.format("%-10s\t", Tag.TagType.NODE.getName()));
 				out.append(String.format("%-10s\t", node.getId()));
 				out.append(String.format("%-10s", tag.getLabel()));
 				out.append("\n");
@@ -630,7 +633,7 @@ public final class ParseNetworkToINPString {
 		for (Link link : links) {
 			Tag tag = link.getTag();
 			if (tag != null) {
-				out.append(String.format("%-10s\t", tag.getType().getName()));
+				out.append(String.format("%-10s\t", Tag.TagType.LINK.getName()));
 				out.append(String.format("%-10s\t", link.getId()));
 				out.append(String.format("%-10s", tag.getLabel()));
 				out.append("\n");

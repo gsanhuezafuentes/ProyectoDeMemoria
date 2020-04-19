@@ -19,8 +19,8 @@ import model.metaheuristic.operator.Operator;
 @Target(CONSTRUCTOR)
 public @interface DefaultConstructor {
 	/**
-	 * Array with the name defined for each variable
+	 * Array with the names defined for each variable
 	 * @return array with displayNames
 	 */
-	String[] value();
+	String[] value() default {};
 }

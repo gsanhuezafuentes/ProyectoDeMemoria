@@ -42,6 +42,6 @@ public interface Operator<Source, Result> {
 	 * @param source element to operates.
 	 * @return Result of operation
 	 */
-	public Result execute(Source source);
+	Result execute(Source source);
 
 }

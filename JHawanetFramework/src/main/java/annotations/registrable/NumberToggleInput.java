@@ -30,12 +30,12 @@ public @interface NumberToggleInput {
 	 * 
 	 * @return the group id
 	 */
-	String groupID();
+	String groupID() default "";
 
 	/**
 	 * Parameter's name
 	 * 
 	 * @return the display name
 	 */
-	String displayName();
+	String displayName() default "";
 }

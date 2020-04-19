@@ -1,14 +1,21 @@
 package model.epanet.element.networkdesign;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public final class Backdrop {
-	public static enum Unit {
+	public enum Unit {
 		FEET("FEET"), METERS("METERS"), DEGREES("DEGREES"), NONE("NONE");
 
-		private String name;
+		private final String name;
 
-		private Unit(String name) {
+		Unit(String name) {
 			this.name = name;
 		}
 
@@ -24,7 +31,7 @@ public final class Backdrop {
 		 * @param name the name of object
 		 * @return the object of enum class or null if no exist
 		 */
-		public static Unit parse(String name) {
+		public static @Nullable Unit parse(String name) {
 			for (Unit object : Unit.values()) {
 				if (object.getName().equalsIgnoreCase(name)) {
 					return object;
@@ -38,16 +45,23 @@ public final class Backdrop {
 	private double yBottomLeft;
 	private double xUpperRight;
 	private double yUpperRight;
-	private Unit unit = Unit.NONE;
-	private String file;
+	@NotNull private Unit unit;
+	@NotNull private String file;
 	private double xOffset;
 	private double yOffset;
 
 	public Backdrop() {
-		// TODO Auto-generated constructor stub
+		this.file = "";
+		this.unit = Unit.NONE;
 	}
 
-	public Backdrop(Backdrop backdrop) {
+	/**
+	 * Copy constructor
+	 * @param backdrop the object to copy
+	 * @throws NullPointerException if backdrop is null
+	 */
+	public Backdrop(@NotNull Backdrop backdrop) {
+		Objects.requireNonNull(backdrop);
 		this.xBottomLeft = backdrop.xBottomLeft;
 		this.yBottomLeft = backdrop.yBottomLeft;
 		this.xUpperRight = backdrop.xUpperRight;
@@ -114,7 +128,7 @@ public final class Backdrop {
 	 * 
 	 * @return the unit
 	 */
-	public Unit getUnit() {
+	public @NotNull Unit getUnit() {
 		return unit;
 	}
 
@@ -124,7 +138,7 @@ public final class Backdrop {
 	 * @param unit the unit to set
 	 * @throws NullPointerException if unit is null
 	 */
-	public void setUnit(Unit unit) {
+	public void setUnit(@NotNull Unit unit) {
 		Objects.requireNonNull(unit);
 		this.unit = unit;
 	}
@@ -134,7 +148,7 @@ public final class Backdrop {
 	 * 
 	 * @return the file or a empty string if it doesn't exist
 	 */
-	public String getFile() {
+	public @NotNull String getFile() {
 		return file;
 	}
 
@@ -144,7 +158,7 @@ public final class Backdrop {
 	 * @param file the file to set
 	 * @throws NullPointerException if file is null
 	 */
-	public void setFile(String file) {
+	public void setFile(@NotNull String file) {
 		Objects.requireNonNull(file);
 		this.file = file;
 	}
@@ -178,15 +192,21 @@ public final class Backdrop {
 		this.yOffset = y;
 	}
 
+
 	@Override
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("DIMENSION %10f\t %10f %10f %10f\n", this.xBottomLeft, this.yBottomLeft,
-				this.xUpperRight, this.yUpperRight));
-		txt.append(String.format("UNITS %10s\t", this.unit.name));
-		txt.append(String.format("FILE %s", this.file != null ? this.file : ""));
-		txt.append(String.format("OFFSET %10f\t %10f\n", this.xOffset, this.yOffset));
-		return txt.toString();
+		Map<String, Object> map = new LinkedHashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		map.put("xBottomLeft", xBottomLeft);
+		map.put("yBottomLeft", yBottomLeft);
+		map.put("xUpperRight", xUpperRight);
+		map.put("yUpperRight", yUpperRight);
+		map.put("unit", unit);
+		map.put("file", file);
+		map.put("xOffset", xOffset);
+		map.put("yOffset", yOffset);
+		return gson.toJson(map);
 	}
 
 	/**
@@ -194,7 +214,7 @@ public final class Backdrop {
 	 * 
 	 * @return the copy
 	 */
-	public Backdrop copy() {
+	public @NotNull Backdrop copy() {
 		return new Backdrop(this);
 	}
 }

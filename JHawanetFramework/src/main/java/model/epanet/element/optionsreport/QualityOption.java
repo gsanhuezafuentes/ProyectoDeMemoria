@@ -1,5 +1,12 @@
 package model.epanet.element.optionsreport;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class QualityOption {
@@ -13,13 +20,13 @@ public class QualityOption {
 	 * MGL : mg\L UGL : ug\L
 	 *
 	 */
-	public static enum MassUnit {
+	public enum MassUnit {
 
-		MGL("mg\\L"), UGL("ug\\L");
+		MGL("mg/L"), UGL("ug/L");
 
-		private String name;
+		private final String name;
 
-		private MassUnit(String name) {
+		MassUnit(String name) {
 			this.name = name;
 		}
 
@@ -30,9 +37,15 @@ public class QualityOption {
 			return name;
 		}
 
-		public static MassUnit parse(String name) {
+		/**
+		 * Parse the string to the enum
+		 * @param name the name
+		 * @return the associated enum
+		 * @throws IllegalArgumentException if name is not valid
+		 */
+		public static @NotNull MassUnit parse(@NotNull String name) {
 			for (MassUnit object : MassUnit.values()) {
-				if (object.getName().equalsIgnoreCase(name)) {
+				if (object.getName().equalsIgnoreCase(name.replace("\\", "/"))) {
 					return object;
 				}
 			}
@@ -40,19 +53,27 @@ public class QualityOption {
 		}
 	}
 
-	private String parameter; // default value
-	private MassUnit massUnit = MassUnit.MGL;
+	@NotNull private String parameter; // default value
+	@NotNull private MassUnit massUnit;
 	private double relativeDiffusivity;
-	private String traceNodeID;
+	@NotNull private String traceNodeID;
 	private double qualityTolerance;
 
 	public QualityOption() {
 		this.parameter = QualityOption.DEFAULT_PARAMETER;
+		this.massUnit = MassUnit.MGL;
 		this.relativeDiffusivity = QualityOption.DEFAULT_RELATIVE_DIFFUSIVITY;
 		this.qualityTolerance = QualityOption.DEFAULT_QUALITY_TOLERANCE;
+		this.traceNodeID = "";
 	}
 
-	public QualityOption(QualityOption qualityOption) {
+	/**
+	 * Copy constructor
+	 * @param qualityOption the quality option
+	 * @throws NullPointerException if qualityOption is null
+	 */
+	public QualityOption(@NotNull QualityOption qualityOption) {
+		Objects.requireNonNull(qualityOption);
 		this.parameter = qualityOption.parameter;
 		this.massUnit = qualityOption.massUnit;
 		this.relativeDiffusivity = qualityOption.relativeDiffusivity;
@@ -65,7 +86,7 @@ public class QualityOption {
 	 * 
 	 * @return the parameter
 	 */
-	public String getParameter() {
+	public @NotNull String getParameter() {
 		return parameter;
 	}
 
@@ -88,14 +109,16 @@ public class QualityOption {
 	 * <br>
 	 * <br>
 	 * <strong>Notes:</strong> <br>
-	 * if parameter is null or a empty string so the default value (NONE) is
+	 * if parameter is a empty string so the default value (NONE) is
 	 * established.
 	 * 
-	 * @param parameter the parameter to set
+	 * @param parameter the parameter to set.
+	 * @throws NullPointerException if parameter is null
 	 * 
 	 */
-	public void setParameter(String parameter) {
-		if (parameter == null || parameter.isEmpty()) {
+	public void setParameter(@Nullable String parameter) {
+		Objects.requireNonNull(parameter);
+		if (parameter.isEmpty()) {
 			this.parameter = QualityOption.DEFAULT_PARAMETER;
 		}
 		this.parameter = parameter;
@@ -108,7 +131,7 @@ public class QualityOption {
 	 * 
 	 * @return the massUnit
 	 */
-	public MassUnit getMassUnit() {
+	public @NotNull MassUnit getMassUnit() {
 		return massUnit;
 	}
 
@@ -120,7 +143,7 @@ public class QualityOption {
 	 * @param massUnit the massUnit to set
 	 * @throws NullPointerException if massUnit is null
 	 */
-	public void setMassUnit(MassUnit massUnit) {
+	public void setMassUnit(@NotNull MassUnit massUnit) {
 		Objects.requireNonNull(massUnit);
 		this.massUnit = massUnit;
 	}
@@ -148,7 +171,7 @@ public class QualityOption {
 	 * 
 	 * @return the traceNodeID if exist or null in other case
 	 */
-	public String getTraceNodeID() {
+	public @NotNull String getTraceNodeID() {
 		return traceNodeID;
 	}
 
@@ -157,7 +180,7 @@ public class QualityOption {
 	 * 
 	 * @param NodeID the Node ID to set
 	 */
-	public void setTraceNodeID(String NodeID) {
+	public void setTraceNodeID(@NotNull String NodeID) {
 		this.traceNodeID = NodeID;
 	}
 
@@ -181,13 +204,15 @@ public class QualityOption {
 
 	@Override
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("PARAMETER\t%10s", this.parameter));
-		txt.append(String.format("MASS UNIT\t%10s", this.massUnit.name()));
-		txt.append(String.format("RELATIVE DIFFUSIVITY\t%10f", this.relativeDiffusivity));
-		txt.append(String.format("Trace Node\t%10s", this.traceNodeID));
-		txt.append(String.format("Quality TOLERANCE\t%10f", this.qualityTolerance));
-		return txt.toString();
+		Map<String, Object> map = new LinkedHashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		map.put("parameter", parameter);
+		map.put("massUnit", massUnit.getName());
+		map.put("relativeDiffusivity", relativeDiffusivity);
+		map.put("traceNodeID", traceNodeID);
+		map.put("qualityTolerance", qualityTolerance);
+		return gson.toJson(map);
 	}
 
 	/**
@@ -195,7 +220,7 @@ public class QualityOption {
 	 * 
 	 * @return the copy of the called object
 	 */
-	public QualityOption copy() {
+	public @NotNull QualityOption copy() {
 		return new QualityOption(this);
 	}
 

@@ -34,5 +34,5 @@ import java.util.Comparator;
  * Interface to compare constrain violation
  */
 public interface ConstraintViolationComparator<S> extends Comparator<S> {
-	public int compare(S solution1, S solution2);
+	int compare(S solution1, S solution2);
 }

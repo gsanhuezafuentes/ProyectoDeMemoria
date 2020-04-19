@@ -35,8 +35,8 @@ import model.metaheuristic.solution.Solution;
  * Class used to add a tag field to a problem.
  */
 public class ExperimentProblem<S extends Solution<?>> {
-	private Problem<S> problem;
-	private String tag;
+	private final Problem<S> problem;
+	private final String tag;
 	private String referenceFront;
 
 	public ExperimentProblem(Problem<S> problem, String tag) {

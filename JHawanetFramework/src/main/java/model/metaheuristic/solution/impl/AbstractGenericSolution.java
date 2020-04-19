@@ -44,14 +44,14 @@ import model.metaheuristic.solution.Solution;
  * @param <P> Type of problem
  */
 public abstract class AbstractGenericSolution<T, P extends Problem<?>> implements Solution<T> {
-	private List<T> decisionVariables;
-	private double[] objectives;
+	private final List<T> decisionVariables;
+	private final double[] objectives;
 	protected Map<Object, Object> attributes;
 	protected P problem;
 
 	public AbstractGenericSolution(P problem) {
 		this.problem = problem;
-		this.attributes = new HashMap<Object, Object>();
+		this.attributes = new HashMap<>();
 		this.decisionVariables = new ArrayList<>(problem.getNumberOfVariables());
 		this.objectives = new double[problem.getNumberOfObjectives()];
 
@@ -139,18 +139,18 @@ public abstract class AbstractGenericSolution<T, P extends Problem<?>> implement
 
 	@Override
 	public String toString() {
-		String result = "Variables: ";
+		StringBuilder result = new StringBuilder("Variables: ");
 		for (T var : decisionVariables) {
-			result += "" + var + " ";
+			result.append(var).append(" ");
 		}
-		result += "Objectives: ";
+		result.append("Objectives: ");
 		for (Double obj : objectives) {
-			result += "" + obj + " ";
+			result.append(obj).append(" ");
 		}
-		result += "\t";
-		result += "AlgorithmAttributes: " + attributes + "\n";
+		result.append("\t");
+		result.append("AlgorithmAttributes: ").append(attributes).append("\n");
 
-		return result;
+		return result.toString();
 	}
 
 	private boolean equalsIgnoringAttributes(Object o) {

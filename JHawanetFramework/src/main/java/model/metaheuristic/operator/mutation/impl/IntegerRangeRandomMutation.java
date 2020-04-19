@@ -15,9 +15,9 @@ import model.metaheuristic.utils.random.RandomGenerator;
 public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolution> {
 
     private double mutationProbability;
-    private RandomGenerator<Double> randomGenerator;
-    private BoundedRandomGenerator<Integer> pointRandomGenerator;
-    private int range;
+    private final RandomGenerator<Double> randomGenerator;
+    private final BoundedRandomGenerator<Integer> pointRandomGenerator;
+    private final int range;
 
     /**
      * Constructor
@@ -94,7 +94,7 @@ public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolut
                 Integer newValue;
                 do {
                     newValue = pointRandomGenerator.getRandomValue(lowerBound, upperBound + 1);
-                } while (newValue == value);
+                } while (newValue.equals(value));
                 solution.setVariable(i, newValue);
             }
         }

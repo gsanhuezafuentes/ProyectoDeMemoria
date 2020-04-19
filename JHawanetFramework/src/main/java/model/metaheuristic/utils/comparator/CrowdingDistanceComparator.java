@@ -65,11 +65,11 @@ public class CrowdingDistanceComparator<S extends Solution<?>> implements Compar
 			double distance2 = Double.MIN_VALUE;
 
 			if (crowdingDistance.getAttribute(solution1) != null) {
-				distance1 = (double) crowdingDistance.getAttribute(solution1);
+				distance1 = crowdingDistance.getAttribute(solution1);
 			}
 
 			if (crowdingDistance.getAttribute(solution2) != null) {
-				distance2 = (double) crowdingDistance.getAttribute(solution2);
+				distance2 = crowdingDistance.getAttribute(solution2);
 			}
 
 			if (distance1 > distance2) {

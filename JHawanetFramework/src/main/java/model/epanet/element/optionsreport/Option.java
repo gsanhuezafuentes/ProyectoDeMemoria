@@ -1,5 +1,12 @@
 package model.epanet.element.optionsreport;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public final class Option {
@@ -23,13 +30,13 @@ public final class Option {
 	 *
 	 * 
 	 */
-	public static enum FlowUnit {
-		CFS("CFS"), GPM("GPM"), MGD("MGD"), IMGD("MGD"), AFD("AFD"), LPS("LPS"), LPM("LPM"), MLD("MLD"), CMH("CMH"),
+	public enum FlowUnit {
+		CFS("CFS"), GPM("GPM"), MGD("MGD"), IMGD("IMGD"), AFD("AFD"), LPS("LPS"), LPM("LPM"), MLD("MLD"), CMH("CMH"),
 		CMD("CMD");
 
-		private String name;
+		private final String name;
 
-		private FlowUnit(String name) {
+		FlowUnit(String name) {
 			this.name = name;
 		}
 
@@ -41,22 +48,24 @@ public final class Option {
 		}
 
 		/**
-		 * Parse the name to a object of the enum class if exist. if name no exist in enum class so return null;
-		 * @param name the name of object
-		 * @return the object of enum class or null if no exist
+		 * Parse the string to the enum
+		 * @param name the name
+		 * @return the associated enum
+		 * @throws IllegalArgumentException if name is not valid
 		 */
-		public static FlowUnit parse(String name) {
+		public static @NotNull FlowUnit parse(String name) {
 			for (FlowUnit object : FlowUnit.values()) {
 				if (object.getName().equalsIgnoreCase(name)) {
 					return object;
 				}
 			}
-			return null;
+			throw new IllegalArgumentException("There are not a valid element with the name " + name);
+
 		}
 	}
 
 	/**
-	 * This are enum of headloss formule. This are the next:<br>
+	 * This is a enum of headloss formule. This are the next:<br>
 	 * <br>
 	 * 
 	 * <pre>
@@ -66,12 +75,12 @@ public final class Option {
 	 * </pre>
 	 * 
 	 */
-	public static enum HeadlossFormule {
+	public enum HeadlossFormule {
 		HW("H-W"), DW("D-W"), CM("C-M");
 
-		private String name;
+		private final String name;
 
-		private HeadlossFormule(String name) {
+		HeadlossFormule(String name) {
 			this.name = name;
 		}
 
@@ -81,13 +90,14 @@ public final class Option {
 		public String getName() {
 			return name;
 		}
-		
+
 		/**
-		 * Parse the name to a object of the enum class if exist. if name no exist in enum class so return null;
-		 * @param name the name of object
-		 * @return the object of enum class or null if no exist
+		 * Parse the string to the enum
+		 * @param name the name
+		 * @return the associated enum
+		 * @throws IllegalArgumentException if name is not valid
 		 */
-		public static HeadlossFormule parse(String name) {
+		public static @Nullable HeadlossFormule parse(String name) {
 			for (HeadlossFormule object : HeadlossFormule.values()) {
 				if (object.getName().equalsIgnoreCase(name)) {
 					return object;
@@ -113,18 +123,18 @@ public final class Option {
 	private final static double DEFAULT_MAXCHECK = 10;
 	private final static double DEFAULT_DAMPLIMIT = 0;
 
-	private FlowUnit flowUnit; // CFS/GPM/MGD/IMGD/AFD/LPS/LPM/MLD/CMH/CMD
-	private HeadlossFormule headlossFormule; // H-W/D-W/C-M
-	private String hydraulic; // USE/SAVE filename
+	@NotNull private FlowUnit flowUnit; // CFS/GPM/MGD/IMGD/AFD/LPS/LPM/MLD/CMH/CMD
+	@NotNull private HeadlossFormule headlossFormule; // H-W/D-W/C-M
+	@NotNull private String hydraulic; // USE/SAVE filename
 	private double viscosity;
 	private double specificGravity;
 	private double trials;
 	private double accuracy;
-	private String unbalanced; // STOP/CONTINUE/CONTINUE n
-	private String pattern; // ID
+	@NotNull private String unbalanced; // STOP/CONTINUE/CONTINUE n
+	@NotNull private String pattern; // ID
 	private double demandMultiplier;
 	private double emitterExponent;
-	private String map; // filename
+	@NotNull private String map; // filename
 	private double checkfreq;
 	private double maxcheck;
 	private double damplimit;
@@ -152,8 +162,10 @@ public final class Option {
 	 * Copy constructor.
 	 * 
 	 * @param option the option object
+	 * @throws NullPointerException if option is null   
 	 */
-	public Option(Option option) {
+	public Option(@NotNull Option option) {
+		Objects.requireNonNull(option);
 		this.flowUnit = option.flowUnit;
 		this.headlossFormule = option.headlossFormule;
 		this.hydraulic = option.hydraulic;
@@ -176,7 +188,7 @@ public final class Option {
 	 * 
 	 * @return the flowUnit
 	 */
-	public FlowUnit getFlowUnit() {
+	public @NotNull FlowUnit getFlowUnit() {
 		return flowUnit;
 	}
 
@@ -186,7 +198,7 @@ public final class Option {
 	 * @param flowUnit the flowUnit to set
 	 * @throws NullPointerException if flowUnit is null
 	 */
-	public void setFlowUnit(FlowUnit flowUnit) {
+	public void setFlowUnit(@NotNull FlowUnit flowUnit) {
 		Objects.requireNonNull(flowUnit);
 		this.flowUnit = flowUnit;
 	}
@@ -196,7 +208,7 @@ public final class Option {
 	 * 
 	 * @return the headlossFormule
 	 */
-	public HeadlossFormule getHeadlossFormule() {
+	public @NotNull HeadlossFormule getHeadlossFormule() {
 		return headlossFormule;
 	}
 
@@ -206,7 +218,7 @@ public final class Option {
 	 * @param headlossFormule the headlossFormule to set
 	 * @throws NullPointerException if headlossFormule is null
 	 */
-	public void setHeadlossFormule(HeadlossFormule headlossFormule) {
+	public void setHeadlossFormule(@NotNull HeadlossFormule headlossFormule) {
 		Objects.requireNonNull(headlossFormule);
 		this.headlossFormule = headlossFormule;
 	}
@@ -216,7 +228,7 @@ public final class Option {
 	 * 
 	 * @return the hydraulic
 	 */
-	public String getHydraulic() {
+	public @NotNull String getHydraulic() {
 		return hydraulic;
 	}
 
@@ -226,7 +238,7 @@ public final class Option {
 	 * @param hydraulic the hydraulic to set or a empty string if it doesn't exist
 	 * @throws NullPointerException if hydraulic is null
 	 */
-	public void setHydraulic(String hydraulic) {
+	public void setHydraulic(@NotNull String hydraulic) {
 		Objects.requireNonNull(hydraulic);
 		this.hydraulic = hydraulic;
 	}
@@ -308,7 +320,7 @@ public final class Option {
 	 * 
 	 * @return the unbalanced
 	 */
-	public String getUnbalanced() {
+	public @NotNull String getUnbalanced() {
 		return unbalanced;
 	}
 
@@ -319,7 +331,7 @@ public final class Option {
 	 *                   exist
 	 * @throws NullPointerException if unbalanced is null
 	 */
-	public void setUnbalanced(String unbalanced) {
+	public void setUnbalanced(@NotNull String unbalanced) {
 		Objects.requireNonNull(unbalanced);
 		this.unbalanced = unbalanced;
 	}
@@ -329,7 +341,7 @@ public final class Option {
 	 * 
 	 * @return the pattern
 	 */
-	public String getPattern() {
+	public @NotNull String getPattern() {
 		return pattern;
 	}
 
@@ -339,7 +351,7 @@ public final class Option {
 	 * @param patternID the pattern id to set
 	 * @throws NullPointerException if patternID is null
 	 */
-	public void setPattern(String patternID) {
+	public void setPattern(@NotNull String patternID) {
 		Objects.requireNonNull(patternID);
 		this.pattern = patternID;
 	}
@@ -383,19 +395,19 @@ public final class Option {
 	/**
 	 * Get the map
 	 * 
-	 * @return the map
+	 * @return the map o a empty string if isn't set up
 	 */
-	public String getMap() {
+	public @NotNull String getMap() {
 		return map;
 	}
 
 	/**
 	 * Set the map
 	 * 
-	 * @param filepath the map to set
+	 * @param filepath the file path or a empty string if isn't set up
 	 * @throws NullPointerException if filepath is null
 	 */
-	public void setMap(String filepath) {
+	public void setMap(@NotNull String filepath) {
 		Objects.requireNonNull(filepath);
 		this.map = filepath;
 	}
@@ -456,31 +468,34 @@ public final class Option {
 
 	@Override
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("UNITS\t%10s\n", this.flowUnit.getName()));
-		txt.append(String.format("HEADLOSS\t%10s\n", this.headlossFormule.getName()));
-		txt.append(String.format("HYDRAULICS\t%10s\n", this.hydraulic));
-		txt.append(String.format("VISCOSITY\t%10f\n", this.viscosity));
-		txt.append(String.format("SPECIFIC GRAVITY\t%10f\n", this.specificGravity));
-		txt.append(String.format("TRIALS\t%10f\n", this.trials));
-		txt.append(String.format("ACCURACY\t%10f\n", this.accuracy));
-		txt.append(String.format("UNBALANCED\t%10s\n", this.unbalanced));
-		txt.append(String.format("PATTERN\t%10s\n", this.pattern));
-		txt.append(String.format("DEMAND MULTIPLIER\t%10f\n", this.demandMultiplier));
-		txt.append(String.format("EMITTER EXPONENT\t%10s\n", this.emitterExponent));
-		txt.append(String.format("MAP\t%10s\n", this.map));
-		txt.append(String.format("CHECKFREQ\t%10f\n", this.checkfreq));
-		txt.append(String.format("MAXCHECK\t%10f\n", this.maxcheck));
-		txt.append(String.format("DAMPLIMIT\t%10f\n", this.damplimit));
-		return txt.toString();
+		Map<String, Object> map = new LinkedHashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		map.put("flowUnit", flowUnit);
+		map.put("headlossFormule", headlossFormule);
+		map.put("hydraulic", hydraulic);
+		map.put("viscosity", viscosity);
+		map.put("specificGravity", specificGravity);
+		map.put("trials", trials);
+		map.put("accuracy", accuracy);
+		map.put("unbalanced", unbalanced);
+		map.put("pattern", pattern);
+		map.put("demandMultiplier", demandMultiplier);
+		map.put("emitterExponent", emitterExponent);
+		map.put("map", this.map);
+		map.put("checkfreq", checkfreq);
+		map.put("maxcheck", maxcheck);
+		map.put("damplimit", damplimit);
+		return gson.toJson(map);
 	}
+
 
 	/**
 	 * Copy this object.
 	 * 
 	 * @return the copy.
 	 */
-	public Option copy() {
+	public @NotNull Option copy() {
 		return new Option(this);
 	}
 }

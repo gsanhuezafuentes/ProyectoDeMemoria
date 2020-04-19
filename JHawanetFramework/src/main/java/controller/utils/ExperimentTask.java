@@ -3,8 +3,6 @@ package controller.utils;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.concurrent.atomic.AtomicReference;
 
 import exception.ApplicationException;
@@ -20,8 +18,8 @@ import model.metaheuristic.experiment.util.ObservableStringBuffer;
 import model.metaheuristic.solution.Solution;
 
 public class ExperimentTask extends Task<List<? extends Solution<?>>> {
-    private ObservableStringBuffer taskLog;
-    private Experiment<?> experiment;
+    private final ObservableStringBuffer taskLog;
+    private final Experiment<?> experiment;
 
     //**********************************************************************************
     //Additional properties to task
@@ -32,20 +30,16 @@ public class ExperimentTask extends Task<List<? extends Solution<?>>> {
      * manner from the subclass to the FX application thread. AtomicReference is
      * used so as to coalesce updates such that we don't flood the event queue.
      */
-    private AtomicReference<String> loggerUpdate = new AtomicReference<>();
+    private final AtomicReference<String> loggerUpdate = new AtomicReference<>();
     private final StringProperty log = new SimpleStringProperty(this, "log", "");
     //**********************************************************************************
 
     public ExperimentTask(Experiment<?> experiment) {
         this.experiment = experiment;
         taskLog = new ObservableStringBuffer();
-        taskLog.addObserver(new Observer() {
-
-            @Override
-            public void update(Observable o, Object arg) {
-                ObservableStringBuffer observable = (ObservableStringBuffer) o;
-                updateLogger(observable.getBufferText());
-            }
+        taskLog.addObserver((o, arg) -> {
+            ObservableStringBuffer observable = (ObservableStringBuffer) o;
+            updateLogger(observable.getBufferText());
         });
     }
 
@@ -99,21 +93,17 @@ public class ExperimentTask extends Task<List<? extends Solution<?>>> {
     }
 
     private void prepareOutputDirectory() {
-        if (experimentDirectoryDoesNotExist()) {
+        if (!experimentDirectoryExist()) {
             createExperimentDirectory();
         }
     }
 
-    private boolean experimentDirectoryDoesNotExist() {
+    private boolean experimentDirectoryExist() {
         boolean result;
         File experimentDirectory;
 
         experimentDirectory = new File(experiment.getExperimentBaseDirectory());
-        if (experimentDirectory.exists() && experimentDirectory.isDirectory()) {
-            result = false;
-        } else {
-            result = true;
-        }
+        result = experimentDirectory.exists() && experimentDirectory.isDirectory();
 
         return result;
     }
@@ -175,12 +165,9 @@ public class ExperimentTask extends Task<List<? extends Solution<?>>> {
             // to throttle the updates so as not to completely clobber
             // the event dispatching system.
             if (loggerUpdate.getAndSet(log) == null) {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        final String log = loggerUpdate.getAndSet(null);
-                        ExperimentTask.this.log.set(log);
-                    }
+                Platform.runLater(() -> {
+                    final String log1 = loggerUpdate.getAndSet(null);
+                    ExperimentTask.this.log.set(log1);
                 });
             }
         }

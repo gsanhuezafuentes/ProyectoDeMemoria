@@ -56,11 +56,11 @@ import model.metaheuristic.utils.io.SolutionListOutput;
  *
  */
 public class ExperimentAlgorithm<S extends Solution<?>> {
-	private Algorithm<S> algorithm;
-	private String algorithmTag;
-	private String problemTag;
-	private String referenceParetoFront;
-	private int runId;
+	private final Algorithm<S> algorithm;
+	private final String algorithmTag;
+	private final String problemTag;
+	private final String referenceParetoFront;
+	private final int runId;
 
 	/**
 	 * A StringBuffer that can be used has a log to the operation realize from this

@@ -1,13 +1,11 @@
 package model.epanet.io;
 
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
-import exception.ApplicationException;
 import model.epanet.element.Network;
 import model.epanet.element.utils.ParseNetworkToINPString;
 
@@ -17,13 +15,17 @@ import model.epanet.element.utils.ParseNetworkToINPString;
  */
 public class OutputInpWriter implements OutputWriter {
 
+	/**
+	 *
+	 * @param net      the network
+	 * @param filename file path to save.
+	 * @throws IOException if there is a error in IO operation
+	 */
 	@Override
-	public void write(Network net, String filename) throws FileNotFoundException, IOException {
+	public void write(Network net, String filename) throws IOException {
 		try (BufferedWriter buffWriter = new BufferedWriter(
-				new OutputStreamWriter(new FileOutputStream(filename), "ISO-8859-1"))) {
+				new OutputStreamWriter(new FileOutputStream(filename), StandardCharsets.ISO_8859_1))) {
 			buffWriter.write(ParseNetworkToINPString.parse(net));
-		} catch (UnsupportedEncodingException e) {
-			throw new ApplicationException("Error in encoding file", e);
 		}
 	}
 

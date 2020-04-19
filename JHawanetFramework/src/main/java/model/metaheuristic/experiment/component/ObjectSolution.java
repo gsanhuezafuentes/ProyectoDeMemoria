@@ -21,11 +21,11 @@ import model.metaheuristic.solution.Solution;
  *
  */
 public class ObjectSolution implements Solution<Object> {
-	private int numberOfObjectives;
-	private List<Object> decisionVariables;
-	private double[] objectives;
+	private final int numberOfObjectives;
+	private final List<Object> decisionVariables;
+	private final double[] objectives;
 	protected Map<Object, Object> attributes;
-	private int numberOfVariables;
+	private final int numberOfVariables;
 
 	/**
 	 * Constructor
@@ -156,18 +156,18 @@ public class ObjectSolution implements Solution<Object> {
 
 	@Override
 	public String toString() {
-		String result = "Variables: ";
+		StringBuilder result = new StringBuilder("Variables: ");
 		for (Object var : decisionVariables) {
-			result += "" + var + " ";
+			result.append(var).append(" ");
 		}
-		result += "Objectives: ";
+		result.append("Objectives: ");
 		for (Double obj : objectives) {
-			result += "" + obj + " ";
+			result.append(obj).append(" ");
 		}
-		result += "\t";
-		result += "AlgorithmAttributes: " + attributes + "\n";
+		result.append("\t");
+		result.append("AlgorithmAttributes: ").append(attributes).append("\n");
 
-		return result;
+		return result.toString();
 	}
 
 	@Override

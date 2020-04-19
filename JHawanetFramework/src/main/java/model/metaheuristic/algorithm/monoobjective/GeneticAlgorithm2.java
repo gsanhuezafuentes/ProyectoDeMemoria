@@ -24,7 +24,6 @@
 package model.metaheuristic.algorithm.monoobjective;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -53,11 +52,11 @@ import model.metaheuristic.utils.comparator.DominanceComparator;
  *
  */
 public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S> {
-	private int maxPopulationSize;
-	private SelectionOperator<List<S>, List<S>> selectionOperator;
-	private CrossoverOperator<S> crossoverOperator;
-	private MutationOperator<S> mutationOperator;
-	private DominanceComparator<S> comparator;
+	private final int maxPopulationSize;
+	private final SelectionOperator<List<S>, List<S>> selectionOperator;
+	private final CrossoverOperator<S> crossoverOperator;
+	private final MutationOperator<S> mutationOperator;
+	private final DominanceComparator<S> comparator;
 	/**
 	 * Max number of evaluation
 	 */
@@ -241,7 +240,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	@Override
 	public List<S> getResult() {
 		Collections.sort(getPopulation(), comparator);
-		return Arrays.asList(this.getPopulation().get(0));
+		return Collections.singletonList(this.getPopulation().get(0));
 	}
 
 	/** {@inheritDoc} */

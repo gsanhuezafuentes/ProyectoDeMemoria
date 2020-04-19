@@ -246,8 +246,7 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 	/** {@inheritDoc} */
 	@Override
 	public String getStatusOfExecution() {
-		String text = "Number of evaluations: " + this.numberOfEvaluations + " / " + this.maxEvaluations;
-		return text;
+		return "Number of evaluations: " + this.numberOfEvaluations + " / " + this.maxEvaluations;
 	}
 	
 	@Override

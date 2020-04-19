@@ -6,7 +6,7 @@ import java.util.Observable;
  * This class is a buffer on a String.
  */
 public class ObservableStringBuffer extends Observable {
-    private StringBuffer buffer = new StringBuffer();
+    private final StringBuffer buffer = new StringBuffer();
 
     /**
      * Return the text in the buffer

@@ -14,7 +14,7 @@ import model.metaheuristic.utils.solutionattribute.NumberOfViolatedConstraints;
 import model.metaheuristic.utils.solutionattribute.OverallConstraintViolation;
 
 public class MonoObjetiveSolutionEvaluator {
-	private double minPressure;
+	private final double minPressure;
 
 	public MonoObjetiveSolutionEvaluator(double minPressure) {
 		this.minPressure = minPressure;
@@ -25,10 +25,9 @@ public class MonoObjetiveSolutionEvaluator {
 	 * @param solution the solution to evaluate
 	 * @param gamas the gamas to map the solution
 	 * @param epanet the simulator
-	 * @return the solution
 	 * @throws EpanetException if there is and error in the simulator
 	 */
-	public IntegerSolution evaluate(IntegerSolution solution, List<Gama> gamas, EpanetAPI epanet)
+	public void evaluate(IntegerSolution solution, List<Gama> gamas, EpanetAPI epanet)
 			throws EpanetException {
 		int numberOfInfactibilities = 0;
 		double infactibilityGrade = 0;
@@ -71,7 +70,6 @@ public class MonoObjetiveSolutionEvaluator {
 		NumberOfViolatedConstraints<IntegerSolution> numberOfViolatedConstraints = new NumberOfViolatedConstraints<IntegerSolution>();
 		numberOfViolatedConstraints.setAttribute(solution, numberOfInfactibilities);
 		epanet.ENcloseH();
-		return solution;
 	}
 
 	private void RecorrerNudos(EpanetAPI epanet) throws EpanetException {

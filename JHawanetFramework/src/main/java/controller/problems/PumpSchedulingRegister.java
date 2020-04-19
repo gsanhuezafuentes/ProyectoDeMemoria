@@ -101,12 +101,12 @@ public class PumpSchedulingRegister implements MultiObjectiveRegistrable {
 
 			for (int i = 0; i < problemList.size(); i++) {
 				Problem<IntegerSolution> problem = problemList.get(i).getProblem();
-				SelectionOperator<List<IntegerSolution>, IntegerSolution> selection = new TournamentSelection<IntegerSolution>(
+				SelectionOperator<List<IntegerSolution>, IntegerSolution> selection = new TournamentSelection<>(
 						2);
 				CrossoverOperator<IntegerSolution> crossover = new IntegerSBXCrossover(0.9, 20);
 				MutationOperator<IntegerSolution> mutation = new IntegerPolynomialMutation(
 						1.0 / problemList.get(i).getProblem().getNumberOfVariables(), 20);
-				Comparator<IntegerSolution> comparator = new DominanceComparator<IntegerSolution>();
+				Comparator<IntegerSolution> comparator = new DominanceComparator<>();
 
 				Algorithm<IntegerSolution> algorithm = new NSGAII<>(problem, 1000, 100, 100, 100, crossover, mutation,
 						selection, comparator);

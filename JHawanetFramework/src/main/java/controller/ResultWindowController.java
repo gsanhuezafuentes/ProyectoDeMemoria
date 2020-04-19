@@ -37,7 +37,7 @@ import view.utils.CustomDialogs;
  *
  */
 public class ResultWindowController {
-	private Pane root;
+	private final Pane root;
 
 	@FXML
 	private TableView<Solution<?>> resultTable;
@@ -46,11 +46,11 @@ public class ResultWindowController {
 	@FXML
 	private Button saveAsINPButton;
 
-	private List<? extends Solution<?>> solutionList;
+	private final List<? extends Solution<?>> solutionList;
 
-	private Problem<?> problem;
+	private final Problem<?> problem;
 
-	private Network network;
+	private final Network network;
 
 	/**
 	 * Constructor.
@@ -104,7 +104,7 @@ public class ResultWindowController {
 			// add column for the objetives
 			for (int i = 0; i < numberOfObjectives; i++) {
 				final int index = i;
-				TableColumn<Solution<?>, String> column = new TableColumn<Solution<?>, String>("Objective " + (i + 1));
+				TableColumn<Solution<?>, String> column = new TableColumn<>("Objective " + (i + 1));
 				resultTable.getColumns().add(column);
 				// tell from where get the value for the column
 				column.setCellValueFactory(
@@ -115,7 +115,7 @@ public class ResultWindowController {
 			// add column for the decision variables
 			for (int i = 0; i < numberOfDecisionVariables; i++) {
 				final int index = i;
-				TableColumn<Solution<?>, String> column = new TableColumn<Solution<?>, String>("X" + (i + 1));
+				TableColumn<Solution<?>, String> column = new TableColumn<>("X" + (i + 1));
 				resultTable.getColumns().add(column);
 				// tell from where get the value for the column
 				column.setCellValueFactory(

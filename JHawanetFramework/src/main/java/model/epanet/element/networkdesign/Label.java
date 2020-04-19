@@ -1,97 +1,121 @@
 package model.epanet.element.networkdesign;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import model.epanet.element.utils.Point;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public final class Label {
-	private Point position;
-	private String label;
-	private String anchorNode; // This is the ID of a Node (Junction or Reservoir or Tank)
 
-	public Label() {
-		// TODO Auto-generated constructor stub
-	}
+    @Nullable
+    private Point position;
+    @NotNull
+    private String label;
+    @NotNull
+    private String anchorNode; // This is the ID of a Node (Junction or Reservoir or Tank)
 
-	/**
-	 * Copy constructor. This is a deep copy.
-	 * 
-	 * @param label the object to copy
-	 */
-	public Label(Label label) {
-		this.position = label.position;
-		this.label = label.label;
-		this.anchorNode = label.anchorNode;
-	}
+    public Label() {
+        this.label = "";
+        this.anchorNode = "";
+    }
 
-	/**
-	 * @return the point
-	 */
-	public Point getPosition() {
-		return position;
-	}
+    /**
+     * Copy constructor. This is a deep copy.
+     *
+     * @param label the object to copy
+     */
+    public Label(@NotNull Label label) {
+        this.position = label.position;
+        this.label = label.label;
+        this.anchorNode = label.anchorNode;
+    }
 
-	/**
-	 * @param point the point to set
-	 */
-	public void setPosition(Point point) {
-		this.position = point;
-	}
+    /**
+     * Get the position of label. The initial value of position is a (0, 0)
+     *
+     * @return the point. it can be null if hasn't been initialized
+     */
+    public @Nullable Point getPosition() {
+        return position;
+    }
 
-	/**
-	 * @return the text
-	 */
-	public String getLabel() {
-		return label;
-	}
+    /**
+     * Set the position of the label
+     *
+     * @param point the point to set
+     * @throws NullPointerException if point is null
+     */
+    public void setPosition(@NotNull Point point) {
+        Objects.requireNonNull(point);
+        this.position = point;
+    }
 
-	/**
-	 * @param text the text to set
-	 * @throws NullPointerException if text is null
-	 */
-	public void setLabel(String text) {
-		Objects.requireNonNull(text);
-		this.label = text;
-	}
+    /**
+     * Get the text of label
+     *
+     * @return the text or a empty string
+     */
+    public @NotNull String getLabel() {
+        return label;
+    }
 
-	/**
-	 * Get the anchor Node id
-	 * 
-	 * @return the anchorNode
-	 */
-	public String getAnchorNode() {
-		return anchorNode;
-	}
+    /**
+     * Set the text of label
+     *
+     * @param text the text to set
+     * @throws NullPointerException if text is null
+     */
+    public void setLabel(@NotNull String text) {
+        Objects.requireNonNull(text);
+        this.label = text;
+    }
 
-	/**
-	 * Set the anchor node id
-	 * 
-	 * @param anchorNode the anchorNode to set
-	 * @throws NullPointerException if anchorNode is null
-	 */
-	public void setAnchorNode(String anchorNode) {
-		Objects.requireNonNull(anchorNode);
-		this.anchorNode = anchorNode;
-	}
+    /**
+     * Get the anchor Node id
+     *
+     * @return the anchorNode or a empty string if there isn't a anchor node
+     */
+    public @NotNull String getAnchorNode() {
+        return anchorNode;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%s\t", getPosition()));
-		txt.append(String.format("%-10s\t", getLabel()));
-		if (getAnchorNode() != null) {
-			txt.append(String.format("%-10s", getAnchorNode()));
-		}
+    /**
+     * Set the anchor node id
+     *
+     * @param anchorNode the anchorNode to set
+     * @throws NullPointerException if anchorNode is null
+     */
+    public void setAnchorNode(@NotNull String anchorNode) {
+        Objects.requireNonNull(anchorNode);
+        this.anchorNode = anchorNode;
+    }
 
-		return txt.toString();
-	}
+    @Override
+    public String toString() {
+        Map<String, Object> map = new LinkedHashMap<>();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-	/**
-	 * Copy this object. This is a shallow copy.
-	 * 
-	 * @return the copy.
-	 */
-	public Label copy() {
-		return new Label(this);
-	}
+        if (position == null) {
+            map.put("position", "");
+        } else {
+            map.put("position", gson.fromJson(position.toString(), LinkedHashMap.class)); //unchecked
+        }
+        map.put("label", label);
+        map.put("anchorNode", anchorNode);
+        return gson.toJson(map);
+    }
+
+    /**
+     * Copy this object. This is a shallow copy.
+     *
+     * @return the copy.
+     */
+    public @NotNull Label copy() {
+        return new Label(this);
+    }
 }

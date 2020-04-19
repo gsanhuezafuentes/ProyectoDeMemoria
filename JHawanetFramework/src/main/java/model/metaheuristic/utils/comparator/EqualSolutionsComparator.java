@@ -39,6 +39,8 @@ import model.metaheuristic.solution.Solution;
  * equal or not. A dominance test is applied to decide about what solution is
  * the best.
  *
+ * The method suppose minimization
+ *
  */
 @SuppressWarnings("serial")
 public class EqualSolutionsComparator<S extends Solution<?>> implements Comparator<S>, Serializable {
@@ -48,8 +50,8 @@ public class EqualSolutionsComparator<S extends Solution<?>> implements Comparat
 	 *
 	 * @param solution1 First <code>Solution</code>.
 	 * @param solution2 Second <code>Solution</code>.
-	 * @return -1, or 0, or 1, or 2 if solution1 is dominates solution2, solution1
-	 *         and solution2 are equals, or solution1 is greater than solution2,
+	 * @return -1, or 0, or 1 if solution1 is dominates solution2, solution1
+	 *         and solution2 are equals, or solution2 dominates solution1,
 	 *         respectively.
 	 */
 	@Override
@@ -98,10 +100,9 @@ public class EqualSolutionsComparator<S extends Solution<?>> implements Comparat
 		if (dominate1 == 1) {
 			// solution1 dominates
 			return -1;
-		} else if (dominate2 == 1) {
+		} else {
 			// solution2 dominates
 			return 1;
 		}
-		return 2;
 	}
 }

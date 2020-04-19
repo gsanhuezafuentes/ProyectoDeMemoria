@@ -53,7 +53,7 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
     private double distributionIndex;
     private double mutationProbability;
 
-    private RandomGenerator<Double> random;
+    private final RandomGenerator<Double> random;
 
     /**
      * Constructor
@@ -158,14 +158,14 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
      * Perform the mutation operation
      */
     private void doMutation(double probability, IntegerSolution solution) {
-        Double rnd, delta1, delta2, mutPow, deltaq;
+        double rnd, delta1, delta2, mutPow, deltaq;
         double y, yl, yu, val, xy;
 
         for (int i = 0; i < solution.getNumberOfVariables(); i++) {
             if (random.getRandomValue() <= probability) {
                 y = (double) solution.getVariable(i);
-                yl = (double) solution.getLowerBound(i);
-                yu = (double) solution.getUpperBound(i);
+                yl = solution.getLowerBound(i);
+                yu = solution.getUpperBound(i);
                 if (yl == yu) {
                     y = yl;
                 } else {

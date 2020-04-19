@@ -36,7 +36,7 @@ import model.metaheuristic.solution.Solution;
  * be set to a different value when constructing an instance.
  */
 public class SolutionAttribute<S extends Solution<?>, V> {
-	private Object identifier;
+	private final Object identifier;
 
 	/**
 	 * Constructor

@@ -237,7 +237,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 	 */
 	private int[][] generateBinaryMatrix(IntegerSolution solution) {
 
-		int matrix[][];
+		int[][] matrix;
 		int numCombinations;
 		int numVariables;
 		numVariables = getNumberOfVariables();
@@ -352,7 +352,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 		this.numberOfObjectives = i;
 	}
 
-	public class InputPse {
+	public static class InputPse {
 
 		private HashMap<String, ArrayList<String>> labelValues;
 
@@ -379,7 +379,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 			for (String line : list) {
 				line = line.trim();
 				if (!line.isEmpty()) {
-					if (this.labelValues.keySet().contains(line)) // linea: es igual a una etiqueta (label)
+					if (this.labelValues.containsKey(line)) // linea: es igual a una etiqueta (label)
 						arraySelected = this.labelValues.get(line);// se selecciona el arreglo de valores según
 																	// etiqueta
 					else // linea: es igual a un valor
@@ -473,7 +473,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 
 		private final String label;
 
-		private VariablePse(String label) {
+		VariablePse(String label) {
 			this.label = label;
 		}
 

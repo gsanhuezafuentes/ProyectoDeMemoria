@@ -34,12 +34,12 @@ import model.metaheuristic.solution.impl.IntegerSolution;
  * a GUI to configure the algorithm and inject the value to injectable method.
  */
 public final class PipeOptimizingRegister extends MonoObjectiveRegistrable {
-    private SelectionOperator<List<IntegerSolution>, List<IntegerSolution>> selection;
-    private CrossoverOperator<IntegerSolution> crossover;
-    private MutationOperator<IntegerSolution> mutation;
-    private int numberWithoutImprovement;
-    private int maxEvaluations;
-    private File gama;
+    private final SelectionOperator<List<IntegerSolution>, List<IntegerSolution>> selection;
+    private final CrossoverOperator<IntegerSolution> crossover;
+    private final MutationOperator<IntegerSolution> mutation;
+    private final int numberWithoutImprovement;
+    private final int maxEvaluations;
+    private final File gama;
     private PipeOptimizing problem;
 
     /**
@@ -117,7 +117,7 @@ public final class PipeOptimizingRegister extends MonoObjectiveRegistrable {
             this.problem = new PipeOptimizing(epanet, this.gama.getAbsolutePath(), 30);
 
         }
-        algorithm = new GeneticAlgorithm2<IntegerSolution>(this.problem, 10, selection, crossover, mutation);
+        algorithm = new GeneticAlgorithm2<>(this.problem, 10, selection, crossover, mutation);
         if (numberWithoutImprovement > 0) {
             algorithm.setMaxNumberOfIterationWithoutImprovement(numberWithoutImprovement);
         } else {

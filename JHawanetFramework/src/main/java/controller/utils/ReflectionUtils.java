@@ -25,7 +25,7 @@ import exception.ApplicationException;
  *
  */
 public class ReflectionUtils {
-	private static HashSet<Class<?>> verifiedOperators = new HashSet<>();
+	private static final HashSet<Class<?>> verifiedOperators = new HashSet<>();
 
 	/**
 	 * Read the {@link NewProblem} annotation from a problem and get the name of the
@@ -183,7 +183,7 @@ public class ReflectionUtils {
 			
 			// checks that entries with the same group id are consecutively
 			if (parametersAnnotation.numbersToggle().length != 0) {
-				Set<String> addedGroupId = new HashSet<String>();
+				Set<String> addedGroupId = new HashSet<>();
 				String lastAdded = null;
 				for (NumberToggleInput numberToggle : parametersAnnotation.numbersToggle()) {
 					if (!numberToggle.groupID().equals(lastAdded)) {
@@ -367,8 +367,7 @@ public class ReflectionUtils {
 		Objects.requireNonNull(classType);
 		Constructor<?> constructor = getDefaultConstructor(classType);
 		Objects.requireNonNull(constructor);
-		int numberOfParameters = constructor.getParameterCount();
-		return numberOfParameters;
+		return constructor.getParameterCount();
 	}
 
 	/**

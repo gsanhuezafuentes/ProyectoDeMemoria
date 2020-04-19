@@ -1,5 +1,11 @@
 package model.epanet.element.optionsreport;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -39,12 +45,12 @@ import java.util.Objects;
  * The format is not validated
  */
 public final class Time {
-	public static enum Statistic {
+	public enum Statistic {
 		NONE("NONE"), AVERAGE("AVERAGE"), MINIMUM("MINIMUM"), MAXIMUM("MAXIMUM"), RANGE("RANGE");
 
-		private String name;
+		private final String name;
 
-		private Statistic(String name) {
+		Statistic(String name) {
 			this.name = name;
 		}
 
@@ -55,7 +61,13 @@ public final class Time {
 			return name;
 		}
 
-		public static Statistic parse(String name) {
+		/**
+		 * Parse the string to the enum
+		 * @param name the name
+		 * @return the associated enum
+		 * @throws IllegalArgumentException if name is not valid
+		 */
+		public static @NotNull Statistic parse(String name) {
 			for (Statistic object : Statistic.values()) {
 				if (object.getName().equalsIgnoreCase(name)) {
 					return object;
@@ -72,18 +84,18 @@ public final class Time {
 	private static final String DEFAULT_PATTERN_START = "0:00";
 	private static final String DEFAULT_REPORT_TIMESTEP = "1:00";
 	private static final String DEFAULT_REPORT_START = "0:00";
-	private static final String DEFAULT_START_CLOCKTIME = "12 am";
+	private static final String DEFAULT_START_CLOCKTIME = "12 AM";
 	private static final Statistic DEFAULT_STATISTIC = Statistic.NONE; // the default value
 
-	private String duration;
-	private String hydraulicTimestep;
-	private String qualityTimestep;
-	private String patternTimestep;
-	private String patternStart;
-	private String reportTimestep;
-	private String reportStart;
-	private String startClockTime;
-	private Statistic statistic; // the default value
+	@NotNull private String duration;
+	@NotNull private String hydraulicTimestep;
+	@NotNull private String qualityTimestep;
+	@NotNull private String patternTimestep;
+	@NotNull private String patternStart;
+	@NotNull private String reportTimestep;
+	@NotNull private String reportStart;
+	@NotNull private String startClockTime;
+	@NotNull private Statistic statistic; // the default value
 
 	public Time() {
 		this.duration = DEFAULT_DURATION;
@@ -97,7 +109,13 @@ public final class Time {
 		this.statistic = DEFAULT_STATISTIC;
 	}
 
-	public Time(Time time) {
+	/**
+	 * Copy constructor
+	 * @param time the time object to copy
+	 * @throws NullPointerException if time is null
+	 */
+	public Time(@NotNull Time time) {
+		Objects.requireNonNull(time);
 		this.duration = time.duration;
 		this.hydraulicTimestep = time.hydraulicTimestep;
 		this.qualityTimestep = time.qualityTimestep;
@@ -115,7 +133,7 @@ public final class Time {
 	 * 
 	 * @return the duration
 	 */
-	public String getDuration() {
+	public @NotNull String getDuration() {
 		return duration;
 	}
 
@@ -125,7 +143,7 @@ public final class Time {
 	 * @param duration the duration to set
 	 * @throws NullPointerException if duration is null
 	 */
-	public void setDuration(String duration) {
+	public void setDuration(@NotNull String duration) {
 		Objects.requireNonNull(duration);
 		this.duration = duration;
 	}
@@ -135,7 +153,7 @@ public final class Time {
 	 * 
 	 * @return the hydraulicTimestep
 	 */
-	public String getHydraulicTimestep() {
+	public @NotNull String getHydraulicTimestep() {
 		return hydraulicTimestep;
 	}
 
@@ -145,7 +163,7 @@ public final class Time {
 	 * @param hydraulicTimestep the hydraulic timestep to set
 	 * @throws NullPointerException if hydraulicTimestep is null
 	 */
-	public void setHydraulicTimestep(String hydraulicTimestep) {
+	public void setHydraulicTimestep(@NotNull String hydraulicTimestep) {
 		Objects.requireNonNull(hydraulicTimestep);
 		this.hydraulicTimestep = hydraulicTimestep;
 	}
@@ -155,7 +173,7 @@ public final class Time {
 	 * 
 	 * @return the qualityTimestep
 	 */
-	public String getQualityTimestep() {
+	public @NotNull String getQualityTimestep() {
 		return qualityTimestep;
 	}
 
@@ -165,7 +183,7 @@ public final class Time {
 	 * @param qualityTimestep the quality timestep to set
 	 * @throws NullPointerException if qualityTimestep is null
 	 */
-	public void setQualityTimestep(String qualityTimestep) {
+	public void setQualityTimestep(@NotNull String qualityTimestep) {
 		Objects.requireNonNull(startClockTime);
 		this.qualityTimestep = qualityTimestep;
 	}
@@ -175,7 +193,7 @@ public final class Time {
 	 * 
 	 * @return the patternTimestep
 	 */
-	public String getPatternTimestep() {
+	public @NotNull String getPatternTimestep() {
 		return patternTimestep;
 	}
 
@@ -185,7 +203,7 @@ public final class Time {
 	 * @param patternTimestep the pattern timestep to set
 	 * @throws NullPointerException if patternTimestep is null
 	 */
-	public void setPatternTimestep(String patternTimestep) {
+	public void setPatternTimestep(@NotNull String patternTimestep) {
 		Objects.requireNonNull(startClockTime);
 
 		this.patternTimestep = patternTimestep;
@@ -196,7 +214,7 @@ public final class Time {
 	 * 
 	 * @return the patternStart
 	 */
-	public String getPatternStart() {
+	public @NotNull String getPatternStart() {
 		return patternStart;
 	}
 
@@ -206,7 +224,7 @@ public final class Time {
 	 * @param patternStart the pattern start to set
 	 * @throws NullPointerException if patternStart is null
 	 */
-	public void setPatternStart(String patternStart) {
+	public void setPatternStart(@NotNull String patternStart) {
 		Objects.requireNonNull(startClockTime);
 
 		this.patternStart = patternStart;
@@ -217,7 +235,7 @@ public final class Time {
 	 * 
 	 * @return the reportTimestep
 	 */
-	public String getReportTimestep() {
+	public @NotNull String getReportTimestep() {
 		return reportTimestep;
 	}
 
@@ -227,7 +245,7 @@ public final class Time {
 	 * @param reportTimestep the report timestep to set
 	 * @throws NullPointerException if reportTimestep is null
 	 */
-	public void setReportTimestep(String reportTimestep) {
+	public void setReportTimestep(@NotNull String reportTimestep) {
 		Objects.requireNonNull(startClockTime);
 
 		this.reportTimestep = reportTimestep;
@@ -238,7 +256,7 @@ public final class Time {
 	 * 
 	 * @return the reportStart
 	 */
-	public String getReportStart() {
+	public @NotNull String getReportStart() {
 		return reportStart;
 	}
 
@@ -248,7 +266,7 @@ public final class Time {
 	 * @param reportStart the report start to set
 	 * @throws NullPointerException if reportStart is null
 	 */
-	public void setReportStart(String reportStart) {
+	public void setReportStart(@NotNull String reportStart) {
 		Objects.requireNonNull(startClockTime);
 		this.reportStart = reportStart;
 	}
@@ -258,7 +276,7 @@ public final class Time {
 	 * 
 	 * @return the startClockTime
 	 */
-	public String getStartClockTime() {
+	public @NotNull String getStartClockTime() {
 		return startClockTime;
 	}
 
@@ -268,7 +286,7 @@ public final class Time {
 	 * @param startClockTime the start clockTime to set
 	 * @throws NullPointerException if startClockTime is null
 	 */
-	public void setStartClockTime(String startClockTime) {
+	public void setStartClockTime(@NotNull String startClockTime) {
 		Objects.requireNonNull(startClockTime);
 		this.startClockTime = startClockTime;
 	}
@@ -278,7 +296,7 @@ public final class Time {
 	 * 
 	 * @return the statistic
 	 */
-	public Statistic getStatistic() {
+	public @NotNull Statistic getStatistic() {
 		return statistic;
 	}
 
@@ -288,24 +306,26 @@ public final class Time {
 	 * @param statistic the statistic to set
 	 * @throws NullPointerException if statistic is null
 	 */
-	public void setStatistic(Statistic statistic) {
+	public void setStatistic(@NotNull Statistic statistic) {
 		Objects.requireNonNull(statistic);
 		this.statistic = statistic;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("Duration\t %10f", this.duration));
-		txt.append(String.format("Hydraulic Timestep\t %10f", this.hydraulicTimestep));
-		txt.append(String.format("Quality Timestep\t %10f", this.qualityTimestep));
-		txt.append(String.format("Pattern Timestep\t %10f", this.patternTimestep));
-		txt.append(String.format("Pattern Start\t %10f", this.patternStart));
-		txt.append(String.format("Report Timestep\t %10f", this.reportTimestep));
-		txt.append(String.format("Report Start\t %10f", this.reportStart));
-		txt.append(String.format("Start ClockTime\t %10f", this.startClockTime));
-		txt.append(String.format("Statistic\t %10f", this.statistic));
-		return txt.toString();
+		Map<String, Object> map = new LinkedHashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		map.put("duration", duration);
+		map.put("hydraulicTimestep", hydraulicTimestep);
+		map.put("qualityTimestep", qualityTimestep);
+		map.put("patternTimestep", patternTimestep);
+		map.put("patternStart", patternStart);
+		map.put("reportTimestep", reportTimestep);
+		map.put("reportStart", reportStart);
+		map.put("startClockTime", startClockTime);
+		map.put("statistic", statistic);
+		return gson.toJson(map);
 	}
 
 	/**
@@ -313,7 +333,7 @@ public final class Time {
 	 * 
 	 * @return the copy
 	 */
-	public Time copy() {
+	public @NotNull Time copy() {
 		return new Time(this);
 	}
 }

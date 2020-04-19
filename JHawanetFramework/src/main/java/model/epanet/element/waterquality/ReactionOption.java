@@ -1,5 +1,13 @@
 package model.epanet.element.waterquality;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public final class ReactionOption {
 	public static final double DEFAULT_ORDER_BULK = 1;
 	public static final double DEFAULT_ORDER_TANK = 1;
@@ -33,9 +41,10 @@ public final class ReactionOption {
 	 * Copy constructor
 	 * 
 	 * @param reaction the object to copy
+	 * @throws NullPointerException if reaction is null
 	 */
-	public ReactionOption(ReactionOption reaction) {
-
+	public ReactionOption(@NotNull ReactionOption reaction) {
+		Objects.requireNonNull(reaction);
 		this.orderBulk = reaction.orderBulk;
 		this.orderTank = reaction.orderTank;
 		this.orderWall = reaction.orderWall;
@@ -177,15 +186,17 @@ public final class ReactionOption {
 
 	@Override
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("Order Bulk\t %10f", this.orderBulk));
-		txt.append(String.format("Order Tank\t %10f", this.orderTank));
-		txt.append(String.format("Order Wall\t %10f", this.orderWall));
-		txt.append(String.format("Global Bulk\t %10f", this.globalBulk));
-		txt.append(String.format("Global Wall\t %10f", this.globalWall));
-		txt.append(String.format("Limiting Potential\t %10f", this.limitingPotential));
-		txt.append(String.format("Roughness Correlation\t %10f", this.roughnessCorrelation));
-		return txt.toString();
+		Map<String, Object> map = new LinkedHashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		map.put("orderBulk", orderBulk);
+		map.put("orderTank", orderTank);
+		map.put("orderWall", orderWall);
+		map.put("globalBulk", globalBulk);
+		map.put("globalWall", globalWall);
+		map.put("limitingPotential", limitingPotential);
+		map.put("roughnessCorrelation", roughnessCorrelation);
+		return gson.toJson(map);
 	}
 
 	/**
@@ -193,7 +204,7 @@ public final class ReactionOption {
 	 * 
 	 * @return the copy
 	 */
-	public ReactionOption copy() {
+	public @NotNull ReactionOption copy() {
 		return new ReactionOption(this);
 	}
 }

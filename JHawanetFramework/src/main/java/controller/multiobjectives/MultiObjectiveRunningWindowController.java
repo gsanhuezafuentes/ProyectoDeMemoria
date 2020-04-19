@@ -58,11 +58,10 @@ public class MultiObjectiveRunningWindowController {
 	@FXML
 	private TextArea logExperimentTextArea;
 
-	private Pane root;
-	private Experiment<?> experiment;
-	private Problem<?> problem;
-	private ExperimentTask task;
-	private Network network;
+	private final Pane root;
+	private final Problem<?> problem;
+	private final ExperimentTask task;
+	private final Network network;
 	private ResultPlotWindowController resultPlotWindowController;
 	private Stage window;
 
@@ -76,7 +75,7 @@ public class MultiObjectiveRunningWindowController {
 	 *                              network is null
 	 */
 	public MultiObjectiveRunningWindowController(Experiment<?> experiment, Problem<?> problem, Network network) {
-		this.experiment = Objects.requireNonNull(experiment);
+		Experiment<?> experiment1 = Objects.requireNonNull(experiment);
 		this.problem = Objects.requireNonNull(problem);
 		this.network = Objects.requireNonNull(network);
 
@@ -84,13 +83,16 @@ public class MultiObjectiveRunningWindowController {
 
 		this.task = new ExperimentTask(experiment);
 
-		// Create the controller to add point even if plot windows is not showned
-		this.resultPlotWindowController = new ResultPlotWindowController(this.problem.getNumberOfObjectives());
-
+		// Create the controller to add point even if plot windows is not showned.
+		// Only created if number of objectives is 1 or 2
+		if (this.problem.getNumberOfObjectives() == 1 || this.problem.getNumberOfObjectives() == 2) {
+			this.resultPlotWindowController = new ResultPlotWindowController(this.problem.getNumberOfObjectives());
+		}
 		addBindingAndListener();
 
-		/**
-		 * Only add the the showChartButton if the number of objectives is less than 2.
+		/*
+		 * Only add the the showChartButton if the number of objectives is 1.
+		 * If the number of objective is 2 the button as to be enabled when the simulation finish
 		 */
 		if (this.problem.getNumberOfObjectives() == 2) {
 			this.showChartButton.setVisible(true);
@@ -164,8 +166,9 @@ public class MultiObjectiveRunningWindowController {
 		task.setOnSucceeded(e -> {
 			List<? extends Solution<?>> solutions = task.getValue();
 			this.showChartButton.setDisable(false);
-			this.resultPlotWindowController.addData(solutions, 0);
-
+			if (this.resultPlotWindowController != null) {
+				this.resultPlotWindowController.addData(solutions, 0);
+			}
 			ResultWindowController resultWindowController = new ResultWindowController(solutions, this.problem,
 					this.network);
 			resultWindowController.showAssociatedWindow();

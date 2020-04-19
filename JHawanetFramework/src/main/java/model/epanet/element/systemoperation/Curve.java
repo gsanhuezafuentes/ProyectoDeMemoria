@@ -1,19 +1,20 @@
 package model.epanet.element.systemoperation;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import model.epanet.element.utils.Point;
+import org.jetbrains.annotations.NotNull;
 
 public final class Curve {
 
-	public static enum Type {
+	public enum Type {
 		PUMP("PUMP"), EFFICIENCY("EFFICIENCY"), VOLUME("VOLUME"), HEADLOSS("HEADLOSS");
 
-		private String name;
+		private final String name;
 
-		private Type(String name) {
+		Type(String name) {
 			this.name = name;
 		}
 
@@ -24,7 +25,13 @@ public final class Curve {
 			return name;
 		}
 
-		public static Type parse(String name) {
+		/**
+		 * Parse the string to the enum
+		 * @param name the name
+		 * @return the associated enum
+		 * @throws IllegalArgumentException if name is not valid
+		 */
+		public static @NotNull Type parse(String name) {
 			for (Type object : Type.values()) {
 				if (object.getName().equalsIgnoreCase(name)) {
 					return object;
@@ -35,32 +42,37 @@ public final class Curve {
 
 	}
 
-	private String id;
-	private List<Point> points;
-//	private Type type;
-	private String description;
-	private Type type = Type.PUMP; // default value
+	@NotNull private String id;
+	@NotNull private final List<Point> points;
+	@NotNull private String description;
+	@NotNull private Type type;
 
 	public Curve() {
+		this.id = "";
+		this.description = "";
 		this.points = new ArrayList<>();
+		this.type = Type.PUMP; // default value
 	}
 
 	/**
 	 * Copy constructor
 	 * 
 	 * @param curve the object to copy
+	 * @throws NullPointerException if curve is null
 	 */
-	public Curve(Curve curve) {
+	public Curve(@NotNull Curve curve) {
 		this();
+		Objects.requireNonNull(curve);
 		this.id = curve.id;
 		this.points.addAll(curve.points);
 		this.description = curve.description;
+		this.type = curve.type;
 	}
 
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public @NotNull String getId() {
 		return id;
 	}
 
@@ -68,7 +80,7 @@ public final class Curve {
 	 * @param id the id to set
 	 * @throws NullPointerException if id is null
 	 */
-	public void setId(String id) {
+	public void setId(@NotNull String id) {
 		Objects.requireNonNull(id);
 		this.id = id;
 	}
@@ -78,7 +90,7 @@ public final class Curve {
 	 * 
 	 * @return the type
 	 */
-	public Type getType() {
+	public @NotNull Type getType() {
 		return this.type;
 	}
 
@@ -88,7 +100,7 @@ public final class Curve {
 	 * @param type the type to set
 	 * @throws NullPointerException if type is null
 	 */
-	public void setType(Type type) {
+	public void setType(@NotNull Type type) {
 		Objects.requireNonNull(type);
 		this.type = type;
 	}
@@ -125,7 +137,7 @@ public final class Curve {
 	 * 
 	 * @return the description
 	 */
-	public String getDescription() {
+	public @NotNull String getDescription() {
 		return description;
 	}
 
@@ -136,20 +148,25 @@ public final class Curve {
 	 *                    exist
 	 * @throws NullPointerException if description is null
 	 */
-	public void setDescription(String description) {
+	public void setDescription(@NotNull String description) {
 		Objects.requireNonNull(description);
 		this.description = description;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", this.id));
-		for (int i = 0; i < this.points.size(); i++) {
-			Point point = this.points.get(0);
-			txt.append(String.format("%-10f \t %-10f", point.getX(), point.getY()));
+		Map<String, Object> map = new LinkedHashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		map.put("id", id);
+		if (points.isEmpty()) {
+			map.put("points", "");
+		} else {
+			map.put("points", points);
 		}
-		return txt.toString();
+		map.put("description", description);
+		map.put("type", type);
+		return gson.toJson(map);
 	}
 
 	/**
@@ -157,7 +174,7 @@ public final class Curve {
 	 * 
 	 * @return a copy of this object
 	 */
-	public Curve copy() {
+	public @NotNull Curve copy() {
 		return new Curve(this);
 	}
 }

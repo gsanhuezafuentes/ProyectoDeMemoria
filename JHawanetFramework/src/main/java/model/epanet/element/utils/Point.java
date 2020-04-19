@@ -1,5 +1,11 @@
 package model.epanet.element.utils;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Class that represent a Point 2D.
  * 
@@ -31,8 +37,11 @@ public final class Point {
 
 	@Override
 	public String toString() {
-		String text = String.format("%-10f\t%-10f", getX(), getY());
-		return text;
-	}
+		Map<String, Object> map = new HashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+		map.put("x", x);
+		map.put("y", y);
+		return gson.toJson(map);
+	}
 }

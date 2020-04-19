@@ -14,15 +14,15 @@ import view.ConfigurationDynamicWindow;
 import view.utils.CustomDialogs;
 
 public class ConfigurationDynamicWindowController<T extends Registrable<?>> {
-	private CustomCallback<T> algorithmEvent;
-	private Class<? extends T> problemClass;
-	private ConfigurationDynamicWindow<T> view;
+	private final CustomCallback<T> algorithmEvent;
+	private final Class<? extends T> problemClass;
+	private final ConfigurationDynamicWindow<T> view;
 
 	public ConfigurationDynamicWindowController(Class<? extends T> registrable,
 			CustomCallback<T> algorithmEvent) {
 		this.problemClass = Objects.requireNonNull(registrable);
 		this.algorithmEvent = Objects.requireNonNull(algorithmEvent);
-		this.view = new ConfigurationDynamicWindow<T>(this, registrable);
+		this.view = new ConfigurationDynamicWindow<>(this, registrable);
 	}
 
 	/**

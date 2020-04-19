@@ -1,5 +1,11 @@
 package model.epanet.element.networkcomponent;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public final class Valve extends Link {
@@ -8,12 +14,12 @@ public final class Valve extends Link {
 	 * 
 	 * 
 	 */
-	public static enum ValveStatus {
+	public enum ValveStatus {
 		OPEN("OPEN"), CLOSED("CLOSED"), NONE("NONE");
 
-		private String name;
+		private final String name;
 
-		private ValveStatus(String name) {
+		ValveStatus(String name) {
 			this.name = name;
 		}
 
@@ -23,29 +29,30 @@ public final class Valve extends Link {
 		public String getName() {
 			return name;
 		}
-		
+
 		/**
-		 * Parse the name to a object of the enum class if exist. if name no exist in enum class so return null;
-		 * @param name the name of object
-		 * @return the object of enum class or null if no exist
+		 * Parse the string to the enum
+		 * @param name the name
+		 * @return the associated enum
+		 * @throws IllegalArgumentException if name is not valid
 		 */
-		public static ValveStatus parse(String name) {
+		public static @NotNull ValveStatus parse(String name) {
 			for (ValveStatus object : ValveStatus.values()) {
 				if (object.getName().equalsIgnoreCase(name)) {
 					return object;
 				}
 			}
-			return null;
+			throw new IllegalArgumentException("There are not a valid element with the name " + name);
 		}
 
 	}
 
-	public static enum ValveType {
+	public enum ValveType {
 		PRV("PRV"), PSV("PSV"), PBV("PSV"), FCV("FCV"), TCV("TCV"), GPV("GPV");
 
-		private String name;
+		private final String name;
 
-		private ValveType(String name) {
+		ValveType(String name) {
 			this.name = name;
 		}
 
@@ -55,8 +62,14 @@ public final class Valve extends Link {
 		public String getName() {
 			return name;
 		}
-		
-		public static ValveType parse(String name) {
+
+		/**
+		 * Parse the string to the enum
+		 * @param name the name
+		 * @return the associated enum
+		 * @throws IllegalArgumentException if name is not valid
+		 */
+		public static @NotNull ValveType parse(String name) {
 			for (ValveType object : ValveType.values()) {
 				if (object.getName().equalsIgnoreCase(name)) {
 					return object;
@@ -72,8 +85,8 @@ public final class Valve extends Link {
 	public static final double DEFAULT_LOSS_COEFFICIENT = 0;
 
 	private double diameter;
-	private ValveType type;
-	private String setting;
+	@NotNull private ValveType type;
+	@NotNull private String setting;
 	private double lossCoefficient;
 	/*
 	 * This variable is saved in [Status] section of inp file only when is OPEN or
@@ -99,7 +112,7 @@ public final class Valve extends Link {
 	 * 
 	 * @param valve the valve to copy
 	 */
-	public Valve(Valve valve) {
+	public Valve(@NotNull Valve valve) {
 		super(valve);
 		this.diameter = valve.diameter;
 		this.type = valve.type;
@@ -126,7 +139,7 @@ public final class Valve extends Link {
 	 * 
 	 * @return the type
 	 */
-	public ValveType getType() {
+	public @NotNull ValveType getType() {
 		return type;
 	}
 
@@ -146,7 +159,7 @@ public final class Valve extends Link {
 	 * 
 	 * @return the setting or a empty string if it does not exist
 	 */
-	public String getSetting() {
+	public @NotNull String getSetting() {
 		return setting;
 	}
 
@@ -196,28 +209,24 @@ public final class Valve extends Link {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked") // the superclass also use Gson to generate the string
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", getId()));
-		txt.append(String.format("%-10s\t", getNode1().getId()));
-		txt.append(String.format("%-10s\t", getNode2().getId()));
-		txt.append(String.format("%-10f\t", getDiameter()));
-		txt.append(String.format("%-10s\t", getType()));
-		txt.append(String.format("%-10s\t", getSetting()));
-		txt.append(String.format("%-10f", getLossCoefficient()));
-		String description = getDescription();
-		if (description != null) {
-			txt.append(String.format(";%s", description));
-		}
-		return txt.toString();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		Map<String, Object> map = new LinkedHashMap<String, Object>(gson.fromJson(super.toString(), LinkedHashMap.class)); //unchecked
+		map.put("diameter", diameter);
+		map.put("type", type);
+		map.put("setting", setting);
+		map.put("lossCoefficient", lossCoefficient);
+		map.put("fixedStatus", fixedStatus);
+		return gson.toJson(map);
 	}
 
 	/**
 	 * Copy the object realizing a shallow copy of this.
 	 */
 	@Override
-	public Valve copy() {
-		// TODO Auto-generated method stub
+	public @NotNull Valve copy() {
 		return new Valve(this);
 	}
 

@@ -38,7 +38,7 @@ import model.metaheuristic.utils.solutionattribute.OverallConstraintViolation;
  *
  */
 public class OverallConstraintViolationComparator<S extends Solution<?>> implements ConstraintViolationComparator<S> {
-	private OverallConstraintViolation<S> overallConstraintViolation;
+	private final OverallConstraintViolation<S> overallConstraintViolation;
 
 	/**
 	 * Constructor

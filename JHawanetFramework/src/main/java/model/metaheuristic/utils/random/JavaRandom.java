@@ -9,7 +9,7 @@ import java.util.Random;
 public class JavaRandom {
 	private static JavaRandom instance;
 	
-	private Random random;
+	private final Random random;
 	
 	private JavaRandom() {
 		this.random = new Random(System.currentTimeMillis());

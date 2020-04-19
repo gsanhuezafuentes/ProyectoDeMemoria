@@ -1,9 +1,15 @@
 package model.epanet.element.systemoperation;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public final class Control {
-	private String code;
+	@NotNull private String code;
 
 	public Control() {
 		this.code = "";
@@ -13,8 +19,10 @@ public final class Control {
 	 * Copy constructor.
 	 * 
 	 * @param control the object to copy
+	 * @throws NullPointerException if control is null
 	 */
-	public Control(Control control) {
+	public Control(@NotNull Control control) {
+		Objects.requireNonNull(control);
 		this.code = control.code;
 	}
 
@@ -23,7 +31,7 @@ public final class Control {
 	 * Get the code
 	 * @return the code or empty string if there is does not code
 	 */
-	public String getCode() {
+	public @NotNull String getCode() {
 		return this.code;
 	}
 
@@ -32,9 +40,18 @@ public final class Control {
 	 * @param code the code to set or a empty string if there is no code control
 	 * @throws NullPointerException if code is null
 	 */
-	public void setCode(String code) {
+	public void setCode(@NotNull String code) {
 		Objects.requireNonNull(code);
 		this.code = code;
+	}
+
+	@Override
+	public String toString() {
+		Map<String, Object> map = new LinkedHashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		map.put("code", code);
+		return gson.toJson(map);
 	}
 
 	/**
@@ -42,7 +59,7 @@ public final class Control {
 	 * 
 	 * @return a copy of this object
 	 */
-	public Control copy() {
+	public @NotNull Control copy() {
 		return new Control(this);
 	}
 

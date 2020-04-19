@@ -1,5 +1,11 @@
 package model.epanet.element.systemoperation;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public final class EnergyOption {
@@ -10,7 +16,7 @@ public final class EnergyOption {
 
 	private double globalEfficiency;
 	private double globalPrice;
-	private String globalPattern;
+	@NotNull private String globalPattern;
 	private double demandCharge;
 
 	public EnergyOption() {
@@ -24,8 +30,10 @@ public final class EnergyOption {
 	 * Copy constructor. Realize a copy of the received energy.
 	 * 
 	 * @param energy the object to copy.
+	 * @throws NullPointerException if energy is null
 	 */
-	public EnergyOption(EnergyOption energy) {
+	public EnergyOption(@NotNull EnergyOption energy) {
+		Objects.requireNonNull(energy);
 		this.globalEfficiency = energy.globalEfficiency;
 		this.globalPrice = energy.globalPrice;
 		this.globalPattern = energy.globalPattern;
@@ -73,7 +81,7 @@ public final class EnergyOption {
 	 * 
 	 * @return the global pattern
 	 */
-	public String getGlobalPattern() {
+	public @NotNull String getGlobalPattern() {
 		return globalPattern;
 	}
 
@@ -83,7 +91,7 @@ public final class EnergyOption {
 	 * @param globalPattern the global pattern to set
 	 * @throws NullPointerException if globalPattern is null
 	 */
-	public void setGlobalPattern(String globalPattern) {
+	public void setGlobalPattern(@NotNull String globalPattern) {
 		Objects.requireNonNull(globalPattern);
 		this.globalPattern = globalPattern;
 	}
@@ -108,12 +116,14 @@ public final class EnergyOption {
 
 	@Override
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("Global Efficiency\t%10f\n", this.globalEfficiency));
-		txt.append(String.format("Global Price\t%10f\n", this.globalPrice));
-		txt.append(String.format("Global Pattern\t%10s\n", this.globalPattern));
-		txt.append(String.format("Demand Charge\t%10f\n", this.demandCharge));
-		return txt.toString();
+		Map<String, Object> map = new LinkedHashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		map.put("globalEfficiency", globalEfficiency);
+		map.put("globalPrice", globalPrice);
+		map.put("globalPattern", globalPattern);
+		map.put("demandCharge", demandCharge);
+		return gson.toJson(map);
 	}
 
 	/**
@@ -121,7 +131,7 @@ public final class EnergyOption {
 	 * 
 	 * @return the copy.
 	 */
-	public EnergyOption copy() {
+	public @NotNull EnergyOption copy() {
 		return new EnergyOption(this);
 	}
 }

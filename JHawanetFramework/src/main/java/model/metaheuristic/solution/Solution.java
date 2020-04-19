@@ -45,7 +45,7 @@ public interface Solution<Type> {
 	 * @param index Index of decision variable
 	 * @return the variable in the index
 	 */
-	public Type getVariable(int index);
+	Type getVariable(int index);
 
 	/**
 	 * Let set or add new decision variables to solution
@@ -53,7 +53,7 @@ public interface Solution<Type> {
 	 * @param index the index associated to variable to be added or modified
 	 * @param value the value associated to decision variable
 	 */
-	public void setVariable(int index, Type value);
+	void setVariable(int index, Type value);
 
 	/**
 	 * Get the variable as a String <br>
@@ -63,14 +63,14 @@ public interface Solution<Type> {
 	 * @param index the index of variable to return
 	 * @return the variable
 	 */
-	public String getVariableAsString(int index);
+	String getVariableAsString(int index);
 
 	/**
 	 * Get all variables
 	 * 
 	 * @return a list with the value of variables
 	 */
-	public List<Type> getVariables();
+	List<Type> getVariables();
 
 	/**
 	 * Get the objetive value associated to index
@@ -78,7 +78,7 @@ public interface Solution<Type> {
 	 * @param index the index assigned to objetive value when was saved.
 	 * @return the value of objective in the position index
 	 */
-	public double getObjective(int index);
+	double getObjective(int index);
 
 	/**
 	 * Set or add a new objetive
@@ -86,14 +86,14 @@ public interface Solution<Type> {
 	 * @param index the index associated to objetive
 	 * @param value the value of this objetive
 	 */
-	public void setObjective(int index, double value);
+	void setObjective(int index, double value);
 
 	/**
 	 * Get all objetive values
 	 * 
 	 * @return A array with all values of objetive function
 	 */
-	public double[] getObjectives();
+	double[] getObjectives();
 
 	/**
 	 * Get attributed added to solution
@@ -101,7 +101,7 @@ public interface Solution<Type> {
 	 * @param id The element associated to attribute when was saved
 	 * @return The attribute
 	 */
-	public Object getAttribute(Object id);
+	Object getAttribute(Object id);
 
 	/**
 	 * Set or add attribute in this solution
@@ -109,14 +109,14 @@ public interface Solution<Type> {
 	 * @param id    The key associated to value
 	 * @param value The value
 	 */
-	public void setAttribute(Object id, Object value);
+	void setAttribute(Object id, Object value);
 
 	/**
 	 * Get all attributes
 	 * 
 	 * @return A Map with the keys and his respectives values.
 	 */
-	public Map<Object, Object> getAttributes();
+	Map<Object, Object> getAttributes();
 
 	/**
 	 * Get the number of decision variables

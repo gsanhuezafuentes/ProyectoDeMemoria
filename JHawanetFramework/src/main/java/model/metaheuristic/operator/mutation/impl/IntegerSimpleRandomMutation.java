@@ -17,8 +17,8 @@ import model.metaheuristic.utils.random.RandomGenerator;
 public class IntegerSimpleRandomMutation implements MutationOperator<IntegerSolution> {
 
 	private double mutationProbability;
-	private RandomGenerator<Double> randomGenerator;
-	private BoundedRandomGenerator<Integer> pointRandomGenerator;
+	private final RandomGenerator<Double> randomGenerator;
+	private final BoundedRandomGenerator<Integer> pointRandomGenerator;
 
 	/**
 	 * Constructor

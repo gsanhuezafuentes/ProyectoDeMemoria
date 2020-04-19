@@ -18,8 +18,8 @@ import model.metaheuristic.utils.random.RandomGenerator;
 public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSolution> {
 
     private double crossoverProbability;
-    private RandomGenerator<Double> crossoverRandomGenerator;
-    private BoundedRandomGenerator<Integer> pointRandomGenerator;
+    private final RandomGenerator<Double> crossoverRandomGenerator;
+    private final BoundedRandomGenerator<Integer> pointRandomGenerator;
 
     /**
      * Constructor

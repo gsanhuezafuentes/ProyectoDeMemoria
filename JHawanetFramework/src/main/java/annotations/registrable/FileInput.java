@@ -26,7 +26,7 @@ public @interface FileInput {
 	 * 
 	 * @return the name
 	 */
-	String displayName();
+	String displayName() default "";
 	
 	FileType type() default FileType.OPEN;
 }
