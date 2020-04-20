@@ -168,7 +168,7 @@ public class ResultWindowController {
 	}
 
 	/**
-	 * Event handler when save as inp button is pressed.
+	 * Event handler when save table is pressed.
 	 * 
 	 * @param event the event
 	 */

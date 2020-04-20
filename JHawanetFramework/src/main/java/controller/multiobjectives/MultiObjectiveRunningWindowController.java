@@ -28,10 +28,10 @@ import model.metaheuristic.solution.Solution;
 import view.utils.CustomDialogs;
 
 /**
- * This class is the controller for RunningDialog. <br>
+ * This class is the controller for MultiObjectiveRunningWindow. <br>
  * <br>
  * 
- * The algorithm received by this class will be executed in other thread.<br>
+ * The experiment received by this class will be executed in other thread.<br>
  * <br>
  * 
  * When the algorithm finishes successfully this controller will open the
@@ -178,14 +178,16 @@ public class MultiObjectiveRunningWindowController {
 	/**
 	 * Method to handle the view event when Show Chart button will be click on.
 	 */
-	public void onShowChartButtonClick() {
+	@FXML
+	private void onShowChartButtonClick() {
 		this.resultPlotWindowController.showAssociatedWindow();
 	}
 
 	/**
 	 * Method to handle the view event when Cancel button will be click on.
 	 */
-	public void onCancelButtonClick() {
+	@FXML
+	private void onCancelButtonClick() {
 		// cancel the task
 		this.task.cancel();
 	}
@@ -193,7 +195,8 @@ public class MultiObjectiveRunningWindowController {
 	/**
 	 * Method to handle the view event when Close button will be click on.
 	 */
-	public void onCloseButtonClick() {
+	@FXML
+	private void onCloseButtonClick() {
 		// if task is not cancelled, so cancel it.
 		if (!task.isCancelled()) {
 			task.cancel();

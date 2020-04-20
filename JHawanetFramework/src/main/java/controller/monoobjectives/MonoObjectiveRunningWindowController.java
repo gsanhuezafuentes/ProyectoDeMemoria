@@ -27,7 +27,7 @@ import model.metaheuristic.solution.Solution;
 import view.utils.CustomDialogs;
 
 /**
- * This class is the controller for RunningDialog. <br>
+ * This class is the controller for MonoObjetiveRunningWindow. <br>
  * <br>
  * <p>
  * The algorithm received by this class will be executed in other thread.<br>
@@ -105,7 +105,7 @@ public class MonoObjectiveRunningWindowController {
     }
 
     /**
-     * Add binding to task and gui elements
+     * Add binding to task and gui elements.
      */
     private void addBindingAndListener() {
         // bind the textArea text with the value of message property of task
@@ -144,16 +144,18 @@ public class MonoObjectiveRunningWindowController {
     }
 
     /**
-     * Method to handle the view event when Show Chart button will be click on.
+     * Method to handle the view event when Show Chart button will be click on. This method is called by fxml
      */
-    public void onShowChartButtonClick() {
+    @FXML
+    private void onShowChartButtonClick() {
         this.resultPlotWindowController.showAssociatedWindow();
     }
 
     /**
-     * Method to handle the view event when Cancel button will be click on.
+     * Method to handle the view event when Cancel button will be click on. This method is called by fxml
      */
-    public void onCancelButtonClick() {
+    @FXML
+    private void onCancelButtonClick() {
         // cancel the task
         this.task.cancel();
     }
@@ -161,7 +163,8 @@ public class MonoObjectiveRunningWindowController {
     /**
      * Method to handle the view event when Close button will be click on.
      */
-    public void onCloseButtonClick() {
+    @FXML
+    private void onCloseButtonClick() {
         // if task is not cancelled, so cancel it.
         if (!task.isCancelled()) {
             task.cancel();

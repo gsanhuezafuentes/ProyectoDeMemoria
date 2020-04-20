@@ -1,0 +1,1 @@
+Para abrir el diagrama de sequencias (el unico archivo txt) tienes que cargar el codigo en https://sequencediagram.org/#

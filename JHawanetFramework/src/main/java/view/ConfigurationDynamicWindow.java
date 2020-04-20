@@ -214,6 +214,11 @@ public final class ConfigurationDynamicWindow<T extends Registrable<?>> extends 
 		gridLayoutRowCount++;
 	}
 
+	/**
+	 * Setting the number toggle section
+	 * @param annotation the NumberToggleInput annotation
+	 * @param parameterType the type of parameter
+	 */
 	private void numberToggleSection(NumberToggleInput annotation, Class<?> parameterType) {
 		// lazy initialization of list
 		if (this.numbersToogleTextFieldAdded == null) {
@@ -386,11 +391,14 @@ public final class ConfigurationDynamicWindow<T extends Registrable<?>> extends 
 
 		// Add a textfield for each parameter in the constructor
 		Constructor<?> constructor = ReflectionUtils.getDefaultConstructor(selectedItem);
+
+		// Store the textfield that will be created
 		ArrayList<TextField> textFieldOfParameters = new ArrayList<>(constructor.getParameterCount());
 		if (constructor != null) {
 			DefaultConstructor annotation = constructor.getAnnotation(DefaultConstructor.class);
 			Class<?>[] parameters = constructor.getParameterTypes();
 
+			// Look if already has been added a configuration to this operator
 			List<Number> previousResults = this.resultOfOperatorConfiguration.get(selectedItem);
 
 			for (int i = 0; i < parameters.length; i++) {
@@ -556,6 +564,7 @@ public final class ConfigurationDynamicWindow<T extends Registrable<?>> extends 
 		Number[] numberInputs = new Number[this.numbersTextFieldAdded.size()];
 		Number[] toggleInputs = new Number[this.numbersToogleTextFieldAdded.size()];
 
+		// Walk through the combobox of the operators
 		int i = 0;
 		for (ComboBox<Class<?>> comboBox : this.comboBoxesAdded) {
 			Class<?> operator = comboBox.getSelectionModel().getSelectedItem();
@@ -566,9 +575,9 @@ public final class ConfigurationDynamicWindow<T extends Registrable<?>> extends 
 				return;
 			}
 			operatorsAndConfig.put(operator, operatorParameters);
-
 		}
 
+		// Walk through textfiles that contain the path of files
 		i = 0; // reset the counter
 		for (TextField textfield : this.filesTextFieldAdded) {
 			if (textfield.getText().isEmpty()) {
@@ -578,11 +587,13 @@ public final class ConfigurationDynamicWindow<T extends Registrable<?>> extends 
 			}
 		}
 
+		// Walk through the numbers
 		i = 0; // reset the counter
 		for (TextField textfield : this.numbersTextFieldAdded) {
 			numberInputs[i++] = (Number) textfield.getTextFormatter().getValue();
 		}
 
+		// Walk through the numbers toogle
 		i = 0; // reset the counter
 		for (TextField textfield : this.numbersToogleTextFieldAdded) {
 			if (!textfield.isDisable()) {
@@ -596,6 +607,7 @@ public final class ConfigurationDynamicWindow<T extends Registrable<?>> extends 
 				} 
 			}
 		}
+		// Notify to controller to build the elements
 		controller.onRunButtonClick(operatorsAndConfig, files, numberInputs, toggleInputs);
 	}
 }

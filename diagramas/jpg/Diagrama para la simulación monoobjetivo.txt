@@ -1,0 +1,101 @@
+title Diagrama para la simulación monoobjetivo
+
+actor User
+participant MainWindowController
+participant ProblemMenuConfiguration
+participant InpParser
+participant NetworkComponent
+participant ElementViewer
+participant ConfigurationDinamicWindowController
+participant MonoObjectiveRunningWindowController
+participant AlgorithmTask
+participant ResultPlotWindowController
+participant ResultWindowController
+participant Algorithm
+participant Problem
+
+autonumber on
+autoactivation on
+[->MainWindowController:initialize()
+MainWindowController->ProblemMenuConfiguration://agregar problemas al menu//\naddMonoObjectiveProblems()
+deactivate MainWindowController
+ProblemMenuConfiguration ->ProblemMenuConfiguration:Validar el uso de las anotaciones\nen las clases que heredan de\nRegistrable y en los Operadores
+deactivateafter ProblemMenuConfiguration
+space 
+deactivate ProblemMenuConfiguration
+
+User->MainWindowController://Disparar evento\npara abrir la red//\nopenOnAction()
+
+autoactivation off
+User<-MainWindowController: Ventana de elección\nde archivos
+User-->MainWindowController: Ubicación del archivo
+autoactivation on
+MainWindowController->MainWindowController: loadNetwork()
+MainWindowController->InpParser://Leer red and rellenar el objeto network//\nparse(Network)
+MainWindowController<--InpParser:network
+destroyafter InpParser
+MainWindowController->NetworkComponent://Dibuja la red//\ndrawNetwork(Network)
+deactivateafter NetworkComponent
+MainWindowController->ElementViewer://Rellena el visor de elementos//\nsetNetwork(Network)
+deactivateafter ElementViewer
+deactivateafter MainWindowController
+space
+deactivate MainWindowController
+
+User->ProblemMenuConfiguration://Elegir problema\ndesde un menu y \ndisparar evento\npara abrir la red//\nmenuItemEventHander()
+
+ProblemMenuConfiguration->*ConfigurationDinamicWindowController:<<crear>>
+
+deactivate ConfigurationDinamicWindowController
+
+ProblemMenuConfiguration->ConfigurationDinamicWindowController://Solicita al controlador que\n muestra la ventana//\nshowDinamicWindow()
+deactivate ProblemMenuConfiguration
+User<--ConfigurationDinamicWindowController:Ventana de configuración\nde algoritmo
+
+
+User->ConfigurationDinamicWindowController:Ingresa las configuraciones\ny disparar evento para crear\nla instancia de la clase registrable\nonRunButtonClick()
+
+ConfigurationDinamicWindowController->ConfigurationDinamicWindowController:Crear instancia \nde Registrable
+MainWindowController<-ConfigurationDinamicWindowController://Ejecuta el callback//\nrunAlgorithm(Registrable)
+deactivate ConfigurationDinamicWindowController
+deactivateafter ConfigurationDinamicWindowController
+destroyafter ConfigurationDinamicWindowController
+
+autoactivation off
+MainWindowController->MainWindowController://Construye el algoritmo//\nRegistrable.build()
+autoactivation on
+MainWindowController->*MonoObjectiveRunningWindowController:<<crear>>
+MonoObjectiveRunningWindowController->*AlgorithmTask: <<crear>
+deactivate AlgorithmTask
+deactivate MonoObjectiveRunningWindowController
+
+MainWindowController->MonoObjectiveRunningWindowController://Muestra la ventana de \nejecución y ejecuta \nel algoritmo//\nshowWindowAndRunAlgorithm()
+deactivate MainWindowController
+autoactivation off
+note over AlgorithmTask:Se ejecuta en otro\nhilo
+User<--MonoObjectiveRunningWindowController: Muestra la ventana de feedback
+autoactivation on
+MonoObjectiveRunningWindowController->AlgorithmTask://Iniciar la ejecución un nuevo hilo//\nrun()
+deactivate MonoObjectiveRunningWindowController
+
+loop Hasta que se alcance la condición de termino (isStoppingConditionReached())
+opt Opcional
+User->MonoObjectiveRunningWindowController:Solicita la cancelación de la tarea
+autoactivation off
+MonoObjectiveRunningWindowController->AlgorithmTask://Cancela la tarea//\ncancel()
+deactivate MonoObjectiveRunningWindowController
+destroy AlgorithmTask
+end
+
+autoactivation on
+AlgorithmTask->Algorithm://Ejecutar un paso//\nrunSingleStep()
+deactivateafter Algorithm
+AlgorithmTask->Algorithm: Obtener estado de la ejecución
+AlgorithmTask<--Algorithm: Devuelve el progreso del algoritmo
+MonoObjectiveRunningWindowController<-AlgorithmTask: Notificar cambio del progreso de ejecución
+User<--MonoObjectiveRunningWindowController: Muestra el cambio el progreso al usuario
+end
+MonoObjectiveRunningWindowController<--AlgorithmTask: Devuelve los resultados finales
+
+autoactivation off
+autonumber off
