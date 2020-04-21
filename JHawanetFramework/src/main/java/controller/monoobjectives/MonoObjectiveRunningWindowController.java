@@ -24,10 +24,12 @@ import model.epanet.element.Network;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import view.utils.CustomDialogs;
 
 /**
- * This class is the controller for MonoObjetiveRunningWindow. <br>
+ * This class is the controller for MonoObjectiveRunningWindow. <br>
  * <br>
  * <p>
  * The algorithm received by this class will be executed in other thread.<br>
@@ -50,11 +52,16 @@ public class MonoObjectiveRunningWindowController {
     @FXML
     private TextArea textArea;
 
-    private final Pane root;
+    @NotNull private final Pane root;
+    @NotNull
     private final Problem<?> problem;
+    @NotNull
     private final AlgorithmTask task;
+    @NotNull
     private final Network network;
+    @NotNull
     private final ResultPlotWindowController resultPlotWindowController;
+    @Nullable
     private Stage window;
 
     /**
@@ -66,7 +73,14 @@ public class MonoObjectiveRunningWindowController {
      * @throws NullPointerException if algorithm is null or problem is null or
      *                              network is null
      */
-    public MonoObjectiveRunningWindowController(Algorithm<?> algorithm, Problem<?> problem, Network network) {
+    public MonoObjectiveRunningWindowController(Algorithm<?> algorithm, @NotNull Problem<?> problem, @NotNull Network network) {
+        /*
+         * Only add the the showChartButton if the number of objectives is less than 2.
+         */
+        if (problem.getNumberOfObjectives() != 1) {
+            throw new IllegalArgumentException("The number of objective to to this type of Registrable should be 1. Experiment is needed by multiobjectives problems");
+        }
+
         Objects.requireNonNull(algorithm);
         Objects.requireNonNull(problem);
         Objects.requireNonNull(network);
@@ -74,16 +88,11 @@ public class MonoObjectiveRunningWindowController {
         this.problem = problem;
         this.network = network;
         this.task = new AlgorithmTask(algorithm);
-        // Create the controller to add point even if plot windows is not showned
+        // Create the controller to add point even if plot windows is not showed
         this.resultPlotWindowController = new ResultPlotWindowController(this.problem.getNumberOfObjectives());
-        addBindingAndListener();
+        this.showChartButton.setVisible(true);
 
-        /*
-         * Only add the the showChartButton if the number of objectives is less than 2.
-         */
-        if (this.problem.getNumberOfObjectives() == 1 || this.problem.getNumberOfObjectives() == 2) {
-            this.showChartButton.setVisible(true);
-        }
+        addBindingAndListener();
 
 
     }
@@ -169,7 +178,10 @@ public class MonoObjectiveRunningWindowController {
         if (!task.isCancelled()) {
             task.cancel();
         }
+
         // close the dialog
+        assert this.window != null;
+
         this.window.close();
     }
 

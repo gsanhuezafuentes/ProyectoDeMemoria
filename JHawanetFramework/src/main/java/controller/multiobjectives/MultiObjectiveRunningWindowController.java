@@ -25,6 +25,8 @@ import model.epanet.element.Network;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import view.utils.CustomDialogs;
 
 /**
@@ -58,12 +60,12 @@ public class MultiObjectiveRunningWindowController {
 	@FXML
 	private TextArea logExperimentTextArea;
 
-	private final Pane root;
-	private final Problem<?> problem;
-	private final ExperimentTask task;
-	private final Network network;
-	private ResultPlotWindowController resultPlotWindowController;
-	private Stage window;
+	@NotNull private final Pane root;
+	@NotNull private final Problem<?> problem;
+	@NotNull private final ExperimentTask task;
+	@NotNull private final Network network;
+	@Nullable private ResultPlotWindowController resultPlotWindowController;
+	@Nullable private Stage window;
 
 	/**
 	 * Constructor
@@ -71,11 +73,11 @@ public class MultiObjectiveRunningWindowController {
 	 * @param experiment the experiment to execute
 	 * @param problem   the problem that the algorithm has configured
 	 * @param network   the network opened.
-	 * @throws NullPointerException if algorithm is null or problem is null or
+	 * @throws NullPointerException if experiment is null or problem is null or
 	 *                              network is null
 	 */
-	public MultiObjectiveRunningWindowController(Experiment<?> experiment, Problem<?> problem, Network network) {
-		Experiment<?> experiment1 = Objects.requireNonNull(experiment);
+	public MultiObjectiveRunningWindowController(@NotNull Experiment<?> experiment,@NotNull Problem<?> problem, @NotNull Network network) {
+		Objects.requireNonNull(experiment);
 		this.problem = Objects.requireNonNull(problem);
 		this.network = Objects.requireNonNull(network);
 
@@ -83,7 +85,7 @@ public class MultiObjectiveRunningWindowController {
 
 		this.task = new ExperimentTask(experiment);
 
-		// Create the controller to add point even if plot windows is not showned.
+		// Create the controller to add point even if plot windows is not showed.
 		// Only created if number of objectives is 1 or 2
 		if (this.problem.getNumberOfObjectives() == 1 || this.problem.getNumberOfObjectives() == 2) {
 			this.resultPlotWindowController = new ResultPlotWindowController(this.problem.getNumberOfObjectives());
@@ -94,7 +96,7 @@ public class MultiObjectiveRunningWindowController {
 		 * Only add the the showChartButton if the number of objectives is 1.
 		 * If the number of objective is 2 the button as to be enabled when the simulation finish
 		 */
-		if (this.problem.getNumberOfObjectives() == 2) {
+		if (this.problem.getNumberOfObjectives() == 1 || this.problem.getNumberOfObjectives() == 2) {
 			this.showChartButton.setVisible(true);
 			this.showChartButton.setDisable(true);
 		}
@@ -180,7 +182,7 @@ public class MultiObjectiveRunningWindowController {
 	 */
 	@FXML
 	private void onShowChartButtonClick() {
-		this.resultPlotWindowController.showAssociatedWindow();
+		Objects.requireNonNull(this.resultPlotWindowController).showAssociatedWindow();
 	}
 
 	/**
@@ -202,6 +204,7 @@ public class MultiObjectiveRunningWindowController {
 			task.cancel();
 		}
 		// close the dialog
+		assert this.window != null;
 		this.window.close();
 	}
 
