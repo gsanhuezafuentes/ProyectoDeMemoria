@@ -1,0 +1,194 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{pslatex}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc} % Caracteres con acentos.
+\usepackage{latexsym}
+\usepackage{amssymb} 
+\usepackage{amsmath}
+\usepackage{epsfig}
+\usepackage{url}
+\usepackage{titlesec}
+\usepackage{float}
+\usepackage[onelanguage, commentsnumbered, linesnumbered, boxed, ruled]{algorithm2e}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\begin{document}
+	\begin{figure}[h]
+		\begin{algorithm}[H]
+			\caption{Algoritmo Evolutivo}
+			\DontPrintSemicolon
+			\SetKwFunction{CreateInitialPopulation}{crearPoblaciónInicial}
+			\SetKwFunction{EvaluatePopulation}{evaluarPoblación}
+			\SetKwFunction{Selection}{selección}
+			\SetKwFunction{Crossover}{cruzamiento}
+			\SetKwFunction{Mutation}{mutación}
+			\SetKwFunction{Replace}{remplazar}
+			\SetKwData{PopulationVar}{población}
+			\SetKwData{SelectionVar}{poblacionSeleccionada}
+			\SetKwData{OffspringVar}{poblaciónDecendiente}
+			
+			\PopulationVar $\leftarrow$ \CreateInitialPopulation{}\;
+			\EvaluatePopulation{\PopulationVar}\;
+			
+			\While{la condición de termino no ha sido alcanzada}{
+				\SelectionVar $\leftarrow$ \Selection{\PopulationVar}\;
+				\OffspringVar $\leftarrow$ \Crossover{\SelectionVar}\;
+				\OffspringVar $\leftarrow$ \Mutation(\OffspringVar)\;
+				\OffspringVar $\leftarrow$ \EvaluatePopulation(\OffspringVar)\;
+				\PopulationVar $\leftarrow$ \Replace(\PopulationVar, \OffspringVar)\;
+			}
+			
+		\end{algorithm}
+		\caption{Pseudocodigo algoritmo evolutivo}
+		\label{fig:EA}
+	\end{figure}
+
+\begin{figure}[h]
+	\begin{algorithm}[H]
+		\caption{Función de remplazo para el algoritmo NSGA-II}
+		\DontPrintSemicolon
+		\SetKwData{PopulationVar}{población}
+		\SetKwData{OffspringVar}{poblaciónDescendiente}
+		\SetKwData{JoinVar}{unionPoblacion}
+		\SetKwData{Front}{$F$}
+		\SetKwData{NewPopulation}{nuevaPoblacion}
+		
+		\SetKwFunction{FastNonDominatingSorting}{ordenarPorFrentesNoDominados}
+		\SetKwFunction{CrowdingDistanceAssignament}{asignarDensidad}
+		\SetKwFunction{Sort}{ordernar}
+		
+		\SetKwProg{Fn}{Function}{}{fin}
+		\Fn{remplazar(\PopulationVar, \OffspringVar)}{
+			
+			$\JoinVar \leftarrow \PopulationVar \cup \OffspringVar$\;
+			\BlankLine
+			\tcc*[h]{$F = (F_1,F_2, ...)$}\;
+			\Front $\leftarrow$ \FastNonDominatingSorting(\JoinVar)\;
+			\BlankLine
+			\NewPopulation $\leftarrow \emptyset$ \;
+			\BlankLine
+			$i = 1$\;
+			\BlankLine
+			\tcc*[h]{Hasta que \NewPopulation este lleno}\;
+			\While{$(|\NewPopulation| +|F_i|) \leq N$}{
+				\tcc{Calcular y asignar la densidad a cada solución del frente $F_i$}
+				\CrowdingDistanceAssignament($F_i$)\;
+				\BlankLine
+				\tcc{Añadir a \NewPopulation las soluciones del frente $F_i$}
+				\NewPopulation $\leftarrow$ \NewPopulation $\cup$ $F_i$ \;
+				\BlankLine
+				$i = i+1$\;
+			}
+			\BlankLine
+			\tcc{Ordenar el frente $F_i$ usando el comparador de densidad}
+			\Sort($F_i$, $\prec_n$) \;
+			\BlankLine
+			\tcc{Elegir los primeros $N -|\NewPopulation|]$ }
+			\NewPopulation $\leftarrow$ \NewPopulation $\cup$ $F_i[1: N -|\NewPopulation|]$ \;
+			\BlankLine
+			retornar \NewPopulation\;
+		}
+		
+	\end{algorithm}
+	\caption{Pseudocódigo de la función de remplazo utilizada en el algoritmo NSGA-II \cite{Deb2002}}
+	\label{fig:RemplaceNSGAII}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{algorithm}[H]
+		\caption{Función de ordenación en frentes no dominados}
+		\DontPrintSemicolon
+		\SetKwData{PopulationVar}{población}
+		\SetKwData{Front}{$F$}
+		\SetKwData{NewPopulation}{nuevaPoblacion}
+		
+		\SetKwFunction{FastNonDominatingSorting}{ordenarPorFrentesNoDominados}
+		
+		
+		
+		\SetKwProg{Fn}{Function}{}{fin}
+		\Fn{\FastNonDominatingSorting(\PopulationVar)}{
+			$\Front \leftarrow \emptyset$\;
+			\ForEach{$p \in \PopulationVar$}{
+				\tcc*[h]{Conjunto de soluciones dominadas por $p$}\;
+				$S_p = \emptyset$\; 
+				\tcc*[h]{Numeros de soluciones que dominan a $p$}\;
+				$n_p = 0$\;
+				\ForEach{$q \in \PopulationVar$}{
+					\uIf(\tcc*[h]{$p$ domina a $q$}){$p \prec q$}{
+						$S_p = S_p \cup \{q\}$\;
+					}\ElseIf(\tcc*[h]{$q$ domina a $p$}){$q \prec p$}{
+						$n_p = n_p + 1$\;
+					}
+					\If{$n_p = 0$}{
+						$p_{rango} = 1$\;
+						$F_1 = F_1 \cup \{p\}$\;
+					}	
+				}
+			}
+			\BlankLine
+			$i = 1$\;
+			\BlankLine
+			\While{$F_i \neq 0$}{
+				$Q = \emptyset$\;
+				\ForEach{$p \in \Front_i$}{
+					\ForEach{$q \in S_p$}{
+						$n_q = n_q - 1$\;
+						\If{$n_q = 0$}{
+							$q_{rango} = i + 1$\;
+							$Q = Q \cup \{q\}$\;
+						}
+					}
+				}
+				
+				$i = i+1$\;
+				$F_i = Q$\;
+			}
+			
+			
+			
+		}
+		
+	\end{algorithm}
+	\caption{Pseudocódigo de la función de ordenamiento utilizada en NSGA-II \cite{Deb2002}}
+	\label{fig:sortFront}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{algorithm}[H]
+		\caption{Función de calculo de densidades}
+		\DontPrintSemicolon
+		\SetKwData{NDS}{$\mathcal{I}$}
+		\SetKwFunction{CrowdingDistanceAssignament}{asignarDensidad}
+		
+		
+		
+		\SetKwProg{Fn}{Function}{}{fin}
+		\Fn(\tcc*[h]{$\NDS$ : frente de soluciones no dominadas}){\CrowdingDistanceAssignament($\NDS$)}{
+			$l = |\NDS|$ \tcc*[h]{Obtiene el tamaño del frente}\;\;
+			\BlankLine
+			\tcc*[h]{Inicializa la distancia para cada solución}\;
+			\ForEach{$i \leftarrow 1$ \KwTo $l$}{
+				$\NDS[i]_{distancia} \leftarrow 0$
+			}
+			\ForEach{$m \leftarrow 1$ \KwTo numero de objetivos}{
+				$\NDS \leftarrow$ sort($\NDS$, m) \tcc*[h]{Ordena por el objetivo m}\; 
+				\BlankLine
+				\tcc*[h]{Asignar a la primera y ultima solucion el valor $\infty$ }\;
+				$\NDS[1]_{distancia} \leftarrow \NDS[l]_{distancia} \leftarrow \infty$\;
+				\BlankLine
+				\For{$i \leftarrow 2$ \KwTo $l-1$}{
+					\tcc*[h]{Asigna la distancia a las soluciones restantes}\;
+					$\NDS[i]_{distancia} \leftarrow \NDS[i]_{distancia} + (\NDS[i+1].m - \NDS[i-1].m)/(f_m^{max} - f_m^{min})$\;	
+				}
+			}
+			
+		}
+		
+	\end{algorithm}
+	\caption{Pseudocódigo de la función de asignación de densidad \cite{Deb2002}}
+	\label{fig:CrowindDistance}
+\end{figure}
+\end{document}
