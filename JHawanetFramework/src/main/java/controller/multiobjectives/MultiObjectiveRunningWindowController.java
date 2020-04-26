@@ -111,7 +111,7 @@ public class MultiObjectiveRunningWindowController {
 	 */
 	private Pane loadFXML() {
 		FXMLLoader fxmlLoader = new FXMLLoader(
-				getClass().getResource("/view/multiobjective/MultiObjectiveRunningWindow.fxml"));
+				getClass().getResource("/view/MultiObjectiveRunningWindow.fxml"));
 		fxmlLoader.setController(this);
 		try {
 			return fxmlLoader.load();

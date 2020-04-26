@@ -30,6 +30,7 @@ package model.metaheuristic.operator.crossover.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import annotations.operators.DefaultConstructor;
 import exception.ApplicationException;
@@ -43,7 +44,8 @@ import model.metaheuristic.utils.random.RandomGenerator;
  *
  */
 public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
-	private static final double EPS = 1.0e-14;
+    /*minimum difference allowed between real values */
+    private static final double EPS = 1.0e-14;
 
 	private final double crossoverProbability;
 	private final double distributionIndex;
@@ -83,11 +85,21 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 		this.random = randomGenerator;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+
+    /**
+     * Apply crossover to solution
+     * @param source the parents to operates.
+     * @return the crossover elements
+     * @throws NullPointerException if source is null
+	 * @throws IllegalArgumentException if source size is other than 2
+     */
 	@Override
 	public List<IntegerSolution> execute(List<IntegerSolution> source) {
+        Objects.requireNonNull(source);
+        if (source.size() != getNumberOfRequiredParents()){
+            throw new IllegalArgumentException("There must be two parents instead of " + source.size());
+        }
+
 		IntegerSolution parent1 = source.get(0);
 		IntegerSolution parent2 = source.get(1);
 
@@ -98,7 +110,7 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 
 		int i;
 		double rand;
-		double y1, y2, yL, yu;
+		double y1, y2, yL, yU;
 		double c1, c2;
 		double alpha, beta, betaq;
 		int valueX1, valueX2;
@@ -120,8 +132,9 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 						}
 
 						yL = parent1.getLowerBound(i);
-						yu = parent1.getUpperBound(i);
+						yU = parent1.getUpperBound(i);
 						rand = random.getRandomValue();
+						//--------------------------------------
 						beta = 1.0 + (2.0 * (y1 - yL) / (y2 - y1));
 						alpha = 2.0 - Math.pow(beta, -(distributionIndex + 1.0));
 
@@ -132,7 +145,9 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 						}
 
 						c1 = 0.5 * ((y1 + y2) - betaq * (y2 - y1));
-						beta = 1.0 + (2.0 * (yu - y2) / (y2 - y1));
+
+						//--------------------------------------
+						beta = 1.0 + (2.0 * (yU - y2) / (y2 - y1));
 						alpha = 2.0 - Math.pow(beta, -(distributionIndex + 1.0));
 
 						if (rand <= (1.0 / alpha)) {
@@ -151,12 +166,12 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 							c2 = yL;
 						}
 
-						if (c1 > yu) {
-							c1 = yu;
+						if (c1 > yU) {
+							c1 = yU;
 						}
 
-						if (c2 > yu) {
-							c2 = yu;
+						if (c2 > yU) {
+							c2 = yU;
 						}
 
 						if (random.getRandomValue() <= 0.5) {

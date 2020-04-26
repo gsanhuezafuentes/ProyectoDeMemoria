@@ -145,7 +145,9 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
     }
 
     /**
-     * Execute() method
+     * Mutates the solution
+     * @param solution the solution to mutate
+     * @return The mutated solution
      */
     public IntegerSolution execute(IntegerSolution solution) {
         Objects.requireNonNull(solution);
@@ -159,18 +161,18 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
      */
     private void doMutation(double probability, IntegerSolution solution) {
         double rnd, delta1, delta2, mutPow, deltaq;
-        double y, yl, yu, val, xy;
+        double y, yL, yU, val, xy;
 
         for (int i = 0; i < solution.getNumberOfVariables(); i++) {
             if (random.getRandomValue() <= probability) {
                 y = (double) solution.getVariable(i);
-                yl = solution.getLowerBound(i);
-                yu = solution.getUpperBound(i);
-                if (yl == yu) {
-                    y = yl;
+                yL = solution.getLowerBound(i);
+                yU = solution.getUpperBound(i);
+                if (yL == yU) {
+                    y = yL;
                 } else {
-                    delta1 = (y - yl) / (yu - yl);
-                    delta2 = (yu - y) / (yu - yl);
+                    delta1 = (y - yL) / (yU - yL);
+                    delta2 = (yU - y) / (yU - yL);
                     rnd = random.getRandomValue();
                     mutPow = 1.0 / (distributionIndex + 1.0);
                     if (rnd <= 0.5) {
@@ -182,8 +184,8 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
                         val = 2.0 * (1.0 - rnd) + 2.0 * (rnd - 0.5) * (Math.pow(xy, distributionIndex + 1.0));
                         deltaq = 1.0 - Math.pow(val, mutPow);
                     }
-                    y = y + deltaq * (yu - yl);
-                    y = repairSolutionVariableValue(y, yl, yu);
+                    y = y + deltaq * (yU - yL);
+                    y = repairSolutionVariableValue(y, yL, yU);
                 }
                 solution.setVariable(i, (int) y);
             }

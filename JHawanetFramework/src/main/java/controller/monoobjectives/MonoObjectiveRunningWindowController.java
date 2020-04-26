@@ -104,7 +104,7 @@ public class MonoObjectiveRunningWindowController {
      * @throws ApplicationException if there is an error in load the .fxml.
      */
     private Pane loadFXML() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/monoobjective/MonoObjectiveRunningWindow.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/MonoObjectiveRunningWindow.fxml"));
         fxmlLoader.setController(this);
         try {
             return fxmlLoader.load();
