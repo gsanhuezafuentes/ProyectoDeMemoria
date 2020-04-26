@@ -30,14 +30,34 @@ Compile with mvn jfx:jar to create a jar -> este comando realizaria lo mismo que
 Compile with mvn jfx:native to create a native -> genera un exe y si estan instalados los programas correctos tambien generaria un instalador.
 
 ## Abrir proyecto con eclipse
-Abrir el proyecto desde eclipse y agregar la ruta lib/additionalResources al *build path*. Para ello, seleccione la carpeta y muestre el menú contextual. Luego, en la opción *Build path* seleccione la opción *Use as source folder* (Puede configurarlo tambien desde *Configure build path*). Esto se muestra en la imagen a continuación:
+Abrir el proyecto desde eclipse y agregar la ruta lib/additionalResources y la carpeta src/resource, en caso de que no se encuentre, al *build path*. Para ello, seleccione la carpeta y muestre el menú contextual. Luego, en la opción *Build path* seleccione la opción *Use as source folder* (Puede configurarlo tambien desde *Configure build path*). Esto se muestra en la imagen a continuación:
 
-![addPath](assets/addPath.png)
+![Agregar path](assets/addPath.png)
 
 El *build path* deberia mostrarse de la siguiente manera:
 
-![BuildPath](assets/BuildPath.png)
+![Build path](assets/BuildPath.png)
 
+## Abrir Proyecto en IntelliJ
+Abrir o exportar la carpeta del proyecto en IntelliJ. Para esto hay dos formas de hacerlo. La primera consiste en hacerlo desde la ventana de bienvenida usando la opción *Open or import*:
+![Ventana de bienvenida](assets/WelcomeViewIJ.png)
+
+o desde un proyecto ya abierto ir a File > Open:
+![Open](assets/IntelliJOpen.png)
+
+Una vez abierto el proyecto hay revisar si las carpetas estan correctamente configuradas. Para ello es necesario agregar la carpeta lib/additionalResources y la carpeta src/resource en la configuración de la estructura en proyecto en caso de que no esten. Para configurar la estructura del proyecto ve a File > Proyect Structure:
+
+![Menu estructura del proyecto](assets/ProyectStructureMenu.png)
+
+y en configuración de modulos revisa que este de la siguiente manera:
+
+![Estructura del proyecto](assets/ProyectStructure.png)
+
+en caso de que no se encuentre la configuración de la manera indicada busca la carpeta deseada y seleccionala. Luego, has click sobre el boton *Resources*
+
+![Estructura del proyecto](assets/ProyectStructureAddResource.png)
+
+con esto el proyecto estara listo para ser usado en IntelliJ. La ventaja de usar IntelliJ es que este posee un analizador de codigo que en mi opinión es bastante util y permite detectar el uso de algunas anotaciones extras para verificar el codigo como @NotNull y @Nullable. En caso de que el proyecto sea abierto usando eclipse estas anotaciones no tienen uso pero no causaran problemas en la compilación del proyecto.
 
 ### Nota1: Assets es solo una carpeta donde se suben las imagenes. No es usada por el proyecto.
 ### Nota2: La version en ingles y la version en español de epanet a veces ocupan distintas palabras claves (Ej: Feet en ingles y Pies en español). Este programa lee el formato inp de la version en ingles.
