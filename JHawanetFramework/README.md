@@ -40,12 +40,14 @@ El *build path* deberia mostrarse de la siguiente manera:
 
 ## Abrir Proyecto en IntelliJ
 Abrir o exportar la carpeta del proyecto en IntelliJ. Para esto hay dos formas de hacerlo. La primera consiste en hacerlo desde la ventana de bienvenida usando la opción *Open or import*:
+
 ![Ventana de bienvenida](assets/WelcomeViewIJ.png)
 
 o desde un proyecto ya abierto ir a File > Open:
+
 ![Open](assets/IntelliJOpen.png)
 
-Una vez abierto el proyecto hay revisar si las carpetas estan correctamente configuradas. Para ello es necesario agregar la carpeta lib/additionalResources y la carpeta src/resource en la configuración de la estructura en proyecto en caso de que no esten. Para configurar la estructura del proyecto ve a File > Proyect Structure:
+Una vez abierto el proyecto hay que revisar si las carpetas estan correctamente configuradas. Para ello, es necesario agregar la carpeta lib/additionalResources y la carpeta src/resource en la configuración de la estructura del proyecto en caso de que no esten. Para configurar la estructura del proyecto ve a File > Proyect Structure:
 
 ![Menu estructura del proyecto](assets/ProyectStructureMenu.png)
 
@@ -57,7 +59,8 @@ en caso de que no se encuentre la configuración de la manera indicada busca la 
 
 ![Estructura del proyecto](assets/ProyectStructureAddResource.png)
 
-con esto el proyecto estara listo para ser usado en IntelliJ. La ventaja de usar IntelliJ es que este posee un analizador de codigo que en mi opinión es bastante util y permite detectar el uso de algunas anotaciones extras para verificar el codigo como @NotNull y @Nullable. En caso de que el proyecto sea abierto usando eclipse estas anotaciones no tienen uso pero no causaran problemas en la compilación del proyecto.
+con esto el proyecto estara listo para ser usado en IntelliJ. 
 
 ### Nota1: Assets es solo una carpeta donde se suben las imagenes. No es usada por el proyecto.
 ### Nota2: La version en ingles y la version en español de epanet a veces ocupan distintas palabras claves (Ej: Feet en ingles y Pies en español). Este programa lee el formato inp de la version en ingles.
+### Nota3: La ventaja de usar IntelliJ es que este posee un analizador de codigo que en mi opinión es bastante util y permite detectar el uso de algunas anotaciones extras para verificar el codigo como @NotNull y @Nullable. En caso de que el proyecto sea abierto usando eclipse estas anotaciones no tienen uso pero no causaran problemas en la compilación del proyecto.
