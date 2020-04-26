@@ -1,15 +1,22 @@
 package model.epanet.element.waterquality;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import model.epanet.element.systemoperation.Pattern;
+import org.jetbrains.annotations.NotNull;
 
 public final class Source {
 
-	public static enum SourceType {
+	public enum SourceType {
 		CONCEN("CONCEN"), MASS("MASS"), FLOWPACED("FLOWPACED"), SETPOINT("SETPOINT");
 
-		private String name;
+		private final String name;
 
-		private SourceType(String name) {
+		SourceType(String name) {
 			this.name = name;
 		}
 
@@ -19,108 +26,119 @@ public final class Source {
 		public String getName() {
 			return name;
 		}
+		
+		/**
+		 * Parse the name to a object of the enum class if exist. if name no exist in enum class so return null;
+		 * @param name the name of object
+		 * @return the object of enum class
+		 * @throws IllegalArgumentException if name is not valid
+		 */
+		public static @NotNull SourceType parse(String name) {
+			for (SourceType object : SourceType.values()) {
+				if (object.getName().equalsIgnoreCase(name)) {
+					return object;
+				}
+			}
+			throw new IllegalArgumentException();
+		}
 	}
 
-	private String nodeId;
-	private SourceType sourceType;
-	private double baselineStrenth;
-	private Pattern timePattern;
+	@NotNull private SourceType sourceType;
+	private double sourceQuality;
+	@NotNull private String timePattern; // ID to Pattern
 
 	public Source() {
-		// TODO Auto-generated constructor stub
+		this.timePattern = "";
+		this.sourceType = SourceType.CONCEN; //default value
+
 	}
 
 	/**
 	 * Create a new source with the same values that the source received. This is a
-	 * shallow copy, i.e., If the field value is a reference to an object (e.g., a
-	 * memory address) it copies the reference. If it is necessary for the object to
-	 * be completely independent of the original you must ensure that you replace
-	 * the reference to the contained objects.
+	 * deep copy.
+	 * 
+	 * If you want that the object will be totally independent you need set the
+	 * timePattern ({@link #setTimePattern}).
 	 * 
 	 * @param source the object to copy
+	 * @throws NullPointerException if source is null
 	 */
-	public Source(Source source) {
-		this.nodeId = source.nodeId;
+	public Source(@NotNull Source source) {
+		Objects.requireNonNull(source);
 		this.sourceType = source.sourceType;
-		this.baselineStrenth = source.baselineStrenth;
+		this.sourceQuality = source.sourceQuality;
 		this.timePattern = source.timePattern;
 	}
 
 	/**
-	 * @return the nodeId
-	 */
-	public String getNodeId() {
-		return nodeId;
-	}
-
-	/**
-	 * @param nodeId the nodeId to set
-	 */
-	public void setNodeId(String nodeId) {
-		this.nodeId = nodeId;
-	}
-
-	/**
+	 * Get the source type. The default value is {@link SourceType#CONCEN}.
 	 * @return the sourceType
 	 */
-	public SourceType getSourceType() {
+	public @NotNull SourceType getSourceType() {
 		return sourceType;
 	}
 
 	/**
 	 * @param sourceType the sourceType to set
 	 */
-	public void setSourceType(SourceType sourceType) {
+	public void setSourceType(@NotNull SourceType sourceType) {
 		this.sourceType = sourceType;
 	}
 
 	/**
-	 * @return the baselineStrenth
+	 * Get the Baseline source strength
+	 * @return the source quality
 	 */
-	public double getBaselineStrenth() {
-		return baselineStrenth;
+	public double getSourceQuality() {
+		return sourceQuality;
 	}
 
 	/**
-	 * @param baselineStrenth the baselineStrenth to set
+	 * @param sourceQuality the Baseline source strength to set
 	 */
-	public void setBaselineStrenth(double baselineStrenth) {
-		this.baselineStrenth = baselineStrenth;
+	public void setSourceQuality(double sourceQuality) {
+		this.sourceQuality = sourceQuality;
 	}
 
 	/**
-	 * @return the timePattern
+	 * Get the time pattern. This is an id of the {@link Pattern}
+	 * 
+	 * @return the timePattern or a empty string if it does not exist
 	 */
-	public Pattern getTimePattern() {
+	public @NotNull String getTimePattern() {
 		return timePattern;
 	}
 
 	/**
+	 * Set the time pattern id.
+	 * 
 	 * @param timePattern the timePattern to set
+	 * @throws NullPointerException if timePattern is null
 	 */
-	public void setTimePattern(Pattern timePattern) {
+	public void setTimePattern(@NotNull String timePattern) {
+		Objects.requireNonNull(timePattern);
 		this.timePattern = timePattern;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", getNodeId()));
-		txt.append(String.format("%-10s\t", getSourceType().getName()));
-		txt.append(String.format("%-10f\t", getBaselineStrenth()));
-		if (getTimePattern() != null) {
-			txt.append(String.format("%-10s", getTimePattern().getId()));
-		}
+		Map<String, Object> map = new LinkedHashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-		return txt.toString();
+		map.put("sourceType", sourceType);
+		map.put("sourceQuality", sourceQuality);
+		map.put("timePattern", timePattern);
+		return gson.toJson(map);
 	}
 
 	/**
 	 * Create a copy of this object
 	 * 
+	 * @see Source#Source(Source)
+	 * 
 	 * @return the object to copy
 	 */
-	public Source copy() {
+	public @NotNull Source copy() {
 		return new Source(this);
 	}
 

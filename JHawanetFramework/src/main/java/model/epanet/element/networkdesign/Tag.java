@@ -1,12 +1,21 @@
 package model.epanet.element.networkdesign;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public final class Tag {
-	public static enum TagType {
+	public enum TagType {
 		NODE("NODE"), LINK("LINK");
 
-		private String name;
+		private final String name;
 
-		private TagType(String name) {
+		TagType(String name) {
 			this.name = name;
 		}
 
@@ -17,79 +26,93 @@ public final class Tag {
 			return name;
 		}
 
+		/**
+		 * Parse the string to the enum
+		 * @param name the name
+		 * @return the associated enum
+		 * @throws IllegalArgumentException if name is not valid
+		 */
+		public static @NotNull TagType parse(String name) {
+			for (TagType object : TagType.values()) {
+				if (object.getName().equalsIgnoreCase(name)) {
+					return object;
+				}
+			}
+			throw new IllegalArgumentException("There are not a valid element with the name " + name);
+		}
+
 	}
 
+	@Nullable
 	private TagType type;
-	private String id;
-	private String label;
+	@NotNull private String label;
 
 	public Tag() {
-		// TODO Auto-generated constructor stub
+		this.label = "";
 	}
-	
-	public Tag(Tag tag) {
+
+	/**
+	 * Copy constructor
+	 * @param tag the tag to copy
+	 * @throws NullPointerException if tag is null
+	 */
+	public Tag(@NotNull Tag tag) {
+		Objects.requireNonNull(tag);
 		this.type = tag.type;
-		this.id = tag.id;
 		this.label = tag.label;
 	}
-	
-	
+
 	/**
-	 * @return the type
+	 * Get the type
+	 * @return the type. It can be null if hasn't been initialized
 	 */
-	public TagType getType() {
+	public @Nullable TagType getType() {
 		return type;
 	}
 
 	/**
 	 * @param type the type to set
+	 * @throws NullPointerException if type is null 
 	 */
-	public void setType(TagType type) {
+	public void setType(@NotNull TagType type) {
+		Objects.requireNonNull(type);
 		this.type = type;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	/**
 	 * @return the label
 	 */
-	public String getLabel() {
+	public @NotNull String getLabel() {
 		return label;
 	}
 
 	/**
 	 * @param label the label to set
+	 * @throws NullPointerException if label is null
 	 */
-	public void setLabel(String label) {
+	public void setLabel(@NotNull String label) {
+		Objects.requireNonNull(label);
 		this.label = label;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", getType().getName()));
-		txt.append(String.format("%-10s\t", getId()));
-		txt.append(String.format("%-10s", getLabel()));
-		return txt.toString();
+		Map<String, Object> map = new LinkedHashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		if (type == null){
+			map.put("type", "");
+		}
+		map.put("type", type);
+		map.put("label", label);
+		return gson.toJson(map);
 	}
-	
+
 	/**
 	 * Copy this object.
+	 * 
 	 * @return the copy.
 	 */
-	public Tag copy() {
+	public @NotNull Tag copy() {
 		return new Tag(this);
 	}
 }

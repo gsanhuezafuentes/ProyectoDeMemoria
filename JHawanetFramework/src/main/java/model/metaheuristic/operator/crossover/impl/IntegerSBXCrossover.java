@@ -1,7 +1,36 @@
+/*
+ * Code taken from https://github.com/jMetal/jMetal
+ *
+ * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated
+ * documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to
+ * whom the Software is furnished to do so, subject to the
+ * following conditions:
+ *
+ * The above copyright notice and this permission notice shall
+ * be included in all copies or substantial portions of the
+ * Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+ * KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. © 2019
+ * GitHub, Inc.
+ */
 package model.metaheuristic.operator.crossover.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import annotations.operators.DefaultConstructor;
 import exception.ApplicationException;
@@ -11,38 +40,16 @@ import model.metaheuristic.utils.random.JavaRandom;
 import model.metaheuristic.utils.random.RandomGenerator;
 
 /**
- * 
+ * Applies the SBXCrossover on a IntegerSolution
  *
- * Base on code from https://github.com/jMetal/jMetal
- * 
- * <pre>
- * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE. © 2019 GitHub, Inc.
- * </pre>
  */
 public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
-	private static final double EPS = 1.0e-14;
+    /*minimum difference allowed between real values */
+    private static final double EPS = 1.0e-14;
 
-	private double crossoverProbability;
-	private double distributionIndex;
-	private RandomGenerator<Double> random;
+	private final double crossoverProbability;
+	private final double distributionIndex;
+	private final RandomGenerator<Double> random;
 
 	/**
 	 * 
@@ -78,11 +85,21 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 		this.random = randomGenerator;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+
+    /**
+     * Apply crossover to solution
+     * @param source the parents to operates.
+     * @return the crossover elements
+     * @throws NullPointerException if source is null
+	 * @throws IllegalArgumentException if source size is other than 2
+     */
 	@Override
 	public List<IntegerSolution> execute(List<IntegerSolution> source) {
+        Objects.requireNonNull(source);
+        if (source.size() != getNumberOfRequiredParents()){
+            throw new IllegalArgumentException("There must be two parents instead of " + source.size());
+        }
+
 		IntegerSolution parent1 = source.get(0);
 		IntegerSolution parent2 = source.get(1);
 
@@ -93,7 +110,7 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 
 		int i;
 		double rand;
-		double y1, y2, yL, yu;
+		double y1, y2, yL, yU;
 		double c1, c2;
 		double alpha, beta, betaq;
 		int valueX1, valueX2;
@@ -103,7 +120,8 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 				valueX1 = parent1.getVariable(i);
 				valueX2 = parent2.getVariable(i);
 				if (random.getRandomValue() <= 0.5) {
-					if (Math.abs(valueX1 - valueX2) > EPS) {
+					if (Math.abs(valueX1 - valueX2) > EPS) // noinspection DuplicatedCode
+					{
 
 						if (valueX1 < valueX2) {
 							y1 = valueX1;
@@ -114,8 +132,9 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 						}
 
 						yL = parent1.getLowerBound(i);
-						yu = parent1.getUpperBound(i);
+						yU = parent1.getUpperBound(i);
 						rand = random.getRandomValue();
+						//--------------------------------------
 						beta = 1.0 + (2.0 * (y1 - yL) / (y2 - y1));
 						alpha = 2.0 - Math.pow(beta, -(distributionIndex + 1.0));
 
@@ -126,7 +145,9 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 						}
 
 						c1 = 0.5 * ((y1 + y2) - betaq * (y2 - y1));
-						beta = 1.0 + (2.0 * (yu - y2) / (y2 - y1));
+
+						//--------------------------------------
+						beta = 1.0 + (2.0 * (yU - y2) / (y2 - y1));
 						alpha = 2.0 - Math.pow(beta, -(distributionIndex + 1.0));
 
 						if (rand <= (1.0 / alpha)) {
@@ -145,12 +166,12 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 							c2 = yL;
 						}
 
-						if (c1 > yu) {
-							c1 = yu;
+						if (c1 > yU) {
+							c1 = yU;
 						}
 
-						if (c2 > yu) {
-							c2 = yu;
+						if (c2 > yU) {
+							c2 = yU;
 						}
 
 						if (random.getRandomValue() <= 0.5) {

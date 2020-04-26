@@ -1,11 +1,32 @@
+/*
+ * Base on code from https://github.com/jMetal/jMetal
+ *
+ * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE. © 2019 GitHub, Inc.
+ */
 package model.metaheuristic.algorithm.monoobjective;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import epanet.core.EpanetException;
 import exception.ApplicationException;
 import model.metaheuristic.algorithm.AbstractEvolutionaryAlgorithm;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
@@ -14,6 +35,7 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.comparator.ObjectiveComparator;
+import model.metaheuristic.operator.selection.impl.TournamentSelection;
 
 /**
  * Class to perform algorithm genetic. <br>
@@ -29,39 +51,18 @@ import model.metaheuristic.utils.comparator.ObjectiveComparator;
  * 
  * If you do not set any stopping conditions, by default the maximum number of
  * evaluations with a value of 10000 is set.
- * 
- * <pre>
- * Base on code from https://github.com/jMetal/jMetal
- * 
- * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE. © 2019 GitHub, Inc.
- * </pre>
+ *
+ * This class is a copy of GeneticAlgorithm2 but let use {@link TournamentSelection}
+ *
  */
 public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S> {
-	private int maxPopulationSize;
-	private Problem<S> problem;
+	private final int maxPopulationSize;
+	private final Problem<S> problem;
 	private List<S> population;
-	private SelectionOperator<List<S>, S> selectionOperator;
-	private CrossoverOperator<S> crossoverOperator;
-	private MutationOperator<S> mutationOperator;
-	private ObjectiveComparator<S> comparator;
+	private final SelectionOperator<List<S>, S> selectionOperator;
+	private final CrossoverOperator<S> crossoverOperator;
+	private final MutationOperator<S> mutationOperator;
+	private final ObjectiveComparator<S> comparator;
 	/**
 	 * Max number of evaluation
 	 */
@@ -167,7 +168,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	 * 
 	 * The default is 0.
 	 * 
-	 * @param maxNumberOfIterationWithoutImprovement
+	 * @param maxNumberOfIterationWithoutImprovement the max number of iteration without improvement
 	 */
 	public void setMaxNumberOfIterationWithoutImprovement(int maxNumberOfIterationWithoutImprovement) {
 		validateMaxStoppingConditionCounters(this.maxEvaluations, maxNumberOfIterationWithoutImprovement);
@@ -180,24 +181,6 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	 */
 	public Problem<S> getProblem() {
 		return problem;
-	}
-
-	@Override
-	public void run() throws EpanetException {
-		List<S> offspringPopulation;
-		List<S> selectionPopulation;
-
-		population = createInitialPopulation();
-		population = evaluatePopulation(population);
-		initProgress();
-		while (!isStoppingConditionReached()) {
-			selectionPopulation = selection(population);
-			offspringPopulation = reproduction(selectionPopulation);
-			offspringPopulation = evaluatePopulation(offspringPopulation);
-			population = replacement(population, offspringPopulation);
-			updateProgress();
-		}
-
 	}
 
 	/**
@@ -231,7 +214,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	/**
 	 * Applies the SelectionOperation
 	 * 
-	 * @param population
+	 * @param population the population to apply the selection operator
 	 * @return The list of selected population.
 	 */
 	@Override
@@ -247,7 +230,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	/**
 	 * Applies crossover operator
 	 * 
-	 * @param selectionPopulation
+	 * @param selectionPopulation the selected population to apply the reproduction
 	 * @return The offspring population
 	 */
 	@Override
@@ -279,7 +262,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	@Override
 	public List<S> getResult() {
 		Collections.sort(getPopulation(), comparator);
-		return Arrays.asList(this.getPopulation().get(0));
+		return Collections.singletonList(this.getPopulation().get(0));
 	}
 
 	/** {@inheritDoc} */
@@ -300,8 +283,8 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	 * A crossover operator is applied to a number of parents, and it assumed that
 	 * the population contains a valid number of solutions. This method checks that.
 	 * 
-	 * @param population
-	 * @param numberOfParentsForCrossover
+	 * @param population the population
+	 * @param numberOfParentsForCrossover the number of parent for crossover
 	 * @throws ApplicationException if there is a wrong number of parent
 	 */
 	protected void checkNumberOfParents(List<S> population, int numberOfParentsForCrossover) {

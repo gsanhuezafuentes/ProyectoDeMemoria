@@ -20,12 +20,12 @@ public @interface OperatorInput {
 	 * A name of the parameter. It is used to show the name in the GUI
 	 * @return the name
 	 */
-	String displayName();
+	String displayName() default "";
 	
 	/**
 	 * The possible operator that can be injected.
 	 * @return the operator array that can be injected
 	 */
-	OperatorOption[] value();
+	OperatorOption[] value() default {};
 
 }

@@ -9,7 +9,7 @@ import java.util.Random;
 public class JavaRandom {
 	private static JavaRandom instance;
 	
-	private Random random;
+	private final Random random;
 	
 	private JavaRandom() {
 		this.random = new Random(System.currentTimeMillis());
@@ -39,7 +39,7 @@ public class JavaRandom {
 	}
 
 	/**
-	 * @param bound
+	 * @param bound the upper bound (exclusive). Must be positive
 	 * @return a int number
 	 * @see java.util.Random#nextInt(int)
 	 */

@@ -40,7 +40,7 @@ public final class TestProblemRegister extends MonoObjectiveRegistrable {
 			problem = new PipeOptimizing(epanet, "inp/hanoiHW.Gama", 30);
 		}
 	
-		algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10, selection, crossover, mutation);
+		algorithm = new GeneticAlgorithm2<>(problem, 10, selection, crossover, mutation);
 		algorithm.setMaxEvaluations(10000);
 		
 		return algorithm;

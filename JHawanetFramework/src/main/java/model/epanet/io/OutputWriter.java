@@ -3,7 +3,6 @@ package model.epanet.io;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import exception.InputException;
 import model.epanet.element.Network;
 
 /**

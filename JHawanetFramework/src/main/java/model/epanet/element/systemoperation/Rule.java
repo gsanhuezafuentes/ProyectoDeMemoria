@@ -1,66 +1,65 @@
 package model.epanet.element.systemoperation;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+
 /**
  * 
  *
  */
 public final class Rule {
-	String ruleId;
-	String code;
+	@NotNull String code;
 
 	public Rule() {
-		// TODO Auto-generated constructor stub
+		code = "";
 	}
 
 	/**
 	 * Copy constructor.
 	 * @param rule the object to copy
+	 * @throws NullPointerException if rule is null
 	 */
-	public Rule(Rule rule) {
-		this.ruleId = rule.ruleId;
+	public Rule(@NotNull Rule rule) {
+		Objects.requireNonNull(rule);
 		this.code = rule.code;
 	}
 
 	/**
-	 * @return the ruleId
-	 */
-	public String getRuleId() {
-		return ruleId;
-	}
-
-	/**
-	 * @param ruleId the ruleId to set
-	 */
-	public void setRuleId(String ruleId) {
-		this.ruleId = ruleId;
-	}
-
-	/**
+	 * Get the rule code
 	 * @return the ruleCode
 	 */
-	public String getCode() {
+	public @NotNull String getCode() {
 		return code;
 	}
 
 	/**
-	 * @param ruleCode the ruleCode to set
+	 * @param ruleCode the ruleCode to set or a empty string if this doesn't exist
+	 * @throws NullPointerException if ruleCode is null
 	 */
-	public void setCode(String ruleCode) {
+	public void setCode(@NotNull String ruleCode) {
+		Objects.requireNonNull(ruleCode);
 		this.code = ruleCode;
 	}
 
 	@Override
 	public String toString() {
-		String txt = "RULE" + "\t" + getRuleId() + "\t";
-		txt = getCode();
-		return txt;
+		Map<String, Object> map = new LinkedHashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		map.put("code", code);
+		return gson.toJson(map);
 	}
-	
+
 	/**
 	 * Create a copy of this object.
 	 * @return the copy;
 	 */
-	public Rule copy() {
+	public @NotNull Rule copy() {
 		return new Rule(this);
 	}
 

@@ -1,13 +1,22 @@
 package model.epanet.element.waterquality;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public final class Mixing {
 
-	public static enum MixingModel {
-		MIXED("MIXED"), TWOCOMP("2COM"), FIFO("FIFO"), LIFO("LIFO");
+	public enum MixingModel {
+		MIXED("MIXED"), TWOCOMP("2COMP"), FIFO("FIFO"), LIFO("LIFO");
 
-		private String name;
+		private final String name;
 
-		private MixingModel(String name) {
+		MixingModel(String name) {
 			this.name = name;
 		}
 
@@ -18,96 +27,98 @@ public final class Mixing {
 			return name;
 		}
 		
-		
+		/**
+		 * Parse the name to a object of the enum class if exist. if name no exist in enum class so return null;
+		 * @param name the name of object
+		 * @throws IllegalArgumentException if name is not valid
+		 */
+		public static @NotNull MixingModel parse(String name) {
+			for (MixingModel object : MixingModel.values()) {
+				if (object.getName().equalsIgnoreCase(name)) {
+					return object;
+				}
+			}
+			throw new IllegalArgumentException("There are not a valid element with the name " + name);
+
+		}
 	}
 
-	private String tankId;
-	private MixingModel model;
-	private double compartmentVolume;
+	@NotNull private MixingModel model;
+	@Nullable private Double mixingFraction;
 	
 	public Mixing() {
-		// TODO Auto-generated constructor stub
+		this.model = MixingModel.MIXED;
 	}
 	
 	/**
 	 * Copy constructor
 	 * @param mixing the object to copy
 	 */
-	public Mixing(Mixing mixing) {
-		this.tankId = mixing.tankId;
+	public Mixing(@NotNull Mixing mixing) {
 		this.model = mixing.model;
-		this.compartmentVolume = mixing.compartmentVolume;
-	}
-
-	/**
-	 * @return the tankId
-	 */
-	public String getTankId() {
-		return tankId;
-	}
-
-	/**
-	 * @param tankId the tankId to set
-	 */
-	public void setTankId(String tankId) {
-		this.tankId = tankId;
+		this.mixingFraction = mixing.mixingFraction;
 	}
 
 	/**
 	 * @return the model
 	 */
-	public MixingModel getModel() {
+	public @NotNull MixingModel getModel() {
 		return model;
 	}
 
 	/**
 	 * @param model the model to set
+	 * @throws NullPointerException if model is null
 	 */
-	public void setModel(MixingModel model) {
+	public void setModel(@NotNull MixingModel model) {
+		Objects.requireNonNull(model);
 		this.model = model;
 	}
 
 	/**
-	 * Get Compartment volume value. <br>
+	 * Get mixing fraction value. <br>
 	 * <br>
-	 * This value only should have assigned a value when the mixing model is
-	 * {@link MixingModel#TWOCOMP}
+	 * This value should be assigned when the mixing model is not
+	 * {@link MixingModel#MIXED}
 	 * 
-	 * @return the compartmentVolume
+	 * @return the compartmentVolume or null if it is not assigned
 	 */
-	public double getCompartmentVolume() {
-		return compartmentVolume;
+	public @Nullable Double getMixingFraction() {
+		return mixingFraction;
 	}
 
 	/**
-	 * Set Compartment volume value. <br>
+	 * Set mixing fraction value. <br>
 	 * <br>
-	 * Only should assigned a value when the mixing model is
-	 * {@link MixingModel#TWOCOMP}
+	 * This value should be assigned when the mixing model is not
+	 * {@link MixingModel#MIXED}
 	 * 
-	 * @param compartmentVolume the compartmentVolume to set
+	 * @param mixingFraction the mixing fraction or null if it is not assigned
 	 */
-	public void setCompartmentVolume(double compartmentVolume) {
-		this.compartmentVolume = compartmentVolume;
+	public void setMixingFraction(@Nullable Double mixingFraction) {
+		this.mixingFraction = mixingFraction;
 	}
 	
 	@Override
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", getTankId()));
-		txt.append(String.format("%-10s\t", getModel().getName()));
-		if (getModel() == MixingModel.TWOCOMP) {
-			txt.append(String.format("%-10f", getCompartmentVolume()));
+		Map<String, Object> map = new LinkedHashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		map.put("model", model);
+		if (mixingFraction == null) {
+			map.put("mixingFraction", "");
+		} else {
+			map.put("mixingFraction", mixingFraction);//
 		}
-		return txt.toString();
+		return gson.toJson(map);
 	}
-	
+
 	/**
 	 * Create a copy of this object.
 	 * 
 	 * @return the copy
 	 */
-	public Mixing copy() {
+	public @NotNull Mixing copy() {
 		return new Mixing(this);
 	}
 

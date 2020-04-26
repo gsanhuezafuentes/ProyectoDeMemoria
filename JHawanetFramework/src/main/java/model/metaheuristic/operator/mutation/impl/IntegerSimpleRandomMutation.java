@@ -13,22 +13,28 @@ import model.metaheuristic.utils.random.RandomGenerator;
 /**
  * Class that perform a mutation setting up each element of the solution randomly between the defined bounds.
  *
- *
  */
 public class IntegerSimpleRandomMutation implements MutationOperator<IntegerSolution> {
 
 	private double mutationProbability;
-	private RandomGenerator<Double> randomGenerator;
-	private BoundedRandomGenerator<Integer> pointRandomGenerator;
+	private final RandomGenerator<Double> randomGenerator;
+	private final BoundedRandomGenerator<Integer> pointRandomGenerator;
 
-	/** Constructor */
+	/**
+	 * Constructor
+	 * @param probability the probability of mutation
+	 */
 	@DefaultConstructor("Probability")
 	public IntegerSimpleRandomMutation(double probability) {
 		this(probability, () -> JavaRandom.getInstance().nextDouble(),
 				(a, b) -> JavaRandom.getInstance().nextInt(a, b));
 	}
 	
-	/** Constructor 
+	/**
+	 * Constructor
+	 * @param probability the probability of mutation
+	 * @param randomGenerator a random generator
+	 * @param pointRandomGenerator a random generator that generate numbers between a lower and a upper bound
 	 * @throws ApplicationException if probability is negative
 	 */
 	public IntegerSimpleRandomMutation(double probability, RandomGenerator<Double> randomGenerator,

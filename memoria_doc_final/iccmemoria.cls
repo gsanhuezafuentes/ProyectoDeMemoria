@@ -32,6 +32,7 @@
 \def\appendixpartname{Anexos}
 
 \def\supervisor#1{\def\@supervisor{#1}}
+\def\cosupervisor#1{\def\@cosupervisor{#1}}
 \def\informantes#1#2{\def\@informantex{#1}\def\@informantey{#2}}
 \def\adicional#1{\def\@adicional{#1}}
 \def\director#1{\def\@director{#1}}
@@ -159,6 +160,8 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
 
 \doublespacing
 {Profesor Gu\'{i}a: \MakeUppercase{\@supervisor}}
+
+{Profesor Co-gu\'{i}a: \MakeUppercase{\@cosupervisor}}
 \bigskip
 \bigskip
 \bigskip
@@ -200,6 +203,14 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
   %\vspace{1.0cm}\hrule\smallskip
   {Profesor Gu\'{i}a:
   \MakeUppercase{\@supervisor}}
+%\end{minipage}
+\bigskip
+
+%\begin{minipage}{6cm}
+%  \singlespacing
+  %\vspace{1.0cm}\hrule\smallskip
+  {Profesor Co-gu\'{i}a:
+  \MakeUppercase{\@cosupervisor}}
 %\end{minipage}
 \bigskip
 

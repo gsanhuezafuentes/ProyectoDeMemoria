@@ -1,6 +1,5 @@
 package model.epanet.io;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import exception.InputException;
@@ -18,9 +17,8 @@ public interface InputParser {
 	 * @param filename filepath to file.
 	 * @return Network net filled.
 	 * @throws InputException If there is a error in input file
-	 * @throws IOException  If an I/O error occurs
-	 * @throws FileNotFoundException If file don't exist
+	 * @throws IOException  If an I/O error occurs or file doesn't exist
 	 */
-	Network parse(Network net, String filename) throws FileNotFoundException, IOException, InputException;
+	Network parse(Network net, String filename) throws IOException, InputException;
 
 }

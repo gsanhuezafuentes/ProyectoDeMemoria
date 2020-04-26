@@ -1,107 +1,106 @@
 package model.epanet.element.systemoperation;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public final class Demand {
-	String id;
-	double demand;
-	Pattern demandPatern;
-	String demandCategory;
+    private double demand;
+    @NotNull
+    private String demandPattern; // ID to the Pattern
+    @NotNull
+    private String demandCategory;
 
-	public Demand() {
-		// TODO Auto-generated constructor stub
-	}
+    public Demand() {
+        this.demandPattern = "";
+        this.demandCategory = "";
+    }
 
-	/**
-	 * Create a demand with same values that the demand received. This is a shallow
-	 * copy, i.e., If the field value is a reference to an object (e.g., a memory
-	 * address) it copies the reference. If it is necessary for the object to be
-	 * completely independent of the original you must ensure that you replace the
-	 * reference to the contained objects.
-	 * 
-	 * @param demand the demand to copy
-	 */
-	public Demand(Demand demand) {
-		this.id = demand.id;
-		this.demand = demand.demand;
-		this.demandPatern = demand.demandPatern;
-		this.demandCategory = demand.demandCategory;
-	}
+    /**
+     * Create a demand with same values that the demand received. This is a deep
+     * copy.
+     *
+     * @param demand the demand to copy
+     * @throws NullPointerException if demand is null
+     */
+    public Demand(@NotNull Demand demand) {
+        Objects.requireNonNull(demand);
+        this.demand = demand.demand;
+        this.demandPattern = demand.demandPattern;
+        this.demandCategory = demand.demandCategory;
+    }
 
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
+    /**
+     * @return the demand
+     */
+    public double getDemand() {
+        return demand;
+    }
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
-	}
+    /**
+     * @param demand the demand to set
+     */
+    public void setDemand(double demand) {
+        this.demand = demand;
+    }
 
-	/**
-	 * @return the demand
-	 */
-	public double getDemand() {
-		return demand;
-	}
+    /**
+     * Get the ID to the {@link Pattern}
+     *
+     * @return the demand pattern
+     */
+    public @NotNull String getDemandPattern() {
+        return demandPattern;
+    }
 
-	/**
-	 * @param demand the demand to set
-	 */
-	public void setDemand(double demand) {
-		this.demand = demand;
-	}
+    /**
+     * Set the ID to the {@link Pattern}
+     *
+     * @param demandPattern the demand pattern to set or empty string if it does not exist
+     * @throws NullPointerException if demandPattern is null
+     */
+    public void setDemandPattern(@NotNull String demandPattern) {
+        Objects.requireNonNull(demandPattern);
+        this.demandPattern = demandPattern;
+    }
 
-	/**
-	 * @return the demandPatern
-	 */
-	public Pattern getDemandPatern() {
-		return demandPatern;
-	}
+    /**
+     * @return the demandCategory
+     */
+    public @NotNull String getDemandCategory() {
+        return demandCategory;
+    }
 
-	/**
-	 * @param demandPatern the demandPatern to set
-	 */
-	public void setDemandPatern(Pattern demandPatern) {
-		this.demandPatern = demandPatern;
-	}
+    /**
+     * @param demandCategory the demandCategory to set or a empty string if it not exist
+     * @throws NullPointerException if demandCategory is null
+     */
+    public void setDemandCategory(@NotNull String demandCategory) {
+        Objects.requireNonNull(demandCategory);
+        this.demandCategory = demandCategory;
+    }
 
-	/**
-	 * @return the demandCategory
-	 */
-	public String getDemandCategory() {
-		return demandCategory;
-	}
+    @Override
+    public String toString() {
+        Map<String, Object> map = new LinkedHashMap<>();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-	/**
-	 * @param demandCategory the demandCategory to set
-	 */
-	public void setDemandCategory(String demandCategory) {
-		this.demandCategory = demandCategory;
-	}
+        map.put("demand", demand);
+        map.put("demandPattern", demandPattern);
+        map.put("demandCategory", demandCategory);
+        return gson.toJson(map);
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", getId()));
-		txt.append(String.format("%-10f\t", getDemand()));
-		if (getDemandPatern() != null) {
-			txt.append(String.format("%-10s\t", getDemandPatern().getId()));
-		}
-		if (getDemandCategory() != null) {
-			txt.append(String.format("%-10s\t", getDemandCategory()));
-		}
-		return txt.toString();
-	}
-
-	/**
-	 * Copy this instance. This is a shallow copy.
-	 * 
-	 * @return the copy
-	 */
-	public Demand copy() {
-		return new Demand(this);
-	}
+    /**
+     * Copy this instance. This is a shallow copy.
+     *
+     * @return the copy
+     */
+    public @NotNull Demand copy() {
+        return new Demand(this);
+    }
 }

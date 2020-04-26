@@ -25,7 +25,7 @@ import exception.ApplicationException;
  *
  */
 public class ReflectionUtils {
-	private static HashSet<Class<?>> verifiedOperators = new HashSet<>();
+	private static final HashSet<Class<?>> verifiedOperators = new HashSet<>();
 
 	/**
 	 * Read the {@link NewProblem} annotation from a problem and get the name of the
@@ -79,17 +79,15 @@ public class ReflectionUtils {
 	 * It validation in: <br>
 	 * <br>
 	 * 
-	 * <pre>
-	 *  <ol>
-	 *  	<li>Verify if {@code registrable} has only a public constructor</li>
-	 *  	<li>Verify if {@code registrable} has {@link NewProblem} annotation in his only one constructor </li>
-	 *  	<li>Verify if {@code registrable} has the same number of parameters has values defined in {@link Parameters} annotation in the constructor</li>
-	 *  	<li>Verify if {@code registrable} has the parameters in the correct order and if the parameters are only of type Object, File, int or double or his wrapper Integer, Double. The order is (Object..., File ..., int|double ...)</li>
-	 *	 	<li>Verify if {@code registrable}'s constructor parameters correspond to the type defined by {@link Parameters}</li>
-	 *  	<li>Verify if {@code registrable} constructor doesn't have parameters when {@link Parameters} annotation isn't used</li>
-	 *  </ol>
-	 * </pre>
-	 * 
+	 * <ol>
+	 * 		<li>Verify if {@code registrable} has only a public constructor</li>
+	 * 		<li>Verify if {@code registrable} has {@link NewProblem} annotation in his only one constructor </li>
+	 * 		<li>Verify if {@code registrable} has the same number of parameters has values defined in {@link Parameters} annotation in the constructor</li>
+	 * 		<li>Verify if {@code registrable} has the parameters in the correct order and if the parameters are only of type Object, File, int or double or his wrapper Integer, Double. The order is (Object..., File ..., int|double ...)</li>
+	 *		<li>Verify if {@code registrable}'s constructor parameters correspond to the type defined by {@link Parameters}</li>
+	 * 		<li>Verify if {@code registrable} constructor doesn't have parameters when {@link Parameters} annotation isn't used</li>
+	 * </ol>
+	 *
 	 * <br>
 	 * <br>
 	 * 
@@ -185,7 +183,7 @@ public class ReflectionUtils {
 			
 			// checks that entries with the same group id are consecutively
 			if (parametersAnnotation.numbersToggle().length != 0) {
-				Set<String> addedGroupId = new HashSet<String>();
+				Set<String> addedGroupId = new HashSet<>();
 				String lastAdded = null;
 				for (NumberToggleInput numberToggle : parametersAnnotation.numbersToggle()) {
 					if (!numberToggle.groupID().equals(lastAdded)) {
@@ -369,8 +367,7 @@ public class ReflectionUtils {
 		Objects.requireNonNull(classType);
 		Constructor<?> constructor = getDefaultConstructor(classType);
 		Objects.requireNonNull(constructor);
-		int numberOfParameters = constructor.getParameterCount();
-		return numberOfParameters;
+		return constructor.getParameterCount();
 	}
 
 	/**
@@ -378,6 +375,7 @@ public class ReflectionUtils {
 	 * 
 	 * @param problemClass the registrable class
 	 * @param parameters   the parameters of constructor of registrable class
+	 * @param <T> The type of class
 	 * @return the registrable instance
 	 * @throws ApplicationException      if there are any exceptions when the new
 	 *                                   instance is being created
@@ -401,6 +399,7 @@ public class ReflectionUtils {
 	 * Create a new instance of Registrable problem.
 	 * 
 	 * @param problemClass the registrable class
+	 * @param <T> The type of class
 	 * @return the registrable instance
 	 * @throws ApplicationException      if there are any exceptions when the new
 	 *                                   instance is being createds

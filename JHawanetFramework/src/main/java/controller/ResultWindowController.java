@@ -12,11 +12,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -37,7 +37,7 @@ import view.utils.CustomDialogs;
  *
  */
 public class ResultWindowController {
-	private Pane root;
+	private final Pane root;
 
 	@FXML
 	private TableView<Solution<?>> resultTable;
@@ -46,18 +46,18 @@ public class ResultWindowController {
 	@FXML
 	private Button saveAsINPButton;
 
-	private List<? extends Solution<?>> solutionList;
+	private final List<? extends Solution<?>> solutionList;
 
-	private Problem<?> problem;
+	private final Problem<?> problem;
 
-	private Network network;
+	private final Network network;
 
 	/**
 	 * Constructor.
 	 * 
 	 * @param problem   the problem that was solve by the algorithm.
 	 * @param solutions a list with solution to show
-	 * @param network
+	 * @param network the network object
 	 * @throws NullPointerException if solutions is null or problem is null or
 	 *                              network is null.
 	 */
@@ -104,7 +104,7 @@ public class ResultWindowController {
 			// add column for the objetives
 			for (int i = 0; i < numberOfObjectives; i++) {
 				final int index = i;
-				TableColumn<Solution<?>, String> column = new TableColumn<Solution<?>, String>("Objective " + (i + 1));
+				TableColumn<Solution<?>, String> column = new TableColumn<>("Objective " + (i + 1));
 				resultTable.getColumns().add(column);
 				// tell from where get the value for the column
 				column.setCellValueFactory(
@@ -115,12 +115,12 @@ public class ResultWindowController {
 			// add column for the decision variables
 			for (int i = 0; i < numberOfDecisionVariables; i++) {
 				final int index = i;
-				TableColumn<Solution<?>, String> column = new TableColumn<Solution<?>, String>("X" + (i + 1));
+				TableColumn<Solution<?>, String> column = new TableColumn<>("X" + (i + 1));
 				resultTable.getColumns().add(column);
 				// tell from where get the value for the column
 				column.setCellValueFactory(
 						(CellDataFeatures<Solution<?>, String> solutionData) -> new ReadOnlyObjectWrapper<String>(
-								solutionData.getValue().getVariable(index).toString()));
+								solutionData.getValue().getVariableAsString(index)));
 			}
 		}
 	}
@@ -168,7 +168,7 @@ public class ResultWindowController {
 	}
 
 	/**
-	 * Event handler when save as inp button is pressed.
+	 * Event handler when save table is pressed.
 	 * 
 	 * @param event the event
 	 */
@@ -181,7 +181,8 @@ public class ResultWindowController {
 		File file = fileChooser.showSaveDialog(this.saveButton.getScene().getWindow());
 		if (file != null) {
 			SolutionListOutput output = new SolutionListOutput(this.solutionList)
-					.setFunFileName("FUN_" + file.getAbsolutePath()).setVarFileName("VAR_" + file.getAbsolutePath());
+					.setFunFileName(Paths.get(file.getParent(), "FUN_" + file.getName()).toString())
+					.setVarFileName(Paths.get(file.getParent(), "VAR_" + file.getName()).toString());
 			try {
 				output.write();
 			} catch (IOException e) {

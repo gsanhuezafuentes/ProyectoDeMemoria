@@ -1,7 +1,14 @@
 package model.epanet.element.waterquality;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public final class Quality {
-	private String nodeId;
 	private double initialQuality;
 	
 	public Quality() {
@@ -11,28 +18,12 @@ public final class Quality {
 	/**
 	 * Copy constructor
 	 * @param quality the object to copy
+	 * @throws NullPointerException if quality is null
 	 */
-	public Quality(Quality quality) {
-		this.nodeId = quality.nodeId;
+	public Quality(@NotNull Quality quality) {
+		Objects.requireNonNull(quality);
 		this.initialQuality = quality.initialQuality;
 	}
-	
-	
-	/**
-	 * @return the nodeId
-	 */
-	public String getNodeId() {
-		return nodeId;
-	}
-
-	/**
-	 * @param nodeId the nodeId to set
-	 */
-	public void setNodeId(String nodeId) {
-		this.nodeId = nodeId;
-	}
-	
-	
 	
 	/**
 	 * @return the initialQuality
@@ -47,21 +38,21 @@ public final class Quality {
 	public void setInitialQuality(double initialQuality) {
 		this.initialQuality = initialQuality;
 	}
-	
+
 	@Override
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", getNodeId()));
-		txt.append(String.format("%-10f", getInitialQuality()));
+		Map<String, Object> map = new HashMap<>();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-		return txt.toString();
+		map.put("initialQuality", initialQuality);
+		return gson.toJson(map);
 	}
-	
+
 	/**
 	 * Create a copy of this object.
 	 * @return the copy
 	 */
-	public Quality copy() {
+	public @NotNull Quality copy() {
 		return new Quality(this);
 	}
 }

@@ -1,13 +1,32 @@
 package model.epanet.element.networkcomponent;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public final class Pipe extends Link {
 
-	public static enum PipeStatus {
+	/**
+	 * A enumerator that to define the status of Pipe.
+	 * 
+	 * <br>
+	 * <br>
+	 * <strong>Notes:</strong> <br>
+	 * The section [Status] only can setting OPEN and CLOSED. CV have to be
+	 * configured directly in [PUMP] section.
+	 * 
+	 */
+	public enum PipeStatus {
 		OPEN("OPEN"), CLOSED("CLOSED"), CV("CV");
 
-		private String name;
+		private final String name;
 
-		private PipeStatus(String name) {
+		PipeStatus(String name) {
 			this.name = name;
 		}
 
@@ -17,34 +36,69 @@ public final class Pipe extends Link {
 		public String getName() {
 			return name;
 		}
-
+		
+		/**
+		 * Parse the name to a object of the enum class if exist. if name no exist in enum class so return null;
+		 * @param name the name of object
+		 * @return the object of enum class or null if no exist
+		 * @throws IllegalArgumentException if name is not valid
+		 */
+		public static @NotNull PipeStatus parse(String name) {
+			for (PipeStatus object : PipeStatus.values()) {
+				if (object.getName().equalsIgnoreCase(name)) {
+					return object;
+				}
+			}
+			throw new IllegalArgumentException("There are not a valid element with the name " + name);
+		}
 	}
+
+	public static final double DEFAULT_LENGTH = 1000;
+	public static final double DEFAULT_DIAMETER = 12;
+	public static final double DEFAULT_ROUGHNESS = 100;
+	public static final double DEFAULT_LOSS_COEFFICIENT = 0;
+	public static final PipeStatus DEFAULT_STATUS = PipeStatus.OPEN;
 
 	private double length;
 	private double diameter;
 	private double roughness;
-	private double mloss;
-	private PipeStatus status;
+	private double lossCoefficient;
+	@NotNull private PipeStatus status; // the default value
+	/*
+	 * This parameter is save [Reaction] section with the label BULK
+	 */
+	@Nullable private Double bulkCoefficient;
+	/*
+	 * This parameter is save [Reaction] section with the label WALL
+	 */
+	@Nullable private Double wallCoefficient;
 
 	public Pipe() {
+		this.length = DEFAULT_LENGTH;
+		this.diameter = DEFAULT_DIAMETER;
+		this.roughness = DEFAULT_ROUGHNESS;
+		this.lossCoefficient = DEFAULT_LOSS_COEFFICIENT;
+		this.status = DEFAULT_STATUS;
 	}
 
 	/**
 	 * Create a new pipe with the same values that the pipe received. This is a
-	 * shallow copy, i.e., If the field value is a reference to an object (e.g., a
-	 * memory address) it copies the reference. If it is necessary for the object to
-	 * be completely independent of the original you must ensure that you replace
-	 * the reference to the contained objects.
+	 * shallow copy because inherits of LINK.
+	 * 
+	 * You must replace node1 and node2 to do the copy independent of the original
 	 * 
 	 * @param pipe the pipe to copy
+	 * @throws NullPointerException if pipe is null
 	 */
-	public Pipe(Pipe pipe) {
-		super(pipe);
+	public Pipe(@NotNull Pipe pipe) {
+		super(Objects.requireNonNull(pipe));
 		this.length = pipe.length;
 		this.diameter = pipe.diameter;
 		this.roughness = pipe.roughness;
-		this.mloss = pipe.mloss;
+		this.lossCoefficient = pipe.lossCoefficient;
 		this.status = pipe.status;
+		this.bulkCoefficient = pipe.bulkCoefficient;
+		this.wallCoefficient = pipe.wallCoefficient;
 	}
 
 	/**
@@ -90,57 +144,108 @@ public final class Pipe extends Link {
 	}
 
 	/**
-	 * Get loss coeficient
-	 * @return the mloss
+	 * Get loss coefficient
+	 * 
+	 * @return the loss coefficient
 	 */
-	public double getMinorLoss() {
-		return mloss;
+	public double getLossCoefficient() {
+		return lossCoefficient;
 	}
 
 	/**
-	 * @param mloss the mloss to set
+	 * @param mloss the loss coefficient to set
 	 */
-	public void setMinorLoss(double mloss) {
-		this.mloss = mloss;
+	public void setLossCoefficient(double mloss) {
+		this.lossCoefficient = mloss;
 	}
 
 	/**
+	 * Get the status of this pipe
+	 * 
 	 * @return the status
 	 */
-	public PipeStatus getStatus() {
+	public @NotNull PipeStatus getStatus() {
 		return status;
 	}
 
 	/**
+	 * Set the status of this pipe
+	 * 
 	 * @param status the status to set
+	 * @throws NullPointerException if status is null
 	 */
-	public void setStatus(PipeStatus status) {
+	public void setStatus(@NotNull PipeStatus status) {
+		Objects.requireNonNull(status);
 		this.status = status;
 	}
 
+	/**
+	 * Get the bulk coefficient
+	 * 
+	 * @return the bulkCoefficient or null if not exist
+	 */
+	public @Nullable Double getBulkCoefficient() {
+		return bulkCoefficient;
+	}
+
+	/**
+	 * Set the bulk coefficient
+	 * 
+	 * @param bulkCoefficient the bulkCoefficient to set or null if there isn't a
+	 *                        value
+	 */
+	public void setBulkCoefficient(@Nullable Double bulkCoefficient) {
+		this.bulkCoefficient = bulkCoefficient;
+	}
+
+	/**
+	 * Get the wall coefficient
+	 * 
+	 * @return the wallCoefficient or null if not exist
+	 */
+	public @Nullable Double getWallCoefficient() {
+		return wallCoefficient;
+	}
+
+	/**
+	 * Set the wall coefficient
+	 * 
+	 * @param wallCoefficient the wallCoefficient to set or null if there isn't a
+	 *                        value
+	 */
+	public void setWallCoefficient(@Nullable Double wallCoefficient) {
+		this.wallCoefficient = wallCoefficient;
+	}
+
 	@Override
+	@SuppressWarnings("unchecked") // the superclass also use Gson to generate the string
 	public String toString() {
-		StringBuilder txt = new StringBuilder();
-		txt.append(String.format("%-10s\t", getId()));
-		txt.append(String.format("%-10s\t", getNode1().getId()));
-		txt.append(String.format("%-10s\t", getNode2().getId()));
-		txt.append(String.format("%-10f\t", getLength()));
-		txt.append(String.format("%-10f\t", getDiameter()));
-		txt.append(String.format("%-10f\t", getRoughness()));
-		txt.append(String.format("%-10f\t", getMinorLoss()));
-		txt.append(String.format("%-10s", getStatus().getName()));
-		String description = getDescription();
-		if (description != null) {
-			txt.append(String.format(";%s", description));
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		Map<String, Object> map = new LinkedHashMap<String, Object>(gson.fromJson(super.toString(), LinkedHashMap.class)); //unchecked
+		map.put("length", length);
+		map.put("diameter", diameter);
+		map.put("roughness", roughness);
+		map.put("lossCoefficient", lossCoefficient);
+		map.put("status", status);
+		if (bulkCoefficient == null) {
+			map.put("bulkCoefficient", "");
+		} else {
+			map.put("bulkCoefficient", bulkCoefficient);//
 		}
-		return txt.toString();
+		if (wallCoefficient == null) {
+			map.put("wallCoefficient", "");
+		} else {
+			map.put("wallCoefficient", wallCoefficient);//
+		}
+		return gson.toJson(map);
 	}
 
 	/**
 	 * Realize a shallow copy of the object.
 	 */
 	@Override
-	public Pipe copy() {
+	public @NotNull Pipe copy() {
 		return new Pipe(this);
 	}
 }

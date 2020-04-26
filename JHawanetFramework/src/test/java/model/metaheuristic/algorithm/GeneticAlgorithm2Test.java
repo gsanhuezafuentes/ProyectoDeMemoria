@@ -30,9 +30,10 @@ class GeneticAlgorithm2Test {
 	/**
 	 * Test if {@link GeneticAlgorithm2#setMaxEvaluations(int)} fail with negative
 	 * value.
+	 * @throws Exception 
 	 */
 	@Test
-	void setMaxEvaluations_LessThanZero_Exception() {
+	void setMaxEvaluations_LessThanZero_Exception() throws Exception {
 		GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10,
 				selectionOperator, crossoverOperator, mutationOperator);
 		assertThrows(ApplicationException.class, () -> algorithm.setMaxEvaluations(-1));

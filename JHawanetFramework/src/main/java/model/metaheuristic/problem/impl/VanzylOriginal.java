@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import epanet.core.EpanetException;
 import model.epanet.element.Network;
 import model.metaheuristic.problem.Problem;
@@ -111,7 +112,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 
 	@Override
 	public void evaluate(IntegerSolution solution) {
-		System.out.println(solution);
+//		System.out.println(solution);
 
 		int[][] binaryMatrixSolution;
 		binaryMatrixSolution = generateBinaryMatrix(solution);
@@ -133,9 +134,9 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 
 		fitness1 = energyCost(binaryMatrixSolution);
 		fitness2 = maintenanceCost(binaryMatrixSolution);
-		System.out.println("");
+//		System.out.println("");
 
-		System.out.println("F1: " + fitness1 + " F2:" + fitness2);
+//		System.out.println("F1: " + fitness1 + " F2:" + fitness2);
 
 		solution.setObjective(0, fitness1);
 		solution.setObjective(1, fitness2);
@@ -174,12 +175,12 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 		overallConstraintViolation = Math.round(overallConstraintViolation * 100.0) / 100.0;
 		violatedConstraints = listNodeViolated.size() + listPumpsViolated.size() + listTanksViolated.size();
 
-		System.out.println(
-				"Total de violaciones: " + overallConstraintViolation + "Num Violaciones " + violatedConstraints);
-		System.out.println("Violacion en nodos: " + listNodeViolated.size());
-		System.out.println("Violacion en bombas: " + listPumpsViolated.size());
-		System.out.println("Violacion en tanques: " + listTanksViolated.size());
-		System.out.println("");
+//		System.out.println(
+//				"Total de violaciones: " + overallConstraintViolation + "Num Violaciones " + violatedConstraints);
+//		System.out.println("Violacion en nodos: " + listNodeViolated.size());
+//		System.out.println("Violacion en bombas: " + listPumpsViolated.size());
+//		System.out.println("Violacion en tanques: " + listTanksViolated.size());
+//		System.out.println("");
 
 		overallConstraintViolationDegree.setAttribute(solution, overallConstraintViolation);
 		numberOfViolatedConstraints.setAttribute(solution, violatedConstraints);
@@ -236,7 +237,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 	 */
 	private int[][] generateBinaryMatrix(IntegerSolution solution) {
 
-		int matrix[][];
+		int[][] matrix;
 		int numCombinations;
 		int numVariables;
 		numVariables = getNumberOfVariables();
@@ -351,7 +352,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 		this.numberOfObjectives = i;
 	}
 
-	public class InputPse {
+	public static class InputPse {
 
 		private HashMap<String, ArrayList<String>> labelValues;
 
@@ -378,7 +379,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 			for (String line : list) {
 				line = line.trim();
 				if (!line.isEmpty()) {
-					if (this.labelValues.keySet().contains(line)) // linea: es igual a una etiqueta (label)
+					if (this.labelValues.containsKey(line)) // linea: es igual a una etiqueta (label)
 						arraySelected = this.labelValues.get(line);// se selecciona el arreglo de valores según
 																	// etiqueta
 					else // linea: es igual a un valor
@@ -472,7 +473,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 
 		private final String label;
 
-		private VariablePse(String label) {
+		VariablePse(String label) {
 			this.label = label;
 		}
 

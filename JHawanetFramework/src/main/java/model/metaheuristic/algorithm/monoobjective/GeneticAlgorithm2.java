@@ -1,7 +1,29 @@
+/*
+ * Base on code from https://github.com/jMetal/jMetal
+ *
+ * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE. © 2019 GitHub, Inc.
+ */
 package model.metaheuristic.algorithm.monoobjective;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,37 +49,14 @@ import model.metaheuristic.utils.comparator.DominanceComparator;
  * 
  * If you do not set any stopping conditions, by default the maximum number of
  * evaluations with a value of 10000 is set.
- * 
- * <pre>
- * Base on code from https://github.com/jMetal/jMetal
- * 
- * Copyright <2017> <Antonio J. Nebro, Juan J. Durillo>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE. © 2019 GitHub, Inc.
- * </pre>
+ *
  */
 public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S> {
-	private int maxPopulationSize;
-	private SelectionOperator<List<S>, List<S>> selectionOperator;
-	private CrossoverOperator<S> crossoverOperator;
-	private MutationOperator<S> mutationOperator;
-	private DominanceComparator<S> comparator;
+	private final int maxPopulationSize;
+	private final SelectionOperator<List<S>, List<S>> selectionOperator;
+	private final CrossoverOperator<S> crossoverOperator;
+	private final MutationOperator<S> mutationOperator;
+	private final DominanceComparator<S> comparator;
 	/**
 	 * Max number of evaluation
 	 */
@@ -159,7 +158,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	 * 
 	 * The default is 0.
 	 * 
-	 * @param maxNumberOfIterationWithoutImprovement
+	 * @param maxNumberOfIterationWithoutImprovement the new max number of iteration without improvement
 	 */
 	public void setMaxNumberOfIterationWithoutImprovement(int maxNumberOfIterationWithoutImprovement) {
 		validateMaxStoppingConditionCounters(this.maxEvaluations, maxNumberOfIterationWithoutImprovement);
@@ -198,7 +197,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	/**
 	 * Applies the SelectionOperation
 	 * 
-	 * @param population
+	 * @param population the population to apply selection operator
 	 * @return The list of selected population.
 	 */
 	@Override
@@ -209,7 +208,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	/**
 	 * Applies crossover operator
 	 * 
-	 * @param selectionPopulation
+	 * @param selectionPopulation the selected population to apply reproduction
 	 * @return The offspring population
 	 */
 	@Override
@@ -241,7 +240,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	@Override
 	public List<S> getResult() {
 		Collections.sort(getPopulation(), comparator);
-		return Arrays.asList(this.getPopulation().get(0));
+		return Collections.singletonList(this.getPopulation().get(0));
 	}
 
 	/** {@inheritDoc} */
@@ -261,8 +260,8 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
 	 * A crossover operator is applied to a number of parents, and it assumed that
 	 * the population contains a valid number of solutions. This method checks that.
 	 * 
-	 * @param population
-	 * @param numberOfParentsForCrossover
+	 * @param population the population
+	 * @param numberOfParentsForCrossover the number of parent for crossover
 	 * @throws ApplicationException if there is a wrong number of parent
 	 */
 	protected void checkNumberOfParents(List<S> population, int numberOfParentsForCrossover) {

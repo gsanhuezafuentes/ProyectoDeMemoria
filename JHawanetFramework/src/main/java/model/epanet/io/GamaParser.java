@@ -5,11 +5,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import model.epanet.element.Gama;
 import model.metaheuristic.problem.impl.PipeOptimizing;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Parse the gama file. It is only used for the {@link PipeOptimizing}
@@ -21,15 +24,17 @@ public class GamaParser {
 	 * Read the values from a file in system
 	 * @param file The file that contains the values
 	 * @return A list of object with the gama values.
-	 * @throws IOException If there is a exception when the file is been readed.
+	 * @throws IOException If there is a exception in the io operation
+	 * @throws NullPointerException if file is null
 	 */
-	public List<Gama> parser(File file) throws IOException {
-		ArrayList<Gama> gamas = new ArrayList<Gama>();
+	public List<Gama> parser(@NotNull File file) throws IOException {
+		Objects.requireNonNull(file);
+		ArrayList<Gama> gamas = new ArrayList<>();
 		double diameter;
 		double cost;
 		
 		try (BufferedReader buffReader = new BufferedReader(
-				new InputStreamReader(new FileInputStream(file), "ISO-8859-1"))) {
+				new InputStreamReader(new FileInputStream(file), StandardCharsets.ISO_8859_1))) {
 
 			String line;
 			while ((line = buffReader.readLine()) != null) {

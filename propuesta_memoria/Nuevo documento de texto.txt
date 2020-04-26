@@ -1,3 +1,4 @@
+\{(.*?)\},
 Con el fin de probar los algoritmos implementados en la aplicación para dar solución a los problemas presentados se utilizaran redes ya existentes y que han sido utilizadas por diversos autores. Estas son:
 
 \paragraph{Red de Hanoi}

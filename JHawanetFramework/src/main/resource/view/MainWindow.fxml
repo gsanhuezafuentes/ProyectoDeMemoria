@@ -18,12 +18,12 @@
 	<center>
 		<SplitPane fx:id = "splitPane">
 
+			<ElementViewer fx:id="elementViewer" maxWidth="${splitPane.width * 0.20}"></ElementViewer>
 			<!-- <NetworkComponent></NetworkComponent> -->
 			<Pane fx:id="canvasWrapper">
 				<NetworkComponent fx:id="networkComponent"
 					width="${canvasWrapper.width}" height="${canvasWrapper.height}"></NetworkComponent>
 			</Pane>
-			<ElementViewer fx:id="elementViewer" maxWidth="${splitPane.width * 0.10}"></ElementViewer>
 		</SplitPane>
 	</center>
 	<top>

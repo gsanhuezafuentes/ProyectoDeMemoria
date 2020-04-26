@@ -13,18 +13,17 @@ import model.metaheuristic.utils.comparator.DominanceComparator;
 
 /**
  * Operator class. 
- * 
  *
  * @param <S> Type of solution
  */
 public class UniformSelection<S extends Solution<?>> implements SelectionOperator<List<S>, List<S>> {
 
-	private Comparator<S> comparator;
+	private final Comparator<S> comparator;
 	private double constant;
 
 	/**
 	 * Constructor
-	 * @param constant
+	 * @param constant the value constant. it has to be between the range [1.5, 2]
 	 * @throws ApplicationException if constant is not between the range [1.5, 2]
 	 */
 	@DefaultConstructor({ "constant" })
@@ -62,7 +61,7 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 				selectedList.add(solutionList.get(i));
 			}
 		}
-		assert selectedList.size() == populationSize : String.format("La suma no es correcta");
+		assert selectedList.size() == populationSize : "La suma no es correcta";
 		return selectedList;
 	}
 
@@ -73,6 +72,7 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 	 */
 	private double maxProbability(List<S> solutionList) {
 		int numberOfSolution = solutionList.size();
+		//noinspection UnnecessaryLocalVariable
 		double pmax = constant / numberOfSolution;
 		return pmax;
 	}
@@ -84,6 +84,7 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 	 */
 	private double minProbability(List<S> solutionList) {
 		int numberOfSolution = solutionList.size();
+		//noinspection UnnecessaryLocalVariable
 		double pmin = (2 - constant) / numberOfSolution;
 		return pmin;
 	}
@@ -98,6 +99,7 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 	 * @return The probability of the i-th element.
 	 */
 	private double probabilitySelectionOfIndex(int index, double pmin, double pmax, int numberOfSolution) {
+		//noinspection UnnecessaryLocalVariable
 		double pi = pmin + (pmax - pmin) * (numberOfSolution - index) / (numberOfSolution - 1);
 		return pi;
 	}

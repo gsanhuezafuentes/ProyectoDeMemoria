@@ -16,8 +16,8 @@ import model.metaheuristic.solution.Solution;
 
 public class ResultPlotWindowController {
 
-	private Pane root;
-	private int numberOfObjectives;
+	private final Pane root;
+	private final int numberOfObjectives;
 
 	@FXML
 	private ScatterChart<Number, Number> resultsPlot;
@@ -26,7 +26,7 @@ public class ResultPlotWindowController {
 	/**
 	 * Constructor of the controller of ResultPlotWindow
 	 * 
-	 * @param numberOfObjectives
+	 * @param numberOfObjectives the number of objectives
 	 * @throws IllegalArgumentException if the number of objectives is distinct to
 	 *                                  one or two.
 	 */
@@ -110,10 +110,14 @@ public class ResultPlotWindowController {
 	 * Show the associated window
 	 */
 	public void showAssociatedWindow() {
-		Stage stage = new Stage();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.sizeToScene();
+		if (stage == null){
+			stage = new Stage();
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.sizeToScene();
+		}
 		stage.show();
 	}
+
+	private Stage stage;
 }

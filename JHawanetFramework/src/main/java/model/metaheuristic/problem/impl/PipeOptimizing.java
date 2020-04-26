@@ -22,8 +22,6 @@ import model.metaheuristic.evaluator.MonoObjetiveSolutionEvaluator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.random.BoundedRandomGenerator;
-import model.metaheuristic.utils.random.JavaRandom;
 
 /**
  * Class that implement the problem of inversion cost.
@@ -48,9 +46,9 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	/**
 	 * Constructor
 	 * 
-	 * @param epanet
-	 * @param networkGama
-	 * @param minPressure
+	 * @param epanet the hydraulic simulation api
+	 * @param networkGama the name of file with additional data of the network
+	 * @param minPressure the min pressure of network
 	 * @throws IOException          if there is a error in the io operator over the
 	 *                              gama.
 	 * @throws EpanetException      if there is a error in epatoolkit
@@ -127,8 +125,7 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	/** {@inheritDoc} */
 	@Override
 	public IntegerSolution createSolution() {
-		IntegerSolution solution = new IntegerSolution(this);
-		return solution;
+		return new IntegerSolution(this);
 	}
 
 	/** {@inheritDoc} */
@@ -146,8 +143,8 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	/**
 	 * Get the length of the link. Use the epanet toolkit.
 	 * 
-	 * @param epanet
-	 * @return
+	 * @param epanet the hydraulic simulator api
+	 * @return a list with the lenght of links
 	 * @throws EpanetException if there is an error with EpaToolkit function.
 	 */
 	private List<Float> getLengthLink(EpanetAPI epanet) throws EpanetException {

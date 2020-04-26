@@ -21,18 +21,19 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import model.epanet.element.Network;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import view.utils.CustomDialogs;
 
 /**
- * This class is the controller for RunningDialog. <br>
+ * This class is the controller for MultiObjectiveRunningWindow. <br>
  * <br>
  * 
- * The algorithm received by this class will be executed in other thread.<br>
+ * The experiment received by this class will be executed in other thread.<br>
  * <br>
  * 
  * When the algorithm finishes successfully this controller will open the
@@ -59,25 +60,24 @@ public class MultiObjectiveRunningWindowController {
 	@FXML
 	private TextArea logExperimentTextArea;
 
-	private Pane root;
-	private Experiment<?> experiment;
-	private Problem<?> problem;
-	private ExperimentTask task;
-	private Network network;
-	private ResultPlotWindowController resultPlotWindowController;
-	private Stage window;
+	@NotNull private final Pane root;
+	@NotNull private final Problem<?> problem;
+	@NotNull private final ExperimentTask task;
+	@NotNull private final Network network;
+	@Nullable private ResultPlotWindowController resultPlotWindowController;
+	@Nullable private Stage window;
 
 	/**
 	 * Constructor
 	 * 
-	 * @param algorithm the algorithm to execute
+	 * @param experiment the experiment to execute
 	 * @param problem   the problem that the algorithm has configured
 	 * @param network   the network opened.
-	 * @throws NullPointerException if algorithm is null or problem is null or
+	 * @throws NullPointerException if experiment is null or problem is null or
 	 *                              network is null
 	 */
-	public MultiObjectiveRunningWindowController(Experiment<?> experiment, Problem<?> problem, Network network) {
-		this.experiment = Objects.requireNonNull(experiment);
+	public MultiObjectiveRunningWindowController(@NotNull Experiment<?> experiment,@NotNull Problem<?> problem, @NotNull Network network) {
+		Objects.requireNonNull(experiment);
 		this.problem = Objects.requireNonNull(problem);
 		this.network = Objects.requireNonNull(network);
 
@@ -85,15 +85,18 @@ public class MultiObjectiveRunningWindowController {
 
 		this.task = new ExperimentTask(experiment);
 
-		// Create the controller to add point even if plot windows is not showned
-		this.resultPlotWindowController = new ResultPlotWindowController(this.problem.getNumberOfObjectives());
-
+		// Create the controller to add point even if plot windows is not showed.
+		// Only created if number of objectives is 1 or 2
+		if (this.problem.getNumberOfObjectives() == 1 || this.problem.getNumberOfObjectives() == 2) {
+			this.resultPlotWindowController = new ResultPlotWindowController(this.problem.getNumberOfObjectives());
+		}
 		addBindingAndListener();
 
-		/**
-		 * Only add the the showChartButton if the number of objectives is less than 2.
+		/*
+		 * Only add the the showChartButton if the number of objectives is 1.
+		 * If the number of objective is 2 the button as to be enabled when the simulation finish
 		 */
-		if (this.problem.getNumberOfObjectives() == 2) {
+		if (this.problem.getNumberOfObjectives() == 1 || this.problem.getNumberOfObjectives() == 2) {
 			this.showChartButton.setVisible(true);
 			this.showChartButton.setDisable(true);
 		}
@@ -108,7 +111,7 @@ public class MultiObjectiveRunningWindowController {
 	 */
 	private Pane loadFXML() {
 		FXMLLoader fxmlLoader = new FXMLLoader(
-				getClass().getResource("/view/multiobjective/MultiObjectiveRunningWindow.fxml"));
+				getClass().getResource("/view/MultiObjectiveRunningWindow.fxml"));
 		fxmlLoader.setController(this);
 		try {
 			return fxmlLoader.load();
@@ -165,8 +168,9 @@ public class MultiObjectiveRunningWindowController {
 		task.setOnSucceeded(e -> {
 			List<? extends Solution<?>> solutions = task.getValue();
 			this.showChartButton.setDisable(false);
-			this.resultPlotWindowController.addData(solutions, 0);
-
+			if (this.resultPlotWindowController != null) {
+				this.resultPlotWindowController.addData(solutions, 0);
+			}
 			ResultWindowController resultWindowController = new ResultWindowController(solutions, this.problem,
 					this.network);
 			resultWindowController.showAssociatedWindow();
@@ -176,14 +180,16 @@ public class MultiObjectiveRunningWindowController {
 	/**
 	 * Method to handle the view event when Show Chart button will be click on.
 	 */
-	public void onShowChartButtonClick() {
-		this.resultPlotWindowController.showAssociatedWindow();
+	@FXML
+	private void onShowChartButtonClick() {
+		Objects.requireNonNull(this.resultPlotWindowController).showAssociatedWindow();
 	}
 
 	/**
 	 * Method to handle the view event when Cancel button will be click on.
 	 */
-	public void onCancelButtonClick() {
+	@FXML
+	private void onCancelButtonClick() {
 		// cancel the task
 		this.task.cancel();
 	}
@@ -191,12 +197,14 @@ public class MultiObjectiveRunningWindowController {
 	/**
 	 * Method to handle the view event when Close button will be click on.
 	 */
-	public void onCloseButtonClick() {
+	@FXML
+	private void onCloseButtonClick() {
 		// if task is not cancelled, so cancel it.
 		if (!task.isCancelled()) {
 			task.cancel();
 		}
 		// close the dialog
+		assert this.window != null;
 		this.window.close();
 	}
 

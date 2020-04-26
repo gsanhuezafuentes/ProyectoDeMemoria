@@ -19,7 +19,6 @@ public class NumberUtils {
 		double decimalPart = number - wholePart;
 		double decimalPartToWholePart = decimalPart * Math.pow(10, numberOfDecimals);
 		decimalPart = Math.round(decimalPartToWholePart) / Math.pow(10, numberOfDecimals);
-		double result = wholePart + decimalPart;
-		return result;
+		return wholePart + decimalPart;
 	}
 }

@@ -29,7 +29,7 @@ public class ProblemMenuConfiguration {
 
 	/**
 	 * Add to menu a menu item for each problem registered. Also it method add the
-	 * setOnAction to add menuItem and when it event will be detected show the
+	 * setOnAction (the event) to add menuItem and when it event will be detected show the
 	 * windows of configuration.
 	 * 
 	 * @param menu           the menu where the problem has been added
@@ -57,11 +57,11 @@ public class ProblemMenuConfiguration {
 
 	/**
 	 * Add to menu a menu item for each problem registered. Also it method add the
-	 * setOnAction to add menuItem and when it event will be detected show the
+	 * setOnAction (the event) to add menuItem and when it event will be detected show the
 	 * windows of configuration.
 	 * 
 	 * @param menu           the menu where the problem has been added
-	 * @param algorithmEvent the event that will be fired when the
+	 * @param experimentEvent the event that will be fired when the
 	 *                       RegistrableProblem is created.
 	 */
 	public void addMultiObjectiveProblems(Menu menu, CustomCallback<MultiObjectiveRegistrable> experimentEvent) {

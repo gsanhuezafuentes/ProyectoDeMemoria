@@ -20,5 +20,5 @@ public @interface NumberInput {
 	 * The name of parameters
 	 * @return the name of parameters
 	 */
-	String displayName();
+	String displayName() default "";
 }

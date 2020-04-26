@@ -1,8 +1,8 @@
 package model.epanet.element;
 
 public class Gama {
-	private double cost;
-	private double diameter;
+	private final double cost;
+	private final double diameter;
 
 	public Gama(double diameter, double cost) {
 		this.cost = cost;
@@ -25,8 +25,7 @@ public class Gama {
 	
 	@Override
 	public String toString() {
-		String text = "Diameter = " + this.diameter + " Cost = " + this.cost;
-		return text;
+		return "Diameter = " + this.diameter + " Cost = " + this.cost;
 	}
 
 }
