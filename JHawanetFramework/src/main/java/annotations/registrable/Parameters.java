@@ -1,13 +1,13 @@
 package annotations.registrable;
 
-import static java.lang.annotation.ElementType.CONSTRUCTOR;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import registrable.Registrable;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import controller.problems.Registrable;
+import static java.lang.annotation.ElementType.CONSTRUCTOR;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * It annotation has to be used by {@link Registrable} object. And denota the

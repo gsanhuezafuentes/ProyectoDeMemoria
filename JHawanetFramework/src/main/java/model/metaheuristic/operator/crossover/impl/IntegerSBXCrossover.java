@@ -28,16 +28,16 @@
  */
 package model.metaheuristic.operator.crossover.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 import annotations.operators.DefaultConstructor;
 import exception.ApplicationException;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.random.JavaRandom;
 import model.metaheuristic.utils.random.RandomGenerator;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Applies the SBXCrossover on a IntegerSolution

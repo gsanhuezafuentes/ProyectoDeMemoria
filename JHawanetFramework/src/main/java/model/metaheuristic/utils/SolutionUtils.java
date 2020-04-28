@@ -1,8 +1,8 @@
 package model.metaheuristic.utils;
 
-import java.util.Comparator;
-
 import model.metaheuristic.utils.random.JavaRandom;
+
+import java.util.Comparator;
 
 /**
  * Class with function to apply on solution

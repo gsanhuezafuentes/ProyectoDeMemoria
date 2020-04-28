@@ -1,20 +1,19 @@
 package model.metaheuristic.algorithm;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-
 import exception.ApplicationException;
-import model.metaheuristic.algorithm.monoobjective.GeneticAlgorithm2;
+import model.metaheuristic.algorithm.singleobjective.GeneticAlgorithm2;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.impl.IntegerSolution;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GeneticAlgorithm2Test {
 

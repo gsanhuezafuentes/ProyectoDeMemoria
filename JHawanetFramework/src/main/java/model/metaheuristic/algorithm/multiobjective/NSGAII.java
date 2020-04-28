@@ -28,10 +28,6 @@
  */
 package model.metaheuristic.algorithm.multiobjective;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
 import exception.ApplicationException;
 import model.metaheuristic.algorithm.AbstractEvolutionaryAlgorithm;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
@@ -41,6 +37,10 @@ import model.metaheuristic.operator.selection.impl.RankingAndCrowdingSelection;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.SolutionListUtils;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * 

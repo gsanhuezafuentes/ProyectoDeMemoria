@@ -1,10 +1,5 @@
 package controller.utils;
 
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
-
 import exception.ApplicationException;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringProperty;
@@ -16,6 +11,11 @@ import model.metaheuristic.experiment.component.GenerateReferenceParetoFront;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.experiment.util.ObservableStringBuffer;
 import model.metaheuristic.solution.Solution;
+
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ExperimentTask extends Task<List<? extends Solution<?>>> {
     private final ObservableStringBuffer taskLog;

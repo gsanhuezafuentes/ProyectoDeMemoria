@@ -9,12 +9,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import model.epanet.element.Network;
-import model.epanet.element.networkcomponent.Junction;
-import model.epanet.element.networkcomponent.Pipe;
-import model.epanet.element.networkcomponent.Pump;
-import model.epanet.element.networkcomponent.Reservoir;
-import model.epanet.element.networkcomponent.Tank;
-import model.epanet.element.networkcomponent.Valve;
+import model.epanet.element.networkcomponent.*;
 
 /**
  * Component that show the selected element of the network in the main window.

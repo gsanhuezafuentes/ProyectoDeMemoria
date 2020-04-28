@@ -1,7 +1,5 @@
 package view;
 
-import java.util.Objects;
-
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;
@@ -15,18 +13,13 @@ import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Pair;
-import model.epanet.element.networkcomponent.Emitter;
-import model.epanet.element.networkcomponent.Junction;
-import model.epanet.element.networkcomponent.Node;
-import model.epanet.element.networkcomponent.Pipe;
-import model.epanet.element.networkcomponent.Pump;
+import model.epanet.element.networkcomponent.*;
 import model.epanet.element.networkcomponent.Pump.PumpProperty;
-import model.epanet.element.networkcomponent.Reservoir;
-import model.epanet.element.networkcomponent.Tank;
-import model.epanet.element.networkcomponent.Valve;
 import model.epanet.element.waterquality.Mixing;
 import model.epanet.element.waterquality.Quality;
 import model.epanet.element.waterquality.Source;
+
+import java.util.Objects;
 
 /**
  * View that show the setting up of the elements of the network. It class use

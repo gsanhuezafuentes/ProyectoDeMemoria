@@ -28,11 +28,11 @@
  */
 package model.metaheuristic.utils.comparator;
 
-import java.io.Serializable;
-import java.util.Comparator;
-
 import exception.ApplicationException;
 import model.metaheuristic.solution.Solution;
+
+import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  * This class implements a comparator based on a given objective
@@ -76,7 +76,7 @@ public class ObjectiveComparator<S extends Solution<?>> implements Comparator<S>
 	 * @param solution2 The second solution
 	 * @return -1, or 0, or 1 if solution1 is less than, equal, or greater than
 	 *         solution2, respectively, according to the established order
-	 * @throws ApplicationException if the number of objetive in solution1 or solution2 is less than the objetiveId received in constructor.
+	 * @throws ApplicationException if the number of objective in solution1 or solution2 is less than the objectiveId received in constructor.
 	 */
 	@Override
 	public int compare(S solution1, S solution2) {

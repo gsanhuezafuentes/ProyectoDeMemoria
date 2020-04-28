@@ -1,9 +1,9 @@
 package model.epanet.io;
 
-import java.io.IOException;
-
 import exception.InputException;
 import model.epanet.element.Network;
+
+import java.io.IOException;
 
 /**
  * Interface to classes that read a network file.

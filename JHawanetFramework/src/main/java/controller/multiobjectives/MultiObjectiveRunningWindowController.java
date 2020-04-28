@@ -1,11 +1,8 @@
 package controller.multiobjectives;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Objects;
-
-import controller.ResultPlotWindowController;
-import controller.ResultWindowController;
+import controller.ResultController;
+import controller.ResultPlotController;
+import controller.utils.CustomCallback;
 import controller.utils.ExperimentTask;
 import epanet.core.EpanetException;
 import exception.ApplicationException;
@@ -13,11 +10,7 @@ import javafx.concurrent.Worker.State;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -28,6 +21,10 @@ import model.metaheuristic.solution.Solution;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import view.utils.CustomDialogs;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * This class is the controller for MultiObjectiveRunningWindow. <br>
@@ -44,8 +41,6 @@ public class MultiObjectiveRunningWindowController {
 	@FXML
 	private Label headerText;
 	@FXML
-	private Button showChartButton;
-	@FXML
 	private Button cancelButton;
 	@FXML
 	private Button closeButton;
@@ -59,12 +54,15 @@ public class MultiObjectiveRunningWindowController {
 	private TextArea algorithmStatusTextArea;
 	@FXML
 	private TextArea logExperimentTextArea;
+	@FXML
+	private Tab chartTab;
 
 	@NotNull private final Pane root;
 	@NotNull private final Problem<?> problem;
 	@NotNull private final ExperimentTask task;
 	@NotNull private final Network network;
-	@Nullable private ResultPlotWindowController resultPlotWindowController;
+	@NotNull private final CustomCallback<ResultController> callback;
+	@Nullable private ResultPlotController resultPlotController;
 	@Nullable private Stage window;
 
 	/**
@@ -73,33 +71,28 @@ public class MultiObjectiveRunningWindowController {
 	 * @param experiment the experiment to execute
 	 * @param problem   the problem that the algorithm has configured
 	 * @param network   the network opened.
+	 * @param callback a callback function to return the result node when task finish
 	 * @throws NullPointerException if experiment is null or problem is null or
 	 *                              network is null
 	 */
-	public MultiObjectiveRunningWindowController(@NotNull Experiment<?> experiment,@NotNull Problem<?> problem, @NotNull Network network) {
+	public MultiObjectiveRunningWindowController(@NotNull Experiment<?> experiment, @NotNull Problem<?> problem, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
 		Objects.requireNonNull(experiment);
 		this.problem = Objects.requireNonNull(problem);
 		this.network = Objects.requireNonNull(network);
+		this.callback = Objects.requireNonNull(callback);
 
-		this.root = loadFXML();
+		this.root = loadFXML(); //initialize root and @FXML by injection
 
 		this.task = new ExperimentTask(experiment);
 
 		// Create the controller to add point even if plot windows is not showed.
 		// Only created if number of objectives is 1 or 2
+		this.chartTab.setDisable(true);
 		if (this.problem.getNumberOfObjectives() == 1 || this.problem.getNumberOfObjectives() == 2) {
-			this.resultPlotWindowController = new ResultPlotWindowController(this.problem.getNumberOfObjectives());
+			this.resultPlotController = new ResultPlotController(this.problem.getNumberOfObjectives());
+			this.chartTab.setContent(this.resultPlotController.getNode());
 		}
 		addBindingAndListener();
-
-		/*
-		 * Only add the the showChartButton if the number of objectives is 1.
-		 * If the number of objective is 2 the button as to be enabled when the simulation finish
-		 */
-		if (this.problem.getNumberOfObjectives() == 1 || this.problem.getNumberOfObjectives() == 2) {
-			this.showChartButton.setVisible(true);
-			this.showChartButton.setDisable(true);
-		}
 
 	}
 
@@ -167,22 +160,14 @@ public class MultiObjectiveRunningWindowController {
 		// listener when task finishes successfully
 		task.setOnSucceeded(e -> {
 			List<? extends Solution<?>> solutions = task.getValue();
-			this.showChartButton.setDisable(false);
-			if (this.resultPlotWindowController != null) {
-				this.resultPlotWindowController.addData(solutions, 0);
+			if (this.resultPlotController != null) {
+				this.chartTab.setDisable(false);
+				this.resultPlotController.addData(solutions, 0);
 			}
-			ResultWindowController resultWindowController = new ResultWindowController(solutions, this.problem,
+			ResultController resultController = new ResultController(solutions, this.problem,
 					this.network);
-			resultWindowController.showAssociatedWindow();
+			callback.notify(resultController);
 		});
-	}
-
-	/**
-	 * Method to handle the view event when Show Chart button will be click on.
-	 */
-	@FXML
-	private void onShowChartButtonClick() {
-		Objects.requireNonNull(this.resultPlotWindowController).showAssociatedWindow();
 	}
 
 	/**

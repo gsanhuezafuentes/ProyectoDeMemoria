@@ -18,22 +18,11 @@
  */
 package model.metaheuristic.problem.impl;
 
+import epanet.core.*;
+import epanet.core.types.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import epanet.core.Components;
-import epanet.core.EpanetAPI;
-import epanet.core.EpanetException;
-import epanet.core.LinkParameters;
-import epanet.core.LinkTypes;
-import epanet.core.NodeParameters;
-import epanet.core.NodeTypes;
-import epanet.core.types.Junction;
-import epanet.core.types.Pipe;
-import epanet.core.types.Pump;
-import epanet.core.types.Reservoir;
-import epanet.core.types.Tank;
-import epanet.core.types.Valve;
 
 public class EpatoolForJava {
 

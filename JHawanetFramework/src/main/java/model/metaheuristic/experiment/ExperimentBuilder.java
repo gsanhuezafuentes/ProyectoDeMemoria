@@ -28,12 +28,12 @@
  */
 package model.metaheuristic.experiment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.experiment.util.ExperimentProblem;
 import model.metaheuristic.solution.Solution;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Builder for class {@link Experiment}

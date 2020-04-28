@@ -1,13 +1,12 @@
 package model.epanet.element.networkcomponent;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import org.junit.jupiter.api.Test;
-
 import model.epanet.element.networkcomponent.Pump.PumpProperty;
 import model.epanet.element.systemoperation.Curve;
 import model.epanet.element.systemoperation.Pattern;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PumpTest {
 

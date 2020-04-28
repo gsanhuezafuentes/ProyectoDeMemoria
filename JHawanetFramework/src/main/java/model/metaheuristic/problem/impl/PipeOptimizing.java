@@ -1,12 +1,5 @@
 package model.metaheuristic.problem.impl;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-
 import epanet.core.Components;
 import epanet.core.EpanetAPI;
 import epanet.core.EpanetException;
@@ -18,10 +11,17 @@ import model.epanet.element.networkcomponent.Link;
 import model.epanet.element.networkcomponent.Pipe;
 import model.epanet.element.networkcomponent.Valve;
 import model.epanet.io.GamaParser;
-import model.metaheuristic.evaluator.MonoObjetiveSolutionEvaluator;
+import model.metaheuristic.evaluator.PipeOptimizingSolutionEvaluator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.solution.impl.IntegerSolution;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Class that implement the problem of inversion cost.
@@ -109,7 +109,7 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	@Override
 	public void evaluate(IntegerSolution solution) throws EpanetException { // Puede ser necesario agregar la excepcion
 																			// de epanet
-		MonoObjetiveSolutionEvaluator evaluator = new MonoObjetiveSolutionEvaluator(this.minPressure);
+		PipeOptimizingSolutionEvaluator evaluator = new PipeOptimizingSolutionEvaluator(this.minPressure);
 		double cost = 0;
 
 		for (int i = 0; i < getNumberOfVariables(); i++) {

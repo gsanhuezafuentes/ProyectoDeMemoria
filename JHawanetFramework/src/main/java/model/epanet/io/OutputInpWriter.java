@@ -1,13 +1,13 @@
 package model.epanet.io;
 
+import model.epanet.element.Network;
+import model.epanet.element.utils.ParseNetworkToINPString;
+
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
-
-import model.epanet.element.Network;
-import model.epanet.element.utils.ParseNetworkToINPString;
 
 /**
  * Class that write in the system a inp file of the specific network object.

@@ -1,57 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-
-<?import view.NetworkComponent?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import view.ElementViewer?>
+<?import view.NetworkComponent?>
+<BorderPane fx:id="root" prefHeight="800.0" prefWidth="1280.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
+    <top>
+        <VBox>
+            <MenuBar BorderPane.alignment="CENTER">
+                <menus>
+                    <Menu mnemonicParsing="false" text="File">
+                        <items>
+                            <MenuItem mnemonicParsing="false" onAction="#openOnAction" text="Open" />
+                            <MenuItem mnemonicParsing="false" text="Close" />
+                        </items>
+                    </Menu>
+                    <Menu fx:id="singleobjectiveMenu" mnemonicParsing="false" text="Singleobjective Optimization">
+                    </Menu>
+                    <Menu fx:id="multiobjectiveMenu" mnemonicParsing="false" text="Multiobjective Optimization">
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="About" />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+            <HBox>
+                <Button fx:id="runButton" styleClass="imageButton">
+                    <graphic>
+                        <ImageView>
+                            <Image url="@icons/Play_32px.png" />
+                        </ImageView>
+                    </graphic>
+                    <tooltip><Tooltip text="Execute" /></tooltip>
+                </Button>
+                <Separator orientation="VERTICAL" />
+                <Button fx:id="saveTableButton" styleClass="imageButton" disable="true">
+                    <graphic>
+                        <ImageView>
+                            <Image url="@icons/iconfinder_table_save_64777.png" />
+                        </ImageView>
+                    </graphic>
+                    <tooltip><Tooltip text="Save table" /></tooltip>
+                </Button>
+                <Button fx:id="saveSelectedAsINPButton" styleClass="imageButton" disable="true">
+                    <graphic>
+                        <ImageView>
+                            <Image url="@icons/iconfinder_save_32.png" />
+                        </ImageView>
+                    </graphic>
+                    <tooltip><Tooltip text="Save selected item" /></tooltip>
+                </Button>
+            </HBox>
+        </VBox>
+    </top>
+    <center>
+        <TabPane fx:id="tabPane" side="BOTTOM" tabClosingPolicy="ALL_TABS">
+            <tabs>
+                <Tab fx:id="networkTab" closable="false" text="Network">
+                    <SplitPane fx:id="splitPane" dividerPositions="0.5" style="-fx-border-color: darkgrey;-fx-border-radius: 1">
 
-<BorderPane fx:id="root" prefHeight="800.0"
-	prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="controller.MainWindowController">
-	<center>
-		<SplitPane fx:id = "splitPane">
+                        <ElementViewer fx:id="elementViewer" maxWidth="${splitPane.width * 0.20}" />
+                        <!-- <NetworkComponent></NetworkComponent> -->
+                        <Pane fx:id="canvasWrapper">
+                            <NetworkComponent fx:id="networkComponent" height="${canvasWrapper.height}" width="${canvasWrapper.width}" />
+                        </Pane>
+                    </SplitPane>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
 
-			<ElementViewer fx:id="elementViewer" maxWidth="${splitPane.width * 0.20}"></ElementViewer>
-			<!-- <NetworkComponent></NetworkComponent> -->
-			<Pane fx:id="canvasWrapper">
-				<NetworkComponent fx:id="networkComponent"
-					width="${canvasWrapper.width}" height="${canvasWrapper.height}"></NetworkComponent>
-			</Pane>
-		</SplitPane>
-	</center>
-	<top>
-		<MenuBar BorderPane.alignment="CENTER">
-			<menus>
-				<Menu mnemonicParsing="false" text="File">
-					<items>
-						<MenuItem mnemonicParsing="false"
-							onAction="#openOnAction" text="Open" />
-						<MenuItem mnemonicParsing="false" text="Close" />
-					</items>
-				</Menu>
-				<Menu fx:id="monoobjectiveMenu" mnemonicParsing="false"
-					text="Monoobjective Problems">
-				</Menu>
-				<Menu fx:id="multiobjectiveMenu" mnemonicParsing="false" text="Multiobjective Problems">
-				</Menu>
-				<Menu fx:id="runMenu" mnemonicParsing="false" text="Run">
-					<items>
-						<MenuItem fx:id="runMenuItem" mnemonicParsing="false" text="Run" />
-					</items>
-				</Menu>
-				<Menu mnemonicParsing="false" text="Help">
-					<items>
-						<MenuItem mnemonicParsing="false" text="About" />
-					</items>
-				</Menu>
-			</menus>
-		</MenuBar>
-	</top>
 </BorderPane>

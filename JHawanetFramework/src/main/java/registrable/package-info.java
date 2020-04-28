@@ -4,4 +4,4 @@
  * Registrable problem to be seen by the GUI.
  *
  */
-package controller.problems;
+package registrable;

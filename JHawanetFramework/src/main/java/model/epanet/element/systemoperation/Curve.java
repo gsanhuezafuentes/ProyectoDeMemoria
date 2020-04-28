@@ -1,11 +1,11 @@
 package model.epanet.element.systemoperation;
 
-import java.util.*;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.epanet.element.utils.Point;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.*;
 
 public final class Curve {
 

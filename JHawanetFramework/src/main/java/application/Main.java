@@ -1,7 +1,5 @@
 package application;
 
-import java.io.IOException;
-
 import controller.MainWindowController;
 import controller.utils.ProblemMenuConfiguration;
 import javafx.application.Application;
@@ -9,6 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+
 
 /**
  * This class create the principal windows and get his controller. When the
@@ -27,8 +28,7 @@ public class Main extends Application {
 			MainWindowController controller = loader.getController();
 			controller.setWindow(primaryStage);
 			Scene scene = new Scene(root);
-			
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
 			primaryStage.setMinWidth(800);
 			primaryStage.setMinHeight(600);
 			primaryStage.setScene(scene);

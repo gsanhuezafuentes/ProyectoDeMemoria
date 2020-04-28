@@ -1,5 +1,13 @@
 package model.metaheuristic.problem.impl;
 
+import epanet.core.EpanetException;
+import model.epanet.element.Network;
+import model.metaheuristic.problem.Problem;
+import model.metaheuristic.solution.Solution;
+import model.metaheuristic.solution.impl.IntegerSolution;
+import model.metaheuristic.utils.solutionattribute.NumberOfViolatedConstraints;
+import model.metaheuristic.utils.solutionattribute.OverallConstraintViolation;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,14 +16,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import epanet.core.EpanetException;
-import model.epanet.element.Network;
-import model.metaheuristic.problem.Problem;
-import model.metaheuristic.solution.Solution;
-import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.solutionattribute.NumberOfViolatedConstraints;
-import model.metaheuristic.utils.solutionattribute.OverallConstraintViolation;
 
 public class VanzylOriginal implements Problem<IntegerSolution> {
 

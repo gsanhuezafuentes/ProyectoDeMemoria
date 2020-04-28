@@ -1,21 +1,6 @@
 package controller.utils;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.io.File;
-
-import org.junit.jupiter.api.Test;
-
-import annotations.registrable.FileInput;
-import annotations.registrable.NewProblem;
-import annotations.registrable.NumberInput;
-import annotations.registrable.NumberToggleInput;
-import annotations.registrable.OperatorInput;
-import annotations.registrable.OperatorOption;
-import annotations.registrable.Parameters;
-import controller.problems.MonoObjectiveRegistrable;
+import annotations.registrable.*;
 import exception.ApplicationException;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.operator.crossover.impl.IntegerSBXCrossover;
@@ -25,6 +10,12 @@ import model.metaheuristic.operator.mutation.impl.IntegerRangeRandomMutation;
 import model.metaheuristic.operator.mutation.impl.IntegerSimpleRandomMutation;
 import model.metaheuristic.operator.selection.impl.UniformSelection;
 import model.metaheuristic.problem.Problem;
+import org.junit.jupiter.api.Test;
+import registrable.SingleObjectiveRegistrable;
+
+import java.io.File;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class ReflectionUtilsTest {
 
@@ -98,7 +89,7 @@ class ReflectionUtilsTest {
 				.validateRegistrableProblem(WithParametersTypeDoesNotCorrespondToTheParametersAnnotation.class));
 	}
 
-	static abstract class TestMonoobjective extends MonoObjectiveRegistrable {
+	static abstract class TestSingleobjective implements SingleObjectiveRegistrable {
 
 		@Override
 		public Algorithm<?> build(String inpPath) throws Exception {
@@ -113,14 +104,14 @@ class ReflectionUtilsTest {
 		}
 	}
 
-	static class NoAnnotation extends TestMonoobjective {
+	static class NoAnnotation extends TestSingleobjective {
 
 		public NoAnnotation() {
 		}
 
 	}
 
-	static class OnlyNewProblemAnnotation extends TestMonoobjective {
+	static class OnlyNewProblemAnnotation extends TestSingleobjective {
 		@NewProblem(displayName = "Test", algorithmName = "NSGAII")
 		public OnlyNewProblemAnnotation() {
 		}
@@ -139,7 +130,7 @@ class ReflectionUtilsTest {
 
 	}
 
-	static class WithParameterInCorrectOrder extends TestMonoobjective {
+	static class WithParameterInCorrectOrder extends TestSingleobjective {
 		@NewProblem(displayName = "Test", algorithmName = "NSGAII")
 		@Parameters(operators = {
 				@OperatorInput(displayName = "Selection Operator", value = {
@@ -162,7 +153,7 @@ class ReflectionUtilsTest {
 
 	}
 
-	static class WithParameterInWrongOrder extends TestMonoobjective {
+	static class WithParameterInWrongOrder extends TestSingleobjective {
 		@NewProblem(displayName = "Test", algorithmName = "NSGAII")
 		@Parameters(operators = {
 				@OperatorInput(displayName = "Selection Operator", value = {
@@ -185,7 +176,7 @@ class ReflectionUtilsTest {
 
 	}
 
-	static class IncorrectNumberOfParameterInConstructor extends TestMonoobjective {
+	static class IncorrectNumberOfParameterInConstructor extends TestSingleobjective {
 		@NewProblem(displayName = "Test", algorithmName = "NSGAII")
 		@Parameters(operators = {
 				@OperatorInput(displayName = "Selection Operator", value = {
@@ -209,7 +200,7 @@ class ReflectionUtilsTest {
 
 	}
 
-	static class IncorrectNumberOfParameterInAnnotation extends TestMonoobjective {
+	static class IncorrectNumberOfParameterInAnnotation extends TestSingleobjective {
 		@NewProblem(displayName = "Test", algorithmName = "NSGAII")
 		@Parameters(operators = {
 				@OperatorInput(displayName = "Selection Operator", value = {
@@ -232,7 +223,7 @@ class ReflectionUtilsTest {
 
 	}
 
-	static class WithTwoConstructor extends TestMonoobjective {
+	static class WithTwoConstructor extends TestSingleobjective {
 		@NewProblem(displayName = "Test", algorithmName = "NSGAII")
 		@Parameters()
 		public WithTwoConstructor() {
@@ -243,7 +234,7 @@ class ReflectionUtilsTest {
 
 	}
 
-	static class NumberToggleInputInSameGroupConsecutively extends TestMonoobjective {
+	static class NumberToggleInputInSameGroupConsecutively extends TestSingleobjective {
 		@NewProblem(displayName = "Test", algorithmName = "NSGAII")
 		@Parameters(operators = {
 				@OperatorInput(displayName = "Selection Operator", value = {
@@ -267,7 +258,7 @@ class ReflectionUtilsTest {
 
 	}
 
-	static class NumberToggleInputInSameGroupNotConsecutively extends TestMonoobjective {
+	static class NumberToggleInputInSameGroupNotConsecutively extends TestSingleobjective {
 		@NewProblem(displayName = "Test", algorithmName = "NSGAII")
 		@Parameters(operators = {
 				@OperatorInput(displayName = "Selection Operator", value = {
@@ -292,7 +283,7 @@ class ReflectionUtilsTest {
 
 	}
 
-	static class WithParametersTypeDoesNotCorrespondToTheParametersAnnotation extends TestMonoobjective {
+	static class WithParametersTypeDoesNotCorrespondToTheParametersAnnotation extends TestSingleobjective {
 		@NewProblem(displayName = "Test", algorithmName = "NSGAII")
 		@Parameters(operators = {
 				@OperatorInput(displayName = "Selection Operator", value = {

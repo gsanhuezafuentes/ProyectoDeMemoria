@@ -1,13 +1,13 @@
 package model.metaheuristic.operator.mutation.impl;
 
-import java.util.Objects;
-
 import annotations.operators.DefaultConstructor;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
 import model.metaheuristic.utils.random.JavaRandom;
 import model.metaheuristic.utils.random.RandomGenerator;
+
+import java.util.Objects;
 
 /**
  * Class that perform a mutation setting up each element of the solution randomly between the defined bounds and between the defined range.

@@ -1,11 +1,11 @@
 package model.epanet.element.networkcomponent;
 
-import java.util.*;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.*;
 
 public final class Pump extends Link {
 

@@ -1,20 +1,9 @@
 package model.epanet.element.utils;
 
-import java.util.Collection;
-import java.util.List;
-
 import model.epanet.element.Network;
-import model.epanet.element.networkcomponent.Emitter;
-import model.epanet.element.networkcomponent.Junction;
-import model.epanet.element.networkcomponent.Link;
-import model.epanet.element.networkcomponent.Node;
-import model.epanet.element.networkcomponent.Pipe;
-import model.epanet.element.networkcomponent.Pump;
+import model.epanet.element.networkcomponent.*;
 import model.epanet.element.networkcomponent.Pump.PumpProperty;
 import model.epanet.element.networkcomponent.Pump.PumpStatus;
-import model.epanet.element.networkcomponent.Reservoir;
-import model.epanet.element.networkcomponent.Tank;
-import model.epanet.element.networkcomponent.Valve;
 import model.epanet.element.networkcomponent.Valve.ValveStatus;
 import model.epanet.element.networkdesign.Backdrop;
 import model.epanet.element.networkdesign.Label;
@@ -23,17 +12,15 @@ import model.epanet.element.optionsreport.Option;
 import model.epanet.element.optionsreport.QualityOption;
 import model.epanet.element.optionsreport.Report;
 import model.epanet.element.optionsreport.Time;
-import model.epanet.element.systemoperation.Control;
-import model.epanet.element.systemoperation.Curve;
-import model.epanet.element.systemoperation.Demand;
-import model.epanet.element.systemoperation.EnergyOption;
-import model.epanet.element.systemoperation.Pattern;
-import model.epanet.element.systemoperation.Rule;
+import model.epanet.element.systemoperation.*;
 import model.epanet.element.waterquality.Mixing;
 import model.epanet.element.waterquality.Mixing.MixingModel;
 import model.epanet.element.waterquality.Quality;
 import model.epanet.element.waterquality.ReactionOption;
 import model.epanet.element.waterquality.Source;
+
+import java.util.Collection;
+import java.util.List;
 
 public final class ParseNetworkToINPString {
 
@@ -574,7 +561,7 @@ public final class ParseNetworkToINPString {
 		out.append("[COORDINATES]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\n", "Node", "X-Coord", "Y-Coord"));
 		for (Node node : nodes) {
-			out.append(String.format("%-10s\t%s\n", node.getId(), node.getPosition()));
+			out.append(String.format("%-10s\t%f\t%f\n", node.getId(), node.getPosition().getX(), node.getPosition().getY()));
 		}
 
 		out.append("\n");
@@ -585,7 +572,7 @@ public final class ParseNetworkToINPString {
 		out.append(String.format(";%-10s\t%-10s\t%-10s\n", "Node", "X-Coord", "Y-Coord"));
 		for (Link link : links) {
 			for (Point point : link.getVertices()) {
-				out.append(String.format("%-10s\t%s\n", link.getId(), point));
+				out.append(String.format("%-10s\t%f\t%f\n", link.getId(), point.getX(), point.getY()));
 			}
 		}
 		out.append("\n");
@@ -595,7 +582,7 @@ public final class ParseNetworkToINPString {
 		out.append("[LABELS]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\n", "X-Coord", "Y-Coord", "Label", "Anchor Node"));
 		for (Label label : labels) {
-			out.append(String.format("%s\t", label.getPosition()));
+			out.append(String.format("%f\t%f\t", label.getPosition().getX(), label.getPosition().getY()));
 			out.append(String.format("%-10s\t", "\"" + label.getLabel())).append("\""); // save the label between ""
 			if (!label.getAnchorNode().isEmpty()) {
 				out.append(String.format("%-10s", label.getAnchorNode()));

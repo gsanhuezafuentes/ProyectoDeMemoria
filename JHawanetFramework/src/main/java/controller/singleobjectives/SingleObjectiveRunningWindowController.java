@@ -1,22 +1,16 @@
-package controller.monoobjectives;
+package controller.singleobjectives;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Objects;
-
-import controller.ResultPlotWindowController;
-import controller.ResultWindowController;
+import controller.ResultController;
+import controller.ResultPlotController;
 import controller.utils.AlgorithmTask;
+import controller.utils.CustomCallback;
 import epanet.core.EpanetException;
 import exception.ApplicationException;
 import javafx.concurrent.Worker.State;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -28,8 +22,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import view.utils.CustomDialogs;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
+
 /**
- * This class is the controller for MonoObjectiveRunningWindow. <br>
+ * This class is the controller for SingleObjectiveRunningWindow.fxml. <br>
  * <br>
  * <p>
  * The algorithm received by this class will be executed in other thread.<br>
@@ -38,11 +36,9 @@ import view.utils.CustomDialogs;
  * When the algorithm finishes successfully this controller will open the
  * ResultWindow.
  */
-public class MonoObjectiveRunningWindowController {
+public class SingleObjectiveRunningWindowController {
     @FXML
     private Label headerText;
-    @FXML
-    private Button showChartButton;
     @FXML
     private Button cancelButton;
     @FXML
@@ -51,6 +47,8 @@ public class MonoObjectiveRunningWindowController {
     private ProgressIndicator progressIndicator;
     @FXML
     private TextArea textArea;
+    @FXML
+    private Tab chartTab;
 
     @NotNull private final Pane root;
     @NotNull
@@ -60,7 +58,8 @@ public class MonoObjectiveRunningWindowController {
     @NotNull
     private final Network network;
     @NotNull
-    private final ResultPlotWindowController resultPlotWindowController;
+    private final ResultPlotController resultPlotController;
+    @NotNull private final CustomCallback<ResultController> callback;
     @Nullable
     private Stage window;
 
@@ -70,10 +69,11 @@ public class MonoObjectiveRunningWindowController {
      * @param algorithm the algorithm to execute
      * @param problem   the problem that the algorithm has configured
      * @param network   the network opened.
+     * @param callback a callback function to return the result node when task finish
      * @throws NullPointerException if algorithm is null or problem is null or
      *                              network is null
      */
-    public MonoObjectiveRunningWindowController(Algorithm<?> algorithm, @NotNull Problem<?> problem, @NotNull Network network) {
+    public SingleObjectiveRunningWindowController(Algorithm<?> algorithm, @NotNull Problem<?> problem, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
         /*
          * Only add the the showChartButton if the number of objectives is less than 2.
          */
@@ -84,17 +84,17 @@ public class MonoObjectiveRunningWindowController {
         Objects.requireNonNull(algorithm);
         Objects.requireNonNull(problem);
         Objects.requireNonNull(network);
-        this.root = loadFXML();
+        this.callback = Objects.requireNonNull(callback);
+
         this.problem = problem;
         this.network = network;
         this.task = new AlgorithmTask(algorithm);
+
+        this.root = loadFXML(); //initialize fxml and all parameters defined with @FXML
         // Create the controller to add point even if plot windows is not showed
-        this.resultPlotWindowController = new ResultPlotWindowController(this.problem.getNumberOfObjectives());
-        this.showChartButton.setVisible(true);
-
+        this.resultPlotController = new ResultPlotController(this.problem.getNumberOfObjectives());
+        this.chartTab.setContent(this.resultPlotController.getNode());
         addBindingAndListener();
-
-
     }
 
     /**
@@ -104,7 +104,7 @@ public class MonoObjectiveRunningWindowController {
      * @throws ApplicationException if there is an error in load the .fxml.
      */
     private Pane loadFXML() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/MonoObjectiveRunningWindow.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/SingleObjectiveRunningWindow.fxml"));
         fxmlLoader.setController(this);
         try {
             return fxmlLoader.load();
@@ -141,23 +141,15 @@ public class MonoObjectiveRunningWindowController {
             }
         });
 
-        task.valueProperty().addListener((prop, oldv, newv) -> this.resultPlotWindowController.addData(newv.getSolution(), newv.getNumberOfIterations()));
+        task.valueProperty().addListener((prop, oldv, newv) -> this.resultPlotController.addData(newv.getSolution(), newv.getNumberOfIterations()));
 
         // listener when task finishes successfully
         task.setOnSucceeded(e -> {
             List<? extends Solution<?>> solutions = task.getValue().getSolution();
-            ResultWindowController resultWindowController = new ResultWindowController(solutions, this.problem,
+            ResultController resultController = new ResultController(solutions, this.problem,
                     this.network);
-            resultWindowController.showAssociatedWindow();
+            callback.notify(resultController);
         });
-    }
-
-    /**
-     * Method to handle the view event when Show Chart button will be click on. This method is called by fxml
-     */
-    @FXML
-    private void onShowChartButtonClick() {
-        this.resultPlotWindowController.showAssociatedWindow();
     }
 
     /**

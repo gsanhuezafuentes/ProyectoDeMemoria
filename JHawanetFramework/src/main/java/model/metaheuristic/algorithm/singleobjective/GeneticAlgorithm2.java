@@ -21,11 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE. © 2019 GitHub, Inc.
  */
-package model.metaheuristic.algorithm.monoobjective;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+package model.metaheuristic.algorithm.singleobjective;
 
 import exception.ApplicationException;
 import model.metaheuristic.algorithm.AbstractEvolutionaryAlgorithm;
@@ -34,8 +30,11 @@ import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.comparator.ObjectiveComparator;
-import model.metaheuristic.operator.selection.impl.TournamentSelection;
+import model.metaheuristic.utils.comparator.DominanceComparator;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Class to perform algorithm genetic. <br>
@@ -46,23 +45,18 @@ import model.metaheuristic.operator.selection.impl.TournamentSelection;
  * of evaluations. The second condition sets a maximum number of iterations
  * without improving the results of the algorithm. These configurations are
  * mutually exclusive, i.e. if you try to configure the two conditions at the
- * same time, the last one will prevail. <br>
- * <br>
+ * same time, the last one will prevail. <br><br>
  * 
  * If you do not set any stopping conditions, by default the maximum number of
  * evaluations with a value of 10000 is set.
  *
- * This class is a copy of GeneticAlgorithm2 but let use {@link TournamentSelection}
- *
  */
-public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S> {
+public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S> {
 	private final int maxPopulationSize;
-	private final Problem<S> problem;
-	private List<S> population;
-	private final SelectionOperator<List<S>, S> selectionOperator;
+	private final SelectionOperator<List<S>, List<S>> selectionOperator;
 	private final CrossoverOperator<S> crossoverOperator;
 	private final MutationOperator<S> mutationOperator;
-	private final ObjectiveComparator<S> comparator;
+	private final DominanceComparator<S> comparator;
 	/**
 	 * Max number of evaluation
 	 */
@@ -82,22 +76,18 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 
 	private S bestSolution;
 
-	public GeneticAlgorithm(Problem<S> problem, int populationSize, SelectionOperator<List<S>, S> selectionOperator,
-			CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator) {
+	public GeneticAlgorithm2(Problem<S> problem, int populationSize,
+			SelectionOperator<List<S>, List<S>> selectionOperator, CrossoverOperator<S> crossoverOperator,
+			MutationOperator<S> mutationOperator) {
 		this.problem = problem;
 		this.maxPopulationSize = populationSize;
 		this.selectionOperator = selectionOperator;
 		this.crossoverOperator = crossoverOperator;
 		this.mutationOperator = mutationOperator;
 		this.maxEvaluations = 10000;
-		this.comparator = new ObjectiveComparator<S>(0);
-	}
+		this.maxNumberOfIterationWithoutImprovement = 0;
 
-	/**
-	 * @return the population
-	 */
-	public List<S> getPopulation() {
-		return population;
+		this.comparator = new DominanceComparator<S>();
 	}
 
 	/**
@@ -168,19 +158,12 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	 * 
 	 * The default is 0.
 	 * 
-	 * @param maxNumberOfIterationWithoutImprovement the max number of iteration without improvement
+	 * @param maxNumberOfIterationWithoutImprovement the new max number of iteration without improvement
 	 */
 	public void setMaxNumberOfIterationWithoutImprovement(int maxNumberOfIterationWithoutImprovement) {
 		validateMaxStoppingConditionCounters(this.maxEvaluations, maxNumberOfIterationWithoutImprovement);
 		this.maxEvaluations = 0;
 		this.maxNumberOfIterationWithoutImprovement = maxNumberOfIterationWithoutImprovement;
-	}
-
-	/**
-	 * @return the problem
-	 */
-	public Problem<S> getProblem() {
-		return problem;
 	}
 
 	/**
@@ -214,37 +197,32 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	/**
 	 * Applies the SelectionOperation
 	 * 
-	 * @param population the population to apply the selection operator
+	 * @param population the population to apply selection operator
 	 * @return The list of selected population.
 	 */
 	@Override
 	protected List<S> selection(List<S> population) {
-		List<S> selectionPopulation = new ArrayList<S>(population.size());
-		for (int i = 0; i < getMaxPopulationSize(); i++) {
-			S solution = selectionOperator.execute(population);
-			selectionPopulation.add(solution);
-		}
-		return selectionPopulation;
+		return selectionOperator.execute(population);
 	}
 
 	/**
 	 * Applies crossover operator
 	 * 
-	 * @param selectionPopulation the selected population to apply the reproduction
+	 * @param selectionPopulation the selected population to apply reproduction
 	 * @return The offspring population
 	 */
 	@Override
 	protected List<S> reproduction(List<S> selectionPopulation) {
 		int numberOfParents = crossoverOperator.getNumberOfRequiredParents();
 
-		checkNumberOfParents(population, numberOfParents);
+		checkNumberOfParents(selectionPopulation, numberOfParents);
 
 		List<S> offspringPopulation = new ArrayList<S>(getMaxPopulationSize());
 
 		for (int i = 0; i < getMaxPopulationSize(); i += numberOfParents) {
 			List<S> parents = new ArrayList<S>();
 			for (int j = 0; j < numberOfParents; j++) {
-				parents.add(population.get(i + j));
+				parents.add(selectionPopulation.get(i + j));
 			}
 
 			List<S> offspring = crossoverOperator.execute(parents);
@@ -268,7 +246,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	/** {@inheritDoc} */
 	@Override
 	public boolean isStoppingConditionReached() {
-		boolean result = false;
+		boolean result = true;
 		if (maxEvaluations > 0) {
 			result = performedEvaluationsNumber >= getMaxEvaluations();
 		}
@@ -277,7 +255,6 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 		}
 		return result;
 	}
-
 
 	/**
 	 * A crossover operator is applied to a number of parents, and it assumed that
@@ -293,7 +270,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 					+ population.size() + ") is not divisible by " + numberOfParentsForCrossover);
 		}
 	}
-	
+
 	/**
 	 * Check if maxEvaluations and maxNumberOfIterationWithoutImprovement are
 	 * valid.<br>
@@ -356,9 +333,9 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 		return "No term settings were set.";
 	}
 
+	
 	@Override
 	public String getName() {
 		return "Genetic Algorithm";
 	}
-
 }

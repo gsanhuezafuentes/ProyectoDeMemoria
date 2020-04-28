@@ -28,12 +28,12 @@
  */
 package model.metaheuristic.solution.impl;
 
-import java.util.HashMap;
-
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
 import model.metaheuristic.utils.random.JavaRandom;
+
+import java.util.HashMap;
 
 /**
  * A solution whose variables are Integer

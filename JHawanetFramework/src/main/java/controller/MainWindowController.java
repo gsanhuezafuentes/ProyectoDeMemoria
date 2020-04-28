@@ -1,23 +1,14 @@
 package controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import controller.monoobjectives.MonoObjectiveRunningWindowController;
 import controller.multiobjectives.MultiObjectiveRunningWindowController;
-import controller.problems.MonoObjectiveRegistrable;
-import controller.problems.MultiObjectiveRegistrable;
+import controller.singleobjectives.SingleObjectiveRunningWindowController;
 import controller.utils.ProblemMenuConfiguration;
 import exception.InputException;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
@@ -27,9 +18,16 @@ import model.epanet.io.InpParser;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.problem.Problem;
+import registrable.MultiObjectiveRegistrable;
+import registrable.SingleObjectiveRegistrable;
 import view.ElementViewer;
 import view.NetworkComponent;
 import view.utils.CustomDialogs;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * The controller of the main window view.
@@ -68,24 +66,39 @@ public class MainWindowController implements Initializable {
 	private ElementViewer elementViewer;
 
 	/**
-	 * Is the option of menu for monoobjective problems. It is filled using reflection through
+	 * Is the option of menu for singleobjectives problems. It is filled using reflection through
 	 * ProblemRegistrar.
 	 */
 	@FXML
-	private Menu monoobjectiveMenu;
+	private Menu singleobjectiveMenu;
 	/**
 	 * Is the option of menu for multiobjectives problem. It is filled using reflection through
 	 * ProblemRegistrar.
 	 */
 	@FXML
 	private Menu multiobjectiveMenu;
+	/**
+	 * Run a simulation with default network configuration
+	 */
+	@FXML
+	private Button runButton;
 
+	/**
+	 * The tabpane
+	 */
 	@FXML
-	private Menu runMenu;
-	
+	private TabPane tabPane;
+	/**
+	 * Save the result tab
+	 */
 	@FXML
-	private MenuItem runMenuItem;
-	
+	private Button saveTableButton;
+	/**
+	 * Save as inp the selected items in result tab
+	 */
+	@FXML
+	private Button saveSelectedAsINPButton;
+
 	private Window window;
 	private File inpFile;
 	private final BooleanProperty isNetworkLoaded;
@@ -101,16 +114,26 @@ public class MainWindowController implements Initializable {
 		// Register the menu item problem to problem menu and add the listener to it
 		// menuitem to show a interface,
 		ProblemMenuConfiguration problemRegistrar = new ProblemMenuConfiguration();
-		problemRegistrar.addMonoObjectiveProblems(this.monoobjectiveMenu, this::runAlgorithm);
+		problemRegistrar.addSingleObjectiveProblems(this.singleobjectiveMenu, this::runAlgorithm);
 		problemRegistrar.addMultiObjectiveProblems(this.multiobjectiveMenu, this::runExperiment);
 
 		// disable problem menu until a network is loaded
-		this.monoobjectiveMenu.disableProperty().bind(isNetworkLoaded.not());
+		this.singleobjectiveMenu.disableProperty().bind(isNetworkLoaded.not());
 		this.multiobjectiveMenu.disableProperty().bind(isNetworkLoaded.not());
-		this.runMenu.disableProperty().bind(isNetworkLoaded.not());
+		this.runButton.disableProperty().bind(isNetworkLoaded.not());
 
-		
 		networkComponent.selectedProperty().bindBidirectional(elementViewer.selectedProperty());
+
+		// Configure tabpane behaviour
+		this.networkTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue){ // clean bind and set property when default tab "network" is selected
+				this.saveTableButton.setDisable(true);
+				this.saveSelectedAsINPButton.disableProperty().unbind();
+				this.saveSelectedAsINPButton.setDisable(true);
+				this.saveSelectedAsINPButton.setOnAction(null);
+				this.saveTableButton.setOnAction(null);
+			}
+		});
 	}
 
 	/**
@@ -176,7 +199,7 @@ public class MainWindowController implements Initializable {
 	 * 
 	 * @param registrableProblem the factory of algorithm for a problem
 	 */
-	private void runAlgorithm(MonoObjectiveRegistrable registrableProblem) {
+	private void runAlgorithm(SingleObjectiveRegistrable registrableProblem) {
 		String path = null;
 		if (this.inpFile != null) {
 			path = this.inpFile.getAbsolutePath();
@@ -190,8 +213,8 @@ public class MainWindowController implements Initializable {
 		}
 		if (algorithm != null) {
 			Problem<?> problem = registrableProblem.getProblem();
-			MonoObjectiveRunningWindowController runningDialogController = new MonoObjectiveRunningWindowController(algorithm, problem,
-					this.network);
+			SingleObjectiveRunningWindowController runningDialogController = new SingleObjectiveRunningWindowController(algorithm, problem,
+					this.network, this::createResultTab);
 			runningDialogController.showWindowAndRunAlgorithm();
 		}
 
@@ -225,9 +248,42 @@ public class MainWindowController implements Initializable {
 		if (experiment != null) {
 			Problem<?> problem = registrableProblem.getProblem();
 			MultiObjectiveRunningWindowController runningDialogController = new MultiObjectiveRunningWindowController(experiment, problem,
-					this.network);
+					this.network, this::createResultTab);
 			runningDialogController.showWindowAndRunAlgorithm();
 		}
-
 	}
+
+	private int resultCount = 0;
+	/**
+	 * Create a new result tab
+	 * @param resultController the result controller
+	 */
+	private void createResultTab(ResultController resultController){
+		Tab tab = new Tab("Result " + resultCount++, resultController.getNode());
+		tab.setOnSelectionChanged(event -> {
+			if (tab.selectedProperty().getValue()){ // add bind when select the tab
+				this.saveTableButton.setDisable(false);
+				this.saveSelectedAsINPButton.disableProperty().bind(resultController.hasSelectedItemProperty().not());
+				//save the selected items
+				this.saveSelectedAsINPButton.setOnAction(event1 -> {
+					resultController.saveSelectedItemAsINP();
+				});
+				//save the table
+				this.saveTableButton.setOnAction(event1 -> resultController.saveTable());
+			}
+		});
+
+		tab.setOnClosed(event -> { // remove the bind when switch tab
+			tab.setOnSelectionChanged(null);
+			tab.setOnClosed(null);
+		});
+		this.tabPane.getTabs().addAll(tab);
+		this.tabPane.getSelectionModel().select(tab);
+	}
+
+	/**
+	 * The network tab. This is the tab by default and you must not close it.
+	 */
+	@FXML
+	private Tab networkTab;
 }

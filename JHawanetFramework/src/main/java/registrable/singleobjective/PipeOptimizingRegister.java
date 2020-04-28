@@ -1,18 +1,9 @@
-package controller.problems;
+package registrable.singleobjective;
 
-import java.io.File;
-import java.util.List;
-
-import annotations.registrable.FileInput;
-import annotations.registrable.NewProblem;
-import annotations.registrable.NumberInput;
-import annotations.registrable.NumberToggleInput;
-import annotations.registrable.OperatorInput;
-import annotations.registrable.OperatorOption;
-import annotations.registrable.Parameters;
+import annotations.registrable.*;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
-import model.metaheuristic.algorithm.monoobjective.GeneticAlgorithm2;
+import model.metaheuristic.algorithm.singleobjective.GeneticAlgorithm2;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.crossover.impl.IntegerSBXCrossover;
 import model.metaheuristic.operator.crossover.impl.IntegerSinglePointCrossover;
@@ -24,6 +15,11 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.UniformSelection;
 import model.metaheuristic.problem.impl.PipeOptimizing;
 import model.metaheuristic.solution.impl.IntegerSolution;
+import registrable.Registrable;
+import registrable.SingleObjectiveRegistrable;
+
+import java.io.File;
+import java.util.List;
 
 /**
  * Class that describe the problem to be showned in menu of problem in the
@@ -33,7 +29,7 @@ import model.metaheuristic.solution.impl.IntegerSolution;
  * The sistem read this class using reflection to get the annotation and create
  * a GUI to configure the algorithm and inject the value to injectable method.
  */
-public final class PipeOptimizingRegister extends MonoObjectiveRegistrable {
+public final class PipeOptimizingRegister implements SingleObjectiveRegistrable {
     private final SelectionOperator<List<IntegerSolution>, List<IntegerSolution>> selection;
     private final CrossoverOperator<IntegerSolution> crossover;
     private final MutationOperator<IntegerSolution> mutation;

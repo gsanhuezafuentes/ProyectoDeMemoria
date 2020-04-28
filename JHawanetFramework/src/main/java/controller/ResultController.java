@@ -1,31 +1,31 @@
 package controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.Objects;
-
 import exception.ApplicationException;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.event.ActionEvent;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import model.epanet.element.Network;
 import model.epanet.io.OutputInpWriter;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.io.SolutionListOutput;
+import org.jetbrains.annotations.NotNull;
 import view.utils.CustomDialogs;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * This class is the controller of result window. <br>
@@ -36,21 +36,19 @@ import view.utils.CustomDialogs;
  * @author gsanh
  *
  */
-public class ResultWindowController {
+public class ResultController {
 	private final Pane root;
 
 	@FXML
 	private TableView<Solution<?>> resultTable;
-	@FXML
-	private Button saveButton;
-	@FXML
-	private Button saveAsINPButton;
 
-	private final List<? extends Solution<?>> solutionList;
+	@NotNull private final List<? extends Solution<?>> solutionList;
 
-	private final Problem<?> problem;
+	@NotNull private final Problem<?> problem;
 
-	private final Network network;
+	@NotNull private final Network network;
+
+	@NotNull BooleanProperty hasSelectedItem;
 
 	/**
 	 * Constructor.
@@ -61,7 +59,7 @@ public class ResultWindowController {
 	 * @throws NullPointerException if solutions is null or problem is null or
 	 *                              network is null.
 	 */
-	public ResultWindowController(List<? extends Solution<?>> solutions, Problem<?> problem, Network network) {
+	public ResultController(List<? extends Solution<?>> solutions, Problem<?> problem, Network network) {
 		Objects.requireNonNull(solutions);
 		Objects.requireNonNull(problem);
 		Objects.requireNonNull(network);
@@ -70,6 +68,7 @@ public class ResultWindowController {
 		this.solutionList = solutions;
 		this.problem = problem;
 		this.network = network;
+		this.hasSelectedItem = new SimpleBooleanProperty();
 
 		configureResultTable();
 		addBinding();
@@ -82,7 +81,7 @@ public class ResultWindowController {
 	 * @throws ApplicationException if there is an error in load the .fxml.
 	 */
 	private Pane loadFXML() {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ResultWindow.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Result.fxml"));
 		fxmlLoader.setController(this);
 		try {
 			return fxmlLoader.load();
@@ -101,7 +100,7 @@ public class ResultWindowController {
 			int numberOfObjectives = this.solutionList.get(0).getNumberOfObjectives();
 			int numberOfDecisionVariables = this.solutionList.get(0).getNumberOfVariables();
 
-			// add column for the objetives
+			// add column for the objectives
 			for (int i = 0; i < numberOfObjectives; i++) {
 				final int index = i;
 				TableColumn<Solution<?>, String> column = new TableColumn<>("Objective " + (i + 1));
@@ -129,23 +128,21 @@ public class ResultWindowController {
 	 * Method to add binding to nodes
 	 */
 	private void addBinding() {
-		saveAsINPButton.disableProperty().bind(this.resultTable.getSelectionModel().selectedItemProperty().isNull());
+		this.hasSelectedItem.bind(this.resultTable.getSelectionModel().selectedItemProperty().isNotNull());
 	}
 
 	/**
-	 * Event handler when save as inp button is pressed.
+	 * Save selected item as INP
 	 * 
-	 * @param event the event
 	 */
 	@SuppressWarnings("unused") // This method is configure from fxml file
-	@FXML
-	private void onSaveAsINPButtonClick(ActionEvent event) {
+	public void saveSelectedItemAsINP() {
 		Solution<?> solution = this.resultTable.getSelectionModel().getSelectedItem();
 
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Save solution as INP");
 
-		File file = fileChooser.showSaveDialog(this.saveButton.getScene().getWindow());
+		File file = fileChooser.showSaveDialog(this.resultTable.getScene().getWindow());
 		if (file != null) {
 			Network netCopy = this.problem.applySolutionToNetwork(this.network.copy(), solution);
 			if (netCopy != null) {
@@ -168,17 +165,14 @@ public class ResultWindowController {
 	}
 
 	/**
-	 * Event handler when save table is pressed.
-	 * 
-	 * @param event the event
+	 * Save table.
 	 */
 	@SuppressWarnings("unused") // is configure from fxml file
-	@FXML
-	private void onSaveButtonClick(ActionEvent event) {
+	public void saveTable() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Save table");
 
-		File file = fileChooser.showSaveDialog(this.saveButton.getScene().getWindow());
+		File file = fileChooser.showSaveDialog(this.resultTable.getScene().getWindow());
 		if (file != null) {
 			SolutionListOutput output = new SolutionListOutput(this.solutionList)
 					.setFunFileName(Paths.get(file.getParent(), "FUN_" + file.getName()).toString())
@@ -195,11 +189,15 @@ public class ResultWindowController {
 	/**
 	 * Show the associated window
 	 */
-	public void showAssociatedWindow() {
-		Stage stage = new Stage();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.sizeToScene();
-		stage.show();
+	public Node getNode() {
+		return root;
+	}
+
+	public boolean hasSelectedItem() {
+		return hasSelectedItem.get();
+	}
+
+	public @NotNull BooleanProperty hasSelectedItemProperty() {
+		return hasSelectedItem;
 	}
 }

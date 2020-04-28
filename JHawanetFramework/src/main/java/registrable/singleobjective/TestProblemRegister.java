@@ -1,19 +1,20 @@
-package controller.problems;
-
-import java.util.List;
+package registrable.singleobjective;
 
 import annotations.registrable.NewProblem;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
-import model.metaheuristic.algorithm.monoobjective.GeneticAlgorithm2;
+import model.metaheuristic.algorithm.singleobjective.GeneticAlgorithm2;
 import model.metaheuristic.operator.crossover.impl.IntegerSinglePointCrossover;
 import model.metaheuristic.operator.mutation.impl.IntegerSimpleRandomMutation;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.UniformSelection;
 import model.metaheuristic.problem.impl.PipeOptimizing;
 import model.metaheuristic.solution.impl.IntegerSolution;
+import registrable.SingleObjectiveRegistrable;
 
-public final class TestProblemRegister extends MonoObjectiveRegistrable {
+import java.util.List;
+
+public final class TestProblemRegister implements SingleObjectiveRegistrable {
 	private PipeOptimizing problem;
 
 	@NewProblem(displayName = "Pipe Optimizing Hanoi", algorithmName = "Genetic Algorithm")

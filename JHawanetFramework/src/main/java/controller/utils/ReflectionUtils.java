@@ -1,5 +1,10 @@
 package controller.utils;
 
+import annotations.operators.DefaultConstructor;
+import annotations.registrable.*;
+import exception.ApplicationException;
+import registrable.Registrable;
+
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -7,17 +12,6 @@ import java.lang.reflect.Parameter;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
-import annotations.operators.DefaultConstructor;
-import annotations.registrable.FileInput;
-import annotations.registrable.NewProblem;
-import annotations.registrable.NumberInput;
-import annotations.registrable.NumberToggleInput;
-import annotations.registrable.OperatorInput;
-import annotations.registrable.OperatorOption;
-import annotations.registrable.Parameters;
-import controller.problems.Registrable;
-import exception.ApplicationException;
 
 /**
  * Utility class with method to get info of class using reflection and validate

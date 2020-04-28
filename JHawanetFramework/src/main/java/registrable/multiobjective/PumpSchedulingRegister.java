@@ -1,8 +1,4 @@
-package controller.problems;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+package registrable.multiobjective;
 
 import annotations.registrable.NewProblem;
 import model.metaheuristic.algorithm.Algorithm;
@@ -21,6 +17,11 @@ import model.metaheuristic.problem.Problem;
 import model.metaheuristic.problem.impl.VanzylOriginal;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.comparator.DominanceComparator;
+import registrable.MultiObjectiveRegistrable;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class PumpSchedulingRegister implements MultiObjectiveRegistrable {
 

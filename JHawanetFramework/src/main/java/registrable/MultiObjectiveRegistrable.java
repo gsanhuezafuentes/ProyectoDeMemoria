@@ -1,18 +1,14 @@
-package controller.problems;
+package registrable;
 
-import annotations.registrable.FileInput;
-import annotations.registrable.NewProblem;
-import annotations.registrable.NumberInput;
-import annotations.registrable.NumberToggleInput;
-import annotations.registrable.OperatorInput;
-import annotations.registrable.OperatorOption;
-import annotations.registrable.Parameters;
+import annotations.registrable.*;
 import model.metaheuristic.algorithm.Algorithm;
+import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.operator.Operator;
 import model.metaheuristic.problem.Problem;
+import registrable.multiobjective.PumpSchedulingRegister;
 
 /**
- * It class let configure the algorithm and his operator to a monoobjective
+ * It class let configure the algorithm and his operator to a multiobjective
  * problem give to know the problem to the GUI. <br>
  * <br>
  * 
@@ -87,21 +83,22 @@ import model.metaheuristic.problem.Problem;
  * {@link NumberToggleInput#groupID()} are the same. <br>
  * <br>
  * 
- * A example is showed in the class {@link PipeOptimizingRegister}.
+ * A example is showed in the class {@link PumpSchedulingRegister}.
  *
  */
-public interface Registrable<R> {
+public interface MultiObjectiveRegistrable extends Registrable<Experiment<?>> {
 
 	/**
-	 * Builds a new algorithm and leaves it ready for execution. This method will be
+	 * Builds a new experiment and leaves it ready for execution. This method will be
 	 * called by the GUI when resolve the problem in the network opened. The call
 	 * include the path of the inp file of the opened network.
 	 * 
 	 * @param inpPath the path of inp file, or null if there isn't a network opened.
-	 * @return the algorithm ready for execution
+	 * @return the experiment ready for execution
 	 * @throws Exception if an exception occurs when building the algorithm
 	 */
-	R build(String inpPath) throws Exception;
+	@Override
+	Experiment<?> build(String inpPath) throws Exception;
 
 	/**
 	 * Get the problem associated to {@link Algorithm} when {@link #build(String)}
@@ -111,6 +108,7 @@ public interface Registrable<R> {
 	 *         {@link #build(String) already was called} by {@link #build(String)}
 	 *         or null in other case.
 	 */
+	@Override
 	Problem<?> getProblem();
 
 }

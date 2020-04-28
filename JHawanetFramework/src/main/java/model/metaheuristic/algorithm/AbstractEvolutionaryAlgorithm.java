@@ -23,11 +23,11 @@
  */
 package model.metaheuristic.algorithm;
 
-import java.util.List;
-
 import epanet.core.EpanetException;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
+
+import java.util.List;
 
 /**
  * 

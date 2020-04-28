@@ -28,10 +28,10 @@
  */
 package model.metaheuristic.utils.comparator;
 
-import java.util.Comparator;
-
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.solutionattribute.DominanceRanking;
+
+import java.util.Comparator;
 
 /**
  * This class implements a comparator based on the rank of the solutions.

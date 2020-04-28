@@ -28,16 +28,12 @@
  */
 package model.metaheuristic.utils.solutionattribute;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
 import exception.ApplicationException;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.comparator.DominanceComparator;
 import model.metaheuristic.utils.comparator.OverallConstraintViolationComparator;
+
+import java.util.*;
 
 /**
  * This class implements some facilities for ranking set of solutions. Given a

@@ -1,27 +1,29 @@
 package controller;
 
+import exception.ApplicationException;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.chart.ScatterChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.layout.Pane;
+import model.metaheuristic.solution.Solution;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-import exception.ApplicationException;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.chart.ScatterChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import model.metaheuristic.solution.Solution;
+public class ResultPlotController {
 
-public class ResultPlotWindowController {
-
-	private final Pane root;
+	@NotNull private final Pane root;
 	private final int numberOfObjectives;
 
 	@FXML
 	private ScatterChart<Number, Number> resultsPlot;
-	private XYChart.Series<Number, Number> defaultSerie;
+
+	@Nullable private XYChart.Series<Number, Number> defaultSerie;
 
 	/**
 	 * Constructor of the controller of ResultPlotWindow
@@ -30,10 +32,10 @@ public class ResultPlotWindowController {
 	 * @throws IllegalArgumentException if the number of objectives is distinct to
 	 *                                  one or two.
 	 */
-	public ResultPlotWindowController(int numberOfObjectives) {
+	public ResultPlotController(int numberOfObjectives) {
 		if (numberOfObjectives != 1 && numberOfObjectives != 2) {
 			throw new IllegalArgumentException(
-					"The plot only support one until two objectives, but the number of objectived received is "
+					"The plot only support one until two objectives, but the number of objectives received is "
 							+ numberOfObjectives);
 		}
 		this.numberOfObjectives = numberOfObjectives;
@@ -63,7 +65,7 @@ public class ResultPlotWindowController {
 	 * @throws ApplicationException if there is an error in load the .fxml.
 	 */
 	private Pane loadFXML() {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ResultPlotWindow.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ResultPlot.fxml"));
 		fxmlLoader.setController(this);
 		try {
 			return fxmlLoader.load();
@@ -73,20 +75,20 @@ public class ResultPlotWindowController {
 	}
 
 	/**
-	 * Add data to plot. If the number of objectives is 1, so the plot was betweet
+	 * Add data to plot. If the number of objectives is 1, so the plot was between
 	 * objectives and the number of iteration. If the number of objectives is 2, so
 	 * the plot was between objective1 and objective2.
 	 * 
 	 * @param solutionList    the solution list
 	 * @param iterationNumber a number used has the x-axis when the solution is of a
-	 *                        monoobjetive problem. if solution is multiobjective
+	 *                        singleobjective problem. if solution is multiobjective
 	 *                        this number is ignored.
 	 * @throws NullPointerException if solutionList is null
 	 */
 	public void addData(List<? extends Solution<?>> solutionList, int iterationNumber) {
 		Objects.requireNonNull(solutionList);
 
-		if (this.numberOfObjectives == 1) {
+		if (this.numberOfObjectives == 1) { // use objective / number of iteration
 			if (this.defaultSerie == null) {
 				this.defaultSerie = new XYChart.Series<>();
 				this.defaultSerie.setName("Solution");
@@ -95,7 +97,7 @@ public class ResultPlotWindowController {
 			for (Solution<?> solution : solutionList) {
 				this.defaultSerie.getData().add(new XYChart.Data<>(iterationNumber, solution.getObjective(0)));
 			}
-		} else { // is 2
+		} else { // is 2. Use objective1 vs Objective2
 			XYChart.Series<Number, Number> series = new XYChart.Series<>();
 			series.setName("Solution");
 
@@ -107,17 +109,10 @@ public class ResultPlotWindowController {
 	}
 
 	/**
-	 * Show the associated window
+	 * Return the node view associated to this controller
+	 * @return the node
 	 */
-	public void showAssociatedWindow() {
-		if (stage == null){
-			stage = new Stage();
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			stage.sizeToScene();
-		}
-		stage.show();
+	public Node getNode(){
+		return this.root;
 	}
-
-	private Stage stage;
 }

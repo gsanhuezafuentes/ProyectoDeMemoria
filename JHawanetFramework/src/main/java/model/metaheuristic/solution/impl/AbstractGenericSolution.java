@@ -28,14 +28,10 @@
  */
 package model.metaheuristic.solution.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
+
+import java.util.*;
 
 /**
  * Is a abstract class with some method defined by default to new solutions
@@ -129,7 +125,7 @@ public abstract class AbstractGenericSolution<T, P extends Problem<?>> implement
 	}
 
 	/**
-	 * Initialize the objetives variables
+	 * Initialize the objectives variables
 	 */
 	private void initializeObjectiveValues() {
 		for (int i = 0; i < this.problem.getNumberOfObjectives(); i++) {
