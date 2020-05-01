@@ -25,6 +25,7 @@ public class PipeOptimizingSolutionEvaluator {
      */
     public void evaluate(IntegerSolution solution, List<Gama> gamas, EpanetAPI epanet)
             throws EpanetException {
+
         int numberOfInfactibilities = 0;
         double infactibilityGrade = 0;
         int nDecisionVariables = solution.getNumberOfVariables();

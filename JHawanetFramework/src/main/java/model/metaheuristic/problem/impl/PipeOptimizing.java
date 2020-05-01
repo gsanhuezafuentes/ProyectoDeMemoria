@@ -35,7 +35,7 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	private int lowerBound;
 	private int upperBound;
 	private String networkGama;
-
+	private final PipeOptimizingSolutionEvaluator evaluator;
 	private EpanetAPI epanet;
 
 	private List<Gama> gamas;
@@ -66,6 +66,7 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 		this.networkGama = networkGama;
 		this.epanet = epanet;
 		this.minPressure = minPressure;
+		this.evaluator = new PipeOptimizingSolutionEvaluator(this.minPressure);
 		initialize();
 	}
 
@@ -109,7 +110,6 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	@Override
 	public void evaluate(IntegerSolution solution) throws EpanetException { // Puede ser necesario agregar la excepcion
 																			// de epanet
-		PipeOptimizingSolutionEvaluator evaluator = new PipeOptimizingSolutionEvaluator(this.minPressure);
 		double cost = 0;
 
 		for (int i = 0; i < getNumberOfVariables(); i++) {
