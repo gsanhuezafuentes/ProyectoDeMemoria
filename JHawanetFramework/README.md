@@ -75,3 +75,5 @@ Dependiendo de la unidad de flujo (*Flow*) escogida, el sistema de unidades camb
 
 ![US Units](assets/USUnits.png)
 
+### Nota 5:
+Se debe tener cuidado con el *encoding* de los archivos. Por defecto, el programa lee ISO-8859-1. Pero para evitar cualquier error, mejor asegurar que los archivos de red no contengan caracteres raros como ´,ñ, etc.

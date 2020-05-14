@@ -24,6 +24,8 @@ import java.util.List;
 
 public final class ParseNetworkToINPString {
 
+	private ParseNetworkToINPString(){}
+
 	/**
 	 * Create a string with the config of network in the format of inp file
 	 * 

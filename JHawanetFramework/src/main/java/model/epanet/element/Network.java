@@ -95,7 +95,6 @@ public final class Network {
         this.pipeList = new ArrayList<>();
         this.PumpList = new ArrayList<>();
         this.valveList = new ArrayList<>();
-
     }
 
     /**

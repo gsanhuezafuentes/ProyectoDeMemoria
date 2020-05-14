@@ -2,15 +2,15 @@ package model.epanet.element.networkcomponent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.result.LinkSimulationResult;
+import model.epanet.element.result.NodeSimulationResult;
 import model.epanet.element.utils.Point;
 import model.epanet.element.waterquality.Quality;
 import model.epanet.element.waterquality.Source;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public abstract class Node extends Component {
     @NotNull
@@ -22,7 +22,10 @@ public abstract class Node extends Component {
     @Nullable
     private Source sourceQuality;
 
-    public Node() {
+    @Nullable
+    private transient List<NodeSimulationResult> simulationResults;
+
+    Node() {
         this.id = "";
     }
 
@@ -35,7 +38,7 @@ public abstract class Node extends Component {
      * @param node the node to copy
      * @throws NullPointerException if node is null
      */
-    public Node(@NotNull Node node) {
+    Node(@NotNull Node node) {
         super(Objects.requireNonNull(node));
         this.id = node.id;
         this.position = node.position;
@@ -119,6 +122,22 @@ public abstract class Node extends Component {
      */
     public void setSourceQuality(@Nullable Source sourceQuality) {
         this.sourceQuality = sourceQuality;
+    }
+
+    /**
+     * Get the simulation results
+     * @return the simulation result if exist or a empty list
+     */
+    public @NotNull List<NodeSimulationResult> getSimulationResults() {
+        return simulationResults != null ? simulationResults : Collections.emptyList();
+    }
+
+    /**
+     * Set the simulation results.
+     * @param simulationResults the simulation result or null if not exist
+     */
+    public void setSimulationResults(@Nullable List<NodeSimulationResult> simulationResults) {
+        this.simulationResults = simulationResults;
     }
 
     @Override

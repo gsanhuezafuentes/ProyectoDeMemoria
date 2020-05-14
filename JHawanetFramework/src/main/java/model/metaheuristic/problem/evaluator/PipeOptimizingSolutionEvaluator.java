@@ -1,4 +1,4 @@
-package model.metaheuristic.evaluator;
+package model.metaheuristic.problem.evaluator;
 
 import epanet.core.*;
 import model.epanet.element.Gama;

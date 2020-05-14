@@ -2,6 +2,7 @@ package model.epanet.element.networkcomponent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.result.LinkSimulationResult;
 import model.epanet.element.utils.Point;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -14,8 +15,10 @@ public abstract class Link extends Component {
     @Nullable private Node node1;
     @Nullable private Node node2;
     private final @NotNull List<Point> vertices;
+    @Nullable
+    private transient List<LinkSimulationResult> simulationResults;
 
-    public Link() {
+    Link() {
         this.id = "";
         this.vertices = new ArrayList<>();
     }
@@ -32,7 +35,7 @@ public abstract class Link extends Component {
      * @param link the object to copy
      * @throws NullPointerException if link is null
      */
-    public Link(@NotNull Link link) {
+    Link(@NotNull Link link) {
         super(Objects.requireNonNull(link));
         this.vertices = new ArrayList<>();
         this.id = link.id;
@@ -108,6 +111,22 @@ public abstract class Link extends Component {
     public void setNode2(@NotNull Node node2) {
         Objects.requireNonNull(node2);
         this.node2 = node2;
+    }
+
+    /**
+     * Get the simulation results
+     * @return the simulation result if exist or a empty list
+     */
+    public @NotNull List<LinkSimulationResult> getSimulationResults() {
+        return simulationResults != null ? simulationResults : Collections.emptyList();
+    }
+
+    /**
+     * Set the simulation results.
+     * @param simulationResults the simulation result or null if not exist
+     */
+    public void setSimulationResults(@Nullable List<LinkSimulationResult> simulationResults) {
+        this.simulationResults = simulationResults;
     }
 
     @Override

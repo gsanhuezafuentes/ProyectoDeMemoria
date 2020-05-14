@@ -40,7 +40,7 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) throws IOException {
-		System.out.println(System.getProperty("java.class.path").replace(";","\n"));
+//		System.out.println(System.getProperty("java.class.path").replace(";","\n"));
 		launch(args);
 	}
 }
