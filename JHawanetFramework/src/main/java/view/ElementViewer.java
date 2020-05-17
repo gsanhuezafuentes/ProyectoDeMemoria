@@ -10,38 +10,40 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import model.epanet.element.Network;
 import model.epanet.element.networkcomponent.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Component that show the selected element of the network in the main window.
  *
  */
 public class ElementViewer extends VBox {
-	private ObjectProperty<Object> selected;
-	private Accordion accordion;
-	private ListView<Junction> junctionList;
-	private ListView<Reservoir> reservoirList;
-	private ListView<Tank> tankList;
-	private ListView<Pipe> pipeList;
-	private ListView<Pump> pumpList;
-	private ListView<Valve> valveList;
-//	private ListView<Curve> curveList;
-//	private ListView<Pattern> patternList;
+	@NotNull private final  ObjectProperty<Object> selected;
+	@NotNull private final  Accordion accordion;
+	@NotNull private final  ListView<Junction> junctionList;
+	@NotNull private final  ListView<Reservoir> reservoirList;
+	@NotNull private final ListView<Tank> tankList;
+	@NotNull private final ListView<Pipe> pipeList;
+	@NotNull private final ListView<Pump> pumpList;
+	@NotNull private final ListView<Valve> valveList;
+//	private final ListView<Curve> curveList;
+//	private final ListView<Pattern> patternList;
 	/*
 	 * This list contains Option, QualityOption, ReactionOption, Time, EnergyOption,
 	 * Report
 	 */
 //	private ListView<Object> optionList;
-	
-	private ObjectProperty<Network> network;
-	private TitledPane junctionTitled;
-	private TitledPane reservoirTitled;
-	private TitledPane tankTitled;
-	private TitledPane pipeTitled;
-	private TitledPane pumpTitled;
-	private TitledPane valveTitled;
-//	private TitledPane curveTitled;
-//	private TitledPane patternTitled;
-//	private TitledPane optionTitled;
+
+	@NotNull private final ObjectProperty<Network> network;
+	@NotNull private final TitledPane junctionTitled;
+	@NotNull private final TitledPane reservoirTitled;
+	@NotNull private final TitledPane tankTitled;
+	@NotNull private final TitledPane pipeTitled;
+	@NotNull private final TitledPane pumpTitled;
+	@NotNull private final TitledPane valveTitled;
+//	private final TitledPane curveTitled;
+//	private final TitledPane patternTitled;
+//	private final TitledPane optionTitled;
 
 	public ElementViewer() {
 		this.selected = new SimpleObjectProperty<Object>();
@@ -95,7 +97,7 @@ public class ElementViewer extends VBox {
 		 */
 		this.junctionList.setCellFactory((listView) -> new ListCell<Junction>() {
 			@Override
-			protected void updateItem(Junction item, boolean empty) {
+			protected void updateItem(@Nullable Junction item, boolean empty) {
 				super.updateItem(item, empty);
 				if (item != null) {
 					setText(item.getId());
@@ -107,7 +109,7 @@ public class ElementViewer extends VBox {
 
 		this.reservoirList.setCellFactory((listView) -> new ListCell<Reservoir>() {
 			@Override
-			protected void updateItem(Reservoir item, boolean empty) {
+			protected void updateItem(@Nullable Reservoir item, boolean empty) {
 				super.updateItem(item, empty);
 				if (item != null) {
 					setText(item.getId());
@@ -119,7 +121,7 @@ public class ElementViewer extends VBox {
 
 		this.tankList.setCellFactory((listView) -> new ListCell<Tank>() {
 			@Override
-			protected void updateItem(Tank item, boolean empty) {
+			protected void updateItem(@Nullable Tank item, boolean empty) {
 				super.updateItem(item, empty);
 				if (item != null) {
 					setText(item.getId());
@@ -131,7 +133,7 @@ public class ElementViewer extends VBox {
 
 		this.pipeList.setCellFactory((listView) -> new ListCell<Pipe>() {
 			@Override
-			protected void updateItem(Pipe item, boolean empty) {
+			protected void updateItem(@Nullable Pipe item, boolean empty) {
 				super.updateItem(item, empty);
 				if (item != null) {
 					setText(item.getId());
@@ -142,7 +144,7 @@ public class ElementViewer extends VBox {
 		});
 		this.pumpList.setCellFactory((listView) -> new ListCell<Pump>() {
 			@Override
-			protected void updateItem(Pump item, boolean empty) {
+			protected void updateItem(@Nullable Pump item, boolean empty) {
 				super.updateItem(item, empty);
 				if (item != null) {
 					setText(item.getId());
@@ -153,7 +155,7 @@ public class ElementViewer extends VBox {
 		});
 		this.valveList.setCellFactory((listView) -> new ListCell<Valve>() {
 			@Override
-			protected void updateItem(Valve item, boolean empty) {
+			protected void updateItem(@Nullable Valve item, boolean empty) {
 				super.updateItem(item, empty);
 				if (item != null) {
 					setText(item.getId());
@@ -221,6 +223,15 @@ public class ElementViewer extends VBox {
 	 * Add the binding and listener to element in this component
 	 */
 	private void addBindingAndListener() {
+		// When the network is loaded or change so update the element viewer
+		this.network.addListener((prop, oldV, newV) -> {
+			cleanLists();
+			setSelected(null);
+			if (newV != null) {
+				fillLists(newV);
+			}
+		});
+
 		// Configure the action when the selected element change
 		this.selected.addListener((prop, oldV, newV) -> {
 			/*
@@ -282,17 +293,7 @@ public class ElementViewer extends VBox {
 			}
 			if (newV != null) {
 				DataDisplayWindow dataWindow = DataDisplayWindow.getInstance();
-
 				dataWindow.setData(getSelected());
-			}
-		});
-
-		// When the network is loaded or change so update the element viewer
-		this.network.addListener((prop, oldV, newV) -> {
-			cleanLists();
-			setSelected(null);
-			if (newV != null) {
-				fillLists(newV);
 			}
 		});
 
@@ -446,9 +447,9 @@ public class ElementViewer extends VBox {
 	/**
 	 * Fill the listview with the element of network and select a element by default
 	 * 
-	 * @param network
+	 * @param network the network
 	 */
-	private void fillLists(Network network) {
+	private void fillLists(@NotNull Network network) {
 		// Add elements and try to select the first element if it exist
 		junctionList.getItems().addAll(network.getJunctions());
 		junctionList.getSelectionModel().select(0);
@@ -500,7 +501,7 @@ public class ElementViewer extends VBox {
 	 * 
 	 * @return the selected property
 	 */
-	public ObjectProperty<Object> selectedProperty() {
+	public @NotNull ObjectProperty<Object> selectedProperty() {
 		return this.selected;
 	}
 
@@ -525,10 +526,25 @@ public class ElementViewer extends VBox {
 	/**
 	 * Set the network. If the network is removed so send null.
 	 * 
-	 * @param network the network
+	 * @param network the network or null if network isn't loaded
 	 */
-	public void setNetwork(Network network) {
+	public void setNetwork(@Nullable Network network) {
 		this.network.set(network);
 	}
 
+	/**
+	 * Get the network
+	 * @return the network
+	 */
+	public Network getNetwork() {
+		return network.get();
+	}
+
+	/**
+	 * Get the network property
+	 * @return the network property
+	 */
+	public @NotNull ObjectProperty<Network> networkProperty() {
+		return network;
+	}
 }
