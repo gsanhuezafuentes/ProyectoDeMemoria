@@ -3,15 +3,12 @@ package model.epanet.element.utils;
 import epanet.core.*;
 import exception.ApplicationException;
 import model.epanet.element.Network;
-import model.epanet.element.networkcomponent.Link;
-import model.epanet.element.networkcomponent.Node;
 import model.epanet.element.result.LinkSimulationResult;
 import model.epanet.element.result.NodeSimulationResult;
 import model.epanet.io.InpParser;
 
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * This class realize a total simulation with the predefined configuration of inp file indicated
@@ -20,18 +17,72 @@ import java.util.List;
  */
 public final class HydraulicSimulation {
 
-    private HydraulicSimulation() {
+    private final String inpPath;
+    private List<String> times;
+    private List<List<NodeSimulationResult>> nodeResult; // row: nodos, column: time
+    private List<List<LinkSimulationResult>> linkResult; // row: nodos, column: time
+    private Map<String, Integer> nodeIndex; // map id of node to index in nodeResult
+    private Map<String, Integer> linkIndex; // map id of link to index in linkResult
+
+
+    private HydraulicSimulation(String inpPath) {
+        this.inpPath = inpPath;
     }
 
     /**
      * Run the total simulation and save result in the network object
      *
      * @param inpPath the inp file
-     * @param network The network object corresponding to the inp file
-     * @throws ApplicationException if there is a error when DLL is loaded
-     * @throws EpanetException      if there is an error in simulation
+     * @throws NullPointerException     if inpPath is null
+     * @throws IllegalArgumentException if inpPath is a empty string
+     * @throws ApplicationException     if there is a error when DLL is loaded
+     * @throws EpanetException          if there is an error in simulation
      */
-    public static void run(String inpPath, Network network) throws ApplicationException, EpanetException {
+    public static HydraulicSimulation run(String inpPath) throws ApplicationException, EpanetException {
+        Objects.requireNonNull(inpPath);
+        if (inpPath.isEmpty()) throw new IllegalArgumentException("inpPath can not be an empty string");
+
+        HydraulicSimulation instance = new HydraulicSimulation(inpPath);
+        instance.run();
+        return instance;
+    }
+
+    /**
+     * Initialize the list of nodeResult
+     *
+     * @param nelement number of elements in list
+     */
+    private void initializeNodeList(int nelement) {
+        this.nodeIndex = new HashMap<>(nelement);
+        this.nodeResult = new ArrayList<>(nelement);
+        for (int i = 0; i < nelement; i++) {
+            this.nodeResult.add(new ArrayList<>());
+        }
+    }
+
+    /**
+     * Initialize the list of linkResult
+     *
+     * @param nelement number of element in list
+     */
+    private void initializeLinkList(int nelement) {
+        this.linkIndex = new HashMap<>(nelement);
+        this.linkResult = new ArrayList<>(nelement);
+        for (int i = 0; i < nelement; i++) {
+            this.linkResult.add(new ArrayList<>());
+        }
+    }
+
+    /**
+     * Initialize the hour list
+     *
+     * @param nelement number of elements in list
+     */
+    private void initializeTimesList(int nelement) {
+        this.times = new ArrayList<>(nelement);
+    }
+
+    private void run() throws ApplicationException, EpanetException {
         try {
             EpanetAPI epanet = new EpanetAPI();
             epanet.ENopen(inpPath, "defaultSimulation.rpt", "");
@@ -52,6 +103,11 @@ public final class HydraulicSimulation {
             int nodeCount = epanet.ENgetcount(Components.EN_NODECOUNT);
             int linkCount = epanet.ENgetcount(Components.EN_LINKCOUNT);
 
+            // initialize the list where result are saved
+            initializeTimesList((int) numberOfElement);
+            initializeNodeList(nodeCount);
+            initializeLinkList(linkCount);
+
             //long t, tstep;
             long[] tstep = {1};
             long[] t = {0};
@@ -65,29 +121,21 @@ public final class HydraulicSimulation {
                     long minute = (t[0] - (3600 * hour)) / 60;
                     long second = t[0] - ((3600 * hour) + (minute * 60));
 //                    System.out.printf("%02d:%02d:%02d\n", hour, minute, second);
+                    times.add(timeToStringTime(t[0]));
 
-                    // performance?
                     for (int i = 1; i <= nodeCount; i++) {
-                        String nodeId = epanet.ENgetnodeid(i);
-                        Node node = network.getNode(nodeId);
-                        assert node != null;
-                        List<NodeSimulationResult> simulationResults = node.getSimulationResults();
-                        if (simulationResults.isEmpty()) {
-                            simulationResults = new ArrayList<>();
-                            node.setSimulationResults(simulationResults);
+                        NodeSimulationResult result = getNodeResult(t[0], i, epanet);
+                        this.nodeResult.get(i - 1).add(result);
+                        if (!nodeIndex.containsKey(result.getId())) {
+                            nodeIndex.put(result.getId(), i - 1);
                         }
-                        simulationResults.add(getNodeResult(t[0], i, epanet));
                     }
                     for (int i = 1; i <= linkCount; i++) {
-                        String linkId = epanet.ENgetlinkid(i);
-                        Link link = network.getLink(linkId);
-                        assert link != null;
-                        List<LinkSimulationResult> simulationResults = link.getSimulationResults();
-                        if (simulationResults.isEmpty()) {
-                            simulationResults = new ArrayList<>();
-                            link.setSimulationResults(simulationResults);
+                        LinkSimulationResult result = getLinkResult(t[0], i, epanet);
+                        this.linkResult.get(i - 1).add(result);
+                        if (!linkIndex.containsKey(result.getId())) {
+                            linkIndex.put(result.getId(), i - 1);
                         }
-                        simulationResults.add(getLinkResult(t[0], i, epanet));
                     }
                 }
                 epanet.ENnextH(tstep);
@@ -109,12 +157,13 @@ public final class HydraulicSimulation {
      * @param epanet        the simulation engine
      * @return the result of the simulation
      */
-    private static NodeSimulationResult getNodeResult(long timeInSeconds, int index, EpanetAPI epanet) throws EpanetException {
+    private NodeSimulationResult getNodeResult(long timeInSeconds, int index, EpanetAPI epanet) throws EpanetException {
+        String nodeId = epanet.ENgetnodeid(index);
         final double demand = epanet.ENgetnodevalue(index, NodeParameters.EN_DEMAND);
         final double head = epanet.ENgetnodevalue(index, NodeParameters.EN_HEAD);
         final double pressure = epanet.ENgetnodevalue(index, NodeParameters.EN_PRESSURE);
         final double quality = epanet.ENgetnodevalue(index, NodeParameters.EN_QUALITY);
-        return new NodeSimulationResult(timeInSeconds, demand, head, pressure, quality);
+        return new NodeSimulationResult(nodeId, timeInSeconds, demand, head, pressure, quality);
     }
 
     /**
@@ -125,13 +174,13 @@ public final class HydraulicSimulation {
      * @param epanet        the simulation engine
      * @return the result of the simulation
      */
-    private static LinkSimulationResult getLinkResult(long timeInSeconds, int index, EpanetAPI epanet) throws EpanetException {
+    private LinkSimulationResult getLinkResult(long timeInSeconds, int index, EpanetAPI epanet) throws EpanetException {
+        String linkId = epanet.ENgetlinkid(index);
         final float flow = epanet.ENgetlinkvalue(index, LinkParameters.EN_FLOW)[0];
         final float velocity = epanet.ENgetlinkvalue(index, LinkParameters.EN_VELOCITY)[0];
         final float headloss = epanet.ENgetlinkvalue(index, LinkParameters.EN_HEADLOSS)[0];
         final String status = epanet.ENgetlinkvalue(index, LinkParameters.EN_STATUS)[0] == 1 ? "OPEN" : "CLOSE";
-        System.out.println(epanet.ENgetlinkvalue(index, LinkParameters.EN_MINORLOSS)[0]);
-        return new LinkSimulationResult(timeInSeconds, flow, velocity, headloss, 0, 0, 0, LinkSimulationResult.Status.parse(status));
+        return new LinkSimulationResult(linkId, timeInSeconds, flow, velocity, headloss, LinkSimulationResult.Status.parse(status));
     }
 
     /**
@@ -140,7 +189,7 @@ public final class HydraulicSimulation {
      * @param time the time in seconds
      * @return the time as string
      */
-    private static String timeToStringTime(long time) {
+    private String timeToStringTime(long time) {
         // Transform the seconds in a time in formar HH:mm:ss
         double hour = time / (60.0 * 60.0); //transform to double
         // the % 1 (mod 1) extract the decimal part of the hour and multiply it by 60 to get the minutes
@@ -150,15 +199,106 @@ public final class HydraulicSimulation {
         return String.format("%02.0f:%02.0f:%d", Math.floor(hour), Math.floor(minute), second);
     }
 
+    /**
+     * Return the node result of a specific time indicated by parameter time.
+     * <p>
+     * Available times can be retrieved using the {@link #getTimes} method.
+     *
+     * @param time the time as string
+     * @return the node results in a specific time or empty list if time is not valid
+     */
+    public List<NodeSimulationResult> getNodeResultInTime(String time) {
+        int indexTime = times.indexOf(time);
+        if (indexTime == -1) return Collections.emptyList();
+
+        int numberOfNodes = nodeResult.size();
+        List<NodeSimulationResult> result = new ArrayList<>(numberOfNodes);
+        for (int i = 0; i < numberOfNodes; i++) {
+            result.add(nodeResult.get(i).get(indexTime));
+        }
+        return result;
+    }
+
+    /**
+     * Return the link result of a specific time indicated by parameter time.
+     * <p>
+     * Available times can be retrieved using the {@link #getTimes} method.
+     *
+     * @param time the time as string
+     * @return the links result in a specific time or empty list if time is not valid
+     */
+    public List<LinkSimulationResult> getLinkResultInTime(String time) {
+        int indexTime = times.indexOf(time);
+        if (indexTime == -1) return Collections.emptyList();
+
+        int numberOfLink = linkResult.size();
+
+        List<LinkSimulationResult> result = new ArrayList<>(numberOfLink);
+        for (int i = 0; i < numberOfLink; i++) {
+            result.add(linkResult.get(i).get(indexTime));
+        }
+        return result;
+    }
+
+    /**
+     * Get the available times of simulation
+     *
+     * @return the list of times
+     */
+    public List<String> getTimes() {
+        return times;
+    }
+
+    /**
+     * Return for a node the result of execution in all times.
+     *
+     * @param nodeId the id of a node
+     * @return the result of execution for that node in all time
+     */
+    public List<NodeSimulationResult> getTimeSeriesForNode(String nodeId) {
+        int index = this.nodeIndex.get(nodeId);
+        return this.nodeResult.get(index);
+    }
+
+    /**
+     * Return for a link the result of execution in all times.
+     *
+     * @param linkId the id of a link
+     * @return the result of execution for that link in all time
+     */
+    public List<LinkSimulationResult> getTimeSeriesForLink(String linkId) {
+        int index = this.linkIndex.get(linkId);
+        return this.linkResult.get(index);
+    }
+
     public static void main(String[] args) {
         String inpPath = "inp/vanzylOriginal.inp";
 //        String inpPath = "inp/hanoi-Frankenstein.INP";
-        Network network = new Network();
         try {
-            InpParser inpParser = new InpParser();
-            inpParser.parse(network, inpPath);
-            HydraulicSimulation.run(inpPath, network);
+            HydraulicSimulation simulation = HydraulicSimulation.run(inpPath);
+            System.out.println(Arrays.toString(simulation.getTimes().toArray()));
+//            for (LinkSimulationResult result : simulation.getLinkResultInTime(simulation.getTimes().get(17))) {
+//                System.out.println(String.format("%s %f %f %s %f, %s \n",
+//                        result.getId(), result.getFlow(), result.getHeadloss(), result.getStatus(),
+//                        result.getVelocity(), result.getTimeString()));
+//            }
 
+//            for (NodeSimulationResult result : simulation.getNodeResultInTime(simulation.getTimes().get(17))) {
+//                System.out.println(String.format("%s %f %f %f %f, %s \n",
+//                        result.getId(), result.getDemand(), result.getHead(), result.getPressure(),
+//                        result.getQuality(), result.getTimeString()));
+//            }
+//            for (LinkSimulationResult result : simulation.getTimeSeriesForLink("p10")) {
+//                System.out.println(String.format("%s %f %f %s %f, %s \n",
+//                        result.getId(), result.getFlow(), result.getHeadloss(), result.getStatus(),
+//                        result.getVelocity(), result.getTimeString()));
+//            }
+
+//            for (NodeSimulationResult result : simulation.getTimeSeriesForNode("n10")) {
+//                System.out.println(String.format("%s %f %f %f %f, %s \n",
+//                        result.getId(), result.getDemand(), result.getHead(), result.getPressure(),
+//                        result.getQuality(), result.getTimeString()));
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }

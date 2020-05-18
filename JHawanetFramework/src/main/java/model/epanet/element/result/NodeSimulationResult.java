@@ -11,15 +11,15 @@ public final class NodeSimulationResult extends ResultSimulation {
 
     /**
      * Constructor to save the result of simulation for a node
-     *
+     * @param id the id of node
      * @param timeInSeconds the simulation time in seconds
      * @param demand        the demand for a Junction or the net inflow for a Reservoir or Tank
      * @param head          the total head for a Junction or the elevation for a Reservoir or Tank
      * @param pressure      the pressure value
      * @param quality       the quality value
      */
-    public NodeSimulationResult(long timeInSeconds, double demand, double head, double pressure, double quality) {
-        super(timeInSeconds);
+    public NodeSimulationResult(String id, long timeInSeconds, double demand, double head, double pressure, double quality) {
+        super(id, timeInSeconds);
         this.demand = demand;
         this.head = head;
         this.pressure = pressure;

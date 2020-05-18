@@ -22,9 +22,6 @@ public abstract class Node extends Component {
     @Nullable
     private Source sourceQuality;
 
-    @Nullable
-    private transient List<NodeSimulationResult> simulationResults;
-
     Node() {
         this.id = "";
     }
@@ -122,22 +119,6 @@ public abstract class Node extends Component {
      */
     public void setSourceQuality(@Nullable Source sourceQuality) {
         this.sourceQuality = sourceQuality;
-    }
-
-    /**
-     * Get the simulation results
-     * @return the simulation result if exist or a empty list
-     */
-    public @NotNull List<NodeSimulationResult> getSimulationResults() {
-        return simulationResults != null ? simulationResults : Collections.emptyList();
-    }
-
-    /**
-     * Set the simulation results.
-     * @param simulationResults the simulation result or null if not exist
-     */
-    public void setSimulationResults(@Nullable List<NodeSimulationResult> simulationResults) {
-        this.simulationResults = simulationResults;
     }
 
     @Override

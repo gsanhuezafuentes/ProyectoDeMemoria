@@ -51,64 +51,31 @@ public final class LinkSimulationResult extends ResultSimulation {
     private final double flow;
     private final double velocity;
     private final double headloss;
-    // parameter no implemented because i don't know how calculate its =P
-    private final double frictionFactor; //no implemented eliminar
-    private final double reactionRate; // no implemented eliminar
-    private final double quality; //no implemented eliminar
+//    private final double frictionFactor; //no implemented
+//    private final double reactionRate; // no implemented
+//    private final double quality; //no implemented
     @NotNull
     private final Status status;
 
     /**
-     * Use this constructor for result of Pump
-     *
-     * @param timeInSeconds the simulation time in seconds
-     * @param flow          the flow
-     * @param headloss      the headloss
-     * @param quality       the quality
-     * @param status        the status
-     * @throws NullPointerException if status is null
-     */
-    public LinkSimulationResult(long timeInSeconds, double flow, double headloss, double quality, @NotNull Status status) {
-        this(timeInSeconds, flow, 0, headloss, 0, 0, quality, status);
-    }
-
-    /**
-     * Use this constructor for result of Valve
-     *
-     * @param timeInSeconds the simulation time in seconds
-     * @param flow          the flow
-     * @param velocity      the velocity
-     * @param headloss      the headloss
-     * @param quality       the quality
-     * @param status        the status
-     * @throws NullPointerException if status is null
-     */
-    public LinkSimulationResult(long timeInSeconds, double flow, double velocity, double headloss, double quality, @NotNull Status status) {
-        this(timeInSeconds, flow, velocity, headloss, 0, 0, quality, status);
-    }
-
-    /**
      * Use this constructor for result of Pipe
-     *
+     * @param id the id of link
      * @param timeInSeconds  the simulation time in seconds
      * @param flow           the flow
      * @param velocity       the velocity
      * @param unitHeadloss   the unit headloss
-     * @param frictionFactor the friction factor
-     * @param reactionRate   the reaction rate
-     * @param quality        the quality status
      * @param status         the status
      * @throws NullPointerException if status is null
      */
-    public LinkSimulationResult(long timeInSeconds, double flow, double velocity, double unitHeadloss, double frictionFactor, double reactionRate, double quality, @NotNull Status status) {
-        super(timeInSeconds);
+    public LinkSimulationResult(String id, long timeInSeconds, double flow, double velocity, double unitHeadloss, @NotNull Status status) {
+        super(id, timeInSeconds);
         Objects.requireNonNull(status);
         this.flow = flow;
         this.velocity = velocity;
         this.headloss = unitHeadloss;
-        this.frictionFactor = frictionFactor;
-        this.reactionRate = reactionRate;
-        this.quality = quality;
+//        this.frictionFactor = frictionFactor;
+//        this.reactionRate = reactionRate;
+//        this.quality = quality;
         this.status = status;
     }
 
@@ -139,32 +106,32 @@ public final class LinkSimulationResult extends ResultSimulation {
         return headloss;
     }
 
-    /**
-     * Get friction factor
-     *
-     * @return the friction factor
-     */
-    public double getFrictionFactor() {
-        return frictionFactor;
-    }
-
-    /**
-     * Get the reaction rate
-     *
-     * @return the reaction rate
-     */
-    public double getReactionRate() {
-        return reactionRate;
-    }
-
-    /**
-     * Get the quality
-     *
-     * @return the quality
-     */
-    public double getQuality() {
-        return quality;
-    }
+//    /**
+//     * Get friction factor
+//     *
+//     * @return the friction factor
+//     */
+//    public double getFrictionFactor() {
+//        return frictionFactor;
+//    }
+//
+//    /**
+//     * Get the reaction rate
+//     *
+//     * @return the reaction rate
+//     */
+//    public double getReactionRate() {
+//        return reactionRate;
+//    }
+//
+//    /**
+//     * Get the quality
+//     *
+//     * @return the quality
+//     */
+//    public double getQuality() {
+//        return quality;
+//    }
 
     /**
      * Get the status

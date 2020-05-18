@@ -15,8 +15,6 @@ public abstract class Link extends Component {
     @Nullable private Node node1;
     @Nullable private Node node2;
     private final @NotNull List<Point> vertices;
-    @Nullable
-    private transient List<LinkSimulationResult> simulationResults;
 
     Link() {
         this.id = "";
@@ -111,22 +109,6 @@ public abstract class Link extends Component {
     public void setNode2(@NotNull Node node2) {
         Objects.requireNonNull(node2);
         this.node2 = node2;
-    }
-
-    /**
-     * Get the simulation results
-     * @return the simulation result if exist or a empty list
-     */
-    public @NotNull List<LinkSimulationResult> getSimulationResults() {
-        return simulationResults != null ? simulationResults : Collections.emptyList();
-    }
-
-    /**
-     * Set the simulation results.
-     * @param simulationResults the simulation result or null if not exist
-     */
-    public void setSimulationResults(@Nullable List<LinkSimulationResult> simulationResults) {
-        this.simulationResults = simulationResults;
     }
 
     @Override

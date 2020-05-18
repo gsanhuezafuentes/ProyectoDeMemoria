@@ -9,14 +9,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ResultSimulationTest {
     private static class ResultStub extends ResultSimulation{
-        public ResultStub(long timeInSeconds) {
-            super(timeInSeconds);
+        public ResultStub(String id,long timeInSeconds) {
+            super(id, timeInSeconds);
         }
     }
 
     @Test
     void getTimeInSeconds() {
-        ResultStub object = new ResultStub(72000);
+        ResultStub object = new ResultStub("someid",72000);
         assertEquals(72000, object.getTimeInSeconds());
     }
 
@@ -30,13 +30,13 @@ class ResultSimulationTest {
             "86399, 23:59:59",//
     })
     void getTimeString(long time, String expected) {
-        ResultStub object = new ResultStub(time);
+        ResultStub object = new ResultStub("someid", time);
         assertEquals(expected, object.getTimeString());
     }
 
     @ParameterizedTest
     @ValueSource(longs = {-1, 86400, 86401})
     void ResultSimulation_OutOfValidRange_IllegalArgumentException(long time) {
-        assertThrows(IllegalArgumentException.class, () -> new ResultStub(time));
+        assertThrows(IllegalArgumentException.class, () -> new ResultStub("someid", time));
     }
 }
