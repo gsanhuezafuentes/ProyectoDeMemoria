@@ -1,0 +1,412 @@
+\chapter{Marco Teórico}
+En este capítulo se presentan los conceptos que serán necesarios para la realización del proyecto.
+
+\section{Metodología de desarrollo}
+Para el desarrollo de este proyecto se opto por la metodología iterativo e incremental. La elección de esta metodología se debe al hecho de que este genera suficiente documentación para ser utilizada en el desarrollo de futuros proyectos derivados de este trabajo.
+\subsection{Metodología iterativo e incremental}
+El desarrollo iterativo e incremental es una metodología la cual lleva a cabo el desarrollo de un proyecto de software dividiéndolo en iteraciones que generan un incremento, el cual contribuye en el desarrollo del producto final.
+
+Cada iteración se compone de las fases de análisis, diseño, implementación y pruebas como se muestra en la Figura \ref{fig:methodie}. La fase de análisis se encarga de llevar a cabo la obtención y definición de los requerimientos del software. Durante la etapa de diseño se realiza la conceptualización del software basado en los requerimientos definidos anteriormente. Durante la implementación se codifican las funcionalidades siguiendo las directivas establecidas durante el diseño, con el fin de satisfacer los requerimientos. Y finalmente, durante la fase de pruebas, se valida y verifica la correctitud de las funcionalidades implementadas, así como el cumplimiento de los requisitos.
+
+\begin{figure}[h]
+	  \includegraphics{Imagenes/iedevelopment.eps}
+	\centering
+	\caption{Metodología iterativo e incremental \cite{Pressman2009}}
+	\label{fig:methodie}
+\end{figure}
+
+El hecho de llevar a cabo un desarrollo iterativo permite la obtención de retroalimentación del producto que se esta desarrollando tempranamente y de esta manera poder refinar el trabajo en etapas posteriores del desarrollo. \cite{Victor2003, Mitchell2009, Martin1999,Alshamrani2015}.
+
+\section{Metodología de evaluación}
+\subsection{Casos de estudio}
+Un caso de estudio \cite{Runeson2009} es una metodología de investigación la cual en ingeniería de software permite analizar un proyecto, un grupo de personas, un producto, etc, en un contexto real con el objetivo de responder la pregunta de investigación planteada. Esta metodología de evaluación considera aspectos formales para obtener evidencia. Los principales aspectos son:
+
+\begin{itemize}
+	\item Describir el contexto de aplicación del caso: Consiste en establecer sobre que elemento se aplicara el caso de estudio a desarrollar.
+	\item Definición de objetivos experimentales: Consiste en indicar cual es el objetivo de la investigación a realizar, si es describir, evaluar o explicar algún suceso.
+	\item Definición de un protocolo para conducir el caso de estudio: Consiste en escoger las pautas para llevar a cabo el caso de estudio, que instrumentos serán utilizados para recolectar datos y como se realizaran el análisis de estos.
+	\item Definición de características a evaluar: Consiste en establecer que es lo que estamos interesados en evaluar del elemento sobre el que se aplica el caso de estudio.
+	\item Definición de sujetos de prueba: Consiste en indicar cual sera la fuente de datos a ser utilizada para el caso de estudio, estas pueden ser personas, datos ya recolectados, etc.
+	\item Aplicación de caso de estudio en un conjunto de sesiones no controladas: Consiste en llevar a cabo el caso de estudio sobre los sujeto de prueba definidos.
+	\item Aplicación de herramientas de obtención de evidencia empírica: Consiste en la utilización de métodos o técnicas con el fin de obtener evidencia empírica a partir de los datos recolectados 	
+	\item Análisis y evaluación de datos empíricos: Consiste en analizar la evidencia y evaluar la validez de los resultados obtenidos.
+\end{itemize}
+
+\section{Herramientas para la implementación del software}
+\subsubsection{Java}
+Java es un lenguaje de programación de alto nivel orientado a objetos y de propósito general. Un programa java se ejecuta sobre la maquina virtual llamada la Java Virtual Machine, la cual le da a este lenguaje la característica de ser multiplataforma. Adicionalmente, java incorpora el soporte para multi-hilos, una poderosa herramienta que permite la ejecución de distintas instrucciones de código al mismo tiempo \cite{Gosling2015}. Ademas. este lenguaje también incorpora una característica conocida como el recolector de basura, el cual se encarga de limpiar la memoria de objetos que ya no están siendo utilizados.  Fue anunciado por Sun Microsystems en Mayo de 1995 \cite{3java}. 
+
+\subsubsection{Java Reflection}
+Característica de java que permite que un programa se auto examine. Esta característica está disponible a través de la Java Reflection API, la cual cuenta con métodos para obtener los meta-object de las clases, métodos, constructores, campos o parámetros. Esta API también permite crear nuevos objetos cuyo tipo era desconocido al momento de compilar el programa \cite{Braux1999}.
+\subsubsection{Java Annotation}
+Característica de java para agregar metadatos a elementos de java (clases, métodos, parámetros, etc.) [7]. Las anotaciones no tienen efecto directo sobre el código, pero cuando son usadas junto con otras herramientas pueden llegar a ser muy útiles. Estas herramientas pueden analizar estas anotaciones y realizar acciones en base a estas, por ejemplo, generar archivos adicionales como clases de java, archivos xml, entre otras; ser analizadas durante la ejecución del programa vía Java Reflection, para crear objetos cuyo tipo no conocemos en tiempo de compilación; etc. 
+\section{Red de distribución de agua potable}
+Conjunto de elementos enlazados de tal manera que permite suministrar cierta cantidad de agua a una presión establecida \cite{Doctoral2012}.
+
+\subsubsection{Caudal}
+Cantidad de agua que se mueve a través de un segmento de la red.
+
+\subsection{Componentes físicos de una red}
+A continuación se define los componentes que conforman una red de agua potable \cite{Rossman2017}, los cuales se aprecian en la Figura \ref{fig:componentesfisicos}:
+
+
+\begin{figure}[h]
+	 \includegraphics{Imagenes/componentesfisicosred.eps}
+	\centering
+	\caption{Componentes físicos de un sistema de distribución de agua \cite{Rossman2017}}
+	\label{fig:componentesfisicos}
+\end{figure}
+\subsubsection{Nudos de caudal}
+
+Son los puntos o extremos de una tubería, los cuales también permiten que estas se unan. Estos nudos pueden actuar como nudos de demanda a través de los cuales el flujo abandona la red.
+
+\subsubsection{Embalse}
+Es una fuente de alimentación externa.
+\subsubsection{Deposito}
+Son elementos con la capacidad de almacenar agua.
+\subsubsection{Tubería}
+ Son los elementos a través de los cuales transita el agua de un nudo a otro.
+\subsubsection{Bomba}
+Elementos que permiten impulsar el liquido con el fin de elevarlo a una posición superior.
+\subsubsection{Válvula}
+Elementos que limitan la presión o el caudal que transita en un punto de la red.
+\subsection{Epanet}
+Software que permite simular el comportamiento hidráulico y la calidad del agua en redes de distribución de aguas compuesta por tuberías, nodos, bombas, válvulas y tanques de almacenamiento \cite{Rossman2017}.  Este software cuenta también con una librería dinámica conocida bajo el nombre de Epanet Programming Toolkit, la cual cuenta con un conjunto de funciones para realizar simulaciones desde diferentes entornos de desarrollo como C, C++, VB, Java, etc \cite{Rossman1999}.
+\section{Optimización}
+La optimización consiste en maximizar o minimizar un conjunto de funciones que matemáticamente pueden ser expresadas de la siguiente forma:
+$$f_1(x),f_2(x), ..., f_N(x),\ x=(x_1,...,x_d) | x \in X$$
+sujeto a una serie de condiciones
+$$h_j(x) = 0, j=1,2,...,J$$
+$$g_k(x) \leq 0, k=1,2,...,K$$
+siendo $f_1,...,f_N$ funciones objetivos; $x_1, ..., x_d$ variables de decisión, pertenecientes al espacio de búsqueda $X$; y $h_j$ junto con $g_k$, una serie de restricciones \cite{Yang2015}. De acuerdo a la cantidad de funciones objetivos que se tenga, se establece que si $N=1$ la optimización es \textbf{monoobjetivo}, mientras que para $N\geq 2$ se conoce como \textbf{multiobjetivo} \cite{Yang2015}. En este punto se debe tener en cuenta que los objetivos planteados deben encontrarse en contradicción. 
+
+Debido a la definición de las restricciones es posible dividir el espacio de búsqueda en dos regiones \cite{Bozorg-Haddad2017}:
+\begin{itemize}
+	\item Soluciones factibles: Compuesto por los elementos pertenecientes al espacio de búsqueda que satisfacen todas las restricciones.
+	\item Soluciones no factibles: Integrado por aquellos elementos que no complen todas las restricciones.
+\end{itemize}
+\section{Heurística}
+Es el conocimiento que se tiene del problema el cual permite acotar la búsqueda de las soluciones en espacios de búsqueda de gran tamaño que hacen inviable la aplicación de técnicas deterministas por el costo de tiempo que implican. Con la utilización de estas técnicas se espera encontrar soluciones buenas en un tiempo razonable, pero esto no esta garantizado \cite{Yang2015,Romanycia1985}.
+\section{Metaheurística}
+Algoritmos que permiten resolver un amplio rango de problemas de optimización empleando técnicas con algún grado de aleatoriedad para encontrar soluciones a un problema. Estos algoritmos no garantizan que la solución encontrada sea la óptima, pero permiten obtener generalmente aproximaciones a esta. La diferencia entra heurísticas y metaheurísticas, es que esta ultima puede ser aplicado a un amplio conjunto de problemas sin necesidad de realizar grandes cambios en el algoritmo, mientras que las heurísticas generalmente son aplicadas a un dominio especifico \cite{Yang2015,Boussaid2013,Luke2013}.
+\subsection{Algoritmos Evolutivos}
+Conjunto de algoritmos inspirado en la teoría de la evolución de Darwin acerca de la capacidad de la naturaleza para evolucionar seres vivos bien adaptados a su entorno. Estos algoritmos hacen uso de diversos mecanismos entre los que se encuentra la selección, mutación y cruzamiento sobre los individuos de una población con el fin de generar una nueva generación de individuos \cite{Boussaid2013}. En la Figura \ref{fig:EA} muestra un un pseudocodigo de los pasos generales de un algoritmo evolutivo.
+
+
+%\begin{figure}[h]
+%	\begin{algorithm}[H]
+%		\caption{Algoritmo Evolutivo}
+%		\DontPrintSemicolon
+%		\SetKwFunction{CreateInitialPopulation}{createInitialPopulation}
+%		\SetKwFunction{EvaluatePopulation}{evaluatePopulation}
+%		\SetKwFunction{Selection}{selection}
+%		\SetKwFunction{Crossover}{crossover}
+%		\SetKwFunction{Mutation}{mutation}
+%		\SetKwFunction{Replace}{replace}
+%		\SetKwData{PopulationVar}{population}
+%		\SetKwData{SelectionVar}{selection}
+%		\SetKwData{OffspringVar}{offspringPopulation}
+%		
+%		\PopulationVar $\leftarrow$ \CreateInitialPopulation{}\;
+%		\EvaluatePopulation{\PopulationVar}\;
+%		
+%		\While{is not stopping condition reached}{
+%			\SelectionVar $\leftarrow$ \Selection{\PopulationVar}\;
+%			\OffspringVar $\leftarrow$ \Crossover{\SelectionVar}\;
+%			\OffspringVar $\leftarrow$ \Mutation(\OffspringVar)\;
+%			\OffspringVar $\leftarrow$ \EvaluatePopulation(\OffspringVar)\;
+%			\PopulationVar $\leftarrow$ \Replace(\PopulationVar, \OffspringVar)\;
+%		}
+%		
+%	\end{algorithm}
+%	\caption{Pseudocodigo algoritmo evolutivo}
+%	\label{fig:EA}
+%\end{figure}
+
+\begin{figure}[h]
+	\begin{algorithm}[H]
+		\caption{Algoritmo Evolutivo}
+		\DontPrintSemicolon
+		\SetKwFunction{CreateInitialPopulation}{crearPoblaciónInicial}
+		\SetKwFunction{EvaluatePopulation}{evaluarPoblación}
+		\SetKwFunction{Selection}{selección}
+		\SetKwFunction{Crossover}{cruzamiento}
+		\SetKwFunction{Mutation}{mutación}
+		\SetKwFunction{Replace}{remplazar}
+		\SetKwData{PopulationVar}{población}
+		\SetKwData{SelectionVar}{poblacionSeleccionada}
+		\SetKwData{OffspringVar}{poblaciónDecendiente}
+		
+		\PopulationVar $\leftarrow$ \CreateInitialPopulation{}\;
+		\EvaluatePopulation{\PopulationVar}\;
+		
+		\While{la condición de termino no ha sido alcanzada}{
+			\SelectionVar $\leftarrow$ \Selection{\PopulationVar}\;
+			\OffspringVar $\leftarrow$ \Crossover{\SelectionVar}\;
+			\OffspringVar $\leftarrow$ \Mutation(\OffspringVar)\;
+			\OffspringVar $\leftarrow$ \EvaluatePopulation(\OffspringVar)\;
+			\PopulationVar $\leftarrow$ \Replace(\PopulationVar, \OffspringVar)\;
+		}
+		
+	\end{algorithm}
+	\caption{Pseudocodigo algoritmo evolutivo}
+	\label{fig:EA}
+\end{figure}
+
+Primero, se crea la población inicial. Luego, se evalúan los objetivos de dicha población y se itera hasta que la condición de termino haya sido alcanzada. La condición de término puede ser, por ejemplo un máximo numero de evaluaciones o evaluaciones sin mejoras en los resultados.  Dentro del ciclo se realiza la selección sobre la población con el fin de determinar las soluciones que serán usadas en los operadores de cruzamiento y mutación. Finalmente, se remplaza la población inicial con la descendiente.
+
+\subsubsection{Población}
+Conjunto de soluciones candidatas sobre las cual opera el algoritmo. Durante cada iteración del algoritmo se generan nuevas soluciones que son agregadas a la población a la vez que se remueven otras. Una solución en la población se conoce como individuo \cite{Heiss-Czedik1997}. 
+
+Los individuos pueden ser representados de diversas maneras, entre ellas se encuentra la representación binaria (1 y 0), la real(Los números reales), etc. Para la representación binaria cada variable se codifica como un conjunto de bits, lo cual forma una cadena binaria. Por ejemplo, la representación binaria de la solución $(2,4,6,8)$ formada por enteros de 4 bits correspondería a
+
+$$0010\ 0100\ 0110\ 1000$$
+
+
+ En cambio, para la representación real esta se presenta como un vector, en donde cada valor que forma este vector pertenece a los números reales, es decir, $$v = (x1,x2, \dots, x_n), \textrm{en donde } v \in \mathbb{R}^n$$
+
+\subsubsection{Selección}
+La selección es un mecanismo utilizado por los algoritmos evolutivos para escoger a los individuos mas aptos los cuales serán usados para la reproducción \cite{Heiss-Czedik1997}. Existen numerosos algoritmos de selección que pueden ser utilizados en los algoritmos evolutivos.
+
+
+\subsubsection{Cruzamiento}
+El cruzamiento es un mecanismo usado para generar nuevos soluciones a partir de dos o mas individuos seleccionados \cite{Blum2003, Boussaid2013}.
+\subsubsection{Mutación}
+La mutación es un operador el cual permite mantener la diversidad en la descendencia \cite{Boussaid2013} realizando modificaciones en ciertas partes de la solución.
+
+\subsection{Algoritmo Genético}
+El algoritmo genético es una estrategia de búsqueda de soluciones. Para realizar esto, el algoritmo parte desde un conjunto de soluciones denominada población he iterativamente, lleva a cabo un proceso de reproducción, generando nuevas soluciones \cite{Heiss-Czedik1997}. Este algoritmo pertenece a la categoría de algoritmos evolutivos y por lo tanto puede usar el mismo esquema presentado en la Figura \ref{fig:EA}.
+
+Los individuos en el contexto del algoritmo genético son llamados cromosomas, los cuales como se menciono en la sección de los algoritmos evolutivos pueden ser representados de diversas maneras.
+
+\subsection{Conceptos para la optimización multiobjetivo}
+Como resultado de un proceso de optimización multiobjetivo no existe una única solución a un problema, sino que se tiene un conjunto de soluciones. Es por ello que a continuación se presentaran una serie de criterios que permitirán analizar y determinar el conjunto de soluciones optimas. Los criterios son los siguientes \cite{VanVeldhuizen1998}:
+ 
+\subsubsection{Dominancia de Pareto}
+
+Sean $u$ y $v$ vectores pertenecientes a $\Re^n$, se dice que $u$ domina a $v$ (se denota como $u \preceq v$) si, y sólo si (en el caso de minimización):
+$\forall i \in \{1,2,...,n\} | f_i(u) \leq f_i(v) \wedge \exists j \in \{1,2,...,n\} | f_j(u) < f_j(v)$
+
+Es decir, para que una solución domine a otra, cada uno de sus objetivos debe ser mejores o iguales y al menos en uno de ellos este debe ser mejor.
+
+En el ejemplo de la Figura \ref{fig:dominancia} se muestra los vectores A,B,C,D de los cuales C y B dominan a D, y A domina a C B y D. Nótese que C y B no son dominantes entre sí. 
+
+\subsubsection{Optimo de Pareto}
+Una solución $u$ es un optimo de Pareto si no hay otra solución $v$ en el espacio $\Omega$, tal que v domine a u, es decir, para $u , v \in \Re^n\ \  \nexists v \preceq u $. Los óptimos de pareto también se conocen bajo el nombre de solución no-dominada. En la Figura \ref{fig:dominancia} el vector A sería un optimo de Pareto.
+
+\begin{figure}[h]
+	 \includegraphics{Imagenes/dominancia.eps}
+	\centering
+	\caption{Ejemplo de dominancia y óptimo de Pareto}
+	\label{fig:dominancia}
+\end{figure}
+
+\subsubsection{Frontera de Pareto}
+La frontera de Pareto es el conjunto de todas las soluciones no dominadas las cuales componen las soluciones óptimas al problema multiobjetivo. En la Figura \ref{fig:frente_pareto} los puntos rojos componen la frontera de Pareto.
+
+\begin{figure}[h]
+	 \includegraphics{Imagenes/frontera-pareto.eps}
+	\centering
+	\caption{Ejemplo frente de Pareto}
+	\label{fig:frente_pareto}
+\end{figure}
+\subsection{Algoritmo NSGA-II (Nondominated Genetic Algorithm)}
+El algoritmo NSGA-II \cite{Deb2002} pertenece a la categoría de algoritmo evolutivo multiobjetivo (MOEA). Este algoritmo al igual que el algoritmo genético hace uso de los operadores de selección, cruzamiento y mutación para encontrar un conjunto de soluciones optimas a problemas que cuentan con más de un objetivo. Adicionalmente, NSGA-II añade conceptos y operadores adicionales los cuales permiten mejorar su rendimiento y la calidad de las soluciones obtenidas. NSGA-II puede ser implementado siguiendo los mismos pasos de el algoritmo evolutivo mostrados en la Figura \ref{fig:EA}, utilizando la función de remplazo mostrada en la Figura \ref{fig:RemplaceNSGAII}.
+
+En la Figura \ref{fig:RemplaceNSGAII} se puede ver que el proceso de remplazo dentro del algoritmo genético consiste en unir la población actual y la población descendiente (formada por los elementos resultantes del operador de selección y sobre la que se han aplicado el cruzamiento y la mutación) en un solo elemento llamada unionPoblación. Luego, esta  es enviada a un procedimiento el cual ordena y categoriza la población en diversos frentes de acuerdo al concepto de dominancia de Pareto. Después, de que la población a sido categorizada se procede a iterar sobre los frentes y añadir sus elementos a una nueva población con el cuidado de no sobrepasar el tamaño de la población deseada ($N$). En caso de que uno de los frentes no pueda ser añadido en su totalidad por sobrepasar dicho tamaño, se llevará a cabo un proceso por el cual se ordenaran las soluciones en dicho frente basadas en un criterio conocido como densidad de las soluciones. Una vez realizado el ordenamiento, se agregarán las mejores soluciones a la nueva población hasta alcanzar el tamaño deseado  $N$. Se puede ver un ejemplo de este procedimiento gráficamente en la Figura \ref{fig:procedimientoNSGAII}.
+
+% Una vez las soluciones se encuentren ordenadas se rellenará la nueva población hasta alcanzar el tamaño de deseado $N$. 
+
+\begin{figure}[h]
+	\begin{algorithm}[H]
+		\caption{Función de remplazo para el algoritmo NSGA-II}
+		\DontPrintSemicolon
+		\SetKwData{PopulationVar}{población}
+		\SetKwData{OffspringVar}{poblaciónDescendiente}
+		\SetKwData{JoinVar}{unionPoblacion}
+		\SetKwData{Front}{$F$}
+		\SetKwData{NewPopulation}{nuevaPoblacion}
+
+		\SetKwFunction{FastNonDominatingSorting}{ordenarPorFrentesNoDominados}
+		\SetKwFunction{CrowdingDistanceAssignament}{asignarDensidad}
+		\SetKwFunction{Sort}{ordernar}
+
+		\SetKwProg{Fn}{Function}{}{fin}
+		\Fn{remplazar(\PopulationVar, \OffspringVar)}{
+		
+		$\JoinVar \leftarrow \PopulationVar \cup \OffspringVar$\;
+		\BlankLine
+		\tcc*[h]{$F = (F_1,F_2, ...)$}\;
+		\Front $\leftarrow$ \FastNonDominatingSorting(\JoinVar)\;
+		\BlankLine
+		\NewPopulation $\leftarrow \emptyset$ \;
+		\BlankLine
+		$i = 1$\;
+		\BlankLine
+		\tcc*[h]{Hasta que \NewPopulation este lleno}\;
+		\While{$(|\NewPopulation| +|F_i|) \leq N$}{
+			\tcc{Calcular y asignar la densidad a cada solución del frente $F_i$}
+			\CrowdingDistanceAssignament($F_i$)\;
+			\BlankLine
+			\tcc{Añadir a \NewPopulation las soluciones del frente $F_i$}
+			\NewPopulation $\leftarrow$ \NewPopulation $\cup$ $F_i$ \;
+			\BlankLine
+			$i = i+1$\;
+		}
+		\BlankLine
+		\tcc{Ordenar el frente $F_i$ usando el comparador de densidad}
+		\Sort($F_i$, $\prec_n$) \;
+		\BlankLine
+		\tcc{Elegir los primeros $N -|\NewPopulation|]$ }
+		\NewPopulation $\leftarrow$ \NewPopulation $\cup$ $F_i[1: N -|\NewPopulation|]$ \;
+		\BlankLine
+		retornar \NewPopulation\;
+	}
+		
+	\end{algorithm}
+	\caption{Pseudocódigo de la función de remplazo utilizada en el algoritmo NSGA-II \cite{Deb2002}}
+	\label{fig:RemplaceNSGAII}
+\end{figure}
+
+
+\begin{figure}[h]
+	 \includegraphics{Imagenes/ProcedimientoNSGA-II.eps}
+	\centering
+	\caption{Procedimiento NSGA-II \cite{Deb2002}}
+	\label{fig:procedimientoNSGAII}
+\end{figure}
+
+A continuación se procederá a explicar los operadores adicionales presentados en \cite{Deb2002} y que son utilizados por la función de remplazo del algoritmo NSGA-II en la Figura \ref{fig:RemplaceNSGAII}.
+
+\subsubsection{Ordenamiento de soluciones en frentes no dominados}
+Uno de los procedimientos presentados en la Figura \ref{fig:RemplaceNSGAII} consiste en ordenar las soluciones en frentes no dominados. Los frentes no dominados son conjuntos en los que se almacenan las soluciones que no se dominan entre si. En la Figura \ref{fig:frente-no-dominados} se muestra un ejemplo con tres frentes.
+
+\begin{figure}[h]
+	 \includegraphics{Imagenes/frentes-no-dominados.eps}
+	\centering
+	\caption{Frentes no dominados}
+	\label{fig:frente-no-dominados}
+\end{figure}
+
+El algoritmo para llevar a cabo esto se presenta en la Figura \ref{fig:sortFront} y consiste en lo siguiente:
+
+Primero, se debe comparar todas las soluciones entre si utilizando el concepto de dominancia de Pareto. Para ello, cada solución $p$ cuenta con un atributo $S_p$ en el que guarda todas las soluciones a las que domina y un contador $n_p$ que almacena el numero de soluciones que lo dominan a él. Cada vez que se termina de comparar una solución con todas las otras, si su contador $n_p$ es igual a 0, se le asigna a la solución el rango que indica el frente al que pertenece, y se guarda esta en un conjunto que contiene a todas las soluciones de dicho frente $F_1$. 
+	
+Una vez que se han identificado todas las soluciones no dominadas del primer frente se procede a generar el siguiente, para lo cual, por cada solución $q$ almacenada en el conjunto $S_p \in p$ del frente ya conocido se disminuye en uno su contador $n_q$. Si el contador $n_q$ de la solución $q$ llega a 0, entonces se le asigna a dicha solución el rango correspondiente y se guarda esta en un conjunto temporal $Q$ con el resto de las soluciones en dicho frente. Cuando se tengan identificadas todas las soluciones, estas se asignan al frente correspondiente $F_i$. 
+
+Finalmente, se repite el procedimiento anterior sobre el nuevo frente hasta haberlos generado todos.
+
+
+\begin{figure}[h]
+	\begin{algorithm}[H]
+		\caption{Función de ordenación en frentes no dominados}
+		\DontPrintSemicolon
+		\SetKwData{PopulationVar}{población}
+		\SetKwData{Front}{$F$}
+		\SetKwData{NewPopulation}{nuevaPoblacion}
+		
+		\SetKwFunction{FastNonDominatingSorting}{ordenarPorFrentesNoDominados}
+
+
+		
+		\SetKwProg{Fn}{Function}{}{fin}
+		\Fn{\FastNonDominatingSorting(\PopulationVar)}{
+		$\Front \leftarrow \emptyset$\;
+		\ForEach{$p \in \PopulationVar$}{
+			\tcc*[h]{Conjunto de soluciones dominadas por $p$}\;
+			$S_p = \emptyset$\; 
+			\tcc*[h]{Numeros de soluciones que dominan a $p$}\;
+			$n_p = 0$\;
+			\ForEach{$q \in \PopulationVar$}{
+				\uIf(\tcc*[h]{$p$ domina a $q$}){$p \prec q$}{
+					$S_p = S_p \cup \{q\}$\;
+				}\ElseIf(\tcc*[h]{$q$ domina a $p$}){$q \prec p$}{
+					$n_p = n_p + 1$\;
+				}
+				\If{$n_p = 0$}{
+					$p_{rango} = 1$\;
+					$F_1 = F_1 \cup \{p\}$\;
+				}	
+			}
+		}
+		\BlankLine
+		$i = 1$\;
+		\BlankLine
+		\While{$F_i \neq 0$}{
+			$Q = \emptyset$\;
+			\ForEach{$p \in \Front_i$}{
+				\ForEach{$q \in S_p$}{
+					$n_q = n_q - 1$\;
+					\If{$n_q = 0$}{
+						$q_{rango} = i + 1$\;
+						$Q = Q \cup \{q\}$\;
+					}
+				}
+			}
+
+			$i = i+1$\;
+			$F_i = Q$\;
+		}
+		
+		
+		
+	}
+		
+	\end{algorithm}
+	\caption{Pseudocódigo de la función de ordenamiento utilizada en NSGA-II \cite{Deb2002}}
+	\label{fig:sortFront}
+\end{figure}
+
+\subsubsection{Densidad de estimación (Crowing Distance)}
+Otra función presente en la Figura \ref{fig:RemplaceNSGAII} es la asignación de las densidades sobre cada solución, la cual corresponde a la distancia promedio entre la solución anterior y la siguiente a partir de cada uno de los objetivos. En la Figura \ref{fig:crowdingDistance} la densidad de la solución $i$ corresponde a la suma de la longitud del lado mayor y del lado menor del rectángulo.
+
+\begin{figure}[h]
+	\includegraphics[scale=0.8]{Imagenes/crowing-distance.eps}
+	\centering
+	\caption{Calculo de la densidad de estimación al rededor de la solución $i$ \cite{Deb2002}.}
+	\label{fig:crowdingDistance}
+\end{figure}
+
+El procedimiento para esta función  se muestra en la Figura \ref{fig:crowdingDistance} y consiste en:
+
+Primero, crear e inicializar un arreglo $\mathcal{I}_{distancia}$, con el valor 0, en donde guardar las distancias para cada solución a medida que se van calculando. Luego, por cada uno de los objetivos se ordena el frente $\mathcal{I}$ y dentro $\mathcal{I}_{distancia}$ se le asigna al primer y ultimo elemento el valor infinito. Finalmente, se recorre desde la segunda hasta la penúltima solución calculando la distancia $\mathcal{I}[i]_{distancia}$. Notar que $f_m^{max}$ y $f_m^{min}$ corresponden al valor del objetivo $m$ de la primera y ultima solución.
+
+\begin{figure}[h]
+	\begin{algorithm}[H]
+	\caption{Función de calculo de densidades}
+	\DontPrintSemicolon
+	\SetKwData{NDS}{$\mathcal{I}$}
+	\SetKwFunction{CrowdingDistanceAssignament}{asignarDensidad}
+		
+		
+		
+	\SetKwProg{Fn}{Function}{}{fin}
+	\Fn(\tcc*[h]{$\NDS$ : frente de soluciones no dominadas}){\CrowdingDistanceAssignament($\NDS$)}{
+		$l = |\NDS|$ \tcc*[h]{Obtiene el tamaño del frente}\;\;
+		\BlankLine
+		\tcc*[h]{Inicializa la distancia para cada solución}\;
+		\ForEach{$i \leftarrow 1$ \KwTo $l$}{
+			$\NDS[i]_{distancia} \leftarrow 0$
+		}
+		\ForEach{$m \leftarrow 1$ \KwTo numero de objetivos}{
+			$\NDS \leftarrow$ sort($\NDS$, m) \tcc*[h]{Ordena por el objetivo m}\; 
+			\BlankLine
+			\tcc*[h]{Asignar a la primera y ultima solucion el valor $\infty$ }\;
+			$\NDS[1]_{distancia} \leftarrow \NDS[l]_{distancia} \leftarrow \infty$\;
+			\BlankLine
+			\For{$i \leftarrow 2$ \KwTo $l-1$}{
+				\tcc*[h]{Asigna la distancia a las soluciones restantes}\;
+				$\NDS[i]_{distancia} \leftarrow \NDS[i]_{distancia} + (\NDS[i+1].m - \NDS[i-1].m)/(f_m^{max} - f_m^{min})$\;	
+			}
+		}
+	
+	}
+		
+	\end{algorithm}
+	\caption{Pseudocódigo de la función de asignación de densidad \cite{Deb2002}}
+	\label{fig:CrowindDistance}
+\end{figure}
+\subsubsection{Comparador de densidad (Crowing Distance comparator)}
+Este operador compara las soluciones basados en dos conceptos los cuales son el rango de dominación y la densidad de soluciones. Estos fueron calculados al momento de generar los frentes y asignar la densidad a las soluciones. De acuerdo a Deb \cite{Deb2002}, se define el orden dado por el operador de densidad ($\prec_n$) como: $i \prec_n j $, si $(i_{rango} < j_{rango})$ o $((i_{rango} = j_{rango})$ o $(i_{distancia} > j_{distancia}))$.
+
+%% contenido del tercer capítulo
