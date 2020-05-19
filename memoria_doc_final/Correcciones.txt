@@ -1,0 +1,36 @@
+Gabriel Sanhueza
+es bonito eso de poner un parrafo introductorio a cada capitulo :-)
+Falta un punto final en la seccion de objetivos
+De nuevo, el trabajo relacionado a los antecedentes
+en la intro basta con enumerarlos y describirlos muy brevemente
+Metodología iterativA e incremental
+metodología es niña :-p
+que elegante eso de reflexion :-)
+la definición de heuristica esta al reves. Es un metodo que pretende encontrar una buena solucion en una cantidad finita de pasos, pero no la optima
+Optimo -> Óptimo
+Escribe en presente (todo el documento). Se documentará -> Se documenta
+
+el trabajo relacionado se desarrolla en el capitulo de antecedentes
+igual que la comparativa, está muy bien, pero debería ir en el marco teórico
+en la intro puedes incluir eso, pero muy muy brevement
+tabla 2.1 y 2.2 -> Tablas 2.1 y 2.2
+pongan los títulos de las figuras abajo y de las tablas arriba
+puntos al final de cada titulo de figura o imagen o ninguno
+en los antecedentes van las metodologías genericas
+en el capítulo Metodología, va como aterrizas las metodologías a tu proyecto
+una cosa importante en los antecedentes, es mostrar que conoces varias alternativas para hacer las cosas y el porqué eliges cada alternativa
+
+se escribe en presente. A menos que explicitamente estes diciendo que el software se entregara como software libre despues de que termine este semestre.
+
+OJO: en general es malo tener mucho texto en las láminas. Hay pocas excepciones, por ejemplo, en la lámina de los objetivos
+OJO2: si puedes poner un dibujo sin texto
+
+Laminas de documento pueden ir en vertical pero en la presentación deberian ir en horizontal.
+
+Al final de la introducción poner la sinopsis del documento (descripción del documento). [En el resto de este documento se van a abordar bla bla bla. Explicar la descripción del documento]
+
+pageref: comando latex
+conviene usar ~\cite. Eso te deja un espacio entre la palabra y la cita, y ademas no de deja la cita al comienzo de una línea nueva.
+Ej: algo~\cite{Deb2002}
+
+En español se pone la cita antes del punto final (es parte de la oración).

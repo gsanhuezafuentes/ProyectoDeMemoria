@@ -2,20 +2,20 @@
 En este capítulo se presentan los conceptos que serán necesarios para la realización del proyecto.
 
 \section{Metodología de desarrollo}
-Para el desarrollo de este proyecto se opto por la metodología iterativo e incremental. La elección de esta metodología se debe al hecho de que este genera suficiente documentación para ser utilizada en el desarrollo de futuros proyectos derivados de este trabajo.
-\subsection{Metodología iterativo e incremental}
-El desarrollo iterativo e incremental es una metodología la cual lleva a cabo el desarrollo de un proyecto de software dividiéndolo en iteraciones que generan un incremento, el cual contribuye en el desarrollo del producto final.
+Para el desarrollo de este proyecto se opto por la metodología iterativa e incremental. La elección de esta metodología se debe al hecho de que este genera suficiente documentación para ser utilizada en el desarrollo de futuros proyectos derivados de este trabajo.
+\subsection{Metodología iterativa e incremental}
+El desarrollo iterativa e incremental es una metodología la cual lleva a cabo el desarrollo de un proyecto de software dividiéndolo en iteraciones que generan un incremento, el cual contribuye en el desarrollo del producto final.
 
 Cada iteración se compone de las fases de análisis, diseño, implementación y pruebas como se muestra en la Figura \ref{fig:methodie}. La fase de análisis se encarga de llevar a cabo la obtención y definición de los requerimientos del software. Durante la etapa de diseño se realiza la conceptualización del software basado en los requerimientos definidos anteriormente. Durante la implementación se codifican las funcionalidades siguiendo las directivas establecidas durante el diseño, con el fin de satisfacer los requerimientos. Y finalmente, durante la fase de pruebas, se valida y verifica la correctitud de las funcionalidades implementadas, así como el cumplimiento de los requisitos.
 
 \begin{figure}[h]
 	\includegraphics{Capitulo2/iedevelopment.eps}
 	\centering
-	\caption{Metodología iterativo e incremental \cite{Pressman2009}}
+	\caption{Metodología iterativa e incremental \cite{Pressman2009}}
 	\label{fig:methodie}
 \end{figure}
 
-El hecho de llevar a cabo un desarrollo iterativo permite la obtención de retroalimentación del producto que se esta desarrollando tempranamente y de esta manera poder refinar el trabajo en etapas posteriores del desarrollo. \cite{Victor2003, Mitchell2009, Martin1999,Alshamrani2015}.
+El hecho de llevar a cabo un desarrollo iterativa permite la obtención de retroalimentación del producto que se esta desarrollando tempranamente y de esta manera poder refinar el trabajo en etapas posteriores del desarrollo. \cite{Victor2003, Mitchell2009, Martin1999,Alshamrani2015}.
 
 \section{Metodología de evaluación}
 \subsection{Casos de estudio}
@@ -28,7 +28,7 @@ Un caso de estudio \cite{Runeson2009} es una metodología de investigación la cua
 	\item Definición de características a evaluar: Consiste en establecer que es lo que estamos interesados en evaluar del elemento sobre el que se aplica el caso de estudio.
 	\item Definición de sujetos de prueba: Consiste en indicar cual sera la fuente de datos a ser utilizada para el caso de estudio, estas pueden ser personas, datos ya recolectados, etc.
 	\item Aplicación de caso de estudio en un conjunto de sesiones no controladas: Consiste en llevar a cabo el caso de estudio sobre los sujeto de prueba definidos.
-	\item Aplicación de herramientas de obtención de evidencia empírica: Consiste en la utilización de métodos o técnicas con el fin de obtener evidencia empírica a partir de los datos recolectados 	
+	\item Aplicación de herramientas de obtención de evidencia empírica: Consiste en la utilización de métodos o técnicas con el fin de obtener evidencia empírica a partir de los datos recolectados.
 	\item Análisis y evaluación de datos empíricos: Consiste en analizar la evidencia y evaluar la validez de los resultados obtenidos.
 \end{itemize}
 
@@ -83,7 +83,7 @@ siendo $f_1,...,f_N$ funciones objetivos; $x_1, ..., x_d$ variables de decisión,
 Debido a la definición de las restricciones es posible dividir el espacio de búsqueda en dos regiones \cite{Bozorg-Haddad2017}:
 \begin{itemize}
 	\item Soluciones factibles: Compuesto por los elementos pertenecientes al espacio de búsqueda que satisfacen todas las restricciones.
-	\item Soluciones no factibles: Integrado por aquellos elementos que no complen todas las restricciones.
+	\item Soluciones no factibles: Integrado por aquellos elementos que no cumplen todas las restricciones.
 \end{itemize}
 \section{Heurística}
 Es el conocimiento que se tiene del problema el cual permite acotar la búsqueda de las soluciones en espacios de búsqueda de gran tamaño que hacen inviable la aplicación de técnicas deterministas por el costo de tiempo que implican. Con la utilización de estas técnicas se espera encontrar soluciones buenas en un tiempo razonable, pero esto no esta garantizado \cite{Yang2015,Romanycia1985}.
@@ -391,7 +391,7 @@ Primero, crear e inicializar un arreglo $\mathcal{I}_{distancia}$, con el valor 
 		\ForEach{$m \leftarrow 1$ \KwTo numero de objetivos}{
 			$\NDS \leftarrow$ sort($\NDS$, m) \tcc*[h]{Ordena por el objetivo m}\; 
 			\BlankLine
-			\tcc*[h]{Asignar a la primera y ultima solucion el valor $\infty$ }\;
+			\tcc*[h]{Asignar a la primera y ultima solución el valor $\infty$ }\;
 			$\NDS[1]_{distancia} \leftarrow \NDS[l]_{distancia} \leftarrow \infty$\;
 			\BlankLine
 			\For{$i \leftarrow 2$ \KwTo $l-1$}{

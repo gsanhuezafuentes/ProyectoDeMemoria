@@ -2,7 +2,6 @@ package model.epanet.element.networkcomponent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import model.epanet.element.result.LinkSimulationResult;
 import model.epanet.element.utils.Point;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -10,14 +9,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public abstract class Link extends Component {
-    @NotNull
-    private String id;
     @Nullable private Node node1;
     @Nullable private Node node2;
     private final @NotNull List<Point> vertices;
 
     Link() {
-        this.id = "";
         this.vertices = new ArrayList<>();
     }
 
@@ -36,7 +32,6 @@ public abstract class Link extends Component {
     Link(@NotNull Link link) {
         super(Objects.requireNonNull(link));
         this.vertices = new ArrayList<>();
-        this.id = link.id;
         this.node1 = link.node1; //shallow copy
         this.node2 = link.node2; //shallow copy
         this.vertices.addAll(link.vertices);
@@ -49,26 +44,6 @@ public abstract class Link extends Component {
      */
     public final @NotNull List<Point> getVertices() {
         return vertices;
-    }
-
-    /**
-     * Get the id
-     *
-     * @return the id or a empty string if it doesn't exist
-     */
-    public @NotNull String getId() {
-        return id;
-    }
-
-    /**
-     * Set the id
-     *
-     * @param id the id to set
-     * @throws NullPointerException if id is null
-     */
-    public void setId(@NotNull String id) {
-        Objects.requireNonNull(id);
-        this.id = id;
     }
 
     /**
@@ -114,12 +89,9 @@ public abstract class Link extends Component {
     @Override
     @SuppressWarnings("unchecked") // the superclass also use Gson to generate the string
     public String toString() {
-        Map<String, Object> map = new LinkedHashMap<>();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        map.put("id", id);
-
-        map.putAll(gson.fromJson(super.toString(), LinkedHashMap.class)); //unchecked
+        Map<String, Object> map = new LinkedHashMap<String, Object>(gson.fromJson(super.toString(), LinkedHashMap.class)); //unchecked
         if (node1 == null) {
             map.put("node1", "");
         } else {

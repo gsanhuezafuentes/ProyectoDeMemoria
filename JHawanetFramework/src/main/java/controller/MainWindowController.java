@@ -3,11 +3,13 @@ package controller;
 import controller.multiobjectives.MultiObjectiveRunningWindowController;
 import controller.singleobjectives.SingleObjectiveRunningWindowController;
 import controller.utils.ProblemMenuConfiguration;
+import epanet.core.EpanetException;
 import exception.InputException;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -16,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import model.epanet.element.Network;
+import model.epanet.element.utils.HydraulicSimulation;
 import model.epanet.io.InpParser;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.experiment.Experiment;
@@ -87,6 +90,12 @@ public class MainWindowController implements Initializable {
     private Button runButton;
 
     /**
+     * Open a window to show the result of the simulation with default network configuration
+     */
+    @FXML
+    private Button resultReportButton;
+
+    /**
      * The tabpane
      */
     @FXML
@@ -108,12 +117,15 @@ public class MainWindowController implements Initializable {
     private File inpFile;
     @NotNull
     private final BooleanProperty isNetworkLoaded;
-    @Nullable
+    @NotNull
     private final ObjectProperty<Network> network;
+    @NotNull
+    private ObjectProperty<HydraulicSimulation> hydraulicSimulation;
 
     public MainWindowController() {
         this.isNetworkLoaded = new SimpleBooleanProperty(false);
         this.network = new SimpleObjectProperty<Network>();
+        this.hydraulicSimulation = new SimpleObjectProperty<HydraulicSimulation>();
 
     }
 
@@ -136,9 +148,9 @@ public class MainWindowController implements Initializable {
         elementViewer.networkProperty().bind(network);
         networkComponent.selectedProperty().bindBidirectional(elementViewer.selectedProperty());
 
-        // Configure tabpane behaviour
+        // Configure tabpane behaviour when the default network tab is selected
         this.networkTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) { // clean bind and set property when default tab "network" is selected
+            if (newValue) { // clean bind and disable button when default tab "network" is selected
                 this.saveTableButton.setDisable(true);
                 this.saveSelectedAsINPButton.disableProperty().unbind();
                 this.saveSelectedAsINPButton.setDisable(true);
@@ -146,6 +158,8 @@ public class MainWindowController implements Initializable {
                 this.saveTableButton.setOnAction(null);
             }
         });
+
+        this.resultReportButton.disableProperty().bind(this.hydraulicSimulation.isNull());
     }
 
     /**
@@ -178,6 +192,7 @@ public class MainWindowController implements Initializable {
      */
     private void loadNetwork(@NotNull File file) {
         this.network.setValue(null);
+        this.hydraulicSimulation.setValue(null);
         InpParser parse = new InpParser();
 
         try {
@@ -273,9 +288,9 @@ public class MainWindowController implements Initializable {
             if (tab.selectedProperty().getValue()) { // add bind when select the tab
                 this.saveTableButton.setDisable(false);
                 this.saveSelectedAsINPButton.disableProperty().bind(resultController.hasSelectedItemProperty().not());
-                //save the selected items
+                //save the selected items event
                 this.saveSelectedAsINPButton.setOnAction(event1 -> resultController.saveSelectedItemAsINP());
-                //save the table
+                //save the table event
                 this.saveTableButton.setOnAction(event1 -> resultController.saveTable());
             }
         });
@@ -293,4 +308,20 @@ public class MainWindowController implements Initializable {
      */
     @FXML
     private Tab networkTab;
+
+    public void runOnAction(ActionEvent actionEvent) {
+        try{
+            assert inpFile != null;
+            this.hydraulicSimulation.setValue(HydraulicSimulation.run(inpFile.getAbsolutePath()));
+        } catch (EpanetException e) {
+            CustomDialogs.showExceptionDialog("Error", "Error in the simulation.",
+                    "An error has occurred during the simulation of the network.", e);
+        }
+
+    }
+
+    public void resultReportOnAction(ActionEvent actionEvent) {
+        HydraulicSimulationResultController controller = new HydraulicSimulationResultController(this.hydraulicSimulation.getValue(), networkComponent.selectedProperty());
+        controller.showWindow();
+    }
 }

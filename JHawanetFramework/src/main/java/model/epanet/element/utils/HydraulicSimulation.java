@@ -2,10 +2,9 @@ package model.epanet.element.utils;
 
 import epanet.core.*;
 import exception.ApplicationException;
-import model.epanet.element.Network;
 import model.epanet.element.result.LinkSimulationResult;
 import model.epanet.element.result.NodeSimulationResult;
-import model.epanet.io.InpParser;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.URISyntaxException;
 import java.util.*;
@@ -38,7 +37,7 @@ public final class HydraulicSimulation {
      * @throws ApplicationException     if there is a error when DLL is loaded
      * @throws EpanetException          if there is an error in simulation
      */
-    public static HydraulicSimulation run(String inpPath) throws ApplicationException, EpanetException {
+    public static @NotNull HydraulicSimulation run(@NotNull String inpPath) throws ApplicationException, EpanetException {
         Objects.requireNonNull(inpPath);
         if (inpPath.isEmpty()) throw new IllegalArgumentException("inpPath can not be an empty string");
 
@@ -117,10 +116,7 @@ public final class HydraulicSimulation {
             do {
                 epanet.ENrunH(t);
                 if (t[0] % rtstep == 0 && t[0] >= rtstart) {
-                    long hour = t[0] / (3600);
-                    long minute = (t[0] - (3600 * hour)) / 60;
-                    long second = t[0] - ((3600 * hour) + (minute * 60));
-//                    System.out.printf("%02d:%02d:%02d\n", hour, minute, second);
+//                    System.out.printf(timeToStringTime(t[0]));
                     times.add(timeToStringTime(t[0]));
 
                     for (int i = 1; i <= nodeCount; i++) {
@@ -156,8 +152,10 @@ public final class HydraulicSimulation {
      * @param index         the index of node
      * @param epanet        the simulation engine
      * @return the result of the simulation
+     * @throws NullPointerException if epanet is null
      */
-    private NodeSimulationResult getNodeResult(long timeInSeconds, int index, EpanetAPI epanet) throws EpanetException {
+    private @NotNull NodeSimulationResult getNodeResult(long timeInSeconds, int index, @NotNull EpanetAPI epanet) throws EpanetException {
+        Objects.requireNonNull(epanet);
         String nodeId = epanet.ENgetnodeid(index);
         final double demand = epanet.ENgetnodevalue(index, NodeParameters.EN_DEMAND);
         final double head = epanet.ENgetnodevalue(index, NodeParameters.EN_HEAD);
@@ -173,8 +171,9 @@ public final class HydraulicSimulation {
      * @param index         the index of link
      * @param epanet        the simulation engine
      * @return the result of the simulation
+     * @throws NullPointerException if epanet is null
      */
-    private LinkSimulationResult getLinkResult(long timeInSeconds, int index, EpanetAPI epanet) throws EpanetException {
+    private @NotNull LinkSimulationResult getLinkResult(long timeInSeconds, int index, @NotNull EpanetAPI epanet) throws EpanetException {
         String linkId = epanet.ENgetlinkid(index);
         final float flow = epanet.ENgetlinkvalue(index, LinkParameters.EN_FLOW)[0];
         final float velocity = epanet.ENgetlinkvalue(index, LinkParameters.EN_VELOCITY)[0];
@@ -189,7 +188,7 @@ public final class HydraulicSimulation {
      * @param time the time in seconds
      * @return the time as string
      */
-    private String timeToStringTime(long time) {
+    private @NotNull String timeToStringTime(long time) {
         // Transform the seconds in a time in formar HH:mm:ss
         double hour = time / (60.0 * 60.0); //transform to double
         // the % 1 (mod 1) extract the decimal part of the hour and multiply it by 60 to get the minutes
@@ -206,8 +205,10 @@ public final class HydraulicSimulation {
      *
      * @param time the time as string
      * @return the node results in a specific time or empty list if time is not valid
+     * @throws NullPointerException if time is null
      */
-    public List<NodeSimulationResult> getNodeResultInTime(String time) {
+    public @NotNull List<NodeSimulationResult> getNodeResultInTime(String time) {
+        Objects.requireNonNull(time);
         int indexTime = times.indexOf(time);
         if (indexTime == -1) return Collections.emptyList();
 
@@ -226,8 +227,10 @@ public final class HydraulicSimulation {
      *
      * @param time the time as string
      * @return the links result in a specific time or empty list if time is not valid
+     * @throws NullPointerException if time is null
      */
-    public List<LinkSimulationResult> getLinkResultInTime(String time) {
+    public @NotNull List<LinkSimulationResult> getLinkResultInTime(String time) {
+        Objects.requireNonNull(time);
         int indexTime = times.indexOf(time);
         if (indexTime == -1) return Collections.emptyList();
 
@@ -245,7 +248,7 @@ public final class HydraulicSimulation {
      *
      * @return the list of times
      */
-    public List<String> getTimes() {
+    public @NotNull List<String> getTimes() {
         return times;
     }
 
@@ -254,10 +257,15 @@ public final class HydraulicSimulation {
      *
      * @param nodeId the id of a node
      * @return the result of execution for that node in all time
+     * @throws NullPointerException if nodeId is null
      */
-    public List<NodeSimulationResult> getTimeSeriesForNode(String nodeId) {
-        int index = this.nodeIndex.get(nodeId);
-        return this.nodeResult.get(index);
+    public @NotNull List<NodeSimulationResult> getTimeSeriesForNode(@NotNull String nodeId) {
+        Objects.requireNonNull(nodeId);
+        Integer index = this.nodeIndex.get(nodeId);
+        if (index != null){
+            return this.nodeResult.get(index);
+        }
+        return Collections.emptyList();
     }
 
     /**
@@ -265,10 +273,15 @@ public final class HydraulicSimulation {
      *
      * @param linkId the id of a link
      * @return the result of execution for that link in all time
+     * @throws NullPointerException if linkId is null
      */
-    public List<LinkSimulationResult> getTimeSeriesForLink(String linkId) {
-        int index = this.linkIndex.get(linkId);
-        return this.linkResult.get(index);
+    public @NotNull List<LinkSimulationResult> getTimeSeriesForLink(@NotNull String linkId) {
+        Objects.requireNonNull(linkId);
+        Integer index = this.linkIndex.get(linkId);
+        if (index != null) {
+            return this.linkResult.get(index);
+        }
+        return Collections.emptyList();
     }
 
     public static void main(String[] args) {

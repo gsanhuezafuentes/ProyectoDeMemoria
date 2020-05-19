@@ -133,7 +133,7 @@ public class SingleObjectiveRunningWindowController {
         // listener to handle when a exception is generated in the other thread.
         task.exceptionProperty().addListener((property, oldValue, newValue) -> {
             if (newValue instanceof EpanetException) {
-                CustomDialogs.showExceptionDialog("Error", "Error in the execution of the algorithm.",
+                CustomDialogs.showExceptionDialog("Error", "Error in the simulation.",
                         "An error has occurred during the validation of the solutions.", newValue);
             } else {
                 CustomDialogs.showExceptionDialog("Error", "Error in the execution of the algorithm",
@@ -185,10 +185,10 @@ public class SingleObjectiveRunningWindowController {
         stage.setScene(new Scene(this.root));
         stage.initModality(Modality.APPLICATION_MODAL);
 //		stage.initStyle(StageStyle.UTILITY);
+        stage.setTitle("Status of execution");
         stage.setOnCloseRequest((e) -> onCloseButtonClick());
         stage.show();
         this.window = stage;
-
         Thread t = new Thread(task);
         t.setDaemon(true);
         t.start();

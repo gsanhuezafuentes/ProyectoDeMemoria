@@ -202,6 +202,7 @@ public class MultiObjectiveRunningWindowController {
 //		stage.initStyle(StageStyle.UTILITY);
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setOnCloseRequest((e) -> onCloseButtonClick());
+		stage.setTitle("Status of execution");
 		stage.show();
 		this.window = stage;
 

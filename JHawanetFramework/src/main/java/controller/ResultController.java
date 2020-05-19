@@ -48,7 +48,8 @@ public class ResultController {
 
 	@NotNull private final Network network;
 
-	@NotNull BooleanProperty hasSelectedItem;
+	@NotNull
+	final BooleanProperty hasSelectedItem;
 
 	/**
 	 * Constructor.
@@ -59,7 +60,7 @@ public class ResultController {
 	 * @throws NullPointerException if solutions is null or problem is null or
 	 *                              network is null.
 	 */
-	public ResultController(List<? extends Solution<?>> solutions, Problem<?> problem, Network network) {
+	public ResultController(@NotNull List<? extends Solution<?>> solutions, @NotNull Problem<?> problem, @NotNull Network network) {
 		Objects.requireNonNull(solutions);
 		Objects.requireNonNull(problem);
 		Objects.requireNonNull(network);

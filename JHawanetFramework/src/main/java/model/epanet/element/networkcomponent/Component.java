@@ -15,13 +15,15 @@ import java.util.Objects;
  * nodes) and defined some field that are common for this.
  */
 public abstract class Component {
-
+    @NotNull
+    private String id;
     @NotNull
     private String description;
     @Nullable
     private Tag tag;
 
-    public Component() {
+    Component() {
+        this.id = "";
         this.description = "";
     }
 
@@ -34,12 +36,32 @@ public abstract class Component {
      * @param component the component to copy
      * @throws NullPointerException if component is null
      */
-    public Component(@NotNull Component component) {
+    Component(@NotNull Component component) {
         Objects.requireNonNull(component);
         this.description = component.description;
+        this.id = component.id;
         if (component.tag != null) {
             this.tag = component.tag.copy();
         }
+    }
+    /**
+     * Get the id
+     *
+     * @return the id or a empty string if it doesn't exist
+     */
+    public @NotNull String getId() {
+        return id;
+    }
+
+    /**
+     * Set the id
+     *
+     * @param id the id to set
+     * @throws NullPointerException if id is null
+     */
+    public void setId(@NotNull String id) {
+        Objects.requireNonNull(id);
+        this.id = id;
     }
 
     /**
@@ -85,6 +107,7 @@ public abstract class Component {
         Map<String, Object> map = new LinkedHashMap<>();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+        map.put("id", id);
         map.put("description", description);
         if (tag == null) {
             map.put("tag", "");
