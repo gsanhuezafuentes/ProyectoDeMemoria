@@ -1,18 +1,14 @@
 package model.epanet.io;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import model.epanet.element.Gama;
+import model.metaheuristic.problem.impl.PipeOptimizing;
+import org.jetbrains.annotations.NotNull;
+
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import model.epanet.element.Gama;
-import model.metaheuristic.problem.impl.PipeOptimizing;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Parse the gama file. It is only used for the {@link PipeOptimizing}

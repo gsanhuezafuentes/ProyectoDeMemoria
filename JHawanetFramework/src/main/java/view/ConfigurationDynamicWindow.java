@@ -1,28 +1,9 @@
 package view;
 
-import java.io.File;
-import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.function.UnaryOperator;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-
 import annotations.operators.DefaultConstructor;
-import annotations.registrable.FileInput;
+import annotations.registrable.*;
 import annotations.registrable.FileInput.FileType;
-import annotations.registrable.NumberInput;
-import annotations.registrable.NumberToggleInput;
-import annotations.registrable.OperatorInput;
-import annotations.registrable.OperatorOption;
-import annotations.registrable.Parameters;
 import controller.ConfigurationDynamicWindowController;
-import controller.problems.Registrable;
 import controller.utils.ReflectionUtils;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
@@ -30,16 +11,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -49,7 +22,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
+import registrable.Registrable;
 import view.utils.CustomDialogs;
+
+import java.io.File;
+import java.lang.reflect.Constructor;
+import java.util.*;
+import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * This class build the interface to configure the problems. It use the

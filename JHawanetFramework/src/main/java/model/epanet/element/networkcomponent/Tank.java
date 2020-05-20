@@ -1,15 +1,15 @@
 package model.epanet.element.networkcomponent;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.epanet.element.systemoperation.Curve;
 import model.epanet.element.waterquality.Mixing;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * This class represent a tank.

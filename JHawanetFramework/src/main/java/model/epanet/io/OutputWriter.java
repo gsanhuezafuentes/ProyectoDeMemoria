@@ -1,9 +1,9 @@
 package model.epanet.io;
 
+import model.epanet.element.Network;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import model.epanet.element.Network;
 
 /**
  * Interface to classes that write a network file in system.

@@ -28,13 +28,13 @@
  */
 package model.metaheuristic.utils.solutionattribute;
 
+import model.metaheuristic.solution.Solution;
+import model.metaheuristic.utils.comparator.ObjectiveComparator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
-import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.comparator.ObjectiveComparator;
 
 /**
  * This class implements the crowding distance
@@ -75,17 +75,17 @@ public class CrowdingDistance<S extends Solution<?>> extends SolutionAttribute<S
 			front.get(i).setAttribute(getAttributeIdentifier(), 0.0);
 		}
 
-		double objetiveMaxn;
-		double objetiveMinn;
+		double objectiveMaxn;
+		double objectiveMinn;
 		double distance;
 
 		int numberOfObjectives = solutionList.get(0).getNumberOfObjectives();
 
 		for (int i = 0; i < numberOfObjectives; i++) {
-			// Sort the population by Objetive n
+			// Sort the population by objective n
 			Collections.sort(front, new ObjectiveComparator<S>(i));
-			objetiveMinn = front.get(0).getObjective(i);
-			objetiveMaxn = front.get(front.size() - 1).getObjective(i);
+			objectiveMinn = front.get(0).getObjective(i);
+			objectiveMaxn = front.get(front.size() - 1).getObjective(i);
 
 			// Set de crowding distance
 			front.get(0).setAttribute(getAttributeIdentifier(), Double.POSITIVE_INFINITY);
@@ -93,7 +93,7 @@ public class CrowdingDistance<S extends Solution<?>> extends SolutionAttribute<S
 
 			for (int j = 1; j < size - 1; j++) {
 				distance = front.get(j + 1).getObjective(i) - front.get(j - 1).getObjective(i);
-				distance = distance / (objetiveMaxn - objetiveMinn);
+				distance = distance / (objectiveMaxn - objectiveMinn);
 				distance += (double) front.get(j).getAttribute(getAttributeIdentifier());
 				front.get(j).setAttribute(getAttributeIdentifier(), distance);
 			}

@@ -1,20 +1,18 @@
 package model.epanet.element.networkcomponent;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.result.LinkSimulationResult;
+import model.epanet.element.result.NodeSimulationResult;
 import model.epanet.element.utils.Point;
 import model.epanet.element.waterquality.Quality;
 import model.epanet.element.waterquality.Source;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.*;
+
 public abstract class Node extends Component {
-    @NotNull
-    private String id;
     @Nullable
     private Point position;
     @Nullable
@@ -22,9 +20,7 @@ public abstract class Node extends Component {
     @Nullable
     private Source sourceQuality;
 
-    public Node() {
-        this.id = "";
-    }
+    Node() {}
 
     /**
      * Copy constructor. This is a deep copy, i.e., If the field value is a
@@ -35,9 +31,8 @@ public abstract class Node extends Component {
      * @param node the node to copy
      * @throws NullPointerException if node is null
      */
-    public Node(@NotNull Node node) {
+    Node(@NotNull Node node) {
         super(Objects.requireNonNull(node));
-        this.id = node.id;
         this.position = node.position;
         if (node.initialQuality != null) {
             this.initialQuality = node.initialQuality.copy();
@@ -65,26 +60,6 @@ public abstract class Node extends Component {
      */
     public final void setPosition(@Nullable Point position) {
         this.position = position;
-    }
-
-    /**
-     * Get the id
-     *
-     * @return the id or a empty string if it doesn't exist
-     */
-    public @NotNull String getId() {
-        return id;
-    }
-
-    /**
-     * Set the id
-     *
-     * @param id the id to set
-     * @throws NullPointerException if id is null
-     */
-    public void setId(@NotNull String id) {
-        Objects.requireNonNull(id);
-        this.id = id;
     }
 
     /**
@@ -124,11 +99,9 @@ public abstract class Node extends Component {
     @Override
     @SuppressWarnings("unchecked") // the superclass also use Gson to generate the string
     public String toString() {
-        Map<String, Object> map = new LinkedHashMap<>();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        map.put("id", id);
-        map.putAll(gson.fromJson(super.toString(), LinkedHashMap.class));//unchecked
+        Map<String, Object> map = new LinkedHashMap<>(gson.fromJson(super.toString(), LinkedHashMap.class));//unchecked
         if (position == null) {
             map.put("position", "");
         } else {

@@ -1,13 +1,13 @@
 package annotations.operators;
 
-import static java.lang.annotation.ElementType.CONSTRUCTOR;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import model.metaheuristic.operator.Operator;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import model.metaheuristic.operator.Operator;
+import static java.lang.annotation.ElementType.CONSTRUCTOR;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * 

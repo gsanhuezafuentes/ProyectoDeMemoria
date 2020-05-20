@@ -1,8 +1,8 @@
 package annotations.registrable;
 
-import java.lang.annotation.*;
+import registrable.Registrable;
 
-import controller.problems.Registrable;
+import java.lang.annotation.*;
 
 /**
  * This class is used to indicate the name to problem that the class that inherit of {@link Registrable} set up.

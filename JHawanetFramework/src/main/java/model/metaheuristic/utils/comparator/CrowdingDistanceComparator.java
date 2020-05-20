@@ -28,10 +28,10 @@
  */
 package model.metaheuristic.utils.comparator;
 
-import java.util.Comparator;
-
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.solutionattribute.CrowdingDistance;
+
+import java.util.Comparator;
 
 /**
  * Compares two solutions according to the crowding distance attribute. The

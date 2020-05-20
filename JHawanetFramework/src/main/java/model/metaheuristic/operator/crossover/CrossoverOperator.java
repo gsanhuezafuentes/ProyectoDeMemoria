@@ -28,9 +28,9 @@
  */
 package model.metaheuristic.operator.crossover;
 
-import java.util.List;
-
 import model.metaheuristic.operator.Operator;
+
+import java.util.List;
 
 /**
  *

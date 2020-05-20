@@ -28,12 +28,6 @@
  */
 package model.metaheuristic.operator.selection.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
-
 import exception.ApplicationException;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.solution.Solution;
@@ -41,6 +35,8 @@ import model.metaheuristic.utils.comparator.CrowdingDistanceComparator;
 import model.metaheuristic.utils.comparator.DominanceComparator;
 import model.metaheuristic.utils.solutionattribute.CrowdingDistance;
 import model.metaheuristic.utils.solutionattribute.DominanceRanking;
+
+import java.util.*;
 
 /**
  * This class implements a selection for selecting a number of solutions from a

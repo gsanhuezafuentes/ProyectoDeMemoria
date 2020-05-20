@@ -1,26 +1,26 @@
 package application;
 
+import registrable.MultiObjectiveRegistrable;
+import registrable.SingleObjectiveRegistrable;
+import registrable.multiobjective.PumpSchedulingRegister;
+import registrable.singleobjective.PipeOptimizingRegister;
+import registrable.singleobjective.TestProblemRegister;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import controller.problems.MonoObjectiveRegistrable;
-import controller.problems.MultiObjectiveRegistrable;
-import controller.problems.PipeOptimizingRegister;
-import controller.problems.PumpSchedulingRegister;
-import controller.problems.TestProblemRegister;
 
 /**
  * This class contain the problem that can be resolved by this application. 
  *
  */
 public final class Configuration {
-	public static final List<Class<? extends MonoObjectiveRegistrable>> MONOOBJECTIVES_PROBLEMS = new ArrayList<>();
+	public static final List<Class<? extends SingleObjectiveRegistrable>> SINGLEOBJECTIVES_PROBLEMS = new ArrayList<>();
 	public static final List<Class<? extends MultiObjectiveRegistrable>> MULTIOBJECTIVES_PROBLEMS = new ArrayList<>();
 
-	//Add here the Registrable clases (Monoobjective).
+	//Add here the Registrable clases (SingleObjectives).
 	static {
-		MONOOBJECTIVES_PROBLEMS.add(PipeOptimizingRegister.class);
-		MONOOBJECTIVES_PROBLEMS.add(TestProblemRegister.class);
+		SINGLEOBJECTIVES_PROBLEMS.add(PipeOptimizingRegister.class);
+		SINGLEOBJECTIVES_PROBLEMS.add(TestProblemRegister.class);
 	}
 	
 	// Multiobjectives

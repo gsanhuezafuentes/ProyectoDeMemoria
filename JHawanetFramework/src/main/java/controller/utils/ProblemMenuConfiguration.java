@@ -1,18 +1,18 @@
 package controller.utils;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Map;
-
 import application.Configuration;
 import controller.ConfigurationDynamicWindowController;
-import controller.problems.MonoObjectiveRegistrable;
-import controller.problems.MultiObjectiveRegistrable;
-import controller.problems.Registrable;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import registrable.MultiObjectiveRegistrable;
+import registrable.Registrable;
+import registrable.SingleObjectiveRegistrable;
 import view.utils.CustomDialogs;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * In this class are added the problems that will be added to menu using
@@ -36,9 +36,9 @@ public class ProblemMenuConfiguration {
 	 * @param algorithmEvent the event that will be fired when the
 	 *                       RegistrableProblem is created.
 	 */
-	public void addMonoObjectiveProblems(Menu menu, CustomCallback<MonoObjectiveRegistrable> algorithmEvent) {
+	public void addSingleObjectiveProblems(Menu menu, CustomCallback<SingleObjectiveRegistrable> algorithmEvent) {
 		Map<String, Menu> addedMenu = new HashMap<>();
-		for (Class<? extends MonoObjectiveRegistrable> registrable : Configuration.MONOOBJECTIVES_PROBLEMS) {
+		for (Class<? extends SingleObjectiveRegistrable> registrable : Configuration.SINGLEOBJECTIVES_PROBLEMS) {
 			ReflectionUtils.validateRegistrableProblem(registrable);
 			ReflectionUtils.validateOperators(registrable);
 			String problemName = ReflectionUtils.getNameOfProblem(registrable);

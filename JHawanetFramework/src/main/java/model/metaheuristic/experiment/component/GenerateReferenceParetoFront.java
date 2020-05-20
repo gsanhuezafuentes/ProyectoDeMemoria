@@ -27,15 +27,6 @@
  */
 package model.metaheuristic.experiment.component;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.StringTokenizer;
 import exception.ApplicationException;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentComponent;
@@ -44,6 +35,11 @@ import model.metaheuristic.experiment.util.ExperimentProblem;
 import model.metaheuristic.utils.archive.impl.NonDominatedSolutionListArchive;
 import model.metaheuristic.utils.io.SolutionListOutput;
 import model.metaheuristic.utils.solutionattribute.SolutionAttribute;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * This class computes a reference Pareto front from a set of files. Once the

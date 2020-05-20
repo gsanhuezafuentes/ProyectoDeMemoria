@@ -1,28 +1,10 @@
 package model.epanet.io;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Objects;
-
 import exception.InputException;
 import model.epanet.element.Network;
-import model.epanet.element.networkcomponent.Component;
-import model.epanet.element.networkcomponent.Emitter;
-import model.epanet.element.networkcomponent.Junction;
-import model.epanet.element.networkcomponent.Link;
-import model.epanet.element.networkcomponent.Node;
-import model.epanet.element.networkcomponent.Pipe;
+import model.epanet.element.networkcomponent.*;
 import model.epanet.element.networkcomponent.Pipe.PipeStatus;
-import model.epanet.element.networkcomponent.Pump;
 import model.epanet.element.networkcomponent.Pump.PumpStatus;
-import model.epanet.element.networkcomponent.Reservoir;
-import model.epanet.element.networkcomponent.Tank;
-import model.epanet.element.networkcomponent.Valve;
 import model.epanet.element.networkcomponent.Valve.ValveStatus;
 import model.epanet.element.networkcomponent.Valve.ValveType;
 import model.epanet.element.networkdesign.Backdrop;
@@ -36,12 +18,7 @@ import model.epanet.element.optionsreport.QualityOption;
 import model.epanet.element.optionsreport.QualityOption.MassUnit;
 import model.epanet.element.optionsreport.Report;
 import model.epanet.element.optionsreport.Time;
-import model.epanet.element.systemoperation.Control;
-import model.epanet.element.systemoperation.Curve;
-import model.epanet.element.systemoperation.Demand;
-import model.epanet.element.systemoperation.EnergyOption;
-import model.epanet.element.systemoperation.Pattern;
-import model.epanet.element.systemoperation.Rule;
+import model.epanet.element.systemoperation.*;
 import model.epanet.element.utils.ParseNetworkToINPString;
 import model.epanet.element.utils.Point;
 import model.epanet.element.waterquality.Mixing;
@@ -53,6 +30,11 @@ import model.epanet.element.waterquality.Source.SourceType;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Parse the INP file to get the coordinates and vertices of the water network.

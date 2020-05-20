@@ -1,0 +1,9 @@
+.imageButton{
+    -fx-background-color: transparent;
+    -fx-padding: 2 0 2 0;
+}
+
+.imageButton:hover{
+    -fx-border-color: transparent !important;
+    -fx-background-color: darkgrey;
+}

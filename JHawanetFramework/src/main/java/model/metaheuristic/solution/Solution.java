@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Representation of the solution. It contain the result of objetive function
+ * Representation of the solution. It contain the result of objective function
  * associated to his decision variables.
  *
  * @param <Type> The type that contains the solution.
@@ -73,25 +73,25 @@ public interface Solution<Type> {
 	List<Type> getVariables();
 
 	/**
-	 * Get the objetive value associated to index
+	 * Get the objective value associated to index
 	 * 
-	 * @param index the index assigned to objetive value when was saved.
+	 * @param index the index assigned to objective value when was saved.
 	 * @return the value of objective in the position index
 	 */
 	double getObjective(int index);
 
 	/**
-	 * Set or add a new objetive
+	 * Set or add a new objective
 	 * 
-	 * @param index the index associated to objetive
-	 * @param value the value of this objetive
+	 * @param index the index associated to objective
+	 * @param value the value of this objective
 	 */
 	void setObjective(int index, double value);
 
 	/**
-	 * Get all objetive values
+	 * Get all objective values
 	 * 
-	 * @return A array with all values of objetive function
+	 * @return A array with all values of objective function
 	 */
 	double[] getObjectives();
 

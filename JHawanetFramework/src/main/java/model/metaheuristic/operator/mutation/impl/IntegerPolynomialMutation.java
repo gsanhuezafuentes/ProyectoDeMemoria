@@ -29,8 +29,6 @@
 
 package model.metaheuristic.operator.mutation.impl;
 
-import java.util.Objects;
-
 import annotations.operators.DefaultConstructor;
 import exception.ApplicationException;
 import model.metaheuristic.operator.mutation.MutationOperator;
@@ -38,6 +36,8 @@ import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.random.JavaRandom;
 import model.metaheuristic.utils.random.RandomGenerator;
+
+import java.util.Objects;
 
 /**
  * This class implements a polynomial mutation operator to be applied to Integer

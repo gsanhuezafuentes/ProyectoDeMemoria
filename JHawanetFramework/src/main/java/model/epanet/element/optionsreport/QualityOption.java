@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class QualityOption {
+public final class QualityOption {
 	private static final String DEFAULT_PARAMETER = "NONE";
 	private static final double DEFAULT_RELATIVE_DIFFUSIVITY = 1;
 	private static final double DEFAULT_QUALITY_TOLERANCE = 0.1;

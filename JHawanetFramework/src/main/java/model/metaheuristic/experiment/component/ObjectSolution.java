@@ -1,12 +1,8 @@
 package model.metaheuristic.experiment.component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import model.metaheuristic.solution.Solution;
+
+import java.util.*;
 
 /**
  * Solution used to wrap any type of decision variable.

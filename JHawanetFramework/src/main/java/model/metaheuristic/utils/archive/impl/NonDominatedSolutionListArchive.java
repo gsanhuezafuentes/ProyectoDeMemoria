@@ -29,15 +29,15 @@
 package model.metaheuristic.utils.archive.impl;
 
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.archive.Archive;
 import model.metaheuristic.utils.comparator.DominanceComparator;
 import model.metaheuristic.utils.comparator.EqualSolutionsComparator;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * This class implements an archive containing non-dominated solutions

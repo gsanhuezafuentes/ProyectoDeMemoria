@@ -28,12 +28,12 @@
  */
 package model.metaheuristic.utils.comparator;
 
+import exception.ApplicationException;
+import model.metaheuristic.solution.Solution;
+
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
-
-import exception.ApplicationException;
-import model.metaheuristic.solution.Solution;
 
 /**
  * This class implements a solution comparator taking into account the violation
@@ -64,7 +64,7 @@ public class DominanceComparator<S extends Solution<?>> implements Comparator<S>
 	 * @param solution2 Object representing the second <code>Solution</code>.
 	 * @return less than 0, zero , or greater than 0 if solution1 dominates solution2, both are
 	 *         non-dominated, or solution1 is dominated by solution2, respectively.
-	 * @throws ApplicationException if the number of objetive of solution1 and solution2 is not the same.
+	 * @throws ApplicationException if the number of objective of solution1 and solution2 is not the same.
 	 */
 	@Override
 	public int compare(S solution1, S solution2) {

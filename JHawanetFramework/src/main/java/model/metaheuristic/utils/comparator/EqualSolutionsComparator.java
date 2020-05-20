@@ -28,10 +28,10 @@
  */
 package model.metaheuristic.utils.comparator;
 
+import model.metaheuristic.solution.Solution;
+
 import java.io.Serializable;
 import java.util.Comparator;
-
-import model.metaheuristic.solution.Solution;
 
 /**
  * This class implements a <code>Comparator</code> (a method for comparing

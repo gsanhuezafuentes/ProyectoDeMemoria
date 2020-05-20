@@ -1,11 +1,11 @@
 package model.epanet.element.networkcomponent;
 
-import java.util.*;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.*;
 
 public final class Pump extends Link {
 
@@ -53,8 +53,8 @@ public final class Pump extends Link {
          * @return the associated enum
          * @throws IllegalArgumentException if name is not valid
          */
-        public static @NotNull PumpStatus parse(String name) {
-            for (PumpStatus object : PumpStatus.values()) {
+        public static @NotNull PumpProperty parse(String name) {
+            for (PumpProperty object : PumpProperty.values()) {
                 if (object.getName().equalsIgnoreCase(name)) {
                     return object;
                 }

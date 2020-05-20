@@ -28,12 +28,12 @@
  */
 package model.metaheuristic.algorithm;
 
-import java.util.List;
-
 import controller.utils.AlgorithmTask;
 import controller.utils.ExperimentTask;
 import epanet.core.EpanetException;
 import model.metaheuristic.solution.Solution;
+
+import java.util.List;
 
 /**
  * Interface that contains method to define Algorithm
@@ -94,8 +94,8 @@ public interface Algorithm<Result extends Solution<?>> extends AutoCloseable {
 	/**
 	 * Get the result of the algorithm execution.
 	 * 
-	 * A monoobjetive metaheuristics should return a list with only one solution. In
-	 * case of multiobjetive metaheuristics it should return a list with more than
+	 * A singleobjective metaheuristics should return a list with only one solution. In
+	 * case of multiobjective metaheuristics it should return a list with more than
 	 * one solution. In the rare case that there is no solution a empty list has to
 	 * be returned.
 	 * 

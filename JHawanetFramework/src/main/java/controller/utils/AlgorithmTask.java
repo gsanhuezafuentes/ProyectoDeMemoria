@@ -1,12 +1,12 @@
 package controller.utils;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-
 import javafx.concurrent.Task;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.solution.Solution;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * This class is used to perform the algorithm execution in other thread

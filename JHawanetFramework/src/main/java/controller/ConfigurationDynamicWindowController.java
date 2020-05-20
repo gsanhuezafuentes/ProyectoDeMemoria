@@ -1,17 +1,17 @@
 package controller;
 
+import controller.utils.CustomCallback;
+import controller.utils.ReflectionUtils;
+import exception.ApplicationException;
+import registrable.Registrable;
+import view.ConfigurationDynamicWindow;
+import view.utils.CustomDialogs;
+
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-import controller.problems.Registrable;
-import controller.utils.CustomCallback;
-import controller.utils.ReflectionUtils;
-import exception.ApplicationException;
-import view.ConfigurationDynamicWindow;
-import view.utils.CustomDialogs;
 
 public class ConfigurationDynamicWindowController<T extends Registrable<?>> {
 	private final CustomCallback<T> algorithmEvent;

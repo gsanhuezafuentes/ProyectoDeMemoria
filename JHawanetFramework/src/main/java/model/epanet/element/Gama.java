@@ -1,6 +1,6 @@
 package model.epanet.element;
 
-public class Gama {
+public final class Gama {
 	private final double cost;
 	private final double diameter;
 
