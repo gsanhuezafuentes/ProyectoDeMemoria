@@ -276,7 +276,7 @@ public class DataDisplayWindow extends Stage {
                 Pump link = (Pump) selectedItem;
 
                 // common properties for link
-                list.add(new Pair<>("Pipe ID", link.getId()));
+                list.add(new Pair<>("Pump ID", link.getId()));
                 assert link.getNode1() != null;
                 list.add(new Pair<>("Initial Node", link.getNode1().getId()));
                 assert link.getNode2() != null;
