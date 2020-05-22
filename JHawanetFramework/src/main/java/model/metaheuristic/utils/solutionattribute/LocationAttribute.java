@@ -26,39 +26,24 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. © 2019
  * GitHub, Inc.
  */
-package model.metaheuristic.utils.archive;
+package model.metaheuristic.utils.solutionattribute;
 
-import java.io.Serializable;
+import model.metaheuristic.solution.Solution;
+
 import java.util.List;
 
 /**
- * Interface representing an archive of solutions.
+ *  Assign to each solution in a solution list an attribute containing the position of
+ *  the solutions in the list.
  *
+ * @param <S>
  */
-public interface Archive<S> extends Serializable {
-	/**
-	 * Add element to the archive
-	 * @param solution the solution to add
-	 * @return
-	 */
-	boolean add(S solution);
+public class LocationAttribute <S extends Solution<?>>
+        extends SolutionAttribute<S, Integer> {
 
-	/**
-	 * Get a element of the archive
-	 * @param index the index of element
-	 * @return the element
-	 */
-	S get(int index);
-
-	/**
-	 * Get the solution list of the archive
-	 * @return
-	 */
-	List<S> getSolutionList();
-
-	/**
-	 * Get the size of archive
-	 * @return the size
-	 */
-	int size();
+    public LocationAttribute(List<S> solutionList) {
+        int location = 0;
+        for (S solution : solutionList)
+            solution.setAttribute(getAttributeIdentifier(), location++);
+    }
 }

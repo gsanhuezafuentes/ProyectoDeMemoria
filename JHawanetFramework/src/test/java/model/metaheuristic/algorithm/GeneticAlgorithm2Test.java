@@ -1,12 +1,13 @@
 package model.metaheuristic.algorithm;
 
 import exception.ApplicationException;
-import model.metaheuristic.algorithm.singleobjective.GeneticAlgorithm2;
+import model.metaheuristic.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithm2;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.impl.IntegerSolution;
+import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
@@ -34,7 +35,7 @@ class GeneticAlgorithm2Test {
 	@Test
 	void setMaxEvaluations_LessThanZero_Exception() throws Exception {
 		GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10,
-				selectionOperator, crossoverOperator, mutationOperator);
+				selectionOperator, crossoverOperator, mutationOperator, new SequentialSolutionEvaluator<>());
 		assertThrows(ApplicationException.class, () -> algorithm.setMaxEvaluations(-1));
 	}
 
@@ -46,7 +47,7 @@ class GeneticAlgorithm2Test {
 	@Test
 	void setMaxNumberOfIterationWithoutImprovement_LessThanZero_Exception() {
 		GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10,
-				selectionOperator, crossoverOperator, mutationOperator);
+				selectionOperator, crossoverOperator, mutationOperator,  new SequentialSolutionEvaluator<>());
 		assertThrows(ApplicationException.class, () -> algorithm.setMaxNumberOfIterationWithoutImprovement(-1));
 	}
 
@@ -59,7 +60,7 @@ class GeneticAlgorithm2Test {
 	@Test
 	void SetMaxNumberOfIterationWithoutImprovement_AfterUseSetMaxEvaluations_MaxEvaluationConditionZero() {
 		GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10,
-				selectionOperator, crossoverOperator, mutationOperator);
+				selectionOperator, crossoverOperator, mutationOperator,  new SequentialSolutionEvaluator<>());
 		algorithm.setMaxEvaluations(10000);
 		algorithm.setMaxNumberOfIterationWithoutImprovement(10000);
 		assertEquals(0, algorithm.getMaxEvaluations());
@@ -75,7 +76,7 @@ class GeneticAlgorithm2Test {
 	@Test
 	void setMaxEvaluations_AfterUseSetMaxNumberOfIterationWithoutImprovement_MaxNumberOfIterationWithoutImprovementZero() {
 		GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10,
-				selectionOperator, crossoverOperator, mutationOperator);
+				selectionOperator, crossoverOperator, mutationOperator,  new SequentialSolutionEvaluator<>());
 		algorithm.setMaxNumberOfIterationWithoutImprovement(1000);
 		algorithm.setMaxEvaluations(10000);
 		assertEquals(0, algorithm.getMaxNumberOfIterationWithoutImprovement());

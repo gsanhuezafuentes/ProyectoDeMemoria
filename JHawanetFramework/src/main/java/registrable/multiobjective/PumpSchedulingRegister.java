@@ -2,7 +2,7 @@ package registrable.multiobjective;
 
 import annotations.registrable.NewProblem;
 import model.metaheuristic.algorithm.Algorithm;
-import model.metaheuristic.algorithm.multiobjective.NSGAII;
+import model.metaheuristic.algorithm.multiobjective.nsga.NSGAII;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentBuilder;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
@@ -17,6 +17,7 @@ import model.metaheuristic.problem.Problem;
 import model.metaheuristic.problem.impl.VanzylOriginal;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.comparator.DominanceComparator;
+import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.MultiObjectiveRegistrable;
 
 import java.util.ArrayList;
@@ -110,7 +111,7 @@ public class PumpSchedulingRegister implements MultiObjectiveRegistrable {
 				Comparator<IntegerSolution> comparator = new DominanceComparator<>();
 
 				Algorithm<IntegerSolution> algorithm = new NSGAII<>(problem, 1000, 100, 100, 100, crossover, mutation,
-						selection, comparator);
+						selection, comparator, new SequentialSolutionEvaluator<>());
 				algorithms.add(new ExperimentAlgorithm<>(algorithm, problemList.get(i), run));
 			}
 

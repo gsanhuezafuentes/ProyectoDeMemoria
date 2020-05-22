@@ -28,37 +28,33 @@
  */
 package model.metaheuristic.utils.archive;
 
-import java.io.Serializable;
-import java.util.List;
+import java.util.Comparator;
 
 /**
- * Interface representing an archive of solutions.
+ * Represent a bounded archive. The bounded archive limits the number of items.
  *
+ * @param <S> type of solution contained in the archive
  */
-public interface Archive<S> extends Serializable {
-	/**
-	 * Add element to the archive
-	 * @param solution the solution to add
-	 * @return
-	 */
-	boolean add(S solution);
+public interface BoundedArchive<S> extends Archive<S> {
+    /**
+     * Get the max size of archive
+     * @return the max size
+     */
+    int getMaxSize() ;
 
-	/**
-	 * Get a element of the archive
-	 * @param index the index of element
-	 * @return the element
-	 */
-	S get(int index);
+    /**
+     * Get the comparator used in the archive
+     * @return the comparator
+     */
+    Comparator<S> getComparator() ;
 
-	/**
-	 * Get the solution list of the archive
-	 * @return
-	 */
-	List<S> getSolutionList();
+    /**
+     * Compute the density estimator
+     */
+    void computeDensityEstimator() ;
 
-	/**
-	 * Get the size of archive
-	 * @return the size
-	 */
-	int size();
+    /**
+     * Sort the archive by density
+     */
+    void sortByDensityEstimator() ;
 }

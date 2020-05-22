@@ -3,7 +3,7 @@ package registrable.singleobjective;
 import annotations.registrable.*;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
-import model.metaheuristic.algorithm.singleobjective.GeneticAlgorithm2;
+import model.metaheuristic.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithm2;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.crossover.impl.IntegerSBXCrossover;
 import model.metaheuristic.operator.crossover.impl.IntegerSinglePointCrossover;
@@ -15,6 +15,7 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.UniformSelection;
 import model.metaheuristic.problem.impl.PipeOptimizing;
 import model.metaheuristic.solution.impl.IntegerSolution;
+import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.Registrable;
 import registrable.SingleObjectiveRegistrable;
 
@@ -113,7 +114,7 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
             this.problem = new PipeOptimizing(epanet, this.gama.getAbsolutePath(), 30);
 
         }
-        algorithm = new GeneticAlgorithm2<>(this.problem, 10, selection, crossover, mutation);
+        algorithm = new GeneticAlgorithm2<>(this.problem, 10, selection, crossover, mutation, new SequentialSolutionEvaluator<>());
         if (numberWithoutImprovement > 0) {
             algorithm.setMaxNumberOfIterationWithoutImprovement(numberWithoutImprovement);
         } else {

@@ -26,8 +26,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. © 2019
  * GitHub, Inc.
  */
-package model.metaheuristic.algorithm.multiobjective;
+package model.metaheuristic.algorithm.multiobjective.nsga;
 
+import epanet.core.EpanetException;
 import exception.ApplicationException;
 import model.metaheuristic.algorithm.AbstractEvolutionaryAlgorithm;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
@@ -37,6 +38,7 @@ import model.metaheuristic.operator.selection.impl.RankingAndCrowdingSelection;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.SolutionListUtils;
+import model.metaheuristic.utils.evaluator.SolutionListEvaluator;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -62,6 +64,7 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 	protected MutationOperator<S> mutationOperator;
 	protected List<S> population;
 	protected Problem<S> problem;
+	protected final SolutionListEvaluator<S> evaluator;
 
 	/**
 	 * Constructor
@@ -74,10 +77,11 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 	 * @param mutationOperator the mutation operator
 	 * @param selectionOperator the selection operator
 	 * @param dominanceComparator the dominance operator
+	 * @param evaluator the solution evaluator
 	 */
 	public NSGAII(Problem<S> problem, int maxEvaluations, int populationSize, int matingPoolSize,
 			int offspringPopulationSize, CrossoverOperator<S> crossoverOperator, MutationOperator<S> mutationOperator,
-			SelectionOperator<List<S>, S> selectionOperator, Comparator<S> dominanceComparator) {
+			SelectionOperator<List<S>, S> selectionOperator, Comparator<S> dominanceComparator, SolutionListEvaluator<S> evaluator) {
 		setProblem(problem);
 		this.maxEvaluations = maxEvaluations;
 		setMaxPopulationSize(populationSize);
@@ -87,6 +91,7 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 		this.selectionOperator = selectionOperator;
 
 		this.dominanceComparator = dominanceComparator;
+		this.evaluator = evaluator;
 
 		this.matingPoolSize = matingPoolSize;
 		this.offspringPopulationSize = offspringPopulationSize;
@@ -116,6 +121,14 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 	@Override
 	protected void initProgress() {
 		numberOfEvaluations = getMaxPopulationSize();
+	}
+
+	@Override
+	/**
+	 * {@inheritDoc}
+	 */
+	protected List<S> evaluatePopulation(List<S> population) throws EpanetException {
+		return this.evaluator.evaluate(population, problem);
 	}
 
 	/**
@@ -253,4 +266,5 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 	public String getName() {
 		return "NSGA-II";
 	}
+
 }

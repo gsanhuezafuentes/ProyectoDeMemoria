@@ -3,13 +3,14 @@ package registrable.singleobjective;
 import annotations.registrable.NewProblem;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
-import model.metaheuristic.algorithm.singleobjective.GeneticAlgorithm2;
+import model.metaheuristic.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithm2;
 import model.metaheuristic.operator.crossover.impl.IntegerSinglePointCrossover;
 import model.metaheuristic.operator.mutation.impl.IntegerSimpleRandomMutation;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.UniformSelection;
 import model.metaheuristic.problem.impl.PipeOptimizing;
 import model.metaheuristic.solution.impl.IntegerSolution;
+import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.SingleObjectiveRegistrable;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public final class TestProblemRegister implements SingleObjectiveRegistrable {
 			problem = new PipeOptimizing(epanet, "inp/hanoiHW.Gama", 30);
 		}
 	
-		algorithm = new GeneticAlgorithm2<>(problem, 10, selection, crossover, mutation);
+		algorithm = new GeneticAlgorithm2<>(problem, 10, selection, crossover, mutation, new SequentialSolutionEvaluator<>());
 		algorithm.setMaxEvaluations(10000);
 		
 		return algorithm;

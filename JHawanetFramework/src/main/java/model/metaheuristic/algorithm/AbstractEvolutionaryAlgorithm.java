@@ -42,6 +42,17 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>> imple
 	private int step = 0;
 
 	/**
+	 * Evaluate population
+	 *
+	 * @param population the population to evaluate
+	 * @return A list of solution that already has been evaluated
+	 * @throws EpanetException If there is a problem in the simulation of solution
+	 *                         using EpanetToolkit
+	 *
+	 */
+	abstract protected List<S> evaluatePopulation(List<S> population) throws EpanetException;
+
+	/**
 	 * Method that update the progress. It is called by {@link #run()}.
 	 */
 	protected abstract void updateProgress();
@@ -199,22 +210,6 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>> imple
 		}
 		
 		this.step++;
-	}
-
-	/**
-	 * Evaluate population
-	 * 
-	 * @param population the population to evaluate
-	 * @return A list of solution that already has been evaluated
-	 * @throws EpanetException If there is a problem in the simulation of solution
-	 *                         using EpanetToolkit
-	 * 
-	 */
-	protected List<S> evaluatePopulation(List<S> population) throws EpanetException {
-		for (S s : population) {
-			problem.evaluate(s);
-		}
-		return population;
 	}
 
 	/**

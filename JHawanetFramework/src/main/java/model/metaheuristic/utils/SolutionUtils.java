@@ -1,5 +1,6 @@
 package model.metaheuristic.utils;
 
+import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.random.JavaRandom;
 
 import java.util.Comparator;
@@ -35,6 +36,23 @@ public class SolutionUtils {
 		else {
 			return solution2;
 		}
+	}
+
+	/**
+	 * Returns the euclidean distance between a pair of solutions in the objective space
+	 */
+	public static <S extends Solution<?>> double distanceBetweenObjectives(S firstSolution, S secondSolution) {
+
+		double diff;
+		double distance = 0.0;
+
+		//euclidean distance
+		for (int nObj = 0; nObj < firstSolution.getNumberOfObjectives(); nObj++) {
+			diff = firstSolution.getObjective(nObj) - secondSolution.getObjective(nObj);
+			distance += Math.pow(diff, 2.0);
+		}
+
+		return Math.sqrt(distance);
 	}
 
 }
