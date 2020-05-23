@@ -31,81 +31,135 @@ package model.metaheuristic.experiment;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.experiment.util.ExperimentProblem;
 import model.metaheuristic.solution.Solution;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 /**
- * Class for describing the configuration of a jMetal experiment.
+ * Class for describing the configuration of a experiment.
+ * <p>
+ * A experiment execute sequentially the algorithm configured in it.
  *
+ * @see ExperimentBuilder for more detail
  */
-public class Experiment<S extends Solution<?>> {
-	private final String experimentName;
-	private List<ExperimentAlgorithm<S>> algorithmList;
-	private final List<ExperimentProblem<S>> problemList;
-	private final String experimentBaseDirectory;
+public final class Experiment<S extends Solution<?>> {
+	private @NotNull final String experimentName;
+	private @NotNull List<ExperimentAlgorithm<S>> algorithmList;
+	private @NotNull final List<ExperimentProblem<S>> problemList;
+	private @NotNull final String experimentBaseDirectory;
 
-	private final String outputParetoFrontFileName;
-	private final String outputParetoSetFileName;
+	private @NotNull final String objectiveOutputFileName;
+	private @NotNull final String variablesOutputFileName;
 	private final int independentRuns;
 
-	private String referenceFrontDirectory;
+	private @NotNull String referenceFrontDirectory;
 
 	/**
-	 * Constructor
-	 * @param builder the builder object
+	 * Constructor.
+	 * @param builder the builder object.
+	 * @throws NullPointerException if builder is null.
+	 * @see ExperimentBuilder
 	 */
-	public Experiment(ExperimentBuilder<S> builder) {
+	public Experiment(@NotNull ExperimentBuilder<S> builder) {
+		Objects.requireNonNull(builder);
 		this.experimentName = builder.getExperimentName();
 		this.experimentBaseDirectory = builder.getExperimentBaseDirectory();
 		this.algorithmList = builder.getAlgorithmList();
 		this.problemList = builder.getProblemList();
 		this.independentRuns = builder.getIndependentRuns();
-		this.outputParetoFrontFileName = builder.getOutputParetoFrontFileName();
-		this.outputParetoSetFileName = builder.getOutputParetoSetFileName();
+		this.objectiveOutputFileName = builder.getObjectiveOutputFileName();
+		this.variablesOutputFileName = builder.getVariablesOutputFileName();
 		this.referenceFrontDirectory = builder.getReferenceFrontDirectory();
 	}
 
 	/* Getters */
-	public String getExperimentName() {
+
+	/**
+	 * Get the experiment name.
+	 * @return the experiment name.
+	 */
+	public @NotNull String getExperimentName() {
 		return experimentName;
 	}
 
-	public List<ExperimentAlgorithm<S>> getAlgorithmList() {
+
+	/**
+	 * Get the algorithm list.
+	 * @return the algorithm list or a empty list if it isn't set up.
+	 */
+	public @NotNull List<ExperimentAlgorithm<S>> getAlgorithmList() {
 		return algorithmList;
 	}
 
-	public List<ExperimentProblem<S>> getProblemList() {
+	/**
+	 * Get the problem list.
+	 * @return the problem list or a empty list if it isn't set up.
+	 */
+	public @NotNull List<ExperimentProblem<S>> getProblemList() {
 		return problemList;
 	}
 
-	public String getExperimentBaseDirectory() {
+	/**
+	 * Get the experiment base directory where the pareto front for each algorithm execution will be stored.
+	 * @return the experiment base directory name or a empty string if it isn't set up.
+	 */
+	public @NotNull String getExperimentBaseDirectory() {
 		return experimentBaseDirectory;
 	}
 
-	public String getOutputParetoFrontFileName() {
-		return outputParetoFrontFileName;
+	/**
+	 * Get the name of output file for objectives.
+	 * @return the file name of objective file.
+	 */
+	public @NotNull String getObjectiveOutputFileName() {
+		return objectiveOutputFileName;
 	}
 
-	public String getOutputParetoSetFileName() {
-		return outputParetoSetFileName;
+	/**
+	 * Get the name of output file for variables.
+	 * @return the file name of variables file.
+	 */
+	public @NotNull String getVariablesOutputFileName() {
+		return variablesOutputFileName;
 	}
 
+	/**
+	 * Get the number of independent runs.
+	 * @return the number of independent run.
+	 */
 	public int getIndependentRuns() {
 		return independentRuns;
 	}
 
-	public String getReferenceFrontDirectory() {
+	/**
+	 * Get the file name where reference front (Final Pareto Front) will be stored when the problem are multiobjective.
+	 * @return the reference file name or a empty string if it isn't set up.
+	 */
+	public @NotNull String getReferenceFrontDirectory() {
 		return referenceFrontDirectory;
 	}
 
 	/* Setters */
-	public void setReferenceFrontDirectory(String referenceFrontDirectory) {
+	/**
+	 * Set the reference front directory (pareto front directory) where result will be save when the problem will be multiobjective.
+	 * @param referenceFrontDirectory the reference front directory
+	 * @throws NullPointerException if referenceFrontDirectory is null.
+	 */
+	public void setReferenceFrontDirectory(@NotNull String referenceFrontDirectory) {
+		Objects.requireNonNull(referenceFrontDirectory);
 		this.referenceFrontDirectory = referenceFrontDirectory;
 	}
 
-	public void setAlgorithmList(List<ExperimentAlgorithm<S>> algorithmList) {
+	/**
+	 * Set the algorithm list.
+	 * @param algorithmList the new algorithm list or empty list.
+	 * @throws NullPointerException if algorithmList is null.
+	 */
+	public void setAlgorithmList(@NotNull List<ExperimentAlgorithm<S>> algorithmList) {
+		Objects.requireNonNull(algorithmList);
 		this.algorithmList = algorithmList;
 	}
 

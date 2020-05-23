@@ -30,40 +30,57 @@ package model.metaheuristic.experiment.util;
 
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 /**
  * Class used to add a tag field to a problem.
  */
-public class ExperimentProblem<S extends Solution<?>> {
-	private final Problem<S> problem;
-	private final String tag;
-	private String referenceFront;
+public final class ExperimentProblem<S extends Solution<?>> {
+	@NotNull private final Problem<S> problem;
+	@NotNull private final String tag;
 
-	public ExperimentProblem(Problem<S> problem, String tag) {
+	/**
+	 * Constructor.
+	 * @param problem the problem.
+	 * @param tag the tag of algorithm.
+	 * @throws NullPointerException if problem or tag is null.
+	 */
+	public ExperimentProblem(@NotNull Problem<S> problem, @NotNull String tag) {
+		Objects.requireNonNull(problem);
+		Objects.requireNonNull(tag);
 		this.problem = problem;
-		this.tag = tag;
-		this.referenceFront = this.problem.getName() + ".pf";
-
+		if (problem.getName().isEmpty()){
+			this.tag = problem.getClass().getSimpleName();
+		}
+		else{
+			this.tag = tag;
+		}
 	}
 
-	public ExperimentProblem(Problem<S> problem) {
+	/**
+	 * Constructor.
+	 * @param problem the problem.
+	 * @throws NullPointerException if problem is null.
+	 */
+	public ExperimentProblem(@NotNull Problem<S> problem) {
 		this(problem, problem.getName());
 	}
 
-	public ExperimentProblem<S> changeReferenceFrontTo(String referenceFront) {
-		this.referenceFront = referenceFront;
-		return this;
-	}
-
-	public Problem<S> getProblem() {
+	/**
+	 * Get the problem
+	 * @return the problem
+	 */
+	public @NotNull Problem<S> getProblem() {
 		return problem;
 	}
 
-	public String getTag() {
+	/**
+	 * Get the tag.
+	 * @return the tag.
+	 */
+	public @NotNull String getTag() {
 		return tag;
-	}
-
-	public String getReferenceFront() {
-		return referenceFront;
 	}
 }

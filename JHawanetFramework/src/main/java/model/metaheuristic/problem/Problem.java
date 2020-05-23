@@ -31,6 +31,8 @@ package model.metaheuristic.problem;
 import epanet.core.EpanetException;
 import model.epanet.element.Network;
 import model.metaheuristic.solution.Solution;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Class that denote a problem. <br>
@@ -43,23 +45,23 @@ import model.metaheuristic.solution.Solution;
 public interface Problem<S extends Solution<?>> extends AutoCloseable {
 
 	/**
-	 * Get the number of variables associated to problem
+	 * Get the number of variables associated to problem.
 	 * 
-	 * @return number of variables
+	 * @return number of variables.
 	 */
 	int getNumberOfVariables();
 
 	/**
-	 * Get the number of objectives that contain this problem
+	 * Get the number of objectives that contain this problem.
 	 * 
-	 * @return number of objectives
+	 * @return number of objectives.
 	 */
 	int getNumberOfObjectives();
 
 	/**
-	 * Get the number of constrains to this problem
+	 * Get the number of constrains to this problem.
 	 * 
-	 * @return number of constrains
+	 * @return number of constrains.
 	 */
 	int getNumberOfConstraints();
 
@@ -74,11 +76,13 @@ public interface Problem<S extends Solution<?>> extends AutoCloseable {
 
 	/**
 	 * Make a solution to this problem. This can be created randomly and be used to
-	 * fill the initial population needed in some algorithms
+	 * fill the initial population needed in some algorithms.
+	 * <p>
+	 * Must not return null value.
 	 * 
-	 * @return Solution
+	 * @return Solution.
 	 */
-	S createSolution();
+	@NotNull S createSolution();
 
 	/**
 	 * Setting the lower bound for each decision variable
@@ -111,14 +115,14 @@ public interface Problem<S extends Solution<?>> extends AutoCloseable {
 	 *                 same type of S, so you can cast it.
 	 * @return the network received and modified or null.
 	 */
-	Network applySolutionToNetwork(Network network, Solution<?> solution);
+	@Nullable Network applySolutionToNetwork(Network network, Solution<?> solution);
 
 	/**
-	 * Get the name of the problem
+	 * Get the name of the problem.
 	 * 
-	 * @return the name of problem algorithm
+	 * @return the name of problem algorithm or empty string.
 	 */
-	String getName();
+	@NotNull String getName();
 
 	/**
 	 * Override the close method of {@link AutoCloseable} interface. His default

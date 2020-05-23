@@ -92,14 +92,15 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
                                           + algorithm.getAlgorithmTag() + "/" + problem.getTag();
 
                 for (int i = 0; i < experiment.getIndependentRuns(); i++) {
-                    String frontFileName = problemDirectory + "/" + experiment.getOutputParetoFrontFileName() + i
+                    String frontFileName = problemDirectory + "/" + experiment.getObjectiveOutputFileName() + i
                                            + ".tsv";
-                    String setFileName = problemDirectory + "/" + experiment.getOutputParetoSetFileName() + i + ".tsv";
+                    String setFileName = problemDirectory + "/" + experiment.getVariablesOutputFileName() + i + ".tsv";
 
                     List<ObjectSolution> solutionList = readSolutionFromFiles(frontFileName, setFileName);
                     SolutionAttribute<ObjectSolution, String> solutionAttribute = new SolutionAttribute<ObjectSolution, String>();
 
                     for (ObjectSolution solution : solutionList) {
+                        // Save algorithm tag
                         solutionAttribute.setAttribute(solution, algorithm.getAlgorithmTag());
                         nonDominatedSolutionArchive.add(solution);
                     }
@@ -224,6 +225,7 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
         for (ExperimentAlgorithm<?> algorithm : experiment.getAlgorithmList()) {
             List<ObjectSolution> solutionsPerAlgorithm = new ArrayList<>();
             for (ObjectSolution solution : nonDominatedSolutions) {
+                // compare the algorithm tag of algorithm with algorithm task of solution
                 if (algorithm.getAlgorithmTag().equals(solutionAttribute.getAttribute(solution))) {
                     solutionsPerAlgorithm.add(solution);
                 }

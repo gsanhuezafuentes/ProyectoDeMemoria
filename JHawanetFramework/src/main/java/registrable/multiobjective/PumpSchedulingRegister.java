@@ -73,8 +73,9 @@ public class PumpSchedulingRegister implements MultiObjectiveRegistrable {
 
 		Experiment<IntegerSolution> experiment = new ExperimentBuilder<IntegerSolution>("PSMOStudy")
 				.setAlgorithmList(algorithmList).setProblemList(problemList)
-				.setExperimentBaseDirectory(experimentBaseDirectory).setOutputParetoFrontFileName("FUN")
-				.setOutputParetoSetFileName("VAR")
+				.setExperimentBaseDirectory(experimentBaseDirectory)
+				.setObjectiveOutputFileName("FUN")
+				.setVariablesOutputFileName("VAR")
 				.setReferenceFrontDirectory(experimentBaseDirectory + "/PSMOStudy/referenceFronts")
 				.setIndependentRuns(INDEPENDENT_RUNS).build();
 

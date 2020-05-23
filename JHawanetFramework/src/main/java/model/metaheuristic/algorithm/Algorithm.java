@@ -32,6 +32,7 @@ import controller.utils.AlgorithmTask;
 import controller.utils.ExperimentTask;
 import epanet.core.EpanetException;
 import model.metaheuristic.solution.Solution;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -87,9 +88,9 @@ public interface Algorithm<Result extends Solution<?>> extends AutoCloseable {
 	 * The string returned for this method will be showed when the algorithm running
 	 * in the GUI.
 	 * 
-	 * @return a string with the status
+	 * @return a string with the status or empty string.
 	 */
-	String getStatusOfExecution();
+	@NotNull String getStatusOfExecution();
 
 	/**
 	 * Get the result of the algorithm execution.
@@ -99,9 +100,9 @@ public interface Algorithm<Result extends Solution<?>> extends AutoCloseable {
 	 * one solution. In the rare case that there is no solution a empty list has to
 	 * be returned.
 	 * 
-	 * @return the solution or solutions given as result of execution of algorithm
+	 * @return the solution or solutions given as result of execution of algorithm or empty list.
 	 */
-	List<Result> getResult();
+	@NotNull List<Result> getResult();
 
 	/**
 	 * Override the close method of {@link AutoCloseable} interface. His default
@@ -120,9 +121,9 @@ public interface Algorithm<Result extends Solution<?>> extends AutoCloseable {
 	}
 
 	/**
-	 * Get the name of algorithm
-	 * @return the name of algorithm
+	 * Get the name of algorithm.
+	 * @return the name of algorithm or empty string.
 	 */
-	String getName();
+	@NotNull String getName();
 
 }
