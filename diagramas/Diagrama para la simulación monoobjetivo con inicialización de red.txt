@@ -1,4 +1,4 @@
-title Diagrama para la simulación monoobjetivo
+﻿title Diagrama para la simulación monoobjetivo con inicialización de red
 
 actor User
 participant MainWindowController
@@ -7,15 +7,16 @@ participant InpParser
 participant NetworkComponent
 participant ElementViewer
 participant ConfigurationDinamicWindowController
-participant MonoObjectiveRunningWindowController
+participant SingleObjectiveRunningWindowController
 participant AlgorithmTask
 participant ResultPlotWindowController
 participant ResultWindowController
 participant Algorithm
 participant Problem
-
+ 
 autonumber on
-autoactivation on
+autoactivation on 
+
 [->MainWindowController:initialize()
 MainWindowController->ProblemMenuConfiguration://agregar problemas al menu//\naddMonoObjectiveProblems()
 deactivate MainWindowController
@@ -64,28 +65,31 @@ destroyafter ConfigurationDinamicWindowController
 autoactivation off
 MainWindowController->MainWindowController://Construye el algoritmo//\nRegistrable.build()
 autoactivation on
-MainWindowController->*MonoObjectiveRunningWindowController:<<crear>>
-MonoObjectiveRunningWindowController->*AlgorithmTask: <<crear>
+MainWindowController->*SingleObjectiveRunningWindowController:<<crear>>
+SingleObjectiveRunningWindowController->*AlgorithmTask: <<crear>
 deactivate AlgorithmTask
-MonoObjectiveRunningWindowController->*ResultPlotWindowController:<<crear>>
+SingleObjectiveRunningWindowController->*ResultPlotWindowController:<<crear>>
 deactivate ResultPlotWindowController
-deactivate MonoObjectiveRunningWindowController
+SingleObjectiveRunningWindowController->ResultPlotWindowController: getNode()
+SingleObjectiveRunningWindowController<--ResultPlotWindowController:Regresa el componente grafico
+deactivateafter SingleObjectiveRunningWindowController
 
-MainWindowController->MonoObjectiveRunningWindowController://Muestra la ventana de \nejecución y ejecuta \nel algoritmo//\nshowWindowAndRunAlgorithm()
+
+MainWindowController->SingleObjectiveRunningWindowController://Muestra la ventana de \nejecución y ejecuta \nel algoritmo//\nshowWindowAndRunAlgorithm()
 deactivate MainWindowController
 autoactivation off
 note over AlgorithmTask:Se ejecuta en otro\nhilo
-User<--MonoObjectiveRunningWindowController: Muestra la ventana de feedback
+User<--SingleObjectiveRunningWindowController: Muestra la ventana de feedback
 autoactivation on
-MonoObjectiveRunningWindowController->AlgorithmTask://Iniciar la ejecución un nuevo hilo//\nrun()
-deactivate MonoObjectiveRunningWindowController
+SingleObjectiveRunningWindowController->AlgorithmTask://Iniciar la ejecución un nuevo hilo//\nrun()
+deactivate SingleObjectiveRunningWindowController
 
 loop Hasta que se alcance la condición de termino (isStoppingConditionReached())
 opt Opcional: Cancelar tarea o cerrar ventana
-User->MonoObjectiveRunningWindowController://Solicita la cancelación de la tarea//\nonCancelButtonClick()\n          o\n//Solicita cerrar la ventada//\nonCloseButtonClick()
+User->SingleObjectiveRunningWindowController://Solicita la cancelación de la tarea//\nonCancelButtonClick()\n          o\n//Solicita cerrar la ventada//\nonCloseButtonClick()
 autoactivation off
-MonoObjectiveRunningWindowController->AlgorithmTask://Cancela la tarea si\nesta en ejecucion//\ncancel()
-deactivate MonoObjectiveRunningWindowController
+SingleObjectiveRunningWindowController->AlgorithmTask://Cancela la tarea si\nesta en ejecucion//\ncancel()
+deactivate SingleObjectiveRunningWindowController
 destroy AlgorithmTask
 end
 
@@ -94,32 +98,40 @@ AlgorithmTask->Algorithm://Ejecutar un paso//\nrunSingleStep()
 deactivateafter Algorithm
 AlgorithmTask->Algorithm: Obtener estado de la ejecución
 AlgorithmTask<--Algorithm:Devuelve el progreso del algoritmo\ny los resultados parciales
-MonoObjectiveRunningWindowController<-AlgorithmTask:Notifica cambio del progreso de ejecución
-MonoObjectiveRunningWindowController->ResultPlotWindowController: Agrega el resultado parcial al grafico
+SingleObjectiveRunningWindowController<-AlgorithmTask:Notifica cambio del progreso de ejecución
+SingleObjectiveRunningWindowController->ResultPlotWindowController: Agrega el resultado parcial al grafico
 deactivateafter ResultPlotWindowController
-User<--MonoObjectiveRunningWindowController: Muestra el cambio el progreso al usuario
+User<--SingleObjectiveRunningWindowController: Muestra el cambio el progreso al usuario
 opt Opcional: Mostrar grafico de resultados
-User->MonoObjectiveRunningWindowController://Mostrar grafico//\nonShowChartButtonClick()
-MonoObjectiveRunningWindowController->ResultPlotWindowController://Abre la ventada de graficos//\nshowAssociatedWindow();
+User->SingleObjectiveRunningWindowController://Mostrar grafico//\n//Cambia la pestaña//
+SingleObjectiveRunningWindowController->ResultPlotWindowController://Abre la ventada de graficos//\n
 deactivateafter ResultPlotWindowController
-deactivate MonoObjectiveRunningWindowController
+deactivate SingleObjectiveRunningWindowController
 end 
 end
-MonoObjectiveRunningWindowController<--AlgorithmTask: Devuelve los resultados finales
-activate MonoObjectiveRunningWindowController
-MonoObjectiveRunningWindowController->*ResultWindowController: <<crear>>
+SingleObjectiveRunningWindowController<--AlgorithmTask: Devuelve los resultados finales
+activate SingleObjectiveRunningWindowController
+SingleObjectiveRunningWindowController->*ResultWindowController: <<crear>>
 deactivate ResultWindowController
-MonoObjectiveRunningWindowController->ResultWindowController: Abre ventana con los resultados
-deactivate MonoObjectiveRunningWindowController
-User<--ResultWindowController: Muestra ventana con los resultados
+MainWindowController<-SingleObjectiveRunningWindowController://Ejecuta un callback//\ncreateResultTab(ResultWindowController)
+deactivate SingleObjectiveRunningWindowController
+note over MainWindowController:Añade un nuevo pestaña a la ventana\nprincipal para mostrar los resultados\ny vincula propiedades (binding).
+User<--MainWindowController://Muestra la nueva pestaña//
+
 alt Guardar table completa:
-User->ResultPlotWindowController: //Solicita guardar la tabla de resultados completa//\nonSaveButtonClick()
+User->MainWindowController://Pulsa el boton\n para guardar la tabla//
+note over MainWindowController:Llama al evento para guardar \nsobre el controlador de la \npestaña activa
+MainWindowController->ResultPlotWindowController: //Solicita guardar la tabla de resultados completa//\nonSaveButtonClick()
+deactivate MainWindowController
 ResultPlotWindowController->ResultPlotWindowController:Guarda en dispositivo.
 deactivateafter ResultPlotWindowController
 space 
 deactivate ResultPlotWindowController
 else Guardar como inp
-User->ResultPlotWindowController://Solicita guardar los resultados seleccionados como un archivo inp//\nonSaveAsINPButtonClick()
+User->MainWindowController://Pulsa el boton\n para guardar la tabla//
+note over MainWindowController:Llama al evento para guardar \nsobre el controlador de la \npestaña activa
+MainWindowController->ResultPlotWindowController://Solicita guardar los resultados seleccionados como un archivo inp//\nonSaveAsINPButtonClick()
+deactivate MainWindowController
 ResultPlotWindowController->Problem: //Aplica las soluciones seleccionadas \na una copia del objeto network abierto//\napplySolutionToNetwork(Network.copy(), solución)
 ResultPlotWindowController<--Problem: El objeto network con la solución aplicada
 ResultPlotWindowController->ResultPlotWindowController:Guarda en dispositivo.

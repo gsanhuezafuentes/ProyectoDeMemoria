@@ -309,6 +309,11 @@ public class MainWindowController implements Initializable {
     @FXML
     private Tab networkTab;
 
+
+    /**
+     * Event action when run button is clicked. This run the simulation.
+     * @param actionEvent the info of event
+     */
     public void runOnAction(ActionEvent actionEvent) {
         try{
             assert inpFile != null;
@@ -320,6 +325,11 @@ public class MainWindowController implements Initializable {
 
     }
 
+    /**
+     * The event action when the report button is clicked. This open a window
+     * to set the result that was to see.
+     * @param actionEvent the info of event
+     */
     public void resultReportOnAction(ActionEvent actionEvent) {
         HydraulicSimulationResultController controller = new HydraulicSimulationResultController(this.hydraulicSimulation.getValue(), networkComponent.selectedProperty());
         controller.showWindow();
