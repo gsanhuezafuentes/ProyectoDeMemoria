@@ -2,9 +2,10 @@
 En este capítulo se presentan los conceptos que serán necesarios para la realización del proyecto.
 
 \section{Metodología de desarrollo}
-Para el desarrollo de este proyecto se opto por la metodología iterativa e incremental. La elección de esta metodología se debe al hecho de que este genera suficiente documentación para ser utilizada en el desarrollo de futuros proyectos derivados de este trabajo.
+Para el desarrollo de este proyecto se opto por la metodología iterativa e incremental.
+
 \subsection{Metodología iterativa e incremental}
-El desarrollo iterativa e incremental es una metodología la cual lleva a cabo el desarrollo de un proyecto de software dividiéndolo en iteraciones que generan un incremento, el cual contribuye en el desarrollo del producto final.
+La metodología iterativa e incremental lleva a cabo el desarrollo de un proyecto de software dividiéndolo en iteraciones que generan un incremento, el cual contribuye en el desarrollo del producto final.
 
 Cada iteración se compone de las fases de análisis, diseño, implementación y pruebas como se muestra en la Figura \ref{fig:methodie}. La fase de análisis se encarga de llevar a cabo la obtención y definición de los requerimientos del software. Durante la etapa de diseño se realiza la conceptualización del software basado en los requerimientos definidos anteriormente. Durante la implementación se codifican las funcionalidades siguiendo las directivas establecidas durante el diseño, con el fin de satisfacer los requerimientos. Y finalmente, durante la fase de pruebas, se valida y verifica la correctitud de las funcionalidades implementadas, así como el cumplimiento de los requisitos.
 
@@ -15,7 +16,7 @@ Cada iteración se compone de las fases de análisis, diseño, implementación y pru
 	\label{fig:methodie}
 \end{figure}
 
-El hecho de llevar a cabo un desarrollo iterativa permite la obtención de retroalimentación del producto que se esta desarrollando tempranamente y de esta manera poder refinar el trabajo en etapas posteriores del desarrollo. \cite{Victor2003, Mitchell2009, Martin1999,Alshamrani2015}.
+El hecho de llevar a cabo un desarrollo iterativo permite la obtención de retroalimentación del producto que se esta desarrollando tempranamente y de esta manera poder refinar el trabajo en etapas posteriores del desarrollo. \cite{Victor2003, Mitchell2009, Martin1999,Alshamrani2015}.
 
 \section{Metodología de evaluación}
 \subsection{Casos de estudio}
@@ -25,7 +26,7 @@ Un caso de estudio \cite{Runeson2009} es una metodología de investigación la cua
 	\item Describir el contexto de aplicación del caso: Consiste en establecer sobre que elemento se aplicara el caso de estudio a desarrollar.
 	\item Definición de objetivos experimentales: Consiste en indicar cual es el objetivo de la investigación a realizar, si es describir, evaluar o explicar algún suceso.
 	\item Definición de un protocolo para conducir el caso de estudio: Consiste en escoger las pautas para llevar a cabo el caso de estudio, que instrumentos serán utilizados para recolectar datos y como se realizaran el análisis de estos.
-	\item Definición de características a evaluar: Consiste en establecer que es lo que estamos interesados en evaluar del elemento sobre el que se aplica el caso de estudio.
+	\item Definición de características a evaluar: Consiste en establecer qué es lo que estamos interesados en evaluar del elemento sobre el que se aplica el caso de estudio.
 	\item Definición de sujetos de prueba: Consiste en indicar cual sera la fuente de datos a ser utilizada para el caso de estudio, estas pueden ser personas, datos ya recolectados, etc.
 	\item Aplicación de caso de estudio en un conjunto de sesiones no controladas: Consiste en llevar a cabo el caso de estudio sobre los sujeto de prueba definidos.
 	\item Aplicación de herramientas de obtención de evidencia empírica: Consiste en la utilización de métodos o técnicas con el fin de obtener evidencia empírica a partir de los datos recolectados.
@@ -37,9 +38,10 @@ Un caso de estudio \cite{Runeson2009} es una metodología de investigación la cua
 Java es un lenguaje de programación de alto nivel orientado a objetos y de propósito general. Un programa java se ejecuta sobre la maquina virtual llamada la Java Virtual Machine, la cual le da a este lenguaje la característica de ser multiplataforma. Adicionalmente, java incorpora el soporte para multi-hilos, una poderosa herramienta que permite la ejecución de distintas instrucciones de código al mismo tiempo \cite{Gosling2015}. Ademas. este lenguaje también incorpora una característica conocida como el recolector de basura, el cual se encarga de limpiar la memoria de objetos que ya no están siendo utilizados.  Fue anunciado por Sun Microsystems en Mayo de 1995 \cite{3java}. 
 
 \subsubsection{Java Reflection}
-Característica de java que permite que un programa se auto examine. Esta característica está disponible a través de la Java Reflection API, la cual cuenta con métodos para obtener los meta-object de las clases, métodos, constructores, campos o parámetros. Esta API también permite crear nuevos objetos cuyo tipo era desconocido al momento de compilar el programa \cite{Braux1999}.
+Característica de java que permite que un programa se auto examine. Esta característica está disponible a través de la Java Reflection API, la cual cuenta con métodos para obtener los metadatos de las clases, métodos, constructores, campos o parámetros. Esta API también permite crear nuevos objetos cuyo tipo era desconocido al momento de compilar el programa \cite{Braux1999}.
+
 \subsubsection{Java Annotation}
-Característica de java para agregar metadatos a elementos de java (clases, métodos, parámetros, etc.) [7]. Las anotaciones no tienen efecto directo sobre el código, pero cuando son usadas junto con otras herramientas pueden llegar a ser muy útiles. Estas herramientas pueden analizar estas anotaciones y realizar acciones en base a estas, por ejemplo, generar archivos adicionales como clases de java, archivos xml, entre otras; ser analizadas durante la ejecución del programa vía Java Reflection, para crear objetos cuyo tipo no conocemos en tiempo de compilación; etc. 
+Característica de java para agregar metadatos a elementos de java (clases, métodos, parámetros, etc.) [7]. Las anotaciones no tienen efecto directo sobre el código, pero cuando son usadas junto con otras herramientas pueden llegar a ser muy útiles. Estas herramientas pueden analizar estas anotaciones y realizar acciones en base a estas, por ejemplo, generar archivos adicionales como clases de java, archivos xml, ser analizadas durante la ejecución del programa vía Java Reflection, para crear objetos cuyo tipo no conocemos en tiempo de compilación; etc. 
 \section{Red de distribución de agua potable}
 Conjunto de elementos enlazados de tal manera que permite suministrar cierta cantidad de agua a una presión establecida \cite{Doctoral2012}.
 
@@ -185,7 +187,7 @@ Como resultado de un proceso de optimización multiobjetivo no existe una única s
 \subsubsection{Dominancia de Pareto}
 
 Sean $u$ y $v$ vectores pertenecientes a $\Re^n$, se dice que $u$ domina a $v$ (se denota como $u \preceq v$) si, y sólo si (en el caso de minimización):
-$\forall i \in \{1,2,...,n\} | f_i(u) \leq f_i(v) \wedge \exists j \in \{1,2,...,n\} | f_j(u) < f_j(v)$
+$$\forall i \in \{1,2,...,n\} | f_i(u) \leq f_i(v) \wedge \exists j \in \{1,2,...,n\} | f_j(u) < f_j(v)$$
 
 Es decir, para que una solución domine a otra, cada uno de sus objetivos debe ser mejores o iguales y al menos en uno de ellos este debe ser mejor.
 
@@ -290,9 +292,9 @@ Uno de los procedimientos presentados en la Figura \ref{fig:RemplaceNSGAII} cons
 
 El algoritmo para llevar a cabo esto se presenta en la Figura \ref{fig:sortFront} y consiste en lo siguiente:
 
-Primero, se debe comparar todas las soluciones entre si utilizando el concepto de dominancia de Pareto. Para ello, cada solución $p$ cuenta con un atributo $S_p$ en el que guarda todas las soluciones a las que domina y un contador $n_p$ que almacena el numero de soluciones que lo dominan a él. Cada vez que se termina de comparar una solución con todas las otras, si su contador $n_p$ es igual a 0, se le asigna a la solución el rango que indica el frente al que pertenece, y se guarda esta en un conjunto que contiene a todas las soluciones de dicho frente $F_1$. 
+Primero, se debe comparar todas las soluciones entre si utilizando el concepto de dominancia de Pareto. Para ello, cada solución $p$ cuenta con un atributo $S_p$ en el que guarda todas las soluciones a las que domina y un contador $n_p$ que almacena el numero de soluciones que lo dominan a él. Cada vez que se termina de comparar una solución con todas las otras, si su contador $n_p$ es igual a 0, se le asigna a la solución el rango que indica el frente al que pertenece, y se guarda esta en un conjunto $F_1$ que contiene a todas las soluciones de dicho frente. 
 	
-Una vez que se han identificado todas las soluciones no dominadas del primer frente se procede a generar el siguiente, para lo cual, por cada solución $q$ almacenada en el conjunto $S_p \in p$ del frente ya conocido se disminuye en uno su contador $n_q$. Si el contador $n_q$ de la solución $q$ llega a 0, entonces se le asigna a dicha solución el rango correspondiente y se guarda esta en un conjunto temporal $Q$ con el resto de las soluciones en dicho frente. Cuando se tengan identificadas todas las soluciones, estas se asignan al frente correspondiente $F_i$. 
+Una vez que se han identificado todas las soluciones no dominadas del primer frente se procede a generar el siguiente, para lo cual, por cada solución $q$ almacenada en el conjunto $S_p \in p$ del frente ya conocido, se disminuye en uno su contador $n_q$. Si el contador $n_q$ de la solución $q$ llega a 0, entonces se le asigna a dicha solución el rango correspondiente y se guarda esta en un conjunto temporal $Q$ con el resto de las soluciones en dicho frente. Cuando se tengan identificadas todas las soluciones, estas se asignan al frente correspondiente $F_i$. 
 
 Finalmente, se repite el procedimiento anterior sobre el nuevo frente hasta haberlos generado todos.
 
@@ -312,6 +314,7 @@ Finalmente, se repite el procedimiento anterior sobre el nuevo frente hasta habe
 		\SetKwProg{Fn}{Function}{}{fin}
 		\Fn{\FastNonDominatingSorting(\PopulationVar)}{
 		$\Front \leftarrow \emptyset$\;
+		\tcc*[h]{Identificar el frente $F_1$}\;
 		\ForEach{$p \in \PopulationVar$}{
 			\tcc*[h]{Conjunto de soluciones dominadas por $p$}\;
 			$S_p = \emptyset$\; 
@@ -332,7 +335,7 @@ Finalmente, se repite el procedimiento anterior sobre el nuevo frente hasta habe
 		\BlankLine
 		$i = 1$\;
 		\BlankLine
-		\While{$F_i \neq 0$}{
+		\While{$F_i \neq \emptyset$}{
 			$Q = \emptyset$\;
 			\ForEach{$p \in \Front_i$}{
 				\ForEach{$q \in S_p$}{
