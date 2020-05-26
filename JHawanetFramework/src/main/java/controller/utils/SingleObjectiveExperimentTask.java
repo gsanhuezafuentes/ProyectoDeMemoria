@@ -90,12 +90,12 @@ public class SingleObjectiveExperimentTask extends Task<List<SingleObjectiveExpe
 				if (this.isCancelled()) {
 					break;
 				}
-				//updateCustomValue(new Result(algorithm.getResult().get(0), numberOfIterations));// <-- notify result here to algorithm level
+				updateCustomValue(new Result(algorithm.getResult().get(0), numberOfIterations));// <-- notify result here to algorithm level
 				numberOfIterations++;
 			}
 			if (!this.isCancelled()) {
 				finalResultList.add(new Result(algorithm.getResult().get(0), numberOfIterations));
-				updateCustomValue(new Result(algorithm.getResult().get(0), numberOfIterations)); // <-- notify result here to experiment level
+//				updateCustomValue(new Result(algorithm.getResult().get(0), numberOfIterations)); // <-- notify result here to experiment level
 				progress++;
 				updateProgress(progress, experiment.getAlgorithmList().size());
 			}

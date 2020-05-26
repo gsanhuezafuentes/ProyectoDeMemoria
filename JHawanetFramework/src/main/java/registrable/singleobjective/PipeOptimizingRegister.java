@@ -131,7 +131,11 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
         ExperimentProblem<IntegerSolution> experimentProblem = new ExperimentProblem<>(this.problem);
 
         List<ExperimentAlgorithm<IntegerSolution>> experimentAlgorithms = ExperimentUtils.configureAlgorithmList(experimentProblem, this.independentRun,
-                () -> new GeneticAlgorithm2<>(this.problem, populationSize, selection, crossover, mutation));
+                () -> {
+                    GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<>(this.problem, populationSize, selection, crossover, mutation);
+                    algorithm.setMaxNumberOfIterationWithoutImprovement(this.numberWithoutImprovement);
+                    return algorithm;
+                });
 
         Experiment<IntegerSolution> experiment = new ExperimentBuilder<IntegerSolution>("PipeOptimizing")
                 .setIndependentRuns(this.independentRun)
