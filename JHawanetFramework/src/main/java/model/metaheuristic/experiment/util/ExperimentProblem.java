@@ -83,4 +83,13 @@ public final class ExperimentProblem<S extends Solution<?>> {
 	public @NotNull String getTag() {
 		return tag;
 	}
+
+	/**
+	 * Close the resource of the problems calling this close method.
+	 * This method is called when the experiment finish.
+	 * @throws Exception
+	 */
+	public void closeResources() throws Exception {
+		this.problem.closeResources();
+	}
 }

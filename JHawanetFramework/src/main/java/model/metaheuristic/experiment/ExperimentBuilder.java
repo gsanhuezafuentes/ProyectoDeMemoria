@@ -89,7 +89,7 @@ import java.util.Objects;
 public final class ExperimentBuilder<S extends Solution<?>> {
     @NotNull private final String experimentName;
     @Nullable private List<ExperimentAlgorithm<S>> algorithmList;
-    @Nullable private List<ExperimentProblem<S>> problemList;
+    @Nullable private ExperimentProblem<S> problem;
     @NotNull private String referenceFrontDirectory;
     @NotNull private String experimentBaseDirectory;
     @NotNull private String objectiveOutputFileName;
@@ -129,14 +129,14 @@ public final class ExperimentBuilder<S extends Solution<?>> {
     }
 
     /**
-     * Set the problem list.
-     * @param problemList the problem list or an empty list.
+     * Set the problem.
+     * @param problem the problem.
      * @return this object.
-     * @throws NullPointerException if problemList is null.
+     * @throws NullPointerException if problem is null.
      */
-    public @NotNull ExperimentBuilder<S> setProblemList(@NotNull List<ExperimentProblem<S>> problemList) {
-        Objects.requireNonNull(problemList);
-        this.problemList = problemList;
+    public @NotNull ExperimentBuilder<S> setProblem(@NotNull ExperimentProblem<S> problem) {
+        Objects.requireNonNull(problem);
+        this.problem = problem;
 
         return this;
     }
@@ -244,14 +244,11 @@ public final class ExperimentBuilder<S extends Solution<?>> {
     }
 
     /**
-     * Get the problem list.
-     * @return the problem list or a empty list if it isn't set up.
+     * Get the problem.
+     * @return the problem or null.
      */
-    public @NotNull List<ExperimentProblem<S>> getProblemList() {
-        if (problemList != null) {
-            return problemList;
-        }
-        return Collections.emptyList();
+    public @Nullable ExperimentProblem<S> getProblem() {
+        return this.problem;
     }
 
     /**

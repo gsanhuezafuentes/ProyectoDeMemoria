@@ -32,6 +32,7 @@ import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.experiment.util.ExperimentProblem;
 import model.metaheuristic.solution.Solution;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -48,7 +49,7 @@ import java.util.Objects;
 public final class Experiment<S extends Solution<?>> {
 	private @NotNull final String experimentName;
 	private @NotNull List<ExperimentAlgorithm<S>> algorithmList;
-	private @NotNull final List<ExperimentProblem<S>> problemList;
+	private @NotNull final ExperimentProblem<S> problem;
 	private @NotNull final String experimentBaseDirectory;
 
 	private @NotNull final String objectiveOutputFileName;
@@ -68,7 +69,7 @@ public final class Experiment<S extends Solution<?>> {
 		this.experimentName = builder.getExperimentName();
 		this.experimentBaseDirectory = builder.getExperimentBaseDirectory();
 		this.algorithmList = builder.getAlgorithmList();
-		this.problemList = builder.getProblemList();
+		this.problem = builder.getProblem();
 		this.independentRuns = builder.getIndependentRuns();
 		this.objectiveOutputFileName = builder.getObjectiveOutputFileName();
 		this.variablesOutputFileName = builder.getVariablesOutputFileName();
@@ -95,11 +96,11 @@ public final class Experiment<S extends Solution<?>> {
 	}
 
 	/**
-	 * Get the problem list.
-	 * @return the problem list or a empty list if it isn't set up.
+	 * Get the problem.
+	 * @return the problem or null.
 	 */
-	public @NotNull List<ExperimentProblem<S>> getProblemList() {
-		return problemList;
+	public @Nullable ExperimentProblem<S> getProblem() {
+		return problem;
 	}
 
 	/**

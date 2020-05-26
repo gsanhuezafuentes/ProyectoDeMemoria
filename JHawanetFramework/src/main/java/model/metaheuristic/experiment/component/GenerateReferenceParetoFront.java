@@ -27,6 +27,7 @@
  */
 package model.metaheuristic.experiment.component;
 
+import controller.utils.MultiObjectiveExperimentTask;
 import exception.ApplicationException;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentComponent;
@@ -45,7 +46,7 @@ import java.util.*;
 /**
  * This class computes a reference Pareto front from a set of files. Once the
  * algorithms of an experiment have been executed through running an instance of
- * class {@link controller.utils.ExperimentTask}, all the obtained fronts of all the
+ * class {@link MultiObjectiveExperimentTask}, all the obtained fronts of all the
  * algorithms are gathered per problem; then, the dominated solutions are
  * removed and the final result is a file per problem containing the reference
  * Pareto front.
@@ -65,29 +66,24 @@ import java.util.*;
  *      If the solution is read of the file so the solution has a cost in IO operation but not in sorting.
  *  </li>
  *  <li>
- *      Use {@link #getProblemsTag()} together with {@link #getReferenceToParetoFront}. The problemTags indicate the tag of the problem
- *      which belongs to the pareto front. For example the pareto front in the index 1 belongs to problemName in index 1.
- *  </li>
- *  <li>
  *        If run in memory is true so solution are get of algorithms and are not save automatically in disk.
  *  </li>
  * </ul>
  */
 public class GenerateReferenceParetoFront implements ExperimentComponent {
-    @NotNull private final Experiment<?> experiment;
-    @NotNull private final List<String> problemTags;
-    private int numberOfParetoFrontSaved;
-    private final List<List<? extends Solution<?>>> paretoFronts;
+    @NotNull
+    private final Experiment<?> experiment;
     private final boolean runInMemory;
     private final ObservableStringBuffer taskLog;
+    private List<? extends Solution<?>> paretoFront;
 
 
     /**
      * Constructor.
      *
      * @param experimentConfiguration the experiment
-     * @param taskLog the log where print the status of execution
-     * @param runInMemory this parameter indicate if algorithm is executed in memory, i.e. not read of disk.
+     * @param taskLog                 the log where print the status of execution
+     * @param runInMemory             this parameter indicate if algorithm is executed in memory, i.e. not read of disk.
      * @throws NullPointerException if experimentConfiguration or taskLog is null
      */
     public GenerateReferenceParetoFront(@NotNull Experiment<?> experimentConfiguration, @NotNull ObservableStringBuffer taskLog, boolean runInMemory) {
@@ -96,41 +92,19 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
         Objects.requireNonNull(taskLog);
         this.runInMemory = runInMemory;
         this.experiment = experimentConfiguration;
-        this.problemTags = new ArrayList<>(experimentConfiguration.getProblemList().size());
-        //one pareto front by problem.
-        this.paretoFronts = new ArrayList<>(experimentConfiguration.getProblemList().size());
-    }
-
-    /**
-     * Return a unmodifiable list with the tag of problems solved.
-     * This list is use to indicate what problem belongs the pareto front.
-     * It should be used together {@link #getReferenceToParetoFront}
-     *
-     * @return a list with the name of problems solved.
-     */
-    public List<String> getProblemsTag() {
-        return Collections.unmodifiableList(problemTags);
-    }
-
-    /**
-     * This is the number of pareto front saved. Is one pareto front by problem.
-     *
-     * @return the number of pareto front saved.
-     */
-    public int getNumberOfParetoFront() {
-        return this.problemTags.size();
     }
 
     /**
      * Get a solution list with the element of pareto front.
      *
-     * @param problemIndex the index of problem.
      * @return a list with element of pareto front or a empty list if there is no
-     * element or {@link #run()} has not been executed
-     * @throws IndexOutOfBoundsException if the problemIndex is out of range (index < 0 || index >= getNumberOfParetoFront())
+     * element or {@link #run()} has not been executed.
      */
-    public List<? extends Solution<?>> getReferenceToParetoFront(int problemIndex) {
-        return this.paretoFronts.get(problemIndex);
+    public List<? extends Solution<?>> getReferenceToParetoFront() {
+        if (this.paretoFront == null) {
+            return Collections.emptyList();
+        }
+        return this.paretoFront;
     }
 
     /**
@@ -152,17 +126,17 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
         boolean hasInputDirectory = !inputDirectory.isEmpty();
 
         // if has input directory so it read the solution by disk, so only need one time of algorithm to recover the tag.
-        if (hasInputDirectory && !this.runInMemory){
+        if (hasInputDirectory && !this.runInMemory) {
             experiment.removeDuplicatedAlgorithms();
         }
+        ExperimentProblem<?> problem = experiment.getProblem();
 
-        for (ExperimentProblem<?> problem : experiment.getProblemList()) {
-            NonDominatedSolutionListArchive<Solution<?> > nonDominatedSolutionArchive = new NonDominatedSolutionListArchive<>();
-
+        if (problem != null) {
+            NonDominatedSolutionListArchive<Solution<?>> nonDominatedSolutionArchive = new NonDominatedSolutionListArchive<>();
 
             for (ExperimentAlgorithm<?> algorithm : experiment.getAlgorithmList()) {
                 //read solution of disk
-                if (hasInputDirectory  && !this.runInMemory) {
+                if (hasInputDirectory && !this.runInMemory) {
                     String problemDirectory = inputDirectory + "/data/"
                             + algorithm.getAlgorithmTag() + "/" + problem.getTag();
 
@@ -180,10 +154,10 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
                             nonDominatedSolutionArchive.add(solution);
                         }
                     }
-                }else{
+                } else {
                     for (int i = 0; i < experiment.getIndependentRuns(); i++) {
                         List<? extends Solution<?>> solutionList = algorithm.getResult();
-                        SolutionAttribute<Solution<?> , String> solutionAttribute = new SolutionAttribute<>();
+                        SolutionAttribute<Solution<?>, String> solutionAttribute = new SolutionAttribute<>();
 
                         for (Solution<?> solution : solutionList) {
                             // Save algorithm tag
@@ -194,21 +168,18 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
                 }
             }
 
-            List<? extends Solution<?>> paretoFront = nonDominatedSolutionArchive.getSolutionList();
-            this.paretoFronts.add(paretoFront);
-            this.problemTags.add(problem.getTag());
 
-            if (hasReferenceDirectory  && !this.runInMemory) {
+            this.paretoFront = nonDominatedSolutionArchive.getSolutionList();
+
+            if (hasReferenceDirectory && !this.runInMemory) {
                 createOutputDirectory(outputDirectoryName);
 
                 String referenceFrontFileName = outputDirectoryName + "/" + problem.getTag() + ".pf";
-                new SolutionListOutput(paretoFront).printObjectivesToFile(referenceFrontFileName);
+                new SolutionListOutput(this.paretoFront).printObjectivesToFile(referenceFrontFileName);
 
-                writeFilesWithTheSolutionsContributedByEachAlgorithm(outputDirectoryName, problem, paretoFront);
+                writeFilesWithTheSolutionsContributedByEachAlgorithm(outputDirectoryName, problem, this.paretoFront);
             }
-
         }
-
     }
 
     /**

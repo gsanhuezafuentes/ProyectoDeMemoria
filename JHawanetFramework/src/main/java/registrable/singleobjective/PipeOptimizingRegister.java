@@ -3,7 +3,12 @@ package registrable.singleobjective;
 import annotations.registrable.*;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
+import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.algorithm.singleobjective.GeneticAlgorithm2;
+import model.metaheuristic.experiment.Experiment;
+import model.metaheuristic.experiment.ExperimentBuilder;
+import model.metaheuristic.experiment.util.ExperimentAlgorithm;
+import model.metaheuristic.experiment.util.ExperimentProblem;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.crossover.impl.IntegerSBXCrossover;
 import model.metaheuristic.operator.crossover.impl.IntegerSinglePointCrossover;
@@ -13,12 +18,15 @@ import model.metaheuristic.operator.mutation.impl.IntegerRangeRandomMutation;
 import model.metaheuristic.operator.mutation.impl.IntegerSimpleRandomMutation;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.UniformSelection;
+import model.metaheuristic.problem.Problem;
 import model.metaheuristic.problem.impl.PipeOptimizing;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import registrable.Registrable;
 import registrable.SingleObjectiveRegistrable;
+import registrable.utils.ExperimentUtils;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,7 +42,10 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
     private final CrossoverOperator<IntegerSolution> crossover;
     private final MutationOperator<IntegerSolution> mutation;
     private final int numberWithoutImprovement;
+    private final int minPressure;
     private final int maxEvaluations;
+    private final int independentRun;
+    private final int populationSize;
     private final File gama;
     private PipeOptimizing problem;
 
@@ -67,18 +78,19 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
                     @OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class),
                     @OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class)})}, //
             files = {@FileInput(displayName = "Gama")}, //
-            numbers = {@NumberInput(displayName = "Min pressure"), @NumberInput(displayName = "Population Size")}, //
+            numbers = {@NumberInput(displayName = "Independent run"), @NumberInput(displayName = "Min pressure"), @NumberInput(displayName = "Population Size")}, //
             numbersToggle = {
                     @NumberToggleInput(groupID = "Finish Condition", displayName = "Number of iteration without improvement"),
                     @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation")})
     @SuppressWarnings("unchecked") // The object injected are indicated in operators elements. It guarantee its
     // types.
-    public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama,
+    public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama, int independentRun,
                                   int minPressure, int populationSize, int numberWithoutImprovement, int maxEvaluations) throws Exception {
         System.out.println(selectionOperator);
         System.out.println(crossoverOperator);
         System.out.println(mutationOperator);
         System.out.println(gama);
+        System.out.println(independentRun);
         System.out.println(minPressure);
         System.out.println(populationSize);
         System.out.println(numberWithoutImprovement);
@@ -86,6 +98,9 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
         this.selection = (SelectionOperator<List<IntegerSolution>, List<IntegerSolution>>) selectionOperator; // unchecked cast
         this.crossover = (CrossoverOperator<IntegerSolution>) crossoverOperator; // unchecked cast
         this.mutation = (MutationOperator<IntegerSolution>) mutationOperator; // unchecked cast
+        this.independentRun = independentRun;
+        this.minPressure = minPressure;
+        this.populationSize = populationSize;
         this.numberWithoutImprovement = numberWithoutImprovement;
         this.maxEvaluations = maxEvaluations;
         this.gama = gama;
@@ -98,11 +113,10 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
      *                              null
      */
     @Override
-    public GeneticAlgorithm2<IntegerSolution> build(String inpPath) throws Exception {
+    public Experiment<IntegerSolution> build(String inpPath) throws Exception {
         if (inpPath == null || inpPath.isEmpty()) {
             throw new ApplicationException("There isn't a network opened");
         }
-        GeneticAlgorithm2<IntegerSolution> algorithm = null;
         EpanetAPI epanet = new EpanetAPI();
         epanet.ENopen(inpPath, "ejecucion.rpt", "");
 
@@ -110,25 +124,21 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
             throw new ApplicationException("There isn't gama file");
         }
         if (this.problem == null) {
-            this.problem = new PipeOptimizing(epanet, this.gama.getAbsolutePath(), 30);
+            this.problem = new PipeOptimizing(epanet, this.gama.getAbsolutePath(), this.minPressure);
 
         }
-        algorithm = new GeneticAlgorithm2<>(this.problem, 10, selection, crossover, mutation);
-        if (numberWithoutImprovement > 0) {
-            algorithm.setMaxNumberOfIterationWithoutImprovement(numberWithoutImprovement);
-        } else {
-            algorithm.setMaxEvaluations(maxEvaluations);
 
-        }
-        return algorithm;
+        ExperimentProblem<IntegerSolution> experimentProblem = new ExperimentProblem<>(this.problem);
+
+        List<ExperimentAlgorithm<IntegerSolution>> experimentAlgorithms = ExperimentUtils.configureAlgorithmList(experimentProblem, this.independentRun,
+                () -> new GeneticAlgorithm2<>(this.problem, populationSize, selection, crossover, mutation));
+
+        Experiment<IntegerSolution> experiment = new ExperimentBuilder<IntegerSolution>("PipeOptimizing")
+                .setIndependentRuns(this.independentRun)
+                .setAlgorithmList(experimentAlgorithms)
+                .setProblem(experimentProblem)
+                .build();
+
+        return experiment;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public PipeOptimizing getProblem() {
-        return this.problem;
-    }
-
 }

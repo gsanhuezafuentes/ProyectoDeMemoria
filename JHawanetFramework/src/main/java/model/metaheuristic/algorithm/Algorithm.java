@@ -28,8 +28,8 @@
  */
 package model.metaheuristic.algorithm;
 
-import controller.utils.AlgorithmTask;
-import controller.utils.ExperimentTask;
+import controller.utils.SingleObjectiveExperimentTask;
+import controller.utils.MultiObjectiveExperimentTask;
 import epanet.core.EpanetException;
 import model.metaheuristic.solution.Solution;
 import org.jetbrains.annotations.NotNull;
@@ -43,7 +43,7 @@ import java.util.List;
  *                 <br>
  *
  */
-public interface Algorithm<Result extends Solution<?>> extends AutoCloseable {
+public interface Algorithm<Result extends Solution<?>>{
 
 	/**
 	 * Start algorithm execution
@@ -103,22 +103,6 @@ public interface Algorithm<Result extends Solution<?>> extends AutoCloseable {
 	 * @return the solution or solutions given as result of execution of algorithm or empty list.
 	 */
 	@NotNull List<Result> getResult();
-
-	/**
-	 * Override the close method of {@link AutoCloseable} interface. His default
-	 * implementation is empty<br>
-	 * <br>
-	 * If you need close a resource used by the algorithm or the problem override this method to
-	 * close it.
-	 * 
-	 * <br>
-	 * <br>
-	 * <strong>Notes:</strong> <br>
-	 * It will be called when the algorithm finished the execution for {@link AlgorithmTask} or {@link ExperimentTask}.
-	 */
-	@Override
-	default void close() throws Exception {
-	}
 
 	/**
 	 * Get the name of algorithm.

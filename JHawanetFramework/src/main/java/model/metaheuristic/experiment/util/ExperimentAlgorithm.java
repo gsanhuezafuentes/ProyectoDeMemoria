@@ -242,17 +242,9 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
      * if the problem was multiobjective the solution should be a list with the pareto front.
      *
      * @return the result.
+     * @see Algorithm
      */
     public @NotNull List<? extends Solution<?>> getResult(){
         return algorithm.getResult();
-    }
-
-    /**
-     * Close the resource used by algorithm.
-     *
-     * @throws Exception if there is a exception to try close resource.
-     */
-    public void close() throws Exception {
-        this.algorithm.close();
     }
 }

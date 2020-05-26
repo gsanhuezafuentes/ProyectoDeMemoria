@@ -3,7 +3,7 @@ package controller.multiobjectives;
 import controller.ResultController;
 import controller.ResultPlotController;
 import controller.utils.CustomCallback;
-import controller.utils.ExperimentTask;
+import controller.utils.MultiObjectiveExperimentTask;
 import epanet.core.EpanetException;
 import exception.ApplicationException;
 import javafx.concurrent.Worker.State;
@@ -59,7 +59,7 @@ public class MultiObjectiveRunningWindowController {
 
 	@NotNull private final Pane root;
 	@NotNull private final Problem<?> problem;
-	@NotNull private final ExperimentTask task;
+	@NotNull private final MultiObjectiveExperimentTask task;
 	@NotNull private final Network network;
 	@NotNull private final CustomCallback<ResultController> callback;
 	@Nullable private ResultPlotController resultPlotController;
@@ -83,7 +83,7 @@ public class MultiObjectiveRunningWindowController {
 
 		this.root = loadFXML(); //initialize root and @FXML by injection
 
-		this.task = new ExperimentTask(experiment);
+		this.task = new MultiObjectiveExperimentTask(experiment);
 
 		// Create the controller to add point even if plot windows is not showed.
 		// Only created if number of objectives is 1 or 2
@@ -162,7 +162,7 @@ public class MultiObjectiveRunningWindowController {
 			List<? extends Solution<?>> solutions = task.getValue();
 			if (this.resultPlotController != null) {
 				this.chartTab.setDisable(false);
-				this.resultPlotController.addData(solutions, 0);
+				this.resultPlotController.addData(solutions);
 			}
 			ResultController resultController = new ResultController(solutions, this.problem,
 					this.network);
@@ -196,7 +196,7 @@ public class MultiObjectiveRunningWindowController {
 	/**
 	 * Show the associated view in window
 	 */
-	public void showWindowAndRunAlgorithm() {
+	public void showWindowAndRunExperiment() {
 		Stage stage = new Stage();
 		stage.setScene(new Scene(this.root));
 //		stage.initStyle(StageStyle.UTILITY);

@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class ExperimentTask extends Task<List<? extends Solution<?>>> {
+public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?>>> {
     @NotNull private final ObservableStringBuffer taskLog;
     @NotNull private final Experiment<?> experiment;
 
@@ -41,7 +41,7 @@ public class ExperimentTask extends Task<List<? extends Solution<?>>> {
      * @param experiment the experiment
      * @throws NullPointerException if experiment is null.
      */
-    public ExperimentTask(@NotNull Experiment<?> experiment) {
+    public MultiObjectiveExperimentTask(@NotNull Experiment<?> experiment) {
         Objects.requireNonNull(experiment);
         this.experiment = experiment;
         taskLog = new ObservableStringBuffer();
@@ -96,9 +96,10 @@ public class ExperimentTask extends Task<List<? extends Solution<?>>> {
                 progress++;
                 updateProgress(progress, experiment.getAlgorithmList().size());
             }
-            algorithm.close();
         }
 
+        // close the resources of the problems.
+        experiment.getProblem().closeResources();
         // if task is cancelled return a empty list
         if (this.isCancelled()) {
             return Collections.emptyList();
@@ -108,8 +109,7 @@ public class ExperimentTask extends Task<List<? extends Solution<?>>> {
         GenerateReferenceParetoFront reference = new GenerateReferenceParetoFront(experiment, taskLog, false);
         reference.run();
 
-        // For now this software work experiments with many algorithm but with only one problem.
-        return reference.getReferenceToParetoFront(0);
+        return reference.getReferenceToParetoFront();
     }
 
     private void prepareOutputDirectory() {
@@ -187,7 +187,7 @@ public class ExperimentTask extends Task<List<? extends Solution<?>>> {
             if (loggerUpdate.getAndSet(log) == null) {
                 Platform.runLater(() -> {
                     final String log1 = loggerUpdate.getAndSet(null);
-                    ExperimentTask.this.log.set(log1);
+                    MultiObjectiveExperimentTask.this.log.set(log1);
                 });
             }
         }

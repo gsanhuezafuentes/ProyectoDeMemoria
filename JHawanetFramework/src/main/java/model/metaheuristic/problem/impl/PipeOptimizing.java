@@ -164,7 +164,7 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	 * Override the default method close. It close epanet if is called.
 	 */
 	@Override
-	public void close() throws Exception {
+	public void closeResources() throws Exception {
 		epanet.ENclose();
 	}
 
