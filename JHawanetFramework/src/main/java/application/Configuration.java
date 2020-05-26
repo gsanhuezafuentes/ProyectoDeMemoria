@@ -3,6 +3,8 @@ package application;
 import registrable.MultiObjectiveRegistrable;
 import registrable.SingleObjectiveRegistrable;
 import registrable.multiobjective.PumpSchedulingRegister;
+import registrable.multiobjective.PumpSchedulingRegister2;
+import registrable.multiobjective.PumpSchedulingRegister3;
 import registrable.singleobjective.PipeOptimizingRegister;
 import registrable.singleobjective.TestProblemRegister;
 
@@ -26,6 +28,8 @@ public final class Configuration {
 	// Multiobjectives
 	static {
 		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingRegister.class);
+		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingRegister2.class);
+		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingRegister3.class);
 	}
  
 }
