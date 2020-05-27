@@ -3,6 +3,7 @@ package controller.utils;
 import annotations.registrable.*;
 import exception.ApplicationException;
 import model.metaheuristic.algorithm.Algorithm;
+import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.operator.crossover.impl.IntegerSBXCrossover;
 import model.metaheuristic.operator.crossover.impl.IntegerSinglePointCrossover;
 import model.metaheuristic.operator.mutation.impl.IntegerPolynomialMutation;
@@ -92,13 +93,7 @@ class ReflectionUtilsTest {
 	static abstract class TestSingleobjective implements SingleObjectiveRegistrable {
 
 		@Override
-		public Algorithm<?> build(String inpPath) throws Exception {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Problem<?> getProblem() {
+		public Experiment<?> build(String inpPath) throws Exception {
 			// TODO Auto-generated method stub
 			return null;
 		}
@@ -117,13 +112,7 @@ class ReflectionUtilsTest {
 		}
 
 		@Override
-		public Algorithm<?> build(String inpPath) throws Exception {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Problem<?> getProblem() {
+		public Experiment<?> build(String inpPath) throws Exception {
 			// TODO Auto-generated method stub
 			return null;
 		}
@@ -304,6 +293,5 @@ class ReflectionUtilsTest {
 				Object crossoverOperator, File file2, File gama, int minPressure, int populationSize,
 				int numberWithoutImprovement, int maxEvaluations) {
 		}
-
 	}
 }

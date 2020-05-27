@@ -28,6 +28,8 @@
  */
 package model.metaheuristic.solution;
 
+import model.metaheuristic.utils.io.SolutionListOutput;
+
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +61,8 @@ public interface Solution<Type> {
 	 * Get the variable as a String <br>
 	 * <br>
 	 * <br><br><strong>Notes:</strong> <br>
-	 * This method is used by the result window to get the variable values
+	 * This method is used by the result window to get the variable values and for {@link SolutionListOutput}.
+	 *
 	 * @param index the index of variable to return
 	 * @return the variable
 	 */

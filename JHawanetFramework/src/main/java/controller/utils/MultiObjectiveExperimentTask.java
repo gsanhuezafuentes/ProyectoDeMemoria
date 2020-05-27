@@ -11,15 +11,17 @@ import model.metaheuristic.experiment.component.GenerateReferenceParetoFront;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.experiment.util.ObservableStringBuffer;
 import model.metaheuristic.solution.Solution;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class ExperimentTask extends Task<List<? extends Solution<?>>> {
-    private final ObservableStringBuffer taskLog;
-    private final Experiment<?> experiment;
+public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?>>> {
+    @NotNull private final ObservableStringBuffer taskLog;
+    @NotNull private final Experiment<?> experiment;
 
     //**********************************************************************************
     //Additional properties to task
@@ -30,11 +32,17 @@ public class ExperimentTask extends Task<List<? extends Solution<?>>> {
      * manner from the subclass to the FX application thread. AtomicReference is
      * used so as to coalesce updates such that we don't flood the event queue.
      */
-    private final AtomicReference<String> loggerUpdate = new AtomicReference<>();
-    private final StringProperty log = new SimpleStringProperty(this, "log", "");
+    @NotNull private final AtomicReference<String> loggerUpdate = new AtomicReference<>();
+    @NotNull private final StringProperty log = new SimpleStringProperty(this, "log", "");
     //**********************************************************************************
 
-    public ExperimentTask(Experiment<?> experiment) {
+    /**
+     * Constructor
+     * @param experiment the experiment
+     * @throws NullPointerException if experiment is null.
+     */
+    public MultiObjectiveExperimentTask(@NotNull Experiment<?> experiment) {
+        Objects.requireNonNull(experiment);
         this.experiment = experiment;
         taskLog = new ObservableStringBuffer();
         taskLog.addObserver((o, arg) -> {
@@ -45,8 +53,14 @@ public class ExperimentTask extends Task<List<? extends Solution<?>>> {
 
     @Override
     protected List<? extends Solution<?>> call() throws Exception {
-        taskLog.println("ExecuteAlgorithms: Preparing output directory");
-        prepareOutputDirectory();
+        boolean runInMemory = experiment.getExperimentBaseDirectory().isEmpty();
+        if (!runInMemory) {
+            taskLog.println("ExecuteAlgorithms: Preparing output directory");
+            prepareOutputDirectory();
+        }
+        else{
+            taskLog.println("ExecuteAlgorithms: Running in memory");
+        }
         // Progress of the count of algorithm finished
         int progress = 0;
         updateProgress(progress, experiment.getAlgorithmList().size());
@@ -59,7 +73,9 @@ public class ExperimentTask extends Task<List<? extends Solution<?>>> {
             }
 
             // execute the algorithm
-            algorithm.prepareToRun(this.experiment);
+            if (!runInMemory) {
+                algorithm.prepareToRun(this.experiment);
+            }
             while (algorithm.algorithmHasANextStep()) {
 
                 // run only a iteration of the current algorithm
@@ -74,21 +90,25 @@ public class ExperimentTask extends Task<List<? extends Solution<?>>> {
                 }
             }
             if (!this.isCancelled()) {
-                algorithm.saveSolutionList();
+                if (!runInMemory) {
+                    algorithm.saveSolutionList();
+                }
                 progress++;
                 updateProgress(progress, experiment.getAlgorithmList().size());
             }
-            algorithm.close();
         }
 
+        // close the resources of the problems.
+        experiment.getProblem().closeResources();
         // if task is cancelled return a empty list
         if (this.isCancelled()) {
             return Collections.emptyList();
         }
 
         // return only one pareto front
-        GenerateReferenceParetoFront reference = new GenerateReferenceParetoFront(experiment);
+        GenerateReferenceParetoFront reference = new GenerateReferenceParetoFront(experiment, taskLog, false);
         reference.run();
+
         return reference.getReferenceToParetoFront();
     }
 
@@ -139,7 +159,7 @@ public class ExperimentTask extends Task<List<? extends Solution<?>>> {
         return log.get();
     }
 
-    public final ReadOnlyStringProperty logProperty() {
+    public final @NotNull ReadOnlyStringProperty logProperty() {
         checkThread();
         return log;
     }
@@ -167,7 +187,7 @@ public class ExperimentTask extends Task<List<? extends Solution<?>>> {
             if (loggerUpdate.getAndSet(log) == null) {
                 Platform.runLater(() -> {
                     final String log1 = loggerUpdate.getAndSet(null);
-                    ExperimentTask.this.log.set(log1);
+                    MultiObjectiveExperimentTask.this.log.set(log1);
                 });
             }
         }
