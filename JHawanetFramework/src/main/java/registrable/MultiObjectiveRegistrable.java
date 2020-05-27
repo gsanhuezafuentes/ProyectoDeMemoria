@@ -5,7 +5,7 @@ import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.operator.Operator;
 import model.metaheuristic.problem.Problem;
-import registrable.multiobjective.PumpSchedulingRegister;
+import registrable.multiobjective.PumpSchedulingNSGAIIRegister;
 
 /**
  * It class let configure the algorithm and his operator to a multiobjective
@@ -83,7 +83,7 @@ import registrable.multiobjective.PumpSchedulingRegister;
  * {@link NumberToggleInput#groupID()} are the same. <br>
  * <br>
  * 
- * A example is showed in the class {@link PumpSchedulingRegister}.
+ * A example is showed in the class {@link PumpSchedulingNSGAIIRegister}.
  *
  */
 public interface MultiObjectiveRegistrable extends Registrable<Experiment<?>> {

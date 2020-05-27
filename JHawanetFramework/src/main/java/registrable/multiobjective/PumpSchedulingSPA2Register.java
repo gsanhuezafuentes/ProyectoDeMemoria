@@ -26,13 +26,13 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class PumpSchedulingRegister3 implements MultiObjectiveRegistrable {
+public class PumpSchedulingSPA2Register implements MultiObjectiveRegistrable {
 
 	private static final int INDEPENDENT_RUNS = 2;
 	private VanzylOriginal problem;
 
 	@NewProblem(displayName = "Pumping Scheduling", algorithmName = "SPA2")
-	public PumpSchedulingRegister3() {
+	public PumpSchedulingSPA2Register() {
 	}
 
 	@Override

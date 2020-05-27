@@ -3,6 +3,7 @@ package registrable.multiobjective;
 import annotations.registrable.NewProblem;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.algorithm.multiobjective.nsga.NSGAII;
+import model.metaheuristic.algorithm.multiobjective.smpso.SMPSOInteger;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentBuilder;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
@@ -16,7 +17,9 @@ import model.metaheuristic.operator.selection.impl.TournamentSelection;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.problem.impl.VanzylOriginal;
 import model.metaheuristic.solution.impl.IntegerSolution;
+import model.metaheuristic.utils.archive.impl.CrowdingDistanceArchive;
 import model.metaheuristic.utils.comparator.DominanceComparator;
+import model.metaheuristic.utils.evaluator.SolutionListEvaluator;
 import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.MultiObjectiveRegistrable;
 
@@ -24,13 +27,13 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class PumpSchedulingRegister implements MultiObjectiveRegistrable {
+public class PumpSchedulingSMPSORegister implements MultiObjectiveRegistrable {
 
 	private static final int INDEPENDENT_RUNS = 2;
 	private VanzylOriginal problem;
 
-	@NewProblem(displayName = "Pumping Scheduling", algorithmName = "NSGA-II")
-	public PumpSchedulingRegister() {
+	@NewProblem(displayName = "Pumping Scheduling", algorithmName = "SMPSOInteger")
+	public PumpSchedulingSMPSORegister() {
 	}
 
 	@Override
@@ -62,7 +65,7 @@ public class PumpSchedulingRegister implements MultiObjectiveRegistrable {
 
 		this.problem = vanzylObj;
 
-		// Ingreso de valores a trav�s de archivo PSE (comentar en caso de ingresar
+		// Ingreso de valores a través de archivo PSE (comentar en caso de ingresar
 		// manualmente)
 		// String psePath = "src/resources/Sotelo2001.pse";
 		// PumpScheduling pumpScheduling = new PumpScheduling(psePath, inpPath);
@@ -103,15 +106,25 @@ public class PumpSchedulingRegister implements MultiObjectiveRegistrable {
 
 			for (int i = 0; i < problemList.size(); i++) {
 				Problem<IntegerSolution> problem = problemList.get(i).getProblem();
-				SelectionOperator<List<IntegerSolution>, IntegerSolution> selection = new TournamentSelection<>(
-						2);
-				CrossoverOperator<IntegerSolution> crossover = new IntegerSBXCrossover(0.9, 20);
-				MutationOperator<IntegerSolution> mutation = new IntegerPolynomialMutation(
-						1.0 / problemList.get(i).getProblem().getNumberOfVariables(), 20);
-				Comparator<IntegerSolution> comparator = new DominanceComparator<>();
+				double c1Max = 2.5;
+				double c1Min = 1.5;
+				double c2Max = 2.5;
+				double c2Min = 1.5;
+				double r1Max = 1.0;
+				double r1Min = 0.0;
+				double r2Max = 1.0;
+				double r2Min = 0.0;
+				double weightMax = 0.1;
+				double weightMin = 0.1;
+				double changeVelocity1 = -1;
+				double changeVelocity2 = -1;
 
-				Algorithm<IntegerSolution> algorithm = new NSGAII<>(problem, 1000, 100, 100, 100, crossover, mutation,
-						selection, comparator, new SequentialSolutionEvaluator<>());
+				Algorithm<IntegerSolution> algorithm = new SMPSOInteger(problem, 100,
+						new CrowdingDistanceArchive<>(100),
+						new IntegerPolynomialMutation(1.0/problemList.get(i).getProblem().getNumberOfVariables(), 20),
+						250,
+						r1Min, r1Max, r2Min,r2Max,c1Min,c1Max,c2Min, c2Max, weightMin,weightMax,changeVelocity1,changeVelocity2, new SequentialSolutionEvaluator<>());
+
 				algorithms.add(new ExperimentAlgorithm<>(algorithm, problemList.get(i), run));
 			}
 
