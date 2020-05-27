@@ -95,7 +95,6 @@ public class SingleObjectiveExperimentTask extends Task<List<SingleObjectiveExpe
 			}
 			if (!this.isCancelled()) {
 				finalResultList.add(new Result(algorithm.getResult().get(0), numberOfIterations));
-//				updateCustomValue(new Result(algorithm.getResult().get(0), numberOfIterations)); // <-- notify result here to experiment level
 				progress++;
 				updateProgress(progress, experiment.getAlgorithmList().size());
 			}

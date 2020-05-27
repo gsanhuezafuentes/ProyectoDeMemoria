@@ -40,13 +40,13 @@
                             <Font size="14.0" />
                         </font>
                     </Label>
-                    <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" HBox.hgrow="ALWAYS" />
+                    <ProgressBar fx:id="progressBar" prefWidth="150.0" progress="0.0" HBox.hgrow="ALWAYS" />
                     <Label fx:id="progressLabel" text="10/27">
                         <font>
                             <Font size="14.0" />
                         </font>
                     </Label>
-                    <Label text="Algorithms">
+                    <Label text="Algorithm Repetitions">
                         <font>
                             <Font size="14.0" />
                         </font>

@@ -51,7 +51,7 @@ public class ResultPlotController {
 		//this.resultsPlot.setVerticalGridLinesVisible(false);
 		//this.resultsPlot.setHorizontalGridLinesVisible(false);
 		if (this.numberOfObjectives == 1) {
-			this.resultsPlot.getXAxis().setLabel("Number of iterations");
+			this.resultsPlot.getXAxis().setLabel("Number of generations");
 			this.resultsPlot.getYAxis().setLabel("Objective");
 		} else {
 			this.resultsPlot.getXAxis().setLabel("Objective1");
@@ -98,9 +98,9 @@ public class ResultPlotController {
 			XYChart.Data<Number, Number> data = new XYChart.Data<>(iterationNumber, solution.getObjective(0));
 			this.defaultSerie.getData().add(data);
 			// Codigo para cambiar el tamaño de los nodos
-//			StackPane stackPane =  (StackPane) data.getNode();
-//			stackPane.setPrefWidth(10);
-//			stackPane.setPrefHeight(10);
+			StackPane stackPane =  (StackPane) data.getNode();
+			stackPane.setPrefWidth(5);
+			stackPane.setPrefHeight(5);
 		} else { // is 2. Use objective1 vs Objective2
 			XYChart.Series<Number, Number> series = new XYChart.Series<>();
 			series.setName("Solution");
