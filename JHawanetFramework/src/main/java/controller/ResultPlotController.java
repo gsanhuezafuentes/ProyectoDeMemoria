@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import model.metaheuristic.solution.Solution;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -47,10 +48,10 @@ public class ResultPlotController {
 	 * Configure the plot.
 	 */
 	private void configurePlot() {
-		this.resultsPlot.setVerticalGridLinesVisible(false);
-		this.resultsPlot.setHorizontalGridLinesVisible(false);
+		//this.resultsPlot.setVerticalGridLinesVisible(false);
+		//this.resultsPlot.setHorizontalGridLinesVisible(false);
 		if (this.numberOfObjectives == 1) {
-			this.resultsPlot.getXAxis().setLabel("Number of iterations");
+			this.resultsPlot.getXAxis().setLabel("Number of generations");
 			this.resultsPlot.getYAxis().setLabel("Objective");
 		} else {
 			this.resultsPlot.getXAxis().setLabel("Objective1");
@@ -75,18 +76,18 @@ public class ResultPlotController {
 	}
 
 	/**
-	 * Add data to plot. If the number of objectives is 1, so the plot was between
-	 * objectives and the number of iteration. If the number of objectives is 2, so
-	 * the plot was between objective1 and objective2.
+	 * Add data to plot. Can use with 1 or 2 objectives. If the number of objectives is 1,
+	 * so the plot was between objectives and the number of iteration. If the number of
+	 * objectives is 2, so the plot was between objective1 and objective2.
 	 * 
-	 * @param solutionList    the solution list
-	 * @param iterationNumber a number used has the x-axis when the solution is of a
+	 * @param solution   the solution
+	 * @param iterationNumber a number used has the x-axis when the solution is a
 	 *                        singleobjective problem. if solution is multiobjective
-	 *                        this number is ignored.
-	 * @throws NullPointerException if solutionList is null
+	 *                        this number is ignored and use the objective.
+	 * @throws NullPointerException if solution is null
 	 */
-	public void addData(List<? extends Solution<?>> solutionList, int iterationNumber) {
-		Objects.requireNonNull(solutionList);
+	public void addData(Solution<?> solution, int iterationNumber) {
+		Objects.requireNonNull(solution);
 
 		if (this.numberOfObjectives == 1) { // use objective / number of iteration
 			if (this.defaultSerie == null) {
@@ -94,9 +95,33 @@ public class ResultPlotController {
 				this.defaultSerie.setName("Solution");
 				this.resultsPlot.getData().add(this.defaultSerie);
 			}
-			for (Solution<?> solution : solutionList) {
-				this.defaultSerie.getData().add(new XYChart.Data<>(iterationNumber, solution.getObjective(0)));
-			}
+			XYChart.Data<Number, Number> data = new XYChart.Data<>(iterationNumber, solution.getObjective(0));
+			this.defaultSerie.getData().add(data);
+			// Codigo para cambiar el tamaño de los nodos
+			StackPane stackPane =  (StackPane) data.getNode();
+			stackPane.setPrefWidth(5);
+			stackPane.setPrefHeight(5);
+		} else { // is 2. Use objective1 vs Objective2
+			XYChart.Series<Number, Number> series = new XYChart.Series<>();
+			series.setName("Solution");
+			series.getData().add(new XYChart.Data<>(solution.getObjective(0), solution.getObjective(1)));
+			this.resultsPlot.getData().add(series);
+		}
+	}
+
+	/**
+	 * Add data to plot. Only use if the number of objectives is 2.
+	 * The plot was between objective1 and objective2.
+	 *
+	 * @param solutionList   the solution
+	 * @throws NullPointerException if solutionList is null
+	 */
+	public void addData(List<? extends Solution<?>> solutionList) {
+		Objects.requireNonNull(solutionList);
+
+		if (this.numberOfObjectives == 1) {
+			throw new IllegalArgumentException("You can't call this method when the problem is single objective. " +
+					"Use addData(Solution<?> solution, int iterationNumber instead) ");
 		} else { // is 2. Use objective1 vs Objective2
 			XYChart.Series<Number, Number> series = new XYChart.Series<>();
 			series.setName("Solution");

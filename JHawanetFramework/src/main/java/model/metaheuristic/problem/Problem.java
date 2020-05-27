@@ -31,103 +31,116 @@ package model.metaheuristic.problem;
 import epanet.core.EpanetException;
 import model.epanet.element.Network;
 import model.metaheuristic.solution.Solution;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Class that denote a problem. <br>
  * <br>
- * 
+ * <p>
  * If the problem open a resource override the close method to close its.
+ *
+ * <strong>Notes:</strong>
+ * <p>
+ * For developer: If you implement a function that call {@link #closeResources} be careful not to close epanet until the experiment is finished,
+ * otherwise the program will close not show any warning error. This is probably due to a problem in epanet dll library.
  *
  * @param <S> Type of solution
  */
-public interface Problem<S extends Solution<?>> extends AutoCloseable {
+public interface Problem<S extends Solution<?>> {
 
-	/**
-	 * Get the number of variables associated to problem
-	 * 
-	 * @return number of variables
-	 */
-	int getNumberOfVariables();
+    /**
+     * Get the number of variables associated to problem.
+     *
+     * @return number of variables.
+     */
+    int getNumberOfVariables();
 
-	/**
-	 * Get the number of objectives that contain this problem
-	 * 
-	 * @return number of objectives
-	 */
-	int getNumberOfObjectives();
+    /**
+     * Get the number of objectives that contain this problem.
+     *
+     * @return number of objectives.
+     */
+    int getNumberOfObjectives();
 
-	/**
-	 * Get the number of constrains to this problem
-	 * 
-	 * @return number of constrains
-	 */
-	int getNumberOfConstraints();
+    /**
+     * Get the number of constrains to this problem.
+     *
+     * @return number of constrains.
+     */
+    int getNumberOfConstraints();
 
-	/**
-	 * Evaluate the solution
-	 * 
-	 * @param solution The solution object to evaluate
-	 * @throws EpanetException If there is a problem in EPANETToolkit to evaluate
-	 *                         the solution.
-	 */
-	void evaluate(S solution) throws EpanetException;
+    /**
+     * Evaluate the solution
+     *
+     * @param solution The solution object to evaluate
+     * @throws EpanetException If there is a problem in EPANETToolkit to evaluate
+     *                         the solution.
+     */
+    void evaluate(S solution) throws EpanetException;
 
-	/**
-	 * Make a solution to this problem. This can be created randomly and be used to
-	 * fill the initial population needed in some algorithms
-	 * 
-	 * @return Solution
-	 */
-	S createSolution();
+    /**
+     * Make a solution to this problem. This can be created randomly and be used to
+     * fill the initial population needed in some algorithms.
+     * <p>
+     * Must not return null value.
+     *
+     * @return Solution.
+     */
+    @NotNull S createSolution();
 
-	/**
-	 * Setting the lower bound for each decision variable
-	 * 
-	 * @param index the index of decision variable
-	 * @return lower bound of the decision variable
-	 */
-	double getLowerBound(int index);
+    /**
+     * Setting the lower bound for each decision variable
+     *
+     * @param index the index of decision variable
+     * @return lower bound of the decision variable
+     */
+    double getLowerBound(int index);
 
-	/**
-	 * Setting the upper bound for each decision variable
-	 * 
-	 * @param index the index of decision variable
-	 * @return upper bound of the decision variable
-	 */
-	double getUpperBound(int index);
+    /**
+     * Setting the upper bound for each decision variable
+     *
+     * @param index the index of decision variable
+     * @return upper bound of the decision variable
+     */
+    double getUpperBound(int index);
 
-	/**
-	 * Apply the solution to the network.
-	 * 
-	 * <br>
-	 * <br>
-	 * <strong>Notes:</strong> <br>
-	 * This method is used to save the solution as a inp from the ResultWindow.
-	 * Return null if you don't want use this method
-	 * 
-	 * @param network  a copy of the network instance opened configured with inp
-	 *                 setting up.
-	 * @param solution the solution to be setting in the network. It solution is the
-	 *                 same type of S, so you can cast it.
-	 * @return the network received and modified or null.
-	 */
-	Network applySolutionToNetwork(Network network, Solution<?> solution);
+    /**
+     * Apply the solution to the network.
+     *
+     * <br>
+     * <br>
+     * <strong>Notes:</strong> <br>
+     * This method is used to save the solution as a inp from the ResultWindow.
+     * Return null if you don't want use this method
+     *
+     * @param network  a copy of the network instance opened configured with inp
+     *                 setting up.
+     * @param solution the solution to be setting in the network. It solution is the
+     *                 same type of S, so you can cast it.
+     * @return the network received and modified or null.
+     */
+    @Nullable Network applySolutionToNetwork(Network network, Solution<?> solution);
 
-	/**
-	 * Get the name of the problem
-	 * 
-	 * @return the name of problem algorithm
-	 */
-	String getName();
+    /**
+     * Get the name of the problem.
+     *
+     * @return the name of problem algorithm or empty string.
+     */
+    @NotNull String getName();
 
-	/**
-	 * Override the close method of {@link AutoCloseable} interface. His default
-	 * implementation is a empty body<br>
-	 * <br>
-	 * If you need close a resource override this method to close it.
-	 * 
-	 */
-	@Override
-	default void close() throws Exception {
-	}
+    /**
+     * Use this method if you need close a resource override this method to close it. His default
+     * implementation is a empty body.
+     * <p>
+     * <strong>Notes:</strong>
+     * <p>
+     * This method will be called when the experiment finish.
+     */
+    default void closeResources() throws Exception {
+        /*
+         * Be careful not to close epanet until the experiment is finished, otherwise the program will close
+         * and not show any warning error. This is probably due to a problem in the library.
+         */
+    }
 }
