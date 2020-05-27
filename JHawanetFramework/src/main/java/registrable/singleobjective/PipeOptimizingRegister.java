@@ -3,8 +3,7 @@ package registrable.singleobjective;
 import annotations.registrable.*;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
-import model.metaheuristic.algorithm.Algorithm;
-import model.metaheuristic.algorithm.singleobjective.GeneticAlgorithm2;
+import model.metaheuristic.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithm2;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentBuilder;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
@@ -18,15 +17,14 @@ import model.metaheuristic.operator.mutation.impl.IntegerRangeRandomMutation;
 import model.metaheuristic.operator.mutation.impl.IntegerSimpleRandomMutation;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.UniformSelection;
-import model.metaheuristic.problem.Problem;
 import model.metaheuristic.problem.impl.PipeOptimizing;
 import model.metaheuristic.solution.impl.IntegerSolution;
+import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.Registrable;
 import registrable.SingleObjectiveRegistrable;
 import registrable.utils.ExperimentUtils;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -132,7 +130,7 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
 
         List<ExperimentAlgorithm<IntegerSolution>> experimentAlgorithms = ExperimentUtils.configureAlgorithmList(experimentProblem, this.independentRun,
                 () -> {
-                    GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<>(this.problem, populationSize, selection, crossover, mutation);
+                    GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<>(this.problem, populationSize, selection, crossover, mutation, new SequentialSolutionEvaluator<>());
                     algorithm.setMaxNumberOfIterationWithoutImprovement(this.numberWithoutImprovement);
                     return algorithm;
                 });

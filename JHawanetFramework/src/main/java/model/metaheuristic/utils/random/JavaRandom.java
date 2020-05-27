@@ -90,6 +90,16 @@ public class JavaRandom {
 	}
 
 	/**
+	 * Generate a random value between lowerBound and upperBound exclusive.
+	 * @param lowerBound the lowerBound
+	 * @param upperBound the upperBound inclusive
+	 * @return int number between lowerBound and upperBound
+	 */
+	public double nextDouble(double lowerBound, double upperBound) {
+		return lowerBound + random.nextDouble()*(upperBound - lowerBound) ;
+	}
+
+	/**
 	 * @return a double number
 	 * @see java.util.Random#nextGaussian()
 	 */

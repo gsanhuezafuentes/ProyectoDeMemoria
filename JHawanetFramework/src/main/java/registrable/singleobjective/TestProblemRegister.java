@@ -3,8 +3,9 @@ package registrable.singleobjective;
 import annotations.registrable.NewProblem;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
+
 import model.metaheuristic.algorithm.Algorithm;
-import model.metaheuristic.algorithm.singleobjective.GeneticAlgorithm2;
+import model.metaheuristic.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithm2;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentBuilder;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
@@ -16,6 +17,7 @@ import model.metaheuristic.operator.selection.impl.UniformSelection;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.problem.impl.PipeOptimizing;
 import model.metaheuristic.solution.impl.IntegerSolution;
+import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.SingleObjectiveRegistrable;
 import registrable.utils.ExperimentUtils;
 
@@ -81,7 +83,7 @@ public final class TestProblemRegister implements SingleObjectiveRegistrable {
 
 		for (int run = 0; run < independentRun; run++) {
 
-			GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<>(problem, 10, selection, crossover, mutation);
+			GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<>(problem, 10, selection, crossover, mutation, new SequentialSolutionEvaluator<>());
 			algorithm.setMaxEvaluations(10000);
 
 			algorithms.add(new ExperimentAlgorithm<IntegerSolution>(algorithm, experimentProblem, run));
