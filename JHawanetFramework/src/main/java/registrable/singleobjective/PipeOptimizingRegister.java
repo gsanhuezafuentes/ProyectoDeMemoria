@@ -33,7 +33,7 @@ import java.util.List;
  * <br>
  * <p>
  * The sistem read this class using reflection to get the annotation and create
- * a GUI to configure the algorithm and inject the value to injectable method.
+ * a GUI to configure the experiment and inject the value to injectable method.
  */
 public final class PipeOptimizingRegister implements SingleObjectiveRegistrable {
     private final SelectionOperator<List<IntegerSolution>, List<IntegerSolution>> selection;
@@ -61,7 +61,7 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
      *                                 result
      * @param maxEvaluations           the max number of evaluation
      * @throws Exception A exception if there is some error in convert the
-     *                   parameters, or in the execution of algorithm.
+     *                   parameters.
      * @see Registrable
      */
     @NewProblem(displayName = "Pipe optimizing", algorithmName = "Genetic Algorithm")
@@ -131,7 +131,12 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
         List<ExperimentAlgorithm<IntegerSolution>> experimentAlgorithms = ExperimentUtils.configureAlgorithmList(experimentProblem, this.independentRun,
                 () -> {
                     GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<>(this.problem, populationSize, selection, crossover, mutation, new SequentialSolutionEvaluator<>());
-                    algorithm.setMaxNumberOfIterationWithoutImprovement(this.numberWithoutImprovement);
+                    if (this.numberWithoutImprovement != Integer.MIN_VALUE){
+                        algorithm.setMaxNumberOfIterationWithoutImprovement(this.numberWithoutImprovement);
+                    }
+                    else{
+                        algorithm.setMaxEvaluations(this.maxEvaluations);
+                    }
                     return algorithm;
                 });
 

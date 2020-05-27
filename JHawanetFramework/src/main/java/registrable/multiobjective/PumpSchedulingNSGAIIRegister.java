@@ -27,7 +27,6 @@ import java.util.List;
 public class PumpSchedulingNSGAIIRegister implements MultiObjectiveRegistrable {
 
 	private static final int INDEPENDENT_RUNS = 2;
-	private VanzylOriginal problem;
 
 	@NewProblem(displayName = "Pumping Scheduling", algorithmName = "NSGA-II")
 	public PumpSchedulingNSGAIIRegister() {
@@ -60,9 +59,7 @@ public class PumpSchedulingNSGAIIRegister implements MultiObjectiveRegistrable {
 				energyCostPerTime, maintenanceCost, minNodePressure, numConstraints, minTank, maxTank,
 				maxFlowrateEachPump, inpPathVanzyl);
 
-		this.problem = vanzylObj;
-
-		// Ingreso de valores a trav�s de archivo PSE (comentar en caso de ingresar
+		// Ingreso de valores a traves de archivo PSE (comentar en caso de ingresar
 		// manualmente)
 		// String psePath = "src/resources/Sotelo2001.pse";
 		// PumpScheduling pumpScheduling = new PumpScheduling(psePath, inpPath);

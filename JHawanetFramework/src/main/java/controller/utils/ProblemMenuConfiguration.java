@@ -33,10 +33,10 @@ public class ProblemMenuConfiguration {
 	 * windows of configuration.
 	 * 
 	 * @param menu           the menu where the problem has been added
-	 * @param algorithmEvent the event that will be fired when the
+	 * @param experimentEvent the event that will be fired when the
 	 *                       RegistrableProblem is created.
 	 */
-	public void addSingleObjectiveProblems(Menu menu, CustomCallback<SingleObjectiveRegistrable> algorithmEvent) {
+	public void addSingleObjectiveProblems(Menu menu, CustomCallback<SingleObjectiveRegistrable> experimentEvent) {
 		Map<String, Menu> addedMenu = new HashMap<>();
 		for (Class<? extends SingleObjectiveRegistrable> registrable : Configuration.SINGLEOBJECTIVES_PROBLEMS) {
 			ReflectionUtils.validateRegistrableProblem(registrable);
@@ -50,7 +50,7 @@ public class ProblemMenuConfiguration {
 			Menu problemMenu = addedMenu.get(problemName);
 			MenuItem menuItem = new MenuItem(ReflectionUtils.getNameOfAlgorithm(registrable));
 			problemMenu.getItems().add(menuItem);
-			menuItem.setOnAction(evt -> menuItemEventHander(evt, registrable, algorithmEvent));
+			menuItem.setOnAction(evt -> menuItemEventHander(evt, registrable, experimentEvent));
 		}
 
 	}
@@ -88,23 +88,22 @@ public class ProblemMenuConfiguration {
 	 * 
 	 * @param evt            the event info returned to menuItem.setOnAction
 	 * @param registrable    the problem class
-	 * @param algorithmEvent a event called when the window showed create the
-	 *                       algorithm
+	 * @param algorithmEvent an event called when the window is close. It event create the experiment.
 	 */
 	private <T extends Registrable<?>> void menuItemEventHander(ActionEvent evt, Class<? extends T> registrable,
-			CustomCallback<T> algorithmEvent) {
+			CustomCallback<T> experimentEvent) {
 
 		// If the registrable class has a constructor with parameters so a new window to
 		// configure its is created,
 		if (ReflectionUtils.getNumberOfParameterInRegistrableConstructor(registrable) > 0) {
 			ConfigurationDynamicWindowController<T> configurationController = new ConfigurationDynamicWindowController<>(
-					registrable, algorithmEvent);
+					registrable, experimentEvent);
 			configurationController.showAssociatedWindow();
 		} else { // If the registrable class has a constructor without parameters
 					// algorithmEvent.notify is called.
 			try {
 				T registrableInstance = ReflectionUtils.createRegistrableInstance(registrable);
-				algorithmEvent.notify(registrableInstance);
+				experimentEvent.notify(registrableInstance);
 			} catch (InvocationTargetException e) {
 				CustomDialogs.showExceptionDialog("Error", "Exception throw by the constructor",
 						"Can't be created an instance of " + registrable.getName(), e.getCause());

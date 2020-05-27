@@ -33,7 +33,7 @@ import java.util.Objects;
  * The experiment received by this class will be executed in other thread.<br>
  * <br>
  * 
- * When the algorithm finishes successfully this controller will open the
+ * When the experiment finishes successfully this controller will open the
  * ResultWindow.
  *
  */
@@ -135,11 +135,11 @@ public class MultiObjectiveRunningWindowController {
 		// listener to handle when a exception is generated in the other thread.
 		task.exceptionProperty().addListener((property, oldValue, newValue) -> {
 			if (newValue instanceof EpanetException) {
-				CustomDialogs.showExceptionDialog("Error", "Error in the execution of the algorithm.",
+				CustomDialogs.showExceptionDialog("Error", "Error in the execution of the experiment.",
 						"An error has occurred during the validation of the solutions.", newValue);
 			} else {
-				CustomDialogs.showExceptionDialog("Error", "Error in the execution of the algorithm",
-						"An error has occurred while trying to execute the algorithm", newValue);
+				CustomDialogs.showExceptionDialog("Error", "Error in the execution of the experiment",
+						"An error has occurred while trying to execute the experiment", newValue);
 			}
 		});
 

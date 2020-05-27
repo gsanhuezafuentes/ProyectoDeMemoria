@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * This class is used to perform the algorithm execution in other thread
+ * This class is used to perform the experiment execution to singleobjective problems in other thread
  * updating the JavaFXApplicationThread.
  *
  */

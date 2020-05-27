@@ -116,7 +116,7 @@ public final class ConfigurationDynamicWindow<T extends Registrable<?>> extends 
 	 * Setting the stage properties.
 	 */
 	private void configurateWindow() {
-		setTitle("Algorithm Configuration");
+		setTitle("Experiment Configuration");
 		sizeToScene();
 		setResizable(false);
 		initModality(Modality.APPLICATION_MODAL);

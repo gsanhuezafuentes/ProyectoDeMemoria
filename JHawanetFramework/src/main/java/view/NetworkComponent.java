@@ -45,6 +45,8 @@ public class NetworkComponent extends Canvas {
             this.selected.set(null);
             if (newV != null) {
                 drawNetwork(newV);
+            }else{
+                cleanCanvas();
             }
         });
 

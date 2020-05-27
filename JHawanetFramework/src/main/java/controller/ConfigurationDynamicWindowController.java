@@ -14,32 +14,32 @@ import java.util.Map;
 import java.util.Objects;
 
 public class ConfigurationDynamicWindowController<T extends Registrable<?>> {
-	private final CustomCallback<T> algorithmEvent;
+	private final CustomCallback<T> experimentEvent;
 	private final Class<? extends T> problemClass;
 	private final ConfigurationDynamicWindow<T> view;
 
 	public ConfigurationDynamicWindowController(Class<? extends T> registrable,
-			CustomCallback<T> algorithmEvent) {
+			CustomCallback<T> experimentEvent) {
 		this.problemClass = Objects.requireNonNull(registrable);
-		this.algorithmEvent = Objects.requireNonNull(algorithmEvent);
+		this.experimentEvent = Objects.requireNonNull(experimentEvent);
 		this.view = new ConfigurationDynamicWindow<>(this, registrable);
 	}
 
 	/**
-	 * Is a class to fire the notification when the algorithm is ready.
+	 * Is a class to fire the notification when the experiment is created.
 	 * 
-	 * @param registrable the algorithm
+	 * @param registrable the experiment registrable class
 	 * @throws ApplicationException if there isn't register the notification
 	 *                              callback
 	 */
-	private void notifyAlgorithmCreation(T registrable) throws ApplicationException {
+	private void notifyExperimentCreation(T registrable) throws ApplicationException {
 
-		algorithmEvent.notify(registrable);
+		experimentEvent.notify(registrable);
 	}
 
 	/**
 	 * Is called when the run button is pressed in view. It method create the
-	 * registrable instance based in the input field. When the algorithm is created
+	 * registrable instance based in the input field. When the experiment is created
 	 * an {@link CustomCallback} is fired.
 	 * 
 	 * @param operatorsAndConfig A map where the key are the operators and the
@@ -95,7 +95,7 @@ public class ConfigurationDynamicWindowController<T extends Registrable<?>> {
 		try {
 			T registrable = ReflectionUtils.createRegistrableInstance(this.problemClass, parameters);
 			this.view.close();
-			notifyAlgorithmCreation(registrable);
+			notifyExperimentCreation(registrable);
 		} catch (InvocationTargetException e) {
 			CustomDialogs.showExceptionDialog("Error", "Exception throw by the constructor",
 					"Can't be created an instance of " + this.problemClass.getName(), e.getCause());

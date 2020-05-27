@@ -11,6 +11,7 @@ public class SequentialSolutionEvaluator<S extends Solution<?>> implements Solut
 
     @Override
     public List evaluate(List<S> solutionList, Problem<S> problem) throws EpanetException {
+        System.out.println(problem);
         for (S s : solutionList) {
             problem.evaluate(s);
         }

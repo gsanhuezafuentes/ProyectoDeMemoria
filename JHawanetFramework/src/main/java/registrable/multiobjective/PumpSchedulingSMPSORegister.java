@@ -29,107 +29,98 @@ import java.util.List;
 
 public class PumpSchedulingSMPSORegister implements MultiObjectiveRegistrable {
 
-	private static final int INDEPENDENT_RUNS = 2;
-	private VanzylOriginal problem;
+    private static final int INDEPENDENT_RUNS = 2;
+    private VanzylOriginal problem;
 
-	@NewProblem(displayName = "Pumping Scheduling", algorithmName = "SMPSOInteger")
-	public PumpSchedulingSMPSORegister() {
-	}
+    @NewProblem(displayName = "Pumping Scheduling", algorithmName = "SMPSOInteger")
+    public PumpSchedulingSMPSORegister() {
+    }
 
-	@Override
-	public Experiment<?> build(String inpPath) throws Exception {
-		String experimentBaseDirectory = "C:\\Users\\gsanh\\Desktop\\Memoria\\NoGit\\Experiment";
+    @Override
+    public Experiment<?> build(String inpPath) throws Exception {
+        String experimentBaseDirectory = "C:\\Users\\gsanh\\Desktop\\Memoria\\NoGit\\Experiment";
 
-		/* *******************vanzylOriginal ***************************/
+        /* *******************vanzylOriginal ***************************/
 
-		String inpPathVanzyl = inpPath; // "src/resources/vanzylOriginal.inp";
+        String inpPathVanzyl = inpPath; // "src/resources/vanzylOriginal.inp";
 
-		// Ingreso de valores manualmente (comentar en caso de usar archivo PSE)
+        // Ingreso de valores manualmente (comentar en caso de usar archivo PSE)
 
-		int numPumps = 3;
-		int totalOptimizationTime = 86400;
-		int intervalOptimizationTime = 3600;
-		double[] energyCostPerTime = { 0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.1194, 0.1194, 0.1194,
-				0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194,
-				0.1194 };
-		double maintenanceCost = 1;
-		int minNodePressure = 15;
-		int numConstraints = 218;
-		double[] maxFlowrateEachPump = { 300, 300, 150 };
-		double[] minTank = { 0, 0 };
-		double[] maxTank = { 10, 5 };
+        int numPumps = 3;
+        int totalOptimizationTime = 86400;
+        int intervalOptimizationTime = 3600;
+        double[] energyCostPerTime = {0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.1194, 0.1194, 0.1194,
+                0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194,
+                0.1194};
+        double maintenanceCost = 1;
+        int minNodePressure = 15;
+        int numConstraints = 218;
+        double[] maxFlowrateEachPump = {300, 300, 150};
+        double[] minTank = {0, 0};
+        double[] maxTank = {10, 5};
 
-		VanzylOriginal vanzylObj = new VanzylOriginal(numPumps, totalOptimizationTime, intervalOptimizationTime,
-				energyCostPerTime, maintenanceCost, minNodePressure, numConstraints, minTank, maxTank,
-				maxFlowrateEachPump, inpPathVanzyl);
+        VanzylOriginal vanzylObj = new VanzylOriginal(numPumps, totalOptimizationTime, intervalOptimizationTime,
+                energyCostPerTime, maintenanceCost, minNodePressure, numConstraints, minTank, maxTank,
+                maxFlowrateEachPump, inpPathVanzyl);
 
-		this.problem = vanzylObj;
+        this.problem = vanzylObj;
 
-		// Ingreso de valores a través de archivo PSE (comentar en caso de ingresar
-		// manualmente)
-		// String psePath = "src/resources/Sotelo2001.pse";
-		// PumpScheduling pumpScheduling = new PumpScheduling(psePath, inpPath);
+        // Ingreso de valores a través de archivo PSE (comentar en caso de ingresar
+        // manualmente)
+        // String psePath = "src/resources/Sotelo2001.pse";
+        // PumpScheduling pumpScheduling = new PumpScheduling(psePath, inpPath);
 
-		List<ExperimentProblem<IntegerSolution>> problemList = new ArrayList<>();
-		problemList.add(new ExperimentProblem<>(vanzylObj, "vanzylOriginal"));
+        ExperimentProblem<IntegerSolution> problem = new ExperimentProblem<>(vanzylObj, "vanzylOriginal");
 
-		List<ExperimentAlgorithm<IntegerSolution>> algorithmList = configureAlgorithmList(problemList);
+        List<ExperimentAlgorithm<IntegerSolution>> algorithmList = configureAlgorithmList(problem);
 
-		Experiment<IntegerSolution> experiment = new ExperimentBuilder<IntegerSolution>("PSMOStudy")
-				.setAlgorithmList(algorithmList).setProblemList(problemList)
-				.setExperimentBaseDirectory(experimentBaseDirectory).setOutputParetoFrontFileName("FUN")
-				.setOutputParetoSetFileName("VAR")
-				.setReferenceFrontDirectory(experimentBaseDirectory + "/PSMOStudy/referenceFronts")
-				.setIndependentRuns(INDEPENDENT_RUNS).build();
+        Experiment<IntegerSolution> experiment = new ExperimentBuilder<IntegerSolution>("PSMOStudy")
+                .setAlgorithmList(algorithmList)
+                .setProblem(problem)
+                .setExperimentBaseDirectory(experimentBaseDirectory)
+                .setObjectiveOutputFileName("FUN")
+                .setVariablesOutputFileName("VAR")
+                .setReferenceFrontDirectory(experimentBaseDirectory + "/PSMOStudy/referenceFronts")
+                .setIndependentRuns(INDEPENDENT_RUNS).build();
 
-		return experiment;
-	}
+        return experiment;
+    }
 
-	@Override
-	public Problem<?> getProblem() {
-		// TODO Auto-generated method stub
-		return this.problem;
-	}
+    /**
+     * The algorithm list is composed of pairs {@link Algorithm} + {@link Problem}
+     * which form part of a {@link ExperimentAlgorithm}, which is a decorator for
+     * class {@link Algorithm}. The {@link ExperimentAlgorithm} has an optional tag
+     * component, that can be set as it is shown in this example, where four
+     * variants of a same algorithm are defined.
+     */
+    static List<ExperimentAlgorithm<IntegerSolution>> configureAlgorithmList(ExperimentProblem<IntegerSolution> problemExperiment) {
+        List<ExperimentAlgorithm<IntegerSolution>> algorithms = new ArrayList<>();
 
-	/**
-	 * The algorithm list is composed of pairs {@link Algorithm} + {@link Problem}
-	 * which form part of a {@link ExperimentAlgorithm}, which is a decorator for
-	 * class {@link Algorithm}. The {@link ExperimentAlgorithm} has an optional tag
-	 * component, that can be set as it is shown in this example, where four
-	 * variants of a same algorithm are defined.
-	 */
-	static List<ExperimentAlgorithm<IntegerSolution>> configureAlgorithmList(
-			List<ExperimentProblem<IntegerSolution>> problemList) {
-		List<ExperimentAlgorithm<IntegerSolution>> algorithms = new ArrayList<>();
+        for (int run = 0; run < INDEPENDENT_RUNS; run++) {
 
-		for (int run = 0; run < INDEPENDENT_RUNS; run++) {
+            Problem<IntegerSolution> problem = problemExperiment.getProblem();
+            double c1Max = 2.5;
+            double c1Min = 1.5;
+            double c2Max = 2.5;
+            double c2Min = 1.5;
+            double r1Max = 1.0;
+            double r1Min = 0.0;
+            double r2Max = 1.0;
+            double r2Min = 0.0;
+            double weightMax = 0.1;
+            double weightMin = 0.1;
+            double changeVelocity1 = -1;
+            double changeVelocity2 = -1;
 
-			for (int i = 0; i < problemList.size(); i++) {
-				Problem<IntegerSolution> problem = problemList.get(i).getProblem();
-				double c1Max = 2.5;
-				double c1Min = 1.5;
-				double c2Max = 2.5;
-				double c2Min = 1.5;
-				double r1Max = 1.0;
-				double r1Min = 0.0;
-				double r2Max = 1.0;
-				double r2Min = 0.0;
-				double weightMax = 0.1;
-				double weightMin = 0.1;
-				double changeVelocity1 = -1;
-				double changeVelocity2 = -1;
+            Algorithm<IntegerSolution> algorithm = new SMPSOInteger(problem, 100,
+                    new CrowdingDistanceArchive<>(100),
+                    new IntegerPolynomialMutation(1.0 / problem.getNumberOfVariables(), 20),
+                    250,
+                    r1Min, r1Max, r2Min, r2Max, c1Min, c1Max, c2Min, c2Max, weightMin, weightMax, changeVelocity1, changeVelocity2, new SequentialSolutionEvaluator<>());
 
-				Algorithm<IntegerSolution> algorithm = new SMPSOInteger(problem, 100,
-						new CrowdingDistanceArchive<>(100),
-						new IntegerPolynomialMutation(1.0/problemList.get(i).getProblem().getNumberOfVariables(), 20),
-						250,
-						r1Min, r1Max, r2Min,r2Max,c1Min,c1Max,c2Min, c2Max, weightMin,weightMax,changeVelocity1,changeVelocity2, new SequentialSolutionEvaluator<>());
-
-				algorithms.add(new ExperimentAlgorithm<>(algorithm, problemList.get(i), run));
-			}
-
-		}
-		return algorithms;
-	}
+            algorithms.add(new ExperimentAlgorithm<>(algorithm, problemExperiment, run));
+        }
+        return algorithms;
+    }
 
 }

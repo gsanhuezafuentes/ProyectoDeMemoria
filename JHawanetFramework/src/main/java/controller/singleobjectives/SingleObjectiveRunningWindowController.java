@@ -31,10 +31,10 @@ import java.util.stream.Collectors;
  * This class is the controller for SingleObjectiveRunningWindow.fxml. <br>
  * <br>
  * <p>
- * The algorithm received by this class will be executed in other thread.<br>
+ * The experiment received by this class will be executed in other thread.<br>
  * <br>
  * <p>
- * When the algorithm finishes successfully this controller will open the
+ * When the experiment finishes successfully this controller will open the
  * ResultWindow.
  */
 public class SingleObjectiveRunningWindowController {
@@ -73,14 +73,14 @@ public class SingleObjectiveRunningWindowController {
     /**
      * Constructor
      *
-     * @param algorithm the algorithm to execute
+     * @param experiment the algorithm to execute
      * @param problem   the problem that the algorithm has configured
      * @param network   the network opened.
      * @param callback  a callback function to return the result node when task finish
      * @throws NullPointerException if algorithm is null or problem is null or
      *                              network is null
      */
-    public SingleObjectiveRunningWindowController(Experiment<?> algorithm, @NotNull Problem<?> problem, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
+    public SingleObjectiveRunningWindowController(Experiment<?> experiment, @NotNull Problem<?> problem, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
         /*
          * Only add the the showChartButton if the number of objectives is less than 2.
          */
@@ -88,14 +88,14 @@ public class SingleObjectiveRunningWindowController {
             throw new IllegalArgumentException("The number of objective to to this type of Registrable should be 1. Experiment is needed by multiobjectives problems");
         }
 
-        Objects.requireNonNull(algorithm);
+        Objects.requireNonNull(experiment);
         Objects.requireNonNull(problem);
         Objects.requireNonNull(network);
         this.callback = Objects.requireNonNull(callback);
 
         this.problem = problem;
         this.network = network;
-        this.task = new SingleObjectiveExperimentTask(algorithm);
+        this.task = new SingleObjectiveExperimentTask(experiment);
 
         this.root = loadFXML(); //initialize fxml and all parameters defined with @FXML
         // Create the controller to add point even if plot windows is not showed

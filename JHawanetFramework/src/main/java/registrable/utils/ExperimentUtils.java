@@ -1,13 +1,10 @@
 package registrable.utils;
 
 import model.metaheuristic.algorithm.Algorithm;
-import model.metaheuristic.algorithm.singleobjective.GeneticAlgorithm2;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.experiment.util.ExperimentProblem;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.solution.impl.IntegerSolution;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,7 +19,7 @@ public final class ExperimentUtils {
      * <p>
      * This method create so many ExperimentAlgorithms as number of independent run were passed. For each
      * ExperimentAlgorithm a new call on the supplier is realized. So each ExperimentAlgorithm has his own
-     * instance of the algorithm.
+     * instance of the same algorithm.
      *
      * <p>
      * The algorithm list is composed of pairs {@link Algorithm} + {@link Problem}
@@ -30,6 +27,7 @@ public final class ExperimentUtils {
      * class {@link Algorithm}. The {@link ExperimentAlgorithm} has an optional tag
      * component, that can be set as it is shown in this example, where four
      * variants of a same algorithm are defined.
+     *
      * @param experimentProblem the experiment problem
      * @param numberOfIndependentRun the number of independent run
      * @param supplier the supplier of algorithm

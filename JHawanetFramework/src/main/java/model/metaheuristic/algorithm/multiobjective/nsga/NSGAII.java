@@ -63,7 +63,6 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
 	protected CrossoverOperator<S> crossoverOperator;
 	protected MutationOperator<S> mutationOperator;
 	protected List<S> population;
-	protected Problem<S> problem;
 	protected final SolutionListEvaluator<S> evaluator;
 
 	/**

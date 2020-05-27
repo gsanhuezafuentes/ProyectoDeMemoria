@@ -303,10 +303,5 @@ public class SMPSOInteger extends AbstractParticleSwarmOptimization<IntegerSolut
     public List<IntegerSolution> getResult() {
         return leaders.getSolutionList();
     }
-
-    @Override
-    public void close() throws Exception {
-        problem.close();
-    }
 }
 
