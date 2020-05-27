@@ -224,5 +224,4 @@ public abstract class AbstractGenericSolution<T, P extends Problem<?>> implement
 		result = 31 * result + attributes.hashCode();
 		return result;
 	}
-
 }

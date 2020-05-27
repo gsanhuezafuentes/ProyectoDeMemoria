@@ -33,4 +33,7 @@ pageref: comando latex
 conviene usar ~\cite. Eso te deja un espacio entre la palabra y la cita, y ademas no de deja la cita al comienzo de una línea nueva.
 Ej: algo~\cite{Deb2002}
 
-En español se pone la cita antes del punto final (es parte de la oración).
+En español se pone la cita antes del punto final (es parte de la oración). 
+---------------------------
+Profesor si existen alternativas, pero el cliente solicito el uso de cierta tecnología ¿Hace falta buscar alternativas?
+sip, igual hace falta, porque tu estas simultaneamente respondiendo a dos jefes. El cliente y la comision.

@@ -32,15 +32,33 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Interface representing an archive of solutions
+ * Interface representing an archive of solutions.
  *
  */
 public interface Archive<S> extends Serializable {
+	/**
+	 * Add element to the archive
+	 * @param solution the solution to add
+	 * @return
+	 */
 	boolean add(S solution);
 
+	/**
+	 * Get a element of the archive
+	 * @param index the index of element
+	 * @return the element
+	 */
 	S get(int index);
 
+	/**
+	 * Get the solution list of the archive
+	 * @return
+	 */
 	List<S> getSolutionList();
 
+	/**
+	 * Get the size of archive
+	 * @return the size
+	 */
 	int size();
 }

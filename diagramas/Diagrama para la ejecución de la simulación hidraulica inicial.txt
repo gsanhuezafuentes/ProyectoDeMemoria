@@ -1,0 +1,23 @@
+title Diagrama para la ejecución de la simulación hidraulica inicial
+
+actor User
+participant MainWindowController
+participant HydraulicSimulationResultController
+participant HydraulicSimulation
+autonumber on
+autoactivation on 
+
+
+note over HydraulicSimulation:La simulación es realizada y los resultados\nse almacenan en una instancia de este objeto.
+User ->MainWindowController://Pulsar botón para ejecutar (run)//\nrunOnAction()
+MainWindowController->HydraulicSimulation://Ejecuta la simulación//\nrun(inpFilePath)
+note over HydraulicSimulation:Realiza las llamadas nativas \na la librería de EPANET
+MainWindowController<--HydraulicSimulation: Instancia de HydraulicSimulation que almacena\n los resultados de la ejecución
+deactivateafter MainWindowController
+
+User->MainWindowController :Pulsa el botón para mostrar\nel reporte resultReport//\nresultReportOnAction()
+MainWindowController->*HydraulicSimulationResultController:Crea el controlador de la ventana que \nmuestra los resultados y pasa la \n**propiedad del elemento seleccionado**\n(que se actualiza automáticamente\ncuando se selecciona otro objeto) y \nel **objeto HydraulicSimulation** (Contiene los resultados\nde la simulación).\n\n<<create>>
+deactivate HydraulicSimulationResultController
+MainWindowController->HydraulicSimulationResultController://Muestra la ventana//\nshowWindow()
+deactivateafter HydraulicSimulationResultController
+User->HydraulicSimulationResultController://Configura lo que quiere ver//

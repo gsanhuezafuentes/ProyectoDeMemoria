@@ -66,7 +66,7 @@ public class NonDominatedSolutionListArchive<S extends Solution<?>> implements A
 	}
 
 	/**
-	 * Inserts a solution in the list
+	 * Inserts a solution in the list only if solution neither non-dominated nor it is contained.
 	 *
 	 * @param solution The solution to be inserted.
 	 * @return true if the operation success, and false if the solution is dominated
