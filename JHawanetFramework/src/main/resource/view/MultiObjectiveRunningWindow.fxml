@@ -1,103 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+
 <AnchorPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <tabs>
-            <Tab text="Running Status">
-               <content>
-                  <VBox prefHeight="600.0" prefWidth="500.0" spacing="10.0">
-                     <children>
-                        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="99.0" prefWidth="480.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="413.0" />
-                            <ColumnConstraints hgrow="NEVER" maxWidth="247.5" minWidth="10.0" prefWidth="87.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <VBox alignment="CENTER_LEFT" prefHeight="84.0" prefWidth="403.0" GridPane.hgrow="ALWAYS">
-                                 <children>
-                                    <Label fx:id="headerText" text="Please wait ..." wrapText="true">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
-                                 <children>
-                                    <ProgressIndicator fx:id="progressIndicator" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="10.0" top="10.0" />
-                                 </padding>
-                              </VBox>
-                           </children>
-                        </GridPane>
-                        <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
-                           <children>
-                              <Label text="Executed Status:">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" HBox.hgrow="ALWAYS" />
-                              <Label fx:id="progressLabel" text="10/27">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Algorithms">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <Label text="Current Algorithm Status">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <AnchorPane VBox.vgrow="ALWAYS">
-                           <children>
-                              <TextArea fx:id="algorithmStatusTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <Label text="Log">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <AnchorPane>
-                           <children>
-                              <TextArea fx:id="logExperimentTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <HBox alignment="CENTER_RIGHT" spacing="5.0" VBox.vgrow="NEVER">
-                           <children>
-                              <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel" />
-                              <Button fx:id="closeButton" mnemonicParsing="false" onAction="#onCloseButtonClick" text="Close" />
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </VBox>
-               </content>
-            </Tab>
-            <Tab fx:id="chartTab" text="Chart" />
-         </tabs>
-      </TabPane>
-   </children>
+   <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Tab text="Running Status">
+         <VBox prefHeight="600.0" prefWidth="500.0" spacing="10.0">
+            <padding>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="99.0" prefWidth="480.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="413.0" />
+                  <ColumnConstraints hgrow="NEVER" maxWidth="247.5" minWidth="10.0" prefWidth="87.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <VBox alignment="CENTER_LEFT" prefHeight="84.0" prefWidth="403.0" GridPane.hgrow="ALWAYS">
+                  <Label fx:id="headerText" text="Please wait ..." wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </VBox>
+               <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
+                  <padding>
+                     <Insets bottom="10.0" top="10.0" />
+                  </padding>
+                  <ProgressIndicator fx:id="progressIndicator" />
+               </VBox>
+            </GridPane>
+            <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+               <Label text="Executed Status:">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <ProgressBar fx:id="progressBar" prefWidth="150.0" progress="0.0" HBox.hgrow="ALWAYS" />
+               <Label fx:id="progressLabel" text="10/27">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="Algorithm Repetitions">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+            </HBox>
+            <Label text="Current Algorithm Status">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <AnchorPane VBox.vgrow="ALWAYS">
+               <TextArea fx:id="algorithmStatusTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </AnchorPane>
+            <Label text="Log">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <AnchorPane>
+               <TextArea fx:id="logExperimentTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </AnchorPane>
+            <HBox alignment="CENTER_RIGHT" spacing="5.0" VBox.vgrow="NEVER">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel" />
+               <Button fx:id="closeButton" mnemonicParsing="false" onAction="#onCloseButtonClick" text="Close" />
+            </HBox>
+         </VBox>
+      </Tab>
+      <Tab fx:id="chartTab" text="Chart" />
+   </TabPane>
 </AnchorPane>

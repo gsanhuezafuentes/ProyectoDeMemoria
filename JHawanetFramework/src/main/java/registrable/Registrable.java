@@ -1,9 +1,7 @@
 package registrable;
 
 import annotations.registrable.*;
-import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.operator.Operator;
-import model.metaheuristic.problem.Problem;
 import registrable.singleobjective.PipeOptimizingRegister;
 
 /**
@@ -11,9 +9,9 @@ import registrable.singleobjective.PipeOptimizingRegister;
  * <br>
  * 
  * The class that implement this interface has to have a only public constructor
- * that declare the parameters that is needed to configure the algorithm and the
+ * that declare the parameters that is needed to configure the experiment and the
  * problem. Also the constructor has to add a series of annotation. Based in the
- * parameters added in the constructor the algorithm have to be configured and
+ * parameters added in the constructor the experiment have to be configured and
  * returned when {@link #build(String)} will be called.<br>
  * <br>
  * 
@@ -22,7 +20,7 @@ import registrable.singleobjective.PipeOptimizingRegister;
  * 
  * <ul>
  * <li>{@link NewProblem} : It annotation is used to assign the name to the
- * problem and the name to the algorithm used. It will be showed in the menu in
+ * problem and the name to the algorithm to use within experiment. It will be showed in the menu in
  * the GUI. It annotation is mandatory.</li>
  * 
  * <li>{@link Parameters} : It annotation declare that in this constructor will
@@ -87,24 +85,14 @@ import registrable.singleobjective.PipeOptimizingRegister;
 public interface Registrable<R> {
 
 	/**
-	 * Builds a new algorithm and leaves it ready for execution. This method will be
+	 * Builds a new experiment and leaves it ready for execution. This method will be
 	 * called by the GUI when resolve the problem in the network opened. The call
 	 * include the path of the inp file of the opened network.
 	 * 
 	 * @param inpPath the path of inp file, or null if there isn't a network opened.
-	 * @return the algorithm ready for execution
-	 * @throws Exception if an exception occurs when building the algorithm
+	 * @return the experiment ready for execution
+	 * @throws Exception if an exception occurs when building the experiment
 	 */
 	R build(String inpPath) throws Exception;
-
-	/**
-	 * Get the problem associated to {@link Algorithm} when {@link #build(String)}
-	 * was called or null if it hasn't be called.
-	 * 
-	 * @return the associated problem if the algorithm already was created, i.e.,
-	 *         {@link #build(String) already was called} by {@link #build(String)}
-	 *         or null in other case.
-	 */
-	Problem<?> getProblem();
 
 }

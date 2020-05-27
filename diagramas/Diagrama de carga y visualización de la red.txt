@@ -1,0 +1,38 @@
+title Diagrama de carga y visualización de la red
+
+actor User
+participant MainWindowController
+participant ProblemMenuConfiguration
+participant InpParser
+participant NetworkComponent
+participant ElementViewer
+
+autonumber on
+autoactivation on 
+
+[->MainWindowController:initialize()
+MainWindowController->ProblemMenuConfiguration://agregar problemas al menu//\naddMonoObjectiveProblems()
+deactivate MainWindowController
+ProblemMenuConfiguration ->ProblemMenuConfiguration:Validar el uso de las anotaciones\nen las clases que heredan de\nRegistrable y en los Operadores
+deactivateafter ProblemMenuConfiguration
+space 
+deactivate ProblemMenuConfiguration
+
+User->MainWindowController://Disparar evento\npara abrir la red//\nopenOnAction()
+
+autoactivation off
+User<-MainWindowController: Ventana de elección\nde archivos
+User-->MainWindowController: Ubicación del archivo
+autoactivation on
+MainWindowController->MainWindowController: loadNetwork()
+MainWindowController->InpParser://Leer red and rellenar el objeto network//\nparse(Network)
+MainWindowController<--InpParser:network
+destroyafter InpParser
+note over MainWindowController, ElementViewer:Actualiza la propiedad que almacena \nla red en MainWindowController lo \ncual actualiza las propiedades vinculadas \nen NetworkComponent y ElementViewer
+NetworkComponent->NetworkComponent://Dibuja la red//\ndrawNetwork(Network)
+deactivateafter NetworkComponent
+deactivateafter MainWindowController
+ElementViewer->ElementViewer://Rellena el visor de elementos//\nfillList(Network)
+deactivateafter ElementViewer
+space
+deactivate MainWindowController

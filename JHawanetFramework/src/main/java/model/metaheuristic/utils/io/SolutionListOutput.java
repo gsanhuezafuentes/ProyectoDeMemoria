@@ -93,8 +93,8 @@ public class SolutionListOutput {
 	 */
 	private String formatVAR(Solution<?> solution) {
 		StringBuilder text = new StringBuilder();
-		for (Object object : solution.getVariables()) {
-			text.append(object).append(this.separator);
+		for (int i = 0; i < solution.getNumberOfVariables(); i++){
+			text.append(solution.getVariableAsString(i)).append(this.separator);
 		}
 		return text.toString();
 	}

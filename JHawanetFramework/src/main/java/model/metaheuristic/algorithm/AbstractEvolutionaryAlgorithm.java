@@ -211,13 +211,4 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>> imple
 		
 		this.step++;
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void close() throws Exception {
-		this.problem.close();
-	}
-
 }

@@ -2,7 +2,7 @@ package controller.singleobjectives;
 
 import controller.ResultController;
 import controller.ResultPlotController;
-import controller.utils.AlgorithmTask;
+import controller.utils.SingleObjectiveExperimentTask;
 import controller.utils.CustomCallback;
 import epanet.core.EpanetException;
 import exception.ApplicationException;
@@ -15,7 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.epanet.element.Network;
-import model.metaheuristic.algorithm.Algorithm;
+import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import org.jetbrains.annotations.NotNull;
@@ -25,6 +25,7 @@ import view.utils.CustomDialogs;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * This class is the controller for SingleObjectiveRunningWindow.fxml. <br>
@@ -46,20 +47,26 @@ public class SingleObjectiveRunningWindowController {
     @FXML
     private ProgressIndicator progressIndicator;
     @FXML
+    private ProgressBar progressBar;
+    @FXML
+    private Label progressLabel;
+    @FXML
     private TextArea textArea;
     @FXML
     private Tab chartTab;
 
-    @NotNull private final Pane root;
+    @NotNull
+    private final Pane root;
     @NotNull
     private final Problem<?> problem;
     @NotNull
-    private final AlgorithmTask task;
+    private final SingleObjectiveExperimentTask task;
     @NotNull
     private final Network network;
     @NotNull
     private final ResultPlotController resultPlotController;
-    @NotNull private final CustomCallback<ResultController> callback;
+    @NotNull
+    private final CustomCallback<ResultController> callback;
     @Nullable
     private Stage window;
 
@@ -69,11 +76,11 @@ public class SingleObjectiveRunningWindowController {
      * @param algorithm the algorithm to execute
      * @param problem   the problem that the algorithm has configured
      * @param network   the network opened.
-     * @param callback a callback function to return the result node when task finish
+     * @param callback  a callback function to return the result node when task finish
      * @throws NullPointerException if algorithm is null or problem is null or
      *                              network is null
      */
-    public SingleObjectiveRunningWindowController(Algorithm<?> algorithm, @NotNull Problem<?> problem, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
+    public SingleObjectiveRunningWindowController(Experiment<?> algorithm, @NotNull Problem<?> problem, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
         /*
          * Only add the the showChartButton if the number of objectives is less than 2.
          */
@@ -88,7 +95,7 @@ public class SingleObjectiveRunningWindowController {
 
         this.problem = problem;
         this.network = network;
-        this.task = new AlgorithmTask(algorithm);
+        this.task = new SingleObjectiveExperimentTask(algorithm);
 
         this.root = loadFXML(); //initialize fxml and all parameters defined with @FXML
         // Create the controller to add point even if plot windows is not showed
@@ -141,11 +148,26 @@ public class SingleObjectiveRunningWindowController {
             }
         });
 
-        task.valueProperty().addListener((prop, oldv, newv) -> this.resultPlotController.addData(newv.getSolution(), newv.getNumberOfIterations()));
+        task.progressProperty().addListener((prop, old, newv) -> {
+            if (newv != null) {
+                progressBar.setProgress((double) newv);
+
+            }
+
+            String workDone = (task.getWorkDone() != -1) ? Double.toString(task.getWorkDone()) : "Undefined";
+            String totalWork = (task.getTotalWork() != -1) ? Double.toString(task.getTotalWork()) : "Undefined";
+            String progressText = workDone + "/" + totalWork;
+
+            progressLabel.setText(progressText);
+
+        });
+
+        task.customValueProperty().addListener((prop, oldv, newv) -> this.resultPlotController.addData(newv.getSolution(), newv.getNumberOfIterations()));
 
         // listener when task finishes successfully
         task.setOnSucceeded(e -> {
-            List<? extends Solution<?>> solutions = task.getValue().getSolution();
+            List<SingleObjectiveExperimentTask.Result> result = task.getValue();
+            List<? extends Solution<?>> solutions = result.stream().map(result1 -> result1.getSolution()).collect(Collectors.toList());
             ResultController resultController = new ResultController(solutions, this.problem,
                     this.network);
             callback.notify(resultController);
@@ -180,7 +202,7 @@ public class SingleObjectiveRunningWindowController {
     /**
      * Show the associated view in window
      */
-    public void showWindowAndRunAlgorithm() {
+    public void showWindowAndRunExperiment() {
         Stage stage = new Stage();
         stage.setScene(new Scene(this.root));
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -189,6 +211,7 @@ public class SingleObjectiveRunningWindowController {
         stage.setOnCloseRequest((e) -> onCloseButtonClick());
         stage.show();
         this.window = stage;
+
         Thread t = new Thread(task);
         t.setDaemon(true);
         t.start();

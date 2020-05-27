@@ -77,3 +77,7 @@ Dependiendo de la unidad de flujo (*Flow*) escogida, el sistema de unidades camb
 
 ### Nota 5:
 Se debe tener cuidado con el *encoding* de los archivos. Por defecto, el programa lee ISO-8859-1. Pero para evitar cualquier error, mejor asegurar que los archivos de red no contengan caracteres raros como ´,ñ, etc.
+
+### Nota 6: Para desarrolladores principalmente
+Tener cuidado con cerrar epanet (epanet.ENclose). Si está cerrado hacer una llamada a la librería puede causar que el programa se cierre y no lanzara ninguna advertencia más que un código de error. 
+

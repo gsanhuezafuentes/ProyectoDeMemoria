@@ -67,25 +67,19 @@ public class PumpSchedulingNSGAIIRegister implements MultiObjectiveRegistrable {
 		// String psePath = "src/resources/Sotelo2001.pse";
 		// PumpScheduling pumpScheduling = new PumpScheduling(psePath, inpPath);
 
-		List<ExperimentProblem<IntegerSolution>> problemList = new ArrayList<>();
-		problemList.add(new ExperimentProblem<>(vanzylObj, "vanzylOriginal"));
+		ExperimentProblem<IntegerSolution> experimentProblem = new ExperimentProblem<>(vanzylObj, "vanzylOriginal");
 
-		List<ExperimentAlgorithm<IntegerSolution>> algorithmList = configureAlgorithmList(problemList);
+		List<ExperimentAlgorithm<IntegerSolution>> algorithmList = configureAlgorithmList(experimentProblem);
 
 		Experiment<IntegerSolution> experiment = new ExperimentBuilder<IntegerSolution>("PSMOStudy")
-				.setAlgorithmList(algorithmList).setProblemList(problemList)
-				.setExperimentBaseDirectory(experimentBaseDirectory).setOutputParetoFrontFileName("FUN")
-				.setOutputParetoSetFileName("VAR")
+				.setAlgorithmList(algorithmList).setProblem(experimentProblem)
+				.setExperimentBaseDirectory(experimentBaseDirectory)
+				.setObjectiveOutputFileName("FUN")
+				.setVariablesOutputFileName("VAR")
 				.setReferenceFrontDirectory(experimentBaseDirectory + "/PSMOStudy/referenceFronts")
 				.setIndependentRuns(INDEPENDENT_RUNS).build();
 
 		return experiment;
-	}
-
-	@Override
-	public Problem<?> getProblem() {
-		// TODO Auto-generated method stub
-		return this.problem;
 	}
 
 	/**
@@ -96,24 +90,21 @@ public class PumpSchedulingNSGAIIRegister implements MultiObjectiveRegistrable {
 	 * variants of a same algorithm are defined.
 	 */
 	static List<ExperimentAlgorithm<IntegerSolution>> configureAlgorithmList(
-			List<ExperimentProblem<IntegerSolution>> problemList) {
+			ExperimentProblem<IntegerSolution> experimentProblem) {
 		List<ExperimentAlgorithm<IntegerSolution>> algorithms = new ArrayList<>();
 
+		Problem<IntegerSolution> problem = experimentProblem.getProblem();
 		for (int run = 0; run < INDEPENDENT_RUNS; run++) {
-
-			for (int i = 0; i < problemList.size(); i++) {
-				Problem<IntegerSolution> problem = problemList.get(i).getProblem();
 				SelectionOperator<List<IntegerSolution>, IntegerSolution> selection = new TournamentSelection<>(
 						2);
 				CrossoverOperator<IntegerSolution> crossover = new IntegerSBXCrossover(0.9, 20);
 				MutationOperator<IntegerSolution> mutation = new IntegerPolynomialMutation(
-						1.0 / problemList.get(i).getProblem().getNumberOfVariables(), 20);
+						1.0 / problem.getNumberOfVariables(), 20);
 				Comparator<IntegerSolution> comparator = new DominanceComparator<>();
 
-				Algorithm<IntegerSolution> algorithm = new NSGAII<>(problem, 1000, 100, 100, 100, crossover, mutation,
-						selection, comparator, new SequentialSolutionEvaluator<>());
-				algorithms.add(new ExperimentAlgorithm<>(algorithm, problemList.get(i), run));
-			}
+				Algorithm<IntegerSolution> algorithm = new NSGAII<>(problem, 1000, 100, 100, 100, crossover, mutation
+						,selection, comparator, new SequentialSolutionEvaluator<>());
+				algorithms.add(new ExperimentAlgorithm<>(algorithm, experimentProblem, run));
 
 		}
 		return algorithms;

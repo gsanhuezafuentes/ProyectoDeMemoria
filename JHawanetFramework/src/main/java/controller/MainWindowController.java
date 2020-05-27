@@ -20,7 +20,6 @@ import javafx.stage.Window;
 import model.epanet.element.Network;
 import model.epanet.element.utils.HydraulicSimulation;
 import model.epanet.io.InpParser;
-import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.problem.Problem;
 import org.jetbrains.annotations.NotNull;
@@ -134,8 +133,8 @@ public class MainWindowController implements Initializable {
         // Register the menu item problem to problem menu and add the listener to it
         // menuitem to show a interface,
         ProblemMenuConfiguration problemRegistrar = new ProblemMenuConfiguration();
-        problemRegistrar.addSingleObjectiveProblems(this.singleobjectiveMenu, this::runAlgorithm);
-        problemRegistrar.addMultiObjectiveProblems(this.multiobjectiveMenu, this::runExperiment);
+        problemRegistrar.addSingleObjectiveProblems(this.singleobjectiveMenu, this::runSingleObjectiveExperiment);
+        problemRegistrar.addMultiObjectiveProblems(this.multiobjectiveMenu, this::runMultiObjectiveExperiment);
 
         isNetworkLoaded.bind(network.isNotNull());
 
@@ -209,41 +208,7 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * Run the algorithm.<br>
-     * <br>
-     *
-     * <br>
-     * <br>
-     * <strong>Notes:</strong> <br>
-     * This method is called by ConfigurationDynamicWindow when the algorithm is
-     * successfully created. When this method is executed open a RunningDialog that
-     * show the progress of execution of algorithm.
-     *
-     * @param registrableProblem the factory of algorithm for a problem
-     */
-    private void runAlgorithm(@NotNull SingleObjectiveRegistrable registrableProblem) {
-        String path = null;
-        if (this.inpFile != null) {
-            path = this.inpFile.getAbsolutePath();
-        }
-        Algorithm<?> algorithm = null;
-        try {
-            algorithm = registrableProblem.build(path);
-        } catch (Exception e) {
-            CustomDialogs.showExceptionDialog("Error", "Error in the creation of the algorithm",
-                    "The algorithm can't be created", e);
-        }
-        if (algorithm != null) {
-            Problem<?> problem = registrableProblem.getProblem();
-            SingleObjectiveRunningWindowController runningDialogController = new SingleObjectiveRunningWindowController(algorithm, problem,
-                    this.network.get(), this::createResultTab);
-            runningDialogController.showWindowAndRunAlgorithm();
-        }
-
-    }
-
-    /**
-     * Run the experiment.<br>
+     * Run the single objective experiment.<br>
      * <br>
      *
      * <br>
@@ -251,11 +216,11 @@ public class MainWindowController implements Initializable {
      * <strong>Notes:</strong> <br>
      * This method is called by ConfigurationDynamicWindow when the experiment is
      * successfully created. When this method is executed open a RunningDialog that
-     * show the progress of execution of algorithm.
+     * show the progress of execution of experiment.
      *
-     * @param registrableProblem the factory of algorithm for a problem
+     * @param registrableProblem the factory of experiment for a problem
      */
-    private void runExperiment(@NotNull MultiObjectiveRegistrable registrableProblem) {
+    private void runSingleObjectiveExperiment(@NotNull SingleObjectiveRegistrable registrableProblem) {
         String path = null;
         if (this.inpFile != null) {
             path = this.inpFile.getAbsolutePath();
@@ -265,13 +230,47 @@ public class MainWindowController implements Initializable {
             experiment = registrableProblem.build(path);
         } catch (Exception e) {
             CustomDialogs.showExceptionDialog("Error", "Error in the creation of the experiment",
-                    "The algorithm can't be created", e);
+                    "The experiment can't be created", e);
         }
         if (experiment != null) {
-            Problem<?> problem = registrableProblem.getProblem();
+            Problem<?> problem = experiment.getProblem().getProblem();
+            SingleObjectiveRunningWindowController runningDialogController = new SingleObjectiveRunningWindowController(experiment, problem,
+                    this.network.get(), this::createResultTab);
+            runningDialogController.showWindowAndRunExperiment();
+        }
+
+    }
+
+    /**
+     * Run the multi objective experiment.<br>
+     * <br>
+     *
+     * <br>
+     * <br>
+     * <strong>Notes:</strong> <br>
+     * This method is called by ConfigurationDynamicWindow when the experiment is
+     * successfully created. When this method is executed open a RunningDialog that
+     * show the progress of execution of experiment.
+     *
+     * @param registrableProblem the factory of experiment for a problem
+     */
+    private void runMultiObjectiveExperiment(@NotNull MultiObjectiveRegistrable registrableProblem) {
+        String path = null;
+        if (this.inpFile != null) {
+            path = this.inpFile.getAbsolutePath();
+        }
+        Experiment<?> experiment = null;
+        try {
+            experiment = registrableProblem.build(path);
+        } catch (Exception e) {
+            CustomDialogs.showExceptionDialog("Error", "Error in the creation of the experiment",
+                    "The experiment can't be created", e);
+        }
+        if (experiment != null) {
+            Problem<?> problem = experiment.getProblem().getProblem();
             MultiObjectiveRunningWindowController runningDialogController = new MultiObjectiveRunningWindowController(experiment, problem,
                     this.network.get(), this::createResultTab);
-            runningDialogController.showWindowAndRunAlgorithm();
+            runningDialogController.showWindowAndRunExperiment();
         }
     }
 
@@ -309,6 +308,11 @@ public class MainWindowController implements Initializable {
     @FXML
     private Tab networkTab;
 
+
+    /**
+     * Event action when run button is clicked. This run the simulation.
+     * @param actionEvent the info of event
+     */
     public void runOnAction(ActionEvent actionEvent) {
         try{
             assert inpFile != null;
@@ -320,6 +324,11 @@ public class MainWindowController implements Initializable {
 
     }
 
+    /**
+     * The event action when the report button is clicked. This open a window
+     * to set the result that was to see.
+     * @param actionEvent the info of event
+     */
     public void resultReportOnAction(ActionEvent actionEvent) {
         HydraulicSimulationResultController controller = new HydraulicSimulationResultController(this.hydraulicSimulation.getValue(), networkComponent.selectedProperty());
         controller.showWindow();
