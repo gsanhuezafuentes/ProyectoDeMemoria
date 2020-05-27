@@ -69,10 +69,8 @@ public class NetworkComponent extends Canvas {
         });
 
         this.selected.addListener((prop, oldV, newV) -> {
-            if (newV != null) {
+            if (network.isNotNull().get()) {
                 drawNetwork(this.network.get());
-            } else{
-                cleanCanvas();
             }
         });
     }

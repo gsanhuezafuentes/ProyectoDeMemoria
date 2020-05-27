@@ -389,7 +389,7 @@ public class InpParser implements InputParser {
         String id = tokens[0];
         if (net.getLink(tokens[0]) != null)
             throw new InputException("Pump " + tokens[0] + " is duplicated");
-        if (tokens.length < 4) {
+        if (tokens.length < 3) {
             throw new InputException("A value is missing in the pump " + id + " configuration line");
         }
         Pump link = new Pump();
@@ -408,12 +408,13 @@ public class InpParser implements InputParser {
             throw new InputException("Don't exist the node with id " + tokens[2]);
         }
 
-        int propertySize = tokens.length - 3; // Length of tokens without the id, node1 and node2.
-        if (propertySize % 2 != 0) { // Properties are key and value
-            throw new InputException("Properties of pump " + id + " are bad defined. Is missing a key or a value");
-        }
+//        int propertySize = tokens.length - 3; // Length of tokens without the id, node1 and node2.
+//        if (propertySize % 2 != 0) { // Properties are key and value
+//            throw new InputException("Properties of pump " + id + " are bad defined. Is missing a key or a value");
+//        }
 
         for (int i = 3; i < tokens.length; i += 2) {
+            if (i + 1 >= tokens.length || tokens[i + 1].matches("[a-zA-Z]*")) break; // if there is no value
             if (tokens[i].equalsIgnoreCase("HEAD")) {
                 Curve curve = net.getCurve(tokens[i + 1]);
                 if (curve == null)
