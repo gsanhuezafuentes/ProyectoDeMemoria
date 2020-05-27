@@ -51,29 +51,13 @@ import java.util.*;
  * removed and the final result is a file per problem containing the reference
  * Pareto front.
  * <p>
- * <p>
- * If {@link Experiment#getExperimentBaseDirectory()}  is a empty string (is not set up) the solution will be collected directly
- * of each algorithms (from memory).
- * <p>
  * If {@link Experiment#getReferenceFrontDirectory()}  is a empty string (is not set up) the final pareto front will not be saved automatically
  * in disk.
  *
- * <strong>Notes:</strong>
- * <p>
- * <ul>
- *  <li>
- *      When the solution are taked directly of algorithms likely the algorithms will realize a sort operation that has a time cost.
- *      If the solution is read of the file so the solution has a cost in IO operation but not in sorting.
- *  </li>
- *  <li>
- *        If run in memory is true so solution are get of algorithms and are not save automatically in disk.
- *  </li>
- * </ul>
  */
 public class GenerateReferenceParetoFront implements ExperimentComponent {
     @NotNull
     private final Experiment<?> experiment;
-    private final boolean runInMemory;
     private final ObservableStringBuffer taskLog;
     private List<? extends Solution<?>> paretoFront;
 
@@ -83,14 +67,12 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
      *
      * @param experimentConfiguration the experiment
      * @param taskLog                 the log where print the status of execution
-     * @param runInMemory             this parameter indicate if algorithm is executed in memory, i.e. not read of disk.
      * @throws NullPointerException if experimentConfiguration or taskLog is null
      */
-    public GenerateReferenceParetoFront(@NotNull Experiment<?> experimentConfiguration, @NotNull ObservableStringBuffer taskLog, boolean runInMemory) {
+    public GenerateReferenceParetoFront(@NotNull Experiment<?> experimentConfiguration, @NotNull ObservableStringBuffer taskLog) {
         this.taskLog = taskLog;
         Objects.requireNonNull(experimentConfiguration);
         Objects.requireNonNull(taskLog);
-        this.runInMemory = runInMemory;
         this.experiment = experimentConfiguration;
     }
 
@@ -110,10 +92,8 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
     /**
      * This method calculate the final pareto front for each problem register in experiment.
      * <p>
-     * The method read the solution of disk if experiment has set up the {@link Experiment#getExperimentBaseDirectory()}
-     * and creates a output directory to save the pareto front if is set up {@link Experiment#getReferenceFrontDirectory()}}.
-     * <p>
-     * If {@link Experiment#getExperimentBaseDirectory()} is not set up so the solution is read directly on memory.
+     * The method read the solution of experiment and creates a output directory to save the pareto front
+     * if is set up {@link Experiment#getReferenceFrontDirectory()}}.
      * <p>
      * If {@link Experiment#getReferenceFrontDirectory()} is not set up so the solution isn't saved.
      */
@@ -121,14 +101,8 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
     public void run() throws IOException {
 
         String outputDirectoryName = experiment.getReferenceFrontDirectory();
-        String inputDirectory = experiment.getExperimentBaseDirectory();
         boolean hasReferenceDirectory = !outputDirectoryName.isEmpty();
-        boolean hasInputDirectory = !inputDirectory.isEmpty();
 
-        // if has input directory so it read the solution by disk, so only need one time of algorithm to recover the tag.
-        if (hasInputDirectory && !this.runInMemory) {
-            experiment.removeDuplicatedAlgorithms();
-        }
         ExperimentProblem<?> problem = experiment.getProblem();
 
         if (problem != null) {
@@ -136,34 +110,14 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
 
             for (ExperimentAlgorithm<?> algorithm : experiment.getAlgorithmList()) {
                 //read solution of disk
-                if (hasInputDirectory && !this.runInMemory) {
-                    String problemDirectory = inputDirectory + "/data/"
-                            + algorithm.getAlgorithmTag() + "/" + problem.getTag();
+                for (int i = 0; i < experiment.getIndependentRuns(); i++) {
+                    List<? extends Solution<?>> solutionList = algorithm.getResult();
+                    SolutionAttribute<Solution<?>, String> solutionAttribute = new SolutionAttribute<>();
 
-                    for (int i = 0; i < experiment.getIndependentRuns(); i++) {
-                        String frontFileName = problemDirectory + "/" + experiment.getObjectiveOutputFileName() + i
-                                + ".tsv";
-                        String setFileName = problemDirectory + "/" + experiment.getVariablesOutputFileName() + i + ".tsv";
-
-                        List<ObjectSolution> solutionList = readSolutionFromFiles(frontFileName, setFileName);
-                        SolutionAttribute<ObjectSolution, String> solutionAttribute = new SolutionAttribute<>();
-
-                        for (ObjectSolution solution : solutionList) {
-                            // Save algorithm tag
-                            solutionAttribute.setAttribute(solution, algorithm.getAlgorithmTag());
-                            nonDominatedSolutionArchive.add(solution);
-                        }
-                    }
-                } else {
-                    for (int i = 0; i < experiment.getIndependentRuns(); i++) {
-                        List<? extends Solution<?>> solutionList = algorithm.getResult();
-                        SolutionAttribute<Solution<?>, String> solutionAttribute = new SolutionAttribute<>();
-
-                        for (Solution<?> solution : solutionList) {
-                            // Save algorithm tag
-                            solutionAttribute.setAttribute(solution, algorithm.getAlgorithmTag());
-                            nonDominatedSolutionArchive.add(solution);
-                        }
+                    for (Solution<?> solution : solutionList) {
+                        // Save algorithm tag
+                        solutionAttribute.setAttribute(solution, algorithm.getAlgorithmTag());
+                        nonDominatedSolutionArchive.add(solution);
                     }
                 }
             }
@@ -171,7 +125,7 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
 
             this.paretoFront = nonDominatedSolutionArchive.getSolutionList();
 
-            if (hasReferenceDirectory && !this.runInMemory) {
+            if (hasReferenceDirectory) {
                 createOutputDirectory(outputDirectoryName);
 
                 String referenceFrontFileName = outputDirectoryName + "/" + problem.getTag() + ".pf";
@@ -180,84 +134,6 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
                 writeFilesWithTheSolutionsContributedByEachAlgorithm(outputDirectoryName, problem, this.paretoFront);
             }
         }
-    }
-
-    /**
-     * Read the objectives and variables of a FUN and VAR file and return a list with solution.
-     *
-     * @param frontFileName file path to FUN file
-     * @param setFileName   file path to VAR file
-     * @return the list of solution
-     * @throws IOException           if I/O errors occurs
-     * @throws FileNotFoundException if the named file does not exist,is a directory
-     *                               rather than a regular file,or for some other
-     *                               reason cannot be opened for reading.
-     */
-    private List<ObjectSolution> readSolutionFromFiles(String frontFileName, String setFileName)
-            throws FileNotFoundException, IOException {
-
-        List<ObjectSolution> list = new ArrayList<>();
-        int numberOfObjectives = 0;
-        int numberOfVariables = 0;
-
-        try (FileReader frontFile = new FileReader(frontFileName);
-             BufferedReader frontBuffer = new BufferedReader(frontFile);
-             FileReader setFile = new FileReader(setFileName);
-             BufferedReader setBuffer = new BufferedReader(setFile)) {
-
-            String frontLine = null;
-            String setLine = null;
-
-            while ((frontLine = frontBuffer.readLine()) != null) {
-                setLine = setBuffer.readLine();
-                if (setLine == null) {
-                    throw new ApplicationException("Missing decision variables in file " + setFileName);
-                }
-
-                // split the line in tokens
-                StringTokenizer frontTokenizer = new StringTokenizer(frontLine);
-                StringTokenizer setTokenizer = new StringTokenizer(setLine);
-
-                // initialize the number of objectives
-                if (numberOfObjectives == 0) {
-                    numberOfObjectives = frontTokenizer.countTokens();
-
-                } else if (numberOfObjectives != frontTokenizer.countTokens()) {
-                    throw new ApplicationException("Invalid number of objectives in a line. Expected "
-                            + numberOfObjectives + " objectives but received " + frontTokenizer
-                            .countTokens());
-                }
-                // initialize the number of variables
-                if (numberOfVariables == 0) {
-                    numberOfVariables = setTokenizer.countTokens();
-
-                } else if (numberOfVariables != setTokenizer.countTokens()) {
-                    throw new ApplicationException("Invalid number of variables in a line. Expected "
-                            + numberOfVariables + " objectives but received " + setTokenizer
-                            .countTokens());
-                }
-
-                // try create the object more appropiated, i.e. if variable are integer create a
-                // IntegerSolution.
-                ObjectSolution objectSolution = new ObjectSolution(numberOfObjectives, numberOfVariables);
-
-                int i = 0;
-                while (frontTokenizer.hasMoreTokens()) {
-                    double value = Double.parseDouble(frontTokenizer.nextToken());
-                    objectSolution.setObjective(i++, value);
-                }
-
-                i = 0;
-                while (setTokenizer.hasMoreTokens()) {
-                    Object value = setTokenizer.nextToken();
-                    objectSolution.setVariable(i++, value);
-                }
-
-                list.add(objectSolution);
-            }
-        }
-
-        return list;
     }
 
     /**

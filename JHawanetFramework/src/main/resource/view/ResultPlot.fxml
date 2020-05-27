@@ -5,7 +5,7 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
-		<ScatterChart fx:id="resultsPlot" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+		<ScatterChart fx:id="resultsPlot" animated="false" legendVisible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<xAxis>
 				<NumberAxis forceZeroInRange="false" />
 			</xAxis>

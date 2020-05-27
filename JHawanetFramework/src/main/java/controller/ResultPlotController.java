@@ -1,6 +1,8 @@
 package controller;
 
+import application.ApplicationSetup;
 import exception.ApplicationException;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,7 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import model.metaheuristic.solution.Solution;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,13 +19,38 @@ import java.util.Objects;
 
 public class ResultPlotController {
 
+	private static final String[] KELLY_COLORS = {
+			"#FFB300",    // Vivid Yellow
+			"#803E75",    // Strong Purple
+			"#FF6800",    // Vivid Orange
+			"#A6BDD7",    // Very Light Blue
+			"#C10020",    // Vivid Red
+			"#CEA262",    // Grayish Yellow
+			"#817066",    // Medium Gray
+			"#007D34",    // Vivid Green
+			"#F6768E",    // Strong Purplish Pink
+			"#00538A",    // Strong Blue
+			"#FF7A5C",    // Strong Yellowish Pink
+			"#53377A",    // Strong Violet
+			"#FF8E00",    // Vivid Orange Yellow
+			"#B32851",    // Strong Purplish Red
+			"#F4C800",    // Vivid Greenish Yellow
+			"#7F180D",    // Strong Reddish Brown
+			"#93AA00",    // Vivid Yellowish Green
+			"#593315",    // Deep Yellowish Brown
+			"#F13A13",    // Vivid Reddish Orange
+			"#232C16",    // Dark Olive Green
+	};
+
 	@NotNull private final Pane root;
 	private final int numberOfObjectives;
 
+	/*
+	 * This linechart act as a scatterchart but let put lines to show pareto front. The line to other points are removed
+	 * with css styles.
+	 */
 	@FXML
 	private ScatterChart<Number, Number> resultsPlot;
-
-	@Nullable private XYChart.Series<Number, Number> defaultSerie;
 
 	/**
 	 * Constructor of the controller of ResultPlotWindow
@@ -76,36 +102,41 @@ public class ResultPlotController {
 	}
 
 	/**
-	 * Add data to plot. Can use with 1 or 2 objectives. If the number of objectives is 1,
-	 * so the plot was between objectives and the number of iteration. If the number of
-	 * objectives is 2, so the plot was between objective1 and objective2.
+	 * Add data to plot. Only use when the problem is single objective.
+	 * <p>
+	 * The plot will be drawing using the generationNumber int the axis X and the objective in
+	 * the axis Y.
+	 * <p>
+	 * For each repetition of the algorithm a different color to show the points will be used.
 	 * 
 	 * @param solution   the solution
-	 * @param iterationNumber a number used has the x-axis when the solution is a
-	 *                        singleobjective problem. if solution is multiobjective
-	 *                        this number is ignored and use the objective.
+	 * @param generationNumber number used in the x-axis. It indicates the number of generations in the current executed
+	 *                         repetition of algorithm.
+	 * @param repeatNumber This number indicate the repeat number of the algorithm.
 	 * @throws NullPointerException if solution is null
 	 */
-	public void addData(Solution<?> solution, int iterationNumber) {
+	public void addData(Solution<?> solution, int generationNumber, double repeatNumber) {
 		Objects.requireNonNull(solution);
 
 		if (this.numberOfObjectives == 1) { // use objective / number of iteration
-			if (this.defaultSerie == null) {
-				this.defaultSerie = new XYChart.Series<>();
-				this.defaultSerie.setName("Solution");
-				this.resultsPlot.getData().add(this.defaultSerie);
+						// if there is not a serie added to this repeat number add one.
+			// Get the data of chart
+			ObservableList<XYChart.Series<Number, Number>> chartSeries = this.resultsPlot.getData();
+			// if chart not have a series to the current repeat number of the algorithm so create one.
+			if (chartSeries.size() <= repeatNumber){
+				XYChart.Series<Number, Number> newSerie = new XYChart.Series<>();
+				chartSeries.addAll(newSerie);
 			}
-			XYChart.Data<Number, Number> data = new XYChart.Data<>(iterationNumber, solution.getObjective(0));
-			this.defaultSerie.getData().add(data);
-			// Codigo para cambiar el tamaño de los nodos
-			StackPane stackPane =  (StackPane) data.getNode();
-			stackPane.setPrefWidth(5);
-			stackPane.setPrefHeight(5);
+			XYChart.Data<Number, Number> data = new XYChart.Data<>(generationNumber, solution.getObjective(0));
+
+			// add the point to the last added series.
+			chartSeries.get(chartSeries.size()-1).getData().add(data);
+
+			// The data has to be resize after add this to the ScatterChart, because the scatterchart
+			// Resize node size
+			applyStyleToData(data);
 		} else { // is 2. Use objective1 vs Objective2
-			XYChart.Series<Number, Number> series = new XYChart.Series<>();
-			series.setName("Solution");
-			series.getData().add(new XYChart.Data<>(solution.getObjective(0), solution.getObjective(1)));
-			this.resultsPlot.getData().add(series);
+			throw new IllegalStateException("You can't call this method when the problem is mono objective (number of objectives > 2).");
 		}
 	}
 
@@ -115,22 +146,47 @@ public class ResultPlotController {
 	 *
 	 * @param solutionList   the solution
 	 * @throws NullPointerException if solutionList is null
+	 * @throws IllegalStateException if call this method with the instance of this class is a single objective
 	 */
 	public void addData(List<? extends Solution<?>> solutionList) {
 		Objects.requireNonNull(solutionList);
 
 		if (this.numberOfObjectives == 1) {
-			throw new IllegalArgumentException("You can't call this method when the problem is single objective. " +
-					"Use addData(Solution<?> solution, int iterationNumber instead) ");
+			throw new IllegalStateException("You can't call this method when the problem is single objective.");
 		} else { // is 2. Use objective1 vs Objective2
-			XYChart.Series<Number, Number> series = new XYChart.Series<>();
-			series.setName("Solution");
+			XYChart.Series<Number, Number> serie = new XYChart.Series<>();
+			serie.setName("Solution");
 
-			for (Solution<?> solution : solutionList) {
-				series.getData().add(new XYChart.Data<>(solution.getObjective(0), solution.getObjective(1)));
-			}
-			this.resultsPlot.getData().add(series);
+			solutionList.forEach(solution -> {
+				XYChart.Data<Number, Number> data = new XYChart.Data<>(solution.getObjective(0), solution.getObjective(1));
+				serie.getData().add(data);
+			});
+
+			this.resultsPlot.getData().add(serie);
+			serie.getData().forEach(this::applyStyleToData);
 		}
+	}
+
+	/**
+	 * Apply the size and color to data.
+	 * <p>
+	 * This method has to be called after the data is added to chart.
+	 *
+	 * @param data the data of the chart (single point)
+	 */
+	public void applyStyleToData(XYChart.Data<Number, Number> data){
+		// Resize node size
+		StackPane stackPane =  (StackPane) data.getNode();
+		stackPane.setPrefWidth(ApplicationSetup.getInstance().getChartPointSize());
+		stackPane.setPrefHeight(ApplicationSetup.getInstance().getChartPointSize());
+		int numberOfCssClass = stackPane.getStyleClass().size();
+		// remove the last class to avoid that figure change default-color<i>
+		stackPane.getStyleClass().remove(numberOfCssClass - 1);
+
+//		System.out.println(stackPane);
+		int size = this.resultsPlot.getData().size();
+		// choose a color
+		data.getNode().setStyle(String.format("-fx-background-color: %s", KELLY_COLORS[size % KELLY_COLORS.length]));
 	}
 
 	/**
@@ -140,4 +196,23 @@ public class ResultPlotController {
 	public Node getNode(){
 		return this.root;
 	}
+
+//	Use to simulate the LineChart as ScatterChart
+//	/**
+//	 * Apply the style to only show line in pareto front
+//	 * <p>
+//	 * This method has to be called after the serie is added to chart.
+//	 *
+//	 * @param serie the serie to apply the style
+//	 */
+//	public void applyStyleToSerie(XYChart.Series<Number, Number> serie, boolean isParetoFront){
+//		if (!isParetoFront){
+//			// Resize node size
+//			Path path =  (Path) serie.getNode();
+//
+//			// not show the line
+//			path.setStyle("-fx-stroke: transparent; -fx-stroke-width: 0px;");
+//		}
+//	}
+
 }

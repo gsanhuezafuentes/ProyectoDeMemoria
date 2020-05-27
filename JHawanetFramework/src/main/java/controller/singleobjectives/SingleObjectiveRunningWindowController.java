@@ -1,5 +1,6 @@
 package controller.singleobjectives;
 
+import application.ApplicationSetup;
 import controller.ResultController;
 import controller.ResultPlotController;
 import controller.utils.SingleObjectiveExperimentTask;
@@ -63,7 +64,7 @@ public class SingleObjectiveRunningWindowController {
     private final SingleObjectiveExperimentTask task;
     @NotNull
     private final Network network;
-    @NotNull
+    @Nullable
     private final ResultPlotController resultPlotController;
     @NotNull
     private final CustomCallback<ResultController> callback;
@@ -74,18 +75,19 @@ public class SingleObjectiveRunningWindowController {
      * Constructor
      *
      * @param experiment the algorithm to execute
-     * @param problem   the problem that the algorithm has configured
-     * @param network   the network opened.
-     * @param callback  a callback function to return the result node when task finish
-     * @throws NullPointerException if algorithm is null or problem is null or
-     *                              network is null
+     * @param problem    the problem that the algorithm has configured
+     * @param network    the network opened.
+     * @param callback   a callback function to return the result node when task finish
+     * @throws NullPointerException     if algorithm is null or problem is null or
+     *                                  network is null
+     * @throws IllegalArgumentException if the problem is multiobjective
      */
     public SingleObjectiveRunningWindowController(Experiment<?> experiment, @NotNull Problem<?> problem, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
         /*
          * Only add the the showChartButton if the number of objectives is less than 2.
          */
         if (problem.getNumberOfObjectives() != 1) {
-            throw new IllegalArgumentException("The number of objective to to this type of Registrable should be 1. Experiment is needed by multiobjectives problems");
+            throw new IllegalArgumentException("The number of objective to to this type of Registrable should be 1.");
         }
 
         Objects.requireNonNull(experiment);
@@ -95,12 +97,19 @@ public class SingleObjectiveRunningWindowController {
 
         this.problem = problem;
         this.network = network;
-        this.task = new SingleObjectiveExperimentTask(experiment);
+        this.task = new SingleObjectiveExperimentTask(experiment, ApplicationSetup.getInstance().isChartEnable());
 
         this.root = loadFXML(); //initialize fxml and all parameters defined with @FXML
+
         // Create the controller to add point even if plot windows is not showed
-        this.resultPlotController = new ResultPlotController(this.problem.getNumberOfObjectives());
-        this.chartTab.setContent(this.resultPlotController.getNode());
+        if (ApplicationSetup.getInstance().isChartEnable()) {
+            this.resultPlotController = new ResultPlotController(this.problem.getNumberOfObjectives());
+            this.chartTab.setContent(this.resultPlotController.getNode());
+        } else {
+            this.resultPlotController = null;
+            this.chartTab.setDisable(true);
+        }
+
         addBindingAndListener();
     }
 
@@ -148,6 +157,7 @@ public class SingleObjectiveRunningWindowController {
             }
         });
 
+        // update the progress bar
         task.progressProperty().addListener((prop, old, newv) -> {
             if (newv != null) {
                 progressBar.setProgress((double) newv);
@@ -162,12 +172,19 @@ public class SingleObjectiveRunningWindowController {
 
         });
 
-        task.customValueProperty().addListener((prop, oldv, newv) -> this.resultPlotController.addData(newv.getSolution(), newv.getNumberOfIterations()));
+        // Receive the value of thread and add to chart
+        task.customValueProperty().addListener((prop, oldv, newv) -> {
+            if (this.resultPlotController != null) {
+                this.resultPlotController.addData(newv.getSolution()
+                        , newv.getNumberOfGeneration()
+                        , newv.getRepeatNumberOfAlgorithm());
+            }
+        });
 
         // listener when task finishes successfully
         task.setOnSucceeded(e -> {
             List<SingleObjectiveExperimentTask.Result> result = task.getValue();
-            List<? extends Solution<?>> solutions = result.stream().map(result1 -> result1.getSolution()).collect(Collectors.toList());
+            List<? extends Solution<?>> solutions = result.stream().map(SingleObjectiveExperimentTask.Result::getSolution).collect(Collectors.toList());
             ResultController resultController = new ResultController(solutions, this.problem,
                     this.network);
             callback.notify(resultController);

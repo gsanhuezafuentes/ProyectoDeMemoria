@@ -1,5 +1,6 @@
 package controller;
 
+import application.ApplicationSetup;
 import controller.multiobjectives.MultiObjectiveRunningWindowController;
 import controller.singleobjectives.SingleObjectiveRunningWindowController;
 import controller.utils.ProblemMenuConfiguration;
@@ -205,6 +206,13 @@ public class MainWindowController implements Initializable {
             CustomDialogs.showExceptionDialog("Error", "Error loading the network", "The network can't be loaded", e);
         }
 
+    }
+
+    /**
+     * Show the setting window
+     */
+    public void settingOnAction() {
+        ApplicationSetup.showSettingWindow();
     }
 
     /**

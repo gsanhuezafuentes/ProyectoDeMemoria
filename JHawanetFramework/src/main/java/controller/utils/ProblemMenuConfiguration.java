@@ -1,6 +1,6 @@
 package controller.utils;
 
-import application.Configuration;
+import application.RegistrableConfiguration;
 import controller.ConfigurationDynamicWindowController;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Menu;
@@ -19,7 +19,7 @@ import java.util.Map;
  * reflection. <br>
  * <br>
  * 
- * To add a new problem go to {@link Configuration}. Using reflection API, the
+ * To add a new problem go to {@link RegistrableConfiguration}. Using reflection API, the
  * problem and his annotation will be readed to generate a GUI.<br>
  * <br>
  * 
@@ -38,7 +38,7 @@ public class ProblemMenuConfiguration {
 	 */
 	public void addSingleObjectiveProblems(Menu menu, CustomCallback<SingleObjectiveRegistrable> experimentEvent) {
 		Map<String, Menu> addedMenu = new HashMap<>();
-		for (Class<? extends SingleObjectiveRegistrable> registrable : Configuration.SINGLEOBJECTIVES_PROBLEMS) {
+		for (Class<? extends SingleObjectiveRegistrable> registrable : RegistrableConfiguration.SINGLEOBJECTIVES_PROBLEMS) {
 			ReflectionUtils.validateRegistrableProblem(registrable);
 			ReflectionUtils.validateOperators(registrable);
 			String problemName = ReflectionUtils.getNameOfProblem(registrable);
@@ -66,7 +66,7 @@ public class ProblemMenuConfiguration {
 	 */
 	public void addMultiObjectiveProblems(Menu menu, CustomCallback<MultiObjectiveRegistrable> experimentEvent) {
 		Map<String, Menu> addedMenu = new HashMap<>();
-		for (Class<? extends MultiObjectiveRegistrable> registrable : Configuration.MULTIOBJECTIVES_PROBLEMS) {
+		for (Class<? extends MultiObjectiveRegistrable> registrable : RegistrableConfiguration.MULTIOBJECTIVES_PROBLEMS) {
 			ReflectionUtils.validateRegistrableProblem(registrable);
 			ReflectionUtils.validateOperators(registrable);
 			String problemName = ReflectionUtils.getNameOfProblem(registrable);

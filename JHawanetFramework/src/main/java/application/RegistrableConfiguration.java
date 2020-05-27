@@ -12,10 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class contain the problem that can be resolved by this application. 
+ * This class contain the problem that can be resolved by this application.  The problems
+ * added here are showned in menu of the application GUI.
  *
  */
-public final class Configuration {
+public final class RegistrableConfiguration {
 	public static final List<Class<? extends SingleObjectiveRegistrable>> SINGLEOBJECTIVES_PROBLEMS = new ArrayList<>();
 	public static final List<Class<? extends MultiObjectiveRegistrable>> MULTIOBJECTIVES_PROBLEMS = new ArrayList<>();
 

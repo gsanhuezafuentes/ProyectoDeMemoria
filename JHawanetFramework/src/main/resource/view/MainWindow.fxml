@@ -15,7 +15,7 @@
                     <Menu mnemonicParsing="false" text="File">
                         <items>
                             <MenuItem mnemonicParsing="false" onAction="#openOnAction" text="Open" />
-                            <MenuItem mnemonicParsing="false" text="Close" />
+                            <MenuItem mnemonicParsing="false" text="Settings" onAction="#settingOnAction"/>
                         </items>
                     </Menu>
                     <Menu fx:id="singleobjectiveMenu" mnemonicParsing="false" text="Singleobjective Optimization">

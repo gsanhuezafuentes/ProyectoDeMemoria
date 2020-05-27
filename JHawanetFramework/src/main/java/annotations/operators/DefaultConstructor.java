@@ -11,7 +11,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * 
- * This interface denote the default constructor of the {@link Operator}
+ * This interface denote the default constructor of the {@link Operator}. The constructor
+ * where you use this annotation only has to have double or int parameter.
  *
  */
 @Documented
@@ -19,8 +20,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target(CONSTRUCTOR)
 public @interface DefaultConstructor {
 	/**
-	 * Array with the names defined for each variable
-	 * @return array with displayNames
+	 * Array with the names defined for each variable.
+	 * @return array with displayNames.
 	 */
 	String[] value() default {};
 }

@@ -38,12 +38,14 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
 
     /**
      * Constructor
-     * @param experiment the experiment
+     * @param experiment the experiment.
+     * @param returnPartialResult returnPartialResult a boolean property that indicates if partial result should be returned.
      * @throws NullPointerException if experiment is null.
      */
-    public MultiObjectiveExperimentTask(@NotNull Experiment<?> experiment) {
+    public MultiObjectiveExperimentTask(@NotNull Experiment<?> experiment, boolean returnPartialResult) {
         Objects.requireNonNull(experiment);
         this.experiment = experiment;
+        this.returnPartialResult = returnPartialResult;
         taskLog = new ObservableStringBuffer();
         taskLog.addObserver((o, arg) -> {
             ObservableStringBuffer observable = (ObservableStringBuffer) o;
@@ -53,13 +55,13 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
 
     @Override
     protected List<? extends Solution<?>> call() throws Exception {
-        boolean runInMemory = experiment.getExperimentBaseDirectory().isEmpty();
-        if (!runInMemory) {
+        boolean saveResult = experiment.getExperimentBaseDirectory().isEmpty();
+        if (!saveResult) {
             taskLog.println("ExecuteAlgorithms: Preparing output directory");
             prepareOutputDirectory();
         }
         else{
-            taskLog.println("ExecuteAlgorithms: Running in memory");
+            taskLog.println("ExecuteAlgorithms: The result will not be saved by default");
         }
         // Progress of the count of algorithm finished
         int progress = 0;
@@ -73,7 +75,7 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
             }
 
             // execute the algorithm
-            if (!runInMemory) {
+            if (!saveResult) {
                 algorithm.prepareToRun(this.experiment);
             }
             while (algorithm.algorithmHasANextStep()) {
@@ -90,10 +92,13 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
                 }
             }
             if (!this.isCancelled()) {
-                if (!runInMemory) {
+                if (!saveResult) {
                     algorithm.saveSolutionList();
                 }
                 progress++;
+                if (returnPartialResult){
+                    updateValue(algorithm.getResult());
+                }
                 updateProgress(progress, experiment.getAlgorithmList().size());
             }
         }
@@ -106,7 +111,7 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
         }
 
         // return only one pareto front
-        GenerateReferenceParetoFront reference = new GenerateReferenceParetoFront(experiment, taskLog, false);
+        GenerateReferenceParetoFront reference = new GenerateReferenceParetoFront(experiment, taskLog);
         reference.run();
 
         return reference.getReferenceToParetoFront();
@@ -198,4 +203,6 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
             throw new IllegalStateException("Task must only be used from the FX Application Thread");
         }
     }
+
+    private final boolean returnPartialResult;
 }
