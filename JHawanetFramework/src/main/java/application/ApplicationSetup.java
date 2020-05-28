@@ -7,6 +7,11 @@ import com.dlsc.preferencesfx.model.Group;
 import com.dlsc.preferencesfx.model.Setting;
 import javafx.beans.property.*;
 
+/**
+ * This class contain setup and let show a window.
+ *
+ * The config modified with this class will persistance. This config are saved with Preference API of java.
+ */
 public class ApplicationSetup {
     private static ApplicationSetup instance;
 

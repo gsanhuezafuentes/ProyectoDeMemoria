@@ -2,13 +2,11 @@ package view.utils;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.transform.Affine;
-import javafx.scene.transform.Rotate;
+import javafx.scene.transform.*;
 import model.epanet.element.Network;
 import model.epanet.element.networkcomponent.*;
 import model.epanet.element.networkdesign.Label;
 import model.epanet.element.utils.Point;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.geom.Rectangle2D;
@@ -23,12 +21,10 @@ import java.util.function.Function;
 public class NetworkImage {
     static private final Color TANKS_FILL_COLOR = Color.web("0xcccccc");
     static private final Color TANKS_STROKE_COLOR = Color.web("0x666666");
-    @SuppressWarnings("FieldCanBeLocal")
     static private final int TANK_DIAM = 10;
 
     static private final Color RESERVOIRS_FILL_COLOR = Color.web("0x666666");
     static private final Color RESERVOIRS_STROKE_COLOR = Color.web("0xcccccc");
-    @SuppressWarnings("FieldCanBeLocal")
     static private final int RESERVOIR_DIAM = 10;
 
     private static final Color PIPES_FILL_COLOR = Color.web("0x666666");
@@ -124,14 +120,14 @@ public class NetworkImage {
      * The selected object can be a element that is not showed in the canvas, i.e.,
      * is not a node or link, so it method does not mark the selected item.
      *
-     * @param g        Reference to the canvas graphics.
+     * @param gc       Reference to the canvas graphics.
      * @param w        Canvas width.
      * @param h        Canvas height.
      * @param net      Epanet network.
      * @param selected Reference to the selected element of the network. null if
      *                 there isn't a selected item.
      */
-    public static void drawNetwork(GraphicsContext g, double w, double h, Network net, Object selected) {
+    public static void drawNetwork(GraphicsContext gc, double w, double h, Network net, Object selected) {
         Rectangle2D.Double bounds = getBounds(net);
         Function<Point, Point> epanetToCanvasCoordinates = epanetToCanvasCoordinatesFunction(w, h, bounds);
 
@@ -141,11 +137,11 @@ public class NetworkImage {
             Point position = tank.getPosition();
             if (position != null) {
                 Point point = epanetToCanvasCoordinates.apply(position);
-                g.setFill(TANKS_FILL_COLOR);
-                g.fillRect((int) (point.getX() - RESERVOIR_DIAM / 2), (int) (point.getY() - RESERVOIR_DIAM / 2),
+                gc.setFill(TANKS_FILL_COLOR);
+                gc.fillRect((int) (point.getX() - RESERVOIR_DIAM / 2), (int) (point.getY() - RESERVOIR_DIAM / 2),
                         TANK_DIAM, TANK_DIAM);
-                g.setStroke(TANKS_STROKE_COLOR);
-                g.strokeRect((int) (point.getX() - RESERVOIR_DIAM / 2), (int) (point.getY() - RESERVOIR_DIAM / 2),
+                gc.setStroke(TANKS_STROKE_COLOR);
+                gc.strokeRect((int) (point.getX() - RESERVOIR_DIAM / 2), (int) (point.getY() - RESERVOIR_DIAM / 2),
                         TANK_DIAM, TANK_DIAM);
             }
         }
@@ -155,17 +151,17 @@ public class NetworkImage {
             Point position = reservoir.getPosition();
             if (position != null) {
                 Point point = epanetToCanvasCoordinates.apply(position);
-                g.setFill(RESERVOIRS_FILL_COLOR);
-                g.fillRect((int) (point.getX() - RESERVOIR_DIAM / 2), (int) (point.getY() - RESERVOIR_DIAM / 2),
+                gc.setFill(RESERVOIRS_FILL_COLOR);
+                gc.fillRect((int) (point.getX() - RESERVOIR_DIAM / 2), (int) (point.getY() - RESERVOIR_DIAM / 2),
                         RESERVOIR_DIAM, RESERVOIR_DIAM);
-                g.setStroke(RESERVOIRS_STROKE_COLOR);
-                g.strokeRect((int) (point.getX() - RESERVOIR_DIAM / 2), (int) (point.getY() - RESERVOIR_DIAM / 2),
+                gc.setStroke(RESERVOIRS_STROKE_COLOR);
+                gc.strokeRect((int) (point.getX() - RESERVOIR_DIAM / 2), (int) (point.getY() - RESERVOIR_DIAM / 2),
                         RESERVOIR_DIAM, RESERVOIR_DIAM);
             }
         }
 
         // Draw Links
-        g.setStroke(PIPES_FILL_COLOR);
+        gc.setStroke(PIPES_FILL_COLOR);
         for (Link link : net.getLinks()) {
             List<Point> vertices = new ArrayList<>(link.getVertices());
             Node node1 = link.getNode1();
@@ -179,38 +175,35 @@ public class NetworkImage {
             for (Point position : vertices) {
                 Point point = epanetToCanvasCoordinates.apply(position);
                 if (prev != null) {
-                    g.strokeLine((int) prev.getX(), (int) prev.getY(), (int) point.getX(), (int) point.getY());
+                    gc.strokeLine((int) prev.getX(), (int) prev.getY(), (int) point.getX(), (int) point.getY());
                 }
                 prev = point;
             }
-            drawSymbol(link, vertices, g, epanetToCanvasCoordinates);
+            drawLinkSymbol(link, vertices, gc, epanetToCanvasCoordinates);
         }
 
-        g.setLineWidth(5);
+        gc.setLineWidth(5);
 
         // Draw junction
-        Color nodefillColor = NODE_FILL_COLOR;
-        Color nodeStrokeColor = NODE_STROKE_COLOR;
-        g.setFill(nodefillColor);
         for (Junction junction : net.getJunctions()) {
             Point position = junction.getPosition();
             if (position != null) {
                 Point point = epanetToCanvasCoordinates.apply(position);
-                g.setFill(nodefillColor);
-                g.fillOval((int) (point.getX() - NODE_DIAM / 2), (int) (point.getY() - NODE_DIAM / 2), NODE_DIAM,
+                gc.setFill(NODE_FILL_COLOR);
+                gc.fillOval((int) (point.getX() - NODE_DIAM / 2), (int) (point.getY() - NODE_DIAM / 2), NODE_DIAM,
                         NODE_DIAM);
-                g.setStroke(nodeStrokeColor);
-                g.strokeOval((int) (point.getX() - NODE_DIAM / 2), (int) (point.getY() - NODE_DIAM / 2), NODE_DIAM,
+                gc.setStroke(NODE_STROKE_COLOR);
+                gc.strokeOval((int) (point.getX() - NODE_DIAM / 2), (int) (point.getY() - NODE_DIAM / 2), NODE_DIAM,
                         NODE_DIAM);
             }
         }
-        g.setLineWidth(1);
+        gc.setLineWidth(1);
 
         // Draw label
         for (Label l : net.getLabels()) {
             Point point = epanetToCanvasCoordinates.apply(l.getPosition());
-            g.setFill(LABEL_COLOR);
-            g.fillText(l.getLabel(), (int) point.getX(), (int) point.getY());
+            gc.setFill(LABEL_COLOR);
+            gc.fillText(l.getLabel(), (int) point.getX(), (int) point.getY());
         }
 
         // Draw selected node
@@ -219,11 +212,11 @@ public class NetworkImage {
                 Node selNode = (Node) selected;
                 Point point = epanetToCanvasCoordinates.apply(selNode.getPosition());
 
-                g.setStroke(Color.web("0xFF0000"));
-                g.strokeOval((int) (point.getX() - 20 / 2), (int) (point.getY() - 20 / 2), 20, 20);
+                gc.setStroke(Color.web("0xFF0000"));
+                gc.strokeOval((int) (point.getX() - 20 / 2), (int) (point.getY() - 20 / 2), 20, 20);
 
-                g.setFill(LABEL_COLOR);
-                g.fillText(selNode.getId(), (int) point.getX() + 20, (int) point.getY() + 20);
+                gc.setFill(LABEL_COLOR);
+                gc.fillText(selNode.getId(), (int) point.getX() + 20, (int) point.getY() + 20);
             } else if (selected instanceof Link) {// is a link
                 Link selLink = (Link) selected;
                 List<Point> vertices = new ArrayList<>(selLink.getVertices());
@@ -238,11 +231,11 @@ public class NetworkImage {
                 PointWithDegree wrapperPoint = calculateMidPointOfTheLinkPath(vertices, epanetToCanvasCoordinates);
                 if (wrapperPoint != null) {
                     Point point = wrapperPoint.point;
-                    g.setStroke(Color.web("0xFF0000"));
-                    g.strokeOval((int) (point.getX() - 20 / 2), (int) (point.getY() - 20 / 2), 20, 20);
+                    gc.setStroke(Color.web("0xFF0000"));
+                    gc.strokeOval((int) (point.getX() - 20 / 2), (int) (point.getY() - 20 / 2), 20, 20);
 
-                    g.setFill(LABEL_COLOR);
-                    g.fillText(selLink.getId(), (int) point.getX() + 20, (int) point.getY() + 20);
+                    gc.setFill(LABEL_COLOR);
+                    gc.fillText(selLink.getId(), (int) point.getX() + 20, (int) point.getY() + 20);
                 }
             }
         }
@@ -250,13 +243,14 @@ public class NetworkImage {
 
     /**
      * Draw the symbol for links in canvas
-     * @param link the link
-     * @param vertices the vertices
-     * @param gc the graphics context of the canvas
+     *
+     * @param link                      the link
+     * @param vertices                  the vertices
+     * @param gc                        the graphics context of the canvas
      * @param epanetToCanvasCoordinates the function to map epanet coordinates to canvas coordinates
      * @throws NullPointerException if link or vertices is null
      */
-    private static void drawSymbol(Link link, List<Point> vertices, GraphicsContext gc,Function<Point, Point> epanetToCanvasCoordinates) {
+    private static void drawLinkSymbol(Link link, List<Point> vertices, GraphicsContext gc, Function<Point, Point> epanetToCanvasCoordinates) {
         Objects.requireNonNull(link);
         Objects.requireNonNull(vertices);
         PointWithDegree pointWithDegree = calculateMidPointOfTheLinkPath(vertices, epanetToCanvasCoordinates);
@@ -265,21 +259,29 @@ public class NetworkImage {
 
         // apply the transform to the next draw
         if (link instanceof Pump) {
-            degree = degree > 0 ? degree : 180-Math.abs(degree);
-            Rotate r = new Rotate(degree, point.getX(), point.getY()-5);
+            degree = degree > 0 ? degree : 180 - Math.abs(degree);
+            Rotate r = new Rotate(degree, point.getX(), point.getY() - 5);
             gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
 
-            gc.fillOval(point.getX(),point.getY()-5,10, 10);
-            gc.fillRect(point.getX()-3,point.getY()-15,10,15);
+            gc.fillOval(point.getX(), point.getY() - 5, 10, 10);
+            /*
+             *  The rect is draw as in this comment and is rotated using a transform
+             *   ___
+             *  |   |
+             *  |   |
+             *  |   |
+             *  |___|
+             */
+            gc.fillRect(point.getX() - 3, point.getY() - 13, 7, 13);
 
-        }else if (link instanceof Valve){
-            double[] x = {point.getX(), point.getX()-10, point.getX()+10, point.getX()-10, point.getX()+10, point.getX()};
-            double[] y = {point.getY(), point.getY()-10, point.getY()-10, point.getY()+10, point.getY()+10, point.getY()};
+        } else if (link instanceof Valve) {
+            double[] x = {point.getX(), point.getX() - 10, point.getX() + 10, point.getX() - 10, point.getX() + 10, point.getX()};
+            double[] y = {point.getY(), point.getY() - 10, point.getY() - 10, point.getY() + 10, point.getY() + 10, point.getY()};
 
             Rotate r = new Rotate(degree, point.getX(), point.getY());
             gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
 
-            gc.fillPolygon(x,y,x.length);
+            gc.fillPolygon(x, y, x.length);
         }
         // remove the transform
         gc.setTransform(new Affine());
@@ -298,20 +300,19 @@ public class NetworkImage {
 
         double dx = bounds.getMinX();
         double dy = bounds.getMinY();
-        double dwidth = Math.abs(bounds.getMaxX() - bounds.getMinX());
-        double dheight = Math.abs(bounds.getMaxY() - bounds.getMinY());
+        double dwidth = bounds.getWidth(); //Math.abs(bounds.getMaxX() - bounds.getMinX());
+        double dheight = bounds.getHeight(); //Math.abs(bounds.getMaxY() - bounds.getMinY());
 
         factor *= .9d;
 
         dx += dwidth * .5d - w * 0.5 / factor;
         dy += dheight * .5d - h * 0.5 / factor;
 
-        // variables needed to create the function (effective final)
+        // variables needed to create the function. (lambda need final variable or effective final)
         double factorr = factor;
         double dxx = dx;
         double dyy = dy;
-        Function<Point, Point> function = point -> new Point((int) ((point.getX() - dxx) * factorr), (int) ((-point.getY() - dyy) * factorr));
-        return function;
+        return point -> new Point((int) ((point.getX() - dxx) * factorr), (int) ((-point.getY() - dyy) * factorr));
     }
 
 
@@ -319,7 +320,7 @@ public class NetworkImage {
      * Calculate the mid point  of the line path of link and the angle between the point used to calculate the mid point.
      * This calculation include the initial point, the final point and the vertices of a link
      *
-     * @param vertices the vertices of a link in epanet coordinates
+     * @param vertices                  the vertices of a link in epanet coordinates
      * @param epanetToCanvasCoordinates a function that map epanet to canvas coordinates
      * @return the middle point (in canvas coordinates) or null if there are not enough points to calculate the midpoint
      * @throws NullPointerException if link is null
@@ -341,14 +342,15 @@ public class NetworkImage {
         Point midPoint = new Point(midX, midY);
         Point point = epanetToCanvasCoordinates.apply(midPoint);
         /*
-           The angle is get of the form of the draw in this comment
+           The angle is get of the form of the draw in this comment. a is the angle
             |    /
             | a /
             |  /
             | /
             |/
+            |
          */
-        return new PointWithDegree(point, Math.toDegrees(Math.atan((x2-x1)/(y2-y1))));
+        return new PointWithDegree(point, Math.toDegrees(Math.atan((x2 - x1) / (y2 - y1))));
     }
 
     /**
@@ -366,13 +368,14 @@ public class NetworkImage {
          * of rectangle is taked from the lower and greatest point added.
          */
         for (Node node : net.getNodes()) {
-            if (node.getPosition() != null) {
+            Point position = node.getPosition();
+            if (position != null) {
                 if (bounds == null)
-                    // the - is because the coordinates in epanet are different of javafx canvas
-                    bounds = new Rectangle2D.Double((int) node.getPosition().getX(), (int) -node.getPosition().getY(),
+                    // the - is because the coordinates in epanet are different of javafx canvas. (Epanet use the same coordinates that cartesian)
+                    bounds = new Rectangle2D.Double((int) position.getX(), (int) -position.getY(),
                             0, 0);
                 else
-                    bounds.add(new java.awt.Point((int) node.getPosition().getX(), (int) -node.getPosition().getY()));
+                    bounds.add(new java.awt.Point((int) position.getX(), (int) -position.getY()));
             }
         }
 
@@ -448,20 +451,127 @@ public class NetworkImage {
     /**
      * A class that wrapper the {@link Point} and add a angle paramater in degree
      */
-    private static class PointWithDegree{
+    private static class PointWithDegree {
         public final Point point;
         public final double angle;
 
         /**
          * Constructor
+         *
          * @param point the point to wrap
          * @param angle angle
          * @throws NullPointerException if point is null
          */
-        PointWithDegree(Point point, double angle){
+        PointWithDegree(Point point, double angle) {
             Objects.requireNonNull(point);
             this.point = point;
             this.angle = angle;
         }
+    }
+
+    /**
+     * Draw legends
+     *
+     * @param gc     the graphics context
+     * @param width  the width of window
+     * @param height the height of window
+     */
+    public static void drawLegend(GraphicsContext gc, double width, double height) {
+        // copy paste of DrawNetwork but modified the x and y
+        double spaceBetweenLegends = 20;
+        double spaceBetweenSymbolAndText = 13;
+        double fixTextY = 5;
+        Point point = new Point(15,0);
+        Affine resetTransform = new Affine();
+
+        Translate t = new Translate(0, spaceBetweenLegends);
+        gc.setTransform(t.getMxx(), t.getMyx(), t.getMxy(), t.getMyy(), t.getTx(), t.getTy());
+
+        //draw junction
+        gc.setFill(NODE_FILL_COLOR);
+        gc.fillOval((int) (point.getX() - NODE_DIAM / 2), (int) (point.getY() - NODE_DIAM / 2), NODE_DIAM,
+                NODE_DIAM);
+        gc.setStroke(NODE_STROKE_COLOR);
+        gc.strokeOval((int) (point.getX() - NODE_DIAM / 2), (int) (point.getY() - NODE_DIAM / 2), NODE_DIAM,
+                NODE_DIAM);
+
+        gc.setFill(LABEL_COLOR);
+        gc.fillText("Junction", point.getX() + spaceBetweenSymbolAndText, point.getY() + fixTextY);
+
+        gc.transform(t.getMxx(), t.getMyx(), t.getMxy(), t.getMyy(), t.getTx(), t.getTy());
+        // draw tank
+        gc.setFill(TANKS_FILL_COLOR);
+        gc.fillRect((int) (point.getX() - RESERVOIR_DIAM / 2), (int) (point.getY() - RESERVOIR_DIAM / 2),
+                TANK_DIAM, TANK_DIAM);
+        gc.setStroke(TANKS_STROKE_COLOR);
+        gc.strokeRect((int) (point.getX() - RESERVOIR_DIAM / 2), (int) (point.getY() - RESERVOIR_DIAM / 2),
+                TANK_DIAM, TANK_DIAM);
+        gc.setFill(LABEL_COLOR);
+        gc.fillText("Tank", point.getX() + spaceBetweenSymbolAndText, point.getY() + fixTextY);
+
+
+        gc.transform(t.getMxx(), t.getMyx(), t.getMxy(), t.getMyy(), t.getTx(), t.getTy());
+        // draw reservoir
+        gc.setFill(RESERVOIRS_FILL_COLOR);
+        gc.fillRect((int) (point.getX() - RESERVOIR_DIAM / 2), (int) (point.getY() - RESERVOIR_DIAM / 2),
+                RESERVOIR_DIAM, RESERVOIR_DIAM);
+        gc.setStroke(RESERVOIRS_STROKE_COLOR);
+        gc.strokeRect((int) (point.getX() - RESERVOIR_DIAM / 2), (int) (point.getY() - RESERVOIR_DIAM / 2),
+                RESERVOIR_DIAM, RESERVOIR_DIAM);
+
+        gc.setFill(LABEL_COLOR);
+        gc.fillText("Reservoir", point.getX() + spaceBetweenSymbolAndText, point.getY() + fixTextY);
+
+        // copy paste of DrawLinkSymbol but modified the x and y
+
+        gc.transform(t.getMxx(), t.getMyx(), t.getMxy(), t.getMyy(), t.getTx(), t.getTy());
+        // Pipe
+        gc.setStroke(PIPES_FILL_COLOR);
+        gc.strokeLine((int) point.getX()-5, (int) point.getY(), (int) point.getX() + 5, (int) point.getY());
+
+        gc.setFill(LABEL_COLOR);
+        gc.fillText("Pipe", point.getX() + spaceBetweenSymbolAndText, point.getY() + fixTextY);
+
+
+        gc.transform(t.getMxx(), t.getMyx(), t.getMxy(), t.getMyy(), t.getTx(), t.getTy());
+        gc.save();
+        // Pump
+        Rotate r = new Rotate(90, point.getX(), point.getY());
+        gc.transform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
+        gc.setFill(PIPES_FILL_COLOR);
+        gc.fillOval(point.getX(), point.getY() - 5, 10, 10);
+        /*
+         *  The rect is draw as in this comment and is rotated using a transform
+         *   ___
+         *  |   |
+         *  |   |
+         *  |   |
+         *  |___|
+         */
+        gc.fillRect(point.getX() - 3, point.getY() - 10, 7, 10);
+
+        gc.restore();
+        gc.setFill(LABEL_COLOR);
+        gc.fillText("Pump", point.getX() + spaceBetweenSymbolAndText, point.getY() + fixTextY);
+
+        // concat the translation
+        gc.transform(t.getMxx(), t.getMyx(), t.getMxy(), t.getMyy(), t.getTx(), t.getTy());
+        gc.save();
+        // Valve
+        double[] x = {point.getX(), point.getX() - 5, point.getX() + 5, point.getX() - 5, point.getX() + 5, point.getX()};
+        double[] y = {point.getY(), point.getY() - 5, point.getY() - 5, point.getY() + 5, point.getY() + 5, point.getY()};
+        r = new Rotate(90, point.getX(), point.getY());
+        gc.transform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
+        gc.setFill(PIPES_FILL_COLOR);
+        gc.fillPolygon(x, y, x.length);
+
+        gc.restore();
+        gc.setFill(LABEL_COLOR);
+        gc.fillText("Valve", point.getX() + spaceBetweenSymbolAndText, point.getY() + fixTextY);
+
+
+        // reset transform
+        gc.setTransform(resetTransform);
+
     }
 }
