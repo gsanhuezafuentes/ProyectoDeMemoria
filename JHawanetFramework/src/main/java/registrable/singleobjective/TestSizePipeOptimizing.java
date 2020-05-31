@@ -35,7 +35,7 @@ import java.util.List;
  * The sistem read this class using reflection to get the annotation and create
  * a GUI to configure the experiment and inject the value to injectable method.
  */
-public final class PipeOptimizingRegister implements SingleObjectiveRegistrable {
+public final class TestSizePipeOptimizing implements SingleObjectiveRegistrable {
     private final SelectionOperator<List<IntegerSolution>, List<IntegerSolution>> selection;
     private final CrossoverOperator<IntegerSolution> crossover;
     private final MutationOperator<IntegerSolution> mutation;
@@ -64,9 +64,7 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
      *                   parameters.
      * @see Registrable
      */
-    @NewProblem(displayName = "Pipe optimizing", algorithmName = "Genetic Algorithm", description = "The objective of this " +
-            "problem is to optimize the cost of construction of the network by " +
-            "varying the diameter of the pipe in order to ensure a minimum level of pressure.")
+    @NewProblem(displayName = "Test size", algorithmName = "Genetic Algorithm")
     @Parameters(operators = {
             @OperatorInput(displayName = "Selection Operator", value = {
                     @OperatorOption(displayName = "Uniform Selection", value = UniformSelection.class)}),
@@ -81,11 +79,34 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
             numbers = {@NumberInput(displayName = "Independent run"), @NumberInput(displayName = "Min pressure"), @NumberInput(displayName = "Population Size")}, //
             numbersToggle = {
                     @NumberToggleInput(groupID = "Finish Condition", displayName = "Number of iteration without improvement"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation"),
                     @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation")})
     @SuppressWarnings("unchecked") // The object injected are indicated in operators elements. It guarantee its
     // types.
-    public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama, int independentRun,
-                                  int minPressure, int populationSize, int numberWithoutImprovement, int maxEvaluations) throws Exception {
+    public TestSizePipeOptimizing(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama, int independentRun,
+                                  int minPressure, int populationSize, int numberWithoutImprovement, int maxEvaluations,int maxEvaluations1,
+    int maxEvaluations2,int maxEvaluations3,int maxEvaluations4,int maxEvaluations5,int maxEvaluations6,int maxEvaluations7,int maxEvaluations8,
+    int maxEvaluations9,int maxEvaluations10,int maxEvaluations11,int maxEvaluations12,int maxEvaluations13,int maxEvaluations14,int maxEvaluations15,int maxEvaluations16,
+    int maxEvaluations17,int maxEvaluations18,int maxEvaluations19,int maxEvaluations20) throws Exception {
         System.out.println(selectionOperator);
         System.out.println(crossoverOperator);
         System.out.println(mutationOperator);

@@ -98,7 +98,7 @@ public class ProblemMenuConfiguration {
 		if (ReflectionUtils.getNumberOfParameterInRegistrableConstructor(registrable) > 0) {
 			ConfigurationDynamicWindowController<T> configurationController = new ConfigurationDynamicWindowController<>(
 					registrable, experimentEvent);
-			configurationController.showAssociatedWindow();
+			configurationController.showWindow();
 		} else { // If the registrable class has a constructor without parameters
 					// algorithmEvent.notify is called.
 			try {

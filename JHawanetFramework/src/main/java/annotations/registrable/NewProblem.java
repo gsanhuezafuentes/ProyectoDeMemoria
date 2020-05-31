@@ -23,5 +23,11 @@ public @interface NewProblem {
 	 * @return the name of algorithm used to solve the problem
 	 */
 	String algorithmName() default "";
+
+	/**
+	 * Description of problem.
+	 * @return the description
+	 */
+	String description() default "";
 	
 }

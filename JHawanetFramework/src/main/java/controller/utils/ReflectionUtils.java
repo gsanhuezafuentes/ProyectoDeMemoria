@@ -67,6 +67,28 @@ public class ReflectionUtils {
 	}
 
 	/**
+	 * Read the {@link NewProblem} annotation from a problem and get the description of the
+	 * problem.
+	 *
+	 * @param registrable the problem class
+	 * @return name of the algorithm
+	 * @throws ApplicationException if the problem hasn't a constructor with
+	 *                              {@link NewProblem} annotation.
+	 * @throws NullPointerException if registrable is null.
+	 */
+	public static String getDescriptionOfProblem(Class<? extends Registrable<?>> registrable) {
+		Objects.requireNonNull(registrable);
+		for (Constructor<?> constructor : registrable.getConstructors()) {
+			NewProblem annotation = constructor.getAnnotation(NewProblem.class);
+			if (annotation != null) {
+				return annotation.description();
+			}
+		}
+
+		throw new ApplicationException(registrable.getName() + " hasn't a constructor with NewProblem annotation");
+	}
+
+	/**
 	 * Validate a Registrable problem. <br>
 	 * <br>
 	 * 
