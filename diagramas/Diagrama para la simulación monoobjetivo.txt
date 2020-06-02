@@ -29,7 +29,7 @@ User<--ConfigurationDinamicWindowController:Ventana de configuración\nde algori
 User->ConfigurationDinamicWindowController:Ingresa las configuraciones\ny disparar evento para crear\nla instancia de la clase registrable\nonRunButtonClick()
 
 ConfigurationDinamicWindowController->ConfigurationDinamicWindowController:Crear instancia \nde Registrable
-MainWindowController<-ConfigurationDinamicWindowController://Ejecuta el callback//\nrunAlgorithm(Registrable)
+MainWindowController<-ConfigurationDinamicWindowController://Ejecuta el callback//\nrunSingleObjectiveExperiment(Registrable)
 deactivate ConfigurationDinamicWindowController
 deactivateafter ConfigurationDinamicWindowController
 destroyafter ConfigurationDinamicWindowController

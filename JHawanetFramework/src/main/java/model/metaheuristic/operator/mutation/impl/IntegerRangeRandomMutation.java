@@ -55,13 +55,21 @@ public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolut
     }
 
     /* Getters */
+
+    /**
+     * Get the mutation probability
+     * @return the mutation probability
+     */
     public double getMutationProbability() {
         return mutationProbability;
     }
 
-    /* Setters */
-    public void setMutationProbability(double mutationProbability) {
-        this.mutationProbability = mutationProbability;
+    /**
+     * Get the range of mutation
+     * @return the range of mutation
+     */
+    public int getRange() {
+        return range;
     }
 
     @Override

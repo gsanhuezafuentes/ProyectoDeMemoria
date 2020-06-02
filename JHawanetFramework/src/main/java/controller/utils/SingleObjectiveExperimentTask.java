@@ -1,5 +1,6 @@
 package controller.utils;
 
+import controller.utils.solutionattribute.Generation;
 import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.concurrent.Task;
@@ -50,32 +51,9 @@ public class SingleObjectiveExperimentTask extends Task<List<SingleObjectiveExpe
         this.returnPartialResult = returnPartialResult;
     }
 
-//	/**
-//	 * Execute the algorithm
-//	 */
-//	@Override
-//	protected SingleObjectiveExperimentTask.Result call() throws Exception {
-//		int numberOfIteration = 0;
-//		experiment.runSingleStep(); // run the first step
-//		updateMessage(this.experiment.getStatusOfExecution());
-//		while (!this.experiment.isStoppingConditionReached()) {
-//			// Check if the task is cancelled
-//			if (this.isCancelled()) {
-//				break;
-//			}
-//			experiment.runSingleStep();
-//			updateMessage(this.experiment.getStatusOfExecution());
-//
-//			updateValue(new Result(Collections.unmodifiableList(experiment.getResult()), numberOfIteration));
-//			numberOfIteration++;
-//		}
-//		experiment.close();
-//
-//		return new Result(Collections.unmodifiableList(experiment.getResult()), numberOfIteration);
-//	}
-
     @Override
     protected List<Result> call() throws Exception {
+        Generation<Solution<?>> generationAttribute = new Generation<>();
         // count of algorithm executed
         int progress = 0;
         updateProgress(progress, experiment.getAlgorithmList().size());
@@ -106,7 +84,11 @@ public class SingleObjectiveExperimentTask extends Task<List<SingleObjectiveExpe
                 numberOfGenerations++;
             }
             if (!this.isCancelled()) {
-                finalResultList.add(new Result(algorithm.getResult().get(0), numberOfGenerations, progress));
+                // add an attribute to solution. It attribute is used in result window to show in which generation the solution was obtained.
+                Solution<?> solution = algorithm.getResult().get(0);
+
+                generationAttribute.setAttribute(solution, numberOfGenerations+1);
+                finalResultList.add(new Result(solution, numberOfGenerations+1, progress));
                 progress++;
                 updateProgress(progress, experiment.getAlgorithmList().size());
             }

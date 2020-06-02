@@ -37,84 +37,88 @@ import java.util.Objects;
 
 /**
  * This class implements a solution comparator taking into account the violation
- * constraints
- *
+ * constraints.
  */
 @SuppressWarnings("serial")
 public class DominanceComparator<S extends Solution<?>> implements Comparator<S>, Serializable {
-	private ConstraintViolationComparator<S> constraintViolationComparator;
+    private ConstraintViolationComparator<S> constraintViolationComparator;
 
-	/** Constructor */
-	public DominanceComparator() {
-		this(new OverallConstraintViolationComparator<S>());
-	}
+    /**
+     * Constructor
+     * <p>
+     * By default use {@link OverallConstraintViolationComparator} to compare constraint.
+     */
+    public DominanceComparator() {
+        this(new OverallConstraintViolationComparator<S>());
+    }
 
-	/**
-	 *  Constructor
-	 *  @param constraintComparator the constraint comparator to use
-	 */
-	public DominanceComparator(ConstraintViolationComparator<S> constraintComparator) {
-		constraintViolationComparator = constraintComparator;
-	}
+    /**
+     * Constructor
+     *
+     * @param constraintComparator the constraint comparator to use
+     */
+    public DominanceComparator(ConstraintViolationComparator<S> constraintComparator) {
+        constraintViolationComparator = constraintComparator;
+    }
 
-	/**
-	 * Compares two solutions.
-	 *
-	 * @param solution1 Object representing the first <code>Solution</code>.
-	 * @param solution2 Object representing the second <code>Solution</code>.
-	 * @return less than 0, zero , or greater than 0 if solution1 dominates solution2, both are
-	 *         non-dominated, or solution1 is dominated by solution2, respectively.
-	 * @throws ApplicationException if the number of objective of solution1 and solution2 is not the same.
-	 */
-	@Override
-	public int compare(S solution1, S solution2) {
+    /**
+     * Compares two solutions.
+     *
+     * @param solution1 Object representing the first <code>Solution</code>.
+     * @param solution2 Object representing the second <code>Solution</code>.
+     * @return less than 0, zero , or greater than 0 if solution1 dominates solution2, both are
+     * non-dominated, or solution1 is dominated by solution2, respectively.
+     * @throws ApplicationException if the number of objective of solution1 and solution2 is not the same.
+     */
+    @Override
+    public int compare(S solution1, S solution2) {
 
-		Objects.requireNonNull(solution1, "Solution1 is null");
-		Objects.requireNonNull(solution2, "Solution2 is null");
+        Objects.requireNonNull(solution1, "Solution1 is null");
+        Objects.requireNonNull(solution2, "Solution2 is null");
 
-		if (solution1.getNumberOfObjectives() != solution2.getNumberOfObjectives()) {
-			throw new ApplicationException("Cannot compare because solution1 has " + solution1.getNumberOfObjectives()
-					+ " objectives and solution2 has " + solution2.getNumberOfObjectives());
-		}
-		int result;
-		result = constraintViolationComparator.compare(solution1, solution2);
-		if (result == 0) {
-			result = dominanceTest(solution1, solution2);
-		}
+        if (solution1.getNumberOfObjectives() != solution2.getNumberOfObjectives()) {
+            throw new ApplicationException("Cannot compare because solution1 has " + solution1.getNumberOfObjectives()
+                    + " objectives and solution2 has " + solution2.getNumberOfObjectives());
+        }
+        int result;
+        result = constraintViolationComparator.compare(solution1, solution2);
+        if (result == 0) {
+            result = dominanceTest(solution1, solution2);
+        }
 
-		return result;
-	}
+        return result;
+    }
 
-	/**
-	 * Compare if a solution dominate other solution based in the objectives
-	 * 
-	 * @param solution1 the first solution to be compared
-	 * @param solution2 the second solution to be compared
-	 * @return -1 if solution1 is less than solution2; 1 if solution1 is greater than solution2; 0 in otherwise
-	 */
-	private int dominanceTest(S solution1, S solution2) {
-		int bestIsOne = 0;
-		int bestIsTwo = 0;
-		int result;
-		for (int i = 0; i < solution1.getNumberOfObjectives(); i++) {
-			double value1 = solution1.getObjective(i);
-			double value2 = solution2.getObjective(i);
-			if (value1 != value2) {
-				if (value1 < value2) {
-					bestIsOne = 1;
-				}
-				if (value2 < value1) {
-					bestIsTwo = 1;
-				}
-			}
-		}
-		if (bestIsOne > bestIsTwo) {
-			result = -1;
-		} else if (bestIsTwo > bestIsOne) {
-			result = 1;
-		} else {
-			result = 0;
-		}
-		return result;
-	}
+    /**
+     * Compare if a solution dominate other solution based in the objectives
+     *
+     * @param solution1 the first solution to be compared
+     * @param solution2 the second solution to be compared
+     * @return -1 if solution1 is less than solution2; 1 if solution1 is greater than solution2; 0 in otherwise
+     */
+    private int dominanceTest(S solution1, S solution2) {
+        int bestIsOne = 0;
+        int bestIsTwo = 0;
+        int result;
+        for (int i = 0; i < solution1.getNumberOfObjectives(); i++) {
+            double value1 = solution1.getObjective(i);
+            double value2 = solution2.getObjective(i);
+            if (value1 != value2) {
+                if (value1 < value2) {
+                    bestIsOne = 1;
+                }
+                if (value2 < value1) {
+                    bestIsTwo = 1;
+                }
+            }
+        }
+        if (bestIsOne > bestIsTwo) {
+            result = -1;
+        } else if (bestIsTwo > bestIsOne) {
+            result = 1;
+        } else {
+            result = 0;
+        }
+        return result;
+    }
 }

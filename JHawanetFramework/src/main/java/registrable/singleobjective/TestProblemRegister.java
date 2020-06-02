@@ -10,7 +10,10 @@ import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentBuilder;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.experiment.util.ExperimentProblem;
+import model.metaheuristic.operator.crossover.impl.IntegerSBXCrossover;
 import model.metaheuristic.operator.crossover.impl.IntegerSinglePointCrossover;
+import model.metaheuristic.operator.mutation.impl.IntegerPolynomialMutation;
+import model.metaheuristic.operator.mutation.impl.IntegerRangeRandomMutation;
 import model.metaheuristic.operator.mutation.impl.IntegerSimpleRandomMutation;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.UniformSelection;
@@ -22,7 +25,9 @@ import registrable.SingleObjectiveRegistrable;
 import registrable.utils.ExperimentUtils;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public final class TestProblemRegister implements SingleObjectiveRegistrable {
 	private PipeOptimizing problem;
@@ -89,5 +94,29 @@ public final class TestProblemRegister implements SingleObjectiveRegistrable {
 			algorithms.add(new ExperimentAlgorithm<IntegerSolution>(algorithm, experimentProblem, run));
 		}
 		return algorithms;
+	}
+
+	/**
+	 * Get the parameter configured for this problem.
+	 */
+	@Override
+	public Map<String, String> getParameters() {
+		Map<String, String> map = new LinkedHashMap<>();
+		map.put("Min Pressure", "" + 30);
+		map.put("Population Size", "" + 10);
+		map.put("Number of max evaluations", ""+ 10000);
+		// for selection
+		map.put("Selection", "UniformSelection");
+		map.put("Uniform Selection Constant", "" + 1.6);
+
+		// for crossover
+		map.put("Crossover", "IntegerSinglePointCrossover");
+		map.put("Crossover Probability", "" + 0.1);
+
+		// for mutation
+		map.put("Mutation", "IntegerSimpleRandomMutation");
+		map.put("Mutation Probability", "" + 0.03);
+
+		return map;
 	}
 }

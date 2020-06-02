@@ -107,18 +107,18 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
     /* Getters */
 
     /**
-     * Get the mutation probability
+     * Get the mutation probability.
      *
-     * @return the mutation probability
+     * @return the mutation probability.
      */
     public double getMutationProbability() {
         return mutationProbability;
     }
 
     /**
-     * Set the mutation probability
+     * Set the mutation probability.
      *
-     * @param mutationProbability the mutation probability
+     * @param mutationProbability the mutation probability.
      */
     public void setMutationProbability(double mutationProbability) {
         this.mutationProbability = mutationProbability;
@@ -127,18 +127,18 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
     /* Setters */
 
     /**
-     * Get the distribution index
+     * Get the distribution index.
      *
-     * @return the distribution index
+     * @return the distribution index.
      */
     public double getDistributionIndex() {
         return distributionIndex;
     }
 
     /**
-     * Set the distribution index
+     * Set the distribution index.
      *
-     * @param distributionIndex the distribution index
+     * @param distributionIndex the distribution index.
      */
     public void setDistributionIndex(double distributionIndex) {
         this.distributionIndex = distributionIndex;

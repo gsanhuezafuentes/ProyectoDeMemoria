@@ -68,6 +68,15 @@ public class TournamentSelection<S extends Solution<?>> implements SelectionOper
     }
 
     /**
+     * Get the arity of tournament selection.
+     * If the arity is two so it is a BinaryTournament.
+     * @return the arity.
+     */
+    public int getN_arity() {
+        return n_arity;
+    }
+
+    /**
      * Execute() method.
      *
      * @throws NullPointerException if solutionList is null

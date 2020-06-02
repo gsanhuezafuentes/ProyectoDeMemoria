@@ -24,19 +24,34 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 	/**
 	 * Constructor
 	 * @param constant the value constant. it has to be between the range [1.5, 2]
-	 * @throws ApplicationException if constant is not between the range [1.5, 2]
+	 * @throws IllegalArgumentException if constant is not between the range [1.5, 2]
 	 */
 	@DefaultConstructor({ "constant" })
 	public UniformSelection(double constant) {
-		this(new DominanceComparator<S>());
+		this(constant, new DominanceComparator<S>());
+
+	}
+
+	/**
+	 * Constructor
+	 * @param constant the value constant. it has to be between the range [1.5, 2]
+	 * @param comparator the comparator to use.
+	 * @throws IllegalArgumentException if constant is not between the range [1.5, 2]
+	 */
+	public UniformSelection(double constant, Comparator<S> comparator) {
+		this.comparator = comparator;
 		if (constant < 1.5 || constant > 2) {
-			throw new ApplicationException("constant out of range, the range value is between 1.5 and 2");
+			throw new IllegalArgumentException("constant out of range, the range value is between 1.5 and 2");
 		}
 		this.constant = constant;
 	}
-	
-	public UniformSelection(Comparator<S> comparator) {
-		this.comparator = comparator;
+
+	/**
+	 * Get the constant value used.
+	 * @return the constant value.
+	 */
+	public double getConstant() {
+		return constant;
 	}
 
 	/** Execute method */

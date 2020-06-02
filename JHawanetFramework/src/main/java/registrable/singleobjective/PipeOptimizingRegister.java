@@ -25,7 +25,10 @@ import registrable.SingleObjectiveRegistrable;
 import registrable.utils.ExperimentUtils;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class that describe the problem to be showned in menu of problem in the
@@ -149,5 +152,55 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
                 .build();
 
         return experiment;
+    }
+
+    /**
+     * Get the parameter configured for this problem.
+     */
+    @Override
+    public Map<String, String> getParameters() {
+        Map<String, String> map = new LinkedHashMap<>();
+        map.put("Min Pressure", "" + this.minPressure);
+        map.put("Population Size", "" + this.populationSize);
+        // see if number without improvement was configure or not
+        if (this.numberWithoutImprovement != Integer.MIN_VALUE) {
+            map.put("Number without improvement", "" + this.numberWithoutImprovement);
+        }
+        else{
+            map.put("Number of max evaluations", ""+ this.maxEvaluations);
+        }
+
+        // for selection
+        if (this.selection instanceof UniformSelection){
+            map.put("Selection", "UniformSelection");
+            map.put("Uniform Selection Constant", "" + ((UniformSelection<IntegerSolution>) this.selection).getConstant());
+        }
+
+        // for crossover
+        if (this.crossover instanceof IntegerSBXCrossover){
+            map.put("Crossover", "IntegerSBXCrossover");
+            map.put("Crossover Probability", "" + ((IntegerSBXCrossover) this.crossover).getCrossoverProbability());
+            map.put("Crossover Distribution Index", "" + ((IntegerSBXCrossover) this.crossover).getDistributionIndex());
+        }else if (this.crossover instanceof IntegerSinglePointCrossover){
+            map.put("Crossover", "IntegerSinglePointCrossover");
+            map.put("Crossover Probability", "" + ((IntegerSinglePointCrossover) this.crossover).getCrossoverProbability());
+        }
+
+        // for mutation
+        if (this.mutation instanceof IntegerPolynomialMutation){
+            map.put("Mutation", "IntegerPolynomialMutation");
+            map.put("Mutation Probability", "" + ((IntegerPolynomialMutation) this.mutation).getMutationProbability());
+            map.put("Mutation Distribution Index", "" + ((IntegerPolynomialMutation) this.mutation).getDistributionIndex());
+
+        } else if (this.mutation instanceof IntegerSimpleRandomMutation){
+            map.put("Mutation", "IntegerSimpleRandomMutation");
+            map.put("Mutation Probability", "" + ((IntegerSimpleRandomMutation) this.mutation).getMutationProbability());
+
+        } else if (this.mutation instanceof IntegerRangeRandomMutation){
+            map.put("Mutation", "IntegerRangeRandomMutation");
+            map.put("Mutation Probability", "" + ((IntegerRangeRandomMutation) this.mutation).getMutationProbability());
+            map.put("Mutation Probability", "" + ((IntegerRangeRandomMutation) this.mutation).getRange());
+        }
+        return map;
     }
 }

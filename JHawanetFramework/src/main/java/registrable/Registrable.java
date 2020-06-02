@@ -2,7 +2,11 @@ package registrable;
 
 import annotations.registrable.*;
 import model.metaheuristic.operator.Operator;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import registrable.singleobjective.PipeOptimizingRegister;
+
+import java.util.Map;
 
 /**
  * It is the superinterface to {@link SingleObjectiveRegistrable} and {@link MultiObjectiveRegistrable} <br>
@@ -94,6 +98,23 @@ public interface Registrable<R> {
 	 * @return the experiment ready for execution
 	 * @throws Exception if an exception occurs when building the experiment
 	 */
+	@NotNull
 	R build(String inpPath) throws Exception;
+
+	/**
+	 * Return a map where save the value of configuration used.
+	 *
+	 * <p>
+	 * This method let add more information to ResultWindow because add new columns with the values added here.
+	 * The key will be used has the column name and the value as value of column.
+	 * <p>
+	 * If the map has no value or the method return null. So the ResultWindow only show objectives and the variables.
+	 *
+	 * @return the map or null.
+	 */
+	@Nullable
+	default Map<String, String> getParameters(){
+		return null;
+	}
 
 }

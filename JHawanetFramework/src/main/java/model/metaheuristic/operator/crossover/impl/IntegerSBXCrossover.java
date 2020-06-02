@@ -85,8 +85,23 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
 		this.random = randomGenerator;
 	}
 
+	/**
+	 * Get the crossover probability.
+	 * @return the crossover probability.
+	 */
+	public double getCrossoverProbability() {
+		return crossoverProbability;
+	}
 
-    /**
+	/**
+	 * Get the distribution index.
+	 * @return the distribution index.
+	 */
+	public double getDistributionIndex() {
+		return distributionIndex;
+	}
+
+	/**
      * Apply crossover to solution
      * @param source the parents to operates.
      * @return the crossover elements

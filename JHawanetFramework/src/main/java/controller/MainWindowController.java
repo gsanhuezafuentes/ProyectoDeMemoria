@@ -34,6 +34,8 @@ import view.utils.CustomDialogs;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
@@ -101,15 +103,25 @@ public class MainWindowController implements Initializable {
     @FXML
     private TabPane tabPane;
     /**
+     * The button to export the table as excel.
+     */
+    @FXML
+    private Button saveTableAsExcelButton;
+    /**
      * Save the result tab
      */
     @FXML
     private Button saveTableButton;
     /**
-     * Save as inp the selected items in result tab
+     * Save as inp the selected items in result tab.
      */
     @FXML
     private Button saveSelectedAsINPButton;
+    /**
+     * The network tab. This is the tab by default and you must not close it.
+     */
+    @FXML
+    private Tab networkTab;
 
     @Nullable
     private Window window;
@@ -139,7 +151,7 @@ public class MainWindowController implements Initializable {
 
         isNetworkLoaded.bind(network.isNotNull());
 
-        // disable problem menu until a network is loaded
+        // disable problem menu and the run button until a network is loaded
         this.singleobjectiveMenu.disableProperty().bind(isNetworkLoaded.not());
         this.multiobjectiveMenu.disableProperty().bind(isNetworkLoaded.not());
         this.runButton.disableProperty().bind(isNetworkLoaded.not());
@@ -152,6 +164,7 @@ public class MainWindowController implements Initializable {
         this.networkTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) { // clean bind and disable button when default tab "network" is selected
                 this.saveTableButton.setDisable(true);
+                this.saveTableAsExcelButton.setDisable(true);
                 this.saveSelectedAsINPButton.disableProperty().unbind();
                 this.saveSelectedAsINPButton.setDisable(true);
                 this.saveSelectedAsINPButton.setOnAction(null);
@@ -159,6 +172,7 @@ public class MainWindowController implements Initializable {
             }
         });
 
+        //disable the button to show the hydraulic simulation until that a hydraulic simulation are be executed.
         this.resultReportButton.disableProperty().bind(this.hydraulicSimulation.isNull());
     }
 
@@ -241,8 +255,8 @@ public class MainWindowController implements Initializable {
                     "The experiment can't be created", e);
         }
         if (experiment != null) {
-            Problem<?> problem = experiment.getProblem().getProblem();
-            SingleObjectiveRunningWindowController runningDialogController = new SingleObjectiveRunningWindowController(experiment, problem,
+            Map<String, String> parameters = registrableProblem.getParameters();
+            SingleObjectiveRunningWindowController runningDialogController = new SingleObjectiveRunningWindowController(experiment, parameters,
                     this.network.get(), this::createResultTab);
             runningDialogController.showWindowAndRunExperiment();
         }
@@ -275,8 +289,8 @@ public class MainWindowController implements Initializable {
                     "The experiment can't be created", e);
         }
         if (experiment != null) {
-            Problem<?> problem = experiment.getProblem().getProblem();
-            MultiObjectiveRunningWindowController runningDialogController = new MultiObjectiveRunningWindowController(experiment, problem,
+            Map<String, String> parameters = registrableProblem.getParameters();
+            MultiObjectiveRunningWindowController runningDialogController = new MultiObjectiveRunningWindowController(experiment, parameters,
                     this.network.get(), this::createResultTab);
             runningDialogController.showWindowAndRunExperiment();
         }
@@ -290,15 +304,27 @@ public class MainWindowController implements Initializable {
      * @param resultController the result controller
      */
     private void createResultTab(@NotNull ResultController resultController) {
-        Tab tab = new Tab("Result " + resultCount++, resultController.getNode());
+        Tab tab = new Tab(resultCount++
+                + " - " + resultController.getProblemName()
+                + "-" + inpFile.getName().substring(0, inpFile.getName().lastIndexOf('.'))
+                + "-" + LocalDate.now()
+                , resultController.getNode());
+
+        // add bind when select the tab
         tab.setOnSelectionChanged(event -> {
-            if (tab.selectedProperty().getValue()) { // add bind when select the tab
+            if (tab.selectedProperty().getValue()) {
+
+                //to save as fun and var
                 this.saveTableButton.setDisable(false);
-                this.saveSelectedAsINPButton.disableProperty().bind(resultController.hasSelectedItemProperty().not());
-                //save the selected items event
-                this.saveSelectedAsINPButton.setOnAction(event1 -> resultController.saveSelectedItemAsINP());
-                //save the table event
                 this.saveTableButton.setOnAction(event1 -> resultController.saveTable());
+
+                // to save the excel
+                this.saveTableAsExcelButton.setDisable(false);
+                this.saveTableAsExcelButton.setOnAction(event1 -> resultController.saveTableAsExcel());
+
+                //to save as inp
+                this.saveSelectedAsINPButton.disableProperty().bind(resultController.hasSelectedItemProperty().not());
+                this.saveSelectedAsINPButton.setOnAction(event1 -> resultController.saveSelectedItemAsINP());
             }
         });
 
@@ -311,18 +337,12 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * The network tab. This is the tab by default and you must not close it.
-     */
-    @FXML
-    private Tab networkTab;
-
-
-    /**
      * Event action when run button is clicked. This run the simulation.
+     *
      * @param actionEvent the info of event
      */
     public void runOnAction(ActionEvent actionEvent) {
-        try{
+        try {
             assert inpFile != null;
             this.hydraulicSimulation.setValue(HydraulicSimulation.run(inpFile.getAbsolutePath()));
         } catch (EpanetException e) {
@@ -335,6 +355,7 @@ public class MainWindowController implements Initializable {
     /**
      * The event action when the report button is clicked. This open a window
      * to set the result that was to see.
+     *
      * @param actionEvent the info of event
      */
     public void resultReportOnAction(ActionEvent actionEvent) {

@@ -50,8 +50,8 @@ public class IntegerSimpleRandomMutation implements MutationOperator<IntegerSolu
 
 	/* Getters */
 	/**
-	 * Get the mutation probability
-	 * @return the mutation probability
+	 * Get the mutation probability.
+	 * @return the mutation probability.
 	 */
 	public double getMutationProbability() {
 		return mutationProbability;
@@ -59,8 +59,8 @@ public class IntegerSimpleRandomMutation implements MutationOperator<IntegerSolu
 
 	/* Setters */
 	/**
-	 * Set the mutation probability
-	 * @param mutationProbability the mutation probability
+	 * Set the mutation probability.
+	 * @param mutationProbability the mutation probability.
 	 */
 	public void setMutationProbability(double mutationProbability) {
 		this.mutationProbability = mutationProbability;

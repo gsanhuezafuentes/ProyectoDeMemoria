@@ -47,6 +47,14 @@
                     <tooltip><Tooltip text="Show Result" /></tooltip>
                 </Button>
                 <Separator orientation="VERTICAL" />
+                <Button fx:id="saveTableAsExcelButton" disable="true" styleClass="imageButton">
+                    <graphic>
+                        <ImageView>
+                            <Image url="@icons/iconfinder-excel-32.png" />
+                        </ImageView>
+                    </graphic>
+                    <tooltip><Tooltip text="Save table as excel" /></tooltip>
+                </Button>
                 <Button fx:id="saveTableButton" disable="true" styleClass="imageButton">
                     <graphic>
                         <ImageView>
