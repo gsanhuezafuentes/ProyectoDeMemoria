@@ -3,16 +3,25 @@ package controller;
 import application.ApplicationSetup;
 import exception.ApplicationException;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.transform.Transform;
+import javafx.stage.FileChooser;
 import model.metaheuristic.solution.Solution;
 import org.jetbrains.annotations.NotNull;
+import view.utils.CustomDialogs;
 
+import javax.imageio.ImageIO;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
@@ -92,7 +101,7 @@ public class ResultPlotController {
 	 * @throws ApplicationException if there is an error in load the .fxml.
 	 */
 	private Pane loadFXML() {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ResultPlot.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ResultPlot2.fxml"));
 		fxmlLoader.setController(this);
 		try {
 			return fxmlLoader.load();
@@ -195,6 +204,44 @@ public class ResultPlotController {
 	 */
 	public Node getNode(){
 		return this.root;
+	}
+
+	/**
+	 * Take a snapshot of chart.
+	 */
+	@FXML
+	private void takeSnapshotOnAction(){
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
+		fileChooser.setTitle("Save plot");
+
+		File file = fileChooser.showSaveDialog(this.resultsPlot.getScene().getWindow());
+
+		if (file == null){
+			return;
+		}
+		WritableImage writableImage = pixelScaleAwareChartSnapshot(this.resultsPlot, 2);
+
+		try {
+			ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
+		} catch (IOException exception) {
+			CustomDialogs.showDialog("Error", "Error in the creation of the image",
+					"The image of chart can't be saved", Alert.AlertType.ERROR);
+		}
+
+	}
+
+	/**
+	 * Take the snapshot
+	 * @param chart the chart to take the snapshot
+	 * @param pixelScale a scale number
+	 * @return the image
+	 */
+	public static WritableImage pixelScaleAwareChartSnapshot(XYChart<Number, Number> chart, double pixelScale) {
+		WritableImage writableImage = new WritableImage((int)Math.rint(pixelScale*chart.getWidth()), (int)Math.rint(pixelScale*chart.getHeight()));
+		SnapshotParameters spa = new SnapshotParameters();
+		spa.setTransform(Transform.scale(pixelScale, pixelScale));
+		return chart.snapshot(spa, writableImage);
 	}
 
 //	Use to simulate the LineChart as ScatterChart

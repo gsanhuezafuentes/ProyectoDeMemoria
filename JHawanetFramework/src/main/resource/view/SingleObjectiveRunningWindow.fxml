@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="401.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="450.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Tab text="Running Status">
             <VBox prefHeight="320.0" prefWidth="500.0" spacing="10.0">
@@ -34,6 +34,32 @@
                         <ProgressIndicator fx:id="progressIndicator" />
                     </VBox>
                 </GridPane>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="Algorithm:">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="algorithmNameLabel" text="Genetic Algorithm">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="Problem:">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="problemNameLabel" text="Pipe Optimizing">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                    </children>
+                </HBox>
                 <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
                     <Label text="Executed Status:">
                         <font>
@@ -46,7 +72,7 @@
                             <Font size="14.0" />
                         </font>
                     </Label>
-                    <Label text="Algorithm Repetitions">
+                    <Label text="Repetitions">
                         <font>
                             <Font size="14.0" />
                         </font>

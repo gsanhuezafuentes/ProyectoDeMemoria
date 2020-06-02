@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -249,7 +250,7 @@ public class MainWindowController implements Initializable {
         }
         Experiment<?> experiment = null;
         try {
-            experiment = registrableProblem.build(path);
+            experiment = Objects.requireNonNull(registrableProblem.build(path));
         } catch (Exception e) {
             CustomDialogs.showExceptionDialog("Error", "Error in the creation of the experiment",
                     "The experiment can't be created", e);
@@ -283,7 +284,7 @@ public class MainWindowController implements Initializable {
         }
         Experiment<?> experiment = null;
         try {
-            experiment = registrableProblem.build(path);
+            experiment = Objects.requireNonNull(registrableProblem.build(path));
         } catch (Exception e) {
             CustomDialogs.showExceptionDialog("Error", "Error in the creation of the experiment",
                     "The experiment can't be created", e);

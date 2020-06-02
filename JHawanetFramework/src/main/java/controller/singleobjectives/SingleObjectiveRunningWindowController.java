@@ -56,6 +56,10 @@ public class SingleObjectiveRunningWindowController {
     private TextArea textArea;
     @FXML
     private Tab chartTab;
+    @FXML
+    private Label algorithmNameLabel;
+    @FXML
+    private Label problemNameLabel;
 
     @NotNull
     private final Pane root;
@@ -85,14 +89,18 @@ public class SingleObjectiveRunningWindowController {
      * @param network    the network opened.
      * @param callback   a callback function to return the result node when task finish
      * @throws NullPointerException     if experiment, experiment problem, network or callback are null.
-     * @throws IllegalArgumentException if the problem is multiobjective.
+     * @throws IllegalArgumentException if the problem is multiobjective or there aren't element in experiment algorithm.
      */
-    public SingleObjectiveRunningWindowController(Experiment<?> experiment, @Nullable Map<String, String> parameters, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
+    public SingleObjectiveRunningWindowController(@NotNull Experiment<?> experiment, @Nullable Map<String, String> parameters, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
         this.experiment = Objects.requireNonNull(experiment);
         this.problem = Objects.requireNonNull(experiment.getProblem()).getProblem();
         this.parameters = parameters;
         this.network = Objects.requireNonNull(network);
         this.callback = Objects.requireNonNull(callback);
+
+        if (experiment.getAlgorithmList().isEmpty()){
+            throw new IllegalArgumentException("There aren't algorithms configured in experiment");
+        }
 
         /*
          * Only add the the showChartButton if the number of objectives is less than 2.
@@ -114,6 +122,9 @@ public class SingleObjectiveRunningWindowController {
             this.resultPlotController = null;
             this.chartTab.setDisable(true);
         }
+        //add the name of algorithm and the name of problem. (The experiment should have only one type of algorithm. Eg. GeneticAlgorithm)
+        this.algorithmNameLabel.setText(experiment.getAlgorithmList().get(0).getAlgorithmTag());
+        this.problemNameLabel.setText(experiment.getProblem().getTag());
 
         addBindingAndListener();
     }

@@ -58,6 +58,10 @@ public class MultiObjectiveRunningWindowController {
     private TextArea logExperimentTextArea;
     @FXML
     private Tab chartTab;
+    @FXML
+    private Label algorithmNameLabel;
+    @FXML
+    private Label problemNameLabel;
 
     @NotNull
     private final Pane root;
@@ -90,7 +94,7 @@ public class MultiObjectiveRunningWindowController {
      * @param network    the network opened.
      * @param callback   a callback function to return the result node when task finish
      * @throws NullPointerException     if experiment, experiment problem, network or callback are null.
-     * @throws IllegalArgumentException if problem is singleobjective.
+     * @throws IllegalArgumentException if problem is singleobjective or there aren't element in experiment algorithm.
      */
     public MultiObjectiveRunningWindowController(@NotNull Experiment<?> experiment, @Nullable Map<String, String> parameters, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
         this.experiment = Objects.requireNonNull(experiment);
@@ -98,6 +102,10 @@ public class MultiObjectiveRunningWindowController {
         this.parameters = parameters;
         this.network = Objects.requireNonNull(network);
         this.callback = Objects.requireNonNull(callback);
+
+        if (experiment.getAlgorithmList().isEmpty()){
+            throw new IllegalArgumentException("There aren't algorithms configured in experiment");
+        }
 
         if (this.problem.getNumberOfObjectives() == 1) {
             throw new IllegalArgumentException("The number of objective to to this type of Registrable should be 1.");
@@ -122,6 +130,10 @@ public class MultiObjectiveRunningWindowController {
         if (isNumberOfResultLimited) {
             this.numberOfSolutionToReturn = ApplicationSetup.getInstance().getNumberOfResultMultiObjectiveProblem();
         }
+
+        //add the name of algorithm and the name of problem. (The experiment should have only one type of algorithm. Eg. NSGAII)
+        this.algorithmNameLabel.setText(experiment.getAlgorithmList().get(0).getAlgorithmTag());
+        this.problemNameLabel.setText(experiment.getProblem().getTag());
         addBindingAndListener();
 
     }

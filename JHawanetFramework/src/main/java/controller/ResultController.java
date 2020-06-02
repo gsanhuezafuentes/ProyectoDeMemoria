@@ -288,6 +288,10 @@ public class ResultController {
 
         File file = fileChooser.showSaveDialog(this.resultTable.getScene().getWindow());
 
+        if (file == null){
+            return;
+        }
+
         Workbook workbook = new XSSFWorkbook();
         Sheet spreadsheet = workbook.createSheet("sample");
 
