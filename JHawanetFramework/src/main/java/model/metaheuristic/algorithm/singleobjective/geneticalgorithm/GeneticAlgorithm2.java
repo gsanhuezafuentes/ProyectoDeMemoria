@@ -105,7 +105,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
      * <br>
      * <p>
      * When the result returned by this method is 0 the stop condition of the
-     * algorithm don't take into account this value and only use the
+     * algorithm don't take into account this value and use the
      * MaxNumberOfIterationWithoutImprovement
      * {@link GeneticAlgorithm2#getMaxNumberOfIterationWithoutImprovement()}. If the
      * value is other than 0 so it condition is taked into account.<br>
@@ -141,7 +141,7 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
      * Get the max number of iteration without a improvement of the result.
      * <p>
      * When the result returned by this method is 0 the stop condition of the
-     * algorithm don't take into account this value and only use the MaxEvaluation
+     * algorithm don't take into account this value and use the MaxEvaluation
      * {@link GeneticAlgorithm2#getMaxEvaluations()}. If the value is other than 0
      * so it condition is taked into account. <br>
      * <br>

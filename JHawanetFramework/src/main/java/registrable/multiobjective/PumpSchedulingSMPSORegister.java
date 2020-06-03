@@ -4,6 +4,7 @@ import annotations.registrable.NewProblem;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.algorithm.multiobjective.nsga.NSGAII;
 import model.metaheuristic.algorithm.multiobjective.smpso.SMPSOInteger;
+import model.metaheuristic.algorithm.multiobjective.smpso.SMPSOIntegerBuilder;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentBuilder;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
@@ -112,11 +113,11 @@ public class PumpSchedulingSMPSORegister implements MultiObjectiveRegistrable {
             double changeVelocity1 = -1;
             double changeVelocity2 = -1;
 
-            Algorithm<IntegerSolution> algorithm = new SMPSOInteger(problem, 100,
-                    new CrowdingDistanceArchive<>(100),
-                    new IntegerPolynomialMutation(1.0 / problem.getNumberOfVariables(), 20),
-                    250,
-                    r1Min, r1Max, r2Min, r2Max, c1Min, c1Max, c2Min, c2Max, weightMin, weightMax, changeVelocity1, changeVelocity2, new SequentialSolutionEvaluator<>());
+            Algorithm<IntegerSolution> algorithm = new SMPSOIntegerBuilder(problem, new CrowdingDistanceArchive<IntegerSolution>(100))
+	                .setMutationOperator(new IntegerPolynomialMutation(1.0/problem.getNumberOfVariables(), 20))
+	                .setMaxIterations(250)
+	                .setSwarmSize(100)
+	                .build();
 
             algorithms.add(new ExperimentAlgorithm<>(algorithm, problemExperiment, run));
         }

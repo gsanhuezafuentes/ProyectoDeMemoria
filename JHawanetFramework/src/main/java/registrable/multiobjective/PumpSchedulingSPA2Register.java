@@ -4,6 +4,7 @@ import annotations.registrable.NewProblem;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.algorithm.multiobjective.smpso.SMPSOInteger;
 import model.metaheuristic.algorithm.multiobjective.spa2.SPEA2;
+import model.metaheuristic.algorithm.multiobjective.spa2.SPEA2Builder;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentBuilder;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
@@ -106,10 +107,10 @@ public class PumpSchedulingSPA2Register implements MultiObjectiveRegistrable {
 				Comparator<IntegerSolution> comparator = new DominanceComparator<>();
 
 
-				Algorithm<IntegerSolution> algorithm = new SPEA2<IntegerSolution>(problem, 250, 100,
-						new IntegerSBXCrossover(0.9, 20),
-						new IntegerPolynomialMutation(1.0 / problem.getNumberOfVariables(), 20),
-						new TournamentSelection<>(2), new SequentialSolutionEvaluator<>(), 1);
+				Algorithm<IntegerSolution> algorithm = new SPEA2Builder<IntegerSolution>(
+						problem, new IntegerSBXCrossover(0.9, 20),
+						new IntegerPolynomialMutation(1.0 / problem.getNumberOfVariables(), 20))
+								.build();
 
 				algorithms.add(new ExperimentAlgorithm<>(algorithm, problemExperiment, run));
 		}
