@@ -3,8 +3,8 @@ package controller.singleobjectives;
 import application.ApplicationSetup;
 import controller.ResultController;
 import controller.ResultPlotController;
-import controller.utils.SingleObjectiveExperimentTask;
 import controller.utils.CustomCallback;
+import controller.utils.SingleObjectiveExperimentTask;
 import epanet.core.EpanetException;
 import exception.ApplicationException;
 import javafx.concurrent.Worker.State;
@@ -85,7 +85,7 @@ public class SingleObjectiveRunningWindowController {
      * Constructor
      *
      * @param experiment the algorithm to execute
-     * @param parameters  the configurations parameter of experiment.
+     * @param parameters the configurations parameter of experiment.
      * @param network    the network opened.
      * @param callback   a callback function to return the result node when task finish
      * @throws NullPointerException     if experiment, experiment problem, network or callback are null.
@@ -98,7 +98,7 @@ public class SingleObjectiveRunningWindowController {
         this.network = Objects.requireNonNull(network);
         this.callback = Objects.requireNonNull(callback);
 
-        if (experiment.getAlgorithmList().isEmpty()){
+        if (experiment.getAlgorithmList().isEmpty()) {
             throw new IllegalArgumentException("There aren't algorithms configured in experiment");
         }
 
@@ -180,9 +180,13 @@ public class SingleObjectiveRunningWindowController {
 
             }
 
-            String workDone = (task.getWorkDone() != -1) ? Double.toString(task.getWorkDone()) : "Undefined";
-            String totalWork = (task.getTotalWork() != -1) ? Double.toString(task.getTotalWork()) : "Undefined";
+            String workDone = (task.getWorkDone() != -1) ? Integer.toString((int)task.getWorkDone()) : "Undefined";
+            String totalWork = (task.getTotalWork() != -1) ? Integer.toString((int)task.getTotalWork()) : "Undefined";
             String progressText = workDone + "/" + totalWork;
+
+            if (this.resultPlotController != null) {
+                this.resultPlotController.updateExecutionStatusLabel(String.format("Execution %s/%s of the algorithm %s", workDone, totalWork, this.algorithmNameLabel.getText()));
+            }
 
             progressLabel.setText(progressText);
 

@@ -26,7 +26,7 @@ import java.util.List;
 
 public class PumpSchedulingNSGAIIRegister implements MultiObjectiveRegistrable {
 
-    private static final int INDEPENDENT_RUNS = 2;
+    private static final int INDEPENDENT_RUNS = 10;
 
     @NewProblem(displayName = "Pumping Scheduling", algorithmName = "NSGA-II")
     public PumpSchedulingNSGAIIRegister() {
@@ -99,7 +99,7 @@ public class PumpSchedulingNSGAIIRegister implements MultiObjectiveRegistrable {
                     1.0 / problem.getNumberOfVariables(), 20);
             Comparator<IntegerSolution> comparator = new DominanceComparator<>();
 
-            Algorithm<IntegerSolution> algorithm = new NSGAII<IntegerSolution>(problem, 1000, 100, 100, 100
+            Algorithm<IntegerSolution> algorithm = new NSGAII<IntegerSolution>(problem, 25000, 100, 100, 100
                     , selection, crossover, mutation
                     , comparator, new SequentialSolutionEvaluator<>());
             algorithms.add(new ExperimentAlgorithm<>(algorithm, experimentProblem, run));

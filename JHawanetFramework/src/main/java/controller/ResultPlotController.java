@@ -11,6 +11,7 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -52,6 +53,8 @@ public class ResultPlotController {
 	};
 
 	@NotNull private final Pane root;
+	@FXML
+	@NotNull private Label executionStatusLabel;
 	private final int numberOfObjectives;
 
 	/*
@@ -80,6 +83,32 @@ public class ResultPlotController {
 	}
 
 	/**
+	 * Load the FXML view associated to this controller.
+	 *
+	 * @return the root pane.
+	 * @throws ApplicationException if there is an error in load the .fxml.
+	 */
+	private Pane loadFXML() {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ResultPlot.fxml"));
+		fxmlLoader.setController(this);
+		try {
+			return fxmlLoader.load();
+		} catch (IOException exception) {
+			throw new ApplicationException(exception);
+		}
+	}
+
+	/**
+	 * The text to show.
+	 * @param text the text.
+	 * @throws NullPointerException if text is null.
+	 */
+	public void updateExecutionStatusLabel(@NotNull String text){
+		Objects.requireNonNull(text);
+		this.executionStatusLabel.setText(text);
+	}
+
+	/**
 	 * Configure the plot.
 	 */
 	private void configurePlot() {
@@ -94,21 +123,6 @@ public class ResultPlotController {
 		}
 	}
 
-	/**
-	 * Load the FXML view associated to this controller.
-	 * 
-	 * @return the root pane.
-	 * @throws ApplicationException if there is an error in load the .fxml.
-	 */
-	private Pane loadFXML() {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ResultPlot2.fxml"));
-		fxmlLoader.setController(this);
-		try {
-			return fxmlLoader.load();
-		} catch (IOException exception) {
-			throw new ApplicationException(exception);
-		}
-	}
 
 	/**
 	 * Add data to plot. Only use when the problem is single objective.

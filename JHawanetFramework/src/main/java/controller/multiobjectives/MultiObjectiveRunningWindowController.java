@@ -192,10 +192,13 @@ public class MultiObjectiveRunningWindowController {
 
             }
 
-            String workDone = (task.getWorkDone() != -1) ? Double.toString(task.getWorkDone()) : "Undefined";
-            String totalWork = (task.getTotalWork() != -1) ? Double.toString(task.getTotalWork()) : "Undefined";
+            String workDone = (task.getWorkDone() != -1) ? Integer.toString((int)task.getWorkDone()) : "Undefined";
+            String totalWork = (task.getTotalWork() != -1) ? Integer.toString((int)task.getTotalWork()) : "Undefined";
             String progressText = workDone + "/" + totalWork;
 
+            if (this.resultPlotController != null) {
+                this.resultPlotController.updateExecutionStatusLabel(String.format("Execution %s/%s of the algorithm %s", workDone, totalWork, this.algorithmNameLabel.getText()));
+            }
             progressLabel.setText(progressText);
 
         });

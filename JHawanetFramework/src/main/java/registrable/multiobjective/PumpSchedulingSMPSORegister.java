@@ -30,7 +30,7 @@ import java.util.List;
 
 public class PumpSchedulingSMPSORegister implements MultiObjectiveRegistrable {
 
-    private static final int INDEPENDENT_RUNS = 2;
+    private static final int INDEPENDENT_RUNS = 10;
     private VanzylOriginal problem;
 
     @NewProblem(displayName = "Pumping Scheduling", algorithmName = "SMPSOInteger")
