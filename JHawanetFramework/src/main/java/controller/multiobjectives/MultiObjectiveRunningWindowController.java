@@ -197,7 +197,7 @@ public class MultiObjectiveRunningWindowController {
             String progressText = workDone + "/" + totalWork;
 
             if (this.resultPlotController != null) {
-                this.resultPlotController.updateExecutionStatusLabel(String.format("Execution %s/%s of the algorithm %s", workDone, totalWork, this.algorithmNameLabel.getText()));
+                this.resultPlotController.updateExecutionStatusLabel(String.format("Execution %s/%s of the %s", workDone, totalWork, this.algorithmNameLabel.getText()));
             }
             progressLabel.setText(progressText);
 

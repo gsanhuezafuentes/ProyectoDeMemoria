@@ -171,8 +171,8 @@ public class ResultController {
                 overallColumn.setCellValueFactory(
                         (CellDataFeatures<SolutionWrap, String> solutionData) -> {
                             if (solutionData.getValue().constraint != null) {
-                                return new ReadOnlyObjectWrapper<>(
-                                        solutionData.getValue().constraint.toString());
+                                return new ReadOnlyObjectWrapper<>(""+
+                                        (solutionData.getValue().constraint + 0.0)); //the + 0.0 fix the -0.0
                             } else {
                                 return new ReadOnlyObjectWrapper<>("");
                             }
