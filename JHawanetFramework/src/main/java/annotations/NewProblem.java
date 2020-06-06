@@ -1,4 +1,4 @@
-package annotations.registrable;
+package annotations;
 
 import registrable.Registrable;
 

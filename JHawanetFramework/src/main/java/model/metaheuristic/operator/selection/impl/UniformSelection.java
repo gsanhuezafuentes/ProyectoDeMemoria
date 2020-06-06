@@ -1,7 +1,7 @@
 package model.metaheuristic.operator.selection.impl;
 
-import annotations.operators.DefaultConstructor;
-import exception.ApplicationException;
+import annotations.DefaultConstructor;
+import annotations.NumberInput;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.comparator.DominanceComparator;
@@ -26,7 +26,7 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 	 * @param constant the value constant. it has to be between the range [1.5, 2]
 	 * @throws IllegalArgumentException if constant is not between the range [1.5, 2]
 	 */
-	@DefaultConstructor({ "constant" })
+	@DefaultConstructor(@NumberInput(displayName = "constant", defaultValue = 1.5))
 	public UniformSelection(double constant) {
 		this(constant, new DominanceComparator<S>());
 
@@ -58,9 +58,7 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 	@Override
 	public List<S> execute(List<S> solutionList) {
 		int populationSize = solutionList.size();
-//		System.out.println(solutionList);
 		Collections.sort(solutionList, this.comparator);
-//		System.out.println(solutionList);
 		double pmin = minProbability(solutionList);
 		double pmax = maxProbability(solutionList);
 		List<S> selectedList = new ArrayList<S>();
@@ -72,11 +70,11 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 			if (probability >= 1.5) {
 				selectedList.add(solutionList.get(i));
 				selectedList.add(solutionList.get(i));
-			} else if (probability >= 0.5 && probability < 1.5) {
+			} else if (probability >= 0.5 && probability < 1.5 && selectedList.size() < populationSize) {
 				selectedList.add(solutionList.get(i));
 			}
 		}
-		assert selectedList.size() == populationSize : "La suma no es correcta";
+		assert selectedList.size() == populationSize : "the resulting population hasn't the same size that the received population";
 		return selectedList;
 	}
 

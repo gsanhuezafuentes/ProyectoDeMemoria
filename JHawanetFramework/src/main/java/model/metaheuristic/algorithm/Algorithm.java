@@ -28,8 +28,6 @@
  */
 package model.metaheuristic.algorithm;
 
-import controller.utils.SingleObjectiveExperimentTask;
-import controller.utils.MultiObjectiveExperimentTask;
 import epanet.core.EpanetException;
 import model.metaheuristic.solution.Solution;
 import org.jetbrains.annotations.NotNull;

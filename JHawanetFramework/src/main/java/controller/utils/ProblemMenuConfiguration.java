@@ -1,7 +1,7 @@
 package controller.utils;
 
 import application.RegistrableConfiguration;
-import controller.ConfigurationDynamicWindowController;
+import controller.DynamicConfigurationController;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -96,7 +96,7 @@ public class ProblemMenuConfiguration {
 		// If the registrable class has a constructor with parameters so a new window to
 		// configure its is created,
 		if (ReflectionUtils.getNumberOfParameterInRegistrableConstructor(registrable) > 0) {
-			ConfigurationDynamicWindowController<T> configurationController = new ConfigurationDynamicWindowController<>(
+			DynamicConfigurationController<T> configurationController = new DynamicConfigurationController<>(
 					registrable, experimentEvent);
 			configurationController.showWindow();
 		} else { // If the registrable class has a constructor without parameters

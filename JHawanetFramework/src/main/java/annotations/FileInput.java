@@ -1,4 +1,4 @@
-package annotations.registrable;
+package annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

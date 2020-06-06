@@ -29,7 +29,8 @@
 
 package model.metaheuristic.operator.mutation.impl;
 
-import annotations.operators.DefaultConstructor;
+import annotations.DefaultConstructor;
+import annotations.NumberInput;
 import exception.ApplicationException;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.problem.Problem;
@@ -78,7 +79,8 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
      * @param mutationProbability the mutation probability
      * @param distributionIndex   the distribution index
      */
-    @DefaultConstructor({"MutationProbability", "DistributionIndex"})
+    @DefaultConstructor({@NumberInput(displayName = "MutationProbability", defaultValue = 0.1),
+            @NumberInput(displayName = "DistributionIndex", defaultValue = 0.1)})
     public IntegerPolynomialMutation(double mutationProbability, double distributionIndex) {
         this(mutationProbability, distributionIndex, () -> JavaRandom.getInstance().nextDouble());
     }
@@ -146,6 +148,7 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 
     /**
      * Mutates the solution
+     *
      * @param solution the solution to mutate
      * @return The mutated solution
      */

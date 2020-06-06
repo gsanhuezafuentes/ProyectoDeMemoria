@@ -1,31 +1,20 @@
 package registrable.multiobjective;
 
-import annotations.registrable.NewProblem;
+import annotations.NewProblem;
 import model.metaheuristic.algorithm.Algorithm;
-import model.metaheuristic.algorithm.multiobjective.nsga.NSGAII;
-import model.metaheuristic.algorithm.multiobjective.smpso.SMPSOInteger;
 import model.metaheuristic.algorithm.multiobjective.smpso.SMPSOIntegerBuilder;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentBuilder;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.experiment.util.ExperimentProblem;
-import model.metaheuristic.operator.crossover.CrossoverOperator;
-import model.metaheuristic.operator.crossover.impl.IntegerSBXCrossover;
-import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.mutation.impl.IntegerPolynomialMutation;
-import model.metaheuristic.operator.selection.SelectionOperator;
-import model.metaheuristic.operator.selection.impl.TournamentSelection;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.problem.impl.VanzylOriginal;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.archive.impl.CrowdingDistanceArchive;
-import model.metaheuristic.utils.comparator.DominanceComparator;
-import model.metaheuristic.utils.evaluator.SolutionListEvaluator;
-import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.MultiObjectiveRegistrable;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class PumpSchedulingSMPSORegister implements MultiObjectiveRegistrable {

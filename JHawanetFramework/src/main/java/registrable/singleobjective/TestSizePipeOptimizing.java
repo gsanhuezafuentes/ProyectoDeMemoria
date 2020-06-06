@@ -1,6 +1,6 @@
 package registrable.singleobjective;
 
-import annotations.registrable.*;
+import annotations.*;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
 import model.metaheuristic.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithm2;

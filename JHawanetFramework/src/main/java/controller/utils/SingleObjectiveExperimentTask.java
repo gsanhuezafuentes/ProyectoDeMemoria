@@ -2,7 +2,9 @@ package controller.utils;
 
 import controller.utils.solutionattribute.Generation;
 import javafx.application.Platform;
-import javafx.beans.property.*;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.concurrent.Task;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;

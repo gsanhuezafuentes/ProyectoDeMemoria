@@ -1,6 +1,6 @@
 package registrable.multiobjective;
 
-import annotations.registrable.NewProblem;
+import annotations.NewProblem;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.algorithm.multiobjective.nsga.NSGAII;
 import model.metaheuristic.experiment.Experiment;

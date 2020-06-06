@@ -1,4 +1,4 @@
-package annotations.registrable;
+package annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -26,6 +26,6 @@ public @interface OperatorInput {
 	 * The possible operator that can be injected.
 	 * @return the operator array that can be injected
 	 */
-	OperatorOption[] value() default {};
+	OperatorOption[] value();
 
 }

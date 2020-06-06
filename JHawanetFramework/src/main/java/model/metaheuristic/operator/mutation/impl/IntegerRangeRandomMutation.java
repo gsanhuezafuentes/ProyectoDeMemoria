@@ -1,6 +1,7 @@
 package model.metaheuristic.operator.mutation.impl;
 
-import annotations.operators.DefaultConstructor;
+import annotations.DefaultConstructor;
+import annotations.NumberInput;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.random.BoundedRandomGenerator;
@@ -25,7 +26,8 @@ public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolut
      * @param probability the probability of mutation
      * @param range       the range of mutation
      */
-    @DefaultConstructor({"Probability", "Range"})
+    @DefaultConstructor({@NumberInput(displayName = "Probability", defaultValue = 0.1),
+            @NumberInput(displayName = "Range", defaultValue = 1)})
     public IntegerRangeRandomMutation(double probability, int range) {
         this(probability, range, () -> JavaRandom.getInstance().nextDouble(),
                 (a, b) -> JavaRandom.getInstance().nextInt(a, b));
@@ -34,9 +36,9 @@ public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolut
     /**
      * Constructor
      *
-     * @param probability     the probability of mutation
-     * @param range           the range of mutation
-     * @param randomGenerator the random function to use
+     * @param probability          the probability of mutation
+     * @param range                the range of mutation
+     * @param randomGenerator      the random function to use
      * @param pointRandomGenerator a random generator that generate numbers between a lower and a upper bound
      */
     public IntegerRangeRandomMutation(double probability, int range, RandomGenerator<Double> randomGenerator,
@@ -58,6 +60,7 @@ public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolut
 
     /**
      * Get the mutation probability
+     *
      * @return the mutation probability
      */
     public double getMutationProbability() {
@@ -66,6 +69,7 @@ public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolut
 
     /**
      * Get the range of mutation
+     *
      * @return the range of mutation
      */
     public int getRange() {

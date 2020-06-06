@@ -1,8 +1,7 @@
 package controller.utils;
 
-import annotations.registrable.*;
+import annotations.*;
 import exception.ApplicationException;
-import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.operator.crossover.impl.IntegerSBXCrossover;
 import model.metaheuristic.operator.crossover.impl.IntegerSinglePointCrossover;
@@ -10,7 +9,6 @@ import model.metaheuristic.operator.mutation.impl.IntegerPolynomialMutation;
 import model.metaheuristic.operator.mutation.impl.IntegerRangeRandomMutation;
 import model.metaheuristic.operator.mutation.impl.IntegerSimpleRandomMutation;
 import model.metaheuristic.operator.selection.impl.UniformSelection;
-import model.metaheuristic.problem.Problem;
 import org.junit.jupiter.api.Test;
 import registrable.SingleObjectiveRegistrable;
 

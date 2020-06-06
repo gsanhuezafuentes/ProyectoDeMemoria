@@ -1,10 +1,6 @@
 package registrable;
 
-import annotations.registrable.*;
-import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.experiment.Experiment;
-import model.metaheuristic.operator.Operator;
-import model.metaheuristic.problem.Problem;
 import registrable.multiobjective.PumpSchedulingNSGAIIRegister;
 
 /**

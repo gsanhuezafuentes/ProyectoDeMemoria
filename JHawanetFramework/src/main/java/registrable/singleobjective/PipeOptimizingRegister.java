@@ -1,6 +1,6 @@
 package registrable.singleobjective;
 
-import annotations.registrable.*;
+import annotations.*;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
 import model.metaheuristic.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithm2;
@@ -25,7 +25,6 @@ import registrable.SingleObjectiveRegistrable;
 import registrable.utils.ExperimentUtils;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,19 +71,24 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
             "varying the diameter of the pipe in order to ensure a minimum level of pressure.")
     @Parameters(operators = {
             @OperatorInput(displayName = "Selection Operator", value = {
-                    @OperatorOption(displayName = "Uniform Selection", value = UniformSelection.class)}),
+                    @OperatorOption(displayName = "Uniform Selection", value = UniformSelection.class)
+            }),
             @OperatorInput(displayName = "Crossover Operator", value = {
-                    @OperatorOption(displayName = "Integer SBX Crossover", value = IntegerSBXCrossover.class),
-                    @OperatorOption(displayName = "Integer Single Point Crossover", value = IntegerSinglePointCrossover.class)}), //
+                    @OperatorOption(displayName = "Integer Single Point Crossover", value = IntegerSinglePointCrossover.class),
+                    @OperatorOption(displayName = "Integer SBX Crossover", value = IntegerSBXCrossover.class)
+            }), //
             @OperatorInput(displayName = "Mutation Operator", value = {
+                    @OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class),
                     @OperatorOption(displayName = "Integer Polynomial Mutation", value = IntegerPolynomialMutation.class),
-                    @OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class),
-                    @OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class)})}, //
+                    @OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class)
+            })}, //
             files = {@FileInput(displayName = "Gama")}, //
-            numbers = {@NumberInput(displayName = "Independent run"), @NumberInput(displayName = "Min pressure"), @NumberInput(displayName = "Population Size")}, //
+            numbers = {@NumberInput(displayName = "Independent run", defaultValue = 5),
+                    @NumberInput(displayName = "Min pressure", defaultValue = 30),
+                    @NumberInput(displayName = "Population Size", defaultValue = 1000)}, //
             numbersToggle = {
-                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Number of iteration without improvement"),
-                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation")})
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Number of iteration without improvement", defaultValue = 100),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation", defaultValue = 1000)})
     @SuppressWarnings("unchecked") // The object injected are indicated in operators elements. It guarantee its
     // types.
     public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama, int independentRun,
@@ -136,10 +140,9 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
         List<ExperimentAlgorithm<IntegerSolution>> experimentAlgorithms = ExperimentUtils.configureAlgorithmList(experimentProblem, this.independentRun,
                 () -> {
                     GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<>(this.problem, populationSize, selection, crossover, mutation, new SequentialSolutionEvaluator<>());
-                    if (this.numberWithoutImprovement != Integer.MIN_VALUE){
+                    if (this.numberWithoutImprovement != Integer.MIN_VALUE) {
                         algorithm.setMaxNumberOfIterationWithoutImprovement(this.numberWithoutImprovement);
-                    }
-                    else{
+                    } else {
                         algorithm.setMaxEvaluations(this.maxEvaluations);
                     }
                     return algorithm;
@@ -165,38 +168,37 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
         // see if number without improvement was configure or not
         if (this.numberWithoutImprovement != Integer.MIN_VALUE) {
             map.put("Number without improvement", "" + this.numberWithoutImprovement);
-        }
-        else{
-            map.put("Number of max evaluations", ""+ this.maxEvaluations);
+        } else {
+            map.put("Number of max evaluations", "" + this.maxEvaluations);
         }
 
         // for selection
-        if (this.selection instanceof UniformSelection){
+        if (this.selection instanceof UniformSelection) {
             map.put("Selection", "UniformSelection");
             map.put("Uniform Selection Constant", "" + ((UniformSelection<IntegerSolution>) this.selection).getConstant());
         }
 
         // for crossover
-        if (this.crossover instanceof IntegerSBXCrossover){
+        if (this.crossover instanceof IntegerSBXCrossover) {
             map.put("Crossover", "IntegerSBXCrossover");
             map.put("Crossover Probability", "" + ((IntegerSBXCrossover) this.crossover).getCrossoverProbability());
             map.put("Crossover Distribution Index", "" + ((IntegerSBXCrossover) this.crossover).getDistributionIndex());
-        }else if (this.crossover instanceof IntegerSinglePointCrossover){
+        } else if (this.crossover instanceof IntegerSinglePointCrossover) {
             map.put("Crossover", "IntegerSinglePointCrossover");
             map.put("Crossover Probability", "" + ((IntegerSinglePointCrossover) this.crossover).getCrossoverProbability());
         }
 
         // for mutation
-        if (this.mutation instanceof IntegerPolynomialMutation){
+        if (this.mutation instanceof IntegerPolynomialMutation) {
             map.put("Mutation", "IntegerPolynomialMutation");
             map.put("Mutation Probability", "" + ((IntegerPolynomialMutation) this.mutation).getMutationProbability());
             map.put("Mutation Distribution Index", "" + ((IntegerPolynomialMutation) this.mutation).getDistributionIndex());
 
-        } else if (this.mutation instanceof IntegerSimpleRandomMutation){
+        } else if (this.mutation instanceof IntegerSimpleRandomMutation) {
             map.put("Mutation", "IntegerSimpleRandomMutation");
             map.put("Mutation Probability", "" + ((IntegerSimpleRandomMutation) this.mutation).getMutationProbability());
 
-        } else if (this.mutation instanceof IntegerRangeRandomMutation){
+        } else if (this.mutation instanceof IntegerRangeRandomMutation) {
             map.put("Mutation", "IntegerRangeRandomMutation");
             map.put("Mutation Probability", "" + ((IntegerRangeRandomMutation) this.mutation).getMutationProbability());
             map.put("Mutation Probability", "" + ((IntegerRangeRandomMutation) this.mutation).getRange());

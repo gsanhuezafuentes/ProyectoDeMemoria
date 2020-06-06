@@ -2,15 +2,15 @@ package model.epanet.element.networkcomponent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import model.epanet.element.result.LinkSimulationResult;
-import model.epanet.element.result.NodeSimulationResult;
 import model.epanet.element.utils.Point;
 import model.epanet.element.waterquality.Quality;
 import model.epanet.element.waterquality.Source;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public abstract class Node extends Component {
     @Nullable

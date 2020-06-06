@@ -28,7 +28,8 @@
  */
 package model.metaheuristic.operator.crossover.impl;
 
-import annotations.operators.DefaultConstructor;
+import annotations.DefaultConstructor;
+import annotations.NumberInput;
 import exception.ApplicationException;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.solution.impl.IntegerSolution;
@@ -41,189 +42,191 @@ import java.util.Objects;
 
 /**
  * Applies the SBXCrossover on a IntegerSolution
- *
  */
 public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
     /*minimum difference allowed between real values */
     private static final double EPS = 1.0e-14;
 
-	private final double crossoverProbability;
-	private final double distributionIndex;
-	private final RandomGenerator<Double> random;
+    private final double crossoverProbability;
+    private final double distributionIndex;
+    private final RandomGenerator<Double> random;
 
-	/**
-	 * 
-	 * Constructor
-	 * 
-	 * @param crossoverProbability the crossover probability
-	 * @param distributionIndex    the distribution index
-	 */
-	@DefaultConstructor({ "CrossoverProbability", "DistributionIndex" })
-	public IntegerSBXCrossover(double crossoverProbability, double distributionIndex) {
-		this(crossoverProbability, distributionIndex, () -> JavaRandom.getInstance().nextDouble());
+    /**
+     * Constructor
+     *
+     * @param crossoverProbability the crossover probability
+     * @param distributionIndex    the distribution index
+     */
+    @DefaultConstructor({@NumberInput(displayName = "CrossoverProbability", defaultValue = 0.1)
+            , @NumberInput(displayName = "DistributionIndex",defaultValue = 0.3)})
+    public IntegerSBXCrossover(double crossoverProbability, double distributionIndex) {
+        this(crossoverProbability, distributionIndex, () -> JavaRandom.getInstance().nextDouble());
 
-	}
+    }
 
-	/**
-	 * Constructor
-	 * 
-	 * @param crossoverProbability the crossover probability
-	 * @param distributionIndex    the distribution index
-	 * @param randomGenerator      a random generator
-	 * @throws ApplicationException if crossover probability or distributionIndex is negative
-	 */
-	public IntegerSBXCrossover(double crossoverProbability, double distributionIndex,
-			RandomGenerator<Double> randomGenerator) {
+    /**
+     * Constructor
+     *
+     * @param crossoverProbability the crossover probability
+     * @param distributionIndex    the distribution index
+     * @param randomGenerator      a random generator
+     * @throws ApplicationException if crossover probability or distributionIndex is negative
+     */
+    public IntegerSBXCrossover(double crossoverProbability, double distributionIndex,
+                               RandomGenerator<Double> randomGenerator) {
 
-		if (crossoverProbability < 0) {
-			throw new ApplicationException("Crossover probability is negative: " + crossoverProbability);
-		} else if (distributionIndex < 0) {
-			throw new ApplicationException("Distribution index is negative: " + distributionIndex);
-		}
-		this.crossoverProbability = crossoverProbability;
-		this.distributionIndex = distributionIndex;
-		this.random = randomGenerator;
-	}
+        if (crossoverProbability < 0) {
+            throw new ApplicationException("Crossover probability is negative: " + crossoverProbability);
+        } else if (distributionIndex < 0) {
+            throw new ApplicationException("Distribution index is negative: " + distributionIndex);
+        }
+        this.crossoverProbability = crossoverProbability;
+        this.distributionIndex = distributionIndex;
+        this.random = randomGenerator;
+    }
 
-	/**
-	 * Get the crossover probability.
-	 * @return the crossover probability.
-	 */
-	public double getCrossoverProbability() {
-		return crossoverProbability;
-	}
+    /**
+     * Get the crossover probability.
+     *
+     * @return the crossover probability.
+     */
+    public double getCrossoverProbability() {
+        return crossoverProbability;
+    }
 
-	/**
-	 * Get the distribution index.
-	 * @return the distribution index.
-	 */
-	public double getDistributionIndex() {
-		return distributionIndex;
-	}
+    /**
+     * Get the distribution index.
+     *
+     * @return the distribution index.
+     */
+    public double getDistributionIndex() {
+        return distributionIndex;
+    }
 
-	/**
+    /**
      * Apply crossover to solution
+     *
      * @param source the parents to operates.
      * @return the crossover elements
-     * @throws NullPointerException if source is null
-	 * @throws IllegalArgumentException if source size is other than 2
+     * @throws NullPointerException     if source is null
+     * @throws IllegalArgumentException if source size is other than 2
      */
-	@Override
-	public List<IntegerSolution> execute(List<IntegerSolution> source) {
+    @Override
+    public List<IntegerSolution> execute(List<IntegerSolution> source) {
         Objects.requireNonNull(source);
-        if (source.size() != getNumberOfRequiredParents()){
+        if (source.size() != getNumberOfRequiredParents()) {
             throw new IllegalArgumentException("There must be two parents instead of " + source.size());
         }
 
-		IntegerSolution parent1 = source.get(0);
-		IntegerSolution parent2 = source.get(1);
+        IntegerSolution parent1 = source.get(0);
+        IntegerSolution parent2 = source.get(1);
 
-		List<IntegerSolution> offspring = new ArrayList<IntegerSolution>(2);
+        List<IntegerSolution> offspring = new ArrayList<IntegerSolution>(2);
 
-		offspring.add((IntegerSolution) parent1.copy());
-		offspring.add((IntegerSolution) parent2.copy());
+        offspring.add((IntegerSolution) parent1.copy());
+        offspring.add((IntegerSolution) parent2.copy());
 
-		int i;
-		double rand;
-		double y1, y2, yL, yU;
-		double c1, c2;
-		double alpha, beta, betaq;
-		int valueX1, valueX2;
+        int i;
+        double rand;
+        double y1, y2, yL, yU;
+        double c1, c2;
+        double alpha, beta, betaq;
+        int valueX1, valueX2;
 
-		if (random.getRandomValue() <= crossoverProbability) {
-			for (i = 0; i < parent1.getNumberOfVariables(); i++) {
-				valueX1 = parent1.getVariable(i);
-				valueX2 = parent2.getVariable(i);
-				if (random.getRandomValue() <= 0.5) {
-					if (Math.abs(valueX1 - valueX2) > EPS) // noinspection DuplicatedCode
-					{
+        if (random.getRandomValue() <= crossoverProbability) {
+            for (i = 0; i < parent1.getNumberOfVariables(); i++) {
+                valueX1 = parent1.getVariable(i);
+                valueX2 = parent2.getVariable(i);
+                if (random.getRandomValue() <= 0.5) {
+                    if (Math.abs(valueX1 - valueX2) > EPS) // noinspection DuplicatedCode
+                    {
 
-						if (valueX1 < valueX2) {
-							y1 = valueX1;
-							y2 = valueX2;
-						} else {
-							y1 = valueX2;
-							y2 = valueX1;
-						}
+                        if (valueX1 < valueX2) {
+                            y1 = valueX1;
+                            y2 = valueX2;
+                        } else {
+                            y1 = valueX2;
+                            y2 = valueX1;
+                        }
 
-						yL = parent1.getLowerBound(i);
-						yU = parent1.getUpperBound(i);
-						rand = random.getRandomValue();
-						//--------------------------------------
-						beta = 1.0 + (2.0 * (y1 - yL) / (y2 - y1));
-						alpha = 2.0 - Math.pow(beta, -(distributionIndex + 1.0));
+                        yL = parent1.getLowerBound(i);
+                        yU = parent1.getUpperBound(i);
+                        rand = random.getRandomValue();
+                        //--------------------------------------
+                        beta = 1.0 + (2.0 * (y1 - yL) / (y2 - y1));
+                        alpha = 2.0 - Math.pow(beta, -(distributionIndex + 1.0));
 
-						if (rand <= (1.0 / alpha)) {
-							betaq = Math.pow((rand * alpha), (1.0 / (distributionIndex + 1.0)));
-						} else {
-							betaq = Math.pow(1.0 / (2.0 - rand * alpha), 1.0 / (distributionIndex + 1.0));
-						}
+                        if (rand <= (1.0 / alpha)) {
+                            betaq = Math.pow((rand * alpha), (1.0 / (distributionIndex + 1.0)));
+                        } else {
+                            betaq = Math.pow(1.0 / (2.0 - rand * alpha), 1.0 / (distributionIndex + 1.0));
+                        }
 
-						c1 = 0.5 * ((y1 + y2) - betaq * (y2 - y1));
+                        c1 = 0.5 * ((y1 + y2) - betaq * (y2 - y1));
 
-						//--------------------------------------
-						beta = 1.0 + (2.0 * (yU - y2) / (y2 - y1));
-						alpha = 2.0 - Math.pow(beta, -(distributionIndex + 1.0));
+                        //--------------------------------------
+                        beta = 1.0 + (2.0 * (yU - y2) / (y2 - y1));
+                        alpha = 2.0 - Math.pow(beta, -(distributionIndex + 1.0));
 
-						if (rand <= (1.0 / alpha)) {
-							betaq = Math.pow((rand * alpha), (1.0 / (distributionIndex + 1.0)));
-						} else {
-							betaq = Math.pow(1.0 / (2.0 - rand * alpha), 1.0 / (distributionIndex + 1.0));
-						}
+                        if (rand <= (1.0 / alpha)) {
+                            betaq = Math.pow((rand * alpha), (1.0 / (distributionIndex + 1.0)));
+                        } else {
+                            betaq = Math.pow(1.0 / (2.0 - rand * alpha), 1.0 / (distributionIndex + 1.0));
+                        }
 
-						c2 = 0.5 * (y1 + y2 + betaq * (y2 - y1));
+                        c2 = 0.5 * (y1 + y2 + betaq * (y2 - y1));
 
-						if (c1 < yL) {
-							c1 = yL;
-						}
+                        if (c1 < yL) {
+                            c1 = yL;
+                        }
 
-						if (c2 < yL) {
-							c2 = yL;
-						}
+                        if (c2 < yL) {
+                            c2 = yL;
+                        }
 
-						if (c1 > yU) {
-							c1 = yU;
-						}
+                        if (c1 > yU) {
+                            c1 = yU;
+                        }
 
-						if (c2 > yU) {
-							c2 = yU;
-						}
+                        if (c2 > yU) {
+                            c2 = yU;
+                        }
 
-						if (random.getRandomValue() <= 0.5) {
-							offspring.get(0).setVariable(i, (int) c2);
-							offspring.get(1).setVariable(i, (int) c1);
-						} else {
-							offspring.get(0).setVariable(i, (int) c1);
-							offspring.get(1).setVariable(i, (int) c2);
-						}
-					} else {
-						offspring.get(0).setVariable(i, valueX1);
-						offspring.get(1).setVariable(i, valueX2);
-					}
-				} else {
-					offspring.get(0).setVariable(i, valueX2);
-					offspring.get(1).setVariable(i, valueX1);
-				}
-			}
-		}
+                        if (random.getRandomValue() <= 0.5) {
+                            offspring.get(0).setVariable(i, (int) c2);
+                            offspring.get(1).setVariable(i, (int) c1);
+                        } else {
+                            offspring.get(0).setVariable(i, (int) c1);
+                            offspring.get(1).setVariable(i, (int) c2);
+                        }
+                    } else {
+                        offspring.get(0).setVariable(i, valueX1);
+                        offspring.get(1).setVariable(i, valueX2);
+                    }
+                } else {
+                    offspring.get(0).setVariable(i, valueX2);
+                    offspring.get(1).setVariable(i, valueX1);
+                }
+            }
+        }
 
-		return offspring;
-	}
+        return offspring;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int getNumberOfRequiredParents() {
-		return 2;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getNumberOfRequiredParents() {
+        return 2;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int getNumberOfGeneratedChildren() {
-		return 2;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getNumberOfGeneratedChildren() {
+        return 2;
+    }
 
 }

@@ -22,7 +22,6 @@ import model.epanet.element.Network;
 import model.epanet.element.utils.HydraulicSimulation;
 import model.epanet.io.InpParser;
 import model.metaheuristic.experiment.Experiment;
-import model.metaheuristic.problem.Problem;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import registrable.MultiObjectiveRegistrable;

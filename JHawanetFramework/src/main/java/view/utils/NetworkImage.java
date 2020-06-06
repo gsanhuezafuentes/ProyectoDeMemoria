@@ -2,7 +2,9 @@ package view.utils;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.transform.*;
+import javafx.scene.transform.Affine;
+import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Translate;
 import model.epanet.element.Network;
 import model.epanet.element.networkcomponent.*;
 import model.epanet.element.networkdesign.Label;

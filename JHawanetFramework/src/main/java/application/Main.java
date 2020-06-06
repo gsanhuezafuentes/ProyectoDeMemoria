@@ -29,6 +29,7 @@ public class Main extends Application {
 			controller.setWindow(primaryStage);
 			Scene scene = new Scene(root);
 
+			primaryStage.setTitle("JHawanetFramework");
 			primaryStage.setMinWidth(800);
 			primaryStage.setMinHeight(600);
 			primaryStage.setScene(scene);

@@ -1,7 +1,6 @@
 package controller.utils;
 
-import annotations.operators.DefaultConstructor;
-import annotations.registrable.*;
+import annotations.*;
 import exception.ApplicationException;
 import registrable.Registrable;
 
@@ -19,6 +18,9 @@ import java.util.Set;
  *
  */
 public class ReflectionUtils {
+	/**
+	 * A list with the type of operators already checked. Avoid checking every time an operator appears in a Registrable class.
+	 */
 	private static final HashSet<Class<?>> verifiedOperators = new HashSet<>();
 
 	/**
@@ -239,7 +241,7 @@ public class ReflectionUtils {
 	 *                              fulfilled
 	 */
 	public static void validateOperators(Class<? extends Registrable<?>> registrable) {
-		Constructor<?> constructor = getConstructor(registrable);
+		Constructor<?> constructor = getNewProblemConstructor(registrable);
 
 		Parameters annotation = constructor.getAnnotation(Parameters.class);
 		// Verify if exist annotation and it has defined operators
@@ -255,6 +257,7 @@ public class ReflectionUtils {
 
 						Constructor<?> defaultConstructor = null;
 						int defaultConstructCount = 0;
+						// count the number of default constructor
 						for (Constructor<?> operatorConstructor : operatorClass.getConstructors()) {
 							DefaultConstructor constructorAnnotation = operatorConstructor
 									.getAnnotation(DefaultConstructor.class);
@@ -306,7 +309,7 @@ public class ReflectionUtils {
 	 * @return The constructor with {@link NewProblem} annotation
 	 * @throws NullPointerException if registrableClass is null.
 	 */
-	public static Constructor<?> getConstructor(Class<? extends Registrable<?>> registrableClass) {
+	public static Constructor<?> getNewProblemConstructor(Class<? extends Registrable<?>> registrableClass) {
 		Objects.requireNonNull(registrableClass);
 		for (Constructor<?> constructor : registrableClass.getConstructors()) {
 			if (constructor.getAnnotation(NewProblem.class) != null) {
@@ -317,7 +320,7 @@ public class ReflectionUtils {
 	}
 
 	/**
-	 * Search the default constructor
+	 * Search the default constructor. The constructor with {@link DefaultConstructor} annotation.
 	 * 
 	 * @param classType the class where find the default constructor
 	 * @return constructor with {@link DefaultConstructor} annotation if exit. null
@@ -387,7 +390,7 @@ public class ReflectionUtils {
 	}
 
 	/**
-	 * Create a new instance of Registrable problem.
+	 * Create a new instance of Registrable problem when it has parameters.
 	 * 
 	 * @param problemClass the registrable class
 	 * @param parameters   the parameters of constructor of registrable class
@@ -401,7 +404,7 @@ public class ReflectionUtils {
 	public static <T extends Registrable<?>> T createRegistrableInstance(Class<? extends Registrable<?>> problemClass,
 			Object[] parameters) throws InvocationTargetException {
 
-		Constructor<?> constructor = ReflectionUtils.getConstructor(problemClass);
+		Constructor<?> constructor = ReflectionUtils.getNewProblemConstructor(problemClass);
 		Object registrable;
 		try {
 			registrable = constructor.newInstance(parameters);
@@ -412,7 +415,7 @@ public class ReflectionUtils {
 	}
 
 	/**
-	 * Create a new instance of Registrable problem.
+	 * Create a new instance of Registrable problem when it hasn't parameters.
 	 * 
 	 * @param problemClass the registrable class
 	 * @param <T> The type of class

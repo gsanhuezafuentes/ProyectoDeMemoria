@@ -40,8 +40,12 @@ import model.metaheuristic.utils.io.SolutionListOutput;
 import model.metaheuristic.utils.solutionattribute.SolutionAttribute;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * This class computes a reference Pareto front from a set of files. Once the

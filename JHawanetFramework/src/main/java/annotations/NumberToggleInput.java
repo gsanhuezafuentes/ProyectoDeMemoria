@@ -1,4 +1,4 @@
-package annotations.registrable;
+package annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -38,4 +38,6 @@ public @interface NumberToggleInput {
 	 * @return the display name
 	 */
 	String displayName() default "";
+
+	double defaultValue() default 0;
 }

@@ -12,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.epanet.element.networkcomponent.Component;
 import model.epanet.element.result.LinkSimulationResult;

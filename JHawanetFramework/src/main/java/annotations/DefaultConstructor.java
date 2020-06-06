@@ -1,4 +1,4 @@
-package annotations.operators;
+package annotations;
 
 import model.metaheuristic.operator.Operator;
 
@@ -20,8 +20,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target(CONSTRUCTOR)
 public @interface DefaultConstructor {
 	/**
-	 * Array with the names defined for each variable.
-	 * @return array with displayNames.
+	 * Get the number input annotation. The number will be injected in the Operator
+	 * in the parameter of type int or double.
+	 *
+	 * @return the NumberInput annotation
 	 */
-	String[] value() default {};
+	NumberInput[] value() default {};
 }

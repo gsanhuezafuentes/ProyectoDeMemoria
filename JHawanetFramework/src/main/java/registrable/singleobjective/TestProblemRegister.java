@@ -1,19 +1,15 @@
 package registrable.singleobjective;
 
-import annotations.registrable.NewProblem;
+import annotations.NewProblem;
 import epanet.core.EpanetAPI;
 import exception.ApplicationException;
-
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithm2;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentBuilder;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.experiment.util.ExperimentProblem;
-import model.metaheuristic.operator.crossover.impl.IntegerSBXCrossover;
 import model.metaheuristic.operator.crossover.impl.IntegerSinglePointCrossover;
-import model.metaheuristic.operator.mutation.impl.IntegerPolynomialMutation;
-import model.metaheuristic.operator.mutation.impl.IntegerRangeRandomMutation;
 import model.metaheuristic.operator.mutation.impl.IntegerSimpleRandomMutation;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.UniformSelection;
@@ -22,7 +18,6 @@ import model.metaheuristic.problem.impl.PipeOptimizing;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.SingleObjectiveRegistrable;
-import registrable.utils.ExperimentUtils;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

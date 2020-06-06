@@ -1,8 +1,6 @@
 package registrable;
 
-import annotations.registrable.*;
 import model.metaheuristic.experiment.Experiment;
-import model.metaheuristic.operator.Operator;
 import registrable.singleobjective.PipeOptimizingRegister;
 
 /**

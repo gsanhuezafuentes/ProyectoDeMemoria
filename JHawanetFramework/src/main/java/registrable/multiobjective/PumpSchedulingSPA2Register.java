@@ -1,9 +1,7 @@
 package registrable.multiobjective;
 
-import annotations.registrable.NewProblem;
+import annotations.NewProblem;
 import model.metaheuristic.algorithm.Algorithm;
-import model.metaheuristic.algorithm.multiobjective.smpso.SMPSOInteger;
-import model.metaheuristic.algorithm.multiobjective.spa2.SPEA2;
 import model.metaheuristic.algorithm.multiobjective.spa2.SPEA2Builder;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentBuilder;
@@ -18,9 +16,7 @@ import model.metaheuristic.operator.selection.impl.TournamentSelection;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.problem.impl.VanzylOriginal;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.archive.impl.CrowdingDistanceArchive;
 import model.metaheuristic.utils.comparator.DominanceComparator;
-import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.MultiObjectiveRegistrable;
 
 import java.util.ArrayList;

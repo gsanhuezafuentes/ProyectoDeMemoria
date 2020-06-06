@@ -3,7 +3,7 @@ title Diagrama para la simulación monoobjetivo
 actor User
 participant MainWindowController
 participant ProblemMenuConfiguration
-participant ConfigurationDinamicWindowController
+participant DynamicConfigurationController
 participant SingleObjectiveRunningWindowController
 participant AlgorithmTask
 participant ResultPlotWindowController
@@ -17,22 +17,22 @@ autoactivation on
 
 User->ProblemMenuConfiguration://Elegir problema\ndesde un menu y \ndisparar evento\npara abrir la red//\nmenuItemEventHander()
 
-ProblemMenuConfiguration->*ConfigurationDinamicWindowController:<<crear>>
+ProblemMenuConfiguration->*DynamicConfigurationController:<<crear>>
 
-deactivate ConfigurationDinamicWindowController
+deactivate DynamicConfigurationController
 
-ProblemMenuConfiguration->ConfigurationDinamicWindowController://Solicita al controlador que\n muestra la ventana//\nshowDinamicWindow()
+ProblemMenuConfiguration->DynamicConfigurationController://Solicita al controlador que\n muestra la ventana//\nshowDinamicWindow()
 deactivate ProblemMenuConfiguration
-User<--ConfigurationDinamicWindowController:Ventana de configuración\nde algoritmo
+User<--DynamicConfigurationController:Ventana de configuración\nde algoritmo
 
 
-User->ConfigurationDinamicWindowController:Ingresa las configuraciones\ny disparar evento para crear\nla instancia de la clase registrable\nonRunButtonClick()
+User->DynamicConfigurationController:Ingresa las configuraciones\ny disparar evento para crear\nla instancia de la clase registrable\nonRunButtonClick()
 
-ConfigurationDinamicWindowController->ConfigurationDinamicWindowController:Crear instancia \nde Registrable
-MainWindowController<-ConfigurationDinamicWindowController://Ejecuta el callback//\nrunSingleObjectiveExperiment(Registrable)
-deactivate ConfigurationDinamicWindowController
-deactivateafter ConfigurationDinamicWindowController
-destroyafter ConfigurationDinamicWindowController
+DynamicConfigurationController->DynamicConfigurationController:Crear instancia \nde Registrable
+MainWindowController<-DynamicConfigurationController://Ejecuta el callback//\nrunSingleObjectiveExperiment(Registrable)
+deactivate DynamicConfigurationController
+deactivateafter DynamicConfigurationController
+destroyafter DynamicConfigurationController
 
 autoactivation off
 MainWindowController->MainWindowController://Construye el algoritmo//\nRegistrable.build()
