@@ -85,14 +85,15 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
             files = {@FileInput(displayName = "Gama")}, //
             numbers = {@NumberInput(displayName = "Independent run", defaultValue = 5),
                     @NumberInput(displayName = "Min pressure", defaultValue = 30),
-                    @NumberInput(displayName = "Population Size", defaultValue = 1000)}, //
+                    @NumberInput(displayName = "Population Size", defaultValue = 100)}, //
             numbersToggle = {
-                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Number of iteration without improvement", defaultValue = 100),
-                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation", defaultValue = 1000)})
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation", defaultValue = 25000),
+                    @NumberToggleInput(groupID = "Finish Condition", displayName = "Number of iteration without improvement", defaultValue = 100)
+            })
     @SuppressWarnings("unchecked") // The object injected are indicated in operators elements. It guarantee its
     // types.
     public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama, int independentRun,
-                                  int minPressure, int populationSize, int numberWithoutImprovement, int maxEvaluations) throws Exception {
+                                  int minPressure, int populationSize, int maxEvaluations, int numberWithoutImprovement) throws Exception {
         System.out.println(selectionOperator);
         System.out.println(crossoverOperator);
         System.out.println(mutationOperator);

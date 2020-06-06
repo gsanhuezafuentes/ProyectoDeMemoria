@@ -6,8 +6,6 @@ import registrable.multiobjective.PumpSchedulingNSGAIIRegister;
 import registrable.multiobjective.PumpSchedulingSMPSORegister;
 import registrable.multiobjective.PumpSchedulingSPA2Register;
 import registrable.singleobjective.PipeOptimizingRegister;
-import registrable.singleobjective.TestProblemRegister;
-import registrable.singleobjective.TestSizePipeOptimizing;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +22,6 @@ public final class RegistrableConfiguration {
 	//Add here the Registrable clases (SingleObjectives).
 	static {
 		SINGLEOBJECTIVES_PROBLEMS.add(PipeOptimizingRegister.class);
-		SINGLEOBJECTIVES_PROBLEMS.add(TestProblemRegister.class);
-		SINGLEOBJECTIVES_PROBLEMS.add(TestSizePipeOptimizing.class);
-
 	}
 	
 	// Multiobjectives

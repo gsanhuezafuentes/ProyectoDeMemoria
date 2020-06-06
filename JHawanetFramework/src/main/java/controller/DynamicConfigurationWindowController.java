@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
  *
  * @param <T> The type of registrable class
  */
-public class DynamicConfigurationController<T extends Registrable<?>> {
+public class DynamicConfigurationWindowController<T extends Registrable<?>> {
     private final CustomCallback<T> experimentEvent;
     private final Class<? extends T> problemClass;
     private final Pane root;
@@ -99,8 +99,8 @@ public class DynamicConfigurationController<T extends Registrable<?>> {
      */
     private Map<String, ToggleGroup> numberToggleGroupAdded;
 
-    public DynamicConfigurationController(Class<? extends T> registrable,
-                                          CustomCallback<T> experimentEvent) {
+    public DynamicConfigurationWindowController(Class<? extends T> registrable,
+                                                CustomCallback<T> experimentEvent) {
         this.problemClass = Objects.requireNonNull(registrable);
         this.experimentEvent = Objects.requireNonNull(experimentEvent);
         this.resultOfOperatorConfiguration = new HashMap<>();
