@@ -28,6 +28,7 @@
  */
 package model.metaheuristic.algorithm.multiobjective.smpso;
 
+import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.mutation.impl.IntegerPolynomialMutation;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.impl.IntegerSolution;
@@ -54,7 +55,7 @@ public class SMPSOIntegerBuilder {
     private double r2Max;
     private double r2Min;
     private double weightMax;
-    private IntegerPolynomialMutation mutationOperator;
+    private MutationOperator<IntegerSolution> mutationOperator;
     private SequentialSolutionEvaluator<IntegerSolution> evaluator;
 
     public SMPSOIntegerBuilder(Problem<IntegerSolution> problem, BoundedArchive<IntegerSolution> leaders) {
@@ -230,7 +231,7 @@ public class SMPSOIntegerBuilder {
      *
      * @return the mutation operator.
      */
-    public IntegerPolynomialMutation getMutationOperator() {
+    public MutationOperator<IntegerSolution> getMutationOperator() {
         return mutationOperator;
     }
 
@@ -241,7 +242,7 @@ public class SMPSOIntegerBuilder {
      * @return the instance of builder.
      * @throws NullPointerException if mutationOperator is null.
      */
-    public SMPSOIntegerBuilder setMutationOperator(IntegerPolynomialMutation mutationOperator) {
+    public SMPSOIntegerBuilder setMutationOperator(MutationOperator<IntegerSolution> mutationOperator) {
         this.mutationOperator = Objects.requireNonNull(mutationOperator);
         return this;
     }

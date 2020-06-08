@@ -1,53 +1,88 @@
 package registrable.multiobjective;
 
-import annotations.NewProblem;
+import annotations.*;
+import model.io.JsonSimpleReader;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.algorithm.multiobjective.smpso.SMPSOIntegerBuilder;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentBuilder;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.experiment.util.ExperimentProblem;
+import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.mutation.impl.IntegerPolynomialMutation;
-import model.metaheuristic.problem.Problem;
+import model.metaheuristic.operator.mutation.impl.IntegerRangeRandomMutation;
+import model.metaheuristic.operator.mutation.impl.IntegerSimpleRandomMutation;
 import model.metaheuristic.problem.impl.VanzylOriginal;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.archive.impl.CrowdingDistanceArchive;
 import registrable.MultiObjectiveRegistrable;
+import registrable.utils.ExperimentUtils;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
+import java.util.Objects;
 
 public class PumpSchedulingSMPSORegister implements MultiObjectiveRegistrable {
 
-    private static final int INDEPENDENT_RUNS = 10;
     private VanzylOriginal problem;
+    private final MutationOperator<IntegerSolution> mutation;
+    private final File baseDirectory;
+    private final File json;
+    private final int independentRun;
+    private final int maxIterations;
+    private final int swarmSize;
 
-    @NewProblem(displayName = "Pumping Scheduling", algorithmName = "SMPSOInteger")
-    public PumpSchedulingSMPSORegister() {
+    @NewProblem(displayName = "Pumping Scheduling", algorithmName = "SMPSOInteger", description = "Solve the PumpScheduling Problem.\n" +
+            "Objective1: energy cost\n" +
+            "Objective2: maintenance Cost")
+    @Parameters(
+            operators = {
+                    @OperatorInput(displayName = "Mutation Operator", value = {
+                            @OperatorOption(displayName = "Integer Polynomial Mutation", value = IntegerPolynomialMutation.class),
+                            @OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class),
+                            @OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class)
+                    })
+            }, //
+            files = {@FileInput(displayName = "Base directory", type = FileInput.Type.Directory), @FileInput(displayName = "Configuration file (json) *")}, //
+            numbers = {@NumberInput(displayName = "Independent run", defaultValue = 10)
+                    , @NumberInput(displayName = "Max number of iteration", defaultValue = 250)
+                    , @NumberInput(displayName = "Swarm Size", defaultValue = 100)
+            }
+    )
+    public PumpSchedulingSMPSORegister(Object mutation, File baseDirectory, File json, int independentRun, int maxIterations, int swarmSize) {
+        this.mutation = (MutationOperator<IntegerSolution>) mutation;
+        this.baseDirectory = baseDirectory;
+        this.json = Objects.requireNonNull(json, "The json configuration file was not indicated");
+        this.independentRun = independentRun;
+        this.maxIterations = maxIterations;
+        this.swarmSize = swarmSize;
     }
 
     @Override
     public Experiment<?> build(String inpPath) throws Exception {
-        String experimentBaseDirectory = "C:\\Users\\gsanh\\Desktop\\Memoria\\NoGit\\Experiment";
+        String experimentBaseDirectory;
+        if (baseDirectory == null)
+            experimentBaseDirectory = "";
+        else experimentBaseDirectory = baseDirectory.getAbsolutePath();
 
         /* *******************vanzylOriginal ***************************/
 
         String inpPathVanzyl = inpPath; // "src/resources/vanzylOriginal.inp";
 
         // Ingreso de valores manualmente (comentar en caso de usar archivo PSE)
-
-        int numPumps = 3;
-        int totalOptimizationTime = 86400;
-        int intervalOptimizationTime = 3600;
-        double[] energyCostPerTime = {0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.1194, 0.1194, 0.1194,
-                0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194,
-                0.1194};
-        double maintenanceCost = 1;
-        int minNodePressure = 15;
-        int numConstraints = 218;
-        double[] maxFlowrateEachPump = {300, 300, 150};
-        double[] minTank = {0, 0};
-        double[] maxTank = {10, 5};
+        JsonSimpleReader config = JsonSimpleReader.read(json.getAbsolutePath());
+        int numPumps = config.getInt("numPumps");//3;
+        int totalOptimizationTime = config.getInt("totalOptimizationTime"); //86400;
+        int intervalOptimizationTime = config.getInt("intervalOptimizationTime"); //3600;
+        double[] energyCostPerTime = config.getDoubleArray("energyCostPerTime"); //{0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.1194, 0.1194, 0.1194,
+        //0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194,
+        //0.1194};
+        double maintenanceCost = config.getDouble("maintenanceCost"); //1;
+        int minNodePressure = config.getInt("minNodePressure"); //15;
+        int numConstraints = config.getInt("numConstraints"); //218;
+        double[] maxFlowrateEachPump = config.getDoubleArray("maxFlowrateEachPump"); //{300, 300, 150};
+        double[] minTank = config.getDoubleArray("minTank"); //{0, 0};
+        double[] maxTank = config.getDoubleArray("maxTank"); //{10, 5};
 
         VanzylOriginal vanzylObj = new VanzylOriginal(numPumps, totalOptimizationTime, intervalOptimizationTime,
                 energyCostPerTime, maintenanceCost, minNodePressure, numConstraints, minTank, maxTank,
@@ -62,55 +97,29 @@ public class PumpSchedulingSMPSORegister implements MultiObjectiveRegistrable {
 
         ExperimentProblem<IntegerSolution> problem = new ExperimentProblem<>(vanzylObj, "vanzylOriginal");
 
-        List<ExperimentAlgorithm<IntegerSolution>> algorithmList = configureAlgorithmList(problem);
+        // create so many algorithm as the number of independantRun indicated.
+        List<ExperimentAlgorithm<IntegerSolution>> algorithmList = ExperimentUtils.configureAlgorithmList(problem, independentRun, () -> {
+            Algorithm<IntegerSolution> algorithm = new SMPSOIntegerBuilder(this.problem, new CrowdingDistanceArchive<IntegerSolution>(100))
+                    .setMutationOperator(this.mutation)
+                    .setMaxIterations(this.maxIterations)
+                    .setSwarmSize(this.swarmSize)
+                    .build();
+            return algorithm;
+        });
 
-        Experiment<IntegerSolution> experiment = new ExperimentBuilder<IntegerSolution>("PSMOStudy")
+        ExperimentBuilder<IntegerSolution> builder = new ExperimentBuilder<IntegerSolution>("PSMOStudy")
                 .setAlgorithmList(algorithmList)
                 .setProblem(problem)
-                .setExperimentBaseDirectory(experimentBaseDirectory)
-                .setObjectiveOutputFileName("FUN")
-                .setVariablesOutputFileName("VAR")
-                .setReferenceFrontDirectory(experimentBaseDirectory + "/PSMOStudy/referenceFronts")
-                .setIndependentRuns(INDEPENDENT_RUNS).build();
+                .setIndependentRuns(independentRun);
+        // if baseDirectory isn't null so add the output directory.
+        if (baseDirectory != null) {
+            builder.setExperimentBaseDirectory(experimentBaseDirectory)
+                    .setObjectiveOutputFileName("FUN")
+                    .setVariablesOutputFileName("VAR")
+                    .setReferenceFrontDirectory(experimentBaseDirectory + "/PSMOStudy/referenceFronts");
+        }
+        Experiment<IntegerSolution> experiment = builder.build();
 
         return experiment;
     }
-
-    /**
-     * The algorithm list is composed of pairs {@link Algorithm} + {@link Problem}
-     * which form part of a {@link ExperimentAlgorithm}, which is a decorator for
-     * class {@link Algorithm}. The {@link ExperimentAlgorithm} has an optional tag
-     * component, that can be set as it is shown in this example, where four
-     * variants of a same algorithm are defined.
-     */
-    static List<ExperimentAlgorithm<IntegerSolution>> configureAlgorithmList(ExperimentProblem<IntegerSolution> problemExperiment) {
-        List<ExperimentAlgorithm<IntegerSolution>> algorithms = new ArrayList<>();
-
-        for (int run = 0; run < INDEPENDENT_RUNS; run++) {
-
-            Problem<IntegerSolution> problem = problemExperiment.getProblem();
-            double c1Max = 2.5;
-            double c1Min = 1.5;
-            double c2Max = 2.5;
-            double c2Min = 1.5;
-            double r1Max = 1.0;
-            double r1Min = 0.0;
-            double r2Max = 1.0;
-            double r2Min = 0.0;
-            double weightMax = 0.1;
-            double weightMin = 0.1;
-            double changeVelocity1 = -1;
-            double changeVelocity2 = -1;
-
-            Algorithm<IntegerSolution> algorithm = new SMPSOIntegerBuilder(problem, new CrowdingDistanceArchive<IntegerSolution>(100))
-	                .setMutationOperator(new IntegerPolynomialMutation(1.0/problem.getNumberOfVariables(), 20))
-	                .setMaxIterations(250)
-	                .setSwarmSize(100)
-	                .build();
-
-            algorithms.add(new ExperimentAlgorithm<>(algorithm, problemExperiment, run));
-        }
-        return algorithms;
-    }
-
 }
