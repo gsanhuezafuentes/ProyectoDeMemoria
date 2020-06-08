@@ -36,7 +36,7 @@ import java.util.List;
  *  Assign to each solution in a solution list an attribute containing the position of
  *  the solutions in the list.
  *
- * @param <S>
+ * @param <S> the type of solution
  */
 public class LocationAttribute <S extends Solution<?>>
         extends SolutionAttribute<S, Integer> {

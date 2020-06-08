@@ -136,6 +136,7 @@ public interface Problem<S extends Solution<?>> {
      * <strong>Notes:</strong>
      * <p>
      * This method will be called when the experiment finish.
+     * @throws Exception if a exception is throw while close resources
      */
     default void closeResources() throws Exception {
         /*

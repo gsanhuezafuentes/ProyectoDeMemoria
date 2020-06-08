@@ -1,11 +1,15 @@
 package registrable;
 
-import annotations.registrable.*;
+import annotations.*;
 import model.metaheuristic.operator.Operator;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import registrable.singleobjective.PipeOptimizingRegister;
 
+import java.util.Map;
+
 /**
- * It is the superinterface to {@link SingleObjectiveRegistrable} and {@link MultiObjectiveRegistrable} <br>
+ * It is the superinterface to {@link SingleObjectiveRegistrable} and {@link MultiObjectiveRegistrable}. <br>
  * <br>
  * 
  * The class that implement this interface has to have a only public constructor
@@ -30,16 +34,16 @@ import registrable.singleobjective.PipeOptimizingRegister;
  * parameters has to be described through their respective annotation. If a
  * constructor parameter don't have an annotation that describe it then an
  * exception will be thrown. Eg. if a parameter of constructor will be a
- * {@link Operator} so the constructor has to be a Object parameter and the
- * {@link Parameters} annotation has to configure his
- * {@link Parameters#operators()}. This annotation is optional, but if this
+ * Object so in the parameter annotation has to be a {@link Operator} annotation
+ * the describe the type of element to inject. The {@link Operator} has to be
+ * added to {@link Parameters#operators()}. This annotation is optional, but if this
  * notation is not in the constructor then the constructor can't have
  * parameters.</li>
  * </ul>
  * <br>
  * <br>
  * 
- * The order and the type in what the constructor operator are added is
+ * The order and the type in what the constructor params are added is
  * important. The order has to be the next:<br>
  * <br>
  * 
@@ -55,20 +59,21 @@ import registrable.singleobjective.PipeOptimizingRegister;
  * iteration without improvement. It is described using
  * {@link Parameters#numbers()} or {@link Parameters#numbersToggle()}</li>
  * </ol>
- * 
- * {@link Parameters} has a operators property, files property and numbers
+ * <p>
+ * {@link Parameters} has a operators property, files property, numbers
  * property and numberToggle property. The operators property receive
  * {@link OperatorInput}, the files property receive {@link FileInput} and
  * numbers receive {@link NumberInput} and the numberToggle receive
  * {@link NumberToggleInput}.
  * 
- * {@link OperatorInput} denote which operator will be received. The
+ * {@link OperatorInput} denote that a operator will be received and the type of it (Eg. Selection, Mutation, etc). The
  * {@link OperatorInput} let one or more {@link OperatorOption} that indicate
  * what Operator can be used in this problem.<br>
  * <br>
  * 
- * {@link FileInput} denote a file. it let indicate files with information to
- * execute the algorithm.
+ * {@link FileInput} denote a file. it let use files with information to
+ * execute the algorithm. If {@link FileInput#type()} is {@link FileInput.Type#SAVE}
+ * it open the FileChooser window in save mode.
  * 
  * {@link NumberInput} denote a int or a double value that are received by the
  * constructor.<br>
@@ -93,6 +98,23 @@ public interface Registrable<R> {
 	 * @return the experiment ready for execution
 	 * @throws Exception if an exception occurs when building the experiment
 	 */
+	@NotNull
 	R build(String inpPath) throws Exception;
+
+	/**
+	 * Return a map where save the value of configuration used.
+	 *
+	 * <p>
+	 * This method let add more information to ResultWindow because add new columns with the values added here.
+	 * The key will be used has the column name and the value as value of column.
+	 * <p>
+	 * If the map has no value or the method return null. So the ResultWindow only show objectives and the variables.
+	 *
+	 * @return the map or null.
+	 */
+	@Nullable
+	default Map<String, String> getParameters(){
+		return null;
+	}
 
 }

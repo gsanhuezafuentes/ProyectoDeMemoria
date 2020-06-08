@@ -1,9 +1,10 @@
 package controller.singleobjectives;
 
+import application.ApplicationSetup;
 import controller.ResultController;
 import controller.ResultPlotController;
-import controller.utils.SingleObjectiveExperimentTask;
 import controller.utils.CustomCallback;
+import controller.utils.SingleObjectiveExperimentTask;
 import epanet.core.EpanetException;
 import exception.ApplicationException;
 import javafx.concurrent.Worker.State;
@@ -24,6 +25,7 @@ import view.utils.CustomDialogs;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -54,53 +56,76 @@ public class SingleObjectiveRunningWindowController {
     private TextArea textArea;
     @FXML
     private Tab chartTab;
+    @FXML
+    private Label algorithmNameLabel;
+    @FXML
+    private Label problemNameLabel;
 
     @NotNull
     private final Pane root;
     @NotNull
+    private final SingleObjectiveExperimentTask task;
+    @Nullable
+    private final ResultPlotController resultPlotController;
+    @Nullable
+    private Stage window;
+
+    @NotNull
     private final Problem<?> problem;
     @NotNull
-    private final SingleObjectiveExperimentTask task;
+    private final Experiment<?> experiment;
+    @Nullable
+    private final Map<String, String> parameters;
     @NotNull
     private final Network network;
     @NotNull
-    private final ResultPlotController resultPlotController;
-    @NotNull
     private final CustomCallback<ResultController> callback;
-    @Nullable
-    private Stage window;
 
     /**
      * Constructor
      *
      * @param experiment the algorithm to execute
-     * @param problem   the problem that the algorithm has configured
-     * @param network   the network opened.
-     * @param callback  a callback function to return the result node when task finish
-     * @throws NullPointerException if algorithm is null or problem is null or
-     *                              network is null
+     * @param parameters the configurations parameter of experiment.
+     * @param network    the network opened.
+     * @param callback   a callback function to return the result node when task finish
+     * @throws NullPointerException     if experiment, experiment problem, network or callback are null.
+     * @throws IllegalArgumentException if the problem is multiobjective or there aren't element in experiment algorithm.
      */
-    public SingleObjectiveRunningWindowController(Experiment<?> experiment, @NotNull Problem<?> problem, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
+    public SingleObjectiveRunningWindowController(@NotNull Experiment<?> experiment, @Nullable Map<String, String> parameters, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
+        this.experiment = Objects.requireNonNull(experiment);
+        this.problem = Objects.requireNonNull(experiment.getProblem()).getProblem();
+        this.parameters = parameters;
+        this.network = Objects.requireNonNull(network);
+        this.callback = Objects.requireNonNull(callback);
+
+        if (experiment.getAlgorithmList().isEmpty()) {
+            throw new IllegalArgumentException("There aren't algorithms configured in experiment");
+        }
+
         /*
          * Only add the the showChartButton if the number of objectives is less than 2.
          */
         if (problem.getNumberOfObjectives() != 1) {
-            throw new IllegalArgumentException("The number of objective to to this type of Registrable should be 1. Experiment is needed by multiobjectives problems");
+            throw new IllegalArgumentException("The number of objective to to this type of Registrable should be 1.");
         }
 
-        Objects.requireNonNull(experiment);
-        Objects.requireNonNull(problem);
-        Objects.requireNonNull(network);
-        this.callback = Objects.requireNonNull(callback);
-
-        this.problem = problem;
-        this.network = network;
-        this.task = new SingleObjectiveExperimentTask(experiment);
+        // Used to create a new thread
+        this.task = new SingleObjectiveExperimentTask(experiment, ApplicationSetup.getInstance().isChartEnable());
 
         this.root = loadFXML(); //initialize fxml and all parameters defined with @FXML
+
         // Create the controller to add point even if plot windows is not showed
-        this.resultPlotController = new ResultPlotController(this.problem.getNumberOfObjectives());
-        this.chartTab.setContent(this.resultPlotController.getNode());
+        if (ApplicationSetup.getInstance().isChartEnable()) {
+            this.resultPlotController = new ResultPlotController(this.problem.getNumberOfObjectives());
+            this.chartTab.setContent(this.resultPlotController.getNode());
+        } else {
+            this.resultPlotController = null;
+            this.chartTab.setDisable(true);
+        }
+        //add the name of algorithm and the name of problem. (The experiment should have only one type of algorithm. Eg. GeneticAlgorithm)
+        this.algorithmNameLabel.setText(experiment.getAlgorithmList().get(0).getAlgorithmTag());
+        this.problemNameLabel.setText(experiment.getProblem().getTag());
+
         addBindingAndListener();
     }
 
@@ -148,28 +173,40 @@ public class SingleObjectiveRunningWindowController {
             }
         });
 
+        // update the progress bar
         task.progressProperty().addListener((prop, old, newv) -> {
             if (newv != null) {
                 progressBar.setProgress((double) newv);
 
             }
 
-            String workDone = (task.getWorkDone() != -1) ? Double.toString(task.getWorkDone()) : "Undefined";
-            String totalWork = (task.getTotalWork() != -1) ? Double.toString(task.getTotalWork()) : "Undefined";
+            String workDone = (task.getWorkDone() != -1) ? Integer.toString((int)task.getWorkDone()) : "Undefined";
+            String totalWork = (task.getTotalWork() != -1) ? Integer.toString((int)task.getTotalWork()) : "Undefined";
             String progressText = workDone + "/" + totalWork;
+
+            if (this.resultPlotController != null) {
+                this.resultPlotController.updateExecutionStatusLabel(String.format("Execution %s/%s of the %s", workDone, totalWork, this.algorithmNameLabel.getText()));
+            }
 
             progressLabel.setText(progressText);
 
         });
 
-        task.customValueProperty().addListener((prop, oldv, newv) -> this.resultPlotController.addData(newv.getSolution(), newv.getNumberOfIterations()));
+        // Receive the value of thread and add to chart
+        task.customValueProperty().addListener((prop, oldv, newv) -> {
+            if (this.resultPlotController != null) {
+                this.resultPlotController.addData(newv.getSolution()
+                        , newv.getNumberOfGeneration()
+                        , newv.getRepeatNumberOfAlgorithm());
+            }
+        });
 
         // listener when task finishes successfully
         task.setOnSucceeded(e -> {
             List<SingleObjectiveExperimentTask.Result> result = task.getValue();
-            List<? extends Solution<?>> solutions = result.stream().map(result1 -> result1.getSolution()).collect(Collectors.toList());
-            ResultController resultController = new ResultController(solutions, this.problem,
-                    this.network);
+            List<? extends Solution<?>> solutions = result.stream().map(SingleObjectiveExperimentTask.Result::getSolution).collect(Collectors.toList());
+            ResultController resultController = new ResultController(experiment.getProblem().getTag(), solutions, this.problem,
+                    this.network, parameters);
             callback.notify(resultController);
         });
     }

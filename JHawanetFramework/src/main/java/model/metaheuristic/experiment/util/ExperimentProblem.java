@@ -87,7 +87,7 @@ public final class ExperimentProblem<S extends Solution<?>> {
 	/**
 	 * Close the resource of the problems calling this close method.
 	 * This method is called when the experiment finish.
-	 * @throws Exception
+	 * @throws Exception if there is an exception to close the resources.
 	 */
 	public void closeResources() throws Exception {
 		this.problem.closeResources();

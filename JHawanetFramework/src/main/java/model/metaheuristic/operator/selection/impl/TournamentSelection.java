@@ -28,6 +28,8 @@
  */
 package model.metaheuristic.operator.selection.impl;
 
+import annotations.DefaultConstructor;
+import annotations.NumberInput;
 import exception.ApplicationException;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.solution.Solution;
@@ -53,18 +55,28 @@ public class TournamentSelection<S extends Solution<?>> implements SelectionOper
      *
      * @param n_arity the number of solutions to realize the tournament
      */
+    @DefaultConstructor(@NumberInput(displayName = "Arity", defaultValue = 2))
     public TournamentSelection(int n_arity) {
-        this(new DominanceComparator<S>(), n_arity);
+        this( n_arity, new DominanceComparator<S>());
     }
 
     /**
      * Constructor
-     * @param comparator the comparator to use
      * @param n_arity the number of solutions to realize the tournament
+     * @param comparator the comparator to use
      */
-    public TournamentSelection(Comparator<S> comparator, int n_arity) {
+    public TournamentSelection(int n_arity, Comparator<S> comparator) {
         this.n_arity = n_arity;
         this.comparator = comparator;
+    }
+
+    /**
+     * Get the arity of tournament selection.
+     * If the arity is two so it is a BinaryTournament.
+     * @return the arity.
+     */
+    public int getN_arity() {
+        return n_arity;
     }
 
     /**

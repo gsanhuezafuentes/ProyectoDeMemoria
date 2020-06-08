@@ -1,5 +1,6 @@
 package controller.utils;
 
+import controller.utils.solutionattribute.Generation;
 import exception.ApplicationException;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringProperty;
@@ -20,8 +21,10 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?>>> {
-    @NotNull private final ObservableStringBuffer taskLog;
-    @NotNull private final Experiment<?> experiment;
+    @NotNull
+    private final ObservableStringBuffer taskLog;
+    @NotNull
+    private final Experiment<?> experiment;
 
     //**********************************************************************************
     //Additional properties to task
@@ -32,18 +35,22 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
      * manner from the subclass to the FX application thread. AtomicReference is
      * used so as to coalesce updates such that we don't flood the event queue.
      */
-    @NotNull private final AtomicReference<String> loggerUpdate = new AtomicReference<>();
-    @NotNull private final StringProperty log = new SimpleStringProperty(this, "log", "");
+    @NotNull
+    private final AtomicReference<String> loggerUpdate = new AtomicReference<>();
+    @NotNull
+    private final StringProperty log = new SimpleStringProperty(this, "log", "");
     //**********************************************************************************
 
     /**
      * Constructor
-     * @param experiment the experiment
+     *
+     * @param experiment          the experiment.
+     * @param returnPartialResult returnPartialResult a boolean property that indicates if partial result should be returned.
      * @throws NullPointerException if experiment is null.
      */
-    public MultiObjectiveExperimentTask(@NotNull Experiment<?> experiment) {
-        Objects.requireNonNull(experiment);
-        this.experiment = experiment;
+    public MultiObjectiveExperimentTask(@NotNull Experiment<?> experiment, boolean returnPartialResult) {
+        this.experiment = Objects.requireNonNull(experiment);
+        this.returnPartialResult = returnPartialResult;
         taskLog = new ObservableStringBuffer();
         taskLog.addObserver((o, arg) -> {
             ObservableStringBuffer observable = (ObservableStringBuffer) o;
@@ -53,13 +60,13 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
 
     @Override
     protected List<? extends Solution<?>> call() throws Exception {
-        boolean runInMemory = experiment.getExperimentBaseDirectory().isEmpty();
-        if (!runInMemory) {
+        Generation<Solution<?>> generationAttribute = new Generation<>();
+        boolean saveResult = experiment.getExperimentBaseDirectory().isEmpty();
+        if (!saveResult) {
             taskLog.println("ExecuteAlgorithms: Preparing output directory");
             prepareOutputDirectory();
-        }
-        else{
-            taskLog.println("ExecuteAlgorithms: Running in memory");
+        } else {
+            taskLog.println("ExecuteAlgorithms: The result will not be saved by default");
         }
         // Progress of the count of algorithm finished
         int progress = 0;
@@ -73,9 +80,10 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
             }
 
             // execute the algorithm
-            if (!runInMemory) {
+            if (!saveResult) {
                 algorithm.prepareToRun(this.experiment);
             }
+            int numberOfGenerations = 0;
             while (algorithm.algorithmHasANextStep()) {
 
                 // run only a iteration of the current algorithm
@@ -88,12 +96,21 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
                 if (this.isCancelled()) {
                     break;
                 }
+                numberOfGenerations++;
             }
             if (!this.isCancelled()) {
-                if (!runInMemory) {
+                List<? extends Solution<?>> solutions = algorithm.getResult();
+                // add an attribute to solution. It attribute is used in result window to show in which generation the solution was obtained.
+                for (Solution<?> solution : solutions) {
+                    generationAttribute.setAttribute(solution, numberOfGenerations+1);
+                }
+                if (!saveResult) {
                     algorithm.saveSolutionList();
                 }
                 progress++;
+                if (returnPartialResult) {
+                    updateValue(solutions);
+                }
                 updateProgress(progress, experiment.getAlgorithmList().size());
             }
         }
@@ -106,7 +123,7 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
         }
 
         // return only one pareto front
-        GenerateReferenceParetoFront reference = new GenerateReferenceParetoFront(experiment, taskLog, false);
+        GenerateReferenceParetoFront reference = new GenerateReferenceParetoFront(experiment, taskLog);
         reference.run();
 
         return reference.getReferenceToParetoFront();
@@ -198,4 +215,6 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
             throw new IllegalStateException("Task must only be used from the FX Application Thread");
         }
     }
+
+    private final boolean returnPartialResult;
 }

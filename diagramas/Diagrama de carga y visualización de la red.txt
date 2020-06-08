@@ -25,10 +25,10 @@ User<-MainWindowController: Ventana de elección\nde archivos
 User-->MainWindowController: Ubicación del archivo
 autoactivation on
 MainWindowController->MainWindowController: loadNetwork()
-MainWindowController->InpParser://Leer red and rellenar el objeto network//\nparse(Network)
+MainWindowController->InpParser://Leer red y rellenar el objeto network//\nparse(Network)
 MainWindowController<--InpParser:network
 destroyafter InpParser
-note over MainWindowController, ElementViewer:Actualiza la propiedad que almacena \nla red en MainWindowController lo \ncual actualiza las propiedades vinculadas \nen NetworkComponent y ElementViewer
+ref over MainWindowController, ElementViewer:Actualiza la propiedad que almacena \nla red en MainWindowController lo \ncual actualiza las propiedades vinculadas \nen NetworkComponent y ElementViewer
 NetworkComponent->NetworkComponent://Dibuja la red//\ndrawNetwork(Network)
 deactivateafter NetworkComponent
 deactivateafter MainWindowController

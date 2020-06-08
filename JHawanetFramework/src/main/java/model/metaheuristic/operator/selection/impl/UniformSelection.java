@@ -1,7 +1,7 @@
 package model.metaheuristic.operator.selection.impl;
 
-import annotations.operators.DefaultConstructor;
-import exception.ApplicationException;
+import annotations.DefaultConstructor;
+import annotations.NumberInput;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.utils.comparator.DominanceComparator;
@@ -24,28 +24,41 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 	/**
 	 * Constructor
 	 * @param constant the value constant. it has to be between the range [1.5, 2]
-	 * @throws ApplicationException if constant is not between the range [1.5, 2]
+	 * @throws IllegalArgumentException if constant is not between the range [1.5, 2]
 	 */
-	@DefaultConstructor({ "constant" })
+	@DefaultConstructor(@NumberInput(displayName = "constant", defaultValue = 1.5))
 	public UniformSelection(double constant) {
-		this(new DominanceComparator<S>());
+		this(constant, new DominanceComparator<S>());
+
+	}
+
+	/**
+	 * Constructor
+	 * @param constant the value constant. it has to be between the range [1.5, 2]
+	 * @param comparator the comparator to use.
+	 * @throws IllegalArgumentException if constant is not between the range [1.5, 2]
+	 */
+	public UniformSelection(double constant, Comparator<S> comparator) {
+		this.comparator = comparator;
 		if (constant < 1.5 || constant > 2) {
-			throw new ApplicationException("constant out of range, the range value is between 1.5 and 2");
+			throw new IllegalArgumentException("constant out of range, the range value is between 1.5 and 2");
 		}
 		this.constant = constant;
 	}
-	
-	public UniformSelection(Comparator<S> comparator) {
-		this.comparator = comparator;
+
+	/**
+	 * Get the constant value used.
+	 * @return the constant value.
+	 */
+	public double getConstant() {
+		return constant;
 	}
 
 	/** Execute method */
 	@Override
 	public List<S> execute(List<S> solutionList) {
 		int populationSize = solutionList.size();
-//		System.out.println(solutionList);
 		Collections.sort(solutionList, this.comparator);
-//		System.out.println(solutionList);
 		double pmin = minProbability(solutionList);
 		double pmax = maxProbability(solutionList);
 		List<S> selectedList = new ArrayList<S>();
@@ -57,11 +70,11 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 			if (probability >= 1.5) {
 				selectedList.add(solutionList.get(i));
 				selectedList.add(solutionList.get(i));
-			} else if (probability >= 0.5 && probability < 1.5) {
+			} else if (probability >= 0.5 && probability < 1.5 && selectedList.size() < populationSize) {
 				selectedList.add(solutionList.get(i));
 			}
 		}
-		assert selectedList.size() == populationSize : "La suma no es correcta";
+		assert selectedList.size() == populationSize : "the resulting population hasn't the same size that the received population";
 		return selectedList;
 	}
 

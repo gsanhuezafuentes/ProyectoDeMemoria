@@ -10,9 +10,9 @@ import model.epanet.element.Network;
 import model.epanet.element.networkcomponent.Link;
 import model.epanet.element.networkcomponent.Pipe;
 import model.epanet.element.networkcomponent.Valve;
-import model.epanet.io.GamaParser;
-import model.metaheuristic.problem.evaluator.PipeOptimizingSolutionEvaluator;
+import model.io.GamaParser;
 import model.metaheuristic.problem.Problem;
+import model.metaheuristic.problem.evaluator.PipeOptimizingSolutionEvaluator;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.solution.impl.IntegerSolution;
 

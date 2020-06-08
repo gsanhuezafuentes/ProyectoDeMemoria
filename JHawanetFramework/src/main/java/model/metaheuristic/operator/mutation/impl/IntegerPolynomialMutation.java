@@ -29,7 +29,8 @@
 
 package model.metaheuristic.operator.mutation.impl;
 
-import annotations.operators.DefaultConstructor;
+import annotations.DefaultConstructor;
+import annotations.NumberInput;
 import exception.ApplicationException;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.problem.Problem;
@@ -78,7 +79,8 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
      * @param mutationProbability the mutation probability
      * @param distributionIndex   the distribution index
      */
-    @DefaultConstructor({"MutationProbability", "DistributionIndex"})
+    @DefaultConstructor({@NumberInput(displayName = "MutationProbability", defaultValue = 0.01),
+            @NumberInput(displayName = "DistributionIndex", defaultValue = 20)})
     public IntegerPolynomialMutation(double mutationProbability, double distributionIndex) {
         this(mutationProbability, distributionIndex, () -> JavaRandom.getInstance().nextDouble());
     }
@@ -107,18 +109,18 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
     /* Getters */
 
     /**
-     * Get the mutation probability
+     * Get the mutation probability.
      *
-     * @return the mutation probability
+     * @return the mutation probability.
      */
     public double getMutationProbability() {
         return mutationProbability;
     }
 
     /**
-     * Set the mutation probability
+     * Set the mutation probability.
      *
-     * @param mutationProbability the mutation probability
+     * @param mutationProbability the mutation probability.
      */
     public void setMutationProbability(double mutationProbability) {
         this.mutationProbability = mutationProbability;
@@ -127,18 +129,18 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
     /* Setters */
 
     /**
-     * Get the distribution index
+     * Get the distribution index.
      *
-     * @return the distribution index
+     * @return the distribution index.
      */
     public double getDistributionIndex() {
         return distributionIndex;
     }
 
     /**
-     * Set the distribution index
+     * Set the distribution index.
      *
-     * @param distributionIndex the distribution index
+     * @param distributionIndex the distribution index.
      */
     public void setDistributionIndex(double distributionIndex) {
         this.distributionIndex = distributionIndex;
@@ -146,6 +148,7 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
 
     /**
      * Mutates the solution
+     *
      * @param solution the solution to mutate
      * @return The mutated solution
      */

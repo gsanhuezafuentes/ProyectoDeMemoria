@@ -74,6 +74,7 @@ public class JavaRandom {
 	}
 
 	/**
+	 * Returns the next pseudorandom, uniformly distributed double value between 0.0 and 1.0 from this random number generator's sequence.
 	 * @return a float number
 	 * @see java.util.Random#nextFloat()
 	 */
@@ -82,6 +83,7 @@ public class JavaRandom {
 	}
 
 	/**
+	 * Returns the next pseudorandom, uniformly distributed double value between 0.0 and 1.0 from this random number generator's sequence.
 	 * @return a double number
 	 * @see java.util.Random#nextDouble()
 	 */

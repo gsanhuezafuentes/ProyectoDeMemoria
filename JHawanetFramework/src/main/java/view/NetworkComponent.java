@@ -1,6 +1,9 @@
 package view;
 
+import application.ApplicationSetup;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -16,10 +19,13 @@ public class NetworkComponent extends Canvas {
     private final ObjectProperty<Network> network;
     @NotNull
     private final ObjectProperty<Object> selected;
+    @NotNull
+    private final BooleanProperty isLeyendEnabled;
 
     public NetworkComponent() {
         this.selected = new SimpleObjectProperty<Object>();
         this.network = new SimpleObjectProperty<Network>();
+        this.isLeyendEnabled = new SimpleBooleanProperty();
 
         addBindingAndListener();
 
@@ -29,6 +35,14 @@ public class NetworkComponent extends Canvas {
      * Add the binding and listener to element in this component
      */
     private void addBindingAndListener() {
+        this.isLeyendEnabled.bind(ApplicationSetup.getInstance().isNetworkLegendEnableProperty());
+
+        this.isLeyendEnabled.addListener((observable, oldValue, newValue) -> {
+            if (network.isNotNull().get()) {
+                drawNetwork(this.network.get());
+            }
+        });
+
         // this property let that canvas resize automatically when size of screen change
         widthProperty().addListener((evt) -> {
             if (network.isNotNull().get()) {
@@ -45,7 +59,7 @@ public class NetworkComponent extends Canvas {
             this.selected.set(null);
             if (newV != null) {
                 drawNetwork(newV);
-            }else{
+            } else {
                 cleanCanvas();
             }
         });
@@ -155,5 +169,18 @@ public class NetworkComponent extends Canvas {
         cleanCanvas();
         GraphicsContext gc = getGraphicsContext2D();
         NetworkImage.drawNetwork(gc, getWidth(), getHeight(), net, getSelected());
+
+        if (isLeyendEnabled.get()){
+            drawLegend();
+        }
+    }
+
+    /**
+     * Draw the legends
+     *
+     */
+    private void drawLegend() {
+        GraphicsContext gc = getGraphicsContext2D();
+        NetworkImage.drawLegend(gc, getWidth(), getHeight());
     }
 }
