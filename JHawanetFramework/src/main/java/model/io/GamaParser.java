@@ -1,4 +1,4 @@
-package model.epanet.io;
+package model.io;
 
 import model.epanet.element.Gama;
 import model.metaheuristic.problem.impl.PipeOptimizing;

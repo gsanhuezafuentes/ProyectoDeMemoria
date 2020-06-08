@@ -143,13 +143,16 @@ public final class ExperimentBuilder<S extends Solution<?>> {
 
     /**
      * Set the experiment base directory where result will be stored.
-     * @param experimentBaseDirectory the directory
+     * @param experimentBaseDirectory the directory or a empty string to not save result.
      * @return this object
      * @throws  if experimentBaseDirectory is null
      */
     public @NotNull ExperimentBuilder<S> setExperimentBaseDirectory(@NotNull String experimentBaseDirectory) {
         Objects.requireNonNull(experimentBaseDirectory);
-        this.experimentBaseDirectory = experimentBaseDirectory + "/" + experimentName;
+        if (!experimentBaseDirectory.isEmpty())
+            this.experimentBaseDirectory = experimentBaseDirectory + "/" + experimentName;
+        else
+            this.experimentBaseDirectory = "";
 
         return this;
     }

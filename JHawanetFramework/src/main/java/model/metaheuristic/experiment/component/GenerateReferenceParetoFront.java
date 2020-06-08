@@ -131,6 +131,7 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
 
             if (hasReferenceDirectory) {
                 createOutputDirectory(outputDirectoryName);
+                taskLog.println("- Saving final pareto front in " + outputDirectoryName);
 
                 String referenceFrontFileName = outputDirectoryName + "/" + problem.getTag() + ".pf";
                 new SolutionListOutput(this.paretoFront).printObjectivesToFile(referenceFrontFileName);
@@ -153,7 +154,7 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
         File outputDirectory = new File(outputDirectoryName);
         if (!outputDirectory.exists()) {
             boolean result = new File(outputDirectoryName).mkdirs();
-            taskLog.println("- Creating " + outputDirectoryName + ". Status = " + result);
+            taskLog.println("- Creating " + outputDirectory.getAbsolutePath() + ". Status = " + result);
         }
 
         return outputDirectory;

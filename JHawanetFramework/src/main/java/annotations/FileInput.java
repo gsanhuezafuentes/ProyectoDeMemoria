@@ -17,8 +17,19 @@ import static java.lang.annotation.RetentionPolicy.CLASS;
 @Retention(CLASS)
 @Target(CONSTRUCTOR)
 public @interface FileInput {
-	public enum FileType{
-		OPEN, SAVE
+	public enum Type {
+		/**
+		 * Indicate that the Dialog will allow choose a file to open.
+		 */
+		OPEN,
+		/**
+		 * Indicate that the Dialog will allow choose a file name to save the result.
+		 */
+		SAVE,
+		/**
+		 * Indicate that the File Chooser will allow choose a directory.
+		 */
+		Directory
 	}
 
 	/**
@@ -28,5 +39,5 @@ public @interface FileInput {
 	 */
 	String displayName() default "";
 	
-	FileType type() default FileType.OPEN;
+	Type type() default Type.OPEN;
 }

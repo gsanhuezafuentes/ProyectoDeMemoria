@@ -1,0 +1,47 @@
+{
+  "numPumps": 3,
+  "totalOptimizationTime": 86400,
+  "intervalOptimizationTime": 3600,
+  "energyCostPerTime": [
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194
+  ],
+  "maintenanceCost": 1,
+  "minNodePressure": 15,
+  "numConstraints": 218,
+  "maxFlowrateEachPump": [
+    300,
+    300,
+    150
+  ],
+  "minTank": [
+    0,
+    0
+  ],
+  "maxTank": [
+    10,
+    5
+  ]
+}

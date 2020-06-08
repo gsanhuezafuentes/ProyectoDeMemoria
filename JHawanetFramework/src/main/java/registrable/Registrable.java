@@ -72,7 +72,7 @@ import java.util.Map;
  * <br>
  * 
  * {@link FileInput} denote a file. it let use files with information to
- * execute the algorithm. If {@link FileInput#type()} is {@link FileInput.FileType#SAVE}
+ * execute the algorithm. If {@link FileInput#type()} is {@link FileInput.Type#SAVE}
  * it open the FileChooser window in save mode.
  * 
  * {@link NumberInput} denote a int or a double value that are received by the

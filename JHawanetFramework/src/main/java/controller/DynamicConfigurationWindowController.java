@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -69,41 +70,64 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
      * It has references to textfield with number input. The order of this list is
      * the same that the order in Parameters annotation (numbers)
      */
-    private List<TextField> numbersTextFieldAdded;
+    @NotNull
+    private final List<TextField> numbersTextFieldAdded;
 
     /*
      * It has references to textfield with number input of the number toogle
      * section. The order of this list is the same that the order in Parameters
      * annotation (numbersToogle).
      */
-    private List<TextField> numbersToogleTextFieldAdded;
+    @NotNull
+    private final List<TextField> numbersToogleTextFieldAdded;
 
     /*
      * It has a reference to textfield with fileInput(It shown the path of some
      * file).The order of this list is the same that the order in Parameters
      * annotation (files)
      */
-    private List<TextField> filesTextFieldAdded;
+    @NotNull
+    private final List<TextField> filesTextFieldAdded;
 
     // A map with the value of operator configured in comboBox
+    @NotNull
     private final Map<Class<?>, List<Number>> resultOfOperatorConfiguration;
     /*
      * it has a reference to all comboboxes added. The order of this list is the
      * same that the order in Parameters annotation (operators)
      */
-    private List<ComboBox<Class<?>>> comboBoxesAdded;
+    @NotNull
+    private final List<ComboBox<Class<?>>> comboBoxesAdded;
 
     /*
      * Used by numberToogleSection to persist the group created from one call to
      * other of the method.
      */
-    private Map<String, ToggleGroup> numberToggleGroupAdded;
+    private final Map<String, ToggleGroup> numberToggleGroupAdded;
 
     public DynamicConfigurationWindowController(Class<? extends T> registrable,
                                                 CustomCallback<T> experimentEvent) {
         this.problemClass = Objects.requireNonNull(registrable);
         this.experimentEvent = Objects.requireNonNull(experimentEvent);
+
+        // save the values of each operator to use when contructor will be called
         this.resultOfOperatorConfiguration = new HashMap<>();
+
+        //save the textfield of number section
+        this.numbersTextFieldAdded = new ArrayList<>();
+
+        //save the textfield of number toggle section
+        this.numbersToogleTextFieldAdded = new ArrayList<>();
+
+        //save the group of number toggle section
+        this.numberToggleGroupAdded = new HashMap<>();
+
+        //save the textfield of file section
+        this.filesTextFieldAdded = new ArrayList<>();
+
+        //save the combobox of operator seccion
+        this.comboBoxesAdded = new ArrayList<>();
+
         this.root = loadFXML();
     }
 
@@ -195,11 +219,6 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
      * @param parameterType the type of parameter
      */
     private void numberSection(NumberInput annotation, Class<?> parameterType) {
-        // lazy initialization of list
-        if (this.numbersTextFieldAdded == null) {
-            this.numbersTextFieldAdded = new ArrayList<>();
-        }
-
         Label label = new Label(annotation.displayName());
         TextField textfield = new TextField();
         textfield.setPromptText("Enter the value");
@@ -228,13 +247,6 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
      * @param parameterType the type of parameter
      */
     private void numberToggleSection(NumberToggleInput annotation, Class<?> parameterType) {
-        // lazy initialization of list
-        if (this.numbersToogleTextFieldAdded == null) {
-            this.numbersToogleTextFieldAdded = new ArrayList<>();
-        }
-        if (this.numberToggleGroupAdded == null) {
-            this.numberToggleGroupAdded = new HashMap<>();
-        }
         // if the toggle group isn't saved create a new one and add the group name as title of section.
         if (!this.numberToggleGroupAdded.containsKey(annotation.groupID())) {
             ToggleGroup toggleGroup = new ToggleGroup();
@@ -281,24 +293,24 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
      * @param annotation the FileInput annotation
      */
     private void fileSection(FileInput annotation) {
-        // lazy initialization of list
-        if (this.filesTextFieldAdded == null) {
-            this.filesTextFieldAdded = new ArrayList<>();
-        }
         Label label = new Label(annotation.displayName());
         TextField textfield = new TextField();
         textfield.setMaxWidth(Double.MAX_VALUE);
         Button button = new Button("Browse");
         button.setMaxWidth(Double.MAX_VALUE);
-        FileChooser fileChooser = new FileChooser();
 
         button.setOnAction((evt) -> {
             File f;
 
-            if (annotation.type() == FileInput.FileType.OPEN) {
+            if (annotation.type() == FileInput.Type.OPEN) {
+                FileChooser fileChooser = new FileChooser();
                 f = fileChooser.showOpenDialog(window);
-            } else {
+            } else if (annotation.type() == FileInput.Type.SAVE){
+                FileChooser fileChooser = new FileChooser();
                 f = fileChooser.showSaveDialog(window);
+            } else { // is a directory
+                DirectoryChooser directoryChooser = new DirectoryChooser();
+                f = directoryChooser.showDialog(window);
             }
 
             if (f != null) {
@@ -319,10 +331,6 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
      *                   combobox
      */
     private void operatorSection(OperatorInput annotation) {
-        // lazy initialization of list
-        if (this.comboBoxesAdded == null) {
-            this.comboBoxesAdded = new ArrayList<>();
-        }
         Map<Class<?>, String> operatorMap = new LinkedHashMap<>(annotation.value().length);
         for (OperatorOption option : annotation.value()) {
             operatorMap.put(option.value(), option.displayName());
@@ -353,15 +361,29 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         comboBox.getSelectionModel().selectedItemProperty().addListener((prop, oldv, newv) -> {
             // load the default value
             if (!this.resultOfOperatorConfiguration.containsKey(newv)) {
-                // Add a textfield for each parameter in the constructor
+                // get constructor with DefaultConstructor annotation of operator.
                 Constructor<?> constructor = ReflectionUtils.getDefaultConstructor(newv);
                 Objects.requireNonNull(constructor, "The operator " + newv.getSimpleName() + " has no a constructor with DefaultConstructor Annotation");
+                // get the parameter types of parameters in constructor
+                Class<?>[] parameters = constructor.getParameterTypes();
 
+                // get the annotation default constructor
                 DefaultConstructor operatorAnnotation = constructor.getAnnotation(DefaultConstructor.class);
-                if (operatorAnnotation.value().length > 0) {
-                    List<Number> defaultValues = new ArrayList<>(operatorAnnotation.value().length);
-                    for (NumberInput numberAnnotation : operatorAnnotation.value()) {
-                        defaultValues.add(numberAnnotation.defaultValue());
+
+                NumberInput[] numberInputs = operatorAnnotation.value();
+                // if the constructor as parameter so get the default value for this and keep it in a list.
+                if (parameters.length > 0) {
+                    List<Number> defaultValues = new ArrayList<>(parameters.length);
+                    // for each number input annotation in default constructor get the default value and cast it in the respective type.
+                    for (int i = 0; i < parameters.length; i++){
+                        // cast the default value from double to int (truncating the results)
+                        if (parameters[i].getName().matches("int|Integer")) {
+                            defaultValues.add((int) numberInputs[i].defaultValue());
+                        }
+
+                        if (parameters[i].getName().matches("double|Double")) {
+                            defaultValues.add(numberInputs[i].defaultValue());
+                        }
                     }
                     this.resultOfOperatorConfiguration.put(newv, defaultValues);
                 }
@@ -431,6 +453,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
             TextField textfield = new TextField();
             textfield.setPromptText("Ingrese el valor");
 
+            // cast the default value from double to int (truncating the results)
             if (parameters[i].getName().matches("int|Integer")) {
                 textfield.setTextFormatter(createWholeTextFormatter((int) annotation.value()[i].defaultValue()));
             }
@@ -562,6 +585,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         // create the operators and add to parameters array
         for (Class<?> operator : operatorsAndConfig.keySet()) {
             try {
+                System.out.println(operator);
                 Object operatorObject = Objects.requireNonNull(ReflectionUtils.getDefaultConstructor(operator))
                         .newInstance(operatorsAndConfig.get(operator).toArray());
                 parameters[i++] = operatorObject;
@@ -569,8 +593,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
                 CustomDialogs.showExceptionDialog("Error", "Error in the creation of the operator",
                         "The operator " + operator.getName() + " can't be created", e.getCause());
                 return;
-            }
-            catch (InstantiationException | IllegalArgumentException | IllegalAccessException e){
+            } catch (InstantiationException | IllegalArgumentException | IllegalAccessException e) {
                 throw new ApplicationException("Error in reflection call", e);
             }
         }

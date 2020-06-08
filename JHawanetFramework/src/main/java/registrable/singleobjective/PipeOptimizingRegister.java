@@ -82,7 +82,7 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
                     @OperatorOption(displayName = "Integer Polynomial Mutation", value = IntegerPolynomialMutation.class),
                     @OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class)
             })}, //
-            files = {@FileInput(displayName = "Gama")}, //
+            files = {@FileInput(displayName = "Gama *")}, //
             numbers = {@NumberInput(displayName = "Independent run", defaultValue = 5),
                     @NumberInput(displayName = "Min pressure", defaultValue = 30),
                     @NumberInput(displayName = "Population Size", defaultValue = 100)}, //

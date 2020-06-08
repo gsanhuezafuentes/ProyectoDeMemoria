@@ -57,8 +57,8 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
      * @param crossoverProbability the crossover probability
      * @param distributionIndex    the distribution index
      */
-    @DefaultConstructor({@NumberInput(displayName = "CrossoverProbability", defaultValue = 0.1)
-            , @NumberInput(displayName = "DistributionIndex",defaultValue = 0.3)})
+    @DefaultConstructor({@NumberInput(displayName = "CrossoverProbability", defaultValue = 0.9)
+            , @NumberInput(displayName = "DistributionIndex", defaultValue = 20)})
     public IntegerSBXCrossover(double crossoverProbability, double distributionIndex) {
         this(crossoverProbability, distributionIndex, () -> JavaRandom.getInstance().nextDouble());
 
