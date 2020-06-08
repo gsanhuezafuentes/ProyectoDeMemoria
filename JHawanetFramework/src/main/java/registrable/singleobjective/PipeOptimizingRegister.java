@@ -19,7 +19,7 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.UniformSelection;
 import model.metaheuristic.problem.impl.PipeOptimizing;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
+import model.metaheuristic.utils.evaluator.SequentialSolutionEvaluator;
 import registrable.Registrable;
 import registrable.SingleObjectiveRegistrable;
 import registrable.utils.ExperimentUtils;
@@ -57,11 +57,12 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
      * @param crossoverOperator        the crossover operator
      * @param mutationOperator         the mutation operator
      * @param gama                     the File object with the path to file configuration
+     * @param independentRun           the number of independent run.
      * @param minPressure              the min pressure of network
      * @param populationSize           the size of population
+     * @param maxEvaluations           the max number of evaluation
      * @param numberWithoutImprovement the number without improvement in the
      *                                 result
-     * @param maxEvaluations           the max number of evaluation
      * @throws Exception A exception if there is some error in convert the
      *                   parameters.
      * @see Registrable

@@ -21,7 +21,7 @@ import model.metaheuristic.problem.Problem;
 import model.metaheuristic.problem.impl.VanzylOriginal;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.comparator.DominanceComparator;
-import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
+import model.metaheuristic.utils.evaluator.SequentialSolutionEvaluator;
 import registrable.MultiObjectiveRegistrable;
 
 import java.io.File;

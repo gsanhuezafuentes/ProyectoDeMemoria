@@ -9,7 +9,7 @@ import registrable.singleobjective.PipeOptimizingRegister;
 import java.util.Map;
 
 /**
- * It is the superinterface to {@link SingleObjectiveRegistrable} and {@link MultiObjectiveRegistrable} <br>
+ * It is the superinterface to {@link SingleObjectiveRegistrable} and {@link MultiObjectiveRegistrable}. <br>
  * <br>
  * 
  * The class that implement this interface has to have a only public constructor

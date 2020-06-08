@@ -326,7 +326,8 @@ public class ResultController {
     }
 
     /**
-     * Show the associated window
+     * Get the graphic node.
+     * @return the graphic node.
      */
     public Node getNode() {
         return root;

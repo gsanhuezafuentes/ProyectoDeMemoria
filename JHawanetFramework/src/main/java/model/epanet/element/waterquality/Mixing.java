@@ -31,6 +31,7 @@ public final class Mixing {
 		 * Parse the name to a object of the enum class if exist. if name no exist in enum class so return null;
 		 * @param name the name of object
 		 * @throws IllegalArgumentException if name is not valid
+		 * @return the mixing model
 		 */
 		public static @NotNull MixingModel parse(String name) {
 			for (MixingModel object : MixingModel.values()) {

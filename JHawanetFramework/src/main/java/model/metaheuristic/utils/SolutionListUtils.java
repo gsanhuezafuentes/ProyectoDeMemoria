@@ -100,10 +100,11 @@ public class SolutionListUtils {
 
     /**
      * Returns a matrix with the euclidean distance between each pair of solutions in the population.
-     * Distances are measured in the objective space
+     * Distances are measured in the objective space.
      *
-     * @param solutionSet
-     * @return
+     * @param solutionSet the list of solutions.
+     * @return the distance matrix.
+     * @param <S> the type of solution.
      */
     public static <S extends Solution<?>> double[][] distanceMatrix(List<S> solutionSet) {
         double[][] distance = new double[solutionSet.size()][solutionSet.size()];

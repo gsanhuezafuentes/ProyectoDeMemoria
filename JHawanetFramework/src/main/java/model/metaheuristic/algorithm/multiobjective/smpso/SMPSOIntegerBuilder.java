@@ -33,7 +33,7 @@ import model.metaheuristic.operator.mutation.impl.IntegerPolynomialMutation;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.archive.BoundedArchive;
-import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
+import model.metaheuristic.utils.evaluator.SequentialSolutionEvaluator;
 
 import java.util.Objects;
 

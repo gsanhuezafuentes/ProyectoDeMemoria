@@ -1,9 +1,8 @@
-package model.metaheuristic.utils.evaluator.impl;
+package model.metaheuristic.utils.evaluator;
 
 import epanet.core.EpanetException;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.evaluator.SolutionListEvaluator;
 
 import java.util.List;
 

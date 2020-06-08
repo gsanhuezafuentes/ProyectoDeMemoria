@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+/**
+ * A class with utility method to create experiments.
+ */
 public final class ExperimentUtils {
     private ExperimentUtils() {
     }
@@ -34,6 +37,7 @@ public final class ExperimentUtils {
      * @param supplier the supplier of algorithm
      * @return a list with the experiment algorithm.
      * @throws NullPointerException if experimentProblem or supplier are null.
+     * @param <S> the type of solution.
      */
     public static <S extends Solution<?>> List<ExperimentAlgorithm<S>> configureAlgorithmList(ExperimentProblem<S> experimentProblem,  int numberOfIndependentRun,
                                                                                               Supplier<Algorithm<S>> supplier) {

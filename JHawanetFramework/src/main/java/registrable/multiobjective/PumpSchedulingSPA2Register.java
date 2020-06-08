@@ -15,7 +15,6 @@ import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.mutation.impl.IntegerPolynomialMutation;
 import model.metaheuristic.operator.mutation.impl.IntegerRangeRandomMutation;
 import model.metaheuristic.operator.mutation.impl.IntegerSimpleRandomMutation;
-import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.problem.impl.VanzylOriginal;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import registrable.MultiObjectiveRegistrable;

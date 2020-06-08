@@ -28,18 +28,17 @@
  */
 package model.metaheuristic.utils.archive;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Interface representing an archive of solutions.
  *
  */
-public interface Archive<S> extends Serializable {
+public interface Archive<S> {
 	/**
 	 * Add element to the archive
 	 * @param solution the solution to add
-	 * @return
+	 * @return true if the solution was added or false in otherwise.
 	 */
 	boolean add(S solution);
 
@@ -52,7 +51,7 @@ public interface Archive<S> extends Serializable {
 
 	/**
 	 * Get the solution list of the archive
-	 * @return
+	 * @return the solution list
 	 */
 	List<S> getSolutionList();
 

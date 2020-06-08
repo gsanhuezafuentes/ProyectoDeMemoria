@@ -36,6 +36,8 @@ public final class HydraulicSimulation {
      * @throws IllegalArgumentException if inpPath is a empty string
      * @throws ApplicationException     if there is a error when DLL is loaded
      * @throws EpanetException          if there is an error in simulation
+     *
+     * @return the hydralucsimulation instance with that store the result of simulation.
      */
     public static @NotNull HydraulicSimulation run(@NotNull String inpPath) throws ApplicationException, EpanetException {
         Objects.requireNonNull(inpPath);
@@ -284,6 +286,11 @@ public final class HydraulicSimulation {
         return Collections.emptyList();
     }
 
+
+    /**
+     * To test.
+     * @param args list of string.
+     */
     public static void main(String[] args) {
         String inpPath = "inp/vanzylOriginal.inp";
 //        String inpPath = "inp/hanoi-Frankenstein.INP";

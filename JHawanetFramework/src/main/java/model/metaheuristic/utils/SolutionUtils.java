@@ -39,7 +39,11 @@ public class SolutionUtils {
 	}
 
 	/**
-	 * Returns the euclidean distance between a pair of solutions in the objective space
+	 * Returns the euclidean distance between a pair of solutions in the objective space.
+	 * @param firstSolution the first solution.
+	 * @param secondSolution the second solution.
+	 * @return the euclidean distance between objective.
+	 * @param <S> the type of solution.
 	 */
 	public static <S extends Solution<?>> double distanceBetweenObjectives(S firstSolution, S secondSolution) {
 

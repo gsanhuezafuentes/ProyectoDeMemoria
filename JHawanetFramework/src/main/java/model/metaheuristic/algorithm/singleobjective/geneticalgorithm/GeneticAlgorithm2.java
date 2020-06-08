@@ -101,15 +101,13 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
     }
 
     /**
-     * Get the max number of evaluation. <br>
-     * <br>
+     * Get the max number of evaluation.
+     * <p>
      * <p>
      * When the result returned by this method is 0 the stop condition of the
      * algorithm don't take into account this value and use the
-     * MaxNumberOfIterationWithoutImprovement
-     * {@link GeneticAlgorithm2#getMaxNumberOfIterationWithoutImprovement()}. If the
-     * value is other than 0 so it condition is taked into account.<br>
-     * <br>
+     * MaxNumberOfIterationWithoutImprovement {@link GeneticAlgorithm2#getMaxNumberOfIterationWithoutImprovement()}. If the
+     * value is other than 0 so it condition is taked into account.
      * <p>
      * <p>
      * The default is 10000
@@ -306,7 +304,9 @@ public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutiona
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected List<S> evaluatePopulation(List<S> population) throws EpanetException {
         return evaluator.evaluate(population, problem);

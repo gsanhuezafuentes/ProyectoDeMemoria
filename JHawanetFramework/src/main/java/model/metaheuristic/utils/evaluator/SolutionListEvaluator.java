@@ -7,7 +7,7 @@ import model.metaheuristic.solution.Solution;
 import java.util.List;
 
 /**
- * Implement a solution evaluator
+ * Implement a solution evaluator.
  * <p>
  * <strong>Notes:</strong>
  * <p>

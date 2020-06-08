@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<!--Controller is the class HydraulicSimulationResultController-->
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<!--Controller is the class HydraulicSimulationResultController-->
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <StackPane fx:id="tablePane" managed="false" prefWidth="400.0" prefHeight="400.0" visible="false" BorderPane.alignment="CENTER" />
