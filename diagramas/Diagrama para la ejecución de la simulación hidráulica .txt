@@ -1,4 +1,4 @@
-title Diagrama para la ejecución de la simulación hidraulica inicial
+title Diagrama para la ejecución de la simulación hidráulica 
 
 actor User
 participant MainWindowController
