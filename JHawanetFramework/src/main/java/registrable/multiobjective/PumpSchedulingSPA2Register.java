@@ -26,7 +26,6 @@ import java.util.Objects;
 
 public class PumpSchedulingSPA2Register implements MultiObjectiveRegistrable {
 
-    private static final int INDEPENDENT_RUNS = 10;
     private VanzylOriginal problem;
     private final CrossoverOperator<IntegerSolution> crossover;
     private final MutationOperator<IntegerSolution> mutation;

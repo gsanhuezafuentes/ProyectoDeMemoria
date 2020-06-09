@@ -43,14 +43,14 @@ import java.util.List;
  */
 public interface Algorithm<Result extends Solution<?>>{
 
-	/**
-	 * Start algorithm execution
-	 * 
-	 * @throws EpanetException If there is a problem in the simulation of solution
-	 *                         using EpanetToolkit
-	 * @throws Exception       If there is a problem in the close method of problem
-	 */
-	void run() throws Exception, EpanetException;
+//	/**
+//	 * Start algorithm execution
+//	 *
+//	 * @throws EpanetException If there is a problem in the simulation of solution
+//	 *                         using EpanetToolkit
+//	 * @throws Exception       If there is a problem in the close method of problem
+//	 */
+//	void run() throws Exception, EpanetException;
 
 	/**
 	 * Execute a only step (iteration) of algorithm for call. It method is used by
@@ -64,7 +64,7 @@ public interface Algorithm<Result extends Solution<?>>{
 
 	/**
 	 * Method to decide when the algorithm execution must stop. It would be called
-	 * by {@link #run()} and {@link #runSingleStep()} to verify if the algorithm can
+	 * by run() and {@link #runSingleStep()} to verify if the algorithm can
 	 * continue his execution.
 	 * 
 	 * @return a boolean that indicate if the algorithm execution can continue or

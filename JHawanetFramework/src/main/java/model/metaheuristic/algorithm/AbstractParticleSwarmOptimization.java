@@ -72,25 +72,25 @@ public abstract class AbstractParticleSwarmOptimization<S extends Solution<?>> i
     @Override
     public abstract List<S> getResult();
 
-    @Override
-    public void run() throws EpanetException {
-        swarm = createInitialSwarm();
-        swarm = evaluateSwarm(swarm);
-        initializeVelocity(swarm);
-        initializeParticlesMemory(swarm);
-        initializeLeader(swarm);
-        initProgress();
-
-        while (!isStoppingConditionReached()) {
-            updateVelocity(swarm);
-            updatePosition(swarm);
-            perturbation(swarm);
-            swarm = evaluateSwarm(swarm);
-            updateLeaders(swarm);
-            updateParticlesMemory(swarm);
-            updateProgress();
-        }
-    }
+//    @Override
+//    public void run() throws EpanetException {
+//        swarm = createInitialSwarm();
+//        swarm = evaluateSwarm(swarm);
+//        initializeVelocity(swarm);
+//        initializeParticlesMemory(swarm);
+//        initializeLeader(swarm);
+//        initProgress();
+//
+//        while (!isStoppingConditionReached()) {
+//            updateVelocity(swarm);
+//            updatePosition(swarm);
+//            perturbation(swarm);
+//            swarm = evaluateSwarm(swarm);
+//            updateLeaders(swarm);
+//            updateParticlesMemory(swarm);
+//            updateProgress();
+//        }
+//    }
 
     @Override
     public void runSingleStep() throws Exception, EpanetException {

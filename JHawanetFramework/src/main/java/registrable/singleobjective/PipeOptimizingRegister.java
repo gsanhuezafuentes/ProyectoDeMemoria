@@ -132,10 +132,8 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
         if (this.gama == null) {
             throw new ApplicationException("There isn't gama file");
         }
-        if (this.problem == null) {
-            this.problem = new PipeOptimizing(epanet, this.gama.getAbsolutePath(), this.minPressure);
 
-        }
+        this.problem = new PipeOptimizing(epanet, this.gama.getAbsolutePath(), this.minPressure);
 
         ExperimentProblem<IntegerSolution> experimentProblem = new ExperimentProblem<>(this.problem);
 
@@ -150,13 +148,11 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
                     return algorithm;
                 });
 
-        Experiment<IntegerSolution> experiment = new ExperimentBuilder<IntegerSolution>("PipeOptimizing")
+        return new ExperimentBuilder<IntegerSolution>("PipeOptimizing")
                 .setIndependentRuns(this.independentRun)
                 .setAlgorithmList(experimentAlgorithms)
                 .setProblem(experimentProblem)
                 .build();
-
-        return experiment;
     }
 
     /**
@@ -203,7 +199,7 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
         } else if (this.mutation instanceof IntegerRangeRandomMutation) {
             map.put("Mutation", "IntegerRangeRandomMutation");
             map.put("Mutation Probability", "" + ((IntegerRangeRandomMutation) this.mutation).getMutationProbability());
-            map.put("Mutation Probability", "" + ((IntegerRangeRandomMutation) this.mutation).getRange());
+            map.put("Mutation Range", "" + ((IntegerRangeRandomMutation) this.mutation).getRange());
         }
         return map;
     }

@@ -53,19 +53,17 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>> imple
 	abstract protected List<S> evaluatePopulation(List<S> population) throws EpanetException;
 
 	/**
-	 * Method that update the progress. It is called by {@link #run()}.
+	 * Method that update the progress.
 	 */
 	protected abstract void updateProgress();
 
 	/**
-	 * Method that initialize the count of progress of execution. It is called by
-	 * {@link #run()}
+	 * Method that initialize the count of progress of execution.
 	 */
 	protected abstract void initProgress();
 
 	/**
-	 * Method to decide when the algorithm execution stop. It is called by
-	 * {@link #run()}
+	 * Method to decide when the algorithm execution stop.
 	 * 
 	 * @return a boolean that indicate if the algorithm execution can continue or
 	 *         not.
@@ -148,34 +146,34 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>> imple
 		return problem;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * <br>
-	 * <br>
-	 * <strong>Notes:</strong> <br>
-	 * Using this method you can rerun the algorithm.
-	 * 
-	 * @throws Exception       if are a problem in close of resources open in
-	 *                         problem
-	 * @throws EpanetException if there is a error in the simulation
-	 */
-	@Override
-	public void run() throws Exception, EpanetException {
-		List<S> offspringPopulation;
-		List<S> selectionPopulation;
-
-		population = createInitialPopulation();
-		population = evaluatePopulation(population);
-		initProgress();
-		while (!isStoppingConditionReached()) {
-			selectionPopulation = selection(population);
-			offspringPopulation = reproduction(selectionPopulation);
-			offspringPopulation = evaluatePopulation(offspringPopulation);
-			population = replacement(population, offspringPopulation);
-			updateProgress();
-		}
-	}
+//	/**
+//	 * {@inheritDoc}
+//	 *
+//	 * <br>
+//	 * <br>
+//	 * <strong>Notes:</strong> <br>
+//	 * Using this method you can rerun the algorithm.
+//	 *
+//	 * @throws Exception       if are a problem in close of resources open in
+//	 *                         problem
+//	 * @throws EpanetException if there is a error in the simulation
+//	 */
+//	@Override
+//	public void run() throws Exception, EpanetException {
+//		List<S> offspringPopulation;
+//		List<S> selectionPopulation;
+//
+//		population = createInitialPopulation();
+//		population = evaluatePopulation(population);
+//		initProgress();
+//		while (!isStoppingConditionReached()) {
+//			selectionPopulation = selection(population);
+//			offspringPopulation = reproduction(selectionPopulation);
+//			offspringPopulation = evaluatePopulation(offspringPopulation);
+//			population = replacement(population, offspringPopulation);
+//			updateProgress();
+//		}
+//	}
 
 	/**
 	 * {@inheritDoc}

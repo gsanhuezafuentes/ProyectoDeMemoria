@@ -41,23 +41,25 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+/*
+ * The same result that call runAlgorithm(Experiment) can be achieved
+ * calling {@link #prepareToRun(Experiment)}, so call
+ * {@link #runASingleStepOfAlgorithm()} until {@link #algorithmHasANextStep()}
+ * will be false and finalize calling {@link #saveSolutionList()}.
+ */
 
 /**
  * Class defining tasks for the execution of algorithms in parallel.
  * <p>
- * The method {@link #runAlgorithm(Experiment)} runs the algorithm from start to
- * finish and save the solution in the created directory<br>
  * <br>
  * The method {@link #runASingleStepOfAlgorithm()} run the algorithm step by
  * step. <br>
  * <br>
  * <p>
- * The same result that call {@link #runAlgorithm(Experiment)} can be achieved
- * calling {@link #prepareToRun(Experiment)}, so call
- * {@link #runASingleStepOfAlgorithm()} until {@link #algorithmHasANextStep()}
- * will be false and finalize calling {@link #saveSolutionList()}.
+ *
  */
 public final class ExperimentAlgorithm<S extends Solution<?>> {
+
     @NotNull private final Algorithm<S> algorithm;
     @NotNull private final String algorithmTag;
     @NotNull private final String problemTag;
@@ -104,22 +106,23 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
         this(algorithm, algorithm.getName(), problem, runId);
     }
 
-    /**
-     * Run the algorithm to start to finish.
-     *
-     * @param experimentData the experiment data
-     * @throws EpanetException if algorithm execution has a problem with simulation
-     * @throws Exception       if algorithm can't close the resource or the solution
-     *                         can't be writed in file
-     */
-    public void runAlgorithm(@NotNull Experiment<?> experimentData) throws EpanetException, Exception {
-        prepareToRun(experimentData);
-        algorithm.run();
-        saveSolutionList();
-    }
+//    /**
+//     * Run the algorithm to start to finish.
+//     *
+//     * @param experimentData the experiment data
+//     * @throws EpanetException if algorithm execution has a problem with simulation
+//     * @throws Exception       if algorithm can't close the resource or the solution
+//     *                         can't be writed in file
+//     */
+//    public void runAlgorithm(@NotNull Experiment<?> experimentData) throws EpanetException, Exception {
+//        prepareToRun(experimentData);
+//        algorithm.run();
+//        saveSolutionList();
+//    }
 
     /**
      * Create a output directory to save the result of execution of algorithm using {@link #saveSolutionList()}.
+     * So you have to call this method before call {@link #saveSolutionList()}.
      *
      * @param experimentData the experiment data.
      * @throws IllegalArgumentException if experiment base directory set up in experimentData is a empty string.
@@ -159,7 +162,7 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
 
     /**
      * Save the solution of the algorithm in the directory configure for
-     * {@link #prepareToRun}
+     * {@link #prepareToRun}. So you has to call first to {@link #prepareToRun}.
      *
      * @throws IOException           If an I/O error occurs
      * @throws FileNotFoundException if the file exists but is a directory rather
@@ -181,7 +184,7 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
     }
 
     /**
-     * Return if the algorithm can execute other iteration.
+     * Return if the algorithm can execute other iteration/generation.
      *
      * @return true if algorithm can execute.
      */
