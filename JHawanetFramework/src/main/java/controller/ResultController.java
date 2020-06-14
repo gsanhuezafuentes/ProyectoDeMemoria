@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
@@ -36,6 +37,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * This class is the controller of result window. <br>
@@ -148,6 +150,7 @@ public class ResultController {
             boolean hasGenerationColumn = false;
             boolean hasOverallConstraintViolationColumn = false;
 
+            //test if has the OverallConstraintViolation and Generation attribute. Also, add the items to table.
             for (Solution<?> solution : this.solutionList) {
                 Double constraint = overallConstraintViolationAttribute.getAttribute(solution);
                 Integer generation = generationAttribute.getAttribute(solution);
@@ -210,8 +213,27 @@ public class ResultController {
             // empty column is use to patch a problem with scroll pane that slice the last column
             TableColumn<SolutionWrap, String> emptyColumn = new TableColumn<>("                               ");
             resultTable.getColumns().add(emptyColumn);
-//            emptyColumn.setCellValueFactory(
-//                    (CellDataFeatures<SolutionWrap, String> solutionData) -> new ReadOnlyObjectWrapper<>(""));
+
+            // If the problem is monoobjective SolutionWrap fill with red the cell of best solution
+            if (this.problem.getNumberOfObjectives() == 1){
+                Optional<SolutionWrap> optional = this.resultTable.getItems().stream().min((o1, o2) -> Double.compare(o1.solution.getObjective(0), o2.solution.getObjective(0)));
+                if (optional.isPresent()){
+                    SolutionWrap best = optional.get();
+                    this.resultTable.setRowFactory((TableView<SolutionWrap> param) -> new TableRow<SolutionWrap>() {
+                        @Override
+                        public void updateItem(SolutionWrap item, boolean empty) {
+                            super.updateItem(item, empty) ;
+                            if (item == null) {
+                                setStyle("");
+                            } else if (item == best) {
+                                setStyle("-fx-background-color: #55ff2f;");
+                            } else {
+                                setStyle("");
+                            }
+                        }
+                    });
+                }
+            }
         }
     }
 

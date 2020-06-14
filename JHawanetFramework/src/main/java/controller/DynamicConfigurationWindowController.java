@@ -585,7 +585,6 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         // create the operators and add to parameters array
         for (Class<?> operator : operatorsAndConfig.keySet()) {
             try {
-                System.out.println(operator);
                 Object operatorObject = Objects.requireNonNull(ReflectionUtils.getDefaultConstructor(operator))
                         .newInstance(operatorsAndConfig.get(operator).toArray());
                 parameters[i++] = operatorObject;
