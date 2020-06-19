@@ -1,0 +1,147 @@
+RU001 ? Cargar una red (F - 09/09/2019)
+	RS001 ? Leer archivo de red .inp (F - 09/09/2019)
+    RS002 ? Cargar red dentro del programa (F - 09/09/2019)
+
+RU002 ? Resolver el problema monoobjetivo (Pipe Optimizing)  usando el Algoritmo Genético (F - 09/09/2019)
+	RS003 ? Implementar algoritmo genético (F - 09/09/2019)
+	RS004 ? Implementar el problema multiobjetivo Pipe Optimizing (F - 09/09/2019)
+	RS005 ? Utilizar algoritmo genético para resolver el problema Pipe Optimizing desde el enfoque monoobjetivo. (F - 09/09/2019)
+    RS006 ? Evaluar soluciones al problema monoobjetivo usando la librería Epanet (F - 09/09/2019)
+
+RU003 ? Resolver el problema multiobjetivo (Pumping Scheduling) usando el Algoritmo NSGA-II (F - 09/09/2019)
+	RS007 ? Implementar NSGA-II (F - 01/10/2019)
+	RS008 _ Implementar el problema multiobjetivo Pumping Scheduling (F - 01/10/2019)
+	RS009 ? Utilizar el algoritmo NSGA-II para resolver el problema Pumping Scheduling desde el enfoque multiobjetivo. (F - 01/10/2019)
+    RS010 ? Evaluar soluciones al problema multiobjetivo usando la librería Epanet (F - 01/10/2019)
+
+RU004 ? Visualizar red en una interfaz gráfica (F - 09/09/2019)
+	RS001 ? Leer archivo de red .inp (F - 09/09/2019)
+    RS002 ? Cargar red dentro del programa (F - 09/09/2019)
+    RS011 ? Visualizar red dentro de un canvas (F - 09/09/2019)
+
+RU005 ? Exportar los resultados de los algoritmos aplicados en dos archivos, uno para las variables y otro para los objetivos. (F - 09/09/2019) [TSV (FUN y VAR)]
+	RS012 ? Crear archivo TSV para guardar los valores de los objetivos (F - 09/09/2019)
+	RS013 ? Crear archivo TSV para guardar los valores de las variables (F - 09/09/2019)
+
+RU006 ? Implementar el operador IntegerSBXCrossover (F - 01/10/2019)
+	RS014 ? Implementar el operador IntegerSBXCrossover (F - 01/10/2019)
+
+RU007 ? Implementar el operador IntegerSinglePointCrossover (F - 01/10/2019)
+    RS015 ? Implementar el operador IntegerSinglePointCrossover (F - 01/10/2019)
+
+RU008 ? Implementar el operador IntegerPolynomialMutation (F - 01/10/2019)
+	RS016 ? Implementar el operador IntegerPolynomialMutation (F - 01/10/2019)
+
+RU009 ? Implementar el operador IntegerSimpleRandomMutation (F - 01/10/2019)
+    RS017 ? Implementar el operador IntegerSimpleRandomMutation (F - 01/10/2019)
+
+RU010 ? Implementar el operador IntegerRangeRandomMutation (F - 01/10/2019)
+	RS018 ? Implementar el operador IntegerRangeRandomMutation (F - 01/10/2019)
+
+RU011 ? Implementar el operador UniformSelection (F - 01/10/2019)
+	RS019 ? Implementar el operador UniformSelection (F - 01/10/2019)
+
+RU012 ? Crear archivo .inp a partir de la solución generada (F - 15/10/2019)
+	RS020 ? Aplicar una solución al objeto que representa la red (F - 15/10/2019)
+	RS021 ? Exportar el objeto red a un archivo .inp (F - 15/10/2019)
+
+RU013 ? Mostrar las soluciones de los algoritmos en la interfaz de usuario (F - 30/11/2019)
+	RS022 ? Crear una pestaña que permita visualizar los resultados (F - 30/11/2019)
+	RS023 ? Mostrar los resultados de los experimentos (F - 30/11/2019)
+
+RU014 ? Mostrar las características de la red (F - 30/11/2019)
+	RS024 ? Implementar un componente que permita listar los elementos que conforman la red (F - 30/11/2019)
+	RS025 ? Implementar componente que permitan mostrar las características de un elemento seleccionado de la red.(F - 30/11/2019)
+    RS026 ? Permitir seleccionar en la lista de elementos de la red el componente del que se van a mostrar sus caracteristicas (F - 30/11/2019)
+    RS027 ? Permitir seleccionar el dibujo de la red el componente del que se van a mostrar sus características (F - 30/11/2019)
+
+RU015 ? Graficar las soluciones (F - 30/11/2019)
+	RS028 ? Implementar un componente que muestre un plano cartesiano (F - 30/11/2019)
+	RS029 ? Mostrar las soluciones de los algoritmos monoobjetivos en el plano cartesiano. (F - 30/11/2019)
+    RS030 ? Mostrar las soluciones de los algoritmos multiobjetivos en el plano cartesiano. (F - 30/11/2019)
+
+RU016 ? Hacer el programa fácil de ampliar, es decir, facilitar la agregación de nuevos problemas, algoritmos y operadores. (NF - 30/11/2019)
+	RS031 ? Implementar una jerarquía de clases que a través de la implementación de interfaces se pueda ampliar los algoritmos. (NF - 30/11/2019)
+    RS032 ? Implementar una jerarquía de clases que a través de la implementación de interfaces se pueda ampliar los problemas. (NF - 30/11/2019)
+    RS033 ? Implementar una jerarquía de clases que a través de la implementación de interfaces se pueda ampliar los operadores. (NF - 30/11/2019)
+
+RU017 ? Mostrar en la interfaz de usuario los problemas, agrupando los algoritmos que pueden ser utilizados para resolverlos (F - 27/01/2020)
+	RS034 ? Agrupar para cada problema mostrado en el menú de la interfaz de usuario los algoritmos que pueden ser usados.
+
+RU018 ? Permitir realizar múltiples simulaciones independientes para resolver el problema multiobjetivo (F - 27/01/2020) [Experimentos]
+	RS035 ? Implementar mecanismo que permita realizar múltiples repeticiones del mismo algoritmo para un problema específico desde el enfoque multiobjetivo. (F - 27/01/2020)
+
+RU019 ? Guardar los resultados temporales por cada simulación independiente del problema multiobjetivo y generar los archivos al final de todas las simulaciones con los mejores resultados obtenidos. Un archivo contiene las variables de decisión y otro debe contener el valor de los objetivos. (F - 27/01/2020)
+	RS036 ? Almacenar los resultados de cada repetición de un algoritmo cuando se resuelve un problema multiobjetivo (F - 27/01/2020)
+	RS037 ? Guardar los resultados almacenados de cada repetición del algoritmo multiobjetivo (F - 27/01/2020)
+	RS038 ? A partir de los resultados de cada repetición del algoritmo, para el problema multiobjetivo, obtener las mejores soluciones. (F - 27/01/2020)
+	RS039 ? Guardar las mejores soluciones obtenidas a partir de cada una de las repeticiones del algoritmo. (F - 27/01/2020)
+
+RU020 ? Permitir realizar simulaciones hidráulicas utilizando los valores por defectos que vienen en el archivo .inp y visualizar los resultados. (F ? 27/01/2020)
+	RS040 ? Realizar una simulación hidráulica utilizando los valores por defecto de la red que vienen en el archivo inp.
+	RS041 ? Obtener los resultados de la simulación hidráulica desde el simulador.
+	RS042 ? Mostrar los resultados de la simulación hidráulica en la interfaz de usuario.
+
+RU021 ? Agregar el algoritmo multiobjetivo SMPSO (F ? 13/05/2020)
+	RS043 ? Implementar el algoritmo SMPSO.
+
+RU022 ? Agregar el algoritmo multiobjetivo SPA2 (F ? 13/05/2020)
+	RS044 ? Implementar el algoritmo SPA2.
+
+RU023 ? Incluir en el dibujo de la red símbolos para diferencias los elementos que componen la red (F ? 13/05/2020)
+	RS045 ? Especificar los símbolos a utilizar para cada componente de la red. (F ? 13/05/2020)
+	RS046 ? Agregar los símbolos de los componentes cuando se muestra la red. (F ? 13/05/2020)
+
+RU024 ? Permitir realizar múltiples simulaciones independientes para resolver el problema monoobjetivo (F - 13/05/2020) [Experimentos]
+    RS047 ? Implementar mecanismo que permita realizar múltiples repeticiones del mismo algoritmo para un problema específico desde el enfoque monoobjetivo. (F - 13/05/2020)
+
+RU025 ? Agregar un menú de configuración para configurar el tamaño de los puntos, si mostrar o no el grafico de resultados y limitar el numero de resultados retornados por el problema multiobjetivo (F ? 26/05/2020) 
+	RS048 ? Crear una interfaz de usuario para mostrar las configuraciones (F ? 26/05/2020)
+	RS049 ? Establecer los valores de la aplicación que se permitirá que el usuario configure (NF ? 26/05/2020)
+	RS050 ? Mostrar al usuario la ventana de configuración (F ? 26/05/2020)
+	RS051 ? Aplicar al sistema las configuraciones establecidas en la ventana de configuraciones. (F ? 26/05/2020)
+
+
+RU026 ? Usar en el gráfico, para cada repetición del algoritmo en un experimento, un color distinto. (F ? 26/05/2020) 
+    RS052 ? Escoger una paleta de colores a partir de la cual elegir el color para cada iteración. (F ? 26/05/2020) 
+    RS053 ? Asignar a cada solución de una iteración un color dentro de la paleta de colores (F ? 26/05/2020) 
+
+
+RU027 ? Mostrar una leyenda que pueda ser activada y desactivada con los símbolos mostrados sobre el dibujo de la red (F ? 26/05/2020)
+	RS054 ? Mostrar los símbolos usados en la representación de la red y que significan cada uno de ellos (F ? 26/05/2020)
+	RS055 ? Agregar una opción que permita activar y desactivar la leyenda (F ? 26/05/2020)
+
+
+RU028 ? Mostrar en la ventana de configuración información sobre el problema, como los objetivos, el nombre del algoritmo a utilizar y el nombre del problema que se esta tratando. (F ? 04/04/2020)
+    RS056 ? Implementar un mecanismo que permite indicar una descripción del problema a resolver (F ? 26/05/2020)
+	RS057 ? Mostrar en la ventana de configuración información del problema a resolver (F ? 26/05/2020)
+
+RU029 ? Añadir en la ventana de resultados del problema columnas extras que muestren las configuraciones utilizadas con el problema. (F ? 13/05/2020) 
+	RS058 ? Implementar un mecanismo para indicar los elementos adicionales que quieren ser mostrados en la interfaz de resultados. (F ? 13/05/2020)
+	RS059 ? Agregar los datos adicionales que desean ser mostrados en la ventana de resultados.
+
+RU030 ? Exportar los resultados de los algoritmos aplicados como un Excel (F ? 26/05/2020)
+	RS060 ? Exportar todos los datos de la ventana de resultados a un archivo Excel  (F ? 26/05/2020)
+
+RU031 ? Exportar el gráfico utilizado para mostrar visualmente las soluciones a una imagen (PNG o SVG) (F ? 13/05/2020)
+	RS061 ? Configurar la carpeta en la que se guardaran la imagen del gráfico (F ? 13/05/2020)
+	RS062 ? Guardar el gráfico de resultados en disco en formato PNG (F ? 13/05/2020)
+
+RU032 ? Permitir indicar valores por defecto a los operadores o a los problemas. (F ? 26/05/2020)
+	RS063 ? Agregar un mecanismo para ingresar valores por defecto para los operadores
+	RS064 ? Mostrar en la ventana de configuración de los problemas los valores por defecto
+
+
+Pendientes de asignar
+
+Modificados
+
+Mostrar las soluciones y poder guardarlas -> Mostrar las soluciones de los algoritmos en la interfaz de usuario
+Modificar una red de acuerdo con los resultados -> Aplicar una solución al objeto que representa la red
+Crear archivo .inp de la solución generada -> Exportar el objeto red a un archivo .inp
+
+Borrados
+
+RU004 ? Agregar operadores para usar con el algoritmo NSGA-II (F - 09/09/2019)
+RU ? Agregar la funcionalidad de la DLL Epanet (F - 09/09/2019)
+RS ? Guardar las soluciones mostradas (F - 30/11/2019)
