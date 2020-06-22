@@ -1,83 +1,18 @@
 \chapter{Introducción}
 Este capítulo tiene como objetivo presentar el contexto, el problema, la propuesta de solución, los objetivos y el alcance del proyecto. Así como también, entregar antecedentes sobre los trabajos relacionados al tema.
 
-\section{Contexto del proyecto} 
-La escasez de agua potable es sin duda una problemática a nivel mundial y la optimización de los sistemas que permiten su distribución es cada día más relevante. Existe una serie de problemáticas asociadas a la determinación de las condiciones óptimas de operaciones y las características adecuadas para su construcción.
-
-Las RDA son redes que pueden ser muy extensas y complejas. Forman parte de la estructura principal de cualquier ciudad. Deben ser capaces de adaptarse a los cambios y asegurar niveles mínimos de servicios durante las 24 horas del día \cite{Pereyra2017}. Adicionalmente, dependiendo de su topología, las RDA integran sistemas de bombeo que requieren gran cantidad de energía en horarios determinados.
-
-La optimización de estos sistemas, a la vez, involucra la participación de múltiples criterios que deben ser tomados en cuenta a la hora de decidir. Sin embargo, la incorporación de éstos, involucra la generación de modelos cada vez más complejos \cite{JHawanet-2019}.
-
-Por lo anteriormente mencionado, esta área, ha llamado la atención de muchos investigadores que han creado diversos métodos para resolver la problemática desde diferentes enfoques. Sin embargo, aún existen muy pocas aplicaciones computacionales que permitan emplear los nuevos modelos y técnicas de forma práctica. Esto supone un gran problema para los interesados en aplicar estos conocimientos en un contexto real. Generalmente se trata de personas instruidas en temáticas relacionadas con la hidráulica pero que poseen un escaso manejo de técnicas computacionales de optimización.
-
-En este trabajo se pretende dar respuesta a esa necesidad creciente a través del diseño e implementación de una aplicación de escritorio. Este nuevo sistema, permitirá a a los usuarios resolver dos de los principales problemas en la optimización de RDA. Para ello utilizará un algoritmo genético, en el caso de los problemas con solo un objetivo y NSGA-II para resolver problemas del tipo multiobjetivo.
-
-\section{Presentación del problema}
-
-Los encargados de implementar sistemas de distribución de agua potable, no cuentan con suficientes herramientas y tiempo para su correcta gestión. Por lo tanto, no es posible utilizar los recursos asociados de forma eficiente. Además, las herramientas existentes no satisfacen las necesidades de usabilidad y costo, debido a que son poco intuitivas y de pago.
-
-El escoger las especificaciones de una red de agua potable es una tarea difícil debido a que hay que evaluar el rendimiento general del sistema en función de un conjunto de variables que se mueven en un rango muy elevado de posibilidades. Debido a esto, el uso de herramientas que optimicen la selección de estas características puede ayudar considerablemente a reducir costos operaciones y de inversión.
-
-Finalmente, es importante destacar que la construcción de un sistema que permita realizar la optimización de RDA es compleja. Necesita del conocimiento técnico de expertos en el área de hidráulica y computación. Involucra el trabajo con programas de simulación computacional que modelan las características de los sistema de agua bajo presión y de algoritmos metaheurísticos que los subordinen.   
-
 
 %\section{Hipótesis}
 
-\section{Objetivos}
-Para abarcar la problemática se fijan los siguientes objetivos.
-\subsubsection{Objetivo general}
-\begin{itemize}
-	%\item Desarrollar un sistema web que permita administrar la asignación de salas de clase de forma automática y eficiente.
-	\item Diseñar y desarrollar una aplicación de apoyo a la toma de decisiones, integrando algoritmos de optimización aplicados al problema de diseño y operación en redes de distribución de agua potable.
-\end{itemize}
-\subsubsection{Objetivos especificos}
-\begin{enumerate}
-	\item Generar soluciones frente al problema monoobjetivo de diseño de redes de distribución de agua potable a través de la implementación de algoritmos genéticos.
-	\item Generar soluciones frente al problema multiobjetivo de operación de redes de distribución de agua potable a través de la implementación de NSGA-II.
-	\item Diseñar he implementar la interfaz gráfica del sistema de optimización de redes de agua potable desarrollado durante este proyecto.
-	\item Evaluar el desempeño de los algoritmos, contrastando los resultados obtenidos en redes de benchmarking con óptimos conocidos.
-\end{enumerate}
+\input{Capitulo1/contexto_del_proyecto}
 
-\section{Propuesta de solución}
-La solución que se propone para abordar el problema consiste en el desarrollo de una aplicación que permita buscar soluciones a dos de los problemas existentes en las redes de agua potable. Además, de hacer uso de una arquitectura que permita fácilmente extender el programa para abarcar nuevos problemas. Para lograr esto último la aplicación debe quedar bien documentada. Por lo tanto, lo que se tendrá al termino del desarrollo del proyecto será un software escalable que tratara con dos problemas relacionados a la distribución de agua potable y que podrá ser ampliado en futuros trabajos.
+\input{Capitulo1/presentacion_del_problema}
 
-Los problemas que se abordaran en el contexto de optimización de redes de agua potable serán:
-\begin{itemize}
-	\item \textbf{Problema de diseño:} Se trata este problema desde un enfoque monoobjetivo implementando un algoritmo genético que buscará la optimización de los costo de inversión variando el diámetro de las tuberías. 
-	\item \textbf{Problema de operación:} Este problema se abordara desde el enfoque multiobjetivo. Para esto se implementara el algoritmo NSGA-II y se buscará la optimización de los objetivos de costos energéticos y el número de encendidos y apagados de las bombas.
-\end{itemize}
+\input{Capitulo1/objetivos}
 
-Tanto el algoritmo genético como el NSGA-II, permiten la utilización de distintos operadores de cruzamiento y mutación que también serán implementados para ser utilizados. 
+\input{Capitulo1/alcances}
 
-La solución planteada supone además el diseño e implementación de una interfaz gráfica para ayudar al usuario en el uso de la herramienta.
+\input{Capitulo1/trabajos_relacionados}
 
-\section{Alcances}
-Los alcances propuestos para este proyecto serán los siguientes:
-\begin{itemize}
-	
-	\item El sistema permitirá la carga y la visualización de la red gráficamente.
-	\item El sistema permitirá visualizar la configuración básica almacenada en el archivo inp de los elementos de la red.
-	\item El sistema solo resolverá dos clases de problemas de optimización, uno monoobjetivo y el otro multiobjetivo. El problema monoobjetivo será el de los costos de inversión. En cuanto al problema multiobjetivo, este será el de los costos energéticos y el número de encendidos y apagado de las bombas. 
-	\item El sistema únicamente contara con dos algoritmos implementados los cuales serán el algoritmo genético y NSGA-II. El algoritmo genético será el usado para tratar el problema monoobjetivo, mientras que NSGA-II será aplicado al multiobjetivo.
-	\item El sistema permitirá visualizar el o los resultados obtenidos al finalizar la ejecución del algoritmo.
-	\item El sistema permitirá generar archivos .inp con la configuración de la solución obtenida a través de los algoritmos. Debido a que el archivo .inp establece una gran cantidad de configuraciones, las únicas que se permitirán modificar serán las configuraciones asociadas a los conexiones (junctions) y tuberías (pipes).
-	\item El sistema permitirá generar archivos con las soluciones obtenidas para cada problema, es decir, el valor de los objetivos y las variables de decisión involucradas.
-	\item El sistema permitirá graficar visualmente las soluciones en un plano cartesiano.
-	\item La gráfica únicamente estará disponible en problemas con uno o dos objetivos.
-	\item La comparación con las redes de benchmarking consistirá únicamente, en presentar una tabla comparativa entre los resultados presentes en la literatura y los obtenidos a través de nuestro sistema, para cada uno de los problemas de redes de distribución de agua potable de nuestro sistema.
-	
-\end{itemize}
-Este proyecto no contempla la creación de la red por lo que estas deberán ser ingresadas como entradas al programa, es decir, estas deberán ser creadas usando EPANET o manualmente, pero siguiendo el formato establecido por EPANET. Además, esta herramienta únicamente podrá ser ocupada en equipos cuyo sistema operativo sea Windows debido a que se realizan llamadas a librerías nativas.
 
-\section{Trabajo relacionado}
-En este apartado se mostrarán distintas herramientas y el enfoque utilizado para resolver el problema con ellas. En general, los enfoques consisten en usar software ya disponible o crear un software personalizado.
 
-\begin{itemize}
-	\item \textbf{Magmoredes}: En \cite{Edwin2017} se describe la existencia de un software de diseño basado en micro-algoritmos genéticos multiobjetivos, que de acuerdo al autor, tiene un mejor rendimiento y es más eficiente que el algoritmo NSGA-II. Esto se debe a que requiere una menor cantidad de memoria y tiene un mejor tiempo de cómputo. Este programa puede cargar cualquier red y realiza los cálculos utilizando librerías de java. Las funciones objetivos que este sistema intenta resolver son la optimización de los costo y la confiabilidad final de la red.
-	
-	\item \textbf{WaterGEMS}: Software comercial que permite la construcción de modelos geoespaciales; optimización de diseño, ciclos de bombeo y calibración automática del modelo; y la gestión de activos. Este software a sido usado en \cite{Mehta2017} para llevar a cabo las simulaciones necesarias para su estudio. La metodología seguida para la utilización de este sistema consiste en ingresar los datos a WaterGEMS para correr las simulaciones. La limitación de este programa es que no permite la adición de nuevos algoritmos por parte del usuario, en el caso de que se quiera probar o mejorar algún algoritmo ya existente. Sin embargo, este sistema también tiene sus ventajas, porque ya incorpora algunos algoritmos predefinidos para resolver ciertos problemas. Además, posee diversas funcionalidades como conexión con datos externos, operaciones de análisis espaciales, intercambio de datos con dispositivos o programas de administración, entre otros.
-	
-	\item \textbf{EPANET}: El enfoque seguido con la utilización de esta herramienta consiste en automatizar la ejecución de los algoritmos y la posterior evaluación de los resultados utilizando la librería EPANET Toolkit. Este es usado en \cite{Doctoral2012} en donde se implementan ciertos algoritmos metaheurísticos y los resultados obtenidos por estos son enviados a la EPANET Toolkit para evaluar la solución y determinar la factibilidad de ésta. La ventaja de este enfoque es que permite una mayor flexibilidad en los algoritmos metaheuristicos utilizados y los problemas que se quieren resolver. Sin embargo, debido a que se necesita implementar los problemas y los algoritmos, este enfoque toma mucho tiempo.
-\end{itemize}
-
-Para el desarrollo de este proyecto se usa el enfoque basado en EPANET, puesto que es una librería de simulación hidráulica ampliamente utilizada y permite enfocarnos en la resolución de los problemas usando algoritmos metaheurísticos. Tanto Magmoredes como WaterGEMS buscan resolver temas concretos en los sistemas de distribución de agua potable y puesto que el código de estos programas no esta disponible públicamente o son un sistema que se comercializa sin permitir la modificación del sistema por parte de terceros, se busca con nuestro proyecto incorporar esta capacidad para que en futuros trabajos se pueda abarcar una mayor cantidad de problemas en nuestro sistema.

@@ -1,0 +1,27 @@
+\section{Objetivos}
+Para abarcar la problemática se fijan los siguientes objetivos.
+\subsubsection{Objetivo general}
+\begin{itemize}
+	%\item Desarrollar un sistema web que permita administrar la asignación de salas de clase de forma automática y eficiente.
+	\item Diseñar y desarrollar una aplicación de apoyo a la toma de decisiones, integrando algoritmos de optimización aplicados al problema de diseño y operación en redes de distribución de agua potable.
+\end{itemize}
+\subsubsection{Objetivos especificos}
+\begin{enumerate}
+	\item Generar soluciones frente al problema monoobjetivo de diseño de redes de distribución de agua potable a través de la implementación de algoritmos genéticos.
+	\item Generar soluciones frente al problema multiobjetivo de operación de redes de distribución de agua potable a través de la implementación de NSGA-II.
+	\item Diseñar he implementar la interfaz gráfica del sistema de optimización de redes de agua potable desarrollado durante este proyecto.
+	\item Evaluar el desempeño de los algoritmos, contrastando los resultados obtenidos en redes de benchmarking con óptimos conocidos.
+\end{enumerate}
+
+\section{Propuesta de solución}
+La solución que se propone para abordar el problema consiste en el desarrollo de una aplicación que permita buscar soluciones a dos de los problemas existentes en las redes de agua potable. Además, de hacer uso de una arquitectura que permita fácilmente extender el programa para abarcar nuevos problemas. Para lograr esto último la aplicación debe quedar bien documentada. Por lo tanto, lo que se tendrá al termino del desarrollo del proyecto será un software escalable que tratara con dos problemas relacionados a la distribución de agua potable y que podrá ser ampliado en futuros trabajos.
+
+Los problemas que se abordaran en el contexto de optimización de redes de agua potable serán:
+\begin{itemize}
+	\item \textbf{Problema de diseño:} Se trata este problema desde un enfoque monoobjetivo implementando un algoritmo genético que buscará la optimización de los costo de inversión variando el diámetro de las tuberías. 
+	\item \textbf{Problema de operación:} Este problema se abordara desde el enfoque multiobjetivo. Para esto se implementara el algoritmo NSGA-II y se buscará la optimización de los objetivos de costos energéticos y el número de encendidos y apagados de las bombas.
+\end{itemize}
+
+Tanto el algoritmo genético como el NSGA-II, permiten la utilización de distintos operadores de cruzamiento y mutación que también serán implementados para ser utilizados. 
+
+La solución planteada supone además el diseño e implementación de una interfaz gráfica para ayudar al usuario en el uso de la herramienta.

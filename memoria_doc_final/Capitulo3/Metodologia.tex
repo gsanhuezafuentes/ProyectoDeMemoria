@@ -1,29 +1,62 @@
-\chapter{Metodología}
-Durante este capitulo se explica la razón por la que fue escogida esta metodología sobre todas las demás existentes y como esta sera adaptada para ser utilizada durante el desarrollo del proyecto.
+\section{Metodología}
 
-Debido a que la metodología esta pensada para ser llevada a cabo por un equipo de trabajo esta se ha adapta para poder ser aplicada en el desarrollo llevado a cabo por una sola persona. Esta adaptación consiste en la disminución de la cantidad de la documentación generada, permitir llevar a cabo más de una fase de la iteración al mismo tiempo y los roles de analista, diseñador, implementador y tester sera realizado por una sola persona. Los documentos a generar por cada fase son:
+Debido a que la metodología esta pensada para ser llevada a cabo por un equipo de trabajo, esta se ha adaptado para poder ser aplicada en el desarrollo llevado a cabo por una sola persona. Esta adaptación consiste, de manera general, en disminuir la cantidad de documentación generada por cada fase, flexibilidad para permitir llevar a cabo más de una fase dentro de cada iteración al mismo tiempo y que los roles de analista, diseñador, implementador y tester sean realizados por una sola persona.
 
-\paragraph{Análisis:} El producto generado por esta fase es un documento de especificación de requisitos que constara de:
+Las tareas a desempeñar por cada fase consisten en:
+\paragraph{Análisis:}
+\begin{itemize}
+	\item Identificación y especificación de los requisitos de usuario. 
+	\item Priorización de los requisitos.
+	\item Validación de requisitos.
+	\item Especificación formal de requisitos.
+\end{itemize}
+\paragraph{Diseño:} 
+\begin{itemize}
+	\item Definición y especificación de la arquitectura del sistema.
+	\item Diseño de las interfaces de usuario.
+	\item Diseño de los componentes.
+	\item Especificación formal del diseño del sistema.
+\end{itemize}
+\paragraph{Implementación:}
+\begin{itemize}
+	\item Programación de los componentes de software.
+	\item Integración de los componentes de software.
+	\item Elaboración del producto entregable.
+	\item Elaboración de manual de usuario.
+\end{itemize}
+\paragraph{Pruebas:}
+\begin{itemize}
+	\item Verificación del producto entregable.
+	\item Definición y especificación de casos de prueba.
+	\item Validación del producto.
+	\item Registro de incidencias.
+	\item Especificación formal de pruebas.
+\end{itemize}
+
+Cada una de las fases mencionadas anteriormente tiene como resultado un documento de especificación formal. Específicamente, estos contienen el siguiente contenido:
+
+\paragraph{Especificación formal de requisitos:}
 \begin{itemize}
 	\item Introducción: En este apartado del documento se da una introducción al problema que se ha identificado.
 	\item Requisitos de usuario: Consiste en la recopilación de lo requisitos de los usuarios que deben ser cumplidos al final del periodo de desarrollo.
 	\item Requisito de sistema: Son los requisitos, desde un punto de vista mas técnico, que son necesarios para satisfacer los requisitos de usuario.
 	\item Matriz de trazado requisitos de usuario vs sistema: Matriz que permite ver la trazabilidad de los requisitos de usuario con los de sistema.
 \end{itemize}
-\paragraph{Diseño:} Esta fase genera como producto un documento de diseño que cuenta con los siguientes diagramas:
+\paragraph{Especificación formal del diseño del sistema:}
 \begin{itemize}
 	\item Casos de uso: Serie de diagramas que permiten ver la interacción que el usuario tiene con el sistema.
 	\item Arquitectura lógica: Descripción a alto nivel del software y los componentes que lo componen.
 	\item Diagrama de componentes: Permite ver la división del sistema y la interacción entre los distintos componentes \cite{Bell2004}.
+	\item Diseño de interfaces: Bosquejos o implementaciónes de las interfaces a ser utilizadas en la propuesta.
 	\item Diagrama de clases: Describe la relación entre las distintas clases presentes en la solución propuesta.
 \end{itemize}
-\paragraph{Implementación:} Esta fase genera el código fuente de la aplicación y un manual de usuario de la aplicación.
-\paragraph{Pruebas:} Durante esta fase de realiza la documentación y la realización de las pruebas sobre la aplicación.
+\paragraph{Manual de usuario:} Explicación acerca de la capacidades de la aplicación, acompañada de esquemas y ejemplos de uso.
+\paragraph{Especificación formal de pruebas:} 
 \begin{itemize}
 	\item Se documenta las pruebas unitarias realizadas y sobre que componentes.
 	\item Se documenta las pruebas de integración y que caso de uso cubren.
 \end{itemize}
 
-La razón por la que se utiliza esta metodología sobre otras es porque el producto resultante de este proyecto esta pensado para servir como base para futuros trabajos. Debido a esto es necesario documentar correctamente para que otros programadores puedan continuar con su desarrollo más adelante. Aunque existen otras metodologías como cascada u otras tradicionales, estas son difíciles de llevar a cabo por la cantidad de documentación que se requiere, mientras que metodologías de desarrollo ágil carecen en cuanto a la documentación que se necesita para el sistema a desarrollar. Adicionalmente, esta metodología nos permite obtener una retroalimentación al final de la iteración, obtener nuevos requisitos que no hayan quedado definidos en etapas anteriores o refinar los requisitos y el diseño ya existente, permitiendo así mejorar la calidad del producto final.
+La razón por la que se utiliza esta metodología sobre otras es porque el producto resultante de este proyecto esta pensado para servir como base para futuros trabajos. Debido a esto es necesario documentar correctamente los detalles de la implementación para que otros programadores puedan continuar con su desarrollo en el futuro. Aunque existen otras metodologías como cascada u otras tradicionales, estas son difíciles de llevar a cabo por la cantidad de documentación que se requiere, mientras que metodologías de desarrollo ágil carecen en cuanto a la documentación que se necesita para el sistema a desarrollar. Adicionalmente, esta metodología nos permite obtener una retroalimentación al final de cada iteración, obtener nuevos requisitos que no hayan quedado definidos en etapas anteriores o refinar los requisitos y el diseño ya existente, permitiendo así mejorar la calidad del producto final.
 
 La implementación de esta metodología para el desarrollo del proyecto se lleva a cabo repartiendo las tareas necesarias para el cumplimiento de los objetivos en iteraciones. De este modo al final de cada iteración se cuenta con un prototipo funcional de la aplicación sobre el que se agrega las nuevas funcionalidades en las iteraciones siguientes.

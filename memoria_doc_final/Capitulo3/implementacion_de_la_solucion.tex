@@ -1,0 +1,227 @@
+\section{Implementación de la solución}
+En esta sección, se detalla el proceso de desarrollo de la propuesta. Para ello, se escogerán algunas funcionalidades que serán utilizadas como casos de prueba, con el fin de describir las actividades realizadas durante la implementación.
+
+\subsection{Planificación}
+
+Para llevar a cabo el desarrollo del proyecto se opto por la metodología iterativa e incremental. La planificación resultante seguida durante el desarrollo del proyecto se muestra en el Cuadro \ref{fig:planificacion} .
+
+\begin{table}
+  \begin{center}
+    \begin{tabular}{||c| m{6cm}| m{2.5cm}| m{2.5cm}||} 
+      \hline
+      N° Iteración & Tareas & Fecha Inicio & Fecha \newline término \\ [0.5ex] 
+      \hline\hline
+      1 & - Especificación de requisitos \newline - Escoger arquitectura lógica y física & 26/08/2019 & 14/10/2019 \\ 
+      \hline
+      2 & - Implementar problema monoobjetivo (Pipe Optimizing) \newline - Implementar algoritmo genético \newline - Implementar operadores de selección y reproducción & 14/10/2019 & 11/11/2019 \\
+      \hline
+      3 & - Crear interfaces de usuario \newline - Guardar soluciones & 11/11/2019 & 20/01/2020 \\
+      \hline
+      4 & - Implementar problema multiobjetivo (Pumping Scheduling) \newline - Implementar algoritmo NSGAII & 27/01/2020 & 24/02/2020 \\
+      \hline
+      5 & - Permitir realizar multiples repeticiones de un algoritmo \newline - Permitir realizar la simulación usando los valores por defecto de la red & 02/03/2020 & 04/05/2020 \\ [1ex] 
+      \hline
+      6 & - Agregar simbolos al dibujo de la red \newline - Exportar a excel \newline - Agregar menu de configuración & 11/05/2020 & 08/06/2020 \\ [1ex] 
+      \hline
+    \end{tabular}
+   \caption{Planificación de las iteraciones}
+   \label{fig:planificacion}
+ \end{center}
+\end{table}
+
+\subsection{Aplicación de la metodología}
+
+En esta sección se da a conocer como se lleva a cabo la aplicación de la metodología en el desarrollo del proyecto. Para esto, se presentará por cada una de las fases del desarrollo las actividades realizadas en cada iteración. 
+
+\subsubsection{Casos de prueba}
+
+Los casos de prueba son las funcionalidades que se usarán para presentar y demostrar la aplicación de la metodología durante el desarrollo del proyecto.
+
+Se escogerán 3 funcionalidades de prueba las cuales son:
+
+\paragraph{Funcionalidad 1:} El sistema debe poder visualizar la red.\\
+Esta funcionalidad consiste en visualizar gráficamente la forma de la red cargada. El archivo de descripción de red debe ser creado desde la aplicación Epanet y tener la extensión inp.
+
+\paragraph{Funcionalidad 2:} El sistema debe poder buscar soluciones al problema de la optimización de los costos de construcción de las tuberías usando el algoritmo genético.\\
+Esta funcionalidad consiste en buscar soluciones para el problema de optimización de los costos de construcción de las tuberías.
+
+\paragraph{Funcionalidad 3:}  El sistema debe poder realizar una simulación hidráulica utilizando los valores por defecto del archivo de red.\\
+Esta funcionalidad consiste en realizar una simulación hidráulica utilizando el archivo de red cargado y visualizar los valores resultantes de los elementos de la red.
+
+\subsubsection{Requisitos}
+
+Durante la fase de requisitos se llevo a cabo la captura, priorización, validación y la especificación formal de requisitos.
+
+Los requisitos iniciales de la aplicación fueron capturados del profesor Jimmy Gutierrez. Posteriormente, estos requisitos fueron priorizados y validados para finalmente ser documentados en el documento de especificación formal de requisitos. 
+
+A medida que avanzaban las iteraciónes algunos requisitos fueron cambiando o fueron surgiendo requisitos nuevos. En el Cuadro \ref{fig:cambios_requisitos} se detallan los cambios y actividades realizados durante cada iteración.
+
+\begin{table}
+  \begin{center}
+    \begin{tabular}{||c| m{2cm}| m{8cm}||} 
+      \hline
+      N° Iteración & Requisitos cubiertos & Tareas\\ [0.5ex] 
+      \hline\hline
+      1 & 5/32 & Se capturan 5 requisitos.\newline Se crea el informe de especificación de requisitos. \\
+      \hline
+      2 & 11/32 & Se capturan 6 nuevos requisitos. \newline Se actualiza el documento de requisitos.\\
+      \hline
+      3 & 16/32 & Se capturan 5 nuevos requisitos. \newline Se actualiza el documento de requisitos. \\
+      \hline
+      4 & 20/32 & Se capturan 4 nuevos requisitos.\newline Se actualiza el documento de requisitos. \\
+      \hline
+      5 & 20/32 & No hay nuevos requisitos. \\
+      \hline
+      6 & 32/32 & Se capturan 12 nuevos requisitos.\newline Se actualiza el documento de requisitos. \\
+      \hline
+
+    \end{tabular}
+   \caption{Actividades y cambios de la fase de requisitos durante cada iteración}
+   \label{fig:cambios_requisitos}
+ \end{center}
+\end{table}
+
+Los cuadros \ref{fig:RU004}, \ref{fig:RU003} y \ref{fig:RU020} muestran la especificación formal de los requisitos relacionados a las funcionalidades escogidas anteriormente.
+
+\begin{table}
+  \begin{center}
+    \begin{tabular}{||m{12cm}||} 
+      \hline
+      \textbf{RU004 -- Visualizar red en una interfaz gráfica.}\\
+      \hline
+      \textbf{Descripción:}  Se debe mostrar en la interfaz gráfica una representación de la red (Un dibujo, etc) generada a partir de la información contenida en el archivo inp.\\
+      \hline
+      \textbf{Fuente:} Jimmy Gutiérrez\\
+      \hline
+      \textbf{Prioridad:} Crítica\\
+      \hline
+      \textbf{Estabilidad:} Intransable\\
+      \hline
+      \textbf{Fecha de actualización:} 09/09/2019\\
+      \hline
+      \textbf{Estado:} Cumple\\
+      \hline
+      \textbf{Incremento:} 3\\
+      \hline
+      \textbf{Tipo:} Funcional\\
+      \hline
+    \end{tabular}
+   \caption{Especificación del requisito de usuario RU004.}
+   \label{fig:RU004}
+ \end{center}
+\end{table}
+
+\begin{table}
+  \begin{center}
+    \begin{tabular}{||m{12cm}||} 
+      \hline
+      \textbf{RU003 -- Resolver el problema multiobjetivo (Pumping Scheduling) usando el Algoritmo NSGA-II.}\\
+      \hline
+      \textbf{Descripción:}  El algoritmo NSGA-II debe ser aplicado al problema multiobjetivo cuyas funciones a optimizar son los costos energéticos y el número de encendido y apagado de las bombas (Pumping Schedule).\\
+      \hline
+      \textbf{Fuente:} Jimmy Gutiérrez\\
+      \hline
+      \textbf{Prioridad:} Crítica\\
+      \hline
+      \textbf{Estabilidad:} Intransable\\
+      \hline
+      \textbf{Fecha de actualización:} 09/09/2019\\
+      \hline
+      \textbf{Estado:} Cumple\\
+      \hline
+      \textbf{Incremento:} 4\\
+      \hline
+      \textbf{Tipo:} Funcional\\
+      \hline
+    \end{tabular}
+   \caption{Especificación del requisito de usuario RU003.}
+   \label{fig:RU003}
+ \end{center}
+\end{table}
+
+\begin{table}
+  \begin{center}
+    \begin{tabular}{||m{12cm}||} 
+      \hline
+      \textbf{RU020 -- Permitir realizar simulaciones hidráulicas utilizando los valores por defectos que vienen en el archivo .inp y visualizar los resultados.}\\
+      \hline
+      \textbf{Descripción:}  Utilizando los valores que vienen por defecto en el archivo inp se debe poder llevar a cabo la simulación hidráulica de la red. Posteriormente, los resultados podrán ser visualizados por el usuario.\\
+      \hline
+      \textbf{Fuente:} Daniel Mora-Meliá\\
+      \hline
+      \textbf{Prioridad:} Crítica\\
+      \hline
+      \textbf{Estabilidad:} Intransable\\
+      \hline
+      \textbf{Fecha de actualización:} 27/01/2020\\
+      \hline
+      \textbf{Estado:} Cumple\\
+      \hline
+      \textbf{Incremento:} 5\\
+      \hline
+      \textbf{Tipo:} Funcional\\
+      \hline
+    \end{tabular}
+   \caption{Especificación del requisito de usuario RU020.}
+   \label{fig:RU020}
+ \end{center}
+\end{table}
+
+
+La especificación formal de los requisitos restantes se encuentra en el \textbf{Anexo A}.
+
+
+\subsubsection{Diseño}
+
+Una vez terminada la fase de requisitos se procede a diseñar la aplicación. Dentro del diseño, se encuentran las tareas de escoger  y documentar la arquitectura física y lógica, realizar los diagramas de clases, diagramas de secuencia, diseño de interfaces, entre otros.
+
+
+Mientras avanzaba el desarrollo, fue necesario modificar el documento de diseño debido a la aparición o modificación de requisitos, así como la realización de mejoras en los diagramas realizados. En el Cuadro \ref{fig:cambios_diseno} se presentan más detalladamente los cambios realizados.
+
+\begin{table}
+  \begin{center}
+    \begin{tabular}{||c| m{6cm}| m{6cm}||} 
+      \hline
+      N° Iteración & Tareas & Descripción\\ [0.5ex] 
+      \hline\hline
+      1 & Crear arquitectura lógica. \newline Crear arquitectura física. \newline Diseñar módulos.\newline Crear diagrama de clases del modulo metaheurística. \newline Crear diagrama de clases del la representación de la red.
+      &\\
+      \hline
+      2 & No hubieron cambios & \\
+      \hline
+      3 & Diseñar interfaces de usuario.\newline Especificar detalles de la implementación referente a las anotaciones de java (Java Annotations).\newline Generar diagrama de secuencia de optimización. & \\
+      \hline
+      4 & No hubieron cambios & \\
+      \hline
+      5 & Modificar interfaces de usuario. \newline Crear diagrama de secuencia para realizar la simulación usando las configuraciones por defecto. Modificar y mejora del diagrama de secuencia de la optimización. & \\
+      \hline
+      6 & Modificar y mejora del diagrama de secuencia de la optimización. & Se modifico el diagrama de secuencia de la optimización debido a la aparición de un nuevo requisito.  \\
+      \hline
+    \end{tabular}
+   \caption{Actividades y cambios de la fase de requisitos durante cada iteración}
+   \label{fig:cambios_diseno}
+ \end{center}
+\end{table}
+
+La arquitectura física del programa a desarrollar es la monolítica. Puesto que, el programa debe ser usado en un equipo local. La Figura \ref{fig:arq_fisica} muestra el diagrama de la arquitectura monolítica.
+
+\begin{figure}[h]
+	\includegraphics[width=0.5\textwidth]{Capitulo3/assets/arquitectura_fisica.png}
+	\centering
+	\caption{Arquitectura monolítica}
+	\label{fig:arq_fisica}
+\end{figure}
+
+En cuanto a la arquitectura lógica se escogió utilizar Modelo-Vista-Controlador, ya que esta nos permite separar la interfaz de implementación. La Figura \ref{fig:arq_logica} muestra el diagrama de la arquitectura.
+
+\begin{figure}[h]
+  \includegraphics[width=\textwidth]{Capitulo3/assets/arquitectura_logica.eps}
+	\centering
+	\caption{Arquitectura monolítica}
+	\label{fig:arq_logica}
+\end{figure}
+
+\subsubsection{Implementación}
+\subsubsection{Pruebas}
+
+
