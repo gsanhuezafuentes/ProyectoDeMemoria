@@ -175,8 +175,7 @@ La especificación formal de los requisitos restantes se encuentra en el \textbf{
 
 Una vez terminada la fase de requisitos se procede a diseñar la aplicación. Dentro del diseño, se encuentran las tareas de escoger  y documentar la arquitectura física y lógica, realizar los diagramas de clases, diagramas de secuencia, diseño de interfaces, entre otros.
 
-
-Mientras avanzaba el desarrollo, fue necesario modificar el documento de diseño debido a la aparición o modificación de requisitos, así como la realización de mejoras en los diagramas realizados. En el Cuadro \ref{fig:cambios_diseno} se presentan más detalladamente los cambios realizados.
+Mientras avanzaba el desarrollo fue necesario ir modificando el documento de diseño debido a la aparición o al cambio de requisitos, así como la realización de mejoras en los diagramas realizados. En el Cuadro \ref{fig:cambios_diseno} se presentan más detalladamente los cambios realizados en cada iteración.
 
 \begin{table}
   \begin{center}
@@ -203,25 +202,173 @@ Mientras avanzaba el desarrollo, fue necesario modificar el documento de diseño 
  \end{center}
 \end{table}
 
-La arquitectura física del programa a desarrollar es la monolítica. Puesto que, el programa debe ser usado en un equipo local. La Figura \ref{fig:arq_fisica} muestra el diagrama de la arquitectura monolítica.
+Como una de las primeras tareas realizadas durante esta fase se procedió a definir la arquitectura de la aplicación, tanto desde el punto físico como el lógico. 
 
-\begin{figure}[h]
+La arquitectura física del programa a desarrollar es la arquitectura monolítica, cuya característica es que software que posee esta arquitectura funciona localmente sin necesidad de interactuar con otros equipos. Esta elección se debe a que en reuniones con el cliente se estableció que el programa será usado localmente y debe operar sobre el sistema operativo Windows. Limitación debida principalmente al acceso a funciones nativas cuando se realizan simulaciones hidráulicas utilizando la  librería dinámica de Epanet. La Figura \ref{fig:arq_fisica} muestra el diagrama de la arquitectura monolítica.
+
+\begin{figure}[H]
 	\includegraphics[width=0.5\textwidth]{Capitulo3/assets/arquitectura_fisica.png}
 	\centering
 	\caption{Arquitectura monolítica}
 	\label{fig:arq_fisica}
 \end{figure}
 
-En cuanto a la arquitectura lógica se escogió utilizar Modelo-Vista-Controlador, ya que esta nos permite separar la interfaz de implementación. La Figura \ref{fig:arq_logica} muestra el diagrama de la arquitectura.
+En cuanto a la arquitectura lógica se escogió utilizar Modelo-Vista-Controlador. Ésta elección se debe al hecho de que dicha arquitectura nos permite separar la capa de interfaz de usuario de la lógica de la aplicación mejorando asi escalabilidad y mantenibilidad del software. La Figura \ref{fig:arq_logica} muestra el diagrama de la arquitectura lógica, así como los principales módulos de la aplicación.
 
-\begin{figure}[h]
+\begin{figure}[H]
   \includegraphics[width=\textwidth]{Capitulo3/assets/arquitectura_logica.eps}
 	\centering
 	\caption{Arquitectura monolítica}
 	\label{fig:arq_logica}
 \end{figure}
 
+A continuación se presentarán los diseños relaciónados por cada una de las funcionalidades escogidas con anterioridad.
+
+\paragraph{Funcionalidad 1:} Para implementar esta funcionalidad es necesario abstraer en un conjunto de clases los datos almacenados en el archivo de configuración de red. La Figura \ref{fig:dia_clase_network} muestra el diagrama de clases de las clases sobre la que almacenan los datos al momento de cargar la red. 
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo3/assets/d_clases_network.eps}
+	\caption{Diagrama de clases de la abstracción de la red.}
+	\label{fig:dia_clase_network}
+\end{figure}
+
+El diagrama de la Figura \ref{fig:dia_sec_visualizacion} muestra el conjunto de clases y los mensajes de la clases que interactúan con la clase \textit{Network} con el fin de visualizar la red. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo3/assets/d_sec_visualizacion.eps}
+	\caption{Diagrama de secuencia de la carga y visualización de la red.}
+	\label{fig:dia_sec_visualizacion}
+\end{figure}
+
+\paragraph{Funcionalidad 2:} Esta es una de las funcionalidades ligada al modulo metaheurística y debido a uno de los requisitos establecidos por el cliente de que la aplicación debe poder extender el número de algoritmos, operadores y problemas implementados es necesario implementar una jerarquía de clases que facilite lo anteriormente mencionado. Es por ello, que se utilizo como base la jerarquía de clases utilizada por el Framework JMetal~\cite{Durillo2010} la cual fue adaptada para ser ocupada por esta aplicación. La Figura \ref{fig:dia_class_met} corresponde a la jerarquía ya mencionada.
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo3/assets/d_clases_metaheuristica.eps}
+	\caption{Diagrama de clases modulo metaheurística. Modificación a partir del diagrama presentado en \cite{Durillo2010}.}
+	\label{fig:dia_class_met}
+\end{figure}
+
+El diagrama de secuencia de la Figura \ref{fig:dia_sec_opt} muestra la interacción de las clases con del modulo metaheurísticas, con el resto de clases de la aplicación.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo3/assets/d_seq_simulacion-monomulti.eps}
+	\caption{Diagrama de secuencia para llevar a cabo la optimizacion de los problemas.}
+	\label{fig:dia_sec_opt}
+\end{figure}
+
+\paragraph{Funcionalidad 3:} Para implementar esta funcionalidad es necesario implementar un conjunto de clases las cuales guardaran los resultados de la simulación para cada uno de los nodos y enlaces de una red. Estas nuevas clases son las mostradas en la Figura \ref{fig:dia_class_sim_hyd}.
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo3/assets/d_clases_hyd_simulation.eps}
+	\caption{Diagrama de clases para la simulación hidráulica}
+	\label{fig:dia_class_sim_hyd}
+\end{figure}
+
+El diagrama de secuencia presentado en la Figura \ref{fig:dia_sec_sim_hyd} muestra la interacción entre las clases necesarias para realizar la simulación hidráulica utilizando los valores del archivo de red cargado.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo3/assets/d_seq_simulacion-hidraulica.eps}
+	\caption{Diagrama de secuencia para realizar la simulación hidráulica}
+	\label{fig:dia_sec_sim_hyd}
+\end{figure}
+
+En el \textbf{Anexo B} se puede ver la el documento de diseño de la aplicación.
+
 \subsubsection{Implementación}
+Con la fase de diseño finalizada, se procede a realizar la fase de implementación. Durante esta fase se genera el código de la aplicación y se genera el manual de usuario.
+
+La aplicación fue desarrollada en el lenguaje Java version 1.8. Con el fin de crear las interfaces de usuario se utilizo el Framework JavaFX.
+
+En el cuadro \ref{fig:actualizacion_implementacion} se presenta las tareas realizadas durante esta fase del desarrollo del software.
+
+\begin{longtable}{||c| m{10cm}||}
+  \hline
+  N° Iteración & Descripción\\ [0.5ex] 
+  \hline\hline
+  1 & Se codifican las clases para cargar la red \textit{Network}.\\
+  \hline
+  2 & Se codifican las clases del modulo metaheuristica. \newline Se implementa el algoritmo genético.\newline Se implementa la codificación del problema monoobjetivo \textit{Pipe Optimizing}. \newline Se implementan los operadores IntegerRandomMutation, SBXCrossover, IntegerPolinomialMutation, IntegerRangeRandomMutation y UniformSelection.\\
+  \hline
+  3 & Se implementan la interfaz de usuario principal. \newline Se implementa el componente para visualizar la red \newline Se implementa la interfaz de configuración del problema. \newline Se implementa la interfaz de visualización de resultados de optimización. \newline Se implementa la interfaz que muestra el gráfico con los resultados de la optimizacion. \newline Se implementa la funcionalidad para guardar las soluciones en TSV. \newline Se implementa funcionalidad para exportar la solución escogida como un inp(Formato del archivo de configuración de red). \\
+  \hline
+  4 & Se agrega el algoritmo NSGAII. \newline Se implementa la codificación del problema multiobjetivo \textbf{Pumping Scheduling}.\\
+  \hline
+  5 & Se modifican las clases y archivos relacionados a la interfaces de usuario. \newline Se implementa la funcionalidad para realizar múltiples simulaciones independientes de un mismo algoritmo para los problemas multiobjetivos (Experimentos). \newline Se implementa la funcionalidad para realizar la simulación usando los valores del archivo de red.\\
+  \hline
+  6 & Se modifica el componente de visualización de red para mostrar para cada tipo de elemento que conforma la red un símbolo distinto. \newline Se implementa funcionalidad para mostrar una leyenda de los símbolos. \newline Se implementa ventana de configuración de la aplicación. \newline Se implementa la funcionalidad para realizar múltiples simulaciones independientes para los problemas monoobjetivo (Se adapta para utilizar los Experimentos antes utilizados solo en problemas multiobjetivos).\newline Se permite agregar valores por defecto en la ventana de configuración del problemas. \newline Se implementa la funcionalidad para exportar resultados a un Excel.\\
+  \hline
+
+  \caption{Actividades fase de implementación}
+  \label{fig:actualizacion_implementacion}
+\end{longtable}
+
+A continuación se presentara para cada una de las funcionalidades escogidas las interfaces implementadas.
+
+\paragraph{Funcionalidad 1}: La Figura \ref{fig:ventana_visualizacion} muestra la ventana de visualización de la red.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo3/assets/VisualizacionRed.png}
+	\caption{Ventana principal de la aplicación donde se visualiza la red}
+	\label{fig:ventana_visualizacion}
+\end{figure}
+
+\paragraph{Funcionalidad 2}: Las Figuras \ref{fig:ventana_descripcion}, \ref{fig:ventana_configuracion_problema}, \ref{fig:ventana_operador}, \ref{fig:ventana_retroalimentacion} y \ref{fig:ventana_resultados_opt} muestran las ventana utilizadas durante el cumplimiento de esta funcionalidad.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo3/assets/ConfiguracionProblema1.png}
+	\caption{Ventana de descripción del problema.}
+	\label{fig:ventana_descripcion}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo3/assets/ConfiguracionProblema2.png}
+	\caption{Ventana de configuración del problema.}
+	\label{fig:ventana_configuracion_problema}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo3/assets/ConfiguracionProblema3.png}
+	\caption{Ventana de configuración de parámetros del operador \textit{UniformSelection}.}
+	\label{fig:ventana_operador}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo3/assets/VentanaDeEjecucionMono.png}
+	\caption{Ventana del retroalimentación mostrada durante la ejecución.}
+	\label{fig:ventana_retroalimentacion}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo3/assets/VentanaDeResultadosMono.png}
+	\caption{Ventana de resultados generada cuando termina la ejecución para el problema monoobjetivo Pipe Optimizing.}
+	\label{fig:ventana_resultados_opt}
+\end{figure}
+
+\paragraph{Funcionalidad 3}: La Figura \ref{fig:ventana_simulacion_hyd} muestra la ventana con los resultados de una simulación hidráulica para la red cargada.
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo3/assets/VentanaDeSimulacionHidraulica.png}
+	\caption{Ventana de simulación hidráulica utilizando los valores del archivo de red.}
+	\label{fig:ventana_simulacion_hyd}
+\end{figure}
+
 \subsubsection{Pruebas}
 
 

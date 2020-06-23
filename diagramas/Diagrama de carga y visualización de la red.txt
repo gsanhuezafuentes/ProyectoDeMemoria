@@ -3,6 +3,7 @@ title Diagrama de carga y visualización de la red
 actor User
 participant MainWindowController
 participant ProblemMenuConfiguration
+participant Network
 participant InpParser
 participant NetworkComponent
 participant ElementViewer
@@ -25,7 +26,11 @@ User<-MainWindowController: Ventana de elección\nde archivos
 User-->MainWindowController: Ubicación del archivo
 autoactivation on
 MainWindowController->MainWindowController: loadNetwork()
+MainWindowController->*Network:<<crea>>
+deactivate Network
 MainWindowController->InpParser://Leer red y rellenar el objeto network//\nparse(Network)
+Network<-InpParser:Carga los datos desde el archivo INP
+deactivateafter Network
 MainWindowController<--InpParser:network
 destroyafter InpParser
 ref over MainWindowController, ElementViewer:Actualiza la propiedad que almacena \nla red en MainWindowController lo \ncual actualiza las propiedades vinculadas \nen NetworkComponent y ElementViewer

@@ -14,9 +14,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.epanet.element.networkcomponent.Component;
-import model.epanet.element.result.LinkSimulationResult;
-import model.epanet.element.result.NodeSimulationResult;
-import model.epanet.element.utils.HydraulicSimulation;
+import model.epanet.hydraulicsimulation.LinkSimulationResult;
+import model.epanet.hydraulicsimulation.NodeSimulationResult;
+import model.epanet.hydraulicsimulation.HydraulicSimulation;
 import view.utils.CustomDialogs;
 
 import java.io.IOException;

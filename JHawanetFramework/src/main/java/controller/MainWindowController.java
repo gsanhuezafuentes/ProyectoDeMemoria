@@ -19,7 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import model.epanet.element.Network;
-import model.epanet.element.utils.HydraulicSimulation;
+import model.epanet.hydraulicsimulation.HydraulicSimulation;
 import model.epanet.io.InpParser;
 import model.metaheuristic.experiment.Experiment;
 import org.jetbrains.annotations.NotNull;

@@ -10,10 +10,10 @@ model.epanet.element
 model.epanet.element.networkcomponent
 model.epanet.element.networkdesign
 model.epanet.element.optionsreport
-model.epanet.element.result
 model.epanet.element.systemoperation
 model.epanet.element.utils
 model.epanet.element.waterquality
+model.epanet.hydraulicsimulation
 model.epanet.io
 model.io
 model.metaheuristic.algorithm

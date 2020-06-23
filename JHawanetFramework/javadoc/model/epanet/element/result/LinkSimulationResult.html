@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li><a href="../../../../model/epanet/element/result/LinkSimulationResult.Status.html" title="enum in model.epanet.element.result"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../model/epanet/element/result/LinkSimulationResult.Status.html" title="enum in model.epanet.element.hydraulicsimulation"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?model/epanet/element/result/LinkSimulationResult.html" target="_top">Frames</a></li>
@@ -91,7 +91,7 @@ var activeTableTab = "activeTableTab";
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">model.epanet.element.result</div>
+<div class="subTitle">model.epanet.element.hydraulicsimulation</div>
 <h2 title="Class LinkSimulationResult" class="title">Class LinkSimulationResult</h2>
 </div>
 <div class="contentContainer">
@@ -99,10 +99,10 @@ var activeTableTab = "activeTableTab";
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../model/epanet/element/result/ResultSimulation.html" title="class in model.epanet.element.result">model.epanet.element.result.ResultSimulation</a></li>
+<li><a href="../../../../model/epanet/element/result/ResultSimulation.html" title="class in model.epanet.element.hydraulicsimulation">model.epanet.hydraulicsimulation.ResultSimulation</a></li>
 <li>
 <ul class="inheritance">
-<li>model.epanet.element.result.LinkSimulationResult</li>
+<li>model.epanet.hydraulicsimulation.LinkSimulationResult</li>
 </ul>
 </li>
 </ul>
@@ -114,7 +114,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public final class <span class="typeNameLabel">LinkSimulationResult</span>
-extends <a href="../../../../model/epanet/element/result/ResultSimulation.html" title="class in model.epanet.element.result">ResultSimulation</a></pre>
+extends <a href="../../../../model/epanet/element/result/ResultSimulation.html" title="class in model.epanet.element.hydraulicsimulation">ResultSimulation</a></pre>
 <div class="block">This class is used to store the result value of a simulation for the links.
  Not all links need all values. The values needed by each link type are:
  <p>
@@ -143,7 +143,7 @@ extends <a href="../../../../model/epanet/element/result/ResultSimulation.html" 
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../model/epanet/element/result/LinkSimulationResult.Status.html" title="enum in model.epanet.element.result">LinkSimulationResult.Status</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../model/epanet/element/result/LinkSimulationResult.Status.html" title="enum in model.epanet.element.hydraulicsimulation">LinkSimulationResult.Status</a></span></code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -165,7 +165,7 @@ extends <a href="../../../../model/epanet/element/result/ResultSimulation.html" 
                     double&nbsp;flow,
                     double&nbsp;velocity,
                     double&nbsp;unitHeadloss,
-                    @NotNull <a href="../../../../model/epanet/element/result/LinkSimulationResult.Status.html" title="enum in model.epanet.element.result">LinkSimulationResult.Status</a>&nbsp;status)</code>
+                    @NotNull <a href="../../../../model/epanet/element/result/LinkSimulationResult.Status.html" title="enum in model.epanet.element.hydraulicsimulation">LinkSimulationResult.Status</a>&nbsp;status)</code>
 <div class="block">Use this constructor for result of Pipe</div>
 </td>
 </tr>
@@ -197,7 +197,7 @@ extends <a href="../../../../model/epanet/element/result/ResultSimulation.html" 
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>@NotNull <a href="../../../../model/epanet/element/result/LinkSimulationResult.Status.html" title="enum in model.epanet.element.result">LinkSimulationResult.Status</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="../../../../model/epanet/element/result/LinkSimulationResult.Status.html" title="enum in model.epanet.element.hydraulicsimulation">LinkSimulationResult.Status</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../model/epanet/element/result/LinkSimulationResult.html#getStatus--">getStatus</a></span>()</code>
 <div class="block">Get the status</div>
 </td>
@@ -213,7 +213,7 @@ extends <a href="../../../../model/epanet/element/result/ResultSimulation.html" 
 <li class="blockList"><a name="methods.inherited.from.class.model.epanet.element.result.ResultSimulation">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;model.epanet.element.result.<a href="../../../../model/epanet/element/result/ResultSimulation.html" title="class in model.epanet.element.result">ResultSimulation</a></h3>
+<h3>Methods inherited from class&nbsp;model.epanet.element.hydraulicsimulation.<a href="../../../../model/epanet/element/result/ResultSimulation.html" title="class in model.epanet.element.hydraulicsimulation">ResultSimulation</a></h3>
 <code><a href="../../../../model/epanet/element/result/ResultSimulation.html#getId--">getId</a>, <a href="../../../../model/epanet/element/result/ResultSimulation.html#getTimeInSeconds--">getTimeInSeconds</a>, <a href="../../../../model/epanet/element/result/ResultSimulation.html#getTimeString--">getTimeString</a></code></li>
 </ul>
 <ul class="blockList">
@@ -249,7 +249,7 @@ extends <a href="../../../../model/epanet/element/result/ResultSimulation.html" 
                             double&nbsp;velocity,
                             double&nbsp;unitHeadloss,
                             @NotNull
-                            @NotNull <a href="../../../../model/epanet/element/result/LinkSimulationResult.Status.html" title="enum in model.epanet.element.result">LinkSimulationResult.Status</a>&nbsp;status)</pre>
+                            @NotNull <a href="../../../../model/epanet/element/result/LinkSimulationResult.Status.html" title="enum in model.epanet.element.hydraulicsimulation">LinkSimulationResult.Status</a>&nbsp;status)</pre>
 <div class="block">Use this constructor for result of Pipe</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -321,7 +321,7 @@ extends <a href="../../../../model/epanet/element/result/ResultSimulation.html" 
 <li class="blockList">
 <h4>getStatus</h4>
 <pre>@NotNull
-public&nbsp;@NotNull <a href="../../../../model/epanet/element/result/LinkSimulationResult.Status.html" title="enum in model.epanet.element.result">LinkSimulationResult.Status</a>&nbsp;getStatus()</pre>
+public&nbsp;@NotNull <a href="../../../../model/epanet/element/result/LinkSimulationResult.Status.html" title="enum in model.epanet.element.hydraulicsimulation">LinkSimulationResult.Status</a>&nbsp;getStatus()</pre>
 <div class="block">Get the status</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -357,7 +357,7 @@ public&nbsp;@NotNull <a href="../../../../model/epanet/element/result/LinkSimula
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li><a href="../../../../model/epanet/element/result/LinkSimulationResult.Status.html" title="enum in model.epanet.element.result"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../model/epanet/element/result/LinkSimulationResult.Status.html" title="enum in model.epanet.element.hydraulicsimulation"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?model/epanet/element/result/LinkSimulationResult.html" target="_top">Frames</a></li>

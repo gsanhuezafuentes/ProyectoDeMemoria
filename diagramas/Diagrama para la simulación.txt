@@ -35,7 +35,7 @@ deactivateafter DynamicConfigurationController
 destroyafter DynamicConfigurationController
 
 autoactivation off
-MainWindowController->MainWindowController://Construye el algoritmo//\nRegistrable.build()
+MainWindowController->MainWindowController://Construye el experimento//\nRegistrable.build()
 autoactivation on
 MainWindowController->*SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController:<<crear>>
 SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController->*Task: <<crear>
@@ -66,6 +66,7 @@ destroy Task
 end
 
 autoactivation on
+note left of Algorithm:La interacción con estas clases de\nhace a través de las clases //ExperimentAlgorithm// \nque llama a los métodos de //Algorithm//
 Task->Algorithm://Ejecutar un paso//\nrunSingleStep()
 deactivateafter Algorithm
 Task->Algorithm: Obtener estado de la ejecución

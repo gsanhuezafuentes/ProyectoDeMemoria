@@ -99,7 +99,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li>model.epanet.element.utils.HydraulicSimulation</li>
+<li>model.epanet.hydraulicsimulation.HydraulicSimulation</li>
 </ul>
 </li>
 </ul>
@@ -132,13 +132,13 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/LinkSimulationResult.html" title="class in model.epanet.element.result">LinkSimulationResult</a>&gt;</code></td>
+<td class="colFirst"><code>@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/LinkSimulationResult.html" title="class in model.epanet.element.hydraulicsimulation">LinkSimulationResult</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../model/epanet/element/utils/HydraulicSimulation.html#getLinkResultInTime-java.lang.String-">getLinkResultInTime</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;time)</code>
 <div class="block">Return the link result of a specific time indicated by parameter time.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/NodeSimulationResult.html" title="class in model.epanet.element.result">NodeSimulationResult</a>&gt;</code></td>
+<td class="colFirst"><code>@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/NodeSimulationResult.html" title="class in model.epanet.element.hydraulicsimulation">NodeSimulationResult</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../model/epanet/element/utils/HydraulicSimulation.html#getNodeResultInTime-java.lang.String-">getNodeResultInTime</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;time)</code>
 <div class="block">Return the node result of a specific time indicated by parameter time.</div>
 </td>
@@ -150,13 +150,13 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/LinkSimulationResult.html" title="class in model.epanet.element.result">LinkSimulationResult</a>&gt;</code></td>
+<td class="colFirst"><code>@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/LinkSimulationResult.html" title="class in model.epanet.element.hydraulicsimulation">LinkSimulationResult</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../model/epanet/element/utils/HydraulicSimulation.html#getTimeSeriesForLink-java.lang.String-">getTimeSeriesForLink</a></span>(@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;linkId)</code>
 <div class="block">Return for a link the result of execution in all times.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/NodeSimulationResult.html" title="class in model.epanet.element.result">NodeSimulationResult</a>&gt;</code></td>
+<td class="colFirst"><code>@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/NodeSimulationResult.html" title="class in model.epanet.element.hydraulicsimulation">NodeSimulationResult</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../model/epanet/element/utils/HydraulicSimulation.html#getTimeSeriesForNode-java.lang.String-">getTimeSeriesForNode</a></span>(@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;nodeId)</code>
 <div class="block">Return for a node the result of execution in all times.</div>
 </td>
@@ -227,7 +227,7 @@ public static&nbsp;@NotNull <a href="../../../../model/epanet/element/utils/Hydr
 <li class="blockList">
 <h4>getNodeResultInTime</h4>
 <pre>@NotNull
-public&nbsp;@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/NodeSimulationResult.html" title="class in model.epanet.element.result">NodeSimulationResult</a>&gt;&nbsp;getNodeResultInTime(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;time)</pre>
+public&nbsp;@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/NodeSimulationResult.html" title="class in model.epanet.element.hydraulicsimulation">NodeSimulationResult</a>&gt;&nbsp;getNodeResultInTime(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;time)</pre>
 <div class="block">Return the node result of a specific time indicated by parameter time.
  <p>
  Available times can be retrieved using the <a href="../../../../model/epanet/element/utils/HydraulicSimulation.html#getTimes--"><code>getTimes()</code></a> method.</div>
@@ -248,7 +248,7 @@ public&nbsp;@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/uti
 <li class="blockList">
 <h4>getLinkResultInTime</h4>
 <pre>@NotNull
-public&nbsp;@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/LinkSimulationResult.html" title="class in model.epanet.element.result">LinkSimulationResult</a>&gt;&nbsp;getLinkResultInTime(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;time)</pre>
+public&nbsp;@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/LinkSimulationResult.html" title="class in model.epanet.element.hydraulicsimulation">LinkSimulationResult</a>&gt;&nbsp;getLinkResultInTime(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;time)</pre>
 <div class="block">Return the link result of a specific time indicated by parameter time.
  <p>
  Available times can be retrieved using the <a href="../../../../model/epanet/element/utils/HydraulicSimulation.html#getTimes--"><code>getTimes()</code></a> method.</div>
@@ -284,7 +284,7 @@ public&nbsp;@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/uti
 <li class="blockList">
 <h4>getTimeSeriesForNode</h4>
 <pre>@NotNull
-public&nbsp;@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/NodeSimulationResult.html" title="class in model.epanet.element.result">NodeSimulationResult</a>&gt;&nbsp;getTimeSeriesForNode(@NotNull
+public&nbsp;@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/NodeSimulationResult.html" title="class in model.epanet.element.hydraulicsimulation">NodeSimulationResult</a>&gt;&nbsp;getTimeSeriesForNode(@NotNull
                                                                           @NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;nodeId)</pre>
 <div class="block">Return for a node the result of execution in all times.</div>
 <dl>
@@ -304,7 +304,7 @@ public&nbsp;@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/uti
 <li class="blockList">
 <h4>getTimeSeriesForLink</h4>
 <pre>@NotNull
-public&nbsp;@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/LinkSimulationResult.html" title="class in model.epanet.element.result">LinkSimulationResult</a>&gt;&nbsp;getTimeSeriesForLink(@NotNull
+public&nbsp;@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../model/epanet/element/result/LinkSimulationResult.html" title="class in model.epanet.element.hydraulicsimulation">LinkSimulationResult</a>&gt;&nbsp;getTimeSeriesForLink(@NotNull
                                                                           @NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;linkId)</pre>
 <div class="block">Return for a link the result of execution in all times.</div>
 <dl>
