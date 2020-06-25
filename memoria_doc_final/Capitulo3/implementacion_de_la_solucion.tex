@@ -19,9 +19,9 @@ Para llevar a cabo el desarrollo del proyecto se opto por la metodología iterati
       \hline
       4 & - Implementar problema multiobjetivo (Pumping Scheduling) \newline - Implementar algoritmo NSGAII & 27/01/2020 & 24/02/2020 \\
       \hline
-      5 & - Permitir realizar multiples repeticiones de un algoritmo \newline - Permitir realizar la simulación usando los valores por defecto de la red & 02/03/2020 & 04/05/2020 \\ [1ex] 
+      5 & - Permitir realizar múltiples repeticiones de un algoritmo \newline - Permitir realizar la simulación usando los valores por defecto de la red & 02/03/2020 & 04/05/2020 \\ [1ex] 
       \hline
-      6 & - Agregar simbolos al dibujo de la red \newline - Exportar a excel \newline - Agregar menu de configuración & 11/05/2020 & 08/06/2020 \\ [1ex] 
+      6 & - Agregar símbolos al dibujo de la red \newline - Exportar a excel \newline - Agregar menu de configuración & 11/05/2020 & 08/06/2020 \\ [1ex] 
       \hline
     \end{tabular}
    \caption{Planificación de las iteraciones}
@@ -39,13 +39,16 @@ Los casos de prueba son las funcionalidades que se usarán para presentar y demos
 
 Se escogerán 3 funcionalidades de prueba las cuales son:
 
-\paragraph{Funcionalidad 1:} El sistema debe poder visualizar la red.\\
+\paragraph{Funcionalidad 1:} El sistema debe poder visualizar la red.
+
 Esta funcionalidad consiste en visualizar gráficamente la forma de la red cargada. El archivo de descripción de red debe ser creado desde la aplicación Epanet y tener la extensión inp.
 
-\paragraph{Funcionalidad 2:} El sistema debe poder buscar soluciones al problema de la optimización de los costos de construcción de las tuberías usando el algoritmo genético.\\
+\paragraph{Funcionalidad 2:} El sistema debe poder buscar soluciones al problema de la optimización de los costos de construcción de las tuberías usando el algoritmo genético.
+
 Esta funcionalidad consiste en buscar soluciones para el problema de optimización de los costos de construcción de las tuberías.
 
-\paragraph{Funcionalidad 3:}  El sistema debe poder realizar una simulación hidráulica utilizando los valores por defecto del archivo de red.\\
+\paragraph{Funcionalidad 3:}  El sistema debe poder realizar una simulación hidráulica utilizando los valores por defecto del archivo de red.
+
 Esta funcionalidad consiste en realizar una simulación hidráulica utilizando el archivo de red cargado y visualizar los valores resultantes de los elementos de la red.
 
 \subsubsection{Requisitos}
@@ -85,7 +88,7 @@ Los cuadros \ref{fig:RU004}, \ref{fig:RU003} y \ref{fig:RU020} muestran la espec
 
 \begin{table}
   \begin{center}
-    \begin{tabular}{||m{12cm}||} 
+    \begin{tabular}{||m{\textwidth}||} 
       \hline
       \textbf{RU004 -- Visualizar red en una interfaz gráfica.}\\
       \hline
@@ -113,7 +116,7 @@ Los cuadros \ref{fig:RU004}, \ref{fig:RU003} y \ref{fig:RU020} muestran la espec
 
 \begin{table}
   \begin{center}
-    \begin{tabular}{||m{12cm}||} 
+    \begin{tabular}{||m{\textwidth}||} 
       \hline
       \textbf{RU003 -- Resolver el problema multiobjetivo (Pumping Scheduling) usando el Algoritmo NSGA-II.}\\
       \hline
@@ -141,7 +144,7 @@ Los cuadros \ref{fig:RU004}, \ref{fig:RU003} y \ref{fig:RU020} muestran la espec
 
 \begin{table}
   \begin{center}
-    \begin{tabular}{||m{12cm}||} 
+    \begin{tabular}{||m{\textwidth}||} 
       \hline
       \textbf{RU020 -- Permitir realizar simulaciones hidráulicas utilizando los valores por defectos que vienen en el archivo .inp y visualizar los resultados.}\\
       \hline
@@ -181,18 +184,18 @@ Mientras avanzaba el desarrollo fue necesario ir modificando el documento de dis
   \begin{center}
     \begin{tabular}{||c| m{6cm}| m{6cm}||} 
       \hline
-      N° Iteración & Tareas & Descripción\\ [0.5ex] 
+      N° Iteración & Tareas & Comentario\\ [0.5ex] 
       \hline\hline
       1 & Crear arquitectura lógica. \newline Crear arquitectura física. \newline Diseñar módulos.\newline Crear diagrama de clases del modulo metaheurística. \newline Crear diagrama de clases del la representación de la red.
-      &\\
+      & Durante esta iteración se creo el documento de diseño y se crearon los esquemas básicos para orientar la construcción del software.\\
       \hline
-      2 & No hubieron cambios & \\
+      2 & No hubieron cambios & No hubieron cambios en esta iteración en el aspecto del diseño.\\
       \hline
-      3 & Diseñar interfaces de usuario.\newline Especificar detalles de la implementación referente a las anotaciones de java (Java Annotations).\newline Generar diagrama de secuencia de optimización. & \\
+      3 & Diseñar interfaces de usuario.\newline Especificar detalles de la implementación referente a las anotaciones de java (Java Annotations).\newline Generar diagrama de secuencia de optimización. & Durante esta fase de diseñaron algunas de las interfaces de usuario de la aplicación. \newline Los diagramas de secuencia creados indican la interacción entre las clases para poder realizar una tarea.\\
       \hline
-      4 & No hubieron cambios & \\
+      4 & No hubieron cambios & No hubieron cambios en esta iteración en el aspecto del diseño.\\
       \hline
-      5 & Modificar interfaces de usuario. \newline Crear diagrama de secuencia para realizar la simulación usando las configuraciones por defecto. Modificar y mejora del diagrama de secuencia de la optimización. & \\
+      5 & Modificar interfaces de usuario. \newline Crear diagrama de secuencia para realizar la simulación usando las configuraciones por defecto. Modificar y mejora del diagrama de secuencia de la optimización. & Debido a requisitos del usuario en el área de usabilidad de la aplicación fue necesario modificar las interfaces.\\
       \hline
       6 & Modificar y mejora del diagrama de secuencia de la optimización. & Se modifico el diagrama de secuencia de la optimización debido a la aparición de un nuevo requisito.  \\
       \hline
@@ -209,7 +212,7 @@ La arquitectura física del programa a desarrollar es la arquitectura monolítica,
 \begin{figure}[H]
 	\includegraphics[width=0.5\textwidth]{Capitulo3/assets/arquitectura_fisica.png}
 	\centering
-	\caption{Arquitectura monolítica}
+	\caption{Arquitectura física monolítica}
 	\label{fig:arq_fisica}
 \end{figure}
 
@@ -218,7 +221,7 @@ En cuanto a la arquitectura lógica se escogió utilizar Modelo-Vista-Controlador.
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{Capitulo3/assets/arquitectura_logica.eps}
 	\centering
-	\caption{Arquitectura monolítica}
+	\caption{Arquitectura lógica Modelo-Vista-Controlador}
 	\label{fig:arq_logica}
 \end{figure}
 

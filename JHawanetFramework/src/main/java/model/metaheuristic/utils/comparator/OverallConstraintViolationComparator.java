@@ -55,7 +55,7 @@ public class OverallConstraintViolationComparator<S extends Solution<?>> impleme
 	 * 
 	 * @param solution1 Object representing the first <code>Solution</code>.
 	 * @param solution2 Object representing the second <code>Solution</code>.
-	 * @return -1, or 0, or 1 if o1 is less than, equal, or greater than o2,
+	 * @return -1, or 0, or 1 if o1 is greater than, equal, or less than o2,
 	 *         respectively.
 	 */
 	public int compare(S solution1, S solution2) {
