@@ -1,0 +1,27 @@
+Find
+
+Requisito: (R\w\d\d\d) . (.*)
+Descripcion: Descripción\s*:\s*(.*)
+Fuente: Fuente\s*:\s*(.*)
+Prioridad: Prioridad\s*:\s*(.*)
+Estabilidad: Estabilidad\s*:\s*(.*)
+Fecha: Fecha\s.*:\s*(.*)
+Estado: Estado\s*:\s*(.*)
+Incremento: Incremento\s*:\s*(.*)
+Tipo: Tipo\s*:\s*(.*)
+
+(Fuente|Prioridad|Estabilidad|Estado|Incremento|Tipo)\s*:\s*(.*)
+
+Replace
+
+Requisito: \Requisito{$1}{$2}
+Descripcion: \Descripcion{$1}
+Fuente: \Fuente{$1}
+Prioridad: \Prioridad{$1}
+Estabilidad: \Estabilidad{$1}
+Fecha: \FechaA{$1}
+Estado: \Estado{$1}
+Incremento:\Incremento{$1}
+Tipo: \Tipo{$1}
+
+\$1{$2}

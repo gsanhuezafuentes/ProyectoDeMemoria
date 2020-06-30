@@ -1,0 +1,36 @@
+\babel@toc {spanish}{}
+\babel@toc {spanish}{}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Arquitectura f\IeC {\'\i }sica.}}{9}% 
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Arquitectura l\'ogica.}}{10}% 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagrama de componentes.}}{12}% 
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Diagrama de clases general del sistema.}}{14}% 
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Diagrama de clase de la red.}}{15}% 
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Diagrama de clases del componente \textit {metaheuristic}.}}{16}% 
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Diagrama de secuencia de la carga y visualizaci\'on de la red.}}{17}% 
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Diagrama de secuencia de la simulaci\'on de la red usando los valores del archivo de configuraci\'on de red (inp).}}{18}% 
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Diagrama de secuencia de la optimizaci\'on.}}{19}% 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Esquema de interfaz de inicio del sistema.}}{20}% 
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Interfaz de descripci\'on del problema.}}{21}% 
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Interfaz de configuraci\'on del problema.}}{22}% 
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Interfaz de ejecuci\'on del experimento monoobjetivo.}}{23}% 
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Interfaz de ejecuci\'on del experimento multiobjetivo.}}{24}% 
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Esquema de interfaz para graficar las soluciones}}{25}% 
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Interfaz de resultados de la optimizaci\'on}}{26}% 
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Interfaz de visualizaci\'on de la configuraci\'on de la red.}}{27}% 
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Interfaz de resultados de ejecuci\'on de simulaci\'on hidr\'aulica.}}{28}% 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Constructor de un solo par\'ametro.}}{30}% 
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Constructor de un solo par\'ametro.}}{30}% 
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Interfaz para configurar el operador \textit {UniformSelection}.}}{31}% 
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Interfaz para configurar el operador \textit {IntegerPolynomialMutation}.}}{31}% 
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Constructor de clase que hereda de registrable y sus metadatos para cada par\'ametro.}}{32}% 
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Men\'u de problemas.}}{33}% 
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Componente \textit {ComboBox} para configurar los operadores.}}{34}% 
+\contentsline {figure}{\numberline {5.8}{\ignorespaces \textit {ComboBox} expandido para configurar el operador.}}{35}% 
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Apartado para configurar el par\'ametro de tipo \textit {File}.}}{36}% 
+\contentsline {figure}{\numberline {5.10}{\ignorespaces \textit {TextField} presente cuando esta la anotaci\'on \textit {@NumberInput}.}}{36}% 
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Apartado para \textit {NumberToggleInput} con el mismo GroupID.}}{37}% 

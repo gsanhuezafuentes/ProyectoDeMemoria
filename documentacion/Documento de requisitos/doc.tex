@@ -1,0 +1,73 @@
+%% inicio, la clase del documento es iccmemoria.cls
+\documentclass{especificacion}
+\usepackage[onelanguage, commentsnumbered, linesnumbered, boxed, ruled]{algorithm2e}
+\usepackage[draft=false,kerning=true]{microtype}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{especificacionutility}
+\usepackage{setspace}
+\usepackage{adjustbox}
+
+
+%% datos generales y para la tapa
+\titulo{Documento de especificación de requisitos}
+\subtitulo{Herramienta para la optimización de redes de distribución de agua potable}
+\author{Gabriel Gonzalo Alexander Sanhueza Fuentes}
+
+
+%% inicio de documento
+\begin{document}
+
+%% crea la tapa
+\maketitle
+
+\adddevelopment{Gabriel Sanhueza Fuentes}{Administrador, Analista, Diseñador, Implementador y Tester.}{gsanhueza15@alumnos~.utalca.cl}
+
+\addcounterpart{Jimmy H. Gutiérrez-Bahamondes}{Cliente/Profesor guía}{}
+\addcounterpart{Jimmy H. Gutiérrez-Bahamondes}{Cliente/Profesor co-guía}{}
+
+\addrevision{0.1}{07/09/2019}{Primer borrador}
+\addrevision{1}{15/06/2020}{Actualización documento. Agregados los requisitos faltantes.}
+
+
+\RevisionHistoryPage
+
+
+%% indices
+\tableofcontents
+%\listoffigures
+%\listoftables
+
+%% abstract
+
+%WRITE HERE
+
+\input{Capitulo1/Introduccion}
+\input{Capitulo2/DescripcionGeneral}
+\input{Capitulo3/Requisitos}
+
+%% ambiente glosario
+%\begin{glosario}
+%  \item[RDA] Este es el significado del primer término, realmente no se bien lo que significa pero podría haberlo averiguado si hubiese tenido un poco mas de tiempo.
+%  \item[GA] Este si se lo que significa pero me da lata escribirlo...
+%\end{glosario}
+
+
+%% genera las referencias
+%\bibliography{refs}
+
+
+%% comienzo de la parte de anexos
+%\appendixpart
+
+%% contenido del primer anexo
+%%\appendix{Apendix}
+
+\end{document}
+
+   
+

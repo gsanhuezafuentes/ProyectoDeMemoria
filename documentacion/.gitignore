@@ -24,3 +24,4 @@ Backup of *.doc*
 
 # End of https://www.gitignore.io/api/microsoftoffice
 /Documento de diseño.pdf
+old_format/*.pdf

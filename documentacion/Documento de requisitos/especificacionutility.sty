@@ -1,0 +1,53 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{especificacionutility}[2020/06/25 Custom Utility Package]
+
+\RequirePackage{xparse}
+\RequirePackage[latin1]{inputenc}
+\RequirePackage[latin1]{inputenc}
+\RequirePackage{tabularx}
+\RequirePackage{multirow}
+\RequirePackage{float}
+
+
+%%%%%% Requeriments enviroments
+
+%#1 es code #2 title
+\def\RF{Funcional}
+\def\RNF{No Funcional}
+
+\newcommand{\Requisito}[2]{\multicolumn{2}{||p{\textwidth-2\arraycolsep}||}{\textbf{#1 -- #2}}\\
+\hline}
+
+\newcommand{\Descripcion}[1]{\textbf{Descripción:} & \parbox{0.65\textwidth-1.3\arraycolsep}{\strut #1 \strut}\\
+\hline}
+\newcommand{\Fuente}[1]{\textbf{Fuente:} & #1\\
+\hline}
+\newcommand{\Prioridad}[1]{\textbf{Prioridad:} & #1\\
+\hline}
+\newcommand{\Estabilidad}[1]{\textbf{Estabilidad:} & #1\\
+\hline}
+\newcommand{\FechaA}[1]{\textbf{Fecha de actualización:} & #1\\
+\hline}
+\newcommand{\Estado}[1]{\textbf{Estado:} & #1\\
+\hline}
+\newcommand{\Incremento}[1]{\textbf{Incremento:} & #1\\
+\hline}
+\newcommand{\Tipo}[1]{\textbf{Tipo:} & #1\\
+\hline}
+
+%#1 es label #2 es caption
+\NewDocumentEnvironment { requisito } { o o }
+{
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{||c|p{0.65\textwidth-1.3\arraycolsep}||}
+      \hline
+}
+{
+    \hline
+    \end{tabular}
+    \IfNoValueF{#2}{\caption{#2}}
+  \IfNoValueF{#1}{\label{#1}}
+  \end{center}
+\end{table}
+}

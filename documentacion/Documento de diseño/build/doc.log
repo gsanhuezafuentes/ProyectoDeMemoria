@@ -1,0 +1,1052 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.29)  30 JUN 2020 05:22
+entering extended mode
+**"c:/Users/gsanh/Desktop/Memoria/documentacion/Documento de diseño/doc.tex"
+("c:/Users/gsanh/Desktop/Memoria/documentacion/Documento de diseño/doc.tex"
+LaTeX2e <2018-12-01>
+(especificacion.cls
+Document Class: especificacion 2005/01/19 v1 Estilo Memoria de Titulo - ICC - UTalca (fmeza, jperez)
+("G:\MiKTeX 2.9\tex/latex/base\report.cls"
+Document Class: report 2018/09/03 v1.4i Standard LaTeX document class
+("G:\MiKTeX 2.9\tex/latex/base\fleqn.clo"
+File: fleqn.clo 2016/12/29 v1.2b Standard LaTeX option (flush left equations)
+\mathindent=\dimen102
+Applying: [2015/01/01] Make \[ robust on input line 50.
+LaTeX Info: Redefining \[ on input line 51.
+Already applied: [0000/00/00] Make \[ robust on input line 62.
+Applying: [2015/01/01] Make \] robust on input line 74.
+LaTeX Info: Redefining \] on input line 75.
+Already applied: [0000/00/00] Make \] robust on input line 83.
+) ("G:\MiKTeX 2.9\tex/latex/base\size12.clo"
+File: size12.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@chapter=\count81
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@subparagraph=\count86
+\c@figure=\count87
+\c@table=\count88
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen103
+) ("G:\MiKTeX 2.9\tex/latex/l3packages/xparse\xparse.sty" ("G:\MiKTeX 2.9\tex/latex/l3kernel\expl3.sty"
+Package: expl3 2020-06-18 L3 programming layer (loader) 
+ ("G:\MiKTeX 2.9\tex/latex/l3kernel\expl3-code.tex"
+Package: expl3 2020-06-18 L3 programming layer (code)
+\c_max_int=\count89
+\l_tmpa_int=\count90
+\l_tmpb_int=\count91
+\g_tmpa_int=\count92
+\g_tmpb_int=\count93
+\l__seq_internal_a_int=\count94
+\l__seq_internal_b_int=\count95
+\g__kernel_prg_map_int=\count96
+\c__ior_term_noprompt_ior=\count97
+\c_log_iow=\count98
+\l_iow_line_count_int=\count99
+\l__iow_line_target_int=\count100
+\l__iow_one_indent_int=\count101
+\l__iow_indent_int=\count102
+\c_zero_dim=\dimen104
+\c_max_dim=\dimen105
+\l_tmpa_dim=\dimen106
+\l_tmpb_dim=\dimen107
+\g_tmpa_dim=\dimen108
+\g_tmpb_dim=\dimen109
+\c_zero_skip=\skip43
+\c_max_skip=\skip44
+\l_tmpa_skip=\skip45
+\l_tmpb_skip=\skip46
+\g_tmpa_skip=\skip47
+\g_tmpb_skip=\skip48
+\c_zero_muskip=\muskip10
+\c_max_muskip=\muskip11
+\l_tmpa_muskip=\muskip12
+\l_tmpb_muskip=\muskip13
+\g_tmpa_muskip=\muskip14
+\g_tmpb_muskip=\muskip15
+\l_keys_choice_int=\count103
+\l__intarray_loop_int=\count104
+\c__intarray_sp_dim=\dimen110
+\g__intarray_font_int=\count105
+\c__fp_leading_shift_int=\count106
+\c__fp_middle_shift_int=\count107
+\c__fp_trailing_shift_int=\count108
+\c__fp_big_leading_shift_int=\count109
+\c__fp_big_middle_shift_int=\count110
+\c__fp_big_trailing_shift_int=\count111
+\c__fp_Bigg_leading_shift_int=\count112
+\c__fp_Bigg_middle_shift_int=\count113
+\c__fp_Bigg_trailing_shift_int=\count114
+\c__kernel_randint_max_int=\count115
+\g__fp_array_int=\count116
+\l__fp_array_loop_int=\count117
+\l__sort_length_int=\count118
+\l__sort_min_int=\count119
+\l__sort_top_int=\count120
+\l__sort_max_int=\count121
+\l__sort_true_max_int=\count122
+\l__sort_block_int=\count123
+\l__sort_begin_int=\count124
+\l__sort_end_int=\count125
+\l__sort_A_int=\count126
+\l__sort_B_int=\count127
+\l__sort_C_int=\count128
+\l__str_internal_int=\count129
+\c__str_replacement_char_int=\count130
+\l__tl_analysis_normal_int=\count131
+\l__tl_analysis_index_int=\count132
+\l__tl_analysis_nesting_int=\count133
+\l__tl_analysis_type_int=\count134
+\l__regex_internal_a_int=\count135
+\l__regex_internal_b_int=\count136
+\l__regex_internal_c_int=\count137
+\l__regex_balance_int=\count138
+\l__regex_group_level_int=\count139
+\l__regex_mode_int=\count140
+\c__regex_cs_in_class_mode_int=\count141
+\c__regex_cs_mode_int=\count142
+\l__regex_catcodes_int=\count143
+\l__regex_default_catcodes_int=\count144
+\c__regex_catcode_D_int=\count145
+\c__regex_catcode_S_int=\count146
+\c__regex_catcode_L_int=\count147
+\c__regex_catcode_O_int=\count148
+\c__regex_catcode_A_int=\count149
+\c__regex_all_catcodes_int=\count150
+\l__regex_show_lines_int=\count151
+\l__regex_min_state_int=\count152
+\l__regex_max_state_int=\count153
+\l__regex_left_state_int=\count154
+\l__regex_right_state_int=\count155
+\l__regex_capturing_group_int=\count156
+\l__regex_min_pos_int=\count157
+\l__regex_max_pos_int=\count158
+\l__regex_curr_pos_int=\count159
+\l__regex_start_pos_int=\count160
+\l__regex_success_pos_int=\count161
+\l__regex_curr_char_int=\count162
+\l__regex_curr_catcode_int=\count163
+\l__regex_last_char_int=\count164
+\l__regex_case_changed_char_int=\count165
+\l__regex_curr_state_int=\count166
+\l__regex_step_int=\count167
+\l__regex_min_active_int=\count168
+\l__regex_max_active_int=\count169
+\l__regex_replacement_csnames_int=\count170
+\l__regex_match_count_int=\count171
+\l__regex_min_submatch_int=\count172
+\l__regex_submatch_int=\count173
+\l__regex_zeroth_submatch_int=\count174
+\g__regex_trace_regex_int=\count175
+\c_empty_box=\box27
+\l_tmpa_box=\box28
+\l_tmpb_box=\box29
+\g_tmpa_box=\box30
+\g_tmpb_box=\box31
+\l__box_top_dim=\dimen111
+\l__box_bottom_dim=\dimen112
+\l__box_left_dim=\dimen113
+\l__box_right_dim=\dimen114
+\l__box_top_new_dim=\dimen115
+\l__box_bottom_new_dim=\dimen116
+\l__box_left_new_dim=\dimen117
+\l__box_right_new_dim=\dimen118
+\l__box_internal_box=\box32
+\l__coffin_internal_box=\box33
+\l__coffin_internal_dim=\dimen119
+\l__coffin_offset_x_dim=\dimen120
+\l__coffin_offset_y_dim=\dimen121
+\l__coffin_x_dim=\dimen122
+\l__coffin_y_dim=\dimen123
+\l__coffin_x_prime_dim=\dimen124
+\l__coffin_y_prime_dim=\dimen125
+\c_empty_coffin=\box34
+\l__coffin_aligned_coffin=\box35
+\l__coffin_aligned_internal_coffin=\box36
+\l_tmpa_coffin=\box37
+\l_tmpb_coffin=\box38
+\g_tmpa_coffin=\box39
+\g_tmpb_coffin=\box40
+\l__coffin_bounding_shift_dim=\dimen126
+\l__coffin_left_corner_dim=\dimen127
+\l__coffin_right_corner_dim=\dimen128
+\l__coffin_bottom_corner_dim=\dimen129
+\l__coffin_top_corner_dim=\dimen130
+\l__coffin_scaled_total_height_dim=\dimen131
+\l__coffin_scaled_width_dim=\dimen132
+\c__coffin_empty_coffin=\box41
+\l__coffin_display_coffin=\box42
+\l__coffin_display_coord_coffin=\box43
+\l__coffin_display_pole_coffin=\box44
+\l__coffin_display_offset_dim=\dimen133
+\l__coffin_display_x_dim=\dimen134
+\l__coffin_display_y_dim=\dimen135
+\g__char_data_ior=\read1
+ ("G:\MiKTeX 2.9\tex/latex/l3kernel\l3deprecation.def"
+File: l3deprecation.def 2019-04-06 v L3 Deprecated functions
+)) ("G:\MiKTeX 2.9\tex/latex/l3backend\l3backend-pdfmode.def"
+File: l3backend-pdfmode.def 2020-06-23 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count176
+\l__pdf_internal_box=\box45
+))
+Package: xparse 2020-05-15 L3 Experimental document command parser
+ ("G:\MiKTeX 2.9\tex/latex/l3packages/xparse\xparse-generic.tex"
+\l__xparse_current_arg_int=\count177
+\g__xparse_grabber_int=\count178
+\l__xparse_m_args_int=\count179
+\l__xparse_v_nesting_int=\count180
+)) ("G:\MiKTeX 2.9\tex/latex/base\inputenc.sty"
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+ ("G:\MiKTeX 2.9\tex/latex/base\latin1.def"
+File: latin1.def 2018/08/11 v1.3c Input encoding file
+)) ("G:\MiKTeX 2.9\tex/generic/babel\babel.sty"
+Package: babel 2019/07/19 3.33 The Babel package
+ ("G:\MiKTeX 2.9\tex/generic/babel\switch.def"
+File: switch.def 2019/07/19 3.33 Babel switching mechanism
+)
+*************************************
+* Local config file bblopts.cfg used
+*
+("G:\MiKTeX 2.9\tex/latex/arabi\bblopts.cfg"
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of babel
+) ("G:\MiKTeX 2.9\tex/latex/babel-english\english.ldf"
+Language: english 2017/06/06 v3.3r English support from the babel system
+ ("G:\MiKTeX 2.9\tex/generic/babel\babel.def"
+File: babel.def 2019/07/19 3.33 Babel common definitions
+\babel@savecnt=\count181
+\U@D=\dimen136
+ ("G:\MiKTeX 2.9\tex/generic/babel\txtbabel.def")
+\bbl@dirlevel=\count182
+)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+) ("G:\MiKTeX 2.9\tex/latex/babel-spanish\spanish.ldf"
+Language: spanish.ldf 2016/03/03 v5.0p Spanish support from the babel system
+\es@quottoks=\toks16
+\es@quotdepth=\count183
+Package babel Info: Making " an active character on input line 561.
+Package babel Info: Making . an active character on input line 662.
+Package babel Info: Making < an active character on input line 707.
+Package babel Info: Making > an active character on input line 707.
+)) ("G:\MiKTeX 2.9\tex/latex/graphics\graphicx.sty"
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+ ("G:\MiKTeX 2.9\tex/latex/graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) ("G:\MiKTeX 2.9\tex/latex/graphics\graphics.sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+ ("G:\MiKTeX 2.9\tex/latex/graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) ("G:\MiKTeX 2.9\tex/latex/graphics-cfg\graphics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+ ("G:\MiKTeX 2.9\tex/latex/graphics-def\pdftex.def"
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen137
+\Gin@req@width=\dimen138
+) ("G:\MiKTeX 2.9\tex/latex/setspace\setspace.sty"
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+LaTeX Info: Redefining \. on input line 17.
+LaTeX Info: Redefining \% on input line 17.
+\realleftmargin=\dimen139
+\realrightmargin=\dimen140
+\realtopmargin=\dimen141
+\realbottommargin=\dimen142
+\realheadpos=\dimen143
+) ("G:\MiKTeX 2.9\tex/latex/algorithm2e\algorithm2e.sty"
+Package: algorithm2e 2017/07/18 v5.2 algorithms environments
+\c@AlgoLine=\count184
+ ("G:\MiKTeX 2.9\tex/latex/base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\algocf@hangindent=\skip49
+ ("G:\MiKTeX 2.9\tex/latex/ifoddpage\ifoddpage.sty"
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count185
+) ("G:\MiKTeX 2.9\tex/latex/tools\xspace.sty"
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+) ("G:\MiKTeX 2.9\tex/latex/relsize\relsize.sty"
+Package: relsize 2013/03/29 ver 4.1
+)
+\skiptotal=\skip50
+\skiplinenumber=\skip51
+\skiprule=\skip52
+\skiphlne=\skip53
+\skiptext=\skip54
+\skiplength=\skip55
+\algomargin=\skip56
+\skipalgocfslide=\skip57
+\algowidth=\dimen144
+\inoutsize=\dimen145
+\inoutindent=\dimen146
+\interspacetitleruled=\dimen147
+\interspacealgoruled=\dimen148
+\interspacetitleboxruled=\dimen149
+\algocf@ruledwidth=\skip58
+\algocf@inoutbox=\box46
+\algocf@inputbox=\box47
+\AlCapSkip=\skip59
+\AlCapHSkip=\skip60
+\algoskipindent=\skip61
+\algocf@nlbox=\box48
+\algocf@hangingbox=\box49
+\algocf@untilbox=\box50
+\algocf@skipuntil=\skip62
+\algocf@capbox=\box51
+\algocf@lcaptionbox=\skip63
+\algoheightruledefault=\skip64
+\algoheightrule=\skip65
+\algotitleheightruledefault=\skip66
+\algotitleheightrule=\skip67
+\c@algocfline=\count186
+\c@algocfproc=\count187
+\c@algocf=\count188
+\algocf@algoframe=\box52
+\algocf@algobox=\box53
+) ("G:\MiKTeX 2.9\tex/latex/pdfpages\pdfpages.sty"
+Package: pdfpages 2019/12/17 v0.5p Insert pages of external PDF documents (AM)
+ ("G:\MiKTeX 2.9\tex/latex/tools\calc.sty"
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count189
+\calc@Bcount=\count190
+\calc@Adimen=\dimen150
+\calc@Bdimen=\dimen151
+\calc@Askip=\skip68
+\calc@Bskip=\skip69
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count191
+\calc@Cskip=\skip70
+) ("G:\MiKTeX 2.9\tex/latex/eso-pic\eso-pic.sty"
+Package: eso-pic 2018/04/12 v2.0h eso-pic (RN)
+ ("G:\MiKTeX 2.9\tex/generic/oberdiek\atbegshi.sty"
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+ ("G:\MiKTeX 2.9\tex/generic/oberdiek\infwarerr.sty"
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+) ("G:\MiKTeX 2.9\tex/generic/oberdiek\ltxcmds.sty"
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+) ("G:\MiKTeX 2.9\tex/generic/oberdiek\ifpdf.sty"
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)) ("G:\MiKTeX 2.9\tex/latex/xcolor\xcolor.sty"
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+ ("G:\MiKTeX 2.9\tex/latex/graphics-cfg\color.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+))
+\AM@pagewidth=\dimen152
+\AM@pageheight=\dimen153
+ ("G:\MiKTeX 2.9\tex/latex/pdfpages\pppdftex.def"
+File: pppdftex.def 2019/12/17 v0.5p Pdfpages driver for pdfTeX (AM)
+)
+\AM@pagebox=\box54
+\AM@global@opts=\toks18
+\AM@toc@title=\toks19
+\c@AM@survey=\count192
+\AM@templatesizebox=\box55
+) ("G:\MiKTeX 2.9\tex/latex/amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks20
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+) ("G:\MiKTeX 2.9\tex/latex/amsfonts\amssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+) ("G:\MiKTeX 2.9\tex/latex/tools\array.sty"
+Package: array 2018/12/30 v2.4k Tabular extension package (FMi)
+\col@sep=\dimen154
+\ar@mcellbox=\box56
+\extrarowheight=\dimen155
+\NC@list=\toks21
+\extratabsurround=\skip71
+\backup@length=\skip72
+\ar@cellbox=\box57
+) ("G:\MiKTeX 2.9\tex/latex/tools\longtable.sty"
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)+ FMi change
+\LTleft=\skip73
+\LTright=\skip74
+\LTpre=\skip75
+\LTpost=\skip76
+\LTchunksize=\count193
+\LTcapwidth=\dimen156
+\LT@head=\box58
+\LT@firsthead=\box59
+\LT@foot=\box60
+\LT@lastfoot=\box61
+\LT@cols=\count194
+\LT@rows=\count195
+\c@LT@tables=\count196
+\c@LT@chunks=\count197
+\LT@p@ftn=\toks22
+) ("G:\MiKTeX 2.9\tex/latex/float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count198
+\float@exts=\toks23
+\float@box=\box62
+\@float@everytoks=\toks24
+\@floatcapt=\box63
+) (especificacionutility.sty
+Package: especificacionutility 2020/06/25 Custom Utility Package
+ ("G:\MiKTeX 2.9\tex/latex/tools\tabularx.sty"
+Package: tabularx 2016/02/03 v2.11b `tabularx' package (DPC)
+\TX@col@width=\dimen157
+\TX@old@table=\dimen158
+\TX@old@col=\dimen159
+\TX@target=\dimen160
+\TX@delta=\dimen161
+\TX@cols=\count199
+\TX@ftn=\toks25
+) ("G:\MiKTeX 2.9\tex/latex/multirow\multirow.sty"
+Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
+\multirow@colwidth=\skip77
+\multirow@cntb=\count266
+\multirow@dima=\skip78
+\bigstrutjot=\dimen162
+)) ("G:\MiKTeX 2.9\tex/latex/listings\listings.sty"
+\lst@mode=\count267
+\lst@gtempboxa=\box64
+\lst@token=\toks26
+\lst@length=\count268
+\lst@currlwidth=\dimen163
+\lst@column=\count269
+\lst@pos=\count270
+\lst@lostspace=\dimen164
+\lst@width=\dimen165
+\lst@newlines=\count271
+\lst@lineno=\count272
+\lst@maxwidth=\dimen166
+ ("G:\MiKTeX 2.9\tex/latex/listings\lstmisc.sty"
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count273
+\lst@skipnumbers=\count274
+\lst@framebox=\box65
+) ("G:\MiKTeX 2.9\tex/latex/listings\listings.cfg"
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+ ("G:\MiKTeX 2.9\tex/latex/listings\lstlang1.sty"
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+) ("c:/Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.aux"
+LaTeX Info: Redefining \. on input line 7.
+LaTeX Info: Redefining \% on input line 7.
+LaTeX Info: Redefining \. on input line 9.
+LaTeX Info: Redefining \% on input line 9.
+)
+\openout1 = `doc.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Info: Redefining \. on input line 30.
+LaTeX Info: Redefining \% on input line 30.
+ ("G:\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count275
+\scratchdimen=\dimen167
+\scratchbox=\box66
+\nofMPsegments=\count276
+\nofMParguments=\count277
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count278
+\MPscratchDim=\dimen168
+\MPnumerator=\count279
+\makeMPintoPDFobject=\count280
+\everyMPtoPDFconversion=\toks28
+) ("G:\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-base.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+ ("G:\MiKTeX 2.9\tex/latex/oberdiek\grfext.sty"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+ ("G:\MiKTeX 2.9\tex/generic/oberdiek\kvdefinekeys.sty"
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+)) ("G:\MiKTeX 2.9\tex/latex/oberdiek\kvoptions.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+ ("G:\MiKTeX 2.9\tex/generic/oberdiek\kvsetkeys.sty"
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+ ("G:\MiKTeX 2.9\tex/generic/oberdiek\etexcmds.sty"
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+ ("G:\MiKTeX 2.9\tex/generic/oberdiek\ifluatex.sty"
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)))) ("G:\MiKTeX 2.9\tex/latex/pdftexcmds\pdftexcmds.sty"
+Package: pdftexcmds 2020-06-04 v0.32 Utility functions of pdfTeX for LuaTeX (HO)
+ ("G:\MiKTeX 2.9\tex/generic/iftex\iftex.sty"
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 438.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+\AtBeginShipoutBox=\box67
+ ("G:\MiKTeX 2.9\tex/latex/oberdiek\pdflscape.sty"
+Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
+ ("G:\MiKTeX 2.9\tex/latex/graphics\lscape.sty"
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+ ("G:\MiKTeX 2.9\tex/generic/ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+))
+\c@lstlisting=\count281
+Package epstopdf Info: Source file: <utalca1.eps>
+(epstopdf)                    date: 2019-11-30 01:33:06
+(epstopdf)                    size: 24156 bytes
+(epstopdf)             Output file: <utalca1-eps-converted-to.pdf>
+(epstopdf)                    date: 2020-06-24 22:44:55
+(epstopdf)                    size: 9271 bytes
+(epstopdf)             Command: <epstopdf --outfile=utalca1-eps-converted-to.pdf utalca1.eps>
+(epstopdf)             \includegraphics on input line 33.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex (file ./utalca1-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<utalca1-eps-converted-to.pdf, id=1, 107.40125pt x 135.50626pt>
+File: utalca1-eps-converted-to.pdf Graphic file (type pdf)
+<use utalca1-eps-converted-to.pdf>
+Package pdftex.def Info: utalca1-eps-converted-to.pdf  used on input line 33.
+(pdftex.def)             Requested size: 107.40097pt x 135.5059pt.
+[-1
+
+
+Non-PDF special ignored!
+<special> papersize=8.5in,11in
+{C:/Users/gsanh/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./utalca1-eps-converted-to.pdf>]
+LaTeX Font Info:    Try loading font information for U+msa on input line 49.
+ ("G:\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 49.
+ ("G:\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+[]|\OT1/cmr/m/n/12 Gabriel San-hue-za
+ []
+
+
+Underfull \hbox (badness 2253) in paragraph at lines 49--49
+\OT1/cmr/m/n/12 Di-se~nador, Im-ple-men-ta-
+ []
+
+
+Overfull \hbox (7.97629pt too wide) in paragraph at lines 49--49
+[]|\OT1/cmr/m/n/12 gsanhueza15@alumnos .utal-
+ []
+
+
+Overfull \hbox (8.00233pt too wide) in paragraph at lines 49--49
+[][] 
+ []
+
+
+Underfull \hbox (badness 1194) in paragraph at lines 49--49
+[]|\OT1/cmr/m/n/12 Jimmy H. Gu-tierrez-
+ []
+
+
+Underfull \hbox (badness 1194) in paragraph at lines 49--49
+[]|\OT1/cmr/m/n/12 Jimmy H. Gu-tierrez-
+ []
+
+
+Overfull \hbox (8.00233pt too wide) in paragraph at lines 49--49
+[][] 
+ []
+
+
+Overfull \hbox (7.76642pt too wide) in paragraph at lines 49--49
+[][] 
+ []
+
+[0] ("c:/Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.toc"
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+LaTeX Info: Redefining \. on input line 2.
+LaTeX Info: Redefining \% on input line 2.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
+(Font)              using `OT1/cmr/bx/n' instead on input line 3.
+
+
+Package spanish Warning: Replacing `OT1/cmr/bx/sc' by 
+(spanish)                faked small caps on input line 3.
+
+
+Package spanish Warning: Replacing `OT1/cmr/bx/sc' by 
+(spanish)                faked small caps on input line 4.
+
+)
+\tf@toc=\write3
+\openout3 = `doc.toc'.
+
+ [1] [2] ("c:/Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.lof"
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+LaTeX Info: Redefining \. on input line 2.
+LaTeX Info: Redefining \% on input line 2.
+)
+\tf@lof=\write4
+\openout4 = `doc.lof'.
+
+ [3] [4] (Capitulo1/Introduccion.tex
+Cap\'{\i }tulo 1.
+
+Underfull \hbox (badness 10000) detected at line 1
+\OT1/cmr/bx/n/24.88 1.
+ []
+
+(Capitulo1/proposito_del_sistema.tex) (Capitulo1/alcance_del_proyecto.tex) (Capitulo1/definiciones.tex [5
+
+]
+Overfull \hbox (4.90512pt too wide) in paragraph at lines 5--6
+[]\OT1/cmr/m/n/12 Algoritmo que uti-
+ []
+
+LaTeX Info: Redefining \. on input line 9.
+LaTeX Info: Redefining \% on input line 9.
+[6]) (Capitulo1/referencias.tex ("c:/Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.bbl"
+
+LaTeX Warning: Empty `thebibliography' environment on input line 1.
+
+)) (Capitulo1/descripcion_general.tex
+LaTeX Info: Redefining \. on input line 4.
+LaTeX Info: Redefining \% on input line 4.
+ [7])) (Capitulo2/DisenoArquitectonico.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [8]
+Cap\'{\i }tulo 2.
+
+Underfull \hbox (badness 10000) detected at line 1
+\OT1/cmr/bx/n/24.88 2.
+ []
+
+(Capitulo2/arquitectura_fisica.tex
+<Capitulo2/assets/arquitectura_fisica.png, id=44, 615.0478pt x 542.025pt>
+File: Capitulo2/assets/arquitectura_fisica.png Graphic file (type png)
+<use Capitulo2/assets/arquitectura_fisica.png>
+Package pdftex.def Info: Capitulo2/assets/arquitectura_fisica.png  used on input line 7.
+(pdftex.def)             Requested size: 214.67604pt x 189.19054pt.
+) (Capitulo2/arquitectura_logica.tex
+Overfull \hbox (44.58188pt too wide) in paragraph at lines 3--4
+[]\OT1/cmr/m/n/12 La ar-qui-tec-tu-ra logi-ca que se uti-li-za-ra co-rres-pon-de al patron Modelo-Vista-Controlador [[]].
+ []
+
+[9
+
+ <./Capitulo2/assets/arquitectura_fisica.png>]
+Package epstopdf Info: Source file: <Capitulo2/assets/arquitectura_logica.eps>
+(epstopdf)                    date: 2020-06-22 03:44:30
+(epstopdf)                    size: 46233 bytes
+(epstopdf)             Output file: <Capitulo2/assets/arquitectura_logica-eps-converted-to.pdf>
+(epstopdf)                    date: 2020-06-29 17:19:49
+(epstopdf)                    size: 42713 bytes
+(epstopdf)             Command: <epstopdf --outfile=Capitulo2/assets/arquitectura_logica-eps-converted-to.pdf Capitulo2/assets/arquitectura_logica.eps>
+(epstopdf)             \includegraphics on input line 7.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex (file ./Capitulo2/assets/arquitectura_logica-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<Capitulo2/assets/arquitectura_logica-eps-converted-to.pdf, id=50, 680.5425pt x 325.215pt>
+File: Capitulo2/assets/arquitectura_logica-eps-converted-to.pdf Graphic file (type pdf)
+<use Capitulo2/assets/arquitectura_logica-eps-converted-to.pdf>
+Package pdftex.def Info: Capitulo2/assets/arquitectura_logica-eps-converted-to.pdf  used on input line 7.
+(pdftex.def)             Requested size: 429.3521pt x 205.1793pt.
+)) (Capitulo3/DisenoDetallado.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [10 <./Capitulo2/assets/arquitectura_logica-eps-converted-to.pdf>]
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [11]
+Cap\'{\i }tulo 3.
+
+Underfull \hbox (badness 10000) detected at line 1
+\OT1/cmr/bx/n/24.88 3.
+ []
+
+(Capitulo3/diseno_modulos.tex
+Package epstopdf Info: Source file: <Capitulo3/assets/diagrama_de_componentes.eps>
+(epstopdf)                    date: 2020-06-30 00:47:08
+(epstopdf)                    size: 751930 bytes
+(epstopdf)             Output file: <Capitulo3/assets/diagrama_de_componentes-eps-converted-to.pdf>
+(epstopdf)                    date: 2020-06-30 00:47:19
+(epstopdf)                    size: 15766 bytes
+(epstopdf)             Command: <epstopdf --outfile=Capitulo3/assets/diagrama_de_componentes-eps-converted-to.pdf Capitulo3/assets/diagrama_de_componentes.eps>
+(epstopdf)             \includegraphics on input line 7.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex (file ./Capitulo3/assets/diagrama_de_componentes-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<Capitulo3/assets/diagrama_de_componentes-eps-converted-to.pdf, id=61, 607.26875pt x 379.4175pt>
+File: Capitulo3/assets/diagrama_de_componentes-eps-converted-to.pdf Graphic file (type pdf)
+<use Capitulo3/assets/diagrama_de_componentes-eps-converted-to.pdf>
+Package pdftex.def Info: Capitulo3/assets/diagrama_de_componentes-eps-converted-to.pdf  used on input line 7.
+(pdftex.def)             Requested size: 429.3521pt x 268.25935pt.
+[12
+
+ <./Capitulo3/assets/diagrama_de_componentes-eps-converted-to.pdf>]) (Capitulo3/estructura_del_sistema.tex
+Package epstopdf Info: Source file: <Capitulo3/assets/diagrama_general.eps>
+(epstopdf)                    date: 2020-06-29 17:37:20
+(epstopdf)                    size: 5230022 bytes
+(epstopdf)             Output file: <Capitulo3/assets/diagrama_general-eps-converted-to.pdf>
+(epstopdf)                    date: 2020-06-30 01:02:55
+(epstopdf)                    size: 38037 bytes
+(epstopdf)             Command: <epstopdf --outfile=Capitulo3/assets/diagrama_general-eps-converted-to.pdf Capitulo3/assets/diagrama_general.eps>
+(epstopdf)             \includegraphics on input line 7.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex (file ./Capitulo3/assets/diagrama_general-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<Capitulo3/assets/diagrama_general-eps-converted-to.pdf, id=72, 1727.45375pt x 1401.235pt>
+File: Capitulo3/assets/diagrama_general-eps-converted-to.pdf Graphic file (type pdf)
+<use Capitulo3/assets/diagrama_general-eps-converted-to.pdf>
+Package pdftex.def Info: Capitulo3/assets/diagrama_general-eps-converted-to.pdf  used on input line 7.
+(pdftex.def)             Requested size: 429.3521pt x 348.25531pt.
+LaTeX Info: Redefining \. on input line 11.
+LaTeX Info: Redefining \% on input line 11.
+[13]
+Package epstopdf Info: Source file: <Capitulo3/assets/class_network.eps>
+(epstopdf)                    date: 2020-06-29 17:53:54
+(epstopdf)                    size: 5742962 bytes
+(epstopdf)             Output file: <Capitulo3/assets/class_network-eps-converted-to.pdf>
+(epstopdf)                    date: 2020-06-30 01:03:46
+(epstopdf)                    size: 50071 bytes
+(epstopdf)             Command: <epstopdf --outfile=Capitulo3/assets/class_network-eps-converted-to.pdf Capitulo3/assets/class_network.eps>
+(epstopdf)             \includegraphics on input line 17.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex (file ./Capitulo3/assets/class_network-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<Capitulo3/assets/class_network-eps-converted-to.pdf, id=76, 3646.62375pt x 3179.88pt>
+File: Capitulo3/assets/class_network-eps-converted-to.pdf Graphic file (type pdf)
+<use Capitulo3/assets/class_network-eps-converted-to.pdf>
+Package pdftex.def Info: Capitulo3/assets/class_network-eps-converted-to.pdf  used on input line 17.
+(pdftex.def)             Requested size: 429.3521pt x 374.38803pt.
+LaTeX Info: Redefining \. on input line 21.
+LaTeX Info: Redefining \% on input line 21.
+[14 <./Capitulo3/assets/diagrama_general-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <Capitulo3/assets/module_metaheuristic.eps>
+(epstopdf)                    date: 2020-06-29 17:36:01
+(epstopdf)                    size: 2968658 bytes
+(epstopdf)             Output file: <Capitulo3/assets/module_metaheuristic-eps-converted-to.pdf>
+(epstopdf)                    date: 2020-06-30 01:04:45
+(epstopdf)                    size: 31028 bytes
+(epstopdf)             Command: <epstopdf --outfile=Capitulo3/assets/module_metaheuristic-eps-converted-to.pdf Capitulo3/assets/module_metaheuristic.eps>
+(epstopdf)             \includegraphics on input line 27.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex (file ./Capitulo3/assets/module_metaheuristic-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<Capitulo3/assets/module_metaheuristic-eps-converted-to.pdf, id=90, 1250.6725pt x 1043.9pt>
+File: Capitulo3/assets/module_metaheuristic-eps-converted-to.pdf Graphic file (type pdf)
+<use Capitulo3/assets/module_metaheuristic-eps-converted-to.pdf>
+Package pdftex.def Info: Capitulo3/assets/module_metaheuristic-eps-converted-to.pdf  used on input line 27.
+(pdftex.def)             Requested size: 429.3521pt x 358.36188pt.
+) (Capitulo3/operacion_del_sistema.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [15 <./Capitulo3/assets/class_network-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <Capitulo3/assets/sequence_load_visualization_network.eps>
+(epstopdf)                    date: 2020-06-29 17:53:14
+(epstopdf)                    size: 4958722 bytes
+(epstopdf)             Output file: <Capitulo3/assets/sequence_load_visualization_network-eps-converted-to.pdf>
+(epstopdf)                    date: 2020-06-30 01:18:35
+(epstopdf)                    size: 25942 bytes
+(epstopdf)             Command: <epstopdf --outfile=Capitulo3/assets/sequence_load_visualization_network-eps-converted-to.pdf Capitulo3/assets/sequence_load_visualization_network.eps>
+(epstopdf)             \includegraphics on input line 13.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex (file ./Capitulo3/assets/sequence_load_visualization_network-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<Capitulo3/assets/sequence_load_visualization_network-eps-converted-to.pdf, id=110, 1768.6075pt x 1317.92375pt>
+File: Capitulo3/assets/sequence_load_visualization_network-eps-converted-to.pdf Graphic file (type pdf)
+<use Capitulo3/assets/sequence_load_visualization_network-eps-converted-to.pdf>
+Package pdftex.def Info: Capitulo3/assets/sequence_load_visualization_network-eps-converted-to.pdf  used on input line 13.
+(pdftex.def)             Requested size: 429.3521pt x 319.92793pt.
+LaTeX Info: Redefining \. on input line 17.
+LaTeX Info: Redefining \% on input line 17.
+[16 <./Capitulo3/assets/module_metaheuristic-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <Capitulo3/assets/sequence_hydraulic_simulation.eps>
+(epstopdf)                    date: 2020-06-29 17:53:24
+(epstopdf)                    size: 2716498 bytes
+(epstopdf)             Output file: <Capitulo3/assets/sequence_hydraulic_simulation-eps-converted-to.pdf>
+(epstopdf)                    date: 2020-06-30 01:19:44
+(epstopdf)                    size: 27394 bytes
+(epstopdf)             Command: <epstopdf --outfile=Capitulo3/assets/sequence_hydraulic_simulation-eps-converted-to.pdf Capitulo3/assets/sequence_hydraulic_simulation.eps>
+(epstopdf)             \includegraphics on input line 20.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex (file ./Capitulo3/assets/sequence_hydraulic_simulation-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<Capitulo3/assets/sequence_hydraulic_simulation-eps-converted-to.pdf, id=124, 1297.84875pt x 927.465pt>
+File: Capitulo3/assets/sequence_hydraulic_simulation-eps-converted-to.pdf Graphic file (type pdf)
+<use Capitulo3/assets/sequence_hydraulic_simulation-eps-converted-to.pdf>
+Package pdftex.def Info: Capitulo3/assets/sequence_hydraulic_simulation-eps-converted-to.pdf  used on input line 20.
+(pdftex.def)             Requested size: 429.3521pt x 306.81445pt.
+LaTeX Info: Redefining \. on input line 24.
+LaTeX Info: Redefining \% on input line 24.
+[17 <./Capitulo3/assets/sequence_load_visualization_network-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <Capitulo3/assets/sequence_optimization.eps>
+(epstopdf)                    date: 2020-06-29 17:52:49
+(epstopdf)                    size: 5458002 bytes
+(epstopdf)             Output file: <Capitulo3/assets/sequence_optimization-eps-converted-to.pdf>
+(epstopdf)                    date: 2020-06-30 01:20:12
+(epstopdf)                    size: 39103 bytes
+(epstopdf)             Command: <epstopdf --outfile=Capitulo3/assets/sequence_optimization-eps-converted-to.pdf Capitulo3/assets/sequence_optimization.eps>
+(epstopdf)             \includegraphics on input line 27.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex (file ./Capitulo3/assets/sequence_optimization-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<Capitulo3/assets/sequence_optimization-eps-converted-to.pdf, id=143, 2953.0325pt x 3626.54875pt>
+File: Capitulo3/assets/sequence_optimization-eps-converted-to.pdf Graphic file (type pdf)
+<use Capitulo3/assets/sequence_optimization-eps-converted-to.pdf>
+Package pdftex.def Info: Capitulo3/assets/sequence_optimization-eps-converted-to.pdf  used on input line 27.
+(pdftex.def)             Requested size: 429.3521pt x 527.2472pt.
+)) (Capitulo4/DisenoDeInterfaz.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [18 <./Capitulo3/assets/sequence_hydraulic_simulation-eps-converted-to.pdf>]
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [19 <./Capitulo3/assets/sequence_optimization-eps-converted-to.pdf>]
+Cap\'{\i }tulo 4.
+
+Underfull \hbox (badness 10000) detected at line 1
+\OT1/cmr/bx/n/24.88 4.
+ []
+
+<Capitulo4/assets/InterfazInicio.png, id=178, 1443.14156pt x 764.8575pt>
+File: Capitulo4/assets/InterfazInicio.png Graphic file (type png)
+<use Capitulo4/assets/InterfazInicio.png>
+Package pdftex.def Info: Capitulo4/assets/InterfazInicio.png  used on input line 8.
+(pdftex.def)             Requested size: 429.3521pt x 227.54501pt.
+[20
+
+ <./Capitulo4/assets/InterfazInicio.png>]
+<Capitulo4/assets/InterfazDeConfiguracion1.png, id=183, 453.94594pt x 377.15906pt>
+File: Capitulo4/assets/InterfazDeConfiguracion1.png Graphic file (type png)
+<use Capitulo4/assets/InterfazDeConfiguracion1.png>
+Package pdftex.def Info: Capitulo4/assets/InterfazDeConfiguracion1.png  used on input line 18.
+(pdftex.def)             Requested size: 429.3521pt x 356.72797pt.
+<Capitulo4/assets/InterfazDeConfiguracion2.png, id=184, 456.95718pt x 377.91188pt>
+File: Capitulo4/assets/InterfazDeConfiguracion2.png Graphic file (type png)
+<use Capitulo4/assets/InterfazDeConfiguracion2.png>
+Package pdftex.def Info: Capitulo4/assets/InterfazDeConfiguracion2.png  used on input line 25.
+(pdftex.def)             Requested size: 429.3521pt x 355.09305pt.
+LaTeX Info: Redefining \. on input line 29.
+LaTeX Info: Redefining \% on input line 29.
+ [21 <./Capitulo4/assets/InterfazDeConfiguracion1.png>]
+<Capitulo4/assets/InterfazDeEjecucion1.png, id=188, 376.40625pt x 341.77687pt>
+File: Capitulo4/assets/InterfazDeEjecucion1.png Graphic file (type png)
+<use Capitulo4/assets/InterfazDeEjecucion1.png>
+Package pdftex.def Info: Capitulo4/assets/InterfazDeEjecucion1.png  used on input line 40.
+(pdftex.def)             Requested size: 429.3521pt x 389.88pt.
+LaTeX Info: Redefining \. on input line 44.
+LaTeX Info: Redefining \% on input line 44.
+ [22 <./Capitulo4/assets/InterfazDeConfiguracion2.png>]
+<Capitulo4/assets/InterfazDeEjecucion2.png, id=192, 393.72093pt x 474.27188pt>
+File: Capitulo4/assets/InterfazDeEjecucion2.png Graphic file (type png)
+<use Capitulo4/assets/InterfazDeEjecucion2.png>
+Package pdftex.def Info: Capitulo4/assets/InterfazDeEjecucion2.png  used on input line 47.
+(pdftex.def)             Requested size: 429.3521pt x 517.19215pt.
+LaTeX Info: Redefining \. on input line 51.
+LaTeX Info: Redefining \% on input line 51.
+ [23 <./Capitulo4/assets/InterfazDeEjecucion1.png>]
+LaTeX Info: Redefining \. on input line 54.
+LaTeX Info: Redefining \% on input line 54.
+ [24 <./Capitulo4/assets/InterfazDeEjecucion2.png>]
+<Capitulo4/assets/InterfazDeGraficos.png, id=200, 602.25pt x 441.90094pt>
+File: Capitulo4/assets/InterfazDeGraficos.png Graphic file (type png)
+<use Capitulo4/assets/InterfazDeGraficos.png>
+Package pdftex.def Info: Capitulo4/assets/InterfazDeGraficos.png  used on input line 57.
+(pdftex.def)             Requested size: 429.3521pt x 315.04648pt.
+LaTeX Info: Redefining \. on input line 64.
+LaTeX Info: Redefining \% on input line 64.
+ [25 <./Capitulo4/assets/InterfazDeGraficos.png>]
+<Capitulo4/assets/InterfazDeResultados.png, id=205, 1428.08531pt x 746.03719pt>
+File: Capitulo4/assets/InterfazDeResultados.png Graphic file (type png)
+<use Capitulo4/assets/InterfazDeResultados.png>
+Package pdftex.def Info: Capitulo4/assets/InterfazDeResultados.png  used on input line 73.
+(pdftex.def)             Requested size: 429.3521pt x 224.29099pt.
+LaTeX Info: Redefining \. on input line 80.
+LaTeX Info: Redefining \% on input line 80.
+ [26 <./Capitulo4/assets/InterfazDeResultados.png>]
+<Capitulo4/assets/InterfazDeVisualizacionDeConfiguracionRed.png, id=209, 438.13687pt x 296.60812pt>
+File: Capitulo4/assets/InterfazDeVisualizacionDeConfiguracionRed.png Graphic file (type png)
+<use Capitulo4/assets/InterfazDeVisualizacionDeConfiguracionRed.png>
+Package pdftex.def Info: Capitulo4/assets/InterfazDeVisualizacionDeConfiguracionRed.png  used on input line 83.
+(pdftex.def)             Requested size: 429.3521pt x 290.66492pt.
+<Capitulo4/assets/InterfazDeResultadosDeSimulacion.png, id=210, 478.78876pt x 430.60875pt>
+File: Capitulo4/assets/InterfazDeResultadosDeSimulacion.png Graphic file (type png)
+<use Capitulo4/assets/InterfazDeResultadosDeSimulacion.png>
+Package pdftex.def Info: Capitulo4/assets/InterfazDeResultadosDeSimulacion.png  used on input line 93.
+(pdftex.def)             Requested size: 429.3521pt x 386.15132pt.
+LaTeX Info: Redefining \. on input line 97.
+LaTeX Info: Redefining \% on input line 97.
+ [27 <./Capitulo4/assets/InterfazDeVisualizacionDeConfiguracionRed.png>]) (Capitulo5/DetallesDeImplementacion.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [28 <./Capitulo4/assets/InterfazDeResultadosDeSimulacion.png>]
+Cap\'{\i }tulo 5.
+
+Underfull \hbox (badness 10000) detected at line 1
+\OT1/cmr/bx/n/24.88 5.
+ []
+
+(Capitulo5/reflexion_anotacion_java.tex [29
+
+]
+<Capitulo5/assets/ConstructorUnParametro.png, id=221, 420.06938pt x 26.34843pt>
+File: Capitulo5/assets/ConstructorUnParametro.png Graphic file (type png)
+<use Capitulo5/assets/ConstructorUnParametro.png>
+Package pdftex.def Info: Capitulo5/assets/ConstructorUnParametro.png  used on input line 11.
+(pdftex.def)             Requested size: 429.3521pt x 26.93091pt.
+<Capitulo5/assets/ConstructorMultiParametro.png, id=222, 453.94594pt x 53.44969pt>
+File: Capitulo5/assets/ConstructorMultiParametro.png Graphic file (type png)
+<use Capitulo5/assets/ConstructorMultiParametro.png>
+Package pdftex.def Info: Capitulo5/assets/ConstructorMultiParametro.png  used on input line 18.
+(pdftex.def)             Requested size: 429.3521pt x 50.55424pt.
+<Capitulo5/assets/InterfazConfiguracionUniformSelection.png, id=223, 158.84344pt x 60.225pt>
+File: Capitulo5/assets/InterfazConfiguracionUniformSelection.png Graphic file (type png)
+<use Capitulo5/assets/InterfazConfiguracionUniformSelection.png>
+Package pdftex.def Info: Capitulo5/assets/InterfazConfiguracionUniformSelection.png  used on input line 29.
+(pdftex.def)             Requested size: 214.67604pt x 81.4013pt.
+LaTeX Info: Redefining \. on input line 33.
+LaTeX Info: Redefining \% on input line 33.
+ [30 <./Capitulo5/assets/ConstructorUnParametro.png> <./Capitulo5/assets/ConstructorMultiParametro.png>]
+<Capitulo5/assets/InterfazConfiguracionIntegerPolynomialMutation.png, id=227, 204.01219pt x 83.5622pt>
+File: Capitulo5/assets/InterfazConfiguracionIntegerPolynomialMutation.png Graphic file (type png)
+<use Capitulo5/assets/InterfazConfiguracionIntegerPolynomialMutation.png>
+Package pdftex.def Info: Capitulo5/assets/InterfazConfiguracionIntegerPolynomialMutation.png  used on input line 36.
+(pdftex.def)             Requested size: 214.67604pt x 87.93414pt.
+<Capitulo5/assets/ConstructorHeredadoRegistrable.png, id=228, 760.34062pt x 328.97906pt>
+File: Capitulo5/assets/ConstructorHeredadoRegistrable.png Graphic file (type png)
+<use Capitulo5/assets/ConstructorHeredadoRegistrable.png>
+Package pdftex.def Info: Capitulo5/assets/ConstructorHeredadoRegistrable.png  used on input line 50.
+(pdftex.def)             Requested size: 608.27332pt x 263.1836pt.
+LaTeX Info: Redefining \. on input line 54.
+LaTeX Info: Redefining \% on input line 54.
+ [31 <./Capitulo5/assets/InterfazConfiguracionUniformSelection.png> <./Capitulo5/assets/InterfazConfiguracionIntegerPolynomialMutation.png>]
+Overfull \vbox (46.56847pt too high) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 54.
+LaTeX Info: Redefining \% on input line 54.
+ [32 <./Capitulo5/assets/ConstructorHeredadoRegistrable.png>]
+<Capitulo5/assets/MenuDelProblema.png, id=235, 283.0575pt x 95.6072pt>
+File: Capitulo5/assets/MenuDelProblema.png Graphic file (type png)
+<use Capitulo5/assets/MenuDelProblema.png>
+Package pdftex.def Info: Capitulo5/assets/MenuDelProblema.png  used on input line 66.
+(pdftex.def)             Requested size: 429.3521pt x 145.03265pt.
+LaTeX Info: Redefining \. on input line 83.
+LaTeX Info: Redefining \% on input line 83.
+ [33 <./Capitulo5/assets/MenuDelProblema.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 92.
+ ("G:\MiKTeX 2.9\tex/latex/base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 92.
+<Capitulo5/assets/ComponenteOperatorInput.png, id=239, 442.65375pt x 22.58438pt>
+File: Capitulo5/assets/ComponenteOperatorInput.png Graphic file (type png)
+<use Capitulo5/assets/ComponenteOperatorInput.png>
+Package pdftex.def Info: Capitulo5/assets/ComponenteOperatorInput.png  used on input line 109.
+(pdftex.def)             Requested size: 429.3521pt x 21.9068pt.
+<Capitulo5/assets/ComponenteOperatorInputExpandido.png, id=240, 451.6875pt x 45.92157pt>
+File: Capitulo5/assets/ComponenteOperatorInputExpandido.png Graphic file (type png)
+<use Capitulo5/assets/ComponenteOperatorInputExpandido.png>
+Package pdftex.def Info: Capitulo5/assets/ComponenteOperatorInputExpandido.png  used on input line 118.
+(pdftex.def)             Requested size: 429.3521pt x 43.65326pt.
+LaTeX Info: Redefining \. on input line 122.
+LaTeX Info: Redefining \% on input line 122.
+ [34 <./Capitulo5/assets/ComponenteOperatorInput.png>]
+<Capitulo5/assets/ComponenteFileInput.png, id=245, 405.01312pt x 24.84282pt>
+File: Capitulo5/assets/ComponenteFileInput.png Graphic file (type png)
+<use Capitulo5/assets/ComponenteFileInput.png>
+Package pdftex.def Info: Capitulo5/assets/ComponenteFileInput.png  used on input line 145.
+(pdftex.def)             Requested size: 429.3521pt x 26.33627pt.
+LaTeX Info: Redefining \. on input line 149.
+LaTeX Info: Redefining \% on input line 149.
+ [35 <./Capitulo5/assets/ComponenteOperatorInputExpandido.png>]
+<Capitulo5/assets/ComponenteNumberInput.png, id=250, 402.75468pt x 27.10126pt>
+File: Capitulo5/assets/ComponenteNumberInput.png Graphic file (type png)
+<use Capitulo5/assets/ComponenteNumberInput.png>
+Package pdftex.def Info: Capitulo5/assets/ComponenteNumberInput.png  used on input line 157.
+(pdftex.def)             Requested size: 429.3521pt x 28.89093pt.
+LaTeX Info: Redefining \. on input line 171.
+LaTeX Info: Redefining \% on input line 171.
+ [36 <./Capitulo5/assets/ComponenteFileInput.png> <./Capitulo5/assets/ComponenteNumberInput.png>]
+<Capitulo5/assets/ComponenteNumberToggleInput.png, id=254, 453.94594pt x 79.04532pt>
+File: Capitulo5/assets/ComponenteNumberToggleInput.png Graphic file (type png)
+<use Capitulo5/assets/ComponenteNumberToggleInput.png>
+Package pdftex.def Info: Capitulo5/assets/ComponenteNumberToggleInput.png  used on input line 179.
+(pdftex.def)             Requested size: 429.3521pt x 74.76332pt.
+LaTeX Info: Redefining \. on input line 189.
+LaTeX Info: Redefining \% on input line 189.
+ [37 <./Capitulo5/assets/ComponenteNumberToggleInput.png>]) (Capitulo5/interfaz_registrable.tex
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 5.
+LaTeX Info: Redefining \. on input line 27.
+LaTeX Info: Redefining \% on input line 27.
+ [38]))
+LaTeX Info: Redefining \. on input line 83.
+LaTeX Info: Redefining \% on input line 83.
+ [39] ("c:/Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.aux"
+LaTeX Info: Redefining \. on input line 7.
+LaTeX Info: Redefining \% on input line 7.
+LaTeX Info: Redefining \. on input line 9.
+LaTeX Info: Redefining \% on input line 9.
+)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 18524 strings out of 492895
+ 335321 string characters out of 3139975
+ 560885 words of memory out of 3000000
+ 22154 multiletter control sequences out of 15000+200000
+ 541303 words of font info for 56 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 48i,9n,63p,1141b,1068s stack positions out of 5000i,500n,10000p,200000b,50000s
+<G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsl12.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on "c:/Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.pdf" (41 pages, 896213 bytes).
+PDF statistics:
+ 299 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 151 words of extra memory for PDF output out of 10000 (max. 10000000)
+

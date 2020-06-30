@@ -1,0 +1,40 @@
+\babel@toc {spanish}{}
+\babel@toc {spanish}{}
+\contentsline {chapter}{Tabla de Contenidos}{\es@scroman {i}}% 
+\contentsline {chapter}{\'Indice de Figuras}{\es@scroman {iii}}% 
+\contentsline {chapter}{\numberline {1}Introducci\'on}{5}% 
+\contentsline {section}{\numberline {1.1}Prop\'osito del sistema}{5}% 
+\contentsline {section}{\numberline {1.2}Alcance del proyecto}{5}% 
+\contentsline {section}{\numberline {1.3}Definiciones, siglas y abreviaturas}{6}% 
+\contentsline {section}{\numberline {1.4}Referencia}{7}% 
+\contentsline {section}{\numberline {1.5}Descripci\'on general}{8}% 
+\contentsline {chapter}{\numberline {2}Dise\~no arquitect\'onico}{9}% 
+\contentsline {section}{\numberline {2.1}Arquitectura F\IeC {\'\i }sica}{9}% 
+\contentsline {section}{\numberline {2.2}Arquitectura l\'ogica}{9}% 
+\contentsline {paragraph}{Componente Metaheur\IeC {\'\i }sticas (\textit {Metaheuristics}):}{10}% 
+\contentsline {paragraph}{Componente Hidr\'aulico (EPANET):}{10}% 
+\contentsline {chapter}{\numberline {3}Dise\~no detallado}{12}% 
+\contentsline {section}{\numberline {3.1}Dise\~no detallado de m\'odulos}{12}% 
+\contentsline {section}{\numberline {3.2}Dise\~no de estructura de sistema}{13}% 
+\contentsline {section}{\numberline {3.3}Operaci\'on del sistema}{16}% 
+\contentsline {chapter}{\numberline {4}Dise\~no de interfaces}{20}% 
+\contentsline {section}{\numberline {4.1}Interfaz de inicio}{20}% 
+\contentsline {section}{\numberline {4.2}Interfaz de configuraci\'on y descripci\'on del problema}{21}% 
+\contentsline {section}{\numberline {4.3}Interfaz de ejecuci\'on del experimento}{22}% 
+\contentsline {section}{\numberline {4.4}Interfaz de gr\'aficos}{25}% 
+\contentsline {section}{\numberline {4.5}Interfaz de resultados}{25}% 
+\contentsline {section}{\numberline {4.6}Interfaz de visualizaci\'on de configuraciones de la red}{27}% 
+\contentsline {section}{\numberline {4.7}Interfaz de ejecuci\'on de una red}{27}% 
+\contentsline {chapter}{\numberline {5}Detalles de implementaci\'on}{29}% 
+\contentsline {section}{\numberline {5.1}Uso de \textit {Java Annotation} y \textit {Java Reflection}}{30}% 
+\contentsline {subsection}{\numberline {5.1.1}Anotaciones para los operadores}{30}% 
+\contentsline {subsubsection}{\textit {@DefaultConstructor}}{30}% 
+\contentsline {subsection}{\numberline {5.1.2}Anotaciones para los objetos que heredan la interfaz \textit {Registrable}}{31}% 
+\contentsline {subsubsection}{\textit {@NewProblem}}{31}% 
+\contentsline {subsubsection}{\textit {@Parameters}}{33}% 
+\contentsline {subsubsection}{\textit {@OperatorInput}}{34}% 
+\contentsline {subsubsection}{\textit {@OperatorOption}}{35}% 
+\contentsline {subsubsection}{\textit {@FileInput}}{35}% 
+\contentsline {subsubsection}{\textit {@NumberInput}}{36}% 
+\contentsline {subsubsection}{\textit {@NumberToggleInput}}{36}% 
+\contentsline {section}{\numberline {5.2}Interfaz Registrable}{38}% 

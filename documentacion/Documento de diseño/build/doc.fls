@@ -1,0 +1,451 @@
+PWD c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño
+INPUT C:\Users\gsanh\AppData\Local\MiKTeX\2.9\miktex\data\le\pdftex\pdflatex.fmt
+INPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\doc.tex
+OUTPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.log
+INPUT especificacion.cls
+INPUT especificacion.cls
+INPUT G:\MiKTeX 2.9\tex\latex\base\report.cls
+INPUT G:\MiKTeX 2.9\tex\latex\base\report.cls
+INPUT G:\MiKTeX 2.9\tex\latex\base\fleqn.clo
+INPUT G:\MiKTeX 2.9\tex\latex\base\fleqn.clo
+INPUT G:\MiKTeX 2.9\tex\latex\base\size12.clo
+INPUT G:\MiKTeX 2.9\tex\latex\base\size12.clo
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
+INPUT G:\MiKTeX 2.9\tex\latex\l3packages\xparse\xparse.sty
+INPUT G:\MiKTeX 2.9\tex\latex\l3packages\xparse\xparse.sty
+INPUT G:\MiKTeX 2.9\tex\latex\l3kernel\expl3.sty
+INPUT G:\MiKTeX 2.9\tex\latex\l3kernel\expl3.sty
+INPUT G:\MiKTeX 2.9\tex\latex\l3kernel\expl3-code.tex
+INPUT G:\MiKTeX 2.9\tex\latex\l3kernel\expl3-code.tex
+INPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\nul:.tex
+INPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\nul:.tex
+INPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\nul:.tex
+INPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\nul:.tex
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
+INPUT G:\MiKTeX 2.9\tex\generic\unicode-data\UnicodeData.txt
+INPUT G:\MiKTeX 2.9\tex\generic\unicode-data\UnicodeData.txt
+INPUT G:\MiKTeX 2.9\tex\latex\l3kernel\l3deprecation.def
+INPUT G:\MiKTeX 2.9\tex\latex\l3kernel\l3deprecation.def
+INPUT G:\MiKTeX 2.9\tex\latex\l3backend\l3backend-pdfmode.def
+INPUT G:\MiKTeX 2.9\tex\latex\l3backend\l3backend-pdfmode.def
+INPUT G:\MiKTeX 2.9\tex\latex\l3packages\xparse\xparse-generic.tex
+INPUT G:\MiKTeX 2.9\tex\latex\l3packages\xparse\xparse-generic.tex
+INPUT G:\MiKTeX 2.9\tex\latex\base\inputenc.sty
+INPUT G:\MiKTeX 2.9\tex\latex\base\inputenc.sty
+INPUT G:\MiKTeX 2.9\tex\latex\base\latin1.def
+INPUT G:\MiKTeX 2.9\tex\latex\base\latin1.def
+INPUT G:\MiKTeX 2.9\tex\generic\babel\babel.sty
+INPUT G:\MiKTeX 2.9\tex\generic\babel\babel.sty
+INPUT G:\MiKTeX 2.9\tex\generic\babel\switch.def
+INPUT G:\MiKTeX 2.9\tex\latex\arabi\bblopts.cfg
+INPUT G:\MiKTeX 2.9\tex\latex\arabi\bblopts.cfg
+INPUT G:\MiKTeX 2.9\tex\latex\babel-english\english.ldf
+INPUT G:\MiKTeX 2.9\tex\latex\babel-english\english.ldf
+INPUT G:\MiKTeX 2.9\tex\generic\babel\babel.def
+INPUT G:\MiKTeX 2.9\tex\generic\babel\txtbabel.def
+INPUT G:\MiKTeX 2.9\tex\latex\babel-spanish\spanish.ldf
+INPUT G:\MiKTeX 2.9\tex\latex\babel-spanish\spanish.ldf
+INPUT G:\MiKTeX 2.9\tex\latex\graphics\graphicx.sty
+INPUT G:\MiKTeX 2.9\tex\latex\graphics\graphicx.sty
+INPUT G:\MiKTeX 2.9\tex\latex\graphics\keyval.sty
+INPUT G:\MiKTeX 2.9\tex\latex\graphics\keyval.sty
+INPUT G:\MiKTeX 2.9\tex\latex\graphics\graphics.sty
+INPUT G:\MiKTeX 2.9\tex\latex\graphics\graphics.sty
+INPUT G:\MiKTeX 2.9\tex\latex\graphics\trig.sty
+INPUT G:\MiKTeX 2.9\tex\latex\graphics\trig.sty
+INPUT G:\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg
+INPUT G:\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg
+INPUT G:\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def
+INPUT G:\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def
+INPUT G:\MiKTeX 2.9\tex\latex\setspace\setspace.sty
+INPUT G:\MiKTeX 2.9\tex\latex\setspace\setspace.sty
+INPUT G:\MiKTeX 2.9\tex\latex\algorithm2e\algorithm2e.sty
+INPUT G:\MiKTeX 2.9\tex\latex\algorithm2e\algorithm2e.sty
+INPUT G:\MiKTeX 2.9\tex\latex\base\ifthen.sty
+INPUT G:\MiKTeX 2.9\tex\latex\base\ifthen.sty
+INPUT G:\MiKTeX 2.9\tex\latex\ifoddpage\ifoddpage.sty
+INPUT G:\MiKTeX 2.9\tex\latex\ifoddpage\ifoddpage.sty
+INPUT G:\MiKTeX 2.9\tex\latex\tools\xspace.sty
+INPUT G:\MiKTeX 2.9\tex\latex\tools\xspace.sty
+INPUT G:\MiKTeX 2.9\tex\latex\relsize\relsize.sty
+INPUT G:\MiKTeX 2.9\tex\latex\relsize\relsize.sty
+INPUT G:\MiKTeX 2.9\tex\latex\pdfpages\pdfpages.sty
+INPUT G:\MiKTeX 2.9\tex\latex\pdfpages\pdfpages.sty
+INPUT G:\MiKTeX 2.9\tex\latex\tools\calc.sty
+INPUT G:\MiKTeX 2.9\tex\latex\tools\calc.sty
+INPUT G:\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.sty
+INPUT G:\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\atbegshi.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\atbegshi.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty
+INPUT G:\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty
+INPUT G:\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty
+INPUT G:\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty
+INPUT G:\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg
+INPUT G:\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg
+INPUT G:\MiKTeX 2.9\tex\latex\pdfpages\pppdftex.def
+INPUT G:\MiKTeX 2.9\tex\latex\pdfpages\pppdftex.def
+INPUT G:\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty
+INPUT G:\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty
+INPUT G:\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty
+INPUT G:\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty
+INPUT G:\MiKTeX 2.9\tex\latex\tools\array.sty
+INPUT G:\MiKTeX 2.9\tex\latex\tools\array.sty
+INPUT G:\MiKTeX 2.9\tex\latex\tools\longtable.sty
+INPUT G:\MiKTeX 2.9\tex\latex\tools\longtable.sty
+INPUT G:\MiKTeX 2.9\tex\latex\float\float.sty
+INPUT G:\MiKTeX 2.9\tex\latex\float\float.sty
+INPUT especificacionutility.sty
+INPUT especificacionutility.sty
+INPUT G:\MiKTeX 2.9\tex\latex\tools\tabularx.sty
+INPUT G:\MiKTeX 2.9\tex\latex\tools\tabularx.sty
+INPUT G:\MiKTeX 2.9\tex\latex\multirow\multirow.sty
+INPUT G:\MiKTeX 2.9\tex\latex\multirow\multirow.sty
+INPUT G:\MiKTeX 2.9\tex\latex\listings\listings.sty
+INPUT G:\MiKTeX 2.9\tex\latex\listings\listings.sty
+INPUT G:\MiKTeX 2.9\tex\latex\listings\lstmisc.sty
+INPUT G:\MiKTeX 2.9\tex\latex\listings\lstmisc.sty
+INPUT G:\MiKTeX 2.9\tex\latex\listings\listings.cfg
+INPUT G:\MiKTeX 2.9\tex\latex\listings\listings.cfg
+INPUT G:\MiKTeX 2.9\tex\latex\listings\lstlang1.sty
+INPUT G:\MiKTeX 2.9\tex\latex\listings\lstlang1.sty
+INPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.aux
+INPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.aux
+OUTPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.aux
+INPUT G:\MiKTeX 2.9\tex\context\base\mkii\supp-pdf.mkii
+INPUT G:\MiKTeX 2.9\tex\context\base\mkii\supp-pdf.mkii
+INPUT G:\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty
+INPUT G:\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty
+INPUT G:\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty
+INPUT G:\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty
+INPUT G:\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty
+INPUT G:\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty
+INPUT G:\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty
+INPUT G:\MiKTeX 2.9\tex\latex\pdftexcmds\pdftexcmds.sty
+INPUT G:\MiKTeX 2.9\tex\latex\pdftexcmds\pdftexcmds.sty
+INPUT G:\MiKTeX 2.9\tex\generic\iftex\iftex.sty
+INPUT G:\MiKTeX 2.9\tex\generic\iftex\iftex.sty
+INPUT G:\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty
+INPUT G:\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty
+INPUT G:\MiKTeX 2.9\tex\latex\graphics\lscape.sty
+INPUT G:\MiKTeX 2.9\tex\latex\graphics\lscape.sty
+INPUT G:\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty
+INPUT G:\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty
+INPUT utalca1.eps
+INPUT .\utalca1.eps
+INPUT .\utalca1.eps
+INPUT .\utalca1-eps-converted-to.pdf
+INPUT .\utalca1-eps-converted-to.pdf
+INPUT .\utalca1.eps
+INPUT .\utalca1-eps-converted-to.pdf
+INPUT .\utalca1-eps-converted-to.pdf
+OUTPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.pdf
+INPUT .\utalca1-eps-converted-to.pdf
+INPUT .\utalca1-eps-converted-to.pdf
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr17.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
+INPUT C:\Users\gsanh\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr8.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr6.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmmi12.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmmi8.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmmi6.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmsy10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmsy8.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmsy6.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmex10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmex8.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT G:\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd
+INPUT G:\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam7.tfm
+INPUT G:\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd
+INPUT G:\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+INPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.toc
+INPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.toc
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmbx8.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmti12.tfm
+OUTPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.toc
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmcsc10.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmsl12.tfm
+INPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.lof
+INPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.lof
+OUTPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.lof
+INPUT Capitulo1\Introduccion.tex
+INPUT Capitulo1\Introduccion.tex
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr17.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
+INPUT Capitulo1\proposito_del_sistema.tex
+INPUT Capitulo1\proposito_del_sistema.tex
+INPUT Capitulo1\alcance_del_proyecto.tex
+INPUT Capitulo1\alcance_del_proyecto.tex
+INPUT Capitulo1\definiciones.tex
+INPUT Capitulo1\definiciones.tex
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmbxti10.tfm
+INPUT Capitulo1\referencias.tex
+INPUT Capitulo1\referencias.tex
+INPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.bbl
+INPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.bbl
+INPUT Capitulo1\descripcion_general.tex
+INPUT Capitulo1\descripcion_general.tex
+INPUT Capitulo2\DisenoArquitectonico.tex
+INPUT Capitulo2\DisenoArquitectonico.tex
+INPUT Capitulo2\arquitectura_fisica.tex
+INPUT Capitulo2\arquitectura_fisica.tex
+INPUT Capitulo2\assets\arquitectura_fisica.png
+INPUT .\Capitulo2\assets\arquitectura_fisica.png
+INPUT .\Capitulo2\assets\arquitectura_fisica.png
+INPUT .\Capitulo2\assets\arquitectura_fisica.png
+INPUT .\Capitulo2\assets\arquitectura_fisica.png
+INPUT Capitulo2\arquitectura_logica.tex
+INPUT Capitulo2\arquitectura_logica.tex
+INPUT Capitulo2\assets\arquitectura_logica.eps
+INPUT .\Capitulo2\assets\arquitectura_logica.eps
+INPUT .\Capitulo2\assets\arquitectura_logica.eps
+INPUT .\Capitulo2\assets\arquitectura_logica-eps-converted-to.pdf
+INPUT .\Capitulo2\assets\arquitectura_logica-eps-converted-to.pdf
+INPUT .\Capitulo2\assets\arquitectura_logica.eps
+INPUT .\Capitulo2\assets\arquitectura_logica-eps-converted-to.pdf
+INPUT .\Capitulo2\assets\arquitectura_logica-eps-converted-to.pdf
+INPUT .\Capitulo2\assets\arquitectura_logica-eps-converted-to.pdf
+INPUT .\Capitulo2\assets\arquitectura_logica-eps-converted-to.pdf
+INPUT Capitulo3\DisenoDetallado.tex
+INPUT Capitulo3\DisenoDetallado.tex
+INPUT Capitulo3\diseno_modulos.tex
+INPUT Capitulo3\diseno_modulos.tex
+INPUT Capitulo3\assets\diagrama_de_componentes.eps
+INPUT .\Capitulo3\assets\diagrama_de_componentes.eps
+INPUT .\Capitulo3\assets\diagrama_de_componentes.eps
+INPUT .\Capitulo3\assets\diagrama_de_componentes-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\diagrama_de_componentes-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\diagrama_de_componentes.eps
+INPUT .\Capitulo3\assets\diagrama_de_componentes-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\diagrama_de_componentes-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\diagrama_de_componentes-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\diagrama_de_componentes-eps-converted-to.pdf
+INPUT Capitulo3\estructura_del_sistema.tex
+INPUT Capitulo3\estructura_del_sistema.tex
+INPUT Capitulo3\assets\diagrama_general.eps
+INPUT .\Capitulo3\assets\diagrama_general.eps
+INPUT .\Capitulo3\assets\diagrama_general.eps
+INPUT .\Capitulo3\assets\diagrama_general-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\diagrama_general-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\diagrama_general.eps
+INPUT .\Capitulo3\assets\diagrama_general-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\diagrama_general-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\diagrama_general-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\diagrama_general-eps-converted-to.pdf
+INPUT Capitulo3\assets\class_network.eps
+INPUT .\Capitulo3\assets\class_network.eps
+INPUT .\Capitulo3\assets\class_network.eps
+INPUT .\Capitulo3\assets\class_network-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\class_network-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\class_network.eps
+INPUT .\Capitulo3\assets\class_network-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\class_network-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\class_network-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\class_network-eps-converted-to.pdf
+INPUT Capitulo3\assets\module_metaheuristic.eps
+INPUT .\Capitulo3\assets\module_metaheuristic.eps
+INPUT .\Capitulo3\assets\module_metaheuristic.eps
+INPUT .\Capitulo3\assets\module_metaheuristic-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\module_metaheuristic-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\module_metaheuristic.eps
+INPUT .\Capitulo3\assets\module_metaheuristic-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\module_metaheuristic-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\module_metaheuristic-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\module_metaheuristic-eps-converted-to.pdf
+INPUT Capitulo3\operacion_del_sistema.tex
+INPUT Capitulo3\operacion_del_sistema.tex
+INPUT Capitulo3\assets\sequence_load_visualization_network.eps
+INPUT .\Capitulo3\assets\sequence_load_visualization_network.eps
+INPUT .\Capitulo3\assets\sequence_load_visualization_network.eps
+INPUT .\Capitulo3\assets\sequence_load_visualization_network-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_load_visualization_network-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_load_visualization_network.eps
+INPUT .\Capitulo3\assets\sequence_load_visualization_network-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_load_visualization_network-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_load_visualization_network-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_load_visualization_network-eps-converted-to.pdf
+INPUT Capitulo3\assets\sequence_hydraulic_simulation.eps
+INPUT .\Capitulo3\assets\sequence_hydraulic_simulation.eps
+INPUT .\Capitulo3\assets\sequence_hydraulic_simulation.eps
+INPUT .\Capitulo3\assets\sequence_hydraulic_simulation-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_hydraulic_simulation-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_hydraulic_simulation.eps
+INPUT .\Capitulo3\assets\sequence_hydraulic_simulation-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_hydraulic_simulation-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_hydraulic_simulation-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_hydraulic_simulation-eps-converted-to.pdf
+INPUT Capitulo3\assets\sequence_optimization.eps
+INPUT .\Capitulo3\assets\sequence_optimization.eps
+INPUT .\Capitulo3\assets\sequence_optimization.eps
+INPUT .\Capitulo3\assets\sequence_optimization-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_optimization-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_optimization.eps
+INPUT .\Capitulo3\assets\sequence_optimization-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_optimization-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_optimization-eps-converted-to.pdf
+INPUT .\Capitulo3\assets\sequence_optimization-eps-converted-to.pdf
+INPUT Capitulo4\DisenoDeInterfaz.tex
+INPUT Capitulo4\DisenoDeInterfaz.tex
+INPUT Capitulo4\assets\InterfazInicio.png
+INPUT .\Capitulo4\assets\InterfazInicio.png
+INPUT .\Capitulo4\assets\InterfazInicio.png
+INPUT .\Capitulo4\assets\InterfazInicio.png
+INPUT .\Capitulo4\assets\InterfazInicio.png
+INPUT Capitulo4\assets\InterfazDeConfiguracion1.png
+INPUT .\Capitulo4\assets\InterfazDeConfiguracion1.png
+INPUT .\Capitulo4\assets\InterfazDeConfiguracion1.png
+INPUT .\Capitulo4\assets\InterfazDeConfiguracion1.png
+INPUT .\Capitulo4\assets\InterfazDeConfiguracion1.png
+INPUT Capitulo4\assets\InterfazDeConfiguracion2.png
+INPUT .\Capitulo4\assets\InterfazDeConfiguracion2.png
+INPUT .\Capitulo4\assets\InterfazDeConfiguracion2.png
+INPUT .\Capitulo4\assets\InterfazDeConfiguracion2.png
+INPUT .\Capitulo4\assets\InterfazDeConfiguracion2.png
+INPUT Capitulo4\assets\InterfazDeEjecucion1.png
+INPUT .\Capitulo4\assets\InterfazDeEjecucion1.png
+INPUT .\Capitulo4\assets\InterfazDeEjecucion1.png
+INPUT .\Capitulo4\assets\InterfazDeEjecucion1.png
+INPUT .\Capitulo4\assets\InterfazDeEjecucion1.png
+INPUT Capitulo4\assets\InterfazDeEjecucion2.png
+INPUT .\Capitulo4\assets\InterfazDeEjecucion2.png
+INPUT .\Capitulo4\assets\InterfazDeEjecucion2.png
+INPUT .\Capitulo4\assets\InterfazDeEjecucion2.png
+INPUT .\Capitulo4\assets\InterfazDeEjecucion2.png
+INPUT Capitulo4\assets\InterfazDeGraficos.png
+INPUT .\Capitulo4\assets\InterfazDeGraficos.png
+INPUT .\Capitulo4\assets\InterfazDeGraficos.png
+INPUT .\Capitulo4\assets\InterfazDeGraficos.png
+INPUT .\Capitulo4\assets\InterfazDeGraficos.png
+INPUT Capitulo4\assets\InterfazDeResultados.png
+INPUT .\Capitulo4\assets\InterfazDeResultados.png
+INPUT .\Capitulo4\assets\InterfazDeResultados.png
+INPUT .\Capitulo4\assets\InterfazDeResultados.png
+INPUT .\Capitulo4\assets\InterfazDeResultados.png
+INPUT Capitulo4\assets\InterfazDeVisualizacionDeConfiguracionRed.png
+INPUT .\Capitulo4\assets\InterfazDeVisualizacionDeConfiguracionRed.png
+INPUT .\Capitulo4\assets\InterfazDeVisualizacionDeConfiguracionRed.png
+INPUT .\Capitulo4\assets\InterfazDeVisualizacionDeConfiguracionRed.png
+INPUT .\Capitulo4\assets\InterfazDeVisualizacionDeConfiguracionRed.png
+INPUT Capitulo4\assets\InterfazDeResultadosDeSimulacion.png
+INPUT .\Capitulo4\assets\InterfazDeResultadosDeSimulacion.png
+INPUT .\Capitulo4\assets\InterfazDeResultadosDeSimulacion.png
+INPUT .\Capitulo4\assets\InterfazDeResultadosDeSimulacion.png
+INPUT .\Capitulo4\assets\InterfazDeResultadosDeSimulacion.png
+INPUT Capitulo5\DetallesDeImplementacion.tex
+INPUT Capitulo5\DetallesDeImplementacion.tex
+INPUT Capitulo5\reflexion_anotacion_java.tex
+INPUT Capitulo5\reflexion_anotacion_java.tex
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmbxti10.tfm
+INPUT Capitulo5\assets\ConstructorUnParametro.png
+INPUT .\Capitulo5\assets\ConstructorUnParametro.png
+INPUT .\Capitulo5\assets\ConstructorUnParametro.png
+INPUT .\Capitulo5\assets\ConstructorUnParametro.png
+INPUT .\Capitulo5\assets\ConstructorUnParametro.png
+INPUT Capitulo5\assets\ConstructorMultiParametro.png
+INPUT .\Capitulo5\assets\ConstructorMultiParametro.png
+INPUT .\Capitulo5\assets\ConstructorMultiParametro.png
+INPUT .\Capitulo5\assets\ConstructorMultiParametro.png
+INPUT .\Capitulo5\assets\ConstructorMultiParametro.png
+INPUT Capitulo5\assets\InterfazConfiguracionUniformSelection.png
+INPUT .\Capitulo5\assets\InterfazConfiguracionUniformSelection.png
+INPUT .\Capitulo5\assets\InterfazConfiguracionUniformSelection.png
+INPUT .\Capitulo5\assets\InterfazConfiguracionUniformSelection.png
+INPUT .\Capitulo5\assets\InterfazConfiguracionUniformSelection.png
+INPUT Capitulo5\assets\InterfazConfiguracionIntegerPolynomialMutation.png
+INPUT .\Capitulo5\assets\InterfazConfiguracionIntegerPolynomialMutation.png
+INPUT .\Capitulo5\assets\InterfazConfiguracionIntegerPolynomialMutation.png
+INPUT .\Capitulo5\assets\InterfazConfiguracionIntegerPolynomialMutation.png
+INPUT .\Capitulo5\assets\InterfazConfiguracionIntegerPolynomialMutation.png
+INPUT Capitulo5\assets\ConstructorHeredadoRegistrable.png
+INPUT .\Capitulo5\assets\ConstructorHeredadoRegistrable.png
+INPUT .\Capitulo5\assets\ConstructorHeredadoRegistrable.png
+INPUT .\Capitulo5\assets\ConstructorHeredadoRegistrable.png
+INPUT .\Capitulo5\assets\ConstructorHeredadoRegistrable.png
+INPUT Capitulo5\assets\MenuDelProblema.png
+INPUT .\Capitulo5\assets\MenuDelProblema.png
+INPUT .\Capitulo5\assets\MenuDelProblema.png
+INPUT .\Capitulo5\assets\MenuDelProblema.png
+INPUT .\Capitulo5\assets\MenuDelProblema.png
+INPUT G:\MiKTeX 2.9\tex\latex\base\omscmr.fd
+INPUT G:\MiKTeX 2.9\tex\latex\base\omscmr.fd
+INPUT Capitulo5\assets\ComponenteOperatorInput.png
+INPUT .\Capitulo5\assets\ComponenteOperatorInput.png
+INPUT .\Capitulo5\assets\ComponenteOperatorInput.png
+INPUT .\Capitulo5\assets\ComponenteOperatorInput.png
+INPUT .\Capitulo5\assets\ComponenteOperatorInput.png
+INPUT Capitulo5\assets\ComponenteOperatorInputExpandido.png
+INPUT .\Capitulo5\assets\ComponenteOperatorInputExpandido.png
+INPUT .\Capitulo5\assets\ComponenteOperatorInputExpandido.png
+INPUT .\Capitulo5\assets\ComponenteOperatorInputExpandido.png
+INPUT .\Capitulo5\assets\ComponenteOperatorInputExpandido.png
+INPUT Capitulo5\assets\ComponenteFileInput.png
+INPUT .\Capitulo5\assets\ComponenteFileInput.png
+INPUT .\Capitulo5\assets\ComponenteFileInput.png
+INPUT .\Capitulo5\assets\ComponenteFileInput.png
+INPUT .\Capitulo5\assets\ComponenteFileInput.png
+INPUT Capitulo5\assets\ComponenteNumberInput.png
+INPUT .\Capitulo5\assets\ComponenteNumberInput.png
+INPUT .\Capitulo5\assets\ComponenteNumberInput.png
+INPUT .\Capitulo5\assets\ComponenteNumberInput.png
+INPUT .\Capitulo5\assets\ComponenteNumberInput.png
+INPUT Capitulo5\assets\ComponenteNumberToggleInput.png
+INPUT .\Capitulo5\assets\ComponenteNumberToggleInput.png
+INPUT .\Capitulo5\assets\ComponenteNumberToggleInput.png
+INPUT .\Capitulo5\assets\ComponenteNumberToggleInput.png
+INPUT .\Capitulo5\assets\ComponenteNumberToggleInput.png
+INPUT Capitulo5\interfaz_registrable.tex
+INPUT Capitulo5\interfaz_registrable.tex
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmtt12.tfm
+INPUT c:\Users\gsanh\Desktop\Memoria\documentacion\Documento de diseño\build\doc.aux
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx8.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx8.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbxti10.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbxti10.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmcsc10.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmcsc10.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi12.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi12.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsl12.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsl12.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmti12.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmti12.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmtt12.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmtt12.pfb

@@ -1,0 +1,86 @@
+%% inicio, la clase del documento es especificacion.cls
+\documentclass{especificacion}
+\usepackage[onelanguage, commentsnumbered, linesnumbered, boxed, ruled]{algorithm2e}
+\usepackage{pdfpages}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{especificacionutility}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{listings}
+\lstset{ %
+    language=Java, % lenguaje
+    basicstyle=\bfseries\ttfamily,
+    keywordstyle=\color{blue},
+    commentstyle=\color{brown},
+    backgroundcolor=\color{gray!10},
+    showstringspaces=false
+}
+
+%% datos generales y para la tapa
+\titulo{Documento de especificación de requisitos}
+\subtitulo{Herramienta para la optimización de redes de distribución de agua potable}
+\author{Gabriel Gonzalo Alexander Sanhueza Fuentes}
+
+
+%% inicio de documento
+\begin{document}
+
+%% crea la tapa
+\maketitle
+
+\adddevelopment{Gabriel Sanhueza Fuentes}{Administrador, Analista, Diseñador, Implementador y Tester.}{gsanhueza15@alumnos~.utalca.cl}
+
+\addcounterpart{Jimmy H. Gutiérrez-Bahamondes}{Cliente/Profesor guía}{}
+\addcounterpart{Jimmy H. Gutiérrez-Bahamondes}{Cliente/Profesor co-guía}{}
+
+\addrevision{0.1}{07/09/2019}{Primer borrador}
+\addrevision{0.2}{30/09/2019}{Rellenar arquitectura lógica}
+\addrevision{0.3}{05/09/2019}{Agregar diagramas de clases}
+\addrevision{0.4}{12/12/2019}{Agregado diagrama de secuencia y módulos}
+\addrevision{0.5}{13/12/2019}{Agregado detalle de anotaciones}
+\addrevision{1}{30/01/2020}{Modificada definición de anotaciones}
+\addrevision{1.1}{06/06/2020}{Modificada definición de anotaciones nuevamente para satisfacer requisitos nuevos. \singlespace Cambio en diseño de interfaces.}
+
+
+\RevisionHistoryPage
+
+
+%% indices
+\tableofcontents
+\listoffigures
+%\listoftables
+
+%% abstract
+
+%WRITE HERE
+\input{Capitulo1/Introduccion}
+\input{Capitulo2/DisenoArquitectonico}
+\input{Capitulo3/DisenoDetallado}
+\input{Capitulo4/DisenoDeInterfaz}
+\input{Capitulo5/DetallesDeImplementacion}
+
+%% ambiente glosario
+%\begin{glosario}
+%  \item[RDA] Este es el significado del primer término, realmente no se bien lo que significa pero podría haberlo averiguado si hubiese tenido un poco mas de tiempo.
+%  \item[GA] Este si se lo que significa pero me da lata escribirlo...
+%\end{glosario}
+
+
+%% genera las referencias
+%\bibliography{refs}
+
+
+%% comienzo de la parte de anexos
+%\appendixpart
+
+%% contenido del primer anexo
+%%\appendix{Apendix}
+
+\end{document}
+
+   
+

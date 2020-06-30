@@ -1,0 +1,439 @@
+\section{Requisitos de usuario}
+
+A continuación, se presentarán los requisitos de usuarios que han sido obtenidos para el desarrollo de este proyecto
+
+\begin{requisito}
+    \Requisito{RU001}{Cargar una red.}
+    \Descripcion{La red que es representada por el archivo .inp debe ser cargada en el programa para poder llevar a cabo la simulación.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{09/09/2019}
+    \Estado{Cumple}
+    \Incremento{1}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU002}{Resolver el problema monoobjetivo (Pipe Optimizing)  usando el Algoritmo Genético.}
+    \Descripcion{El algoritmo genético debe ser aplicado para resolver el problema monoobjetivo que tiene como función objetivo el costo de inversión y como variable de decisión el diámetro de las tuberías.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{09/09/2019}
+    \Estado{Cumple}
+    \Incremento{2}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU003}{Resolver el problema multiobjetivo (Pumping Scheduling) usando el Algoritmo NSGA-II.}
+    \Descripcion{El algoritmo NSGA-II debe ser aplicado al problema multiobjetivo cuyas funciones a optimizar son los costos energéticos y el número de encendido y apagado de las bombas (Pumping Schedule).}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{09/09/2019}
+    \Estado{Cumple}
+    \Incremento{4}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU004}{Visualizar red en una interfaz gráfica.}
+    \Descripcion{Se debe mostrar en la interfaz gráfica una representación de la red (Un dibujo, etc) generada a partir de la información contenida en el archivo inp.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{09/09/2019}
+    \Estado{Cumple}
+    \Incremento{3}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU005}{Exportar los resultados de los algoritmos aplicados en dos archivos, uno para las variables y otro para los objetivos.}
+    \Descripcion{Se deben poder exportar las soluciones generados por la ejecución de los algoritmos sobre un problema a un conjunto de archivos. Específicamente, serian 2 archivos. El primer archivo guardara las variables de las soluciones mientras que el segundo archivo guardara los objetivos de las soluciones.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{09/09/2019}
+    \Estado{Cumple}
+    \Incremento{3}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU006}{Implementar el operador IntegerSBXCrossover.}
+    \Descripcion{El operador IntegerSBXCrossover es uno de los operadores de cruzamiento. En base a cálculos probabilísticos combina dos soluciones para crear unas dos nuevas soluciones hijas.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{01/10/2019}
+    \Estado{Cumple}
+    \Incremento{2}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU007}{Implementar el operador IntegerSinglePointCrossover.}
+    \Descripcion{El operador IntegerSinglePointCrossover es un operador de cruzamiento. Viendo la solución como un vector, este operador toma dos soluciones y elige un punto a partir del cual los valores de una solución se intercambiarán con los valores de otra solución. Este operador usa una probabilidad de cruzamiento y solamente realiza el intercambio de los valores en la solución cuando un numero generado aleatoriamente es menor que la probabilidad de cruzamiento.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{01/10/2019}
+    \Estado{Cumple}
+    \Incremento{2}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU008}{Implementar el operador IntegerPolynomialMutation.}
+    \Descripcion{El operador IntegerPolynomialMutation es un operador de mutación. Este operador de mutación usa cálculos probabilísticos para mutar algunos variables de decisión que forman parte de la solución.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{01/10/2019}
+    \Estado{Cumple}
+    \Incremento{2}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU009}{Implementar el operador IntegerSimpleRandomMutation.}
+    
+    \Descripcion{El operador IntegerSimpleRandomMutation es un operador de mutación. Este operador muta una variable de decisión cuando un numero generado aleatoriamente es menor que la probabilidad de mutación establecida. El operador recorre cada variable de decisión realizando lo descrito anteriormente. La mutación realizada por este operador consiste en cambiar el valor de la variable de decisión por otro valor aleatorio. }
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{01/10/2019}
+    \Estado{Cumple}
+    \Incremento{2}
+    \Tipo{Funcional}
+\end{requisito}
+    
+    
+\begin{requisito}
+    \Requisito{RU010}{Implementar el operador IntegerRangeRandomMutation (Asi lo llame).}
+    
+    \Descripcion{El operador IntegerRangeRandomMutation es un operador de mutación. Este operador muta una variable de decisión cuando un numero generado aleatoriamente es menor que la probabilidad de mutación establecida. El operador recorre cada variable de decisión realizando lo descrito anteriormente. La mutación realizada por este operador consiste en cambiar el valor de la variable de decisión por otro valor aleatorio que se encuentre entre un rango establecido.
+    \singlespacing
+    Ejemplo:\singlespacing
+
+    Variable de decisión: 3\\
+    Rango: 2\\
+    La variable de decisión después de aplicado el operador puede tomar un valor entre [1, 5].
+    }
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{01/10/2019}
+    \Estado{Cumple}
+    \Incremento{2}
+    \Tipo{Funcional}
+\end{requisito}
+    
+    
+\begin{requisito}
+    \Requisito{RU011}{Implementar el operador UniformSelection.}
+    \Descripcion{El operador UniformSelection es un operador de selección. Este operador de selección ordena la población y asigna una probabilidad máxima y mínima a la mejor y peor solución respectivamente. A las soluciones que se encuentran entre la mejor y la peor solución se le asigna una probabilidad que se encuentra entre la probabilidad máxima y mínima. Si la probabilidad de la solución es mayor a 1.5 entonces la solución se duplica en la nueva población. Si la probabilidad esta entre 0.5 y 1.5, entonces en la nueva población se agrega la solución solo una vez. Las soluciones cuya probabilidad es menor que 0.5 no aparecen en la nueva población.}
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{01/10/2019}
+    \Estado{Cumple}
+    \Incremento{2}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU012}{Crear archivo .inp de la solución generada.}
+    \Descripcion{Al ejecutar un algoritmo metaheurístico este devuelve una o un conjunto de soluciones. A partir de alguna de estas soluciones se debe crear un archivo inp en el que se vean reflejados los resultados de la solucion.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{15/10/2019}
+    \Estado{Cumple}
+    \Incremento{3}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU013}{Mostrar las soluciones de los algoritmos en la interfaz de usuario.}
+    \Descripcion{Mostrar los resultados de la ejecución del algoritmo, es decir las variables y los valores objetivos resultantes. Adicionalmente, estas deben poder ser guardadas en el equipo. Las variables de decisión se guardarán en un archivo (VAR), mientras que los valores de los objetivos se guardarán en otro (FUN).}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Transable}
+    \FechaA{30/11/2019}
+    \Estado{Cumple}
+    \Incremento{3}
+    \Tipo{Funcional}
+\end{requisito}
+    
+    
+\begin{requisito}
+    \Requisito{RU014}{Mostrar las características de la red.}
+    \Descripcion{Mostrar las características que posee la red. Esto puede ser realizado cuando se presiona el elemento de la red o agregando algún componente que muestre los elementos que conforman la red.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Transable}
+    \FechaA{30/11/2019}
+    \Estado{Cumple}
+    \Incremento{3}
+    \Tipo{Funcional}
+\end{requisito}
+    
+    
+\begin{requisito}
+    \Requisito{RU015}{Graficar las soluciones.}
+    \Descripcion{Mostrar en un plano cartesiano las soluciones que se van obteniendo a medida que se ejecuta el algoritmo. Solo considerar hasta 2 objetivos.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Transable}
+    \FechaA{30/11/2019}
+    \Estado{Cumple}
+    \Incremento{3}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU016}{Hacer el programa fácil de ampliar.}
+    \Descripcion{El programa debe poder fácilmente agregar nuevos algoritmos, operadores y problemas.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Critica}
+    \Estabilidad{Transable}
+    \FechaA{30/11/2019}
+    \Estado{Cumple}
+    \Incremento{3}
+    \Tipo{No Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU017}{Mostrar en la interfaz de usuario los problemas, agrupando los algoritmos que pueden ser utilizados para resolverlos.}
+    \Descripcion{En el menú donde se muestran los problemas que pueden ser resueltos debe aparecer el nombre del problema y en este se deben agrupar los algoritmos que pueden ser utilizados para resolverlo.
+    \singlespacing
+    EJ:
+    \singlespacing
+    Pumping Scheduling > NSGAII\\
+                       > SPA2
+
+    }
+    \Fuente{Daniel Mora-Meliá}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{27/01/2020}
+    \Estado{Cumple}
+    \Incremento{5}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU018}{Permitir realizar múltiples simulaciones independientes para resolver el problema multiobjetivo.}
+    \Descripcion{Durante la resolución del problema multiobjetivo se debe poder escoger cuantas veces se aplicará el algoritmo, independientemente uno de otros. La solución final será la Frontera de Pareto del conjunto formado por todas las soluciones generadas a partir de cada ejecución independiente del algoritmo. Este concepto se conoce en algunos framework como Experimentos.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{27/01/2020}
+    \Estado{Cumple}
+    \Incremento{5}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU019}{Guardar los resultados temporales por cada simulación independiente del problema multiobjetivo y generar los archivos al final de todas las simulaciones con los mejores resultados obtenidos.}
+    \Descripcion{Las simulaciones multiobjetivos permiten realizar múltiples simulaciones independientes, entregando cada ejecución como resultado el conjunto de soluciones que conforman su frontera de Pareto. Sin embargo, una vez se terminan todas las repeticiones y se genera la solución final, se pierden los resultados intermedios de cada repetición. Es por ello, que mientras se van terminando cada simulación independiente, se debe guardar un respaldo de los resultados de cada repetición del algoritmo.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{27/01/2020}
+    \Estado{Cumple}
+    \Incremento{5}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU020}{Permitir realizar simulaciones hidráulicas utilizando los valores por defectos que vienen en el archivo .inp y visualizar los resultados.}
+    \Descripcion{Utilizando los valores que vienen por defecto en el archivo inp se debe poder llevar a cabo la simulación hidráulica de la red. Posteriormente, los resultados podrán ser visualizados por el usuario.}
+    
+    \Fuente{Daniel Mora-Meliá}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{27/01/2020}
+    \Estado{Cumple}
+    \Incremento{5}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU021}{Agregar el algoritmo multiobjetivo SMPSO.}
+    \Descripcion{Con el fin de comprobar que se pueden acoplar nuevos algoritmos se solicita por parte del usuario que se agregue el algoritmo SMPSO. }
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{13/05/2020}
+    \Estado{Cumple}
+    \Incremento{6}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU022}{Agregar el algoritmo multiobjetivo SPA2.}
+    \Descripcion{Con el fin de comprobar que se pueden acoplar nuevos algoritmos se solicita por parte del usuario que se agregue el algoritmo SPA2. }
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{13/05/2020}
+    \Estado{Cumple}
+    \Incremento{6}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU023}{Incluir en el dibujo de la red símbolos para diferencias los elementos que componen la red.}
+    \Descripcion{Se requiere que se agreguen en la representación gráfica de la red símbolos para distinguir los distintos elementos que la componen.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{13/05/2020}
+    \Estado{Cumple}
+    \Incremento{6}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU024}{Permitir realizar múltiples simulaciones independientes para resolver el problema monoobjetivo.}
+    \Descripcion{Durante la resolución del problema monoobjetivo se debe poder escoger cuantas veces se repetirá el algoritmo, siendo independiente una repetición de la otra. Al finalizar cada repetición se solicita mostrar los resultados de cada repetición.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{13/05/2020}
+    \Estado{Cumple}
+    \Incremento{6}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU025}{Agregar un menú de configuración.}
+    \Descripcion{Agregar un menú de configuraciones donde poder establecer el tamaño de los puntos, si mostrar o no el grafico de resultados y limitar el número de resultados retornados por el problema multiobjetivo.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{13/05/2020}
+    \Estado{Cumple}
+    \Incremento{6}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU026}{Usar en el gráfico, para cada repetición del algoritmo en un experimento, un color distinto.}
+    \Descripcion{Para facilitar la distinción entre cada repetición de un algoritmo en un experimento se solicita variar que se cambie el color mostrado para cada repetición.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Transable}
+    \FechaA{13/05/2020}
+    \Estado{Cumple}
+    \Incremento{6}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU027}{Mostrar una leyenda que pueda ser activada y desactivada con los símbolos mostrados sobre el dibujo de la red.}
+    \Descripcion{Se requiere que en la ventana de representación de la red se muestre una leyenda en la que se presenten los símbolos utilizados por la aplicación para representar cada componente de la red.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{13/05/2020}
+    \Estado{Cumple}
+    \Incremento{6}
+    \Tipo{Funcional}
+\end{requisito}
+    
+    
+\begin{requisito}
+    \Requisito{RU028}{Mostrar en la ventana de configuración información sobre el problema, como los objetivos, el nombre del algoritmo a utilizar y el nombre del problema que se quiere resolver.}
+    \Descripcion{Al momento de querer realizar una optimización no se entrega suficiente información acerca de los objetivos del problema. Es por esto, que se requiere poder agregar alguna descripción que pueda ser visualizada cuando se abra la ventana de configuración del experimento.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{13/05/2020}
+    \Estado{Cumple}
+    \Incremento{6}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU029}{Añadir en la ventana de resultados del problema columnas extras que muestren las configuraciones utilizadas con el problema.}
+    \Descripcion{Se solicita que se pueda agregar mas información a la ventana de resultados mostrada cuando se termina una optimización. Se propone usar un mapa con los valores adicionales que se quieran mostrar, en donde la clave sea el nombre de la columna y el valor sea lo mostrado en la celda.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{13/05/2020}
+    \Estado{Cumple}
+    \Incremento{6}
+    \Tipo{Funcional}
+\end{requisito}
+    
+    
+\begin{requisito}
+    \Requisito{RU030}{Exportar los resultados de los algoritmos aplicados como un Excel.}
+    \Descripcion{Se requiere exportar la table de resultados de la optimización del algoritmo a un archive excel.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{13/05/2020}
+    \Estado{Cumple}
+    \Incremento{6}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU031}{Exportar el gráfico utilizado para mostrar visualmente las soluciones a una imagen (PNG o SVG)}
+    \Descripcion{Se requiere exportar el gráfico de resultados mostrado durante la ejecución de un experimento, ya sea para el problema monoobjetivo como el multiobjetivo. Se requiere idealmente SVG, en caso de que este formato no sea posible se acepta la utilización de PNG.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Transable}
+    \FechaA{13/05/2020}
+    \Estado{Cumple}
+    \Incremento{6}
+    \Tipo{Funcional}
+\end{requisito}
+    
+\begin{requisito}
+    \Requisito{RU032}{Permitir indicar valores por defecto a los operadores o a los problemas.}
+    \Descripcion{Se solicita que se puedan ingresar valores por defectos que puedan ser visualizados en la ventana de configuración del problema antes de llevar a cabo la resolución del algoritmo. Los valores por defecto deben ser agregados donde se esperen recibir valores numéricos.}
+    
+    \Fuente{Jimmy Gutiérrez}
+    \Prioridad{Crítica}
+    \Estabilidad{Intransable}
+    \FechaA{13/05/2020}
+    \Estado{Cumple}
+    \Incremento{6}
+    \Tipo{Funcional}
+\end{requisito}
+    

@@ -1,0 +1,12 @@
+\section{Contexto}
+
+Este sistema será desarrollado utilizando el lenguaje de programación java. Debido a que este es un lenguaje ampliamente utilizado y que cuenta con un gran soporte y comunidad que lo utilizan.
+
+Como motor de cálculo para llevar a cabo las simulaciones se utilizará una librería desarrollada en c, que cuenta con funciones para llevar a cabo simulaciones de redes de agua potable. El nombre de esta librería es epanet2.dll. Las funciones que incorpora esta librería se encuentran explicadas en~\cite{Rossman2017}.
+
+Desde lenguaje se realizarán llamadas a librerías nativas usando la librería JNA existente en java. Esta librería cuenta con las clases y métodos necesarios para poder acoplar este sistema a la librería epanet2.dll desarrollada en c y que será usada como motor de cálculo para llevar a cabo las simulaciones.
+Puesto que una de las funcionalidades del sistema es permitir la ejecución de algoritmos metaheurísticos, se toma como base la arquitectura presentada por el framework JMetal.
+
+JMetal es un framework para la optimización multiobjetivo con metaheurísticas. Su arquitectura inicial~\cite{Durillo2010} involucraba una serie de problemas y dificultaban la realización de ciertas acciones que eran recurrentes. Además, esta no hacia uso de las novedades incorporadas por Java como los genéricos. Es por esto, que posteriormente fue rediseñada, haciendo uso de patrones de diseño, principios de la programación orientada a objetos y aprovechando las características del lenguaje Java. Este rediseño se presenta en~\cite{Nebro2015}.
+
+El contexto en el que se desenvolverá este sistema será en ambientes universitario, de investigación y en el ambiente laboral. 

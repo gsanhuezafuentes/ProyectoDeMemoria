@@ -1,0 +1,23 @@
+\begin{thebibliography}{1}
+
+\bibitem{Durillo2010}
+Juan~J. Durillo, Antonio~J. Nebro, and Enrique Alba.
+\newblock {The jMetal framework for multi-objective optimization: Design and
+  architecture}.
+\newblock {\em 2010 IEEE World Congress on Computational Intelligence, WCCI
+  2010 - 2010 IEEE Congress on Evolutionary Computation, CEC 2010}, pages 1--8,
+  2010.
+
+\bibitem{Nebro2015}
+Antonio~J. Nebro, Juan~J. Durillo, and Matthieu Vergne.
+\newblock {Redesigning the jMetal multi-objective optimization framework}.
+\newblock In {\em GECCO 2015 - Companion Publication of the 2015 Genetic and
+  Evolutionary Computation Conference}, 2015.
+
+\bibitem{Rossman2017}
+Lewis Rossman.
+\newblock {\em {EPANET 2.0 en espa{\~{n}}ol.Analisis hidraulico y de calidad
+  del agua en redes de distribuci{\'{o}}n de agua. manual del usuario.}}
+\newblock 2017.
+
+\end{thebibliography}

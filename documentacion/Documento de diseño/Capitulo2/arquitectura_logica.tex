@@ -1,0 +1,20 @@
+\section{Arquitectura lógica}
+
+La arquitectura lógica que se utilizara corresponde al patrón Modelo-Vista-Controlador~\cite{Syromiatnikov2014}. La elección de este patrón se debe a que permite la separación de la lógica de negocio y la vista presentada al usuario logrando de esta manera una aplicación altamente mantenible y con una mejor escalabilidad. El diagrama que representa la arquitectura usada para el desarrollo se puede ver en la Figura \ref{fig:arquitectura_logica}.  
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Capitulo2/assets/arquitectura_logica.eps}
+    \caption{Arquitectura lógica.}
+    \label{fig:arquitectura_logica}
+\end{figure}
+
+En el diagrama presentado en la Figura \ref{fig:arquitectura_logica} se presencia la división de la aplicación en tres capas. La capa Vista se encarga de la interacción con el usuario y de la interfaz de usuario. La capa Controlador se encarga de responder a los eventos de los usuarios y solicitar información a la capa de modelo. La capa Modelo contiene la información y la lógica fundamental de la aplicación en un formato adecuado para interactuar con las demás capas. Esta capa, también se encarga de la ejecución de los algoritmos y la interacción con la librería nativa EpanetToolkit.
+
+La capa modelo se divide principalmente en dos componentes. Estos componentes son:
+
+\paragraph{Componente Metaheurísticas (\textit{Metaheuristics}):}
+Modulo que contiene los algoritmos, operadores, los tipos de solución permitidos y los problemas que serán abarcados durante el desarrollo del proyecto. 
+
+\paragraph{Componente Hidráulico (EPANET):}
+El módulo hidráulico posee las clases necesarias para cargar los archivos de red (inp) y generar una representación de ellos a través de una serie de clases. Este módulo también se encarga de guardar la representación de una red ya modificada en un archivo inp para que pueda ser usado por el programa EPANET. Las simulaciones hidráulicas serán realizadas usando la librería epajava. Esta librería realiza las llamadas nativas a la EpanetToolkit. La librería epajava puede ser descargada en el repositorio de git ubicado en https://github.com/jhawanet/epajava .

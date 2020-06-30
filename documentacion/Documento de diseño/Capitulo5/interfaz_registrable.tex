@@ -1,0 +1,47 @@
+\section{Interfaz Registrable}
+
+Esta interfaz declara el método \textit{build} y \textit{getParameters}. La declaración del método \textit{build}  corresponde a la siguiente:
+
+\begin{lstlisting}
+    R build(String inpPath) throws Exception;
+\end{lstlisting}
+
+Donde R corresponde al tipo de valor devuelto por la función.
+
+De esta clase se heredan dos subinterfaces. La primera corresponde a \textit{SingleObjectiveRegistrable} que debe ser usada para implementar los problemas monoobjetivos. En cuanto a la segunda, esta corresponde a \textit{MultiObjectiveRegistrable}, la cual se debe usar para los problemas multiobjetivos. El método build sobreescrito por estas clases tiene la siguiente asignatura: 
+
+\begin{lstlisting}
+    Experiment<?> build(String inpPath) throws Exception;
+\end{lstlisting}
+
+\noindent %% remueve la identación
+donde Experiment consiste en una clase que almacena una lista de algoritmos (Del mismo tipo) y el problema a resolver por estos algoritmos.
+
+Las nuevas clases deben implementar la interfaz \textit{SingleObjectiveRegistrable} o \textit{MultiObjectiveRegistrable}, dependiendo del tipo de problema a tratar. Las clases que implementen cualquiera de estas dos interfaces deben ser guardados en una estructura de datos, la cual será recorrida cuando se inicie la ejecución del programa y analizada usando la \textit{Java Reflection API}. Este análisis consistirá en escanear y validar el cumplimiento de la convención establecida para las clases que implementan está interfaz. Esta convención consiste en lo siguiente:
+
+\begin{itemize}
+    \item La clase debe contener un único constructor que use la anotación \textit{@NewProblem.}
+    \item Si el constructor requiere parámetros éstos deben estar descritos usando la anotación \textit{@Parameters.}
+    \item El constructor debe declarar los parámetros en el siguiente orden, de acuerdo con su tipo.
+    \begin{enumerate}
+        \item Object: Usado para inyectar los operadores. Éstos pueden posteriormente ser casteados a su tipo correcto. La anotación correspondiente es \textit{@OperatorInput}
+        \item File: Usados cuando el problema requiere información adicional que se encuentra en un archivo diferente. La anotación correspondiente es \textit{@FileInput}
+        \item int, Integer, double o Double: Usado generalmente para configurar valores en el algoritmo o si el problema requiere otros valores que no fueron solicitados al crear los operadores. Las anotaciones correspondientes son \textit{@NumberInput y @NumberToggleInput.}
+        \item El constructor debe solicitar la misma cantidad de parámetros que las descritas en la anotación \textit{@Parameters.}
+    \end{enumerate}
+\end{itemize}
+
+Si estas convenciones no se cumplen, entonces un error en tiempo de compilación será emitido como se mencionó anteriormente en la sección anterior.
+
+El orden en el que son inyectados los parámetros consiste en el siguiente:
+
+\begin{enumerate}
+    \item Parámetros descritos por \textit{@OperatorInput}
+    \item Parámetros descritos por \textit{@FileInput}
+    \item Parámetros descritos por \textit{@NumberInput}
+    \item Parámetros descritos por \textit{@NumberToggleInput}
+\end{enumerate}
+
+Una vez que se haya configurado el problema a través de la interfaz se creará la instancia de la clase que hereda de Registrable y se llamará a su método build, para crear el experimento y comenzar su ejecución.
+
+La estructura de datos para registrar las clases que heredan de \textit{SingleObjectiveRegistrable} y \textit{MultiObjectiveRegistrable} se encontrará en la clase \textit{RegistrableConfiguration}.
