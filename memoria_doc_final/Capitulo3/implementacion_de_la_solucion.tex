@@ -7,6 +7,7 @@ Para llevar a cabo el desarrollo del proyecto se opto por la metodología iterati
 
 \begin{table}
   \begin{center}
+    \caption{Planificación de las iteraciones}
     \begin{tabular}{||c| m{6cm}| m{2.5cm}| m{2.5cm}||} 
       \hline
       N° Iteración & Tareas & Fecha Inicio & Fecha \newline término \\ [0.5ex] 
@@ -24,7 +25,6 @@ Para llevar a cabo el desarrollo del proyecto se opto por la metodología iterati
       6 & - Agregar símbolos al dibujo de la red \newline - Exportar a excel \newline - Agregar menu de configuración & 11/05/2020 & 08/06/2020 \\ [1ex] 
       \hline
     \end{tabular}
-   \caption{Planificación de las iteraciones}
    \label{fig:planificacion}
  \end{center}
 \end{table}
@@ -61,6 +61,8 @@ A medida que avanzaban las iteraciónes algunos requisitos fueron cambiando o fue
 
 \begin{table}
   \begin{center}
+    \caption{Actividades y cambios de la fase de requisitos durante cada iteración}
+    \bigskip
     \begin{tabular}{||c| m{2cm}| m{8cm}||} 
       \hline
       N° Iteración & Requisitos cubiertos & Tareas\\ [0.5ex] 
@@ -79,97 +81,50 @@ A medida que avanzaban las iteraciónes algunos requisitos fueron cambiando o fue
       \hline
 
     \end{tabular}
-   \caption{Actividades y cambios de la fase de requisitos durante cada iteración}
    \label{fig:cambios_requisitos}
  \end{center}
 \end{table}
 
 Los cuadros \ref{fig:RU004}, \ref{fig:RU003} y \ref{fig:RU020} muestran la especificación formal de los requisitos relacionados a las funcionalidades escogidas anteriormente.
 
-\begin{table}
-  \begin{center}
-    \begin{tabular}{||m{\textwidth}||} 
-      \hline
-      \textbf{RU004 -- Visualizar red en una interfaz gráfica.}\\
-      \hline
-      \textbf{Descripción:}  Se debe mostrar en la interfaz gráfica una representación de la red (Un dibujo, etc) generada a partir de la información contenida en el archivo inp.\\
-      \hline
-      \textbf{Fuente:} Jimmy Gutiérrez\\
-      \hline
-      \textbf{Prioridad:} Crítica\\
-      \hline
-      \textbf{Estabilidad:} Intransable\\
-      \hline
-      \textbf{Fecha de actualización:} 09/09/2019\\
-      \hline
-      \textbf{Estado:} Cumple\\
-      \hline
-      \textbf{Incremento:} 3\\
-      \hline
-      \textbf{Tipo:} Funcional\\
-      \hline
-    \end{tabular}
-   \caption{Especificación del requisito de usuario RU004.}
-   \label{fig:RU004}
- \end{center}
-\end{table}
+\begin{requisito}[fig:RU004][Especificación del requisito de usuario RU004.]
+  \Requisito{RU004}{Visualizar red en una interfaz gráfica.}
+  \Descripcion{Se debe mostrar en la interfaz gráfica una representación de la red (Un dibujo, etc) generada a partir de la información contenida en el archivo inp.}
+  
+  \Fuente{Jimmy Gutiérrez}
+  \Prioridad{Crítica}
+  \Estabilidad{Intransable}
+  \FechaA{09/09/2019}
+  \Estado{Cumple}
+  \Incremento{3}
+  \Tipo{Funcional}
+\end{requisito}
 
-\begin{table}
-  \begin{center}
-    \begin{tabular}{||m{\textwidth}||} 
-      \hline
-      \textbf{RU003 -- Resolver el problema multiobjetivo (Pumping Scheduling) usando el Algoritmo NSGA-II.}\\
-      \hline
-      \textbf{Descripción:}  El algoritmo NSGA-II debe ser aplicado al problema multiobjetivo cuyas funciones a optimizar son los costos energéticos y el número de encendido y apagado de las bombas (Pumping Schedule).\\
-      \hline
-      \textbf{Fuente:} Jimmy Gutiérrez\\
-      \hline
-      \textbf{Prioridad:} Crítica\\
-      \hline
-      \textbf{Estabilidad:} Intransable\\
-      \hline
-      \textbf{Fecha de actualización:} 09/09/2019\\
-      \hline
-      \textbf{Estado:} Cumple\\
-      \hline
-      \textbf{Incremento:} 4\\
-      \hline
-      \textbf{Tipo:} Funcional\\
-      \hline
-    \end{tabular}
-   \caption{Especificación del requisito de usuario RU003.}
-   \label{fig:RU003}
- \end{center}
-\end{table}
+\begin{requisito}[fig:RU002][Especificación del requisito de usuario RU002.]
+  \Requisito{RU002}{Resolver el problema monoobjetivo (Pipe Optimizing)  usando el Algoritmo Genético.}
+  \Descripcion{El algoritmo genético debe ser aplicado para resolver el problema monoobjetivo que tiene como función objetivo el costo de inversión y como variable de decisión el diámetro de las tuberías.}
+  
+  \Fuente{Jimmy Gutiérrez}
+  \Prioridad{Crítica}
+  \Estabilidad{Intransable}
+  \FechaA{09/09/2019}
+  \Estado{Cumple}
+  \Incremento{2}
+  \Tipo{Funcional}
+\end{requisito}
 
-\begin{table}
-  \begin{center}
-    \begin{tabular}{||m{\textwidth}||} 
-      \hline
-      \textbf{RU020 -- Permitir realizar simulaciones hidráulicas utilizando los valores por defectos que vienen en el archivo .inp y visualizar los resultados.}\\
-      \hline
-      \textbf{Descripción:}  Utilizando los valores que vienen por defecto en el archivo inp se debe poder llevar a cabo la simulación hidráulica de la red. Posteriormente, los resultados podrán ser visualizados por el usuario.\\
-      \hline
-      \textbf{Fuente:} Daniel Mora-Meliá\\
-      \hline
-      \textbf{Prioridad:} Crítica\\
-      \hline
-      \textbf{Estabilidad:} Intransable\\
-      \hline
-      \textbf{Fecha de actualización:} 27/01/2020\\
-      \hline
-      \textbf{Estado:} Cumple\\
-      \hline
-      \textbf{Incremento:} 5\\
-      \hline
-      \textbf{Tipo:} Funcional\\
-      \hline
-    \end{tabular}
-   \caption{Especificación del requisito de usuario RU020.}
-   \label{fig:RU020}
- \end{center}
-\end{table}
-
+\begin{requisito}[fig:RU020][Especificación del requisito de usuario RU020.]
+  \Requisito{RU020}{Permitir realizar simulaciones hidráulicas utilizando los valores por defectos que vienen en el archivo .inp y visualizar los resultados.}
+  \Descripcion{Utilizando los valores que vienen por defecto en el archivo inp se debe poder llevar a cabo la simulación hidráulica de la red. Posteriormente, los resultados podrán ser visualizados por el usuario.}
+  
+  \Fuente{Daniel Mora-Meliá}
+  \Prioridad{Crítica}
+  \Estabilidad{Intransable}
+  \FechaA{27/01/2020}
+  \Estado{Cumple}
+  \Incremento{5}
+  \Tipo{Funcional}
+\end{requisito}
 
 La especificación formal de los requisitos restantes se encuentra en el \textbf{Anexo A}.
 
@@ -182,6 +137,7 @@ Mientras avanzaba el desarrollo fue necesario ir modificando el documento de dis
 
 \begin{table}
   \begin{center}
+    \caption{Actividades y cambios de la fase de requisitos durante cada iteración}
     \begin{tabular}{||c| m{6cm}| m{6cm}||} 
       \hline
       N° Iteración & Tareas & Comentario\\ [0.5ex] 
@@ -200,7 +156,6 @@ Mientras avanzaba el desarrollo fue necesario ir modificando el documento de dis
       6 & Modificar y mejora del diagrama de secuencia de la optimización. & Se modifico el diagrama de secuencia de la optimización debido a la aparición de un nuevo requisito.  \\
       \hline
     \end{tabular}
-   \caption{Actividades y cambios de la fase de requisitos durante cada iteración}
    \label{fig:cambios_diseno}
  \end{center}
 \end{table}
@@ -294,6 +249,9 @@ La aplicación fue desarrollada en el lenguaje Java version 1.8. Con el fin de cr
 En el cuadro \ref{fig:actualizacion_implementacion} se presenta las tareas realizadas durante esta fase del desarrollo del software.
 
 \begin{longtable}{||c| m{10cm}||}
+  \caption{Actividades fase de implementación}
+  \label{fig:actualizacion_implementacion}
+  \endfirsthead
   \hline
   N° Iteración & Descripción\\ [0.5ex] 
   \hline\hline
@@ -309,9 +267,6 @@ En el cuadro \ref{fig:actualizacion_implementacion} se presenta las tareas reali
   \hline
   6 & Se modifica el componente de visualización de red para mostrar para cada tipo de elemento que conforma la red un símbolo distinto. \newline Se implementa funcionalidad para mostrar una leyenda de los símbolos. \newline Se implementa ventana de configuración de la aplicación. \newline Se implementa la funcionalidad para realizar múltiples simulaciones independientes para los problemas monoobjetivo (Se adapta para utilizar los Experimentos antes utilizados solo en problemas multiobjetivos).\newline Se permite agregar valores por defecto en la ventana de configuración del problemas. \newline Se implementa la funcionalidad para exportar resultados a un Excel.\\
   \hline
-
-  \caption{Actividades fase de implementación}
-  \label{fig:actualizacion_implementacion}
 \end{longtable}
 
 A continuación se presentara para cada una de las funcionalidades escogidas las interfaces implementadas.
