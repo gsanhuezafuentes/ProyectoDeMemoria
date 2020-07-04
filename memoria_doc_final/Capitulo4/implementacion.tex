@@ -1,0 +1,86 @@
+
+\section{Implementación}
+Con la fase de diseño finalizada, se procede a realizar la fase de implementación. Durante esta fase se genera el código de la aplicación y se genera el manual de usuario.
+
+La aplicación fue desarrollada en el lenguaje Java version 1.8. Con el fin de crear las interfaces de usuario se utilizo el Framework JavaFX.
+
+En el cuadro \ref{fig:actualizacion_implementacion} se presenta las tareas realizadas durante esta fase del desarrollo del software.
+
+\begin{longtable}{||c| m{10cm}||}
+  \caption{Actividades fase de implementación}
+  \label{fig:actualizacion_implementacion}
+  \endfirsthead
+  \hline
+  N° Iteración & Descripción\\ [0.5ex] 
+  \hline\hline
+  1 & Se codifican las clases para cargar la red \textit{Network}.\\
+  \hline
+  2 & Se codifican las clases del modulo metaheuristica. \newline Se implementa el algoritmo genético.\newline Se implementa la codificación del problema monoobjetivo \textit{Pipe Optimizing}. \newline Se implementan los operadores IntegerRandomMutation, SBXCrossover, IntegerPolinomialMutation, IntegerRangeRandomMutation y UniformSelection.\\
+  \hline
+  3 & Se implementan la interfaz de usuario principal. \newline Se implementa el componente para visualizar la red \newline Se implementa la interfaz de configuración del problema. \newline Se implementa la interfaz de visualización de resultados de optimización. \newline Se implementa la interfaz que muestra el gráfico con los resultados de la optimizacion. \newline Se implementa la funcionalidad para guardar las soluciones en TSV. \newline Se implementa funcionalidad para exportar la solución escogida como un inp(Formato del archivo de configuración de red). \\
+  \hline
+  4 & Se agrega el algoritmo NSGAII. \newline Se implementa la codificación del problema multiobjetivo \textbf{Pumping Scheduling}.\\
+  \hline
+  5 & Se modifican las clases y archivos relacionados a la interfaces de usuario. \newline Se implementa la funcionalidad para realizar múltiples simulaciones independientes de un mismo algoritmo para los problemas multiobjetivos (Experimentos). \newline Se implementa la funcionalidad para realizar la simulación usando los valores del archivo de red.\\
+  \hline
+  6 & Se modifica el componente de visualización de red para mostrar para cada tipo de elemento que conforma la red un símbolo distinto. \newline Se implementa funcionalidad para mostrar una leyenda de los símbolos. \newline Se implementa ventana de configuración de la aplicación. \newline Se implementa la funcionalidad para realizar múltiples simulaciones independientes para los problemas monoobjetivo (Se adapta para utilizar los Experimentos antes utilizados solo en problemas multiobjetivos).\newline Se permite agregar valores por defecto en la ventana de configuración del problemas. \newline Se implementa la funcionalidad para exportar resultados a un Excel.\\
+  \hline
+\end{longtable}
+
+A continuación se presentara para cada una de las funcionalidades escogidas las interfaces implementadas.
+
+\paragraph{Funcionalidad 1}: La Figura \ref{fig:ventana_visualizacion} muestra la ventana de visualización de la red.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo4/assets/VisualizacionRed.png}
+	\caption{Ventana principal de la aplicación donde se visualiza la red}
+	\label{fig:ventana_visualizacion}
+\end{figure}
+
+\paragraph{Funcionalidad 2}: Las Figuras \ref{fig:ventana_descripcion}, \ref{fig:ventana_configuracion_problema}, \ref{fig:ventana_operador}, \ref{fig:ventana_retroalimentacion} y \ref{fig:ventana_resultados_opt} muestran las ventana utilizadas durante el cumplimiento de esta funcionalidad.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo4/assets/ConfiguracionProblema1.png}
+	\caption{Ventana de descripción del problema.}
+	\label{fig:ventana_descripcion}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo4/assets/ConfiguracionProblema2.png}
+	\caption{Ventana de configuración del problema.}
+	\label{fig:ventana_configuracion_problema}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo4/assets/ConfiguracionProblema3.png}
+	\caption{Ventana de configuración de parámetros del operador \textit{UniformSelection}.}
+	\label{fig:ventana_operador}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo4/assets/VentanaDeEjecucionMono.png}
+	\caption{Ventana del retroalimentación mostrada durante la ejecución.}
+	\label{fig:ventana_retroalimentacion}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo4/assets/VentanaDeResultadosMono.png}
+	\caption{Ventana de resultados generada cuando termina la ejecución para el problema monoobjetivo Pipe Optimizing.}
+	\label{fig:ventana_resultados_opt}
+\end{figure}
+
+\paragraph{Funcionalidad 3}: La Figura \ref{fig:ventana_simulacion_hyd} muestra la ventana con los resultados de una simulación hidráulica para la red cargada.
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo4/assets/VentanaDeSimulacionHidraulica.png}
+	\caption{Ventana de simulación hidráulica utilizando los valores del archivo de red.}
+	\label{fig:ventana_simulacion_hyd}
+\end{figure}

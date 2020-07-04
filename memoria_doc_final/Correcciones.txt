@@ -37,3 +37,21 @@ En español se pone la cita antes del punto final (es parte de la oración).
 ---------------------------
 Profesor si existen alternativas, pero el cliente solicito el uso de cierta tecnología ¿Hace falta buscar alternativas?
 sip, igual hace falta, porque tu estas simultaneamente respondiendo a dos jefes. El cliente y la comision.
+
+
+
+
+
+Cita pagina web:
+
+@misc{29,
+    author = {MathWorld Team},
+    title={Random Number},
+    year = {2020},
+    note = {\URL{https://mathworld.wolfram.com/RandomNumber.html }}
+}(editado)
+NUEVO
+
+Cambiar lo de arriba por esto
+howpublished={\url{http://sindominio.net/ash }},
+note = {Accedido 01-10-2013}

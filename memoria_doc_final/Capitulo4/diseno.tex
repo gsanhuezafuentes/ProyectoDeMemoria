@@ -1,0 +1,111 @@
+\section{Diseño}
+
+Una vez terminada la fase de requisitos se procede a diseñar la aplicación. Dentro del diseño, se encuentran las tareas de escoger  y documentar la arquitectura física y lógica, realizar los diagramas de clases, diagramas de secuencia, diseño de interfaces, entre otros.
+
+Mientras avanzaba el desarrollo fue necesario ir modificando el documento de diseño debido a la aparición o al cambio de requisitos, así como la realización de mejoras en los diagramas realizados. En el Cuadro \ref{fig:cambios_diseno} se presentan más detalladamente los cambios realizados en cada iteración.
+
+\begin{table}
+  \begin{center}
+    \caption{Actividades y cambios de la fase de requisitos durante cada iteración}
+    \begin{tabular}{||c| m{6cm}| m{6cm}||} 
+      \hline
+      N° Iteración & Tareas & Comentario\\ [0.5ex] 
+      \hline\hline
+      1 & Crear arquitectura lógica. \newline Crear arquitectura física. \newline Diseñar módulos.\newline Crear diagrama de clases del modulo metaheurística. \newline Crear diagrama de clases del la representación de la red.
+      & Durante esta iteración se creo el documento de diseño y se crearon los esquemas básicos para orientar la construcción del software.\\
+      \hline
+      2 & No hubieron cambios & No hubieron cambios en esta iteración en el aspecto del diseño.\\
+      \hline
+      3 & Diseñar interfaces de usuario.\newline Especificar detalles de la implementación referente a las anotaciones de java (Java Annotations).\newline Generar diagrama de secuencia de optimización. & Durante esta fase de diseñaron algunas de las interfaces de usuario de la aplicación. \newline Los diagramas de secuencia creados indican la interacción entre las clases para poder realizar una tarea.\\
+      \hline
+      4 & No hubieron cambios & No hubieron cambios en esta iteración en el aspecto del diseño.\\
+      \hline
+      5 & Modificar interfaces de usuario. \newline Crear diagrama de secuencia para realizar la simulación usando las configuraciones por defecto. Modificar y mejora del diagrama de secuencia de la optimización. & Debido a requisitos del usuario en el área de usabilidad de la aplicación fue necesario modificar las interfaces.\\
+      \hline
+      6 & Modificar y mejora del diagrama de secuencia de la optimización. & Se modifico el diagrama de secuencia de la optimización debido a la aparición de un nuevo requisito.  \\
+      \hline
+    \end{tabular}
+   \label{fig:cambios_diseno}
+ \end{center}
+\end{table}
+
+Como una de las primeras tareas realizadas durante esta fase se procedió a definir la arquitectura de la aplicación, tanto desde el punto físico como el lógico. 
+
+La arquitectura física del programa a desarrollar es la arquitectura monolítica, cuya característica es que software que posee esta arquitectura funciona localmente sin necesidad de interactuar con otros equipos. Esta elección se debe a que en reuniones con el cliente se estableció que el programa será usado localmente y debe operar sobre el sistema operativo Windows. Limitación debida principalmente al acceso a funciones nativas cuando se realizan simulaciones hidráulicas utilizando la  librería dinámica de Epanet. La Figura \ref{fig:arq_fisica} muestra el diagrama de la arquitectura monolítica.
+
+\begin{figure}[H]
+	\includegraphics[width=0.5\textwidth]{Capitulo4/assets/arquitectura_fisica.png}
+	\centering
+	\caption{Arquitectura física monolítica}
+	\label{fig:arq_fisica}
+\end{figure}
+
+En cuanto a la arquitectura lógica se escogió utilizar Modelo-Vista-Controlador. Ésta elección se debe al hecho de que dicha arquitectura nos permite separar la capa de interfaz de usuario de la lógica de la aplicación mejorando asi escalabilidad y mantenibilidad del software. La Figura \ref{fig:arq_logica} muestra el diagrama de la arquitectura lógica, así como los principales módulos de la aplicación.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{Capitulo4/assets/arquitectura_logica.eps}
+	\centering
+	\caption{Arquitectura lógica Modelo-Vista-Controlador}
+	\label{fig:arq_logica}
+\end{figure}
+
+A continuación se presentarán los diseños relaciónados por cada una de las funcionalidades escogidas con anterioridad.
+
+\paragraph{Funcionalidad 1:} Para implementar esta funcionalidad es necesario abstraer en un conjunto de clases los datos almacenados en el archivo de configuración de red. La Figura \ref{fig:dia_clase_network} muestra el diagrama de clases de las clases sobre la que almacenan los datos al momento de cargar la red. 
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo4/assets/d_clases_network.eps}
+	\caption{Diagrama de clases de la abstracción de la red.}
+	\label{fig:dia_clase_network}
+\end{figure}
+
+El diagrama de la Figura \ref{fig:dia_sec_visualizacion} muestra el conjunto de clases y los mensajes de la clases que interactúan con la clase \textit{Network} con el fin de visualizar la red. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo4/assets/d_sec_visualizacion.eps}
+	\caption{Diagrama de secuencia de la carga y visualización de la red.}
+	\label{fig:dia_sec_visualizacion}
+\end{figure}
+
+\paragraph{Funcionalidad 2:} Esta es una de las funcionalidades ligada al modulo metaheurística y debido a uno de los requisitos establecidos por el cliente de que la aplicación debe poder extender el número de algoritmos, operadores y problemas implementados es necesario implementar una jerarquía de clases que facilite lo anteriormente mencionado. Es por ello, que se utilizo como base la jerarquía de clases utilizada por el Framework JMetal~\cite{Durillo2010} la cual fue adaptada para ser ocupada por esta aplicación. La Figura \ref{fig:dia_class_met} corresponde a la jerarquía ya mencionada.
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo4/assets/d_clases_metaheuristica.eps}
+	\caption{Diagrama de clases modulo metaheurística. Modificación a partir del diagrama presentado en \cite{Durillo2010}.}
+	\label{fig:dia_class_met}
+\end{figure}
+
+El diagrama de secuencia de la Figura \ref{fig:dia_sec_opt} muestra la interacción de las clases con del modulo metaheurísticas, con el resto de clases de la aplicación.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo4/assets/d_seq_simulacion-monomulti.eps}
+	\caption{Diagrama de secuencia para llevar a cabo la optimizacion de los problemas.}
+	\label{fig:dia_sec_opt}
+\end{figure}
+
+\paragraph{Funcionalidad 3:} Para implementar esta funcionalidad es necesario implementar un conjunto de clases las cuales guardaran los resultados de la simulación para cada uno de los nodos y enlaces de una red. Estas nuevas clases son las mostradas en la Figura \ref{fig:dia_class_sim_hyd}.
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo4/assets/d_clases_hyd_simulation.eps}
+	\caption{Diagrama de clases para la simulación hidráulica}
+	\label{fig:dia_class_sim_hyd}
+\end{figure}
+
+El diagrama de secuencia presentado en la Figura \ref{fig:dia_sec_sim_hyd} muestra la interacción entre las clases necesarias para realizar la simulación hidráulica utilizando los valores del archivo de red cargado.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{Capitulo4/assets/d_seq_simulacion-hidraulica.eps}
+	\caption{Diagrama de secuencia para realizar la simulación hidráulica}
+	\label{fig:dia_sec_sim_hyd}
+\end{figure}
+
+En el \textbf{Anexo B} se puede ver la el documento de diseño de la aplicación.

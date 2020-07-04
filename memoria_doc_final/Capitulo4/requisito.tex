@@ -1,0 +1,81 @@
+\section{Requisitos}
+
+Durante la fase de requisitos se llevo a cabo la captura, priorización, validación y la especificación formal de requisitos.
+
+Los requisitos iniciales de la aplicación fueron capturados del profesor Jimmy Gutierrez. Posteriormente, estos requisitos fueron priorizados y validados para finalmente ser documentados en el documento de especificación formal de requisitos. 
+
+A medida que avanzaban las iteraciónes algunos requisitos fueron cambiando o fueron surgiendo requisitos nuevos. En el Cuadro \ref{fig:cambios_requisitos} se detallan los cambios y actividades realizados durante cada iteración.
+
+\begin{table}
+  \begin{center}
+    \caption{Actividades y cambios de la fase de requisitos durante cada iteración}
+    \bigskip
+    \begin{tabular}{||c| m{2cm}| m{8cm}||} 
+      \hline
+      N° Iteración & Requisitos cubiertos & Tareas\\ [0.5ex] 
+      \hline\hline
+      1 & 5/32 & Se capturan 5 requisitos.\newline Se crea el informe de especificación de requisitos. \\
+      \hline
+      2 & 11/32 & Se capturan 6 nuevos requisitos. \newline Se actualiza el documento de requisitos.\\
+      \hline
+      3 & 16/32 & Se capturan 5 nuevos requisitos. \newline Se actualiza el documento de requisitos. \\
+      \hline
+      4 & 20/32 & Se capturan 4 nuevos requisitos.\newline Se actualiza el documento de requisitos. \\
+      \hline
+      5 & 20/32 & No hay nuevos requisitos. \\
+      \hline
+      6 & 32/32 & Se capturan 12 nuevos requisitos.\newline Se actualiza el documento de requisitos. \\
+      \hline
+
+    \end{tabular}
+   \label{fig:cambios_requisitos}
+ \end{center}
+\end{table}
+
+Los cuadros \ref{fig:RU004}, \ref{fig:RU002} y \ref{fig:RU020} muestran la especificación formal de los requisitos relacionados a las funcionalidades escogidas anteriormente.
+
+\begin{requisito}[fig:RU004][Especificación del requisito de usuario RU004.]
+  \Requisito{RU004}{Visualizar red en una interfaz gráfica.}
+  \Descripcion{Se debe mostrar en la interfaz gráfica una representación de la red (Un dibujo, etc) generada a partir de la información contenida en el archivo inp.}
+  
+  \Fuente{Jimmy Gutiérrez}
+  \Prioridad{Crítica}
+  \Estabilidad{Intransable}
+  \FechaA{09/09/2019}
+  \Estado{Cumple}
+  \Incremento{3}
+  \Tipo{Funcional}
+\end{requisito}
+
+\begin{requisito}[fig:RU002][Especificación del requisito de usuario RU002.]
+  \Requisito{RU002}{Resolver el problema monoobjetivo (Pipe Optimizing)  usando el Algoritmo Genético.}
+  \Descripcion{El algoritmo genético debe ser aplicado para resolver el problema monoobjetivo que tiene como función objetivo el costo de inversión y como variable de decisión el diámetro de las tuberías.}
+  
+  \Fuente{Jimmy Gutiérrez}
+  \Prioridad{Crítica}
+  \Estabilidad{Intransable}
+  \FechaA{09/09/2019}
+  \Estado{Cumple}
+  \Incremento{2}
+  \Tipo{Funcional}
+\end{requisito}
+
+\begin{requisito}[fig:RU020][Especificación del requisito de usuario RU020.]
+  \Requisito{RU020}{Permitir realizar simulaciones hidráulicas utilizando los valores por defectos que vienen en el archivo .inp y visualizar los resultados.}
+  \Descripcion{Utilizando los valores que vienen por defecto en el archivo inp se debe poder llevar a cabo la simulación hidráulica de la red. Posteriormente, los resultados podrán ser visualizados por el usuario.}
+  
+  \Fuente{Daniel Mora-Meliá}
+  \Prioridad{Crítica}
+  \Estabilidad{Intransable}
+  \FechaA{27/01/2020}
+  \Estado{Cumple}
+  \Incremento{5}
+  \Tipo{Funcional}
+\end{requisito}
+
+La especificación formal de los requisitos restantes se encuentra en el \textbf{Anexo A}.
+
+
+
+
+
