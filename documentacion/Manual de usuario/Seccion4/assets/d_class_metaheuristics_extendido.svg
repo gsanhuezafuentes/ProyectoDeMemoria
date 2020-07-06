@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1259.2 1052" style="enable-background:new 0 0 1259.2 1052;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.2;fill:#C0C0C0;enable-background:new    ;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{font-family:'Arial-BoldMT';}
+	.st4{font-size:13px;}
+	.st5{font-family:'ArialMT';}
+	.st6{fill:none;stroke:#000000;stroke-miterlimit:10;stroke-dasharray:3;}
+</style>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="581.9" y="611.5" class="st0" width="266.4" height="132"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="811.5" y="593.5" class="st0" width="45.8" height="22"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="574.9" y="604.5" class="st1" width="266.4" height="132"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M574.9,604.5h266.4v132H574.9V604.5z"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M574.9,629.5h266.4"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M574.9,639.5h266.4"/>
+</g>
+<text transform="matrix(1 0 0 1 360.7039 610)" class="st3 st4">Algorithm</text>
+<text transform="matrix(1 0 0 1 259.95 643)" class="st5 st4">+runSingleStep()</text>
+<text transform="matrix(1 0 0 1 259.95 658)" class="st5 st4">+isStoppingConditionReached(): boolean</text>
+<text transform="matrix(1 0 0 1 259.95 673)" class="st5 st4">+getStatusOfExecution(): String</text>
+<text transform="matrix(1 0 0 1 259.95 688)" class="st5 st4">+getResult(): List&lt;Result&gt;</text>
+<text transform="matrix(1 0 0 1 259.95 703)" class="st5 st4">+getName(): String</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="804.5" y="586.5" class="st1" width="45.8" height="22"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st6" d="M804.5,586.5h45.8v22h-45.8V586.5z"/>
+</g>
+<text transform="matrix(1 0 0 1 489.5169 590)" class="st5 st4">Result</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="333.9" y="779.5" class="st0" width="286" height="222"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="591.7" y="761.5" class="st0" width="37.2" height="22"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="326.9" y="772.5" class="st1" width="286" height="222"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M326.9,772.5h286v222h-286V772.5z"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M326.9,797.5h286"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M326.9,807.5h286"/>
+</g>
+<text transform="matrix(1 0 0 1 126.4604 778)" class="st3 st4">Solution</text>
+<text transform="matrix(1 0 0 1 11.9499 811)" class="st5 st4">+getVariable(index: int): Type</text>
+<text transform="matrix(1 0 0 1 11.9499 826)" class="st5 st4">+getVariableAsString(index: int): String</text>
+<text transform="matrix(1 0 0 1 11.9499 841)" class="st5 st4">+setVariable(index: int, value: Type)</text>
+<text transform="matrix(1 0 0 1 11.9499 856)" class="st5 st4">+getVariables(): List&lt;Type&gt;</text>
+<text transform="matrix(1 0 0 1 11.9499 871)" class="st5 st4">+getObjetive(index: int): double</text>
+<text transform="matrix(1 0 0 1 11.9499 886)" class="st5 st4">+setObjetive(index: int, value: double)</text>
+<text transform="matrix(1 0 0 1 11.9499 901)" class="st5 st4">+getObjetives(): double[*]</text>
+<text transform="matrix(1 0 0 1 11.9499 916)" class="st5 st4">+getAttribute(id: Object): Object</text>
+<text transform="matrix(1 0 0 1 11.9499 931)" class="st5 st4">+setAttribute(id: Object, value: Object)</text>
+<text transform="matrix(1 0 0 1 11.9499 946)" class="st5 st4">+getAttributes(): Map</text>
+<text transform="matrix(1 0 0 1 11.9499 961)" class="st5 st4">+getNumberOfVariables()</text>
+<text transform="matrix(1 0 0 1 11.9499 976)" class="st5 st4">+copy(): Solution&lt;Result&gt;</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="584.7" y="754.5" class="st1" width="37.2" height="22"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st6" d="M584.7,754.5h37.2v22h-37.2V754.5z"/>
+</g>
+<text transform="matrix(1 0 0 1 269.7664 758)" class="st5 st4">Type</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="963.9" y="805.5" class="st0" width="418.8" height="192"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="1335.8" y="787.5" class="st0" width="56" height="22"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="956.9" y="798.5" class="st1" width="418.8" height="192"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M956.9,798.5h418.8v192H956.9V798.5z"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M956.9,823.5h418.8"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M956.9,833.5h418.8"/>
+</g>
+<text transform="matrix(1 0 0 1 822.1575 804)" class="st3 st4">Problem</text>
+<text transform="matrix(1 0 0 1 641.95 837)" class="st5 st4">+getNumberOfVariables(): int</text>
+<text transform="matrix(1 0 0 1 641.95 852)" class="st5 st4">+getNumberOfObjetives(): int</text>
+<text transform="matrix(1 0 0 1 641.95 867)" class="st5 st4">+getNumberOfConstrains(): int</text>
+<text transform="matrix(1 0 0 1 641.95 882)" class="st5 st4">+evaluate(solution: Solution)</text>
+<text transform="matrix(1 0 0 1 641.95 897)" class="st5 st4">+createSolution(): Solution</text>
+<text transform="matrix(1 0 0 1 641.95 912)" class="st5 st4">+getLowerBound(index: int): double</text>
+<text transform="matrix(1 0 0 1 641.95 927)" class="st5 st4">+getUpperBound(index: int): double</text>
+<text transform="matrix(1 0 0 1 641.95 942)" class="st5 st4">+applySolutionToNetwork(net: Network, solution: Solution): Network</text>
+<text transform="matrix(1 0 0 1 641.95 957)" class="st5 st4">+getName(): String</text>
+<text transform="matrix(1 0 0 1 641.95 972)" class="st5 st4">+closeResources()</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="1328.8" y="780.5" class="st1" width="56" height="22"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st6" d="M1328.8,780.5h56v22h-56V780.5z"/>
+</g>
+<text transform="matrix(1 0 0 1 1013.7933 784)" class="st5 st4">Solution</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="629.9" y="1002.5" class="st0" width="163.8" height="57"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="756.8" y="969.5" class="st0" width="45.8" height="37"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="622.9" y="995.5" class="st1" width="163.8" height="57"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M622.9,995.5h163.8v57H622.9V995.5z"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M622.9,1020.5h163.8"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M622.9,1030.5h163.8"/>
+</g>
+<text transform="matrix(1 0 0 1 359.1827 1001)" class="st3 st4">Operator</text>
+<text transform="matrix(1 0 0 1 307.95 1034)" class="st5 st4">+execute(Input): Result</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="749.8" y="962.5" class="st1" width="45.8" height="37"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st6" d="M749.8,962.5h45.8v37h-45.8V962.5z"/>
+</g>
+<text transform="matrix(1 0 0 1 434.8688 966)" class="st5 st4">Input</text>
+<text transform="matrix(1 0 0 1 434.8688 981)" class="st5 st4">Result</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M711.9,737.5l-2,224"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M705.8,951.3l4.1,10.2l4.3-10.1"/>
+</g>
+<text transform="matrix(1 0 0 1 386.45 842)" class="st5 st4">+Uses</text>
+<text transform="matrix(1 0 0 1 374.4205 932)" class="st5 st4">*</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M622.9,1015.5h-177v-21"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M450.1,1004.7l-4.2-10.2l-4.2,10.2"/>
+</g>
+<text transform="matrix(1 0 0 1 150.4499 1016)" class="st5 st4">+Manipulates</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M574.9,650.5h-129v104"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M441.7,744.3l4.2,10.2l4.2-10.2"/>
+</g>
+<text transform="matrix(1 0 0 1 162.4499 625)" class="st5 st4">+Manages</text>
+<text transform="matrix(1 0 0 1 110.4205 725)" class="st5 st4">*</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M850.9,650.5h306v130"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M1152.8,770.3l4.2,10.2l4.2-10.2"/>
+</g>
+<text transform="matrix(1 0 0 1 714.45 675)" class="st5 st4">+Solves</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M1276.9,780.5v-186"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path d="M1281.1,604.7l-4.2-10.2l-4.2,10.2l4.2,11.8"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M1281.1,604.7l-4.2-10.2l-4.2,10.2l4.2,11.8L1281.1,604.7"/>
+</g>
+<text transform="matrix(1 0 0 1 934.45 747)" class="st5 st4">+1</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M712.9,585.5l-1-110"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path d="M716.2,485.6l-4.3-10.1l-4.1,10.2l4.3,11.8"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M716.2,485.6l-4.3-10.1l-4.1,10.2l4.3,11.8L716.2,485.6"/>
+</g>
+<text transform="matrix(1 0 0 1 401.45 556)" class="st5 st4">1</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="355.9" y="229.5" class="st0" width="716.5" height="252"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="987.1" y="211.5" class="st0" width="94.3" height="22"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="348.9" y="222.5" class="st1" width="716.5" height="252"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M348.9,222.5h716.5v252H348.9V222.5z"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M348.9,262.5h716.5"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M348.9,272.5h716.5"/>
+</g>
+<text transform="matrix(1 0 0 1 326.8602 228)" class="st3 st4">ExperimentAlgorithm</text>
+<text transform="matrix(1 0 0 1 710.783 243)" class="st5 st4">{leaf}</text>
+<text transform="matrix(1 0 0 1 33.9499 276)" class="st5 st4">«constructor»+ExperimentAlgorithm(algorithm, algorithmTag: String, problem: ExperimentProblem, runId: int)</text>
+<text transform="matrix(1 0 0 1 33.9499 291)" class="st5 st4">«constructor»+ExperimentAlgorithm(algorithm, problem: ExperimentProblem, runId: int)</text>
+<text transform="matrix(1 0 0 1 33.9499 306)" class="st5 st4">+prepareToRun(experimentData): void</text>
+<text transform="matrix(1 0 0 1 33.9499 321)" class="st5 st4">+runASingleStepOfAlgorithm(): void</text>
+<text transform="matrix(1 0 0 1 33.9499 336)" class="st5 st4">+saveSolutionList(): void</text>
+<text transform="matrix(1 0 0 1 33.9499 351)" class="st5 st4">+algorithmHasANextStep(): boolean</text>
+<text transform="matrix(1 0 0 1 33.9499 366)" class="st5 st4">+getAlgorithm(): Algorithm</text>
+<text transform="matrix(1 0 0 1 33.9499 381)" class="st5 st4">+getAlgorithmTag(): String</text>
+<text transform="matrix(1 0 0 1 33.9499 396)" class="st5 st4">+getRunId(): int</text>
+<text transform="matrix(1 0 0 1 33.9499 411)" class="st5 st4">+getResult(): List&lt;S&gt;</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="980.1" y="204.5" class="st1" width="94.3" height="22"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st6" d="M980.1,204.5h94.3v22h-94.3V204.5z"/>
+</g>
+<text transform="matrix(1 0 0 1 665.1395 208)" class="st5 st4">S: Solution&lt;?&gt;</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="1155.9" y="469.5" class="st0" width="407.2" height="132"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="1477.9" y="451.5" class="st0" width="94.3" height="22"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="1148.9" y="462.5" class="st1" width="407.2" height="132"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M1148.9,462.5h407.2v132h-407.2V462.5z"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M1148.9,502.5h407.2"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M1148.9,512.5h407.2"/>
+</g>
+<text transform="matrix(1 0 0 1 975.494 468)" class="st3 st4">ExperimentProblem</text>
+<text transform="matrix(1 0 0 1 1201.5505 483)" class="st5 st4">{leaf}</text>
+<text transform="matrix(1 0 0 1 833.95 516)" class="st5 st4">«constructor»+ExperimentProblem(problem, tag: String)</text>
+<text transform="matrix(1 0 0 1 833.95 531)" class="st5 st4">«constructor»+ExperimentProblem(problem)</text>
+<text transform="matrix(1 0 0 1 833.95 546)" class="st5 st4">+getProblem(): Problem&lt;S&gt;</text>
+<text transform="matrix(1 0 0 1 833.95 561)" class="st5 st4">+getTag(): String</text>
+<text transform="matrix(1 0 0 1 833.95 576)" class="st5 st4">+closeResources(): void</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="1470.9" y="444.5" class="st1" width="94.3" height="22"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st6" d="M1470.9,444.5h94.3v22h-94.3V444.5z"/>
+</g>
+<text transform="matrix(1 0 0 1 1155.907 448)" class="st5 st4">S: Solution&lt;?&gt;</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="1147.9" y="45.5" class="st0" width="414.4" height="237"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="1477.1" y="27.5" class="st0" width="94.3" height="22"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="1140.9" y="38.5" class="st1" width="414.4" height="237"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M1140.9,38.5h414.4v237h-414.4V38.5z"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M1140.9,78.5h414.4"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M1140.9,88.5h414.4"/>
+</g>
+<text transform="matrix(1 0 0 1 995.2967 44)" class="st3 st4">Experiment</text>
+<text transform="matrix(1 0 0 1 1200.7488 59)" class="st5 st4">{leaf}</text>
+<text transform="matrix(1 0 0 1 825.95 92)" class="st5 st4">«constructor»+Experiment(builder: ExperimentBuilder)</text>
+<text transform="matrix(1 0 0 1 825.95 107)" class="st5 st4">+getExperimentName(): String</text>
+<text transform="matrix(1 0 0 1 825.95 122)" class="st5 st4">+getAlgorithmList(): List&lt;ExperimentAlgorithm&gt;</text>
+<text transform="matrix(1 0 0 1 825.95 137)" class="st5 st4">+getProblem(): ExperimentProblem&lt;S&gt;</text>
+<text transform="matrix(1 0 0 1 825.95 152)" class="st5 st4">+getExperimentBaseDirectory(): String</text>
+<text transform="matrix(1 0 0 1 825.95 167)" class="st5 st4">+getObjectiveOutputFileName(): String</text>
+<text transform="matrix(1 0 0 1 825.95 182)" class="st5 st4">+getVariablesOutputFileName(): String</text>
+<text transform="matrix(1 0 0 1 825.95 197)" class="st5 st4">+getIndependentRuns(): int</text>
+<text transform="matrix(1 0 0 1 825.95 212)" class="st5 st4">+getReferenceFrontDirectory(): String</text>
+<text transform="matrix(1 0 0 1 825.95 227)" class="st5 st4">+setReferenceFrontDirectory(referenceFrontDirectory: String): void</text>
+<text transform="matrix(1 0 0 1 825.95 242)" class="st5 st4">+setAlgorithmList(algorithmList: List&lt;Algorithm&gt;): void</text>
+<text transform="matrix(1 0 0 1 825.95 257)" class="st5 st4">+removeDuplicatedAlgorithms(): void</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<rect x="1470.1" y="20.5" class="st1" width="94.3" height="22"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st6" d="M1470.1,20.5h94.3v22h-94.3V20.5z"/>
+</g>
+<text transform="matrix(1 0 0 1 1155.1052 24)" class="st5 st4">S: Solution&lt;?&gt;</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M1355.9,443.5l-2-167"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path d="M1358.3,286.6l-4.3-10.1l-4.1,10.2l4.4,11.8"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M1358.3,286.6l-4.3-10.1l-4.1,10.2l4.4,11.8L1358.3,286.6"/>
+</g>
+<text transform="matrix(1 0 0 1 1044.45 414)" class="st5 st4">1</text>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M716.9,204.5v-112h424"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path d="M1130.8,96.7l10.2-4.2l-10.2-4.2l-11.8,4.2"/>
+</g>
+<g transform="translate(-320,-14) scale(1,1)">
+	<path class="st2" d="M1130.8,96.7l10.2-4.2l-10.2-4.2l-11.8,4.2L1130.8,96.7"/>
+</g>
+<text transform="matrix(1 0 0 1 406.1705 175)" class="st5 st4">*</text>
+</svg>

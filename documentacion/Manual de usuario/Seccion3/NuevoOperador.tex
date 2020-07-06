@@ -1,0 +1,46 @@
+\section{Como agregar un nuevo operador}
+
+Para crear un nuevo operador se debe implementar la interfaz \textit{Operator} o alguna de sus subinterfaces o subclases. Esta interfaz cuenta con un único método. La interfaz se muestra en la Figura \ref{fig:metaheuristics}. El método de la interfaz es:
+\begin{itemize}
+    \item execute: Método que realiza una operación sobre un operando y devuelve un objeto resultante de dicha operación. Generalmente, este método realiza una acción sobre una solución o una lista de soluciones y retorna la solución resultante de la operación realizada.
+\end{itemize}
+
+Para configurar los parámetros del operador desde la ventana de configuración, debe haber un constructor público que posea la anotación \textit{@DefaultConstructor}.
+
+\subsection{\textit{@DefaultConstructor}}
+
+La anotación \textit{@DefaultConstructor} indica el constructor que debe ser usado al momento de crear una instancia del operador. Esta anotación recibe un arreglo de \textit{NumberInput}, el cual se define en la siguiente sección. El arreglo debe tener la misma cantidad de argumentos que los parámetros del constructor como se muestra en la Figura \ref{fig:constructor_un_parametro} y Figura \ref{fig:constructor_multi_parametro}. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion3/assets/ConstructorUnParametro.png}
+    \caption{Constructor de un solo parámetro.}
+    \label{fig:constructor_un_parametro}
+\end{figure}
+  
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion3/assets/ConstructorMultiParametro.png}
+    \caption{Constructor de un solo parámetro.}
+    \label{fig:constructor_multi_parametro}
+\end{figure}
+
+Esta anotación solo puede ser usada en un único constructor por clase. Usar esta anotación en más de un constructor lanzara una excepción en tiempo de ejecución. Adicionalmente, el constructor que use esta anotación solo puede tener parámetros de tipo \textit{int} o \textit{double}.
+
+La interfaz gráfica creada para cada anotación se puede ver en la Figura \ref{fig:interfaz_uniform_selection} y \ref{fig:interfaz_polynomial_mutation}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Seccion3/assets/InterfazConfiguracionUniformSelection.png}
+    \caption{Interfaz para configurar el operador \textit{UniformSelection}.}
+    \label{fig:interfaz_uniform_selection}
+\end{figure} 
+ 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Seccion3/assets/InterfazConfiguracionIntegerPolynomialMutation.png}
+    \caption{Interfaz para configurar el operador \textit{IntegerPolynomialMutation}.}
+    \label{fig:interfaz_polynomial_mutation}
+\end{figure}
+
+La anotación puede tener un arreglo vacío, lo cual indica que el constructor no recibirá parámetros.

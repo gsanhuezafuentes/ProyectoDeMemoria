@@ -1,0 +1,19 @@
+\section{Como agregar un nuevo experimento y hacerlo visible desde la interfaz gráfica}
+
+Un experimento es una clase que contiene una lista de algoritmos para resolver un problema específico. Los algoritmos que conforman el experimento deben ser de un mismo tipo, por ejemplo, que la lista tenga instancias ``n'' repeticiones del Algoritmo Genético. Actuando ``n'' como el número de ejecuciones independientes del algoritmo. En la Figura \ref{fig:metaheuristics_extendido}, se muestra las interfaces del módulo de metaheurísticas extendido.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion4/assets/d_class_metaheuristics_extendido.eps}
+    \caption{Diagrama módulo metaheurística extendido.}
+    \label{fig:metaheuristics_extendido}
+\end{figure}
+
+Para crear el experimento la aplicación cuenta con una clase llamada \textit{ExperimentBuilder}.
+Los parámetros \textit{ExperimentBaseDirectory} y \textit{ReferenceFrontDirectory} solo tienen uso en experimentos multiobjetivos. \textit{ExperimentBaseDirectory} indica donde guardar la frontera de Pareto de cada repetición del algoritmo multiobjetivo. En cambio, \textit{ReferenceFrontDirectory} indica donde guardar la frontera de Pareto final, que se obtiene al unir las fronteras de cada repetición y extraer solamente las soluciones no dominadas de dicho conjunto. 
+
+\input{Seccion4/interfaz_registrable}
+
+A continuación de define detalladamente cada una de las anotaciones permitidas en la clase Registrable.
+
+\input{Seccion4/anotaciones_registrable}

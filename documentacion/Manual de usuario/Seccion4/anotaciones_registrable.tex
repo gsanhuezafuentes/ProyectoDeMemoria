@@ -1,0 +1,148 @@
+
+\subsection{\textit{@NewProblem}}
+Esta anotación permite indicar el nombre del problema que será mostrado en la interfaz gráfica. Puedes ver el uso de esta anotación en la Figura \ref{fig:constructor_heredado_registrable}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8, angle=90]{Seccion4/assets/ConstructorHeredadoRegistrable.png}
+    \caption{Constructor de clase que hereda de registrable y sus metadatos para cada parámetro.}
+    \label{fig:constructor_heredado_registrable}
+\end{figure}
+
+Los elementos en esta anotación consisten en:
+\begin{itemize}
+    \item \textit{displayName}: El nombre del problema. Este nombre también actúa como el nombre de la categoría.
+    \item \textit{algorithm}: Un \textit{String} con el nombre del algoritmo usado para resolver el problema.
+    \item \textit{description}: Un \textit{String} con la descripción del algoritmo.
+\end{itemize}
+
+El nombre dado en el elemento \textit{displayName}, es el nombre visible del problema en el menú de la aplicación y permite agrupar a los problemas que tengan el mismo nombre, pero distintos algoritmos, como se ve en la Figura \ref{fig:menu_del_problema}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion4/assets/MenuDelProblema.png}
+    \caption{Menú de problemas.}
+    \label{fig:menu_del_problema}
+\end{figure}
+
+Esta anotación solo puede estar en un constructor, en caso de esta anotación no esté presente, un error en tiempo de ejecución será lanzado. 
+
+\subsection{\textit{@Parameters}}
+Esta anotación permite agregar información acerca de los parámetros recibidos por el constructor. Cuando el constructor tiene esta anotación, por convención, está obligado a declarar los parámetros en un orden determinado en base a tu tipo. Este orden es el siguiente:
+
+\begin{enumerate}
+    \item \textit{Object}
+    \item \textit{File}
+    \item \textit{int} o \textit{double}
+\end{enumerate}
+
+Si el constructor no declara los parámetros en ese orden un error en tiempo de ejecución será lanzado.
+
+Dentro de esta anotación existen varios elementos. Estos elementos son:
+\begin{itemize}
+    \item \textit{operators}: Arreglo que recibe anotaciones del tipo OperatorInput. 
+    \item \textit{files}: Arreglo que recibe anotaciones del tipo \textit{FileInput}.
+    \item \textit{numbers}:  Arreglo que recibe anotaciones del tipo \textit{NumberInput}.
+    \item \textit{numbersToggle}: Arreglo que recibe anotaciones del tipo \textit{NumberToggleInput}.
+\end{itemize}
+
+El valor por defecto para todos los elementos mencionados anteriormente es un arreglo vacío (\{\}).
+No usar la anotación \textit{@Parameters} tiene el mismo efecto que usar la anotación, pero con sus valores por defecto.
+
+Puede ver el uso de esta anotación en la Figura \ref{fig:constructor_heredado_registrable}. 
+
+\subsection{\textit{@OperatorInput}}
+Esta anotación agrega más información a uno de los parámetros del constructor. 
+Dentro de esta anotación existen varios elementos. Estos elementos son:
+\begin{enumerate}
+    \item \textit{displayName}: Nombre de categoría para los operadores.
+    \item \textit{value}: Arreglo que recibe anotaciones del tipo \textit{OperatorOption}.
+\end{enumerate}
+
+En la ventana de configuración de problema, estos parámetros son vistos con un \textit{ComboBox} como muestra la Figura \ref{fig:componente_operator_input}. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion4/assets/ComponenteOperatorInput.png}
+    \caption{Componente \textit{ComboBox} para configurar los operadores.}
+    \label{fig:componente_operator_input}
+\end{figure}
+
+Las alternativas disponibles dentro del \textit{ComboBox} están dadas por aquellas indicadas en el elemento value de este operador. Como se muestra en la Figura \ref{fig:constructor_heredado_registrable}, la única alternativa para el \textit{Selection Operator} es el operador \textit{UniformSelection} apreciado en la Figura \ref{fig:componente_operator_input_expandido}.
+ 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion4/assets/ComponenteOperatorInputExpandido.png}
+    \caption{\textit{ComboBox} expandido para configurar el operador.}
+    \label{fig:componente_operator_input_expandido}
+\end{figure}
+
+Por defecto, el \textit{ComboBox} selecciona el primer elemento de la lista.
+El botón \textit{Configure} permite configurar los parámetros que recibe el constructor del operador, aquel que posee la anotación \textit{@DefaultConstructor}. Para el caso del operador \textit{UniformSelection}, su interfaz de configuración se muestra en la \ref{fig:interfaz_uniform_selection}.
+
+\subsection{\textit{@OperatorOption}}
+Esta anotación permite indicar las alternativas de operadores que puede recibir un parámetro para una categoría de operador indicada por la anotación \textit{@OperatorInput}.
+Dentro de esta anotación existen varios elementos. Estos elementos son:
+\begin{itemize}
+    \item \textit{displayName}: Nombre del operador. Este es el nombre visualizado en el \textit{ComboBox} como se muestra en la Figura \ref{fig:componente_operator_input_expandido}.
+    \item \textit{value}: Arreglo que recibe instancias del tipo \textit{Class}.
+\end{itemize}
+
+
+\subsection{\textit{@FileInput}}
+Esta anotación indica que hay un parámetro que espera recibir un objeto de tipo \textit{File}. Cuando esta anotación está presente junto con su parámetro, en la interfaz, aparecerá un apartado que abre un \textit{FileChooser} o un \textit{DirectoryChooser} para buscar un archivo o directorio respectivamente.
+Dentro de esta anotación existen solo un elemento. Éste es:
+\begin{itemize}
+    \item \textit{displayName}: Nombre del parámetro. Este nombre también corresponde al nombre visualizado en la ventana de configuración como muestra la Figura \ref{fig:componente_file_input}.
+    \item \textit{type}: Indica el modo en que se abrirá el \textit{\textit{FileChooser}}. Este elemento recibe un enumerado del tipo \textit{Type}; los cuales son \textit{Type.OPEN}, \textit{Type.SAVE}, que abren un \textit{FileChooser} para leer o guardar un archivo; y \textit{Type.Directory}, el cual abre un \textit{DirectoryChooser} para seleccionar un directorio. La opción por defecto es \textit{FileType.OPEN}.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion4/assets/ComponenteFileInput.png}
+    \caption{Apartado para configurar el parámetro de tipo \textit{File}.}
+    \label{fig:componente_file_input}
+\end{figure}
+
+Si el \textit{TextField} donde se muestra la ruta este vacío, es decir, no se ha seleccionado un archivo, entonces será inyectado \textbf{\textit{null}} en el parámetro correspondiente del constructor.
+
+\subsection{\textit{@NumberInput}}
+Esta anotación indica que hay un parámetro del tipo \textit{int} o \textit{double} o sus tipos envoltorios \textit{Integer} o \textit{Double}, respectivamente. Esta anotación agrega en la interfaz un \textit{TextField} que solo permite como entrada un número.  Si el tipo del parámetro es \textit{int} o \textit{Integer}, entonces el \textit{TextField} solo permitirá ingresar números enteros. Por otro lado, si el parámetro es \textit{double} o \textit{Double}, entonces en la interfaz se podrá ingresar números enteros o decimales. El apartado para esta anotación se muestra en la Figura \ref{fig:componente_number_input}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion4/assets/ComponenteNumberInput.png}
+    \caption{\textit{TextField} presente cuando esta la anotación \textit{@NumberInput}.}
+    \label{fig:componente_number_input}
+\end{figure}
+
+Dentro de esta anotación existen los siguientes elementos:
+\begin{itemize}
+    \item \textit{displayName}: Nombre del parámetro.
+    \item \textit{defaultValue}: Valor por defecto de la propiedad. Si el tipo de parámetro en el constructor de la clase que hereda de \textit{Registrable} es un entero, pero se ingresa un valor con decimales, los decimales serán truncados. Si este elemento no se define su valor por defecto es 0.
+\end{itemize}
+
+\subsection{\textit{@NumberToggleInput}}
+Esta anotación indica que hay un conjunto de parámetros que son mutuamente excluyentes entre ellos, es decir, que solo un parámetro puede recibir el valor. En la interfaz, el nombre del grupo aparecerá sobre los componentes. Dentro de un mismo grupo solo se podrá configurar un parámetro. El parámetro por configurar debe ser indicado activando el \textit{ToggleButton} correspondiente, lo cual conllevara a la activación del \textit{TextField}.
+Dentro de esta anotación existen varios elementos. Estos elementos son:
+\begin{itemize}
+    \item \textit{groudID}: \textit{String} con un id para el grupo. Las anotaciones \textit{NumberToggerInput} que tengan el mismo id, en la interfaz, se encontraran en una sección cuyo título es el nombre del grupo. Esto se aprecia en la Figura \ref{fig:componente_number_toggle_input}. 
+    \item \textit{displayName}: Nombre del parámetro.
+    \item \textit{defaultValue}: Valor por defecto de la propiedad. Si el tipo de parámetro en el constructor de la clase que hereda de \textit{Registrable} es un entero, pero se ingresa un valor con decimales, los decimales serán truncados. Si este elemento no se define su valor por defecto es 0.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion4/assets/ComponenteNumberToggleInput.png}
+    \caption{Apartado para \textit{NumberToggleInput} con el mismo GroupID.}
+    \label{fig:componente_number_toggle_input}
+\end{figure}
+
+El parámetro configurado en la interfaz de usuario recibirá el valor indicado en el \textit{TextField}. Si el \textit{TextField} queda vacío entonces recibirá el valor cero. Sin embargo, los demás parámetros, cuyos \textit{TextField} están deshabilitados, recibirán el valor \textbf{\textit{Double.MIN\_VALUE}}, si el parámetro es de tipo \textit{double} o \textit{Double}; o \textbf{\textit{Integer.MIN\_VALUE}} si el parámetro es de tipo \textit{int} o \textit{Integer}. Por ejemplo, en la Figura \ref{fig:componente_number_toggle_input}, se observa que el parámetro ``\textit{Number of iteration without improvement}'' esta activado, pero no contiene un valor, entonces al crear la instancia el constructor va a recibir el valor cero. Pero el parámetro ``\textit{Max number of evaluation}'', al no haber sido escogido,  recibirá el valor \textit{Integer.MIN\_VALUE}, puesto que este parámetro era de tipo \textit{int} o \textit{Integer}.
+
+En la Figura \ref{fig:constructor_heredado_registrable} se puede ver el uso de la anotación \textit{NumberToggleInput}. El componente que representa esta anotación en la GUI se puede aprecia en la Figura \ref{fig:componente_number_toggle_input}. El groupID es usado para nombrar la sección. 
+
+En el elemento \textit{numbersToggle} de la anotación \textit{@Parameters}, las anotaciones que pertenezcan al mismo grupo deben estar continuas. En caso de que esto no se cumpla se lanzara una excepción al momento de ejecutar la aplicación.
+
+Todas las anotaciones presentadas en este documento deben ser utilizadas sobre constructores públicos.
+

@@ -1,0 +1,42 @@
+\section{Como agregar un nuevo algoritmo}
+Para agregar un nuevo algoritmo a la aplicación se debe implementar la interfaz \textit{Algorithm}. En la Figura \ref{fig:metaheuristics} se puede ver la interfaz correspondiente.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion1/assets/d_class_metaheuristics}
+    \caption{Diagrama de clases del módulo de metaheurísticas.}
+    \label{fig:metaheuristics}
+\end{figure}
+
+Esta interfaz cuenta con los siguientes métodos:
+\begin{itemize}
+    \item \textit{RunSingleStep}: Este método debe ejecutar un único paso del algoritmo (Una sola generación/iteración). 
+    \item \textit{isStoppingConditionReached}: Este método indica si la condición de término del algoritmo ha sido alcanzada. 
+    \item \textit{getStatusOfExecution}: Este método puede devolver un \textit{String} con información del algoritmo como se muestra en la Figura \ref{fig:getStatusOfExecution} y \ref{fig:getStatusOfExecution2}.
+    \item \textit{getResult}: Devuelve el resultado del algoritmo.
+    \item \textit{getName}: Devuelve el nombre del algoritmo.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Seccion1/assets/SingleObjectiveRunningWindow.png}
+    \caption{Mensaje retornado por el método \textit{getStatusOfExecution} en la ventana monoobjetivo (Está indicado por la flecha roja).}
+    \label{fig:getStatusOfExecution}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Seccion1/assets/MultiObjectiveRunningWindow.png}
+    \caption{Mensaje retornado por el método \textit{getStatusOfExecution} en la ventana multiobjetivo (Está indicado por la flecha roja).}
+    \label{fig:getStatusOfExecution2}
+\end{figure}
+
+Para llevar a cabo la simulación la aplicación llama al método \textit{RunSingleStep} hasta que \textit{isStoppingConditionReached} sea verdadero. Adicionalmente, dentro del mismo método \textit{RunSingleStep} también se debería asegurar que una vez sea alcanzada la condición de termino no se realicen nuevas operaciones. Un ejemplo de \textit{RunSingleStep} utilizado con el Algoritmo NSGAII y GA se puede ver en la Figura \ref{fig:runASingleStep}.
+ 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion1/assets/runASingleStep.png}
+    \caption{Método \textit{runASingleStep} para los algoritmos evolutivos.}
+    \label{fig:runASingleStep}
+\end{figure}
+

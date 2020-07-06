@@ -1,11 +1,11 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{especificacion}
-[2005/01/19 v1 Estilo Memoria de Titulo - ICC - UTalca (fmeza, jperez, gsanhueza)] 
+\ProvidesClass{manual}
+[2005/01/19 v1 Estilo Manual de usuario - ICC - UTalca (gsanhueza)] 
 
-\PassOptionsToClass{12pt,oneside,fleqn,spanish}{report}
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
+\PassOptionsToClass{12pt,oneside,fleqn,spanish}{article}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions
-\LoadClass{report}
+\LoadClass{article}
 
 \RequirePackage{xparse}
 \RequirePackage{expl3}
@@ -28,7 +28,6 @@
 \def\indfigname{Índice de Figuras}
 \def\indtblname{Índice de Tablas}
 \def\glosname{Glosario}
-\def\appendixpartname{Anexos}
 
 \def\titulo#1{\def\@titulo{#1}}
 \def\subtitulo#1{\def\@subtitulo{#1}}
@@ -219,7 +218,7 @@
 %%%
 
 \renewcommand\tableofcontents{
-  \addcontentsline{toc}{chapter}{\tblcontname}	%% agrega la entrada al toc
+  \addcontentsline{toc}{section}{\tblcontname}	%% agrega la entrada al toc
   \onehalfspacing	%% setea el espacio para el toc
   \def\thepage{\csname @roman\endcsname \c@page} %% define el estilo de numeración 
   \thispagestyle{plain} %% estilo de la página
@@ -237,7 +236,7 @@
 %%%
 
 \renewcommand\listoffigures{
-  \addcontentsline{toc}{chapter}{\indfigname}
+  \addcontentsline{toc}{section}{\indfigname}
   \onehalfspacing
   \def\thepage{\csname @roman\endcsname \c@page}
   \thispagestyle{plain}
@@ -255,7 +254,7 @@
 %%%
 
 \renewcommand\listoftables{
-  \addcontentsline{toc}{chapter}{\indtblname}
+  \addcontentsline{toc}{section}{\indtblname}
   \onehalfspacing
   \def\thepage{\csname @roman\endcsname \c@page}
   \thispagestyle{plain}
@@ -271,21 +270,6 @@
 %%%
 % Formato encabezado capítulo
 %%%
-
-\def\@makechapterhead#1{%
-  \thispagestyle{plain}
-  \vspace*{25mm}
-  \edef\@svsec{\hbox to 1cm{\thechapter.}\hskip 1em }
-  \begingroup \Huge\bf\relax
-     \@hangfrom{\hskip \z@\relax\@svsec}
-     {\interlinepenalty \@M {#1}\par}%
-  \endgroup
-
-  \vspace*{7mm}
-  \hrule height 2pt width \textwidth
-
-  \bigskip\bigskip\bigskip
-}
 
 \def\section{\@startsection {section}{1}{\z@}
   {-3.5ex plus -1ex minus -.2ex}
@@ -317,14 +301,14 @@
 
 \newenvironment{glosario}
 {
-	\newpage
-	\addcontentsline{toc}{chapter}{\glosname}
-	\thispagestyle{plain}
+  \newpage
+	\addcontentsline{toc}{section}{\glosname}
+	\thispagestyle{headings}
 	\@mkboth{\MakeUppercase\glosname}{\MakeUppercase\glosname} % marca para los headongs
-  \vspace*{26mm}
-  {\Huge\bf\relax\noindent {\glosname}\par}
+  %\vspace*{26mm}
+  {\bf\relax\noindent {\glosname}\par}
   
-  \bigskip\bigskip\bigskip
+  %\bigskip\bigskip\bigskip
 	\begin{description}
 }
 {
@@ -336,7 +320,14 @@
 %%%
 
 \renewenvironment{thebibliography}[1]{
-	\section{\refname}
+  \newpage
+	\addcontentsline{toc}{section}{\refname}
+	\thispagestyle{headings}
+	\@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname} % marca para los headongs
+  %\vspace*{26mm}
+  {\bf\relax\noindent {\refname}\par}
+
+  %\bigskip\bigskip\bigskip
   %%% no tengo idea por qué pero esto genera la bibliografía
   \list{\@biblabel{\@arabic\c@enumiv}}%
   {\settowidth\labelwidth{\@biblabel{#1}}%
@@ -356,66 +347,3 @@
    \endlist}
 }
 
-%%%
-% Anexos
-%%%
-
-\def\appendixpart{
-  \cleardoublepage
-  \thispagestyle{empty}
-  \setcounter{chapter}{0}%
-  \def\Thechapter{\Alph{chapter}}
-  \def\thechapter{\Alph{chapter}}
-
-  \addtocontents{toc}{\protect\contentsline{chapter}{\appendixpartname}{}}
-  \addtocontents{lof}%
-  {\protect\addvspace{10\p@}}% Adds between-chapter space
-  \addtocontents{lot}%
-  {\protect\addvspace{10\p@}}% to lists of figs & tables.
-
-  
-  \hbox{}\vfil
-  \centerline{\Huge \bf \MakeUppercase\appendixpartname}\par
-  \vfil\newpage
-  \pagestyle{headings}
-  }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  
-\def\appendix{\cleardoublepage
-  \setcounter{section}{0}
-  \secdef\@appendix\@sappendix}
-  
-  \def\@appendix[#1]#2{
-  \ifnum \c@secnumdepth >-2\relax
-  \refstepcounter{chapter}%
-  \addcontentsline{toc}{chapter}{\Thechapter:\hspace{1em}#1}
-  \else
-  \addcontentsline{toc}{chapter}{#1}
-  \fi
-  \addtocontents{lof}%
-  {\protect\addvspace{10\p@}}% Adds between-chapter space
-  \addtocontents{lot}%
-  {\protect\addvspace{10\p@}}% to lists of figs & tables.
-
-  \thispagestyle{plain}
-  \vspace*{25mm}
-  \edef\@svsec{\hbox to 1cm{\thechapter.}\hskip 1em }
-  \begingroup \Huge\bf\relax
-     \@hangfrom{\hskip \z@\relax\@svsec}
-     {\interlinepenalty \@M {#2}\par}%
-  \endgroup
-
-  \vspace*{7mm}
-  \hrule height 2pt width \textwidth
-
-  \bigskip\bigskip\bigskip
-  \@mkboth{\MakeUppercase{\Thechapter:\hspace{1em}#1}}{\MakeUppercase{\Thechapter:\hspace{1em}#1}} % marca para los headings
-  }
-
-\def\@sappendix#1{{\centering
-    \interlinepenalty \@M
-    \Huge \bf
-    #1\par}\@endappendix}
-
-\endinput

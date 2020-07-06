@@ -1,0 +1,70 @@
+\subsection{Interfaz Registrable}
+Con el fin de agregar un nuevo experimento en la aplicación se debe crear una clase que herede de \textit{SingleObjectiveRegistrable} o \textit{MultiObjectiveRegistrable}, dependiendo de si el problema es monoobjetivo o multiobjetivo respectivamente. En la Figura \ref{fig:Registrable}, se presenta la jerarquía de clases de la interfaz \textit{Registrable}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion4/assets/d_class_registrable.eps}
+    \caption{Jerarquía de clases de la interfaz Registrable.}
+    \label{fig:Registrable}
+\end{figure}
+ 
+Ambas interfaces devuelven como resultado una instancia del experimento la cual es usada para realizar la simulación. Los métodos utilizados por la interfaz \textit{Registrable} son:
+\begin{itemize}
+    \item \textit{build}: Construye un experimento.
+    \item \textit{getParameters}: Este método devuelve un par clave valor, el cual es usado para agregar columnas extras a la ventana de resultados. La clave es usada como el nombre de la columna, mientras que el valor es usado como el valor de la columna. Este método es opcional.
+\end{itemize}
+
+En el constructor público de la clase que herede de una de las subinterfaces de Registrable, debe utilizar la anotación \textit{@NewProblem}. Adicionalmente, si se quiere mostrar la interfaz de configuración, dicho constructor debe incluir la anotación \textit{@Parameter}.
+
+Las clases que implementen cualquiera de las dos interfaces mencionadas anteriormente deben ser guardados en una estructura de datos, la cual es recorrida cuando se inicie la ejecución del programa y analizada usando la \textit{Java Reflection API}. Este análisis consistirá en escanear y validar el cumplimiento de la convención establecida para las clases que implementan está interfaz. Esta convención consiste en lo siguiente:
+\begin{itemize}
+    \item La clase debe contener un único constructor que use la anotación @NewProblem.
+    \item Si el constructor requiere parámetros éstos deben estar descritos usando la anotación @Parameters.
+    \item El constructor debe declarar los parámetros en el siguiente orden, de acuerdo con su tipo.
+    \begin{enumerate}
+        \item \textit{Object}: Usado para inyectar los operadores. Estos parámetros pueden posteriormente ser casteados a su tipo correcto. La anotación correspondiente es \textit{@OperatorInput}.
+        \item \textit{File}: Usados cuando el problema requiere información adicional que se encuentra en un archivo diferente. La anotación correspondiente es \textit{@FileInput}.
+        \item \textit{int}, \textit{Integer}, \textit{double} o \textit{Double}: Usado generalmente para configurar valores en el algoritmo o si el problema requiere otros valores que no fueron solicitados al crear los operadores. Las anotaciones correspondientes son \textit{@NumberInput} y \textit{@NumberToggleInput}.
+        \item El constructor debe solicitar la misma cantidad de parámetros que las descritas en la anotación \textit{@Parameters}.
+    \end{enumerate}
+\end{itemize}
+
+
+Si estas convenciones no se cumplen, entonces un error en tiempo de compilación será emitido. 
+
+El orden en el que son inyectados los parámetros consiste en el siguiente:
+
+\begin{enumerate}
+    \item Parámetros descritos por \textit{@OperatorInput}.
+    \item Parámetros descritos por \textit{@FileInput}.
+    \item Parámetros descritos por \textit{@NumberInput}.
+    \item Parámetros descritos por \textit{@NumberToggleInput}.
+\end{enumerate}
+
+Una vez que se haya configurado el problema a través de la interfaz, se creará la instancia de la clase que hereda de Registrable y se llamará a su método build, para crear el experimento y comenzar su ejecución.
+
+La estructura de datos para registrar las clases que heredan de \textit{SingleObjectiveRegistrable} y \textit{MonoObjectiveRegistrable} se encontrará en la clase \textit{RegistrableConfiguration}.
+
+En las Figura \ref{fig:constructor_registrable}, \ref{fig:build_registrable}, \ref{fig:getParameters_registrable}, se muestran un ejemplo del constructor, uno del método \textit{build} y uno del método \textit{getParameters}, utilizado en el problema de optimización de los costos de las tuberías.
+ 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion4/assets/ConstructorHeredadoRegistrable.png}
+    \caption{Constructor de la clase \textit{PipeOptimizingRegister}.}
+    \label{fig:constructor_registrable}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion4/assets/BuildMethodPipeOptimizingRegister.png}
+    \caption{Implementación del método build de la clase \textit{PipeOptimizingRegister}.}
+    \label{fig:build_registrable}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion4/assets/BuildMethodPipeOptimizingRegister.png}
+    \caption{Implementación del método opcional getParameters de la clase \textit{PipeOptimizingRegister}.}
+    \label{fig:getParameters_registrable}
+\end{figure}
+

@@ -1,0 +1,23 @@
+\section{Como agregar un nuevo problema}
+
+Para agregar un nuevo problema se debe implementar la interfaz \textit{Problem} que se muestra en la Figura \ref{fig:metaheuristics}.  Esta interfaz posee los siguientes métodos:
+
+\begin{itemize}
+    \item \textit{getNumberOfVariables}: Indica el número de variables del problema.
+    \item \textit{getNumberOfObjectives}: Indica el número de objetivos del problema.
+    \item \textit{getNumberOfConstrains}: Indica el número de restricciones del problema.
+    \item \textit{evaluate}: Evalúa una solución y sus restricciones.
+    \item \textit{createSolution}: Crea una nueva solución para el problema.
+    \item \textit{getLowerBound}: Indica el valor mínimo que puede tomar una variable en un índice específico.
+    \item \textit{getUpperBound}: Indica el valor máximo que puede tomar una variable en un índice específico.
+    \item \textit{applySolutionToNetwork}: Toma una solución y la aplica sobre una red (Instancia de \textit{Network} que posteriormente puede ser guardada como un archivo inp). Este método es opcional y en caso de que no esté implementado devuelve el valor \textit{null}. Se puede ver un ejemplo de este método en la Figura \ref{fig:applySolutionToNetwork}. Este método es llamado por la aplicación cuando se selecciona una solución en la pestaña de resultados y se presiona el botón guardar como inp.
+    \item \textit{getName}:  El nombre del problema.
+    \item \textit{closeResources}: Cierra los recursos usado por el problema. Generalmente, el único recurso a cerrar sería el simulador hidráulico EpanetAPI. Implementar este método es opcional. Este método es llamado por la aplicación cuando se termina el experimento.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Seccion2/assets/applySolutionToNetwork.png}
+    \caption{Ejemplo del método \textit{applySolutionToNetwork}.}
+    \label{fig:applySolutionToNetwork}
+\end{figure}

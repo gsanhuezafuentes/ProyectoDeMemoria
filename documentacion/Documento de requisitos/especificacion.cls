@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{especificacion}
-[2005/01/19 v1 Estilo Memoria de Titulo - ICC - UTalca (fmeza, jperez)] 
+[2005/01/19 v1 Estilo Memoria de Titulo - ICC - UTalca (fmeza, jperez, gsanhueza)] 
 
 \PassOptionsToClass{12pt,oneside,fleqn,spanish}{report}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
@@ -336,7 +336,7 @@
 %%%
 
 \renewenvironment{thebibliography}[1]{
-	\section{Referencia}
+	\section{\refname}
   %%% no tengo idea por qué pero esto genera la bibliografía
   \list{\@biblabel{\@arabic\c@enumiv}}%
   {\settowidth\labelwidth{\@biblabel{#1}}%
