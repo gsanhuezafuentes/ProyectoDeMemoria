@@ -519,12 +519,6 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
     }
 
     @Override
-    public Network applySolutionToNetwork(Network network, Solution<?> solution) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public String getName() {
         // TODO Auto-generated method stub
         return this.problemName;

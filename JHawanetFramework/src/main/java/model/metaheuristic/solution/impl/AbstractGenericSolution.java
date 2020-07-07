@@ -45,8 +45,13 @@ public abstract class AbstractGenericSolution<T, P extends Problem<?>> implement
 	protected Map<Object, Object> attributes;
 	protected P problem;
 
+	/**
+	 * Constructor.
+	 * @param problem the problem class
+	 * @throws NullPointerException if problem is null.
+	 */
 	public AbstractGenericSolution(P problem) {
-		this.problem = problem;
+		this.problem = Objects.requireNonNull(problem);
 		this.attributes = new HashMap<>();
 		this.decisionVariables = new ArrayList<>(problem.getNumberOfVariables());
 		this.objectives = new double[problem.getNumberOfObjectives()];

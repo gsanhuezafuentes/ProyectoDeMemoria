@@ -362,4 +362,8 @@ public class MainWindowController implements Initializable {
         HydraulicSimulationResultController controller = new HydraulicSimulationResultController(this.hydraulicSimulation.getValue(), networkComponent.selectedProperty());
         controller.showWindow();
     }
+
+    public void aboutOnAction(ActionEvent actionEvent) {
+        new AboutWindowController().showWindow();
+    }
 }

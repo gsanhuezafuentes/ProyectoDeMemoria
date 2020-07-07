@@ -39,6 +39,17 @@ public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolut
      * @param probability          the probability of mutation
      * @param range                the range of mutation
      * @param randomGenerator      the random function to use
+     */
+    public IntegerRangeRandomMutation(double probability, int range, RandomGenerator<Double> randomGenerator) {
+        this(probability, range, randomGenerator, (a, b) -> JavaRandom.getInstance().nextInt(a, b));
+    }
+
+    /**
+     * Constructor
+     *
+     * @param probability          the probability of mutation
+     * @param range                the range of mutation
+     * @param randomGenerator      the random function to use
      * @param pointRandomGenerator a random generator that generate numbers between a lower and a upper bound
      */
     public IntegerRangeRandomMutation(double probability, int range, RandomGenerator<Double> randomGenerator,
@@ -106,7 +117,7 @@ public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolut
                 Integer newValue;
                 do {
                     newValue = pointRandomGenerator.getRandomValue(lowerBound, upperBound + 1);
-                } while (newValue.equals(value));
+                } while (newValue.equals(value) && range != 0); //when the range is 0 does not force the change of the variable.
                 solution.setVariable(i, newValue);
             }
         }

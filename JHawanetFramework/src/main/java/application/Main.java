@@ -3,10 +3,12 @@ package application;
 import controller.MainWindowController;
 import controller.utils.ProblemMenuConfiguration;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import view.utils.CustomDialogs;
 
 import java.io.IOException;
 
@@ -22,6 +24,12 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		Thread.currentThread().setUncaughtExceptionHandler((thread, throwable) -> {
+			CustomDialogs.showExceptionDialog("Critical error", "Unhandled error"
+					, "Unhandled error. The application will be closed when close this dialog."
+					, throwable, primaryStage, true);
+			Platform.exit();
+		});
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainWindow.fxml"));
 			BorderPane root = loader.load();

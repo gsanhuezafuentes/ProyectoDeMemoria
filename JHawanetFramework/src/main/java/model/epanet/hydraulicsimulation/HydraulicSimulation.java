@@ -16,8 +16,8 @@ public final class HydraulicSimulation {
 
     private final String inpPath;
     private List<String> times;
-    private List<List<NodeSimulationResult>> nodeResult; // row: nodos, column: time
-    private List<List<LinkSimulationResult>> linkResult; // row: nodos, column: time
+    private List<List<NodeSimulationResult>> nodeResults; // row: nodos, column: time
+    private List<List<LinkSimulationResult>> linkResults; // row: nodos, column: time
     private Map<String, Integer> nodeIndex; // map id of node to index in nodeResult
     private Map<String, Integer> linkIndex; // map id of link to index in linkResult
 
@@ -53,9 +53,9 @@ public final class HydraulicSimulation {
      */
     private void initializeNodeList(int nelement) {
         this.nodeIndex = new HashMap<>(nelement);
-        this.nodeResult = new ArrayList<>(nelement);
+        this.nodeResults = new ArrayList<>(nelement);
         for (int i = 0; i < nelement; i++) {
-            this.nodeResult.add(new ArrayList<>());
+            this.nodeResults.add(new ArrayList<>());
         }
     }
 
@@ -66,9 +66,9 @@ public final class HydraulicSimulation {
      */
     private void initializeLinkList(int nelement) {
         this.linkIndex = new HashMap<>(nelement);
-        this.linkResult = new ArrayList<>(nelement);
+        this.linkResults = new ArrayList<>(nelement);
         for (int i = 0; i < nelement; i++) {
-            this.linkResult.add(new ArrayList<>());
+            this.linkResults.add(new ArrayList<>());
         }
     }
 
@@ -121,14 +121,16 @@ public final class HydraulicSimulation {
 
                     for (int i = 1; i <= nodeCount; i++) {
                         NodeSimulationResult result = getNodeResult(t[0], i, epanet);
-                        this.nodeResult.get(i - 1).add(result);
+                        // add to the node list the result in a specific time
+                        this.nodeResults.get(i - 1).add(result);
+                        // save in map the index correspondent to result of a specific node.
                         if (!nodeIndex.containsKey(result.getId())) {
                             nodeIndex.put(result.getId(), i - 1);
                         }
                     }
                     for (int i = 1; i <= linkCount; i++) {
                         LinkSimulationResult result = getLinkResult(t[0], i, epanet);
-                        this.linkResult.get(i - 1).add(result);
+                        this.linkResults.get(i - 1).add(result);
                         if (!linkIndex.containsKey(result.getId())) {
                             linkIndex.put(result.getId(), i - 1);
                         }
@@ -207,15 +209,15 @@ public final class HydraulicSimulation {
      * @return the node results in a specific time or empty list if time is not valid
      * @throws NullPointerException if time is null
      */
-    public @NotNull List<NodeSimulationResult> getNodeResultInTime(String time) {
+    public @NotNull List<NodeSimulationResult> getNodeResultsInTime(String time) {
         Objects.requireNonNull(time);
         int indexTime = times.indexOf(time);
         if (indexTime == -1) return Collections.emptyList();
 
-        int numberOfNodes = nodeResult.size();
+        int numberOfNodes = nodeResults.size();
         List<NodeSimulationResult> result = new ArrayList<>(numberOfNodes);
         for (int i = 0; i < numberOfNodes; i++) {
-            result.add(nodeResult.get(i).get(indexTime));
+            result.add(nodeResults.get(i).get(indexTime));
         }
         return result;
     }
@@ -234,11 +236,11 @@ public final class HydraulicSimulation {
         int indexTime = times.indexOf(time);
         if (indexTime == -1) return Collections.emptyList();
 
-        int numberOfLink = linkResult.size();
+        int numberOfLink = linkResults.size();
 
         List<LinkSimulationResult> result = new ArrayList<>(numberOfLink);
         for (int i = 0; i < numberOfLink; i++) {
-            result.add(linkResult.get(i).get(indexTime));
+            result.add(linkResults.get(i).get(indexTime));
         }
         return result;
     }
@@ -263,7 +265,7 @@ public final class HydraulicSimulation {
         Objects.requireNonNull(nodeId);
         Integer index = this.nodeIndex.get(nodeId);
         if (index != null){
-            return this.nodeResult.get(index);
+            return this.nodeResults.get(index);
         }
         return Collections.emptyList();
     }
@@ -279,7 +281,7 @@ public final class HydraulicSimulation {
         Objects.requireNonNull(linkId);
         Integer index = this.linkIndex.get(linkId);
         if (index != null) {
-            return this.linkResult.get(index);
+            return this.linkResults.get(index);
         }
         return Collections.emptyList();
     }

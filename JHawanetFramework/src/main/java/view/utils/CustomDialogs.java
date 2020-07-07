@@ -50,8 +50,9 @@ public class CustomDialogs {
 	}
 
 	/**
-	 * Show a dialog with the information of exception
-	 *
+	 * Show a dialog with the information of exception.
+	 * <p>
+	 * The dialog does not wait for user input.
 	 * @param title the title
 	 * @param headerText the header text
 	 * @param contentText the content tex
@@ -65,6 +66,8 @@ public class CustomDialogs {
 	 * Show a dialog with the information of exception.
 	 * <p>
 	 * If the owner window is configured as setOnTop so this dialog always is on the window.
+	 * <p>
+	 * The dialog does not wait for user input.
 	 *
 	 * @param title the title
 	 * @param headerText the header text
@@ -73,6 +76,22 @@ public class CustomDialogs {
 	 * @param owner the owner window of the dialog
 	 */
 	public static void showExceptionDialog(String title, String headerText, String contentText, Throwable exception, Window owner) {
+		showExceptionDialog(title, headerText, contentText, exception, owner,false);
+	}
+
+	/**
+	 * Show a dialog with the information of exception.
+	 * <p>
+	 * If the owner window is configured as setOnTop so this dialog always is on the window.
+	 *
+	 * @param title the title
+	 * @param headerText the header text
+	 * @param contentText the content tex
+	 * @param exception the exception throw
+	 * @param owner the owner window of the dialog
+	 * @param wait the modality of this window. if true the dialog wait for user response.
+	 */
+	public static void showExceptionDialog(String title, String headerText, String contentText, Throwable exception, Window owner, boolean wait) {
 		Alert alert = new Alert(Alert.AlertType.ERROR);
 		alert.setTitle(title);
 		alert.setHeaderText(headerText);
@@ -101,8 +120,12 @@ public class CustomDialogs {
 
 		// Set expandable Exception into the dialog pane.
 		alert.getDialogPane().setExpandableContent(expContent);
+		if (wait){
+			alert.showAndWait();
+		}else{
+			alert.show();
+		}
 
-		alert.show();
+
 	}
-
 }

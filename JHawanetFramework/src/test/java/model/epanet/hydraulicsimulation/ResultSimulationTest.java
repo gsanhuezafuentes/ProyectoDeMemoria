@@ -35,7 +35,7 @@ class ResultSimulationTest {
     }
 
     @ParameterizedTest
-    @ValueSource(longs = {-1, 86400, 86401})
+    @ValueSource(longs = {-2,-1, 86400, 86401})
     void ResultSimulation_OutOfValidRange_IllegalArgumentException(long time) {
         assertThrows(IllegalArgumentException.class, () -> new ResultStub("someid", time));
     }

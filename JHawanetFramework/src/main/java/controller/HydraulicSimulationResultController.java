@@ -125,7 +125,7 @@ public class HydraulicSimulationResultController {
         boolean showPane = true;
 
         if (selectedToggle == this.networkNodeAtButton) {
-            List<NodeSimulationResult> nodeResultInTime = this.resultSimulation.getNodeResultInTime(this.timesComboBox.getValue());
+            List<NodeSimulationResult> nodeResultInTime = this.resultSimulation.getNodeResultsInTime(this.timesComboBox.getValue());
             fillTableWithNodeResult(nodeResultInTime, false);
         } else if (selectedToggle == this.networkLinkAtButton) {
             List<LinkSimulationResult> linkResultInTime = this.resultSimulation.getLinkResultInTime(this.timesComboBox.getValue());

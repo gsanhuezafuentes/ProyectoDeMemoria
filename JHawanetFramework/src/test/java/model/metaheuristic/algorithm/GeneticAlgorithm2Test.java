@@ -8,8 +8,10 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.evaluator.SequentialSolutionEvaluator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
@@ -26,6 +28,11 @@ class GeneticAlgorithm2Test {
 	CrossoverOperator<IntegerSolution> crossoverOperator;
 	@Mock
 	MutationOperator<IntegerSolution> mutationOperator;
+
+	@BeforeEach
+	void setUp() {
+		MockitoAnnotations.initMocks(this);
+	}
 
 	/**
 	 * Test if {@link GeneticAlgorithm2#setMaxEvaluations(int)} fail with negative

@@ -41,7 +41,41 @@
 \begin{table}[H]
   \begin{center}
     \IfNoValueF{#2}{\caption{#2}}
-    \begin{tabular}{||c|p{0.65\textwidth-1.3\arraycolsep}||}
+    \begin{tabular}{||c|p{0.65\textwidth-\arraycolsep}||}
+      \hline
+}
+{
+      \hline
+    \end{tabular}
+    \IfNoValueF{#1}{\label{#1}}
+  \end{center}
+\end{table}
+}
+
+%%% Test Case Environment
+\newcommand{\TestID}[1]{\textbf{Test ID}: & #1\\
+\hline}
+\newcommand{\Titulo}[1]{\textbf{Titulo:} & \parbox{0.70\textwidth-\arraycolsep}{\strut #1 \strut}\\
+\hline}
+\newcommand{\Caracteristica}[1]{\textbf{Característica:} & #1\\
+\hline}
+\newcommand{\Objetivo}[1]{\textbf{Objetivo:} & #1\\
+\hline}
+\newcommand{\Configuracion}[1]{\textbf{Configuración:} & \parbox{0.70\textwidth-2\arraycolsep}{\strut#1\strut}\\
+\hline}
+\newcommand{\DatosPrueba}[1]{\textbf{Datos de prueba:} & \parbox{0.70\textwidth-2\arraycolsep}{\strut#1\strut}\\
+\hline}
+\newcommand{\AccionesPrueba}[1]{\textbf{Acciones de prueba:} & \parbox{0.70\textwidth-2\arraycolsep}{\strut#1\strut}\\
+\hline}
+\newcommand{\ResultadosEsperados}[1]{\textbf{Resultados esperados:} & #1\\
+\hline}
+
+\NewDocumentEnvironment { prueba } { o o }
+{
+\begin{table}[H]
+  \begin{center}
+    \IfNoValueF{#2}{\caption{#2}}
+    \begin{tabular}{||p{0.30\textwidth-2\arraycolsep}|p{0.70\textwidth-2\arraycolsep}||}
       \hline
 }
 {

@@ -6,8 +6,21 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 /**
- * This class contains method to read a json file.
- *
+ * This class contains method to read a json file with simple configurations.
+ * <p>
+ * The root element of json as to be a json object.
+ * <p>
+ * For example:
+ * <p>
+ * <pre>
+ *  {
+ *      "name" = "Mutation",
+ *      "values" = [0,1,2,3,4,5],
+ *      "matrix" = [[0,1,2,3],[4,5,6,7]]
+ *  }
+ * </pre>
+ * <p>
+ * For more advanced parse of json file use Gson.
  */
 public class JsonSimpleReader {
     private JsonObject jsonObject;
@@ -27,6 +40,17 @@ public class JsonSimpleReader {
      */
     public static JsonSimpleReader read(String filename) throws FileNotFoundException {
         JsonElement jsonElement = JsonParser.parseReader(new FileReader(filename));
+        return new JsonSimpleReader(jsonElement.getAsJsonObject());
+    }
+
+    /**
+     * Read the json from the string passed has argument.
+     *
+     * @param jsonString a json string object.
+     * @return this reader.
+     */
+    public static JsonSimpleReader readJsonString(String jsonString){
+        JsonElement jsonElement = JsonParser.parseString(jsonString);
         return new JsonSimpleReader(jsonElement.getAsJsonObject());
     }
 

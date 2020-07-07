@@ -112,7 +112,8 @@ public interface Problem<S extends Solution<?>> {
      * <br>
      * <strong>Notes:</strong> <br>
      * This method is used to save the solution as a inp from the ResultWindow.
-     * Return null if you don't want use this method
+     * Return null if you don't want use this method, i.e, you don't want save
+     * solution in inp for a problem.
      *
      * @param network  a copy of the network instance opened configured with inp
      *                 setting up.
@@ -120,7 +121,9 @@ public interface Problem<S extends Solution<?>> {
      *                 same type of S, so you can cast it.
      * @return the network received and modified or null.
      */
-    @Nullable Network applySolutionToNetwork(Network network, Solution<?> solution);
+    @Nullable default Network applySolutionToNetwork(Network network, Solution<?> solution){
+        return null;
+    }
 
     /**
      * Get the name of the problem.
