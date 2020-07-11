@@ -11,6 +11,39 @@
 \usepackage{especificacionutility}
 \usepackage{setspace}
 \usepackage{adjustbox}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    breaklines=true,
+}
+
+%% Declare counter to TestID
+\newcounter{testcase}[chapter]
+%% Command to access the counter print in ATXXX format (Automatic test)
+\newcommand{\atcounter}{
+    AT%
+    \refstepcounter{testcase}%
+    \ifnum\value{testcase}<100 0\fi%
+    \ifnum\value{testcase}<10 0\fi%
+    \arabic{testcase}%
+}
+%% Command to access the counter print in MTXXX format (Manual test)
+\newcommand{\mtcounter}{
+    MT%
+    \refstepcounter{testcase}%
+    \ifnum\value{testcase}<100 0\fi%
+    \ifnum\value{testcase}<10 0\fi%
+    \arabic{testcase}%
+}
+
+\newcommand{\vb}{$\mid$} %command to print |
 
 
 %% datos generales y para la tapa
@@ -45,24 +78,8 @@
 %% abstract
 
 %WRITE HERE
-\chapter{Requisitos}
-Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas Hola como estas
-\begin{prueba}
-    \TestID{2.1}
-    \Titulo{Correct Login}
-    \Caracteristica{Login to umkc.manageMyID.com with Roo Balance App}
-    \Objetivo{Confirm that proper user id an password yields access to the website as expected.}
-    \Configuracion{IOS device or simulator has Roo Balance application ready to run.}
-    \DatosPrueba{Login information\\
-        User Email = cdbpc@umkc.edu\\
-        Password = r00bucks
-    }
-    \AccionesPrueba{1. Start Roo Balance application\\
-        2. Select View Account option\\
-        3. Enter login information
-    }
-    \ResultadosEsperados{System displays account balance with option to logoff.  Account balance should match that found on umkc.ManageMyID.com.}
-\end{prueba}
+\input{Capitulo1/CasosDePruebaAutomatizada}
+\input{Capitulo2/CasoDePruebaManuales}
 
 %% ambiente glosario
 %\begin{glosario}

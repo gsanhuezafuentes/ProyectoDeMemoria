@@ -4,10 +4,8 @@
 \RequirePackage{xparse}
 \RequirePackage[latin1]{inputenc}
 \RequirePackage[latin1]{inputenc}
-\RequirePackage{tabularx}
 \RequirePackage{multirow}
 \RequirePackage{float}
-
 
 %%%%%% Requeriments enviroments
 
@@ -55,7 +53,7 @@
 %%% Test Case Environment
 \newcommand{\TestID}[1]{\textbf{Test ID}: & #1\\
 \hline}
-\newcommand{\Titulo}[1]{\textbf{Titulo:} & \parbox{0.70\textwidth-\arraycolsep}{\strut #1 \strut}\\
+\newcommand{\Titulo}[1]{\textbf{Titulo:} & \parbox{0.70\textwidth-2\arraycolsep}{\strut#1\strut}\\
 \hline}
 \newcommand{\Caracteristica}[1]{\textbf{Característica:} & #1\\
 \hline}

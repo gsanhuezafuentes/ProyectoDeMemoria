@@ -11,6 +11,7 @@
 \RequirePackage[english,spanish]{babel}
 \RequirePackage{graphicx}
 \RequirePackage{setspace}
+\RequirePackage[linktocpage, hidelinks]{hyperref}
 
 \selectlanguage{spanish}
 \bibliographystyle{plain}
@@ -490,7 +491,7 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
   \def\Thechapter{\Alph{chapter}}
   \def\thechapter{\Alph{chapter}}
 
-  \addtocontents{toc}{\protect\contentsline{chapter}{\appendixpartname}{}}
+  \addtocontents{toc}{\protect\contentsline{chapter}{\appendixpartname}{}{}}
   \addtocontents{lof}%
   {\protect\addvspace{10\p@}}% Adds between-chapter space
   \addtocontents{lot}%

@@ -13,6 +13,7 @@
 \RequirePackage[english,spanish]{babel}
 \RequirePackage{graphicx}
 \RequirePackage{setspace}
+\RequirePackage[linktocpage, hidelinks]{hyperref}
 
 \selectlanguage{spanish}
 \bibliographystyle{plain}
@@ -168,6 +169,9 @@
 }
 
 \newcommand\RevisionHistoryPage{%
+  \def\thepage{}% remueve el numero de pagina que el comando de abajo no pudo
+  \pagestyle{empty}
+  
   \tl_if_empty:NF \l_development_tl {
     \textbf{\MakeUppercase{\tbldevelopment}}\par
     \bigskip
@@ -211,6 +215,10 @@
           && \tl_if_empty_p:N \l_counterpart_tl 
           &&  \tl_if_empty_p:N \l_development_tl )}
           {\newpage}
+
+  %restablece la pagina y la forma de numerarlas
+  \pagestyle{headings}
+  \def\thepage{\csname @arabic\endcsname \c@page}
 }
 \ExplSyntaxOff
 
@@ -367,7 +375,7 @@
   \def\Thechapter{\Alph{chapter}}
   \def\thechapter{\Alph{chapter}}
 
-  \addtocontents{toc}{\protect\contentsline{chapter}{\appendixpartname}{}}
+  \addtocontents{toc}{\protect\contentsline{chapter}{\appendixpartname}{}{}} %hyperref redefine contentsline to accept four argument
   \addtocontents{lof}%
   {\protect\addvspace{10\p@}}% Adds between-chapter space
   \addtocontents{lot}%

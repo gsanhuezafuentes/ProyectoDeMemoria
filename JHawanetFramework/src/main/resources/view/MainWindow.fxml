@@ -61,7 +61,7 @@
                             <Image url="@icons/iconfinder_table_save_64777.png" />
                         </ImageView>
                     </graphic>
-                    <tooltip><Tooltip text="Save table" /></tooltip>
+                    <tooltip><Tooltip text="Export solutions to tsv" /></tooltip>
                 </Button>
                 <Button fx:id="saveSelectedAsINPButton" disable="true" styleClass="imageButton">
                     <graphic>
@@ -69,7 +69,7 @@
                             <Image url="@icons/iconfinder_save_32.png" />
                         </ImageView>
                     </graphic>
-                    <tooltip><Tooltip text="Save selected item" /></tooltip>
+                    <tooltip><Tooltip text="Export selected to inp" /></tooltip>
                 </Button>
             </ToolBar>
         </VBox>

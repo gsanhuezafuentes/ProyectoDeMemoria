@@ -13,6 +13,7 @@
 \RequirePackage[english,spanish]{babel}
 \RequirePackage{graphicx}
 \RequirePackage{setspace}
+\RequirePackage[linktocpage, hidelinks]{hyperref}
 
 \selectlanguage{spanish}
 \bibliographystyle{plain}
@@ -167,6 +168,9 @@
 }
 
 \newcommand\RevisionHistoryPage{%
+  \def\thepage{}% remueve el numero de pagina que el comando de abajo no pudo
+  \pagestyle{empty}
+
   \tl_if_empty:NF \l_development_tl {
     \textbf{\MakeUppercase{\tbldevelopment}}\par
     \bigskip
@@ -205,11 +209,15 @@
       \tl_use:N \l_revisions_tl
       \end{tabular}
   }
-  
+
+  %if whatever isn't empty add a new page
   \bool_if:nT {! (\tl_if_empty_p:N \l_revisions_tl 
           && \tl_if_empty_p:N \l_counterpart_tl 
           &&  \tl_if_empty_p:N \l_development_tl )}
           {\newpage}
+  %restablece la pagina y la forma de numerarlas
+  \pagestyle{headings}
+  \def\thepage{\csname @arabic\endcsname \c@page}
 }
 \ExplSyntaxOff
 

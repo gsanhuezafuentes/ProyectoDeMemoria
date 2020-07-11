@@ -13,9 +13,9 @@ class JsonSimpleReaderTest {
 
     @BeforeAll
     static void beforeAll() {
-        json = "{\"int\"=5, \"double\" = 2.5, \"ints\" = [0,1,2,3,4,5], \"doubles\" = [0.1, 0.2, 2.3, 2.5, 2.5]" +
-                ", \"doubleMatrix\"=[[0.2,0.3,0.4],[1.2,1.3,1.5]], \"intMatrix\" = [[0,1,2], [3,4,5]]" +
-                ", \"string\" = \"A simple string\", \"boolean\"= true" +
+        json = "{\"int\" : 5, \"double\" : 2.5, \"ints\" : [0,1,2,3,4,5], \"doubles\" : [0.1, 0.2, 2.3, 2.5, 2.5]" +
+                ", \"doubleMatrix\" : [[0.2,0.3,0.4],[1.2,1.3,1.5]], \"intMatrix\" : [[0,1,2], [3,4,5]]" +
+                ", \"string\" : \"A simple string\", \"boolean\" : true" +
                 "}";
     }
     @BeforeEach

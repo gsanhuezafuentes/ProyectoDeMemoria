@@ -1,0 +1,352 @@
+\chapter{Casos de pruebas manuales}
+
+En este capitulo se presenta la especificación formal de los casos de prueba manuales llevados que son llevados a cabo sobre el software.
+%it3
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Visualización de la red.}
+    \Caracteristica{Mostrar visualización de la red.}
+    \Objetivo{Confirmar que la red puede ser leida desde un archivo ``.inp'' y ser visualizada en la applicación.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{
+        inp: hanoi-Frankenstein.inp
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+    }
+    \ResultadosEsperados{El sistema muestra la red leida desde un archivo inp gráficamente en la applicación.}
+\end{prueba}
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Optimización monoobjetivo realizada completamente.}
+    \Caracteristica{Realizar simulación monoobjetivo.}
+    \Objetivo{Confirmar que se puede llevar a cabo la resolución del problema \textit{PipeOptimizing} sobre la red abierta.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        independentRun = 10\\
+        Archivo inp: hanoi-Frankenstein.inp\\
+        Archivo gama: hanoiHW.Gama
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Seleccionar el problema \textit{PipeOptimizing del menú}.\\
+        4. Configurar el problema usando la ventana de configuración.\\
+        5. Realizar la optimización.
+    }
+    \ResultadosEsperados{Al terminar la optimización el sistema muestra una interfaz con las soluciones generadas por la optimización. Debe haber tantas soluciones como el numero de configuraciones independientes (\textit{independentRun}).}
+\end{prueba}
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Optimización monoobjetivo cancelada.}
+    \Caracteristica{Realizar simulación monoobjetivo.}
+    \Objetivo{Confirmar que se puede llevar a cabo la resolución del problema \textit{PipeOptimizing} sobre la red abierta y que se puede cancelar el proceso  cerrando la ventana o pulsando cancelar.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: hanoi-Frankenstein.inp\\
+        Archivo gama: hanoiHW.Gama
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Seleccionar el problema \textit{PipeOptimizing del menú}.\\
+        4. Configurar el problema usando la ventana de configuración.\\
+        5. Realizar la optimización.
+    }
+    \ResultadosEsperados{Al cancelar la busqueda de soluciones la ventana de estado indica que la optimización a sido detenida.}
+\end{prueba}
+
+%it 4
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Optimización multiobjetivo realizada completamente.}
+    \Caracteristica{Realizar simulación multiobjetivo.}
+    \Objetivo{Confirmar que se puede llevar a cabo la resolución del problema \textit{PumpingScheduling} sobre la red abierta.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: Vanzyl.inp\\
+        Archivo gama: VanzylConfiguration.json
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Seleccionar el problema \textit{PumpingScheduling del menú}.\\
+        4. Seleccionar el operador NSGAII.\\
+        5. Configurar el problema usando la ventana de configuración.\\
+        6. Realizar la optimización.
+    }
+    \ResultadosEsperados{Al terminar la optimización el sistema muestra una interfaz con las soluciones generadas por la optimización. Estas soluciones corresponden a la frontera de pareto del Experimento.}
+\end{prueba}
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Optimización multiobjetivo cancelada.}
+    \Caracteristica{Realizar simulación multiobjetivo.}
+    \Objetivo{Confirmar que se puede llevar a cabo la resolución del problema \textit{PumpingScheduling} sobre la red abierta y que se puede cancelar el proceso cerrando la ventana o pulsando cancelar.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: Vanzyl.inp\\
+        Archivo gama: VanzylConfiguration.json
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Seleccionar el problema \textit{PumpingScheduling del menú}.\\
+        4. Seleccionar el operador NSGAII.\\
+        5. Configurar el problema usando la ventana de configuración.\\
+        6. Realizar la optimización.
+    }
+    \ResultadosEsperados{Al cancelar la busqueda de soluciones la ventana de estado indica que la optimización a sido detenida.}
+\end{prueba}
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Ver soluciones de los problemas monoobjetivos gráficamente a medida que se ejecuta la optimización.}
+    \Caracteristica{Visualizar gráficamente las soluciones.}
+    \Objetivo{Comprobar que a medida que algoritmo va generando soluciones estas pueden ser visualizadas. El grafico es Objetivo vs Numero de generaciones.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: hanoi-Frankenstein.inp\\
+        Archivo gama: hanoiHW.Gama
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Escoger el problema monoobjetivo\\
+        4. Configurar el problema monoobjetivo y ejecutar\\
+        5. Ir a la ventana del gráfico.
+    }
+    \ResultadosEsperados{
+        Un gráfico de dos dimensiones en el que se muestre los resultados de las soluciones generadas por cada generación de cada una de las ejecuciones independientes.
+    }
+\end{prueba}
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Ver soluciones del problema multiobjetivos, con dos objetivos, gráficamente a medida que se ejecuta la optimización.}
+    \Caracteristica{Visualizar gráficamente las soluciones}
+    \Objetivo{Comprobar que a medida que algoritmo va generando soluciones estas pueden ser visualizadas. El grafico es Objetivo1 vs Objetivo2.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+     \DatosPrueba{%
+        Archivo inp: Vanzyl.inp\\
+        Archivo gama: VanzylConfiguration.json
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Escoger el problema monoobjetivo\\
+        4. Configurar el problema monoobjetivo y ejecutar\\
+        5. Ir a la ventana del gráfico.
+    }
+    \ResultadosEsperados{
+        Un gráfico de dos dimensiones en el que se muestre los resultados de las soluciones generadas por cada generación de cada una de las ejecuciones independientes.
+    }
+\end{prueba}
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Guardar la gráfica de las soluciones del problema monoobjetivo como png.}
+    \Caracteristica{Guardar gráfica de soluciones.}
+    \Objetivo{Confirmar que se puede guardar el gráfico de soluciones como un png.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: hanoi-Frankenstein.inp\\
+        Archivo gama: hanoiHW.Gama
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Escoger el problema monoobjetivo\\
+        4. Configurar el problema monoobjetivo y ejecutar\\
+        5. Ir a la ventana del gráfico.\\
+        6. Pulsar el boton para guardar una captura del gráfico.\\
+        7. Configurar donde guardar la captura.
+    }
+    \ResultadosEsperados{
+        Generación de un archivo png en el equipo.
+    }
+\end{prueba}
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Guardar la gráfica de soluciones de problemas de 2 objetivos como png.}
+    \Caracteristica{Guardar gráfica de soluciones.}
+    \Objetivo{Confirmar que se puede guardar el gráfico de soluciones como un png.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: Vanzyl.inp\\
+        Archivo gama: VanzylConfiguration.json
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Escoger el problema monoobjetivo\\
+        4. Configurar el problema monoobjetivo y ejecutar\\
+        5. Ir a la ventana del gráfico.\\
+        6. Pulsar el boton para guardar una captura del gráfico.\\
+        7. Configurar donde guardar la captura.
+    }
+    \ResultadosEsperados{
+        Generación de un archivo png en el equipo.
+    }
+\end{prueba}
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Guardar las solucion seleccionada como inp.}
+    \Caracteristica{Guardar resultados de la optimización.}
+    \Objetivo{Confirmar que se puede exportar los resultados de la solución sobre el archivo de red (inp).}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: hanoi-Frankenstein.inp\\
+        Archivo gama: hanoiHW.Gama
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Escoger el problema monoobjetivo\\
+        4. Configurar el problema monoobjetivo y ejecutar\\
+        5. Esperar que la ejecucion finalice.\\
+        6. Seleccionar una solución.\\
+        7. Pulsar el boton guardar como inp.\\
+        8. Configurar donde guardar el archivo.
+    }
+    \ResultadosEsperados{
+        Generación del archivo de configuración de la red (inp) con la solución aplicada. 
+    }
+\end{prueba}
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Guardar las soluciones en archivos tsv.}
+    \Caracteristica{Guardar resultados de la optimización.}
+    \Objetivo{Confirmar que se puede exportar las soluciones a dos archivos tsv. Uno para las variables y el otro para los objetivos.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: hanoi-Frankenstein.inp\\
+        Archivo gama: hanoiHW.Gama
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Escoger el problema monoobjetivo\\
+        4. Configurar el problema monoobjetivo y ejecutar\\
+        5. Esperar que la ejecucion finalice.\\
+        6. Pulsar el boton guardar tabla.\\
+        7. Configurar donde guardar los archivo.
+    }
+    \ResultadosEsperados{
+        Generación del 2 archivos .tsv. Uno con el prefijo FUN\_ y otro con el prefijo VAR\_. El archivo FUN
+        contiene el valor de los objetivos de las soluciones. El archivo VAR contiene las variables de la soluciones.
+    }
+\end{prueba}
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Guardar las soluciones en un excel.}
+    \Caracteristica{Guardar resultados de la optimización.}
+    \Objetivo{Confirmar que se puede exportar la tabla de resultados completas a un excel.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: hanoi-Frankenstein.inp\\
+        Archivo gama: hanoiHW.Gama
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Escoger el problema monoobjetivo\\
+        4. Configurar el problema monoobjetivo y ejecutar\\
+        5. Esperar que la ejecucion finalice.\\
+        6. Pulsar el boton guardar tabla como excel.\\
+        7. Configurar donde guardar el archivo.
+    }
+    \ResultadosEsperados{
+        Un archivo excel con los mismos datos que la tabla de resultados de la applicación.
+    }
+\end{prueba}
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Simulación hidráulica sobre red de un solo tiempo.}
+    \Caracteristica{Realizar simulación con configuración de archivo de red.}
+    \Objetivo{Confirmar que se puede realizar la simulación utilizando los valores del archivo de red.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: hanoi-Frankenstein.inp\\
+        Archivo gama: hanoiHW.Gama
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Pulsar botón \textit{Execute} de la ventana principal.
+    }
+    \ResultadosEsperados{
+        Ejecución realizada sin ningun error.
+    }
+\end{prueba}
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Ver resultados de la simulación hidráulica de un solo tiempo}
+    \Caracteristica{Realizar simulación con configuración de archivo de red.}
+    \Objetivo{Confirmar que se puede visualizar los resultados de la simulación realizada.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: hanoi-Frankenstein.inp\\
+        Archivo gama: hanoiHW.Gama
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Pulsar botón \textit{Execute} de la ventana principal.\\
+        4. Pulsar botón \textit{Results} de la ventana principal.
+    }
+    \ResultadosEsperados{
+        Una interfaz que permite seleccionar si se quieren ver los resultados para los enlaces o los nodos.
+    }
+\end{prueba}
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Simulación hidráulica sobre red de mas de un tiempo.}
+    \Caracteristica{Realizar simulación con configuración de archivo de red.}
+    \Objetivo{Confirmar que se puede realizar la simulación utilizando los valores del archivo de red.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: Vanzyl.inp\\
+        Archivo gama: VanzylConfiguration.json
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Pulsar boton \textit{Execute} de la ventana principal.
+    }
+    \ResultadosEsperados{
+        Ejecución realizada sin ningun error.
+    }
+\end{prueba}
+
+\begin{prueba}
+    \TestID{\mtcounter}
+    \Titulo{Ver resultados de la simulación hidráulica de mas de un tiempo}
+    \Caracteristica{Realizar simulación con configuración de archivo de red.}
+    \Objetivo{Confirmar que se puede visualizar los resultados de la simulación realizada.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+     \DatosPrueba{%
+        Archivo inp: Vanzyl.inp\\
+        Archivo gama: VanzylConfiguration.json
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Pulsar botón \textit{Execute} de la ventana principal.\\
+        4. Pulsar botón \textit{Results} de la ventana principal.
+    }
+    \ResultadosEsperados{
+        Una interfaz que permite seleccionar si se quieren ver los resultados para los enlaces o los nodos. Adicionalmente, permite escoger el tiempo de simulación y listar los resultados para todos los tiempos de un elemento de la red específico.
+    }
+\end{prueba}
