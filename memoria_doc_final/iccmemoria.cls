@@ -11,7 +11,7 @@
 \RequirePackage[english,spanish]{babel}
 \RequirePackage{graphicx}
 \RequirePackage{setspace}
-\RequirePackage[linktocpage, hidelinks]{hyperref}
+\RequirePackage[naturalnames, linktocpage, hidelinks]{hyperref}
 
 \selectlanguage{spanish}
 \bibliographystyle{plain}
@@ -259,8 +259,8 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
 %%%
 % Dedicatoria
 %%%
-
 \newenvironment{dedicatory}{
+  \phantomsection
   \addcontentsline{toc}{chapter}{\dedicaname}
   \def\thepage{\csname @roman\endcsname \c@page}
   \thispagestyle{plain}
@@ -280,6 +280,7 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
 %%%
 
 \newenvironment{acknowledgment}{
+  \phantomsection
   \addcontentsline{toc}{chapter}{\agradename}
   \def\thepage{\csname @roman\endcsname \c@page}
   \thispagestyle{plain}
@@ -298,6 +299,7 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
 %%%
 
 \newenvironment{resumen}{
+  \phantomsection
   \addcontentsline{toc}{chapter}{\resumenname}
   \def\thepage{\csname @roman\endcsname \c@page}
   \thispagestyle{plain}
@@ -315,6 +317,7 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
 %%%
 
 \renewenvironment{abstract}{
+  \phantomsection
   \addcontentsline{toc}{chapter}{\Abstractname}
   \def\thepage{\csname @roman\endcsname \c@page}
   \thispagestyle{plain}
@@ -336,6 +339,7 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
 %%%
 
 \renewcommand\tableofcontents{
+  \phantomsection
   \addcontentsline{toc}{chapter}{\tblcontname}	%% agrega la entrada al toc
   \onehalfspacing	%% setea el espacio para el toc
   \def\thepage{\csname @roman\endcsname \c@page} %% define el estilo de numeración 
@@ -354,6 +358,7 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
 %%%
 
 \renewcommand\listoffigures{
+  \phantomsection
   \addcontentsline{toc}{chapter}{\indfigname}
   \onehalfspacing
   \def\thepage{\csname @roman\endcsname \c@page}
@@ -372,6 +377,7 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
 %%%
 
 \renewcommand\listoftables{
+  \phantomsection
   \addcontentsline{toc}{chapter}{\indtblname}
   \onehalfspacing
   \def\thepage{\csname @roman\endcsname \c@page}
@@ -434,7 +440,8 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
 
 \newenvironment{glosario}
 {
-	\newpage
+  \newpage
+  \refstepcounter{chapter}%
 	\addcontentsline{toc}{chapter}{\glosname}
 	\thispagestyle{plain}
 	\@mkboth{\MakeUppercase\glosname}{\MakeUppercase\glosname} % marca para los headongs
@@ -453,7 +460,8 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
 %%%
 
 \renewenvironment{thebibliography}[1]{
-	\newpage
+  \newpage
+  \refstepcounter{chapter}%
 	\addcontentsline{toc}{chapter}{\bibname}
 	\thispagestyle{plain}
 	\@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname} % marca para los headongs
@@ -483,7 +491,6 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
 %%%
 % Anexos
 %%%
-
 \def\appendixpart{
   \cleardoublepage
   \thispagestyle{empty}
@@ -514,6 +521,7 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
   \ifnum \c@secnumdepth >-2\relax
   \refstepcounter{chapter}%
   \addcontentsline{toc}{chapter}{\Thechapter:\hspace{1em}#1}
+
   \else
   \addcontentsline{toc}{chapter}{#1}
   \fi

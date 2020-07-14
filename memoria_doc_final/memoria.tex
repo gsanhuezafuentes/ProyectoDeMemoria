@@ -51,9 +51,7 @@ Agradecimientos a ...
 \input{Capitulo2/MarcoTeorico}
 \input{Capitulo3/MetodologiaDeDesarrolloYPlanificacion}
 \input{Capitulo4/Desarrollo}
-\input{Capitulo5/MetodologiaDeEvaluacion}
-\input{Capitulo6/EvaluacionDeLaSolucion}
-\input{Capitulo7/ConclusionesYTrabajosFuturos}
+\input{Capitulo5/EvaluacionDeLaSolucion}
 
 %% ambiente glosario
 \begin{glosario}
@@ -71,18 +69,30 @@ Agradecimientos a ...
 
 %% contenido del primer anexo
 \appendix{Documento de especificación de requisitos}
-
-
+\label{appendix:requisito}
+% \includepdf[pages=-]{Anexos/docreq.pdf}
 
 %% contenido del segundo anexo
 \appendix{Documento de diseño}
+\label{appendix:diseno}
+
+% \includepdf[pages=-]{Anexos/docdisen.pdf}
 
 %\includepdf[pages=-]{Documentodedisenio.pdf}
 \appendix{Manual de usuario}
+\label{appendix:manual}
+
+% \includepdf[pages=-]{Anexos/manual.pdf}
 
 \appendix{Documento de casos de prueba}
+\label{appendix:prueba}
+
+% \includepdf[pages=-]{Anexos/doccu.pdf}
 
 \appendix{Cuestionario para la evaluación de la aplicación}
+\label{appendix:evaluacion}
+
+% \includepdf[pages=-]{Anexos/form.pdf}
 
 %% fin
 \end{document}

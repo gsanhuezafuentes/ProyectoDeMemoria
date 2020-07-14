@@ -1,0 +1,130 @@
+\chapter{Evaluación de la solución}
+
+En este capítulo se da a conocer la metodología de evaluación y su aplicación, detallando las fases y los resultados de éstas, con el fin de evaluar la solución implementada.
+
+
+\section{Metodología de evaluación}
+
+La metodología que se ha escogido para realizar este análisis consiste en el estudio de caso. Para llevar a cabo este estudio de caso se comienza realizando el diseño del caso de estudio, luego se realiza la recolección de datos, el análisis de los datos recolectados y finalmente de reportan los resultados junto con las conclusiones del estudio.
+
+En el diseño del caso, se define el caso a estudiar, los objetivos, el protocolo para conducir el estudio, las características que se quieren evaluar y los sujetos de prueba o unidad de análisis.
+
+En la recolección de datos, se aplicará el estudio a la unidad de análisis utilizando los instrumentos de recolección de datos escogidos durante el diseño del caso de estudio.
+
+Durante la etapa de análisis, se procesan los datos presentando una serie de gráficas que ayudarán a visualizar de mejor manera la información recolectada.
+
+Finalmente, durante la etapa de reporte se presentarán las conclusiones de la aplicación del caso de estudio.
+
+\section{Diseño del caso de estudio}
+
+En esta sección, como se menciono anteriormente, se detalla el plan de acción previo a la aplicación del caso.
+
+\subsection{Elección del caso}
+
+El caso a evaluar consiste en el software desarrollado durante este proyecto de titulación. Como ya se sabe, es un software que permite buscar soluciones a problemas hidráulicos utilizando algoritmos metaheurísticos.
+
+\subsection{Objetivos de la investigación}
+
+El estudio que se quiere llevar a cabo es un estudio cualitativo, transversal y descriptivo, con el cual se busca comprender como el sistema desarrollado se desempeña en la practica y su grado de aceptación.
+
+Como pregunta de investigación se establece la siguiente:
+
+\begin{center}
+    \textit{¿Cómo el sistema desarrollado trabaja en la práctica?}
+\end{center}
+
+\subsection{Características a evaluar}
+\label{cap:caracteristicas_a_evaluar}
+
+Las características que se buscan evaluar mediante la aplicación del caso de estudio son las siguientes:
+
+\begin{itemize}
+    \item \textbf{Funcionalidad}: Con esta característica se busca evaluar lo que la aplicación puede hacer, es decir, si el sistema cumple con las operaciones que se busca realizar con el programa.
+    \item \textbf{Facilidad de uso}: Esta característica busca medir la usabilidad del software, es decir, que tan fácil es de usar y comprender la aplicación. 
+    \item \textbf{Utilidad}: Con este criterio se busca medir el valor de la aplicación. Con valor, nos referimos a si las funcionalidades implementadas por el sistema son de utilidad para quien haga uso de solución.
+\end{itemize}
+
+ La medición de cada una de estas características se lleva a cabo usando encuestas.
+
+\subsection{Protocolo para conducir el estudio de caso}
+El objetivo de este protocolo es establecer una guía para realizar la recolección de datos.
+
+Debido a la complejidad de coordinar y agendar una reunión se optó por realizar la recolección de datos de manera asíncrona.
+
+El protocolo para llevar a cabo la evaluación del sistema consiste en:
+
+\begin{enumerate}
+    \item Enviar la aplicación junto con su manual a los participantes del estudio.
+    \item Dar un tiempo para que el participante del estudio se interiorice con la aplicación.
+    \item Enviar la encuesta a los participantes.
+\end{enumerate}
+
+El instrumento utilizado para evaluar la solución se encuentra en el \textbf{Anexo~\ref{appendix:evaluacion}}.
+
+\subsection{Unidad de análisis}
+La recopilación de datos de lleva a cabo sobre profesionales con conocimientos tanto computacionales, como de hidráulica y metaheurísticas.
+
+\section{Consideraciones preliminar}
+
+\textbf{Consideraciones técnicas}:
+En esta sección se mencionan algunas consideraciones preliminares técnicas como de usuario.
+\begin{itemize}
+    \item Para utilizar el software se requiere el sistema operativo Window con la versión de Java 1.8.
+    \item Para crear una nueva red se debe usar un programa externo. Este programa es Epanet y la red debe ser exportada a un archivo .inp. Debido a que la versión en español y la en inglés de Epanet crean el archivo .inp cambiando algunas palabras claves que forman parte del archivo de configuración de red exportado, se optó por utilizar el formato de la versión en inglés de Epanet dentro del programa desarrollado.
+    \item Para visualizar los resultados de la exportación a un documento de Excel, se requiere dicho programa o alguna alternativa que permita visualizar las hojas de cálculo con extensión .xslx.
+\end{itemize}
+
+\textbf{Consideraciones para los usuarios}:
+\begin{itemize}
+    \item Para poder implementar nuevos problemas y algoritmos se requiere tener conocimientos en hidráulica y programación, así como también en metaheurísticas. Si no se requiere implementar nuevos elementos, los conocimientos en programación no son tan necesarios, mientras que los de metaheurísticas e hidráulica sí, con el objetivo de saber como interpretar los resultados.
+\end{itemize}
+
+\section{Recolección de datos}
+En esta sección se presentan los participantes del estudio y se detallan las características del instrumento utilizado para la obtención de datos.
+
+\subsubsection{Participantes}
+Los participantes del proceso de recolección de datos fueron los siguientes:
+
+\bigskip
+\textbf{Evaluador}
+\begin{itemize}
+    \item Gabriel Sanhueza
+\end{itemize}
+
+\textbf{Usuario}
+
+\begin{itemize}
+    \item Yamisleydi Salgueiro
+    \item Marco Alsina
+    \item Sergio Silva
+\end{itemize}
+
+\subsubsection{Instrumentos para la recolección de los datos}
+
+Para el proceso de recolección de los datos se utilizaran encuestas. La encuesta esta diseñada para evaluar las características mencionadas en la subsección~\ref{cap:caracteristicas_a_evaluar}. La funcionalidad y la usabilidad se evalúan usando la escala de Linkert. En cuanto a la usabilidad, este se evalúa usando la escala de usabilidad de SUS.
+
+La escala de usabilidad de SUS cuenta con 10 preguntas, las cuales a efecto de la presente evaluación son:
+
+\begin{enumerate}
+    \item Creo que usaría esta aplicación frecuentemente.
+    \item Encuentro esta aplicación innecesariamente complejo.
+    \item Creo que la aplicación fue fácil de usar.
+    \item Creo que necesitaría ayuda de una persona con conocimientos técnicos para usar esta aplicación.
+    \item Las funciones de esta aplicación están bien integradas.
+    \item Creo que la aplicación es muy inconsistente.
+    \item Imagino que la mayoría de la gente aprendería a usar esta aplicación en forma muy rápida.
+    \item Encuentro que la aplicación es muy difícil de usar.
+    \item Me siento confiado al usar esta aplicación.
+    \item Necesité aprender muchas cosas antes de ser capaz de usar esta aplicación.
+\end{enumerate}
+
+La encuesta aplicada se encuentra en el \textbf{Anexo~\ref{appendix:evaluacion}}.
+
+\section{Análisis de datos}
+En esta sección se presenta el análisis de los datos. El análisis se realiza de manera independiente por cada una de las características a evaluar, en donde se muestran los resultados utilizando herramientas como gráficos y tablas. Adicionalmente, se provee una interpretación de los resultados.
+
+\subsection{Resultado de la evaluación de la solución}
+
+
+\section{Conclusiones del estudio}
+
