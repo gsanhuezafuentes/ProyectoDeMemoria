@@ -1,9 +1,14 @@
 \section{Herramientas para la implementación del software}
-\subsubsection{Java}
+A continuación se presentan las herramientas utilizadas para el desarrollo del proyecto.
+
+\subsection{Java}
 Java es un lenguaje de programación de alto nivel orientado a objetos y de propósito general. Un programa java se ejecuta sobre la maquina virtual llamada la Java Virtual Machine, la cual le da a este lenguaje la característica de ser multiplataforma. Adicionalmente, java incorpora el soporte para multi-hilos, una poderosa herramienta que permite la ejecución de distintas instrucciones de código al mismo tiempo~\cite{Gosling2015}. Ademas. este lenguaje también incorpora una característica conocida como el recolector de basura, el cual se encarga de limpiar la memoria de objetos que ya no están siendo utilizados.  Fue anunciado por Sun Microsystems en Mayo de 1995~\cite{3java}. 
 
-\subsubsection{Java Reflection}
+\subsection{Java Reflection}
 Característica de java que permite que un programa se auto examine. Esta característica está disponible a través de la Java Reflection API, la cual cuenta con métodos para obtener los metadatos de las clases, métodos, constructores, campos o parámetros. Esta API también permite crear nuevos objetos cuyo tipo era desconocido al momento de compilar el programa~\cite{Braux1999}.
 
-\subsubsection{Java Annotation}
+\subsection{Java Annotation}
 Característica de java para agregar metadatos a elementos de java (clases, métodos, parámetros, etc.) [7]. Las anotaciones no tienen efecto directo sobre el código, pero cuando son usadas junto con otras herramientas pueden llegar a ser muy útiles. Estas herramientas pueden analizar estas anotaciones y realizar acciones en base a estas, por ejemplo, generar archivos adicionales como clases de java, archivos xml, ser analizadas durante la ejecución del programa vía Java Reflection, para crear objetos cuyo tipo no conocemos en tiempo de compilación; etc. 
+
+\subsection{Epanet}
+Software que permite simular el comportamiento hidráulico y la calidad del agua en redes de distribución de aguas compuesta por tuberías, nodos, bombas, válvulas y tanques de almacenamiento~\cite{Rossman2017}.  Este software cuenta también con una librería dinámica conocida bajo el nombre de Epanet Programming Toolkit, la cual cuenta con un conjunto de funciones para realizar simulaciones desde diferentes entornos de desarrollo como C, C++, VB, Java, etc~\cite{Rossman1999}.

@@ -266,8 +266,19 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
         return matrix;
     }
 
-    /*
-     * Crea una matrix con las combinaciones posibles
+    /**
+     * Crea una matrix con las combinaciones posibles.
+     * <p>
+     * Example of a network of 3 pumps.
+     * <p>
+     * 0 0 0
+     * 1 0 0
+     * 0 1 0
+     * 1 1 0
+     * 0 0 1
+     * 1 0 1
+     * 0 1 1
+     * 1 1 1
      */
     private void generateCombinations(int numPumps) {
         combination = new int[(int) Math.pow(2, numPumps)][numPumps];
@@ -360,6 +371,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
             List<String> list = new ArrayList<String>();
             try (BufferedReader br = Files.newBufferedReader(Paths.get(filePath))) {
                 list = br.lines().collect(Collectors.toList());
+                System.out.println(list);
             } catch (IOException e) {
                 e.printStackTrace();
             }

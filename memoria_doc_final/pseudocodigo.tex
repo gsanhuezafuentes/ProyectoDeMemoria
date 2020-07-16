@@ -47,7 +47,7 @@
 
 \begin{figure}[h]
 	\begin{algorithm}[H]
-		\caption{Función de remplazo para el algoritmo NSGA-II}
+		\caption{Función de remplazo para el algoritmo NSGAII}
 		\DontPrintSemicolon
 		\SetKwData{PopulationVar}{población}
 		\SetKwData{OffspringVar}{poblaciónDescendiente}
@@ -92,13 +92,13 @@
 		}
 		
 	\end{algorithm}
-	\caption{Pseudocódigo de la función de remplazo utilizada en el algoritmo NSGA-II~\cite{Deb2002}}
+	\caption[Pseudocódigo de la función de remplazo utilizada en el algoritmo NSGAII]{Pseudocódigo de la función de remplazo utilizada en el algoritmo NSGAII~\cite{Deb2002}}
 	\label{fig:RemplaceNSGAII}
 \end{figure}
 
 \begin{figure}[h]
 	\begin{algorithm}[H]
-		\caption{Función de ordenación en frentes no dominados}
+		{Función de ordenación en frentes no dominados}
 		\DontPrintSemicolon
 		\SetKwData{PopulationVar}{población}
 		\SetKwData{Front}{$F$}
@@ -152,7 +152,7 @@
 		}
 		
 	\end{algorithm}
-	\caption{Pseudocódigo de la función de ordenamiento utilizada en NSGA-II~\cite{Deb2002}}
+	\caption[Pseudocódigo de la función de ordenamiento utilizada en NSGAII]{Pseudocódigo de la función de ordenamiento utilizada en NSGAII~\cite{Deb2002}}
 	\label{fig:sortFront}
 \end{figure}
 
@@ -188,7 +188,7 @@
 		}
 		
 	\end{algorithm}
-	\caption{Pseudocódigo de la función de asignación de densidad~\cite{Deb2002}}
+	\caption[Pseudocódigo de la función de asignación de densidad]{Pseudocódigo de la función de asignación de densidad~\cite{Deb2002}}
 	\label{fig:CrowindDistance}
 \end{figure}
 \end{document}

@@ -1,32 +1,25 @@
-\section{Red de distribución de agua potable}
+\section{Conceptos básicos de hidráulica urbana en RDA}
 Conjunto de elementos enlazados de tal manera que permite suministrar cierta cantidad de agua a una presión establecida~\cite{Doctoral2012}.
 
-\subsubsection{Caudal}
-Cantidad de agua que se mueve a través de un segmento de la red.
+\paragraph{Presion:} Fuerza ejercida sobre una superficie.
+\paragraph{Caudal:} Cantidad de agua que se mueve a través de un segmento de la red.
+\paragraph{Factor de fricción:} Coeficiente adimensional que especifica la rugosidad de la tubería~\cite{Perez-2011}.
+\paragraph{Curva de consumo:} Gráfica del consumo en un periodo de tiempo.
 
 \subsection{Componentes físicos de una red}
 A continuación se define los componentes que conforman una red de agua potable~\cite{Rossman2017}, los cuales se aprecian en la Figura~\ref{fig:componentesfisicos}:
 
 
 \begin{figure}[h]
-	 \includegraphics{Capitulo2/assets/componentesfisicosred.eps}
+	\includegraphics{Capitulo2/assets/componentesfisicosred.eps}
 	\centering
-	\caption{Componentes físicos de un sistema de distribución de agua~\cite{Rossman2017}}
+	\caption[Componentes físicos de un sistema de distribución de agua]{Componentes físicos de un sistema de distribución de agua~\cite{Rossman2017}}
 	\label{fig:componentesfisicos}
 \end{figure}
-\subsubsection{Nudos de caudal}
+\paragraph{Nudos de consumo:} Son los puntos o extremos de una tubería, los cuales también permiten que estas se unan. Estos nudos pueden actuar como nudos de demanda a través de los cuales el flujo abandona la red.
 
-Son los puntos o extremos de una tubería, los cuales también permiten que estas se unan. Estos nudos pueden actuar como nudos de demanda a través de los cuales el flujo abandona la red.
-
-\subsubsection{Embalse}
-Es una fuente de alimentación externa.
-\subsubsection{Deposito}
-Son elementos con la capacidad de almacenar agua.
-\subsubsection{Tubería}
- Son los elementos a través de los cuales transita el agua de un nudo a otro.
-\subsubsection{Bomba}
-Elementos que permiten impulsar el liquido con el fin de elevarlo a una posición superior.
-\subsubsection{Válvula}
-Elementos que limitan la presión o el caudal que transita en un punto de la red.
-\subsection{Epanet}
-Software que permite simular el comportamiento hidráulico y la calidad del agua en redes de distribución de aguas compuesta por tuberías, nodos, bombas, válvulas y tanques de almacenamiento~\cite{Rossman2017}.  Este software cuenta también con una librería dinámica conocida bajo el nombre de Epanet Programming Toolkit, la cual cuenta con un conjunto de funciones para realizar simulaciones desde diferentes entornos de desarrollo como C, C++, VB, Java, etc~\cite{Rossman1999}.
+\paragraph{Reservorio:}Es una fuente de alimentación externa.
+\paragraph{Deposito:}Son elementos con la capacidad de almacenar agua.
+\paragraph{Tuberias:}Son los elementos a través de los cuales transita el agua de un nudo a otro.
+\paragraph{Bombas:}Elementos que permiten impulsar el liquido con el fin de elevarlo a una posición superior.
+\paragraph{Válvulas:}Elementos que limitan la presión o el caudal que transita en un punto de la red.

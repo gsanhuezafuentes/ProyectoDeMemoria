@@ -69,8 +69,8 @@
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS007}{Implementar NSGA-II.}
-    \Descripcion{Implementar el algoritmo NSGA-II. El cual es usado para tratar con problemas multiobjetivo.}
+    \Requisito{RS007}{Implementar NSGAII.}
+    \Descripcion{Implementar el algoritmo NSGAII. El cual es usado para tratar con problemas multiobjetivo.}
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{}
     \Estabilidad{}
@@ -92,8 +92,8 @@
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS009}{Utilizar el algoritmo NSGA-II para resolver el problema Pumping Scheduling desde el enfoque multiobjetivo.}
-    \Descripcion{Utilizando el NSGA-II y la clase que lleva a cabo la evaluación de las soluciones (La clase problema) se debe realizar la evaluación y optimización de los objetivos del problema.}\Fuente{Jimmy Gutiérrez}
+    \Requisito{RS009}{Utilizar el algoritmo NSGAII para resolver el problema Pumping Scheduling desde el enfoque multiobjetivo.}
+    \Descripcion{Utilizando el NSGAII y la clase que lleva a cabo la evaluación de las soluciones (La clase problema) se debe realizar la evaluación y optimización de los objetivos del problema.}\Fuente{Jimmy Gutiérrez}
     \Prioridad{Crítica}
     \Estabilidad{Intransable}
     \FechaA{01/10/2019}

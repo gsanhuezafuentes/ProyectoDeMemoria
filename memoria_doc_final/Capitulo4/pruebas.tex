@@ -1,1 +1,178 @@
 \section{Pruebas}
+
+En esta ultima fase del proceso de desarrollo se procede a evaluar las funcionalidades implementadas.
+
+Para la evaluación de las funcionalidades de la aplicación se aplican una serie de casos de prueba. Estos casos de prueba se dividen en dos categoría. Los casos de prueba utilizados para pruebas automatizadas y aquellos casos de prueba utilizados para pruebas manuales. 
+
+Los casos de prueba automatizados son aquellos realizados utilizando herramientas que permiten automatizar las tareas necesarias para evaluar los elementos que componen el software. Estas pruebas se llevan a cabo sobre los elementos del software como las clases o funciones implementadas. Estos casos de prueba se identificaron usando diversos métodos de testeo como herramienta para especificar los casos que deben ser evaluados. Los métodos utilizados principalmente para identificar los casos de prueba fueron los de caja negra y los de caja blanca.
+
+Los caso de prueba manuales se refieren a aquellas pruebas realizadas con la ayuda humana. Es decir, realizados personalmente por un ser humano. Estos casos de prueba son utilizados principalmente para comprobar la funcionalidades de la interfaz gráfica donde automatizar las pruebas tiene una mayor complejidad.
+
+% \begin{table}
+%    \begin{center}
+%        \caption{Actividades fase de pruebas}
+%        \bigskip
+%        \begin{tabular}{||c|c||}
+%             \hline
+%             N° Iteración & Tareas\\ [0.5ex] 
+%             \hline\hline
+%             1 & \\
+%             2 & \\
+%             3 & \\
+%             4 & \\
+%             5 & \\
+%             6 & \\
+%             \hline
+%        \end{tabular}
+%        \label{fig:cambios_pruebas}
+%    \end{center}
+% \end{table}
+
+A continuación se presentan las pruebas realizadas que abarcan a cada una de las funcionalidades escogidas.
+
+\paragraph{Funcionalidad 1}: El Cuadro~\ref{fig:MT001} muestra la especificación formal para el caso de prueba manual realizado sobre esta funcionalidad.
+
+\begin{prueba}[fig:MT001][Especificación caso de prueba manual MT001]
+    \TestID{MT001}
+    \Titulo{Visualización de la red.}
+    \Caracteristica{Mostrar visualización de la red.}
+    \Objetivo{Confirmar que la red puede ser leida desde un archivo ``.inp'' y ser visualizada en la applicación.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        inp: hanoi-Frankenstein.inp
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+    }
+    \ResultadosEsperados{El sistema muestra la red leida desde un archivo inp gráficamente en la applicación.}
+\end{prueba}
+
+\paragraph{Funcionalidad 2}: Los Cuadros~\ref{fig:MT002} y \ref{fig:MT003} muestran la especificación para los casos de prueba manuales de esta funcionalidad.
+
+\begin{prueba}[fig:MT002][Especificación caso de prueba manual MT002]
+    \TestID{MT002}
+    \Titulo{Optimización monoobjetivo realizada completamente.}
+    \Caracteristica{Realizar simulación monoobjetivo.}
+    \Objetivo{Confirmar que se puede llevar a cabo la resolución del problema \textit{PipeOptimizing} sobre la red abierta.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        independentRun = 10\\
+        Archivo inp: hanoi-Frankenstein.inp\\
+        Archivo gama: hanoiHW.Gama
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Seleccionar el problema \textit{PipeOptimizing del menú}.\\
+        4. Configurar el problema usando la ventana de configuración.\\
+        5. Realizar la optimización.
+    }
+    \ResultadosEsperados{Al terminar la optimización el sistema muestra una interfaz con las soluciones generadas por la optimización. Debe haber tantas soluciones como el numero de configuraciones independientes (\textit{independentRun}).}
+\end{prueba}
+
+\begin{prueba}[fig:MT003][Especificación caso de prueba manual MT003]
+    \TestID{MT003}
+    \Titulo{Optimización monoobjetivo cancelada.}
+    \Caracteristica{Realizar simulación monoobjetivo.}
+    \Objetivo{Confirmar que se puede llevar a cabo la resolución del problema \textit{PipeOptimizing} sobre la red abierta y que se puede cancelar el proceso  cerrando la ventana o pulsando cancelar.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: hanoi-Frankenstein.inp\\
+        Archivo gama: hanoiHW.Gama
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Seleccionar el problema \textit{PipeOptimizing del menú}.\\
+        4. Configurar el problema usando la ventana de configuración.\\
+        5. Realizar la optimización.
+    }
+    \ResultadosEsperados{Al cancelar la busqueda de soluciones la ventana de estado indica que la optimización a sido detenida.}
+\end{prueba}
+
+\paragraph{Funcionalidad 3}: Los Cuadros~\ref{fig:MT013}, \ref{fig:MT014}, \ref{fig:MT015} y \ref{fig:MT016} muestran la especificación para los casos de prueba manuales de esta funcionalidad.
+
+\begin{prueba}[fig:MT013][Especificación caso de prueba manual MT013]
+    \TestID{MT013}
+    \Titulo{Simulación hidráulica sobre red de un solo tiempo.}
+    \Caracteristica{Realizar simulación con configuración de archivo de red.}
+    \Objetivo{Confirmar que se puede realizar la simulación utilizando los valores del archivo de red.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: hanoi-Frankenstein.inp\\
+        Archivo gama: hanoiHW.Gama
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Pulsar botón \textit{Execute} de la ventana principal.
+    }
+    \ResultadosEsperados{
+        Ejecución realizada sin ningun error.
+    }
+\end{prueba}
+
+\begin{prueba}[fig:MT014][Especificación caso de prueba manual MT014]
+    \TestID{MT014}
+    \Titulo{Ver resultados de la simulación hidráulica de un solo tiempo}
+    \Caracteristica{Realizar simulación con configuración de archivo de red.}
+    \Objetivo{Confirmar que se puede visualizar los resultados de la simulación realizada.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: hanoi-Frankenstein.inp\\
+        Archivo gama: hanoiHW.Gama
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Pulsar botón \textit{Execute} de la ventana principal.\\
+        4. Pulsar botón \textit{Results} de la ventana principal.
+    }
+    \ResultadosEsperados{
+        Una interfaz que permite seleccionar si se quieren ver los resultados para los enlaces o los nodos.
+    }
+\end{prueba}
+
+\begin{prueba}[fig:MT015][Especificación caso de prueba manual MT015]
+    \TestID{MT015}
+    \Titulo{Simulación hidráulica sobre red de mas de un tiempo.}
+    \Caracteristica{Realizar simulación con configuración de archivo de red.}
+    \Objetivo{Confirmar que se puede realizar la simulación utilizando los valores del archivo de red.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+    \DatosPrueba{%
+        Archivo inp: Vanzyl.inp\\
+        Archivo gama: VanzylConfiguration.json
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Pulsar boton \textit{Execute} de la ventana principal.
+    }
+    \ResultadosEsperados{
+        Ejecución realizada sin ningun error.
+    }
+\end{prueba}
+
+\begin{prueba}[fig:MT016][Especificación caso de prueba manual MT016]
+    \TestID{MT016}
+    \Titulo{Ver resultados de la simulación hidráulica de mas de un tiempo}
+    \Caracteristica{Realizar simulación con configuración de archivo de red.}
+    \Objetivo{Confirmar que se puede visualizar los resultados de la simulación realizada.}
+    \Configuracion{El equipo tiene la applicación JHawanetFramework lista para ejecutar.}
+     \DatosPrueba{%
+        Archivo inp: Vanzyl.inp\\
+        Archivo gama: VanzylConfiguration.json
+    }
+    \AccionesPrueba{%
+        1. Abrir JHawanetFramework\\
+        2. Cargar archivo de red.\\
+        3. Pulsar botón \textit{Execute} de la ventana principal.\\
+        4. Pulsar botón \textit{Results} de la ventana principal.
+    }
+    \ResultadosEsperados{
+        Una interfaz que permite seleccionar si se quieren ver los resultados para los enlaces o los nodos. Adicionalmente, permite escoger el tiempo de simulación y listar los resultados para todos los tiempos de un elemento de la red específico.
+    }
+\end{prueba}
+
+La especificación de las restantes pruebas realizadas se encuentra en el \textbf{Anexo~\ref{appendix:prueba}}.

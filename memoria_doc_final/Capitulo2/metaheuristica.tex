@@ -121,8 +121,8 @@ La frontera de Pareto es el conjunto de todas las soluciones no dominadas las cu
 	\caption{Ejemplo frente de Pareto}
 	\label{fig:frente_pareto}
 \end{figure}
-\subsection{Algoritmo NSGA-II (Nondominated Genetic Algorithm)}
-El algoritmo NSGA-II~\cite{Deb2002} pertenece a la categoría de algoritmo evolutivo multiobjetivo (MOEA). Este algoritmo al igual que el algoritmo genético hace uso de los operadores de selección, cruzamiento y mutación para encontrar un conjunto de soluciones optimas a problemas que cuentan con más de un objetivo. Adicionalmente, NSGA-II añade conceptos y operadores adicionales los cuales permiten mejorar su rendimiento y la calidad de las soluciones obtenidas. NSGA-II puede ser implementado siguiendo los mismos pasos de el algoritmo evolutivo mostrados en la Figura~\ref{fig:EA}, utilizando la función de remplazo mostrada en la Figura~\ref{fig:RemplaceNSGAII}.
+\subsection{Algoritmo NSGAII (Nondominated Genetic Algorithm)}
+El algoritmo NSGAII~\cite{Deb2002} pertenece a la categoría de algoritmo evolutivo multiobjetivo (MOEA). Este algoritmo al igual que el algoritmo genético hace uso de los operadores de selección, cruzamiento y mutación para encontrar un conjunto de soluciones optimas a problemas que cuentan con más de un objetivo. Adicionalmente, NSGAII añade conceptos y operadores adicionales los cuales permiten mejorar su rendimiento y la calidad de las soluciones obtenidas. NSGAII puede ser implementado siguiendo los mismos pasos de el algoritmo evolutivo mostrados en la Figura~\ref{fig:EA}, utilizando la función de remplazo mostrada en la Figura~\ref{fig:RemplaceNSGAII}.
 
 En la Figura~\ref{fig:RemplaceNSGAII} se puede ver que el proceso de remplazo dentro del algoritmo genético consiste en unir la población actual y la población descendiente (formada por los elementos resultantes del operador de selección y sobre la que se han aplicado el cruzamiento y la mutación) en un solo elemento llamada unionPoblación. Luego, esta  es enviada a un procedimiento el cual ordena y categoriza la población en diversos frentes de acuerdo al concepto de dominancia de Pareto. Después, de que la población a sido categorizada se procede a iterar sobre los frentes y añadir sus elementos a una nueva población con el cuidado de no sobrepasar el tamaño de la población deseada ($N$). En caso de que uno de los frentes no pueda ser añadido en su totalidad por sobrepasar dicho tamaño, se llevará a cabo un proceso por el cual se ordenaran las soluciones en dicho frente basadas en un criterio conocido como densidad de las soluciones. Una vez realizado el ordenamiento, se agregarán las mejores soluciones a la nueva población hasta alcanzar el tamaño deseado  $N$. Se puede ver un ejemplo de este procedimiento gráficamente en la Figura~\ref{fig:procedimientoNSGAII}.
 
@@ -130,7 +130,7 @@ En la Figura~\ref{fig:RemplaceNSGAII} se puede ver que el proceso de remplazo de
 
 \begin{figure}[h]
 	\begin{algorithm}[H]
-		\caption{Función de remplazo para el algoritmo NSGA-II}
+		\caption{Función de remplazo para el algoritmo NSGAII}
 		\DontPrintSemicolon
 		\SetKwData{PopulationVar}{población}
 		\SetKwData{OffspringVar}{poblaciónDescendiente}
@@ -175,19 +175,19 @@ En la Figura~\ref{fig:RemplaceNSGAII} se puede ver que el proceso de remplazo de
 	}
 		
 	\end{algorithm}
-	\caption{Pseudocódigo de la función de remplazo utilizada en el algoritmo NSGA-II~\cite{Deb2002}}
+	\caption[Pseudocódigo de la función de remplazo utilizada en el algoritmo NSGAII]{Pseudocódigo de la función de remplazo utilizada en el algoritmo NSGAII~\cite{Deb2002}}
 	\label{fig:RemplaceNSGAII}
 \end{figure}
 
 
 \begin{figure}[h]
-	 \includegraphics{Capitulo2/assets/ProcedimientoNSGA-II.eps}
+	 \includegraphics{Capitulo2/assets/ProcedimientoNSGAII.eps}
 	\centering
-	\caption{Procedimiento NSGA-II~\cite{Deb2002}}
+	\caption[Procedimiento NSGAII]{Procedimiento NSGAII~\cite{Deb2002}}
 	\label{fig:procedimientoNSGAII}
 \end{figure}
 
-A continuación se procederá a explicar los operadores adicionales presentados en~\cite{Deb2002} y que son utilizados por la función de remplazo del algoritmo NSGA-II en la Figura~\ref{fig:RemplaceNSGAII}.
+A continuación se procederá a explicar los operadores adicionales presentados en~\cite{Deb2002} y que son utilizados por la función de remplazo del algoritmo NSGAII en la Figura~\ref{fig:RemplaceNSGAII}.
 
 \subsubsection{Ordenamiento de soluciones en frentes no dominados}
 Uno de los procedimientos presentados en la Figura~\ref{fig:RemplaceNSGAII} consiste en ordenar las soluciones en frentes no dominados. Los frentes no dominados son conjuntos en los que se almacenan las soluciones que no se dominan entre si. En la Figura~\ref{fig:frente-no-dominados} se muestra un ejemplo con tres frentes.
@@ -265,7 +265,7 @@ Finalmente, se repite el procedimiento anterior sobre el nuevo frente hasta habe
 	}
 		
 	\end{algorithm}
-	\caption{Pseudocódigo de la función de ordenamiento utilizada en NSGA-II~\cite{Deb2002}}
+	\caption[Pseudocódigo de la función de ordenamiento utilizada en NSGAII]{Pseudocódigo de la función de ordenamiento utilizada en NSGAII~\cite{Deb2002}}
 	\label{fig:sortFront}
 \end{figure}
 
@@ -275,7 +275,7 @@ Otra función presente en la Figura~\ref{fig:RemplaceNSGAII} es la asignación de 
 \begin{figure}[h]
 	\includegraphics[scale=0.8]{Capitulo2/assets/crowing-distance.eps}
 	\centering
-	\caption{Calculo de la densidad de estimación al rededor de la solución $i$~\cite{Deb2002}}
+	\caption[Cálculo de la densidad de estimación al rededor de la solución $i$]{Cálculo de la densidad de estimación al rededor de la solución $i$~\cite{Deb2002}}
 	\label{fig:crowdingDistance}
 \end{figure}
 
@@ -315,7 +315,7 @@ Primero, crear e inicializar un arreglo $\mathcal{I}_{distancia}$, con el valor 
 	}
 		
 	\end{algorithm}
-	\caption{Pseudocódigo de la función de asignación de densidad~\cite{Deb2002}}
+	\caption[Pseudocódigo de la función de asignación de densidad]{Pseudocódigo de la función de asignación de densidad~\cite{Deb2002}}
 	\label{fig:CrowindDistance}
 \end{figure}
 \subsubsection{Comparador de densidad (Crowing Distance comparator)}

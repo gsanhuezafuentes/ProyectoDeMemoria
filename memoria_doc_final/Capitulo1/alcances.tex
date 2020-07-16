@@ -1,17 +1,21 @@
 \section{Alcances}
 Los alcances propuestos para este proyecto serán los siguientes:
+
 \begin{itemize}
-	
+	\item Esta herramienta sólo podrá ser ejecutada en equipos con el sistema operativo Window de 64bits. Esta limitación se debe a que se realizan llamadas a librerías nativas que fueron compiladas para sistemas de 64bits.
 	\item El sistema permitirá la carga y la visualización de la red gráficamente.
-	\item El sistema permitirá visualizar la configuración básica almacenada en el archivo inp de los elementos de la red.
-	\item El sistema solo resolverá dos clases de problemas de optimización, uno monoobjetivo y el otro multiobjetivo. El problema monoobjetivo será el de los costos de inversión. En cuanto al problema multiobjetivo, este será el de los costos energéticos y el número de encendidos y apagado de las bombas. 
-	\item El sistema únicamente contara con dos algoritmos implementados los cuales serán el algoritmo genético y NSGA-II. El algoritmo genético será el usado para tratar el problema monoobjetivo, mientras que NSGA-II será aplicado al multiobjetivo.
-	\item El sistema permitirá visualizar el o los resultados obtenidos al finalizar la ejecución del algoritmo.
-	\item El sistema permitirá generar archivos .inp con la configuración de la solución obtenida a través de los algoritmos. Debido a que el archivo .inp establece una gran cantidad de configuraciones, las únicas que se permitirán modificar serán las configuraciones asociadas a los conexiones (junctions) y tuberías (pipes).
+	\item El sistema permitirá visualizar la configuración básica almacenada en el archivo de configuración de red.
+	\item Este proyecto no contempla la creación de la red desde el programa a desarrollar.
+	\item El archivo de configuración de red debe ser creado utilizando la aplicación Epanet y guardado con la extension inp.
+	\item El sistema únicamente contará con dos algoritmos implementados por defecto los cuales serán el algoritmo genético (GA) y \textit{Non-Dominated Sorting Genetic Algorithm II} (NSGAII).
+	\item El sistema sólo resolverá dos tipos de problemas de optimización, uno monoobjetivo y el otro multiobjetivo. El algoritmo genético se utilizara para generar soluciones para el problema monoobjetivo con el objetivo de optimizar el costo de inversión de las tuberías. Por otro lado, el algoritmo NSGAII abordara el problema multiobjetivo con el fin de optimizar los costos energéticos y el régimen de bombeo.  % El problema monoobjetivo será el de los costos de inversión. En cuanto al problema multiobjetivo, este será el de los costos energéticos y el número de encendidos y apagado de las bombas. 
+	\item El sistema permitirá visualizar él o los resultados obtenidos al finalizar la ejecución del algoritmo.
+	\item El sistema permitirá utilizar una solución obtenida, a través de los algoritmos metaheurísticos, para generar un nuevo archivos de configuración de red. %Debido a que el archivo .inp contiene una gran cantidad de configuraciones, las únicas que se permitirán modificar serán las configuraciones asociadas a los conexiones (junctions) y tuberías (pipes).
 	\item El sistema permitirá generar archivos con las soluciones obtenidas para cada problema, es decir, el valor de los objetivos y las variables de decisión involucradas.
 	\item El sistema permitirá graficar visualmente las soluciones en un plano cartesiano.
 	\item La gráfica únicamente estará disponible en problemas con uno o dos objetivos.
 	\item La comparación con las redes de benchmarking consistirá únicamente, en presentar una tabla comparativa entre los resultados presentes en la literatura y los obtenidos a través de nuestro sistema, para cada uno de los problemas de redes de distribución de agua potable de nuestro sistema.
 	
 \end{itemize}
-Este proyecto no contempla la creación de la red por lo que estas deberán ser ingresadas como entradas al programa, es decir, estas deberán ser creadas usando EPANET o manualmente, pero siguiendo el formato establecido por EPANET. Además, esta herramienta únicamente podrá ser ocupada en equipos cuyo sistema operativo sea Windows debido a que se realizan llamadas a librerías nativas.
+
+%Este proyecto no contempla la creación de la red por lo que estas deberán ser ingresadas como entradas al programa, es decir, estas deberán ser creadas usando EPANET o manualmente, pero siguiendo el formato establecido por EPANET. Además, esta herramienta únicamente podrá ser ocupada en equipos cuyo sistema operativo sea Windows debido a que se realizan llamadas a librerías nativas.

@@ -1,0 +1,64 @@
+\section{Propuesta de solución}
+La solución que se propone para abordar el problema consiste en el desarrollo de una aplicación de escritorio escalable que permita buscar soluciones a dos de los problemas existentes en las redes de agua potable. Además, de hacer uso de una arquitectura que permita fácilmente extender el programa para abarcar nuevos problemas, algoritmos u operadores. %Para lograr esto último la aplicación debe quedar bien documentada. Por lo tanto, lo que se tendrá al termino del desarrollo del proyecto será un software escalable que tratara con dos problemas relacionados a la distribución de agua potable y que podrá ser ampliado en futuros trabajos.
+
+Los problemas que se abordaran en el contexto de optimización de redes de agua potable serán:
+\begin{itemize}
+
+	\item \textbf{Problema de diseño:} Este tipo de problema busca optimizar las configuraciones y la disposición de los elementos que conforman la red previa a su construcción~\cite{Jimmy-2019}. El problema de diseño a tratar consiste en la optimización de los costo de inversión variando el diámetro de las tuberías. Este problema será abordado utilizando el algoritmo genético. La ecuación \ref{eq:costos_de_inversion} presentada en \cite{Pereyra2017} muestra el objetivo a minimizar para el problema de diseño.
+	
+	\begin{equation}
+		\label{eq:costos_de_inversion}
+		\begin{aligned}
+			\text{Costo de inversión} = \sum_{i=1}^{N} (C_i \times D_i \times L_i)
+		\end{aligned}
+	\end{equation}
+
+	En la ecuación anteriormente presentada el termino $C_i$ se refiere al costo unitario de la tubería, el termino $D_i$ corresponde al diámetro de la tubería y finalmente $L_i$ se hace referencia a la longitud. Adicionalmente, el problema debe satisfacer la siguiente restricción.
+
+	\begin{equation}
+		\label{eq:restriccion_costo_inversion}
+		\begin{aligned}
+			H_i < H_{min}
+		\end{aligned}
+	\end{equation}
+
+	donde $H_i$ corresponde a la presión sobre la tubería $i$ y $H_{min}$ a la presión mínima de la red.
+
+	\item \textbf{Problema de operación:} Los problemas de construcción buscan optimizar las configuraciones de una red ya construida~\cite{Jimmy-2019}. El problema de operación a tratar consiste en la optimización de costos energéticos y el número de encendidos y apagados de las bombas. Este problema se abordara desde el enfoque multiobjetivo utilizando el algoritmo NSGAII. Las funciones a optimizar se presentan en \cite{JHawanet-2019,Jimmy-2019} y corresponden a:
+	
+	\begin{equation}
+		\label{eq:costos_energeticos}
+		\begin{aligned}
+			C_E(S) &= \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}(P_c(t) \times E_c(n, t) \times S(n, t))
+		\end{aligned}
+	\end{equation}
+	
+	donde:
+	\begin{itemize}
+		\item	$C_E(S)$: corresponde a los costos energéticos.
+		\item   $NP$: El numero de bombas.
+		\item 	$NT$: Número de periodos de simulación. El máximo son 24 horas.
+		\item 	$P_c(t)$: La tarifa energética en el periodo $t$.
+		\item 	$E_c(n, t)$: Consumo energético de la bomba $n$ en el tiempo $t$.
+		\item 	$S(n,t)$: El estado de la bomba. 1 si esta encendida y 0 si esta apagada.
+	\end{itemize}
+	\begin{equation}
+		\label{eq:costos_de_mantenimiento}
+		\begin{aligned}
+			C_N(S) &= \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}r_t
+		\end{aligned}
+	\end{equation}
+	donde:
+	\begin{itemize}
+		\item $C_N(S)$ Número de encendido y apagado de las bombas.
+		\item $r_t$: Valor indicando si en el periodo $t$ hubo un cambio de estado .en la bomba. Este valor es 1 cuando la bomba a sido encendida.
+	\end{itemize}
+	
+	La funciones \ref{eq:costos_energeticos} y \ref{eq:costos_de_mantenimiento} deben cumplir las restricciones asociadas a la conservación de la masa y la energía; la presión mínima, el caudal en la bomba $n$ y el nivel de agua almacenado en el reservorio en un periodo de tiempo especifico.
+\end{itemize}
+
+Tanto el algoritmo genético como el NSGAII, permiten la utilización de distintos operadores de cruzamiento y mutación que también serán implementados para ser utilizados. 
+
+% La solución planteada supone además el diseño e implementación de una interfaz gráfica para ayudar al usuario en el uso de la herramienta.
+
+Adicionalmente se generará una guía para que los usuarios puedan implementar nuevos problemas, algoritmos y operadores. 

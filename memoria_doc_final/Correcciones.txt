@@ -55,3 +55,9 @@ NUEVO
 Cambiar lo de arriba por esto
 howpublished={\url{http://sindominio.net/ash }},
 note = {Accedido 01-10-2013}
+
+
+Gabriel Sanhueza
+Ojo con usar la misma palabra varias veces y con varios significados
+por ejemplo, caso :-p
+Gabriel, podrias hacer la practica de defensa en la proxima sesion??
