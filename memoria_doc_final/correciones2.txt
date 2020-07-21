@@ -1,0 +1,18 @@
+Por que se escogieron los problemas:
+
+Se seleccionaron estos problemas 
+
+
+
+Agradecimiento:
+
+Agradecer al proyecto (de la propuesta).
+
+
+Nombre del proyecto del profe dani: Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms.
+
+objetivo general 3: agregar 
+
+
+
+Java: es por utilizar jmetal y fue un requisito solicitado.

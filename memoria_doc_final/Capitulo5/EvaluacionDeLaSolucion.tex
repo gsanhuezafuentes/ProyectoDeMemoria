@@ -40,8 +40,9 @@ Las características que se buscan evaluar mediante la aplicación del caso de est
 
 \begin{itemize}
     \item \textbf{Funcionalidad}: Con esta característica se busca evaluar lo que la aplicación puede hacer, es decir, si el sistema cumple con las operaciones que se busca realizar con el programa.
-    \item \textbf{Facilidad de uso}: Esta característica busca medir la usabilidad del software, es decir, que tan fácil es de usar y comprender la aplicación. 
+    \item \textbf{Facilidad de uso}: Esta característica busca medir la usabilidad del software, es decir, que tan fácil es de usar la aplicación. 
     \item \textbf{Utilidad}: Con este criterio se busca medir el valor de la aplicación. Con valor, nos referimos a si las funcionalidades implementadas por el sistema son de utilidad para quien haga uso de solución.
+    \item \textbf{Utilidad del manual de usuario}: Con este criterio se busca evaluar el manual de usuario realizado y si este fue de ayuda para aprender y poder conocer la aplicación.
 \end{itemize}
 
  La medición de cada una de estas características se lleva a cabo usando encuestas.
@@ -123,8 +124,156 @@ La encuesta aplicada se encuentra en el \textbf{Anexo~\ref{appendix:evaluacion}}
 \section{Análisis de datos}
 En esta sección se presenta el análisis de los datos. El análisis se realiza de manera independiente por cada una de las características a evaluar, en donde se muestran los resultados utilizando herramientas como gráficos y tablas. Adicionalmente, se provee una interpretación de los resultados.
 
-\subsection{Resultado de la evaluación de la solución}
+A continuación se presentan los resultados por cada categoría evaluada.
 
+\subsection{Funcionalidad}
+
+En la Figura \ref{fig:app_functionality} se presentan los resultados de la evaluación de la funcionalidad en forma de un gráfico de barras. Mientras, que en el Cuadro \ref{fig:app_functionality_table} se muestra la tabla con el porcentaje obtenido por cada alternativa de la evaluación.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Capitulo5/assets/funcionality.eps}
+    \caption{Gráfico circular de los resultados de la evaluación de funcionalidad de la aplicación}
+    \label{fig:app_functionality}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \caption{Resultados de la evaluación de la funcionalidad}
+    \bigskip
+    \begin{tabular}{||c|c||}
+        \hline
+        Respuesta & Porcentaje Obtenido\\ [0.5ex] 
+        \hline\hline
+        Totalmente en desacuerdo & 2.6\%\\
+        \hline
+        En desacuerdo & 0.0\%\\
+        \hline
+        Ni de acuerdo ni en desacuerdo & 5.1\%\\
+        \hline
+        De acuerdo & 7.7\%\\
+        \hline
+        Totalmente de acuerdo & 84.6\%\\
+        \hline
+        Total & 100\%\\
+        \hline
+    \end{tabular}
+    \label{fig:app_functionality_table}
+\end{table}
+
+Como se puede ver en la Figura \ref{fig:app_functionality} y en el Cuadro \ref{fig:app_functionality_table}, el 93\% de las respuestas están ``de acuerdo'' y ``totalmente de acuerdo'' con el hecho de que las funcionalidades que incorpora la aplicación han sido implementadas correctamente. Por otro lado, el 5\% de las respuestas apuntan a que no se está ``ni de acuerdo ni en desacuerdo'' con el hecho de si las funcionalidades están correctamente integradas. Mientras que el 2\% de las respuestas apuntan a que las funcionalidades no fueron integradas correctamente o que había una carencia de alguna de ellas.
+
+\subsection{Usabilidad}
+El Cuadro \ref{fig:sus} presenta la escala de clasificación utilizada para comparar el puntaje SUS.
+
+\begin{table}[H]
+    \centering
+    \caption{Escala de rangos de \textit{SUS Score}}
+    \bigskip
+    \begin{tabular}{||c|c||}
+        \hline
+        \textit{SUS Score} & Calificación\\ [0.5ex] 
+        \hline\hline
+        $>80.3$ & Excelente\\
+        \hline
+        68 - 80.3 & Buena\\
+        \hline
+        68 & Regular\\
+        \hline
+        51 - 68 & Mala\\
+        \hline
+        $< 51$ & Terrible\\
+        \hline
+    \end{tabular}
+    \label{fig:sus}
+\end{table}
+
+La aplicación del instrumento de medición dio como resultado un promedio:
+
+$$ \bar{x}_{SUS} = 79.17$$
+
+con una desviación estándar de :
+
+$$ s_{SUS} = 9.46$$
+
+De esto se puede concluir que en el aspecto de usabilidad la aplicación se le califica como "Buena".
+
+\subsection{Utilidad}
+La Figura \ref{fig:app_utility} y el Cuadro \ref{fig:app_utility_table} muestran los resultados obtenidos de la evaluación de la utilidad de la aplicación.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Capitulo5/assets/utility.eps}
+    \caption{Gráfico circular de los resultados de la evaluación de utilidad de la aplicación}
+    \label{fig:app_utility}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \caption{Resultados de la evaluación de la utilidad}
+    \bigskip
+    \begin{tabular}{||c|c||}
+        \hline
+        Respuesta & Porcentaje Obtenido\\ [0.5ex] 
+        \hline\hline
+        Totalmente en desacuerdo & 0.0\%\\
+        \hline
+        En desacuerdo & 0.0\%\\
+        \hline
+        Ni de acuerdo ni en desacuerdo & 11.1\%\\
+        \hline
+        De acuerdo & 25.9\%\\
+        \hline
+        Totalmente de acuerdo & 63.0\%\\
+        \hline
+        Total & 100\%\\
+        \hline
+    \end{tabular}
+    \label{fig:app_utility_table}
+\end{table}
+
+De la Figura \ref{fig:app_utility} y Cuadro \ref{fig:app_utility_table} se observa que el 89\% de las respuestas indican que se está ``totalmente de acuerdo'' o ``de acuerdo'' con que las funcionalidades implementadas en la aplicación son de utilidad para los encuestados. Mientras que un 11\% indican que no se está ``ni se acuerdo ni en desacuerdo'' con si realmente son útiles o no.
+
+\subsection{Utilidad del manual de usuario}
+Los resultados de la evaluación de la utilidad del manual de usuario se presentan en la Figura \ref{fig:manual_utility} y el Cuadro \ref{fig:app_manual_utility_table}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Capitulo5/assets/manual_utility.eps}
+    \caption{Gráfico circular de los resultados de la evaluación de la utilidad del manual de usuario}
+    \label{fig:manual_utility}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \caption{Resultados de la evaluación de la utilidad del manual de usuario}
+    \bigskip
+    \begin{tabular}{||c|c||}
+        \hline
+        Respuesta & Porcentaje Obtenido\\ [0.5ex] 
+        \hline\hline
+        Totalmente en desacuerdo & 0.0\%\\
+        \hline
+        En desacuerdo & 22.2\%\\
+        \hline
+        Ni de acuerdo ni en desacuerdo & 33.3\%\\
+        \hline
+        De acuerdo & 44.4\%\\
+        \hline
+        Totalmente de acuerdo & 0.0\%\\
+        \hline
+        Total & 100\%\\
+        \hline
+    \end{tabular}
+    \label{fig:app_manual_utility_table}
+\end{table}
+
+Con respecto a la utilidad del manual de usuario, de acuerdo a los resultados presentados en la Figura \ref{fig:manual_utility} y el Cuadro \ref{fig:app_manual_utility_table}, se puede apreciar que el 45\% de las respuestas apuntan a que se está ``de acuerdo'' con que el manual de usuario presentado junto con el software fue de utilidad para comprender como utilizarlo y realizar ciertas tareas con éste. Por otro lado, un 33\% indica que no se está ``ni de acuerdo ni en desacuerdo'' con si el manual de usuario fue útil o no, mientras que el 22\% indica que se está en ``desacuerdo'' con la utilidad del manual y por lo tanto que es deficiente y debiera ser mejorado.
 
 \section{Conclusiones del estudio}
+Durante esta sección se presentan las conclusiones obtenidas a partir de la aplicación del caso de estudio.
 
+A partir de los resultados obtenidos se puede concluir que la aplicación cumple con los criterios de funcionalidad, usabilidad y utilidad. Por lo tanto, puede ser ocupada en un contexto real y ser ocupada para buscar soluciones a problemas de RDA.
+
+Por otra parte, si bien el manual de usuario sirvió para utilizar y comprender la aplicación este debe ser mejorado incorporando más detalles y ejemplos de las funcionalidades explicadas.
+\clearpage
