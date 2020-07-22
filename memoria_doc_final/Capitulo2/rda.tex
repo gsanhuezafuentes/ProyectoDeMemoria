@@ -1,14 +1,14 @@
-\section{Conceptos básicos de hidráulica urbana en RDA}
-Conjunto de elementos enlazados de tal manera que permite suministrar cierta cantidad de agua a una presión establecida~\cite{Doctoral2012}.
+\section{Redes de agua potable}
+Este trabajo se centra en la implementación de una aplicación en el área de hidráulica. Es por ello, que es necesario comprender algunos conceptos básicos que se describen a continuación:
 
-\paragraph{Presion:} Fuerza ejercida sobre una superficie.
-\paragraph{Caudal:} Cantidad de agua que se mueve a través de un segmento de la red.
+\paragraph{Presion:} Fuerza ejercida sobre una superficie. En este caso se refiere a la fuerza que el agua ejerce durante su recorrido. Se expresa en el sistema internacional a través de metros columna de agua (mca)[Insertar cita].
+\paragraph{Caudal:} Cantidad de agua que se mueve a través de un segmento de la red. Se expresa en el sistema internacional como metros cúbicos por segundo ($m^3/s$).
 \paragraph{Factor de fricción:} Coeficiente adimensional que especifica la rugosidad de la tubería~\cite{Perez-2011}.
-\paragraph{Curva de consumo:} Gráfica del consumo en un periodo de tiempo.
+\paragraph{Curva de consumo:} Patrón de consumo de agua en un periodo de tiempo. Generalmente el agua es demandada de forma irregular durante el tiempo debido principalmente a las diferentes actividades que la población realiza durante el día. Así, por ejemplo, el consumo de agua aumenta en los horarios de la mañana y tarde.
 
-\subsection{Componentes físicos de una red}
-A continuación se define los componentes que conforman una red de agua potable~\cite{Rossman2017}, los cuales se aprecian en la Figura~\ref{fig:componentesfisicos}:
-
+\subsection{Red de distribución de agua}
+Conjunto de elementos enlazados de tal manera que permite suministrar cierta cantidad de agua a una presión establecida~\cite{Doctoral2012}. En la Figura~\ref{fig:componentesfisicos} se puede apreciar los componentes que conforman la red de agua potable.
+% A continuación se define los componentes que conforman una red de agua potable~\cite{Rossman2017}, los cuales se aprecian en la Figura~\ref{fig:componentesfisicos}:
 
 \begin{figure}[h]
 	\includegraphics{Capitulo2/assets/componentesfisicosred.eps}
@@ -16,6 +16,7 @@ A continuación se define los componentes que conforman una red de agua potable~\
 	\caption[Componentes físicos de un sistema de distribución de agua]{Componentes físicos de un sistema de distribución de agua~\cite{Rossman2017}}
 	\label{fig:componentesfisicos}
 \end{figure}
+\subsubsection{Componentes}
 \paragraph{Nudos de consumo:} Son los puntos o extremos de una tubería, los cuales también permiten que estas se unan. Estos nudos pueden actuar como nudos de demanda a través de los cuales el flujo abandona la red.
 
 \paragraph{Reservorio:}Es una fuente de alimentación externa.

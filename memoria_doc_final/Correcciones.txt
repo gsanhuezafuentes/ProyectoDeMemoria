@@ -44,11 +44,12 @@ sip, igual hace falta, porque tu estas simultaneamente respondiendo a dos jefes.
 
 Cita pagina web:
 
-@misc{29,
-    author = {MathWorld Team},
-    title={Random Number},
-    year = {2020},
-    note = {\URL{https://mathworld.wolfram.com/RandomNumber.html }}
+@misc{sus-scale,
+    author = {Will T},
+    title={Measuring and Interpreting System Usability Scale (SUS)},
+    %year = {2020},
+    howpublished={\url{https://uiuxtrend.com/measuring-system-usability-scale-sus/ }},
+    note = {Accedido 20-07-2020}
 }(editado)
 NUEVO
 

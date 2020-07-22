@@ -14,5 +14,5 @@ Nombre del proyecto del profe dani: Optimization of real-world water distributio
 objetivo general 3: agregar 
 
 
-
+Mencionar xq fue seleccionada la tecnologia.
 Java: es por utilizar jmetal y fue un requisito solicitado.

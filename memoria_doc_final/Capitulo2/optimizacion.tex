@@ -1,10 +1,16 @@
 \section{Optimización}
-La optimización consiste en maximizar o minimizar un conjunto de funciones que matemáticamente pueden ser expresadas de la siguiente forma:
+% Optimización consiste en maximizar o minimizar un conjunto de funciones que matemáticamente pueden ser expresadas de la siguiente forma:
+
+Optimización consiste en maximizar o minimizar un conjunto de funciones, modificando una serie de variables, conocidas como las variables de decisión o independientes. Ésta puede ser expresada matemáticamente de la siguiente forma:
+
 $$f_1(x),f_2(x), ..., f_N(x),\ x=(x_1,...,x_d) | x \in X$$
-sujeto a una serie de condiciones
+
+\noindent sujeto a una serie de restricciones
+
 $$h_j(x) = 0, j=1,2,...,J$$
 $$g_k(x) \leq 0, k=1,2,...,K$$
-siendo $f_1,...,f_N$ funciones objetivos; $x_1, ..., x_d$ variables de decisión, pertenecientes al espacio de búsqueda $X$; y $h_j$ junto con $g_k$, una serie de restricciones~\cite{Yang2015}. De acuerdo a la cantidad de funciones objetivos que se tenga, se establece que si $N=1$ la optimización es \textbf{monoobjetivo}, mientras que para $N\geq 2$ se conoce como \textbf{multiobjetivo}~\cite{Yang2015}. En este punto se debe tener en cuenta que los objetivos planteados deben encontrarse en contradicción. 
+
+\noindent siendo $f_1,...,f_N$ funciones objetivos; $x_1, ..., x_d$ variables de decisión, pertenecientes al espacio de búsqueda $X$; y $h_j$ junto con $g_k$, una serie de restricciones~\cite{Yang2015}. De acuerdo a la cantidad de funciones objetivos ($N$) que se tenga, se establece que si $N=1$ la optimización es \textbf{monoobjetivo}, mientras que para $N\geq 2$ se conoce como \textbf{multiobjetivo}~\cite{Yang2015}. Cada uno de estos tipos de problemas debe ser abordado con metodologías específicas para su propósito ya que sus objetivos son diferentes; por un lado, los problemas monoobjetivos persiguen encontrar una única solución, mientras que los problemas multiobjetivos se enfocan en determinar un conjunto de soluciones llamado Frontera de Pareto que será descrito en el apartado~\ref{sec:frontera_pareto}. En este punto se debe tener en cuenta que los objetivos planteados deben encontrarse en contradicción. 
 
 Debido a la definición de las restricciones es posible dividir el espacio de búsqueda en dos regiones~\cite{Bozorg-Haddad2017}:
 \begin{itemize}

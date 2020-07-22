@@ -23,8 +23,8 @@
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS003}{Implementar algoritmo genético.}
-    \Descripcion{Implementar el algoritmo genético. La versión del algoritmo genético a ser implementado consiste en el algoritmo genético generacional. }
+    \Requisito{RS003}{Implementar Algoritmo Genético.}
+    \Descripcion{Implementar el Algoritmo Genético. La versión del Algoritmo Genético a ser implementado consiste en el Algoritmo Genético generacional. }
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Crítica}
     \Estabilidad{Intransable}
@@ -46,8 +46,8 @@
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS005}{Utilizar algoritmo genético para resolver el problema Pipe Optimizing desde el enfoque monoobjetivo.}
-    \Descripcion{Utilizando el algoritmo genético y la clase que lleva a cabo la evaluación de las soluciones (La clase problema) se debe realizar la evaluación y optimización de los objetivos del problema.}
+    \Requisito{RS005}{Utilizar Algoritmo Genético para resolver el problema Pipe Optimizing desde el enfoque monoobjetivo.}
+    \Descripcion{Utilizando el Algoritmo Genético y la clase que lleva a cabo la evaluación de las soluciones (La clase problema) se debe realizar la evaluación y optimización de los objetivos del problema.}
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Crítica}
     \Estabilidad{Intransable}
@@ -162,7 +162,7 @@
 
 \begin{requisito}
     \Requisito{RS015}{Implementar el operador IntegerSinglePointCrossover.}
-    \Descripcion{El operador IntegerSinglePointCrossover es un operador de cruzamiento. Viendo la solución como un vector, este operador toma dos soluciones y elige un punto a partir del cual los valores de una solución se intercambiarán con los valores de otra solución. Este operador usa una probabilidad de cruzamiento y solamente realiza el intercambio de los valores en la solución cuando un numero generado aleatoriamente es menor que la probabilidad de cruzamiento.}
+    \Descripcion{El operador IntegerSinglePointCrossover es un operador de cruzamiento. Viendo la solución como un vector, este operador toma dos soluciones y elige un punto a partir del cual los valores de una solución se intercambiarán con los valores de otra solución. Este operador usa una probabilidad de cruzamiento y solamente realiza el intercambio de los valores en la solución cuando un número generado aleatoriamente es menor que la probabilidad de cruzamiento.}
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Crítica}
     \Estabilidad{Intransable}
@@ -187,7 +187,7 @@
 \begin{requisito}
     \Requisito{RS017}{Implementar el operador IntegerSimpleRandomMutation.}
 
-    \Descripcion{El operador IntegerSimpleRandomMutation es un operador de mutación. Este operador muta una variable de decisión cuando un numero generado aleatoriamente es menor que la probabilidad de mutación establecida. El operador recorre cada variable de decisión realizando lo descrito anteriormente. La mutación realizada por este operador consiste en cambiar el valor de la variable de decisión por otro valor aleatorio. }
+    \Descripcion{El operador IntegerSimpleRandomMutation es un operador de mutación. Este operador muta una variable de decisión cuando un número generado aleatoriamente es menor que la probabilidad de mutación establecida. El operador recorre cada variable de decisión realizando lo descrito anteriormente. La mutación realizada por este operador consiste en cambiar el valor de la variable de decisión por otro valor aleatorio. }
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Crítica}
     \Estabilidad{Intransable}
@@ -200,7 +200,7 @@
 
 \begin{requisito}
     \Requisito{RS018}{Implementar el operador IntegerRangeRandomMutation (Asi lo llame).}
-    \Descripcion{El operador IntegerRangeRandomMutation es un operador de mutación. Este operador muta una variable de decisión cuando un numero generado aleatoriamente es menor que la probabilidad de mutación establecida. El operador recorre cada variable de decisión realizando lo descrito anteriormente. La mutación realizada por este operador consiste en cambiar el valor de la variable de decisión por otro valor aleatorio que se encuentre entre un rango establecido.
+    \Descripcion{El operador IntegerRangeRandomMutation es un operador de mutación. Este operador muta una variable de decisión cuando un número generado aleatoriamente es menor que la probabilidad de mutación establecida. El operador recorre cada variable de decisión realizando lo descrito anteriormente. La mutación realizada por este operador consiste en cambiar el valor de la variable de decisión por otro valor aleatorio que se encuentre entre un rango establecido.
     \singlespacing
 Ejemplo:
     \singlespacing
@@ -364,7 +364,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS031}{Implementar una jerarquía de clases que a través de la implementación de interfaces se pueda ampliar los algoritmos.}
+    \Requisito{RS031}{Implementar una jerarquía de clases que a través de la implementación de interfaces se pueda extender los algoritmos.}
     \Descripcion{Implementar una jerarquía de clases que permita agregar nuevos algoritmos o modificar los ya existentes fácilmente. Entendiendo por fácilmente, que solo se necesita implementar una interfaz para agregar un nuevo algoritmo o extender alguna clase de un algoritmo ya existente para modificar su comportamiento.}
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Crítica}
@@ -377,7 +377,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 
 \begin{requisito}
-    \Requisito{RS032}{Implementar una jerarquía de clases que a través de la implementación de interfaces se pueda ampliar los problemas.}
+    \Requisito{RS032}{Implementar una jerarquía de clases que a través de la implementación de interfaces se pueda extender los problemas.}
     \Descripcion{Implementar una jerarquía de clases que permita agregar nuevos problemas fácilmente. Entendiendo por fácilmente, que solo se necesita implementar una interfaz para agregar un nuevo problema o extender de alguna clase de un problema ya existente para modificar su comportamiento.}
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Crítica}
@@ -389,7 +389,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS033}{Implementar una jerarquía de clases que a través de la implementación de interfaces se pueda ampliar los operadores.}
+    \Requisito{RS033}{Implementar una jerarquía de clases que a través de la implementación de interfaces se pueda extender los operadores.}
     \Descripcion{Implementar una jerarquía de clases que permita agregar nuevos operadores o modificar los ya existentes fácilmente. Entendiendo por fácilmente, que solo se necesita implementar una interfaz para agregar un nuevo operador o extender alguna clase de un operador ya existente para modificar su comportamiento.}
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Crítica}

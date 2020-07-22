@@ -169,7 +169,7 @@
 }
 
 \newcommand\RevisionHistoryPage{%
-  \def\thepage{}% remueve el numero de pagina que el comando de abajo no pudo
+  \def\thepage{}% remueve el número de pagina que el comando de abajo no pudo
   \pagestyle{empty}
   
   \tl_if_empty:NF \l_development_tl {
