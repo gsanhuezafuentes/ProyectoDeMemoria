@@ -185,14 +185,13 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
     \Incremento{3}
     \Tipo{Funcional}
 \end{requisito}
-%% hasta aki llevo revisado la ortografía 
     
 \begin{requisito}
     \Requisito{RU014}{Mostrar las características de la red.}
     \Descripcion{Mostrar las características que posee la red. Esto puede ser realizado cuando se presiona el elemento de la red o agregando algún componente que muestre los elementos que conforman la red.}
     
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Transable}
     \FechaA{30/11/2019}
     \Estado{Cumple}
@@ -229,7 +228,7 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
     
 \begin{requisito}
     \Requisito{RU017}{Mostrar en la interfaz de usuario los problemas, agrupando los algoritmos que pueden ser utilizados para resolverlos.}
-    \Descripcion{En el menú donde se muestran los problemas que pueden ser resueltos debe aparecer el nombre del problema y en este se deben agrupar los algoritmos que pueden ser utilizados para resolverlo.
+    \Descripcion{En el menú donde se muestran los problemas que pueden ser resueltos debe aparecer el nombre del problema y en éste se deben agrupar los algoritmos que pueden ser utilizados para resolverlo.
     \singlespacing
     EJ:
     \singlespacing
@@ -249,7 +248,7 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
     
 \begin{requisito}
     \Requisito{RU018}{Permitir realizar múltiples simulaciones independientes para resolver el problema multiobjetivo.}
-    \Descripcion{Durante la resolución del problema multiobjetivo se debe poder escoger cuantas veces se aplicará el algoritmo, independientemente uno de otros. La solución final será la Frontera de Pareto del conjunto formado por todas las soluciones generadas a partir de cada ejecución independiente del algoritmo. Este concepto se conoce en algunos framework como Experimentos.}
+    \Descripcion{Durante la resolución del problema multiobjetivo se debe poder escoger cuantas veces se correra el algoritmo, independientemente de otra ejecución. La solución final será la Frontera de Pareto del conjunto formado por todas las soluciones generadas a partir de cada ejecución independiente del algoritmo. Este concepto se conoce en algunos framework como Experimentos.}
     
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Alta}
@@ -262,7 +261,7 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
     
 \begin{requisito}
     \Requisito{RU019}{Guardar los resultados temporales por cada simulación independiente del problema multiobjetivo y generar los archivos al final de todas las simulaciones con los mejores resultados obtenidos.}
-    \Descripcion{Las simulaciones multiobjetivos permiten realizar múltiples simulaciones independientes, entregando cada ejecución como resultado el conjunto de soluciones que conforman su frontera de Pareto. Sin embargo, una vez se terminan todas las repeticiones y se genera la solución final, se pierden los resultados intermedios de cada repetición. Es por ello, que mientras se van terminando cada simulación independiente, se debe guardar un respaldo de los resultados de cada repetición del algoritmo.}
+    \Descripcion{Las simulaciones multiobjetivos permiten realizar múltiples simulaciones independientes, entregando cada ejecución como resultado el conjunto de soluciones que conforman su Frontera de Pareto. Sin embargo, una vez se terminan todas las repeticiones y se genera la solución final, se pierden los resultados intermedios de cada repetición. Es por ello, que mientras se van terminando cada simulación independiente, se debe guardar un respaldo de los resultados de cada repetición del algoritmo.}
     
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Baja}
@@ -274,7 +273,7 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
 \end{requisito}
     
 \begin{requisito}
-    \Requisito{RU020}{Permitir realizar simulaciones hidráulicas utilizando los valores por defectos que vienen en el archivo .inp y visualizar los resultados.}
+    \Requisito{RU020}{Permitir realizar simulaciones hidráulicas utilizando los valores por defectos que vienen en el archivo inp y visualizar los resultados.}
     \Descripcion{Utilizando los valores que vienen por defecto en el archivo inp se debe poder llevar a cabo la simulación hidráulica de la red. Posteriormente, los resultados podrán ser visualizados por el usuario.}
     
     \Fuente{Daniel Mora-Meliá}
@@ -313,11 +312,11 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
 \end{requisito}
     
 \begin{requisito}
-    \Requisito{RU023}{Incluir en el dibujo de la red símbolos para diferencias los elementos que componen la red.}
+    \Requisito{RU023}{Incluir en el dibujo de la red símbolos para diferenciar los elementos que componen la red.}
     \Descripcion{Se requiere que se agreguen en la representación gráfica de la red símbolos para distinguir los distintos elementos que la componen.}
     
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -340,7 +339,7 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
     
 \begin{requisito}
     \Requisito{RU025}{Agregar un menú de configuración.}
-    \Descripcion{Agregar un menú de configuraciones donde poder establecer el tamaño de los puntos, si mostrar o no el grafico de resultados y limitar el número de resultados retornados por el problema multiobjetivo.}
+    \Descripcion{Agregar un menú de configuraciones donde poder establecer el tamaño de los puntos, si mostrar o no el gráfico de resultados y limitar el número de resultados retornados por el problema multiobjetivo.}
     
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Baja}
@@ -352,7 +351,7 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
 \end{requisito}
     
 \begin{requisito}
-    \Requisito{RU026}{Usar en el gráfico, para cada repetición del algoritmo en un experimento, un color distinto.}
+    \Requisito{RU026}{Usar en el gráfico, para cada repetición del algoritmo en un Experimento, un color distinto.}
     \Descripcion{Para facilitar la distinción entre cada repetición de un algoritmo en un experimento se solicita variar que se cambie el color mostrado para cada repetición.}
     
     \Fuente{Jimmy Gutiérrez}
@@ -369,7 +368,7 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
     \Descripcion{Se requiere que en la ventana de representación de la red se muestre una leyenda en la que se presenten los símbolos utilizados por la aplicación para representar cada componente de la red.}
     
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -383,7 +382,7 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
     \Descripcion{Al momento de querer realizar una optimización no se entrega suficiente información acerca de los objetivos del problema. Es por esto, que se requiere poder agregar alguna descripción que pueda ser visualizada cuando se abra la ventana de configuración del experimento.}
     
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -396,7 +395,7 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
     \Descripcion{Se solicita que se pueda agregar mas información a la ventana de resultados mostrada cuando se termina una optimización. Se propone usar un mapa con los valores adicionales que se quieran mostrar, en donde la clave sea el nombre de la columna y el valor sea lo mostrado en la celda.}
     
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -407,7 +406,7 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
     
 \begin{requisito}
     \Requisito{RU030}{Exportar los resultados de los algoritmos aplicados como un Excel.}
-    \Descripcion{Se requiere exportar la table de resultados de la optimización del algoritmo a un archive excel.}
+    \Descripcion{Se requiere exportar la table de resultados de la optimización a un archivo Excel.}
     
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Moderada}
@@ -423,7 +422,7 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
     \Descripcion{Se requiere exportar el gráfico de resultados mostrado durante la ejecución de un experimento, ya sea para el problema monoobjetivo como el multiobjetivo. Se requiere idealmente SVG, en caso de que este formato no sea posible se acepta la utilización de PNG.}
     
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Transable}
     \FechaA{13/05/2020}
     \Estado{Cumple}

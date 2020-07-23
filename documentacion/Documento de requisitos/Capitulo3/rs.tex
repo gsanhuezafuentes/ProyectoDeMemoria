@@ -1,12 +1,12 @@
 \section{Requisitos de sistema}
 
-En esta sección se presentarán los requisitos de sistema obtenido a partir de los requisitos de usuarios.
+En esta sección se presentarán los requisitos de sistema obtenidos a partir de los requisitos de usuarios.
 
 \begin{requisito}
     \Requisito{RS001}{Leer red desde el archivo inp.}
     \Descripcion{Leer un archivo inp desde la aplicación.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{09/09/2019}
     \Estado{Cumple}
@@ -16,9 +16,9 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
 
 \begin{requisito}
     \Requisito{RS002}{Cargar red dentro del programa.}
-    \Descripcion{Generar una representación de la red en el programa a partir del archivo leído, es decir, almacenar crear una jerarquía de clases que contenga los valores de la red leidos del archivo inp.}
+    \Descripcion{Generar una representación de la red en el programa a partir del archivo leído, es decir, crear una jerarquía de clases para mantener la información de los componentes y su configuración leidos desde el archivo inp.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{09/09/2019}
     \Estado{Cumple}
@@ -28,9 +28,9 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
 
 \begin{requisito}
     \Requisito{RS003}{Implementar Algoritmo Genético.}
-    \Descripcion{Implementar el Algoritmo Genético. La versión del Algoritmo Genético a ser implementado consiste en el Algoritmo Genético generacional. }
+    \Descripcion{Implementar el Algoritmo Genético. La versión del Algoritmo Genético a ser implementado consiste en el Algoritmo Genético Generacional. }
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{09/09/2019}
     \Estado{Cumple}
@@ -41,7 +41,7 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
 \begin{requisito}
     \Requisito{RS004}{Implementar el problema multiobjetivo \textit{Pipe Optimizing}.}
     \Descripcion{Implementar la clase que lleva a cabo la evaluación de las soluciones generadas por los algoritmos.}\Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{09/09/2019}
     \Estado{Cumple}
@@ -51,9 +51,9 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
 
 \begin{requisito}
     \Requisito{RS005}{Utilizar Algoritmo Genético para resolver el problema \textit{Pipe Optimizing} desde el enfoque monoobjetivo.}
-    \Descripcion{Utilizando el Algoritmo Genético y la clase que lleva a cabo la evaluación de las soluciones (La clase problema) se debe realizar la evaluación y optimización de los objetivos del problema.}
+    \Descripcion{Utilizando el Algoritmo Genético y la clase que lleva a cabo la evaluación de las soluciones (La clase \textit{Problem}) se debe realizar la evaluación y optimización de los objetivos.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{09/09/2019}
     \Estado{Cumple}
@@ -63,8 +63,8 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
 
 \begin{requisito}
     \Requisito{RS006}{Evaluar soluciones al problema monoobjetivo (Pipe optimizing) usando la librería Epanet.}
-    \Descripcion{Se deben evaluar el cumplimiento de las restricciones establecidas para el problema. La restricción establecida para el problema Pipe Optimizing es cumplir con un nivel de presión mínimo.}\Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Descripcion{Se deben evaluar el cumplimiento de las restricciones establecidas para el problema. La restricción establecida para el problema \textit{Pipe Optimizing} es cumplir con un nivel de presión mínimo.}\Fuente{Jimmy Gutiérrez}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{09/09/2019}
     \Estado{Cumple}
@@ -76,8 +76,8 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
     \Requisito{RS007}{Implementar NSGAII.}
     \Descripcion{Implementar el algoritmo NSGAII. El cual es usado para tratar con problemas multiobjetivo.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{}
-    \Estabilidad{}
+    \Prioridad{Moderada}
+    \Estabilidad{Intransable}
     \FechaA{01/10/2019}
     \Estado{Cumple}
     \Incremento{4}
@@ -86,7 +86,7 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
 
 \begin{requisito}	
     \Requisito{RS008}{Implementar el problema multiobjetivo \textit{Pumping Schedule}.}
-    \Descripcion{Implementar la clase que lleva a cabo la evaluación de las soluciones generadas por los algoritmos.}\Fuente{Jimmy Gutiérrez}
+    \Descripcion{Implementar la clase \textit{Problem} que lleva a cabo la evaluación de las soluciones generadas por los algoritmos.}\Fuente{Jimmy Gutiérrez}
     \Prioridad{Moderada}
     \Estabilidad{Intransable}
     \FechaA{01/10/2019}
@@ -96,8 +96,8 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS009}{Utilizar el algoritmo NSGAII para resolver el problema \textit{Pumping Scheduling} desde el enfoque multiobjetivo.}
-    \Descripcion{Utilizando el NSGAII y la clase que lleva a cabo la evaluación de las soluciones (La clase problema) se debe realizar la evaluación y optimización de los objetivos del problema.}\Fuente{Jimmy Gutiérrez}
+    \Requisito{RS009}{Utilizar el algoritmo NSGAII para resolver el problema \textit{Pumping Schedule} desde el enfoque multiobjetivo.}
+    \Descripcion{Utilizando el NSGAII y la clase que lleva a cabo la evaluación de las soluciones (La clase \textit{Problem}) se debe realizar la evaluación y optimización de los objetivos.}\Fuente{Jimmy Gutiérrez}
     \Prioridad{Moderada}
     \Estabilidad{Intransable}
     \FechaA{01/10/2019}
@@ -107,7 +107,7 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS010}{Evaluar soluciones al problema multiobjetivo (\textit{Pumping Scheduling}) usando la librería Epanet.}
+    \Requisito{RS010}{Evaluar soluciones al problema multiobjetivo (\textit{Pumping Schedule}) usando la librería Epanet.}
     \Descripcion{Se deben evaluar el cumplimiento de las restricciones establecidas para el problema. }\Fuente{Jimmy Gutiérrez}
     \Prioridad{Moderada}
     \Estabilidad{Intransable}
@@ -119,7 +119,8 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
 
 \begin{requisito}
     \Requisito{RS011}{Visualizar red dentro de un canvas.}
-    \Descripcion{Se debe mostrar la representación gráfica de la red utilizando un Canvas.}\Fuente{Jimmy Gutiérrez}
+    \Descripcion{Se debe mostrar la representación gráfica de la red utilizando un Canvas.}
+    \Fuente{Jimmy Gutiérrez}
     \Prioridad{Moderada}
     \Estabilidad{Intransable}
     \FechaA{09/09/2019}
@@ -133,7 +134,7 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
 \begin{requisito}
     \Requisito{RS012}{Crear archivo TSV para guardar los valores de los objetivos.}
     \Descripcion{Se debe crear un archivo TSV (archivo de texto separado por tabuladores) con los objetivos de las soluciones obtenidas.}\Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{09/09/2019}
     \Estado{Cumple}
@@ -144,7 +145,7 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
 \begin{requisito}
     \Requisito{RS013}{Crear archivo TSV para guardar los valores de las variables.}
     \Descripcion{Se debe crear un archivo TSV (archivo de texto separado por tabuladores) con las variables de las soluciones obtenidas.}\Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{09/09/2019}
     \Estado{Cumple}
@@ -156,7 +157,7 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
     \Requisito{RS014}{Implementar el operador IntegerSBXCrossover.}
     \Descripcion{El operador IntegerSBXCrossover es uno de los operadores de cruzamiento. En base a cálculos probabilísticos combina dos soluciones para crear unas dos nuevas soluciones hijas.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{14/10/2019}
     \Estado{Cumple}
@@ -168,7 +169,7 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
     \Requisito{RS015}{Implementar el operador IntegerSinglePointCrossover.}
     \Descripcion{El operador IntegerSinglePointCrossover es un operador de cruzamiento. Viendo la solución como un vector, este operador toma dos soluciones y elige un punto a partir del cual los valores de una solución se intercambiarán con los valores de otra solución. Este operador usa una probabilidad de cruzamiento y solamente realiza el intercambio de los valores en la solución cuando un número generado aleatoriamente es menor que la probabilidad de cruzamiento.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{14/10/2019}
     \Estado{Cumple}
@@ -180,7 +181,7 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
     \Requisito{RS016}{Implementar el operador IntegerPolynomialMutation.}
     \Descripcion{El operador IntegerPolynomialMutation es un operador de mutación. Este operador de mutación usa cálculos probabilísticos para mutar algunos variables de decisión que forman parte de la solución.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{14/10/2019}
     \Estado{Cumple}
@@ -193,7 +194,7 @@ En esta sección se presentarán los requisitos de sistema obtenido a partir de lo
 
     \Descripcion{El operador IntegerSimpleRandomMutation es un operador de mutación. Este operador muta una variable de decisión cuando un número generado aleatoriamente es menor que la probabilidad de mutación establecida. El operador recorre cada variable de decisión realizando lo descrito anteriormente. La mutación realizada por este operador consiste en cambiar el valor de la variable de decisión por otro valor aleatorio. }
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{14/10/2019}
     \Estado{Cumple}
@@ -213,7 +214,7 @@ Rango: 2\\
 La variable de decisión después de aplicado el operador puede tomar un valor entre [1, 5].
 }
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{14/10/2019}
     \Estado{Cumple}
@@ -230,7 +231,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
     La probabilidad de las soluciones intermedias se calcula de acuerdo a $$p_i=p_{min}+(p_{max}-p_{min})\times((N_c-i)/(N_c-1))$$}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{14/10/2019}
     \Estado{Cumple}
@@ -240,9 +241,12 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS020}{Aplicar una solución al objeto que representa la red.}
-    \Descripcion{Cuando el algoritmo haya generado soluciones para el problema, se debe poder seleccionar una de ellas y aplicarlas sobre un objeto ?Network? el cual podrá ser exportado posteriormente a un archivo inp.}
+    \Descripcion{Cuando el algoritmo haya generado soluciones para el problema, se debe poder seleccionar una de ellas y aplicarlas sobre un objeto \textit{Network} el cual podrá ser exportado posteriormente a un archivo inp.
+    
+    Aplicar la solución sobre un objeto \textit{Network} significa tomar los valores de las variables de decisión y modificar las configuraciones de la red (instancia de \textit{Network}) donde corresponda..
+    }
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{15/10/2019}
     \Estado{Cumple}
@@ -252,9 +256,9 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS021}{Exportar el objeto red a un archivo .inp.}
-    \Descripcion{Se debe exportar el objeto ?Network? a un archivo .inp, el cual debe poder ser cargado en el programa de simulación Epanet.}
+    \Descripcion{Se debe exportar el objeto \textit{Network} a un archivo con extensión inp, de acuerdo al formato establecido por Epanet. El archivo inp generado debe poder ser cargado en el programa de simulación Epanet.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{15/10/2019}
     \Estado{Cumple}
@@ -276,7 +280,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS023}{Mostrar los resultados de la optimización.}
-    \Descripcion{En la pestaña de resultados abierta se deben mostrar los resultados de la optimización.}
+    \Descripcion{En la pestaña de resultados se deben mostrar los resultados de la optimización.}
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Moderada}
     \Estabilidad{Transable}
@@ -288,7 +292,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS024}{Implementar un componente que permita mostrar los elementos que componen la red.}
-    \Descripcion{El componente debe poder filtrarse por el tipo de elemento que compone la red.}
+    \Descripcion{El componente debe estar filtrado por el tipo de elemento que compone la red.}
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Moderada}
     \Estabilidad{Transable}
@@ -313,8 +317,9 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 
 \begin{requisito}
-    \Requisito{RS026}{Permitir seleccionar en la lista de elementos de la red el componente del que se van a mostrar sus características.}
-    \Descripcion{En la lista de elementos de la red, al hacer doble click, se debe mostrar el componente que muestra las configuraciones que están establecidas para el elemento seleccionado.}\Fuente{Jimmy Gutiérrez}
+    \Requisito{RS026}{Permitir seleccionar en la lista de elementos de la red el componente del que se quieren mostrar sus características.}
+    \Descripcion{En la lista de elementos de la red, al hacer doble click, se debe mostrar el componente que muestra las configuraciones que están establecidas para el elemento seleccionado.}
+    \Fuente{Jimmy Gutiérrez}
     \Prioridad{Moderada}
     \Estabilidad{Transable}
     \FechaA{30/11/2019}
@@ -324,7 +329,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS027}{Permitir seleccionar el dibujo de la red el componente del que se van a mostrar sus características.}
+    \Requisito{RS027}{Permitir seleccionar del dibujo de la red el componente del que se van a mostrar sus características.}
     \Descripcion{Al hacer doble click sobre un elemento, en el canvas que representa la red, se debe abrir el componente para ver la configuración que tiene establecida dicho elemento.  }
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Moderada}
@@ -337,9 +342,9 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS028}{Implementar un componente que muestre un plano cartesiano.}
-    \Descripcion{Este componente gráfico debe tener un plano cartesiano. El plano solo puede ser ocupado cuando la optimización es de como máximo dos objetivos.}
+    \Descripcion{Este componente gráfico debe tener un plano cartesiano. El plano solo puede ser ocupado cuando la optimización es uno o dos objetivos.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Transable}
     \FechaA{30/11/2019}
     \Estado{Cumple}
@@ -375,7 +380,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Requisito{RS031}{Implementar una jerarquía de clases que a través de la implementación de interfaces se pueda extender los algoritmos.}
     \Descripcion{Implementar una jerarquía de clases que permita agregar nuevos algoritmos o modificar los ya existentes fácilmente. Entendiendo por fácilmente, que solo se necesita implementar una interfaz para agregar un nuevo algoritmo o extender alguna clase de un algoritmo ya existente para modificar su comportamiento.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{30/11/2019}
     \Estado{Cumple}
@@ -386,9 +391,9 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS032}{Implementar una jerarquía de clases que a través de la implementación de interfaces se pueda extender los problemas.}
-    \Descripcion{Implementar una jerarquía de clases que permita agregar nuevos problemas fácilmente. Entendiendo por fácilmente, que solo se necesita implementar una interfaz para agregar un nuevo problema o extender de alguna clase de un problema ya existente para modificar su comportamiento.}
+    \Descripcion{Implementar una jerarquía de clases que permita agregar nuevos problemas fácilmente. Entendiendo por fácilmente, que solo se necesita implementar una interfaz para agregar un nuevo problema o extender alguna clase de un problema ya existente para modificar su comportamiento.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{30/11/2019}
     \Estado{Cumple}
@@ -400,7 +405,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Requisito{RS033}{Implementar una jerarquía de clases que a través de la implementación de interfaces se pueda extender los operadores.}
     \Descripcion{Implementar una jerarquía de clases que permita agregar nuevos operadores o modificar los ya existentes fácilmente. Entendiendo por fácilmente, que solo se necesita implementar una interfaz para agregar un nuevo operador o extender alguna clase de un operador ya existente para modificar su comportamiento.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{30/11/2019}
     \Estado{Cumple}
@@ -412,7 +417,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Requisito{RS034}{Agrupar para cada problema mostrado en el menú de la interfaz de usuario los algoritmos que pueden ser usados.}
     \Descripcion{Dentro del menú de optimización cada problema será un nuevo menú, los cuales indicaran los algoritmos que pueden ser usados.}
     \Fuente{Daniel Mora-Meliá}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{27/01/2020}
     \Estado{Cumple}
@@ -422,9 +427,9 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS035}{Implementar mecanismo que permita realizar múltiples repeticiones del mismo algoritmo para un problema específico desde el enfoque multiobjetivo.}
-    \Descripcion{Durante la resolución del problema multiobjetivo se debe poder escoger cuantas veces se aplicará el algoritmo, independientemente uno de otros. La solución final será la Frontera de Pareto del conjunto formado por todas las soluciones generadas a partir de cada ejecución independiente del algoritmo. Este concepto se conoce en algunos framework como Experimentos.}
+    \Descripcion{Durante la resolución del problema multiobjetivo se debe poder escoger cuantas veces se ejecutará el algoritmo de manera independiente de otras ejecuciones. La solución final será la Frontera de Pareto del conjunto formado por todas las soluciones generadas a partir de cada ejecución independiente del algoritmo. Este concepto se conoce en algunos framework como Experimentos.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{27/01/2020}
     \Estado{Cumple}
@@ -434,9 +439,9 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS036}{Mantener los resultados de cada repetición de un algoritmo cuando se resuelve un problema multiobjetivo.}
-    \Descripcion{Al resolver un problema multiobjetivo se deben mantener los resultados generados cuando se termina cada repetición del algoritmo dentro de un experimento. }
+    \Descripcion{Al resolver un problema multiobjetivo se deben mantener los resultados intermedios generados cuando se termina cada repetición del algoritmo que conforma el Experimento. }
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{27/01/2020}
     \Estado{Cumple}
@@ -446,9 +451,9 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS037}{Guardar los resultados almacenados de cada repetición del algoritmo multiobjetivo.}
-    \Descripcion{Los resultados mantenidos mientras se iban terminando las ejecuciones independientes del algoritmo configurado para el experimento, deben ser guardados en la carpeta que indica el Experimento.}
+    \Descripcion{Los resultados intermedios generados por cada ejecucion independiente del algoritmo metaheurístico multiobjetivo, deben ser guardados en una carpeta indicada por el usuario.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{27/01/2020}
     \Estado{Cumple}
@@ -457,10 +462,10 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS038}{A partir de los resultados de cada repetición del algoritmo, para el problema multiobjetivo, obtener las mejores soluciones.}
-    \Descripcion{A partir de los resultados generados por cada repetición del algoritmo se debe obtener las soluciones no dominadas.}
+    \Requisito{RS038}{A partir de los resultados de cada repetición del algoritmo, para el problema multiobjetivo obtener las mejores soluciones.}
+    \Descripcion{A partir de los resultados intermedios generados por cada repetición del algoritmo multiobjetivo se deben obtener las soluciones no dominadas, es decir, aquellas que conforman la Frontera de Pareto.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{27/01/2020}
     \Estado{Cumple}
@@ -470,9 +475,9 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS039}{Guardar las mejores soluciones obtenidas a partir de cada una de las repeticiones del algoritmo.}
-    \Descripcion{Guardar las soluciones no dominadas obtenidas al unir los resultados de cada repetición del algoritmo dentro de un experimento.}
+    \Descripcion{Guardar las soluciones no dominadas obtenidas al unir los resultados de cada repetición del algoritmo dentro de un Experimento.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{27/01/2020}
     \Estado{Cumple}
@@ -481,10 +486,10 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS040}{Realizar una simulación hidráulica utilizando los valores por defecto de la red que vienen en el archivo inp.}
+    \Requisito{RS040}{Realizar la simulación hidráulica utilizando los valores por defecto de la red que vienen en el archivo inp.}
     \Descripcion{Se debe poder realizar la simulación hidráulica utilizando únicamente los valores preconfigurados en el archivo inp.}
     \Fuente{Daniel Mora-Meliá}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{27/01/2020}
     \Estado{Cumple}
@@ -496,7 +501,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Requisito{RS041}{Obtener los resultados de la simulación hidráulica desde el simulador.}
     \Descripcion{A medida que se van realizando la simulación hidráulica se deben recuperar los resultados del simulador y almacenarlos en memoria para posteriormente ser presentados al usuario.}
     \Fuente{Daniel Mora-Meliá}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{27/01/2020}
     \Estado{Cumple}
@@ -507,7 +512,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 \begin{requisito}
     \Requisito{RS042}{Mostrar los resultados de la simulación hidráulica en la interfaz de usuario.}
     \Descripcion{Mostrar al usuario los resultados obtenidos al realizar la simulación.}\Fuente{Daniel Mora-Meliá}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{27/01/2020}
     \Estado{Cumple}
@@ -519,7 +524,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Requisito{RS043}{Implementar el algoritmo SMPSO.}
     \Descripcion{Agregar el algoritmo SMPSO (Multiobjetivo) y utilizarlo para resolver el problema Pumping Scheduling.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -530,7 +535,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 \begin{requisito}
     \Requisito{RS044}{Implementar el algoritmo SPA2.}
     \Descripcion{Agregar el algoritmo SPA2 (Multiobjetivo) y utilizarlo para resolver el problema Pumping Scheduling.}\Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -540,9 +545,9 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS045}{Especificar los símbolos a utilizar para cada componente de la red.}
-    \Descripcion{Establecer los símbolos que serán utilizados para los elementos de la red. Se pueden usar los mismos que el software de simulación hidráulica Epanet. }
+    \Descripcion{Establecer símbolos para representar los elementos de la red. Se pueden usar los mismos que el software de simulación hidráulica Epanet. }
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -554,7 +559,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Requisito{RS046}{Agregar los símbolos de los componentes cuando se muestra la red.}
     \Descripcion{Agregar sobre cada elemento mostrado en la representación de la red el símbolo que lo representa y que permite distinguirlo de otros elementos.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -567,7 +572,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Descripcion{Durante la resolución del problema monoobjetivo se debe poder escoger cuantas veces se repetirá el algoritmo, siendo independiente una repetición de la otra. Al finalizar cada repetición se solicita mostrar los resultados de cada repetición. Así como se hace para problemas multiobjetivos.}
 
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -579,7 +584,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Requisito{RS048}{Crear una interfaz de usuario para mostrar las configuraciones.}
     \Descripcion{Implementar una interfaz de usuario para presentar ciertas opciones que el usuario puede configurar al utilizar la aplicación.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -589,9 +594,9 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS049}{Establecer los valores de la aplicación que se permitirá que el usuario configure.}
-    \Descripcion{Establecer cuáles serán los valores permitidos para que el usuario configure.}
+    \Descripcion{Establecer cuáles serán los valores permitidos para que el usuario configure en la ventana de configuración.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -603,7 +608,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Requisito{RS050}{Mostrar al usuario la ventana de configuración.}
     \Descripcion{Agregar la funcionalidad para abrir la ventana de configuración cuando el usuario la requiera.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -615,7 +620,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Requisito{RS051}{Aplicar al sistema las configuraciones establecidas en la ventana de configuraciones.}
     \Descripcion{Hacer efectivas las configuraciones configuradas en la ventana de configuración en el programa.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -624,10 +629,10 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS052}{Escoger una paleta de colores a partir de la cual elegir el color para cada iteración.}
+    \Requisito{RS052}{Escoger una paleta de colores a partir de la cual elegir el color usado para mostrar cada iteración.}
     \Descripcion{Establecer una paleta de colores entre las que poder elegir el color a ser usado por cada iteración dentro de un experimento.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Transable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -636,10 +641,10 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS053}{Asignar a cada solución de una iteración un color dentro de la paleta de colores.}
+    \Requisito{RS053}{Asignar a cada solución de una misma iteración un color dentro de la paleta de colores.}
     \Descripcion{Implementar la funcionalidad para que cada iteración a ser mostrada en el gráfico de resultados tome un color diferente.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Transable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -651,7 +656,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Requisito{RS054}{Mostrar los símbolos usados en la representación de la red y que significan cada uno de ellos.}
     \Descripcion{Implementar código para que se muestre una leyenda con los símbolos de la red existentes y a qué pertenecen.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -663,7 +668,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Requisito{RS055}{Agregar una opción que permita activar y desactivar la leyenda.}
     \Descripcion{Agregar en el menú de configuraciones la posibilidad de activar y desactivar la leyenda de símbolos.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -675,7 +680,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Requisito{RS056}{Implementar un mecanismo que permite indicar una descripción del problema a resolver.}
     \Descripcion{Implementar alguna manera de poder agregar una descripción al problema a tratar que debe ser mostrada en la interfaz de configuración del problema como una pestaña. Pueden ser usadas las mismas anotaciones para este fin.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -687,7 +692,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Requisito{RS057}{Mostrar en la ventana de configuración información del problema a resolver.}
     \Descripcion{Modificar la ventana de configuración del problema para que se muestre la descripción del problema escogido.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -696,10 +701,10 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS058}{Implementar un mecanismo para indicar los elementos adicionales que quieren ser mostrados en la interfaz de resultados.}
+    \Requisito{RS058}{Implementar un mecanismo para indicar el valor de las columnas adicionales que quieren ser mostrados en la interfaz de resultados.}
     \Descripcion{Implementar código para añadir información adicional a la ventana de resultados. Esta información adicional será especificada por el usuario que implemente el problema. Añadir esta información debe ser opcional. Si esta información no se añade entonces mostrar los resultados y objetivos.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -711,7 +716,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
     \Requisito{RS059}{Agregar los datos adicionales que desean ser mostrados en la ventana de resultados.}
     \Descripcion{Mostrar los parámetros adicionales en la ventana de resultados.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Alta}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -732,10 +737,10 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS061}{Configurar la carpeta en la que se guardaran la imagen del gráfico.}
+    \Requisito{RS061}{Configurar la carpeta en la que se guardarán la imagen del gráfico.}
     \Descripcion{Mostrar una ventana para que el usuario seleccione donde quiere guardar la imagen del gráfico.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}
@@ -744,10 +749,10 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS062}{Guardar el gráfico de resultados en disco en formato PNG.}
-    \Descripcion{Guardar el gráfico en la carpeta seleccionada.}
+    \Requisito{RS062}{Guardar el gráfico de resultados en el equipo del usuario en formato PNG.}
+    \Descripcion{Guardar el gráfico en la carpeta seleccionada por el usuario.}
     \Fuente{Jimmy Gutiérrez}
-    \Prioridad{Moderada}
+    \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
     \Estado{Cumple}

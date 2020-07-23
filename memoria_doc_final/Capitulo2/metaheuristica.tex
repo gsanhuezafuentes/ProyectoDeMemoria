@@ -60,7 +60,7 @@ Conjunto de algoritmos inspirado en la teoría de la evolución de Darwin acerca d
 		}
 		
 	\end{algorithm}
-	\caption{Pseudocodigo algoritmo evolutivo}
+	\caption{Pseudocódigo Algoritmo Evolutivo}
 	\label{fig:EA}
 \end{figure}
 
@@ -108,7 +108,7 @@ Una solución $u$ es un optimo de Pareto si no hay otra solución $v$ en el espaci
 \begin{figure}[h]
 	 \includegraphics{Capitulo2/assets/dominancia.eps}
 	\centering
-	\caption{Ejemplo de dominancia y óptimo de Pareto}
+	\caption{Ejemplo de dominancia y Óptimo de Pareto}
 	\label{fig:dominancia}
 \end{figure}
 
@@ -123,7 +123,7 @@ La frontera de Pareto es el conjunto de todas las soluciones no dominadas las cu
 	\caption{Ejemplo frente de Pareto}
 	\label{fig:frente_pareto}
 \end{figure}
-\subsection{Algoritmo NSGAII (Nondominated Genetic Algorithm)}
+\subsection{Algoritmo NSGAII (\textit{Non-Dominated Sorting Genetic Algorithm II})}
 El algoritmo NSGAII~\cite{Deb2002} pertenece a la categoría de algoritmo evolutivo multiobjetivo (MOEA). Este algoritmo al igual que el Algoritmo Genético hace uso de los operadores de selección, cruzamiento y mutación para encontrar un conjunto de soluciones optimas a problemas que cuentan con más de un objetivo. Adicionalmente, NSGAII añade conceptos y operadores adicionales los cuales permiten mejorar su rendimiento y la calidad de las soluciones obtenidas. NSGAII puede ser implementado siguiendo los mismos pasos de el algoritmo evolutivo mostrados en la Figura~\ref{fig:EA}, utilizando la función de remplazo mostrada en la Figura~\ref{fig:RemplaceNSGAII}.
 
 En la Figura~\ref{fig:RemplaceNSGAII} se puede ver que el proceso de remplazo dentro del Algoritmo Genético consiste en unir la población actual y la población descendiente (formada por los elementos resultantes del operador de selección y sobre la que se han aplicado el cruzamiento y la mutación) en un solo elemento llamada unionPoblación. Luego, esta  es enviada a un procedimiento el cual ordena y categoriza la población en diversos frentes de acuerdo al concepto de dominancia de Pareto. Después, de que la población a sido categorizada se procede a iterar sobre los frentes y añadir sus elementos a una nueva población con el cuidado de no sobrepasar el tamaño de la población deseada ($N$). En caso de que uno de los frentes no pueda ser añadido en su totalidad por sobrepasar dicho tamaño, se llevará a cabo un proceso por el cual se ordenaran las soluciones en dicho frente basadas en un criterio conocido como densidad de las soluciones. Una vez realizado el ordenamiento, se agregarán las mejores soluciones a la nueva población hasta alcanzar el tamaño deseado  $N$. Se puede ver un ejemplo de este procedimiento gráficamente en la Figura~\ref{fig:procedimientoNSGAII}.
