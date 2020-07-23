@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 476 677" style="enable-background:new 0 0 476 677;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.2;fill:#C0C0C0;enable-background:new    ;}
+	.st1{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st2{fill:#FFFFFF;}
+	.st3{font-family:'Arial-BoldMT';}
+	.st4{font-size:13px;}
+</style>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st0" d="M667.5,217.3c0-5.2,4.3-9.5,9.5-9.5s9.5,4.3,9.5,9.5s-4.3,9.5-9.5,9.5S667.5,222.5,667.5,217.3z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path d="M660.5,210.3c0-5.2,4.3-9.5,9.5-9.5s9.5,4.3,9.5,9.5s-4.3,9.5-9.5,9.5S660.5,215.5,660.5,210.3z"/>
+</g>
+<path class="st0" d="M242,674.8c-6.9,0-12.5-5.6-12.5-12.5s5.6-12.5,12.5-12.5s12.5,5.6,12.5,12.5S248.9,674.8,242,674.8"/>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M644.5,845.3c0-6.9,5.6-12.5,12.5-12.5s12.5,5.6,12.5,12.5s-5.6,12.5-12.5,12.5S644.5,852.2,644.5,845.3z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path d="M649.5,845.3c0-4.1,3.4-7.5,7.5-7.5s7.5,3.4,7.5,7.5s-3.4,7.5-7.5,7.5S649.5,849.4,649.5,845.3z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st0" d="M525.5,247.8h308c6.7,0,10,3.3,10,10v33c0,6.7-3.3,10-10,10h-308c-6.7,0-10-3.3-10-10v-33
+		C515.5,251.1,518.8,247.8,525.5,247.8z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st2" d="M518.5,240.8h308c6.7,0,10,3.3,10,10v33c0,6.7-3.3,10-10,10h-308c-6.7,0-10-3.3-10-10v-33
+		C508.5,244.1,511.8,240.8,518.5,240.8z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M518.5,240.8h308c6.7,0,10,3.3,10,10v33c0,6.7-3.3,10-10,10h-308c-6.7,0-10-3.3-10-10v-33
+		C508.5,244.1,511.8,240.8,518.5,240.8z"/>
+</g>
+<text transform="matrix(1 0 0 1 104.5356 70.3)" class="st3 st4">Crear clase que herede de Problem e implementar</text>
+<text transform="matrix(1 0 0 1 215.4546 83.3)" class="st3 st4">los metodos</text>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st0" d="M549.5,343.8h252c6.7,0,10,3.3,10,10v59c0,6.7-3.3,10-10,10h-252c-6.7,0-10-3.3-10-10v-59
+		C539.5,347.1,542.8,343.8,549.5,343.8z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st2" d="M542.5,336.8h252c6.7,0,10,3.3,10,10v59c0,6.7-3.3,10-10,10h-252c-6.7,0-10-3.3-10-10v-59
+		C532.5,340.1,535.8,336.8,542.5,336.8z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M542.5,336.8h252c6.7,0,10,3.3,10,10v59c0,6.7-3.3,10-10,10h-252c-6.7,0-10-3.3-10-10v-59
+		C532.5,340.1,535.8,336.8,542.5,336.8z"/>
+</g>
+<text transform="matrix(1 0 0 1 170.2551 166.3)" class="st3 st4">Clear clase que herede de</text>
+<text transform="matrix(1 0 0 1 163.0378 179.3)" class="st3 st4">SingleObjectiveRegistrable o</text>
+<text transform="matrix(1 0 0 1 148.5874 192.3)" class="st3 st4">MonoObjectiveRegistrable para el</text>
+<text transform="matrix(1 0 0 1 188.6919 205.3)" class="st3 st4">problema especifico</text>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st0" d="M469.5,703.8H853c6.7,0,10,3.3,10,10v20c0,6.7-3.3,10-10,10H469.5c-6.7,0-10-3.3-10-10v-20
+		C459.5,707.1,462.8,703.8,469.5,703.8z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st2" d="M462.5,696.8H846c6.7,0,10,3.3,10,10v20c0,6.7-3.3,10-10,10H462.5c-6.7,0-10-3.3-10-10v-20
+		C452.5,700.1,455.8,696.8,462.5,696.8z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M462.5,696.8H846c6.7,0,10,3.3,10,10v20c0,6.7-3.3,10-10,10H462.5c-6.7,0-10-3.3-10-10v-20
+		C452.5,700.1,455.8,696.8,462.5,696.8z"/>
+</g>
+<text transform="matrix(1 0 0 1 46.8987 526.3)" class="st3 st4">Agregar la clase que hereda Registrable a ProblemRegister.java</text>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st0" d="M533.5,471.8h268c6.7,0,10,3.3,10,10v72c0,6.7-3.3,10-10,10h-268c-6.7,0-10-3.3-10-10v-72
+		C523.5,475.1,526.8,471.8,533.5,471.8z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st2" d="M526.5,464.8h268c6.7,0,10,3.3,10,10v72c0,6.7-3.3,10-10,10h-268c-6.7,0-10-3.3-10-10v-72
+		C516.5,468.1,519.8,464.8,526.5,464.8z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M526.5,464.8h268c6.7,0,10,3.3,10,10v72c0,6.7-3.3,10-10,10h-268c-6.7,0-10-3.3-10-10v-72
+		C516.5,468.1,519.8,464.8,526.5,464.8z"/>
+</g>
+<text transform="matrix(1 0 0 1 121.7983 294.3)" class="st3 st4">Configurar el constructor de la clase que</text>
+<text transform="matrix(1 0 0 1 125.0356 307.3)" class="st3 st4">hereda de Registrable configurando los</text>
+<text transform="matrix(1 0 0 1 116.3743 320.3)" class="st3 st4">parametros e indicando las alternativas de</text>
+<text transform="matrix(1 0 0 1 205.616 333.3)" class="st3 st4">operadores</text>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st0" d="M605.5,775.8h111.1c6.7,0,10,3.3,10,10v20c0,6.7-3.3,10-10,10H605.5c-6.7,0-10-3.3-10-10v-20
+		C595.5,779.1,598.8,775.8,605.5,775.8z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st2" d="M598.5,768.8h111.1c6.7,0,10,3.3,10,10v20c0,6.7-3.3,10-10,10H598.5c-6.7,0-10-3.3-10-10v-20
+		C588.5,772.1,591.8,768.8,598.5,768.8z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M598.5,768.8h111.1c6.7,0,10,3.3,10,10v20c0,6.7-3.3,10-10,10H598.5c-6.7,0-10-3.3-10-10v-20
+		C588.5,772.1,591.8,768.8,598.5,768.8z"/>
+</g>
+<text transform="matrix(1 0 0 1 175.3354 598.3)" class="st3 st4">Compilar y Ejecutar</text>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st0" d="M445.5,607.8h436c6.7,0,10,3.3,10,10v33c0,6.7-3.3,10-10,10h-436c-6.7,0-10-3.3-10-10v-33
+		C435.5,611.1,438.8,607.8,445.5,607.8z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st2" d="M438.5,600.8h436c6.7,0,10,3.3,10,10v33c0,6.7-3.3,10-10,10h-436c-6.7,0-10-3.3-10-10v-33
+		C428.5,604.1,431.8,600.8,438.5,600.8z"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M438.5,600.8h436c6.7,0,10,3.3,10,10v33c0,6.7-3.3,10-10,10h-436c-6.7,0-10-3.3-10-10v-33
+		C428.5,604.1,431.8,600.8,438.5,600.8z"/>
+</g>
+<text transform="matrix(1 0 0 1 29.6421 430.3)" class="st3 st4">Implementar el metodo build que construye el algoritmo y establece los</text>
+<text transform="matrix(1 0 0 1 88.1484 443.3)" class="st3 st4">operadores que seran usados durante la ejecución</text>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M670.5,220.8l1,19"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M666.8,229.9l4.7,9.9l3.7-10.4"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M671.5,294.8l-2,41"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M665.8,325.4l3.7,10.4l4.7-9.9"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M666.5,416.8l-3,47"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M659.9,453.4l3.6,10.4l4.8-9.9"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M658.5,557.8l-1,42"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M653.5,589.5l4,10.3l4.5-10.1"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M655.5,654.8l-1,41"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M650.5,685.5l4,10.3l4.5-10.1"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M653.5,737.8v30"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M649.3,757.6l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M654.5,809.8l1,22"/>
+</g>
+<g transform="translate(-422,-190) scale(1,1)">
+	<path class="st1" d="M650.8,821.8l4.7,10l3.7-10.3"/>
+</g>
+</svg>

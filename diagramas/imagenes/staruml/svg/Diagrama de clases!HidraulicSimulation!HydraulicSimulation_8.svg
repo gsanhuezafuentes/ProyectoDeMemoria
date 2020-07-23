@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 597.4 635" style="enable-background:new 0 0 597.4 635;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.2;fill:#C0C0C0;enable-background:new    ;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{font-family:'Arial-BoldMT';}
+	.st4{font-size:15px;}
+	.st5{font-family:'ArialMT';}
+	.st6{font-family:'Arial-BoldItalicMT';}
+</style>
+<g transform="translate(-742,-158) scale(1,1)">
+	<rect x="829.6" y="171.5" class="st0" width="432.4" height="163"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<rect x="822.6" y="164.5" class="st1" width="432.4" height="163"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M822.6,164.5H1255v163H822.6V164.5z"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M822.6,208.5H1255"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M822.6,218.5H1255"/>
+</g>
+<text transform="matrix(1 0 0 1 230.4841 28)" class="st3 st4">HydraulicSimulation</text>
+<text transform="matrix(1 0 0 1 210.9028 45)" class="st5 st4">(from hydraulicsimulation)</text>
+<text transform="matrix(1 0 0 1 85.5618 80)" class="st5 st4">+run(inpPath: String): HydraulicSimulation</text>
+<path class="st2" d="M85.6,80h279.7"/>
+<text transform="matrix(1 0 0 1 85.5618 97)" class="st5 st4">+getNodeResultInTime(time: String): NodeSimulationResult</text>
+<text transform="matrix(1 0 0 1 85.5618 114)" class="st5 st4">+getLinkResultInTime(time: String): LinkSimulationResult</text>
+<text transform="matrix(1 0 0 1 85.5618 131)" class="st5 st4">+getTimes(): String[*]</text>
+<text transform="matrix(1 0 0 1 85.5618 148)" class="st5 st4">+getTimeSeriesForNode(nodeId: String): NodeSimulationResult</text>
+<text transform="matrix(1 0 0 1 85.5618 165)" class="st5 st4">+getTimeSeriesForLink(linkId: String): LinkSimulationResult</text>
+<g transform="translate(-742,-158) scale(1,1)">
+	<rect x="757.6" y="595.5" class="st0" width="269.5" height="191"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<rect x="750.6" y="588.5" class="st1" width="269.5" height="191"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M750.6,588.5h269.5v191H750.6V588.5z"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M750.6,632.5h269.5"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M750.6,642.5h269.5"/>
+</g>
+<text transform="matrix(1 0 0 1 73.2998 452)" class="st3 st4">LinkSimulationResult</text>
+<text transform="matrix(1 0 0 1 57.4758 469)" class="st5 st4">(from hydraulicsimulation)</text>
+<text transform="matrix(1 0 0 1 13.5618 504)" class="st5 st4">«constructor»+LinkSimulationResult(id:</text>
+<text transform="matrix(1 0 0 1 13.5618 519)" class="st5 st4">String, timeInSeconds: long, flow:</text>
+<text transform="matrix(1 0 0 1 13.5618 534)" class="st5 st4">double, velocity: double, unitHeadloss:</text>
+<text transform="matrix(1 0 0 1 13.5618 549)" class="st5 st4">double, status: Status)</text>
+<text transform="matrix(1 0 0 1 13.5618 566)" class="st5 st4">+getFlow(): double</text>
+<text transform="matrix(1 0 0 1 13.5618 583)" class="st5 st4">+getVelocity(): double</text>
+<text transform="matrix(1 0 0 1 13.5618 600)" class="st5 st4">+getHeadloss(): double</text>
+<text transform="matrix(1 0 0 1 13.5618 617)" class="st5 st4">+getStatus(): Status</text>
+<g transform="translate(-742,-158) scale(1,1)">
+	<rect x="1061.6" y="595.5" class="st0" width="277.9" height="191"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<rect x="1054.6" y="588.5" class="st1" width="277.9" height="191"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M1054.6,588.5h277.9v191h-277.9V588.5z"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M1054.6,632.5h277.9"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M1054.6,642.5h277.9"/>
+</g>
+<text transform="matrix(1 0 0 1 377.2998 452)" class="st3 st4">NodeSimulationResult</text>
+<text transform="matrix(1 0 0 1 365.647 469)" class="st5 st4">(from hydraulicsimulation)</text>
+<text transform="matrix(1 0 0 1 317.5618 504)" class="st5 st4">«constructor»+NodeSimulationResult(id:</text>
+<text transform="matrix(1 0 0 1 317.5618 519)" class="st5 st4">String, timeInSeconds: long, demand:</text>
+<text transform="matrix(1 0 0 1 317.5618 534)" class="st5 st4">double, head: double, pressure: double,</text>
+<text transform="matrix(1 0 0 1 317.5618 549)" class="st5 st4">quality: double)</text>
+<text transform="matrix(1 0 0 1 317.5618 566)" class="st5 st4">+getDemand(): double</text>
+<text transform="matrix(1 0 0 1 317.5618 583)" class="st5 st4">+getHead(): double</text>
+<text transform="matrix(1 0 0 1 317.5618 600)" class="st5 st4">+getPressure(): double</text>
+<text transform="matrix(1 0 0 1 317.5618 617)" class="st5 st4">+getQuality(): double</text>
+<g transform="translate(-742,-158) scale(1,1)">
+	<rect x="949.6" y="411.5" class="st0" width="189" height="112"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<rect x="942.6" y="404.5" class="st1" width="189" height="112"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M942.6,404.5h189v112h-189V404.5z"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M942.6,448.5h189"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M942.6,458.5h189"/>
+</g>
+<text transform="matrix(1 0 0 1 238.7642 268)" class="st6 st4">ResultSimulation</text>
+<text transform="matrix(1 0 0 1 209.1816 285)" class="st5 st4">(from hydraulicsimulation)</text>
+<text transform="matrix(1 0 0 1 205.5618 320)" class="st5 st4">+getId(): String</text>
+<text transform="matrix(1 0 0 1 205.5618 337)" class="st5 st4">+getTimeInSeconds(): long</text>
+<text transform="matrix(1 0 0 1 205.5618 354)" class="st5 st4">+getTimeString(): String</text>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M949.6,587.5l48-70"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st1" d="M993,539l4.6-21.5l-18.4,12"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M993,539l4.6-21.5l-18.4,12L993,539"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M1125.6,587.5l-49-70"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st1" d="M1095.1,529.3l-18.6-11.8l4.8,21.5"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M1095.1,529.3l-18.6-11.8l4.8,21.5L1095.1,529.3"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M1037.6,403.5v-75"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path d="M1041.8,338.7l-4.2-10.2l-4.2,10.2l4.2,11.8"/>
+</g>
+<g transform="translate(-742,-158) scale(1,1)">
+	<path class="st2" d="M1041.8,338.7l-4.2-10.2l-4.2,10.2l4.2,11.8L1041.8,338.7"/>
+</g>
+<text transform="matrix(1 0 0 1 305.0618 231)" class="st5 st4">*</text>
+</svg>

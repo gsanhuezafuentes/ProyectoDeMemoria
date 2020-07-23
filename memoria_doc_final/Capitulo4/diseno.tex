@@ -25,8 +25,8 @@ Mientras avanzaba el desarrollo fue necesario ir modificando el documento de dis
       6 & Modificar y mejora del diagrama de secuencia de la optimización. & Se modifico el diagrama de secuencia de la optimización debido a la aparición de un nuevo requisito.  \\
       \hline
     \end{tabular}
-   \label{fig:cambios_diseno}
- \end{center}
+    \label{fig:cambios_diseno}
+  \end{center}
 \end{table}
 
 Como una de las primeras tareas realizadas durante esta fase se procedió a definir la arquitectura de la aplicación, tanto desde el punto físico como el lógico. 
@@ -34,31 +34,31 @@ Como una de las primeras tareas realizadas durante esta fase se procedió a defin
 La arquitectura física del programa a desarrollar es la arquitectura monolítica, cuya característica es que software que posee esta arquitectura funciona localmente sin necesidad de interactuar con otros equipos. Esta elección se debe a que en reuniones con el cliente se estableció que el programa será usado localmente y debe operar sobre el sistema operativo Windows. Limitación debida principalmente al acceso a funciones nativas cuando se realizan simulaciones hidráulicas utilizando la  librería dinámica de Epanet. La Figura~\ref{fig:arq_fisica} muestra el diagrama de la arquitectura monolítica.
 
 \begin{figure}[H]
-	\includegraphics[width=0.5\textwidth]{Capitulo4/assets/arquitectura_fisica.png}
-	\centering
-	\caption{Arquitectura física monolítica}
-	\label{fig:arq_fisica}
+  \includegraphics[width=0.5\textwidth]{Capitulo4/assets/arquitectura_fisica.png}
+  \centering
+  \caption{Arquitectura física monolítica}
+  \label{fig:arq_fisica}
 \end{figure}
 
-En cuanto a la arquitectura lógica se escogió utilizar Modelo-Vista-Controlador. Ésta elección se debe al hecho de que dicha arquitectura nos permite separar la capa de interfaz de usuario de la lógica de la aplicación mejorando asi escalabilidad y mantenibilidad del software. La Figura~\ref{fig:arq_logica} muestra el diagrama de la arquitectura lógica, así como los principales módulos de la aplicación.
+En cuanto a la arquitectura lógica se escogió utilizar Modelo-Vista-Controlador. Ésta elección es debido al hecho de que dicha arquitectura nos permite separar la capa de interfaz de usuario de la lógica de la aplicación mejorando asi escalabilidad y mantenibilidad del software. La Figura~\ref{fig:arq_logica} muestra el diagrama de la arquitectura lógica, así como los principales módulos de la aplicación.
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{Capitulo4/assets/arquitectura_logica.eps}
-	\centering
-	\caption{Arquitectura lógica Modelo-Vista-Controlador}
-	\label{fig:arq_logica}
+  \centering
+  \caption{Arquitectura lógica Modelo-Vista-Controlador}
+  \label{fig:arq_logica}
 \end{figure}
 
 A continuación se presentarán los diseños relaciónados por cada una de las funcionalidades escogidas con anterioridad.
 
-\paragraph{Funcionalidad 1:} Para implementar esta funcionalidad es necesario abstraer en un conjunto de clases los datos almacenados en el archivo de configuración de red. La Figura~\ref{fig:dia_clase_network} muestra el diagrama de clases de las clases sobre la que almacenan los datos al momento de cargar la red. 
+\paragraph{Funcionalidad 1:} Para implementar esta funcionalidad es necesario abstraer en un conjunto de clases los datos almacenados en el archivo de configuración de red. La Figura~\ref{fig:dia_clase_network} muestra el diagrama de clases reducido (se dejan fuera varias clases que especifican las configuraciones generales de la red) de la estructura sobre la que se almacenan los datos al momento de cargar la red. La clase \textit{Network} actúa como un contenedor para las demás clases presentes en el diagrama.
 
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{Capitulo4/assets/d_clases_network.eps}
-	\caption{Diagrama de clases de la abstracción de la red}
-	\label{fig:dia_clase_network}
+  \includegraphics[width=\textheight, angle=90]{Capitulo4/assets/d_clases_network.eps}
+  \caption{Diagrama de clases de la abstracción de la red reducido.}
+  \label{fig:dia_clase_network}
 \end{figure}
 
 El diagrama de la Figura~\ref{fig:dia_sec_visualizacion} muestra el conjunto de clases y los mensajes de la clases que interactúan con la clase \textit{Network} con el fin de visualizar la red. 
@@ -66,8 +66,8 @@ El diagrama de la Figura~\ref{fig:dia_sec_visualizacion} muestra el conjunto de 
 \begin{figure}[H]
   \centering
   \includegraphics[height=\textwidth,angle=90]{Capitulo4/assets/d_sec_visualizacion.eps}
-	\caption{Diagrama de secuencia de la carga y visualización de la red}
-	\label{fig:dia_sec_visualizacion}
+  \caption{Diagrama de secuencia de la carga y visualización de la red}
+  \label{fig:dia_sec_visualizacion}
 \end{figure}
 
 \paragraph{Funcionalidad 2:} Esta es una de las funcionalidades ligada al modulo metaheurística y debido a uno de los requisitos establecidos por el cliente de que la aplicación debe poder extender el número de algoritmos, operadores y problemas implementados es necesario implementar una jerarquía de clases que facilite lo anteriormente mencionado. Es por ello, que se utilizo como base la jerarquía de clases utilizada por el Framework JMetal~\cite{Durillo2010} la cual fue adaptada para ser ocupada por esta aplicación. La Figura~\ref{fig:dia_class_met} corresponde a la jerarquía ya mencionada.
@@ -76,27 +76,79 @@ El diagrama de la Figura~\ref{fig:dia_sec_visualizacion} muestra el conjunto de 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{Capitulo4/assets/d_clases_metaheuristica.eps}
-	\caption{Diagrama de clases modulo metaheurística. Modificación a partir del diagrama presentado en~\cite{Durillo2010}}
-	\label{fig:dia_class_met}
+  \caption{Diagrama de clases modulo metaheurística. Modificación a partir del diagrama presentado en~\cite{Durillo2010}}
+  \label{fig:dia_class_met}
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Debido a la importancia que tienen las metaheurísticas para la aplicación, se explicará de manera general que realiza cada una de las clases e interfaces presentes en la Figura~\ref{fig:dia_class_met}.
+
+\textit{\textbf{Algorithm}} es la interfaz desde la que se heredan, ya sea directa o indirectamente, cada uno de los algoritmos metaheurísticos implementados por la aplicación. Su principal método es \textit{runASingleStep} puesto que éste permite realiza una única iteración del algoritmo, permitiendo así que el programa interactué con la instancia del algoritmo. Esta interacción permite recuperar los resultados intermedios de la optimización, así como también cancelar la ejecución. Un ejemplo de la implementación de este método para GA se muestra en la Figura~\ref{fig:runSingleStep}.
+
+\begin{figure}[h]
+  \begin{lstlisting}
+int step = 0;
+List<IntegerSolution> population;
+public void runSingleStep() throws Exception, EpanetException {
+  List<S> offspringPopulation;
+  List<S> selectionPopulation;
+
+  // Durante la primera iteración inicializa 
+  // y evalúa la población
+  if (step == 0) {
+    population = createInitialPopulation();
+    population = evaluatePopulation(population);
+    initProgress();
+  }
+  // Desde la segunda iteración en adelante selecciona
+  // y reproduce las soluciones
+  if (!isStoppingConditionReached()) {
+    selectionPopulation = selection(population);
+    offspringPopulation = reproduction(selectionPopulation);
+    offspringPopulation = evaluatePopulation(offspringPopulation);
+    population = replacement(population, offspringPopulation);
+    updateProgress();
+  }
+
+  this.step++;
+}
+  \end{lstlisting}
+  \caption{Código del método \textit{runSingleStep} utilizado con GA y NSGAII}
+  \label{fig:runSingleStep}
+\end{figure}
+
+\textit{\textbf{Solution}} es la interfaz que representa la solución del problema. La aplicación implementa esta interfaz en una clase llamada \textit{IntegerSolution}, la cual permite trabajar variables de decisión de tipo entero.
+
+\textit{\textbf{Operator}} es la interfaz de la que heredan todos los tipos de operadores usado en la aplicación. Los operadores son clases que contienen una función que trabaja sobre una o un conjunto de soluciones. Sus usos son muy variables, entre ellos se encuentra la selección de soluciones dentro de un conjunto, la modificación de las variables de decisión de una solución y la combinación de dos soluciones con el fin de generar unas nuevas.
+
+\textit{\textbf{Problem}} es la interfaz de la que heredan todos los problemas. Las clases que implementan esta interfaz son las que se encargan de evaluar y penalizar las soluciones generadas por los algoritmos metaheurísticos en el método \textit{evaluate}. Adicionalmente, esta clase es usada para mapear una solución sobre la red cargada y de esta manera poder generar un nuevo archivo de configuración de red. El método que realiza esto ultimo es \textit{applySolutionToNetwork}.
+
+Las clases \textit{\textbf{ExperimentAlgorithm}} y \textit{\textbf{ExperimentProblem}} actúan como envoltorios para las clases \textit{Algorithm} y \textit{Problem} incorporando algunas funciones adicionales.
+
+Por ultimo la clase \textit{\textbf{Experiment}} es un contenedor de algoritmos. Cada algoritmo agregado al experimento corresponde a una iteración independiente. Actualmente, los experimentos solo deben contener algoritmos del mismo tipo. Los algoritmos deben ser acoplados a un \textit{ExperimentAlgorithm} antes de ser pasados al Experimento.
+
+Cada una de las clases explicadas anteriormente tiene un bajo acoplamiento entre ellas, así como del resto de la aplicación puesto que se hace uso de la técnica llamada Polimorfismo. Esto permite combinar cada una de ellas de diferentes maneras, por ejemplo, se pueden usar distintos algoritmos para el mismo tipo de problema. La limitación de esto es que el problema debe ser compatible con el algoritmo, es decir, si el algoritmo esta diseñado para ser monoobjetivo, entonces el problema debe tener un solo objetivo.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 El diagrama de secuencia de la Figura~\ref{fig:dia_sec_opt} muestra la interacción de las clases con del modulo metaheurísticas, con el resto de clases de la aplicación.
+
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{Capitulo4/assets/d_seq_simulacion-monomulti.eps}
-	\caption{Diagrama de secuencia para llevar a cabo la optimizacion de los problemas}
-	\label{fig:dia_sec_opt}
+  \caption{Diagrama de secuencia para llevar a cabo la optimizacion de los problemas}
+  \label{fig:dia_sec_opt}
 \end{figure}
 
-\paragraph{Funcionalidad 3:} Para implementar esta funcionalidad es necesario implementar un conjunto de clases las cuales guardaran los resultados de la simulación para cada uno de los nodos y enlaces de una red. Estas nuevas clases son las mostradas en la Figura~\ref{fig:dia_class_sim_hyd}.
+\paragraph{Funcionalidad 3:} Para implementar esta funcionalidad es necesario implementar un conjunto de clases las cuales guardarán los resultados de la simulación para cada uno de los nodos y enlaces de una red. Estas nuevas clases son las mostradas en la Figura~\ref{fig:dia_class_sim_hyd}.
 
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{Capitulo4/assets/d_clases_hyd_simulation.eps}
-	\caption{Diagrama de clases para la simulación hidráulica}
-	\label{fig:dia_class_sim_hyd}
+  \caption{Diagrama de clases para la simulación hidráulica}
+  \label{fig:dia_class_sim_hyd}
 \end{figure}
 
 El diagrama de secuencia presentado en la Figura~\ref{fig:dia_sec_sim_hyd} muestra la interacción entre las clases necesarias para realizar la simulación hidráulica utilizando los valores del archivo de red cargado.
@@ -104,8 +156,12 @@ El diagrama de secuencia presentado en la Figura~\ref{fig:dia_sec_sim_hyd} muest
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{Capitulo4/assets/d_seq_simulacion-hidraulica.eps}
-	\caption{Diagrama de secuencia para realizar la simulación hidráulica}
-	\label{fig:dia_sec_sim_hyd}
+  \caption{Diagrama de secuencia para realizar la simulación hidráulica}
+  \label{fig:dia_sec_sim_hyd}
 \end{figure}
 
+En diferentes secciones de este documento se ha mencionado que la aplicación debe ser extensible, refiriéndonos al hecho de que se deben poder agregar nuevos algoritmos, operadores y problemas. Para lograr esto, ademas de la funcionalidad descrita por el diagrama de clases de la Figura \ref{fig:dia_class_met}, presentado para la Funcionalidad 2, se hace uso de una interfaz desde la cual se permiten definir plantillas para crear nuevos experimentos y acoplarlos a la aplicación.
+
 En el \textbf{Anexo~\ref{appendix:diseno}} se puede ver la el documento de diseño de la aplicación.
+
+\clearpage

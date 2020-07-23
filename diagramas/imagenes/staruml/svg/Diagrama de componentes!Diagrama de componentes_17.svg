@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 316 454" style="enable-background:new 0 0 316 454;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.2;fill:#C0C0C0;enable-background:new    ;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{font-family:'Arial-BoldMT';}
+	.st4{font-size:13px;}
+	.st5{fill:none;stroke:#000000;stroke-miterlimit:10;stroke-dasharray:3;}
+</style>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="537.3" y="762.3" class="st0" width="98.4" height="44"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="530.3" y="755.3" class="st1" width="98.4" height="44"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M530.3,755.3h98.4v44h-98.4V755.3z"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="520.3" y="762.3" class="st1" width="20" height="10"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M520.3,762.3h20v10h-20V762.3z"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="520.3" y="782.3" class="st1" width="20" height="10"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M520.3,782.3h20v10h-20V782.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 142.9941 32.8027)" class="st3 st4">GUI</text>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="537.3" y="882.3" class="st0" width="98.4" height="44"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="530.3" y="875.3" class="st1" width="98.4" height="44"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M530.3,875.3h98.4v44h-98.4V875.3z"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="520.3" y="882.3" class="st1" width="20" height="10"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M520.3,882.3h20v10h-20V882.3z"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="520.3" y="902.3" class="st1" width="20" height="10"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M520.3,902.3h20v10h-20V902.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 126.3728 152.8027)" class="st3 st4">Controller</text>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="633.3" y="1050.3" class="st0" width="110" height="44"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="626.3" y="1043.3" class="st1" width="110" height="44"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M626.3,1043.3h110v44h-110V1043.3z"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="616.3" y="1050.3" class="st1" width="20" height="10"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M616.3,1050.3h20v10h-20V1050.3z"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="616.3" y="1070.3" class="st1" width="20" height="10"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M616.3,1070.3h20v10h-20V1070.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 214.4414 320.8027)" class="st3 st4">Metaheuristics</text>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st0" d="M615,981.8c0-6.4,5.1-11.5,11.5-11.5s11.5,5.1,11.5,11.5s-5.1,11.5-11.5,11.5S615,988.2,615,981.8z"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M611.2,982.4c-4.5-4.5-4.5-11.8,0-16.3c4.5-4.5,11.7-4.5,16.2,0"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st1" d="M611,974.8c0-4.7,3.8-8.5,8.5-8.5s8.5,3.8,8.5,8.5s-3.8,8.5-8.5,8.5S611,979.5,611,974.8z"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M611,974.8c0-4.7,3.8-8.5,8.5-8.5s8.5,3.8,8.5,8.5s-3.8,8.5-8.5,8.5S611,979.5,611,974.8z"/>
+</g>
+<text transform="matrix(1 0 0 1 167.8623 263.8027)" class="st3 st4">Interfaz</text>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M659.3,1042.3l-34.3-56"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="457.3" y="1050.3" class="st0" width="98.4" height="44"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="450.3" y="1043.3" class="st1" width="98.4" height="44"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M450.3,1043.3h98.4v44h-98.4V1043.3z"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="440.3" y="1050.3" class="st1" width="20" height="10"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M440.3,1050.3h20v10h-20V1050.3z"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<rect x="440.3" y="1070.3" class="st1" width="20" height="10"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M440.3,1070.3h20v10h-20V1070.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 53.9487 320.8027)" class="st3 st4">Epanet</text>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st5" d="M574.3,800.3v74"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M570.1,864.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M586.3,920.3l22,43"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st0" d="M660.4,1122.3h27.4l11.8,11.8v37.2h-39.2"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st1" d="M653.4,1115.3h27.4l11.8,11.8v37.2h-39.2"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M653.4,1115.3h27.4l11.8,11.8v37.2h-39.2V1115.3"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M680.8,1115.3v11.8h11.8L680.8,1115.3"/>
+</g>
+<text transform="matrix(1 0 0 1 211.1682 441.8027)" class="st3 st4">epajava.jar</text>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st5" d="M675.3,1088.3l-1,26"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M670.5,1104l3.8,10.3l4.6-10"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st5" d="M563.3,920.3l-58,122"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M505.9,1031.3l-0.6,11l8.2-7.4"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st5" d="M615.3,1065.3h-66"/>
+</g>
+<g transform="translate(-430,-742) scale(1,1)">
+	<path class="st2" d="M559.5,1061.1l-10.2,4.2l10.2,4.2"/>
+</g>
+</svg>

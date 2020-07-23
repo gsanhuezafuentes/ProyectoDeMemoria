@@ -6,32 +6,32 @@ La metodología escogida para utilizar durante el desarrollo de este proyecto es 
 Las tareas a desempeñar por cada fase consisten en:
 \paragraph{Análisis:}
 \begin{itemize}
-	\item Identificación y especificación de los requisitos de usuario. 
-	\item Priorización de los requisitos.
-	\item Validación de requisitos.
-	\item Especificación formal de requisitos.
+	\item Captura de requisitos: Durante esta etapa se reúne con el cliente ya sea a físicamente o de manera remota y se conversa y llega a un acuerdo acerca de las funcionalidades que deben ser implementadas en la aplicación.
+	\item Priorización de los requisitos: Junto con el interesado se le asigna una prioridad a los requisitos capturados con el fin de establecer el orden en que estos deben ser implementados.
+	% \item Validación de requisitos.
+	\item Especificación formal de requisitos: En esta etapa se redacta un documento aparte en donde se especifican de manera formal los requisitos. La especificación contiene los siguientes datos por cada uno de los requisitos identificados: id del requisito, descripción, fuente, prioridad, estabilidad, fecha de actualización, estado de la implementación, incremento y el tipo de requisito.
 \end{itemize}
 \paragraph{Diseño:} 
 \begin{itemize}
-	\item Definición y especificación de la arquitectura del sistema.
-	\item Diseño de las interfaces de usuario.
-	\item Diseño de los componentes.
-	\item Especificación formal del diseño del sistema.
+	\item Definición y especificación de la arquitectura del sistema: Durante esta etapa se especifica tanto la arquitectura física como lógica de la aplicación.
+	\item Diseño de las interfaces de usuario: Se diseñan las interfaces de usuario de la aplicación, este diseño se realiza utilizando herramientas de \textit{mockup}, implementando las interfaces directamente sin funcionalidad, entre otras maneras.
+	\item Diseño de los componentes: Se realiza un diagrama de los componentes que conforman la aplicación.
+	\item Especificación formal del diseño del sistema: Se redacta un documento en el que se presentan los diagramas, las interfaces y los detalles de la implementación.
 \end{itemize}
 \paragraph{Implementación:}
 \begin{itemize}
-	\item Programación de los componentes de software.
-	\item Integración de los componentes de software.
-	\item Elaboración del producto entregable.
-	\item Elaboración de manual de usuario.
+	\item Programación de los componentes de software: Consiste en codificar con el fin de implementar las funcionalidades para cumplir con los requisitos.
+	\item Integración de los componentes de software: Consiste en tomar cada uno de los módulos independientes e integrarlos dentro de un solo sistema.
+	\item Elaboración del producto entregable: Se empaqueta la aplicación para generar un archivo que pueda ser distribuido. Éste puede ser un jar o generar una aplicación que posea todas las dependencies, incluyendo Java, y que se ejecuta a partir del archivo de extensión exe.
+	\item Elaboración de manual de usuario: Consiste en redactar un manual de usuario que indica como realizar ciertas tareas dentro de la aplicación.
 \end{itemize}
 \paragraph{Pruebas:}
 \begin{itemize}
-	\item Verificación del producto entregable.
-	\item Definición y especificación de casos de prueba.
+	\item Definición de casos de prueba: Esta tarea consiste en identificar las pruebas que deben ser realizadas para validar los componentes del sistema. Se dividen en dos tipos de prueba, automatizadas y manuales.
+	\item Especificación formal de pruebas: Se redacta un documento en donde se especifican las pruebas realizadas. Para cada especificación de los caso de prueba se definen los siguientes elementos: id de prueba, título, característica a evaluar, el objetivo de la evaluación, la configuración de la aplicación al momento de realizar la prueba, los datos de prueba a utilizar, las acciones que hay que realizar durante la prueba y finalmente los resultados esperados de la ejecución.
+	\item Ejecución de pruebas: Durante esta etapa se ejecutan las pruebas sobre el programa y se documenta los errores encontrados para ser resueltos en la iteración posterior, si es que son complejos de resolver. Si los errores encontrados son simples se resuelven en el momento.
 	% \item Validación del producto.
 	% \item Registro de incidencias.
-	\item Especificación formal de pruebas.
 \end{itemize}
 
 Cada una de las fases mencionadas anteriormente tiene como resultado un documento de especificación formal. Específicamente, estos contienen el siguiente contenido:
@@ -55,7 +55,7 @@ Cada una de las fases mencionadas anteriormente tiene como resultado un document
 \paragraph{Manual de usuario:} Explicación acerca de la capacidades de la aplicación, acompañada de esquemas y ejemplos de uso.
 \paragraph{Especificación formal de pruebas:} 
 \begin{itemize}
-	\item Se documenta las pruebas automatizadas que se realizan y sobre que elemento se llevan a cabo.
+	\item Se documenta las pruebas automatizadas y manuales que se realizan y sobre que elemento se llevan a cabo.
 \end{itemize}
 
 La razón por la que se utiliza esta metodología sobre otras es porque el producto resultante de este proyecto esta pensado para servir como base para futuros trabajos. Debido a esto es necesario documentar correctamente los detalles de la implementación para que otros programadores puedan continuar con su desarrollo en el futuro. Aunque existen otras metodologías como cascada u otras tradicionales, estas son difíciles de llevar a cabo por la cantidad de documentación que se requiere, mientras que metodologías de desarrollo ágil carecen en cuanto a la documentación que se necesita para el sistema a desarrollar. Adicionalmente, esta metodología nos permite obtener una retroalimentación al final de cada iteración, obtener nuevos requisitos que no hayan quedado definidos en etapas anteriores o refinar los requisitos y el diseño ya existente, permitiendo así mejorar la calidad del producto final.
