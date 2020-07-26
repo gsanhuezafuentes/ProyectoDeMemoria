@@ -234,7 +234,13 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 
     /*
      * Transforma la una solucion "comprimida" a la version real en matrices para
-     * PSMO
+     * PSMO.
+     *
+     * Each row is a pump. Each column is a hour (1-24).
+     *
+     * 1 1 1 0 0 1 0 0 0 0 1 0 1 0 0 1 0 0 1 0 1 1 1 0
+     * 0 0 0 1 1 0 0 0 1 0 0 0 0 0 0 0 1 1 0 1 1 0 1 1
+     * 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 0 1
      */
     private int[][] generateBinaryMatrix(IntegerSolution solution) {
 
@@ -255,7 +261,8 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
                 matrix[j][i] = a;
             }
         }
-
+        
+//        System.out.println(solution);
 //		for (int i = 0; i < matrix.length; i++) {
 //			for (int j = 0; j < matrix[0].length; j++) {
 //				System.out.print(matrix[i][j]+ " ");
@@ -269,16 +276,16 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
     /**
      * Crea una matrix con las combinaciones posibles.
      * <p>
-     * Example of a network of 3 pumps.
+     * Example of a network of 3 pumps. Each column is a pump.
      * <p>
-     * 0 0 0
-     * 1 0 0
-     * 0 1 0
-     * 1 1 0
-     * 0 0 1
-     * 1 0 1
-     * 0 1 1
-     * 1 1 1
+     * 0 0 0<br>
+     * 1 0 0<br>
+     * 0 1 0<br>
+     * 1 1 0<br>
+     * 0 0 1<br>
+     * 1 0 1<br>
+     * 0 1 1<br>
+     * 1 1 1<br>
      */
     private void generateCombinations(int numPumps) {
         combination = new int[(int) Math.pow(2, numPumps)][numPumps];
@@ -305,15 +312,15 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
             }
         }
 
-       /* for (int i = 0; i < combination.length; i++) {
-            for (int j = 0; j <
-                    combination[0].length; j++) {
-                System.out.print(combination[i][j] + " ");
-            }
-            System.out.println("");
-        }
-
-        System.out.println("");*/
+//        for (int i = 0; i < combination.length; i++) {
+//            for (int j = 0; j <
+//                    combination[0].length; j++) {
+//                System.out.print(combination[i][j] + " ");
+//            }
+//            System.out.println("");
+//        }
+//
+//        System.out.println("");
 
     }
 
@@ -334,7 +341,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
         overallConstraintViolationDegree = new OverallConstraintViolation<IntegerSolution>();
         numberOfViolatedConstraints = new NumberOfViolatedConstraints<IntegerSolution>();
         setNumberOfObjectives(2);
-        setNumberOfVariables(24);
+        setNumberOfVariables(24); // hours
         setName("VanzylOriginal");
         setNumberOfConstraints(numConstraints);
 

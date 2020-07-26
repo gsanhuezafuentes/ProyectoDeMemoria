@@ -16,7 +16,7 @@ Mientras avanzaba el desarrollo fue necesario ir modificando el documento de dis
       \hline
       2 & No hubieron cambios & No hubieron cambios en esta iteración en el aspecto del diseño.\\
       \hline
-      3 & Diseñar interfaces de usuario.\newline Especificar detalles de la implementación referente a las anotaciones de Java (Java Annotations).\newline Generar diagrama de secuencia de optimización. & Durante esta fase de diseñaron algunas de las interfaces de usuario de la aplicación. \newline Los diagramas de secuencia creados indican la interacción entre las clases para poder realizar una tarea.\\
+      3 & Diseñar interfaces de usuario.\newline Especificar detalles de la implementación referente a las anotaciones de Java (\textit{Java Annotations}) y \textit{Java Reflection}.\newline Generar diagrama de secuencia de optimización. & Durante esta fase de diseñaron algunas de las interfaces de usuario de la aplicación. \newline Los diagramas de secuencia creados indican la interacción entre las clases para poder realizar una tarea.\\
       \hline
       4 & No hubieron cambios & No hubieron cambios en esta iteración en el aspecto del diseño.\\
       \hline
@@ -33,7 +33,7 @@ Como una de las primeras tareas realizadas durante esta fase se procedió a defin
 
 La arquitectura física del programa a desarrollar es la arquitectura monolítica, cuya característica es que software que posee esta arquitectura funciona localmente sin necesidad de interactuar con otros equipos. Esta elección se debe a que en reuniones con el cliente se estableció que el programa será usado localmente y debe operar sobre el sistema operativo Windows. Limitación debida principalmente al acceso a funciones nativas cuando se realizan simulaciones hidráulicas utilizando la  librería dinámica de Epanet. La Figura~\ref{fig:arq_fisica} muestra el diagrama de la arquitectura monolítica.
 
-\begin{figure}[H]
+\begin{figure}[h]
   \includegraphics[width=0.5\textwidth]{Capitulo4/assets/arquitectura_fisica.png}
   \centering
   \caption{Arquitectura física monolítica}
@@ -42,7 +42,7 @@ La arquitectura física del programa a desarrollar es la arquitectura monolítica,
 
 En cuanto a la arquitectura lógica se escogió utilizar Modelo-Vista-Controlador. Ésta elección es debido al hecho de que dicha arquitectura nos permite separar la capa de interfaz de usuario de la lógica de la aplicación mejorando asi escalabilidad y mantenibilidad del software. La Figura~\ref{fig:arq_logica} muestra el diagrama de la arquitectura lógica, así como los principales módulos de la aplicación.
 
-\begin{figure}[H]
+\begin{figure}[h]
   \includegraphics[width=\textwidth]{Capitulo4/assets/arquitectura_logica.eps}
   \centering
   \caption{Arquitectura lógica Modelo-Vista-Controlador}
@@ -54,7 +54,7 @@ A continuación se presentarán los diseños relaciónados por cada una de las funci
 \paragraph{Funcionalidad 1:} Para implementar esta funcionalidad es necesario abstraer en un conjunto de clases los datos almacenados en el archivo de configuración de red. La Figura~\ref{fig:dia_clase_network} muestra el diagrama de clases reducido (se dejan fuera varias clases que especifican las configuraciones generales de la red) de la estructura sobre la que se almacenan los datos al momento de cargar la red. La clase \textit{Network} actúa como un contenedor para las demás clases presentes en el diagrama.
 
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \includegraphics[width=\textheight, angle=90]{Capitulo4/assets/d_clases_network.eps}
   \caption{Diagrama de clases de la abstracción de la red reducido.}
@@ -63,9 +63,9 @@ A continuación se presentarán los diseños relaciónados por cada una de las funci
 
 El diagrama de la Figura~\ref{fig:dia_sec_visualizacion} muestra el conjunto de clases y los mensajes de la clases que interactúan con la clase \textit{Network} con el fin de visualizar la red. 
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
-  \includegraphics[height=\textwidth,angle=90]{Capitulo4/assets/d_sec_visualizacion.eps}
+  \includegraphics[height=\textwidth, angle=90]{Capitulo4/assets/d_sec_visualizacion.eps}
   \caption{Diagrama de secuencia de la carga y visualización de la red}
   \label{fig:dia_sec_visualizacion}
 \end{figure}
@@ -73,9 +73,9 @@ El diagrama de la Figura~\ref{fig:dia_sec_visualizacion} muestra el conjunto de 
 \paragraph{Funcionalidad 2:} Esta es una de las funcionalidades ligada al modulo metaheurística y debido a uno de los requisitos establecidos por el cliente de que la aplicación debe poder extender el número de algoritmos, operadores y problemas implementados es necesario implementar una jerarquía de clases que facilite lo anteriormente mencionado. Es por ello, que se utilizo como base la jerarquía de clases utilizada por el Framework JMetal~\cite{Durillo2010} la cual fue adaptada para ser ocupada por esta aplicación. La Figura~\ref{fig:dia_class_met} corresponde a la jerarquía ya mencionada.
 
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
-  \includegraphics[width=\textwidth]{Capitulo4/assets/d_clases_metaheuristica.eps}
+  \includegraphics[height=\textwidth, angle=90]{Capitulo4/assets/d_clases_metaheuristica.eps}
   \caption{Diagrama de clases modulo metaheurística. Modificación a partir del diagrama presentado en~\cite{Durillo2010}}
   \label{fig:dia_class_met}
 \end{figure}
@@ -126,7 +126,7 @@ public void runSingleStep() throws Exception, EpanetException {
 
 Las clases \textit{\textbf{ExperimentAlgorithm}} y \textit{\textbf{ExperimentProblem}} actúan como envoltorios para las clases \textit{Algorithm} y \textit{Problem} incorporando algunas funciones adicionales.
 
-Por ultimo la clase \textit{\textbf{Experiment}} es un contenedor de algoritmos. Cada algoritmo agregado al experimento corresponde a una iteración independiente. Actualmente, los experimentos solo deben contener algoritmos del mismo tipo. Los algoritmos deben ser acoplados a un \textit{ExperimentAlgorithm} antes de ser pasados al Experimento.
+Por ultimo la clase \textit{\textbf{Experiment}} es un contenedor de algoritmos. Cada algoritmo agregado al experimento corresponde a una iteración independiente. Actualmente, se pensaron los experimentos para solo contener varias instancias de un mismo algoritmo. Los algoritmos deben ser acoplados a un \textit{ExperimentAlgorithm} antes de ser agregados al Experimento.
 
 Cada una de las clases explicadas anteriormente tiene un bajo acoplamiento entre ellas, así como del resto de la aplicación puesto que se hace uso de la técnica llamada Polimorfismo. Esto permite combinar cada una de ellas de diferentes maneras, por ejemplo, se pueden usar distintos algoritmos para el mismo tipo de problema. La limitación de esto es que el problema debe ser compatible con el algoritmo, es decir, si el algoritmo esta diseñado para ser monoobjetivo, entonces el problema debe tener un solo objetivo.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -134,7 +134,7 @@ Cada una de las clases explicadas anteriormente tiene un bajo acoplamiento entre
 El diagrama de secuencia de la Figura~\ref{fig:dia_sec_opt} muestra la interacción de las clases con del modulo metaheurísticas, con el resto de clases de la aplicación.
 
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{Capitulo4/assets/d_seq_simulacion-monomulti.eps}
   \caption{Diagrama de secuencia para llevar a cabo la optimizacion de los problemas}
@@ -144,7 +144,7 @@ El diagrama de secuencia de la Figura~\ref{fig:dia_sec_opt} muestra la interacci
 \paragraph{Funcionalidad 3:} Para implementar esta funcionalidad es necesario implementar un conjunto de clases las cuales guardarán los resultados de la simulación para cada uno de los nodos y enlaces de una red. Estas nuevas clases son las mostradas en la Figura~\ref{fig:dia_class_sim_hyd}.
 
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{Capitulo4/assets/d_clases_hyd_simulation.eps}
   \caption{Diagrama de clases para la simulación hidráulica}
@@ -153,14 +153,31 @@ El diagrama de secuencia de la Figura~\ref{fig:dia_sec_opt} muestra la interacci
 
 El diagrama de secuencia presentado en la Figura~\ref{fig:dia_sec_sim_hyd} muestra la interacción entre las clases necesarias para realizar la simulación hidráulica utilizando los valores del archivo de red cargado.
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
-  \includegraphics[width=\textwidth]{Capitulo4/assets/d_seq_simulacion-hidraulica.eps}
+  \includegraphics[height=\textwidth, angle=90]{Capitulo4/assets/d_seq_simulacion-hidraulica.eps}
   \caption{Diagrama de secuencia para realizar la simulación hidráulica}
   \label{fig:dia_sec_sim_hyd}
 \end{figure}
 
-En diferentes secciones de este documento se ha mencionado que la aplicación debe ser extensible, refiriéndonos al hecho de que se deben poder agregar nuevos algoritmos, operadores y problemas. Para lograr esto, ademas de la funcionalidad descrita por el diagrama de clases de la Figura \ref{fig:dia_class_met}, presentado para la Funcionalidad 2, se hace uso de una interfaz desde la cual se permiten definir plantillas para crear nuevos experimentos y acoplarlos a la aplicación.
+
+%% Extensibilidad
+En diferentes secciones de este documento se ha mencionado que la aplicación debe ser extensible, refiriéndonos al hecho de que se deben poder agregar nuevos algoritmos, operadores y problemas. Una vez alcanzada la tercera iteración fue necesario hacer frente a este problema. Sin embargo, éste no es un problema fácil de abordar. Las ideas que surgieron para tratar este problema eran diversas. Una de ellas, por ejemplo, consistía en que el usuario implementara por si mismo la interfaz de configuración de los nuevos problemas y algoritmos que ha añadido, asi como que se encargue de que estas ventanas fueran visibles desde la aplicación. No obstante, realizar ésta tarea consistía en que se debía tener conocimiento de la implementación de interfaces gráficas usando JavaFX.
+  
+Finalmente se decidió utilizar un enfoque parecido al de los Frameworks como Spring y JUnit. Para esto se creo la jerarquía de clases que se muestra en la Figura~\ref{fig:registrable}. Esta jerarquía define la interfaz \textit{Registrable} y dos subinterfaces extras que son \textit{SingleObjectiveRegistrable} y \textit{MultiObjectiveRegistrable}. \textit{SingleObjectiveRegistrable} debe ser usada cuando el nuevo problema es del tipo monoobjetivo, mientras que \textit{MultiObjectiveRegistrable} cuando el problema es multiobjetivo.
+
+% Esta clase actuá como una plantilla para crear nuevos experimentos. Junto con esta jerarquía se definieron un conjunto de anotaciones que son leídas durante la ejecución del problema al querer optimizar una red y son utilizadas para construir la interfaz gráfica y posteriormente inyectar en el constructor de la clase al crear la instancia las configuraciones y operadores a utilizar para la optimización.
+
+% que Esto es, crear anotaciones que puedan ser leídas en tiempo de ejecución por el programa. Las anotaciones creadas permiten indicar los valores que se pueden configurar del problema, asi como los operadores a ser utilizados por un algoritmo. Las anotaciones son leídas desde el programa al momento de querer optimizar una RDA, permitiendo de esa manera construir dinamicamente una interfaz de usuario para configurar los detalles del algoritmo, operador y el problema a resolver. Finalmente, una vez configurados todos los detalles anteriormente mencionados, haciendo uso de \textit{Java Reflection} se crea una nueva instancia.
+
+% , además de la modularidad proporcionada descrita por el diagrama de clases de la Figura \ref{fig:dia_class_met}, presentado para la Funcionalidad 2, se hace uso de una interfaz desde la cual se permiten definir plantillas para crear nuevos experimentos y acoplarlos a la aplicación. Dicha interfaz se muestra en la Figura~\ref{fig:registrable}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Capitulo4/assets/d_class_registrable.eps}
+    \caption{Interfaz de clase \textit{Registrable}.}
+    \label{fig:registrable}
+\end{figure}
 
 En el \textbf{Anexo~\ref{appendix:diseno}} se puede ver la el documento de diseño de la aplicación.
 

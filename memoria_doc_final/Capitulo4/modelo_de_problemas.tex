@@ -1,0 +1,183 @@
+\subsection{Modelo matemático de los problemas}
+En esta subsección se presentan los modelos matemáticos de los problemas resueltos, así como la representación de sus soluciones.
+
+\subsubsection{\textit{Pipe Optimizing}}
+\textit{Pipe Optimizing} es un problema de diseño cuyo objetivo es minimizar el costo de inversión en la construcción de las tuberías. Para ésto, se busca aquella combinación de diámetros que disminuyan el costo de la construcción de las tuberías a la vez que se cumplen las restricción de presión mínima impuesta sobre la red. La ecuación \ref{eq:costos_de_inversion} presentada en \cite{Pereyra2017} muestra la ecuación a optimizar.
+	
+\begin{equation}
+    \label{eq:costos_de_inversion}
+    \begin{aligned}
+        \text{Costo de inversión} = \sum_{i=1}^{N} (C_i \times D_i \times L_i)
+    \end{aligned}
+\end{equation}
+
+En la ecuación anteriormente presentada el termino $C_i$ se refiere al costo unitario de la tubería $i$, el término $D_i$ corresponde al diámetro de la tubería y finalmente $L_i$ hace referencia su longitud. Como se menciono anteriormente, el problema debe satisfacer la siguiente restricción:
+
+\begin{equation}
+    \label{eq:restriccion_costo_inversion}
+    \begin{aligned}
+        H_i < H_{min}
+    \end{aligned}
+\end{equation}
+
+\noindent donde $H_i$ corresponde a la presión sobre la tubería $i$ y $H_{min}$ a la presión mínima de la red.
+
+La solución retornada por el algoritmo utilizado, en este caso GA, se puede ver en la Figura~\ref{fig:solution_pipe_optimizing}. En dicha solución los valores que toman la variable de decisión corresponden al índice a una tabla donde se encuentra el diámetro y el costo de la tubería. El largo de la tubería esta configurado en el archivo de configuración de red (El archivo con extensión inp). 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Capitulo4/assets/representacion_solucion_monoobjetivo.eps}
+    \caption{Representación de la solución del problema monoobjetivo \textit{Pipe Optimizing}}
+    \label{fig:solution_pipe_optimizing}
+\end{figure}
+
+\subsubsection{\textit{Pump Schedule}}
+
+\textit{Pump Schedule} \cite{Makaremi2017, JHawanet-2019} es un problema de operación que tiene como objetivos optimizar tanto el costo energético, así como el costo de operación. A continuación se expresan las ecuaciones utilizadas para calcular los objetivos y las restricciones.
+
+Para el cálculo de los costos energéticos se ocupa la siguiente ecuación:
+  
+\begin{equation}
+    \label{eq:costos_energeticos}
+    \begin{aligned}
+        C_E(S) &= \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}(P_c(t) \times E_c(n, t) \times S(n, t))
+    \end{aligned}
+\end{equation}
+
+\noindent donde:
+\begin{itemize}
+    \item	$C_E(S)$: Costos energético.
+    \item   $NP$: El numero de bombas.
+    \item 	$NT$: Número de periodos de simulación. El máximo son 24 horas.
+    \item 	$P_c(t)$: La tarifa energética en el periodo $t$.
+    \item 	$E_c(n, t)$: Consumo energético de la bomba $n$ en el tiempo $t$.
+    \item 	$S(n,t)$: El estado de la bomba. 1 si esta encendida y 0 si esta apagada.
+\end{itemize}
+
+Para calcular el consumo energético de la bomba $n$ se utiliza la siguiente formula:
+\begin{equation}
+    \label{eq:costos_energeticos}
+    \begin{aligned}
+        E_c(n, t) &= \frac{10^{-3} \times \gamma \times Q(n, t) \times h(n, t)}{e(n, t)}
+    \end{aligned}
+\end{equation}
+
+\noindent donde:
+\begin{itemize}
+    \item	$\gamma$: Peso del agua.
+    \item   $Q(n, t)$: Flujo a través de la bomba $n$ en el tiempo $t$
+    \item 	$h(n, t)$: Altura manométrica de la bomba.
+    \item 	$e(n, t)$: Eficiencia de la bomba $n$ en el tiempo $t$.
+\end{itemize}
+
+Para cálcular el costo de bombeo se cálcula el número de encendido y apagados de todas las bombas en el periodo de tiempo analizado. Matemáticamente la función para calcular dicho costo corresponde a:
+
+\begin{equation}
+    \label{eq:costos_de_mantenimiento}
+    \begin{aligned}
+        C_N(S) &= \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}r_t
+    \end{aligned}
+\end{equation}
+donde:
+\begin{itemize}
+    \item $C_N(S)$ Costo de mantenimiento.
+    \item $r_t$: Valor indicando si en el periodo $t$ hubo un cambio de estado en la bomba desde apagado a encendido. Este valor es 1 cuando la bomba ha sido encendida.
+\end{itemize}
+
+La funciones \ref{eq:costos_energeticos} y \ref{eq:costos_de_mantenimiento} deben cumplir las siguientes restricciones:
+% restricciones asociadas a la conservación de la masa y la energía; la presión mínima, el caudal en la bomba $n$ y el nivel de agua almacenado en el reservorio en un periodo de tiempo especifico.
+
+Conservación de la masa:
+\begin{equation}
+    \label{eq:conservation_of_mass}
+    \begin{aligned}
+        \sum q_{in}-q_{out} &= C_j
+    \end{aligned}
+\end{equation}
+
+\noindent donde:
+\begin{itemize}
+    \item $q_{in}$: Flujo de entrada.
+    \item $q_{out}$: Flujo de salida.
+    \item $C_j$: Consumo del nodo $j$.
+\end{itemize}
+
+Conservación de la energía:
+\begin{equation}
+    \label{eq:conservation_of_energy}
+    \begin{aligned}
+        \sum h_f - \sum E_p &= 0
+    \end{aligned}
+\end{equation}
+
+\noindent donde:
+\begin{itemize}
+    \item $h_f$: Perdida de energía por fricción.
+    \item $E_p$: Energía aportada por la bomba.
+\end{itemize}
+
+Perdida de carga por fricción:
+\begin{equation}
+    \label{eq:pipe_head_losses}
+    \begin{aligned}
+        h_f &= \frac{10.67 \times L_q^{1.85}}{CH^{1.85} \times D^{4.87}}
+    \end{aligned}
+\end{equation}
+
+\noindent donde:
+\begin{itemize}
+    \item $L_q$: Largo de la tubería.
+    \item $CH$: Coeficiente de Hazen-Williams.
+    \item $D$: Diámetro de la tubería.
+\end{itemize}
+
+Presión mínima:
+\begin{equation}
+    \label{eq:min_pressure}
+    \begin{aligned}
+        H_i < H_{min}
+    \end{aligned}
+\end{equation}
+
+\noindent donde:
+\begin{itemize}
+    \item $H_i$: Presión en el nodo $i$.
+    \item $H_{min}$: Presión mínima.
+\end{itemize}
+
+Caudal:
+\begin{equation}
+    \label{eq:min_pressure}
+    \begin{aligned}
+        Q_{i,t} \geq Q_i^{max}
+    \end{aligned}
+\end{equation}
+
+\noindent donde:
+\begin{itemize}
+    \item $Q_{i,t}$: Caudal del nodo $i$ en el tiempo $t$.
+    \item $Q_i^{max}$: Caudal máximo del nodo $i$.
+\end{itemize}
+
+Nivel de depósito:
+\begin{equation}
+    \label{eq:min_pressure}
+    \begin{aligned}
+        TS_{i, NT} \geq TS_{i, 0}
+    \end{aligned}
+\end{equation}
+
+\noindent donde:
+\begin{itemize}
+    \item $TS_{i, NT}$: Nivel del reservorio $i$ en el tiempo $t$.
+    \item $TS_{i, 0}$: Nivel del reservorio $i$ en el tiempo $0$.
+\end{itemize}
+
+En la Figura~\ref{fig:solution_pump_schedule} muestra como se codifica la solución a este problema. Como se puede observar la solución cuenta con 24 variables de decisión correspondiente a las 24 horas del día. Cada variable es un índice a la matriz de combinaciones posibles para cada bomba. Posteriormente, se genera una matriz binaria en donde cada fila es una bomba, cada columna es el periodo y el valor es el estado de la bomba en dicho periodo. Esta matriz binaria es usada para calcular el número de cambios de estado en las bombas de la ecuación \ref{eq:costos_de_mantenimiento}, asi como para obtener el estado de la bomba en el periodo $t$ de la ecuación \ref{eq:costos_energeticos} referente al termino $S(n, t)$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Capitulo4/assets/representacion_solucion_multiobjetivo.eps}
+    \caption{Representación de la solución problema multiobjetivo \textit{Pump Schedule}}
+    \label{fig:solution_pump_schedule}
+  \end{figure}
