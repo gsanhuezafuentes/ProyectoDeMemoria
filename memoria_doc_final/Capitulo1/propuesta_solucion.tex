@@ -4,7 +4,7 @@ La solución que se propone para abordar el problema consiste en el desarrollo de
 Los problemas que se abordaran en el contexto de optimización de redes de agua potable serán:
 \begin{itemize}
 
-	\item \textbf{Problema de diseño:} Este tipo de problema busca optimizar las configuraciones y la disposición de los elementos que conforman la red previa a su construcción~\cite{Jimmy-2019}. El problema de diseño a tratar consiste en la optimización de los costo de inversión variando el diámetro de las tuberías (\textit{Pipe Optimizing}). 
+	\item \textbf{Problema de diseño:} Este tipo de problema busca optimizar las configuraciones y la disposición de los elementos que conforman la red previa a su construcción~\cite{Jimmy-2019}. El problema de diseño a tratar consiste en la optimización de los costo de inversión variando el diámetro de las tuberías (\textit{Pipe Optimizing}). Este problema sera abordado utilizando el Algoritmo Genético (GA). 
 	
 	% Este problema será abordado utilizando el Algoritmo Genético (GA). La ecuación \ref{eq:costos_de_inversion} presentada en \cite{Pereyra2017} muestra el objetivo a minimizar para el problema de diseño.
 	
@@ -26,7 +26,7 @@ Los problemas que se abordaran en el contexto de optimización de redes de agua p
 
 	% donde $H_i$ corresponde a la presión sobre la tubería $i$ y $H_{min}$ a la presión mínima de la red.
 
-	\item \textbf{Problema de operación:} Los problemas de construcción buscan optimizar las configuraciones de una red ya construida~\cite{Jimmy-2019}. El problema de operación a tratar consiste en la optimización de costos energéticos y el número de encendidos y apagados de las bombas (Pumping Schedule). Este problema se abordara desde el enfoque multiobjetivo utilizando el algoritmo Non-Dominated Sorting Genetic Algorithm II (NSGAII). 
+	\item \textbf{Problema de operación:} Los problemas de construcción buscan optimizar las configuraciones de una red ya construida~\cite{Jimmy-2019}. El problema de operación a tratar consiste en la optimización de costos energéticos y el número de encendidos y apagados de las bombas (\textit{Pumping Schedule}). Este problema se aborda desde el enfoque multiobjetivo utilizando el algoritmo\textit{Non-Dominated Sorting Genetic Algorithm}, versión II (NSGAII). 
 	
 	% Las funciones a optimizar se presentan en \cite{JHawanet-2019,Jimmy-2019} y corresponden a:
 	
@@ -67,4 +67,4 @@ Tanto GA como NSGAII, permiten la utilización de distintos operadores de cruzami
 
 % La solución planteada supone además el diseño e implementación de una interfaz gráfica para ayudar al usuario en el uso de la herramienta.
 
-Adicionalmente se generará una guía para que los usuarios puedan implementar nuevos problemas, algoritmos y operadores. 
+Adicionalmente, se genera una guía para que los usuarios puedan implementar nuevos problemas, algoritmos y operadores. 

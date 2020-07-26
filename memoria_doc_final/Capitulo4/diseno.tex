@@ -160,11 +160,25 @@ El diagrama de secuencia presentado en la Figura~\ref{fig:dia_sec_sim_hyd} muest
   \label{fig:dia_sec_sim_hyd}
 \end{figure}
 
+\subsection{Detalles de implementación}
 
 %% Extensibilidad
-En diferentes secciones de este documento se ha mencionado que la aplicación debe ser extensible, refiriéndonos al hecho de que se deben poder agregar nuevos algoritmos, operadores y problemas. Una vez alcanzada la tercera iteración fue necesario hacer frente a este problema. Sin embargo, éste no es un problema fácil de abordar. Las ideas que surgieron para tratar este problema eran diversas. Una de ellas, por ejemplo, consistía en que el usuario implementara por si mismo la interfaz de configuración de los nuevos problemas y algoritmos que ha añadido, asi como que se encargue de que estas ventanas fueran visibles desde la aplicación. No obstante, realizar ésta tarea consistía en que se debía tener conocimiento de la implementación de interfaces gráficas usando JavaFX.
+En diferentes secciones de este documento se ha mencionado que la aplicación debe ser extensible, refiriéndonos al hecho de que se deben poder agregar nuevos algoritmos, operadores y problemas. Una vez alcanzada la tercera iteración fue necesario hacer frente a este problema. Sin embargo, éste no es un problema fácil de abordar. Las ideas que surgieron para tratar este problema eran diversas. Una de ellas, por ejemplo, consistía en que el usuario una vez haya creado un nuevo problema; implementara por si mismo la interfaz de configuración para éste y la integrara a la aplicación. No obstante, realizar ésta tarea consistía en que se debía tener conocimiento de la implementación de interfaces gráficas usando JavaFX, así como conocer el código de la aplicación para realizar cambios sobre este. Al momento de crear un nuevo algoritmo u operador también estaba presente este problema porque si el usuario quería poner a disposición un nuevo algoritmo para resolver el problema debía realizar cambios en el código de la aplicación.
   
-Finalmente se decidió utilizar un enfoque parecido al de los Frameworks como Spring y JUnit. Para esto se creo la jerarquía de clases que se muestra en la Figura~\ref{fig:registrable}. Esta jerarquía define la interfaz \textit{Registrable} y dos subinterfaces extras que son \textit{SingleObjectiveRegistrable} y \textit{MultiObjectiveRegistrable}. \textit{SingleObjectiveRegistrable} debe ser usada cuando el nuevo problema es del tipo monoobjetivo, mientras que \textit{MultiObjectiveRegistrable} cuando el problema es multiobjetivo.
+Finalmente se decidió utilizar un enfoque parecido al de los frameworks de Java Spring y JUnit utilizando las técnicas o patrones de diseño de inyección de dependencias e inversión de control. 
+
+El sistema define un flujo de trabajo, el cual se presenta en la Figura~\ref{diagrama_actividades}. En él se puede agregar un nuevo problema simplemente definiendo una nueva clase que es usada como plantilla para crear los nuevos experimentos de ese problema con un algoritmo especifico. Esta nueva clase debe heredar de una de las subclases de \textit{Registrable}. La jerarquía de herencia de la clase \textit{Registrable} se muestra en la Figura~\ref{fig:registrable}. En dicha clase se pueden usar anotaciones en el constructor para definir los tipos de las instancias a inyectar asi como los valores de configuración que necesita el experimento. En este caso los tipos corresponden a los operadores a utilizar en el algoritmo del experimento a configurar.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=0.9\textheight]{Capitulo4/assets/d_actividad.eps}
+    \caption{Diagrama de actividades de la aplicación. Durante ``Configurar Experimento'' se leen las anotaciones para construir la interfaz gráfica, una vez configurado el experimento se crean e inyectan las dependencias.}
+    \label{fig:diagrama_actividades}
+\end{figure}
+
+Las anotaciones permitidas en la interfaz \textit{Registrable} que se definieron son las siguientes:
+
+
 
 % Esta clase actuá como una plantilla para crear nuevos experimentos. Junto con esta jerarquía se definieron un conjunto de anotaciones que son leídas durante la ejecución del problema al querer optimizar una red y son utilizadas para construir la interfaz gráfica y posteriormente inyectar en el constructor de la clase al crear la instancia las configuraciones y operadores a utilizar para la optimización.
 

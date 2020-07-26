@@ -21,6 +21,36 @@ A continuación se presenta un ejemplo de la anotación \textit{@Override} en Java
     public void toString(){}
 \end{lstlisting}
 
+\subsubsection{Polimorfismo}
+El polimorfismo~\cite{Cardelli-1985} es la técnica que permite modificar el comportamiento de un elemento del lenguaje, sea este una clase, función, método u operador, dependiendo del tipo de dato real con el que se esta trabajando. Existen muchas formas de polimorfismo. Las principales son nombrados a continuación usando su nombre en íngles:
+
+\begin{itemize}
+    \item \textit{Universal Polymorphism}: Son aquellas técnicas que trabajar sobre un cualquier tipo de instancia con una estructura común, es por ello que pueden emplear la misma operación sin cambios en el código.
+    \begin{itemize}
+        \item \textit{Parametric polymorphism}: Se refiere al uso de una función u objeto sin importar el tipo de instancia sobre la que trabaja, es decir, opera de manera uniforme los distintos tipos que desea operar. Las funciones que cuentan con este tipo de polimorfismo se conoce también como funciones genéricas. A modo de ejemplo se encuentran los genéricos de Java y los \textit{templates} de C++.
+        \item \textit{Inclusion}: Hace referencia a los subtipos. En donde una clase puede ser usado y manipulado donde quiera que se espere el supertipo de ésta.
+    \end{itemize}
+    \item \textit{Ad-hoc polymorphism}: Estas técnicas trabajan sobre un conjunto limitado de tipos que no están relacionados, necesitando manejar cada tipo de manera diferente.
+    \begin{itemize}
+        \item \textit{Overloading}: Hace referencia a la reutilización de símbolos o nombres de funciones en más de un contexto. Por ejemplo, algunos lenguajes permiten usar el mismo nombre de función variando el número de argumentos recibidos o el tipo de ellos. También se cuenta la sobrecarga de los operadores que permiten algunos lenguajes como C++.
+        \item \textit{Coercion}: Este tipo de polimorfismo hace referencia a la conversión automática de tipos. Por ejemplo, al sumar un valor entero y un real en algunos lenguaje de programación, el valor entero es convertido a real antes de aplicar el operador de la suma.
+    \end{itemize}
+\end{itemize}
+Java incorpora variaciones de los tipos anteriormente mencionados de polimorfismo.
+
+\subsection{Inversión de control}
+La inversión de control~\cite{State2020} es un principio de ingeniería de software en que el control se transfiere desde el programador al programa, permitiendo así sistemas con menor acoplamiento. Utilizando este principio se establece un flujo de ejecución en la aplicación en el cual se incorporan las llamadas al código implementado por el cliente. Esta técnica es ampliamente usada en los \textit{frameworks}. Dos ejemplos de framework que usan esta técnica son Spring en Java y Angular en JavaScript \cite{Hudli2013}.
+
+\subsection{Inyección de dependencias}
+La inyección de dependencias (DI)~\cite{State2020}, es un patrón de diseño que permite reducir el acoplamiento entre los componentes dejando la tarea de crear las dependencias de un objeto en manos de un externo, el cual podría ser un modulo dentro del programa, para posteriormente enviarla a la instancia que la requiera. Este es una de las técnicas utilizadas para implementar el principio de inversión de control en un sistema. De acuerdo a \cite{Hudli2013} la inyección de dependencias presenta los siguientes problemas~\cite{Hudli2013}:
+
+\begin{itemize}
+    \item Las dependencias inyectadas deben ser compatibles con la abstracción definida en la clase, es decir, la instancia a inyectar debe ser un subtipo de la clase esperada.
+    \item Las clases que se inyectan deben implementar el comportamiento que espera la clase que hace uso de esta dependencia.
+\end{itemize}
+
+
+
 % Estas herramientas pueden analizar estas anotaciones y realizar acciones en base a estas, por ejemplo, generar archivos adicionales como clases de Java, archivos xml, ser analizadas durante la ejecución del programa vía Java Reflection, para crear objetos cuyo tipo no conocemos en tiempo de compilación; etc. 
 
 \subsection{Epanet Programming Toolkit}
