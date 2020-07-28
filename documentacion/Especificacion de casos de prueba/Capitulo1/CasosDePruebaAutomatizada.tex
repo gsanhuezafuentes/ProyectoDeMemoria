@@ -1,89 +1,89 @@
 \chapter{Casos de pruebas automatizadas}
 
-En este capitulo se presenta la especificación formal de los casos de prueba automatizados.
+En este capítulo se presenta la especificación formal de los casos de prueba automatizados. Los casos de prueba automatizados son aquellos que se realizan utilizando herramientas de automatización como el framework JUnit y que no necesitan interacción con un usuario durante su ejecución.
 
 \section{\textit{Pump}}
 En esta sección se presentan las pruebas realizadas para la clase \textit{Pump}.
 
 \begin{prueba}
     \TestID{\atcounter}
-    \Titulo{Envio de parámetro invalido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.HEAD}.}
-    \Caracteristica{Validar parametro recibido por el método \textit{setProperty}.}
-    \Objetivo{Comprobar que si se pasa un parametro como valor de un tipo distinto a \textit{String}, cuando se usa la clave \textit{PumpProperty.HEAD}, el método lanza una excepción.}
+    \Titulo{Envío de parámetro inválido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.HEAD}.}
+    \Caracteristica{Validar parámetro recibido por el método \textit{setProperty}.}
+    \Objetivo{Comprobar que al pasar un parámetro como valor de un tipo distinto a \textit{String}, cuando se usa la clave \textit{PumpProperty.HEAD}, se lanza una excepción.}
     \Configuracion{Instancia de la clase \textit{Pump} inicializada.}
     \DatosPrueba{%
     Clave: \textit{PumpProperty.HEAD}\\
-    Value: Un objeto diferente a un \textit{String}
+    Valor: Un objeto diferente a un \textit{String}
     }
     \AccionesPrueba{%
         1. Inicializar instancia.\\
         2. Pasar una instancia de un objeto distinto de un \textit{String} al método cuando se usa la llave \textit{PumpProperty.HEAD}.
     }
-    \ResultadosEsperados{Excepción indicando que el tipo de instancia pasada no es valida.}
+    \ResultadosEsperados{Excepción indicando que el tipo de instancia pasada no es válida.}
 \end{prueba}
 
 \begin{prueba}
     \TestID{\atcounter}
-    \Titulo{Envio de parámetro invalido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.PATTERN}.}
-    \Caracteristica{Validar parametro recibido por el método \textit{setProperty}.}
-    \Objetivo{Comprobar que si se pasa un parametro como valor de un tipo distinto a \textit{String}, cuando se usa la clave \textit{PumpProperty.PATTERN}, el método lanza una excepción.}
+    \Titulo{Envío de parámetro inválido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.PATTERN}.}
+    \Caracteristica{Validar parámetro recibido por el método \textit{setProperty}.}
+    \Objetivo{Comprobar que si se pasa un parámetro como valor de un tipo distinto a \textit{String}, cuando se usa la clave \textit{PumpProperty.PATTERN}, se lanza una excepción.}
     \Configuracion{Instancia de la clase \textit{Pump} inicializada.}
     \DatosPrueba{%
     Clave: \textit{PumpProperty.PATTERN}\\
-    Value: Un objeto diferente a un \textit{String}
+    Valor: Un objeto diferente a un \textit{String}
     }
     \AccionesPrueba{%
         1. Inicializar instancia.\\
         2. Pasar una instancia de un objeto distinto de un \textit{String} al método cuando se usa la llave \textit{PumpProperty.HEAD}.
     }
-    \ResultadosEsperados{Excepción indicando que el tipo de instancia pasada no es valida.}
+    \ResultadosEsperados{Excepción indicando que el tipo de instancia pasada no es válida.}
 \end{prueba}
 
 \begin{prueba}
     \TestID{\atcounter}
-    \Titulo{Envio de parámetro invalido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.SPEED}.}
-    \Caracteristica{Validar parametro recibido por el método \textit{setProperty}.}
-    \Objetivo{Comprobar que si se pasa un parametro como valor de un tipo distinto a \textit{Double}, cuando se usa la clave \textit{PumpProperty.SPEED}, el método lanza una excepción.}
+    \Titulo{Envío de parámetro inválido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.SPEED}.}
+    \Caracteristica{Validar parámetro recibido por el método \textit{setProperty}.}
+    \Objetivo{Comprobar que si se pasa un parámetro como valor de un tipo distinto a \textit{Double}, cuando se usa la clave \textit{PumpProperty.SPEED}, el método lanza una excepción.}
     \Configuracion{Instancia de la clase \textit{Pump} inicializada.}
     \DatosPrueba{%
     Clave: \textit{PumpProperty.SPEED}\\
-    Value: Un \textit{Integer} o alguna instancia de otro objeto distinto de Double.
+    Valor: Un \textit{Integer} o alguna instancia de otro objeto distinto de Double.
     }
     \AccionesPrueba{%
         1. Inicializar instancia.\\
         2. Pasar una instancia de un objeto distinto de un \textit{Double} al método cuando se usa la llave \textit{PumpProperty.SPEED}.
     }
-    \ResultadosEsperados{Excepción indicando que el tipo de instancia pasada no es valida.}
+    \ResultadosEsperados{Excepción indicando que el tipo de instancia pasada no es válida.}
 \end{prueba}
 
 \begin{prueba}
     \TestID{\atcounter}
-    \Titulo{Envio de parámetro invalido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.POWER}.}
-    \Caracteristica{Validar parametro recibido por el método \textit{setProperty}.}
-    \Objetivo{Comprobar que si se pasa un parametro como valor de un tipo distinto a \textit{Double}, cuando se usa la clave \textit{PumpProperty.POWER}, el método lanza una excepción.}
+    \Titulo{Envío de parámetro inválido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.POWER}.}
+    \Caracteristica{Validar parámetro recibido por el método \textit{setProperty}.}
+    \Objetivo{Comprobar que si se pasa un parámetro como valor de un tipo distinto a \textit{Double}, cuando se usa la clave \textit{PumpProperty.POWER}, el método lanza una excepción.}
     \Configuracion{Instancia de la clase \textit{Pump} inicializada.}
     \DatosPrueba{%
     Clave: \textit{PumpProperty.POWER}\\
-    Value: Un \textit{Integer} o alguna instancia de otro objeto distinto de Double.
+    Valor: Un \textit{Integer} o alguna instancia de otro objeto distinto de Double.
     }
     \AccionesPrueba{%
         1. Inicializar instancia.\\
         2. Pasar una instancia de un objeto distinto de un \textit{Double} al método cuando se usa la llave \textit{PumpProperty.POWER}.
     }
-    \ResultadosEsperados{Excepción indicando que el tipo de instancia pasada no es valida.}
+    \ResultadosEsperados{Excepción indicando que el tipo de instancia pasada no es válida.}
 \end{prueba}
 
 %
 
 \begin{prueba}
     \TestID{\atcounter}
-    \Titulo{Envio de parámetro válido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.HEAD}.}
-    \Caracteristica{Validar parametro recibido por el método \textit{setProperty}.}
-    \Objetivo{Comprobar que si se pasa un parametro de tipo \textit{String} como valor, cuando se usa la clave \textit{PumpProperty.HEAD}, el método finaliza sin error.}
+    \Titulo{Envío de parámetro válido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.HEAD}.}
+    \Caracteristica{Validar parámetro recibido por el método \textit{setProperty}.}
+    \Objetivo{Comprobar que si se pasa un parámetro de tipo \textit{String} como valor, cuando se usa la clave \textit{PumpProperty.HEAD}, el método finaliza sin error.}
     \Configuracion{Instancia de la clase \textit{Pump} inicializada.}
     \DatosPrueba{%
     Clave: \textit{PumpProperty.HEAD}\\
-    Value: Un \textit{String} no vacío.
+    Valor: Un \textit{String} no vacío.
     }
     \AccionesPrueba{%
         1. Inicializar instancia.\\
@@ -94,13 +94,13 @@ En esta sección se presentan las pruebas realizadas para la clase \textit{Pump}.
 
 \begin{prueba}
     \TestID{\atcounter}
-    \Titulo{Envio de parámetro válido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.PATTERN}.}
-    \Caracteristica{Validar parametro recibido por el método \textit{setProperty}.}
-    \Objetivo{Comprobar que si se pasa un parametro de tipo \textit{String} como valor, cuando se usa la clave \textit{PumpProperty.PATTERN}, el método finaliza sin error.}
+    \Titulo{Envío de parámetro válido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.PATTERN}.}
+    \Caracteristica{Validar parámetro recibido por el método \textit{setProperty}.}
+    \Objetivo{Comprobar que si se pasa un parámetro de tipo \textit{String} como valor, cuando se usa la clave \textit{PumpProperty.PATTERN}, el método finaliza sin error.}
     \Configuracion{Instancia de la clase \textit{Pump} inicializada.}
     \DatosPrueba{%
     Clave: \textit{PumpProperty.PATTERN}\\
-    Value: Un \textit{String} no vacío.
+    Valor: Un \textit{String} no vacío.
     }
     \AccionesPrueba{%
         1. Inicializar instancia.\\
@@ -111,13 +111,13 @@ En esta sección se presentan las pruebas realizadas para la clase \textit{Pump}.
 
 \begin{prueba}
     \TestID{\atcounter}
-    \Titulo{Envio de parámetro válido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.SPEED}.}
-    \Caracteristica{Validar parametro recibido por el método \textit{setProperty}.}
-    \Objetivo{Comprobar que si se pasa un parametro de tipo \textit{Double} como valor, cuando se usa la clave \textit{PumpProperty.SPEED}, el método finaliza sin error.}
+    \Titulo{Envío de parámetro válido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.SPEED}.}
+    \Caracteristica{Validar parámetro recibido por el método \textit{setProperty}.}
+    \Objetivo{Comprobar que si se pasa un parámetro de tipo \textit{Double} como valor, cuando se usa la clave \textit{PumpProperty.SPEED}, el método finaliza sin error.}
     \Configuracion{Instancia de la clase \textit{Pump} inicializada.}
     \DatosPrueba{%
     Clave: \textit{PumpProperty.SPEED}\\
-    Value: Un valor \textit{Double}.
+    Valor: Un valor \textit{Double}.
     }
     \AccionesPrueba{%
         1. Inicializar instancia.\\
@@ -128,13 +128,13 @@ En esta sección se presentan las pruebas realizadas para la clase \textit{Pump}.
 
 \begin{prueba}
     \TestID{\atcounter}
-    \Titulo{Envio de parámetro válido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.POWER}.}
-    \Caracteristica{Validar parametro recibido por el método \textit{setProperty}.}
-    \Objetivo{Comprobar que si se pasa un parametro de tipo \textit{Double} como valor, cuando se usa la clave \textit{PumpProperty.POWER}, el método finaliza sin error.}
+    \Titulo{Envío de parámetro válido al método setProperty de la clase \textit{Pump} cuando se usa la clave \textit{PumpProperty.POWER}.}
+    \Caracteristica{Validar parámetro recibido por el método \textit{setProperty}.}
+    \Objetivo{Comprobar que si se pasa un parámetro de tipo \textit{Double} como valor, cuando se usa la clave \textit{PumpProperty.POWER}, el método finaliza sin error.}
     \Configuracion{Instancia de la clase \textit{Pump} inicializada.}
     \DatosPrueba{%
     Clave: \textit{PumpProperty.POWER}\\
-    Value: Un valor \textit{Double}.
+    Valor: Un valor \textit{Double}.
     }
     \AccionesPrueba{%
         1. Inicializar instancia.\\
@@ -159,7 +159,7 @@ En esta sección se especifican las pruebas realizadas para la clase \textit{Gene
     \AccionesPrueba{%
         Llamar al método \textit{setMaxEvaluations} con un argumento negativo.
     }
-    \ResultadosEsperados{Una excepción}
+    \ResultadosEsperados{Una excepción.}
 \end{prueba}
 
 \begin{prueba}
@@ -174,12 +174,12 @@ En esta sección se especifican las pruebas realizadas para la clase \textit{Gene
     \AccionesPrueba{%
         Llamar al método \textit{setMaxNumberOfEvaluationsWithoutImprovement} con un argumento negativo.
     }
-    \ResultadosEsperados{Una excepción}
+    \ResultadosEsperados{Una excepción.}
 \end{prueba}
 
 \begin{prueba}
     \TestID{\atcounter}
-    \Titulo{Deshabilitar número máximo de evaluaciones sin mejoras cuando se modifica el numero máximo de evaluaciones.}
+    \Titulo{Deshabilitar número máximo de evaluaciones sin mejoras cuando se modifica el número máximo de evaluaciones.}
     \Caracteristica{Validar parámetro \textit{maxEvaluations}.}
     \Objetivo{Validar que al modificar el parámetro \textit{maxEvaluations} el parámetro \textit{maxNumberOfEvaluationsWithoutImprovement} cambie a 0 (0 indica que esta deshabilitado).}
     \Configuracion{Instancia de la clase \textit{GeneticAlgorithm} inicializada.}
@@ -189,12 +189,12 @@ En esta sección se especifican las pruebas realizadas para la clase \textit{Gene
     \AccionesPrueba{%
         Llamar al método \textit{setMaxEvaluations} con un entero positivo mayor a 0.
     }
-    \ResultadosEsperados{Parámetro \textit{maxNumberOfEvaluationsWithoutImprovement} igual a 0}
+    \ResultadosEsperados{Parámetro \textit{maxNumberOfEvaluationsWithoutImprovement} igual a 0.}
 \end{prueba}
 
 \begin{prueba}
     \TestID{\atcounter}
-    \Titulo{Deshabilitar número máximo de evaluaciones cuando se modifica el numero máximo de evaluaciones sin mejoras.}
+    \Titulo{Deshabilitar número máximo de evaluaciones cuando se modifica el número máximo de evaluaciones sin mejoras.}
     \Caracteristica{Validar parámetro \textit{maxNumberOfEvaluationsWithoutImprovement}.}
     \Objetivo{Validar que al modificar el parámetro \textit{maxNumberOfEvaluationsWithoutImprovement} el parámetro \textit{maxNumberOfEvaluationsWithoutImprovement} cambie a 0 (0 indica que esta deshabilitado).}
     \Configuracion{Instancia de la clase \textit{GeneticAlgorithm} inicializada.}
@@ -204,7 +204,7 @@ En esta sección se especifican las pruebas realizadas para la clase \textit{Gene
     \AccionesPrueba{%
         Llamar al método \textit{setMaxNumberOfEvaluationsWithoutImprovement} con un entero positivo mayor a 0.
     }
-    \ResultadosEsperados{Parámetro \textit{maxEvaluations} igual a 0}
+    \ResultadosEsperados{Parámetro \textit{maxEvaluations} igual a 0.}
 \end{prueba}
 
 \section{\textit{IntegerRangeRandomMutation}}
@@ -212,7 +212,7 @@ En esta sección se especifican las pruebas realizadas sobre la clase \textit{Int
 
 \begin{prueba}
     \TestID{\atcounter}
-    \Titulo{Probabilidad de mutación no valida.}
+    \Titulo{Probabilidad de mutación no válida.}
     \Caracteristica{Validar parámetro \textit{mutationProbability}.}
     \Objetivo{Validar que el parámetro \textit{mutationProbability} no sea negativo. Si el parámetro es negativo debe lanzarse una excepción.}
     \Configuracion{Instancia de la clase \textit{IntegerRangeRandomMutation} inicializada.}
@@ -222,12 +222,12 @@ En esta sección se especifican las pruebas realizadas sobre la clase \textit{Int
     \AccionesPrueba{%
         Crear instancia de la clase \textit{IntegerRangeRandomMutation} pasando como argumento para el parámetro \textit{mutationProbability} un valor negativo.
     }
-    \ResultadosEsperados{Una excepción}
+    \ResultadosEsperados{Una excepción.}
 \end{prueba}
 
 \begin{prueba}
     \TestID{\atcounter}
-    \Titulo{Rango no valido.}
+    \Titulo{Rango no válido.}
     \Caracteristica{Validar parámetro \textit{range}.}
     \Objetivo{Validar que el parámetro \textit{range} no sea negativo. Si el parámetro es negativo debe lanzarse una excepción.}
     \Configuracion{Instancia de la clase \textit{IntegerRangeRandomMutation} inicializada.}
@@ -237,7 +237,7 @@ En esta sección se especifican las pruebas realizadas sobre la clase \textit{Int
     \AccionesPrueba{%
         Crear instancia de la clase \textit{IntegerRangeRandomMutation} pasando como argumento para el parámetro \textit{range} un valor negativo.
     }
-    \ResultadosEsperados{Una excepción}
+    \ResultadosEsperados{Una excepción.}
 \end{prueba}
 
 \begin{prueba}
@@ -252,14 +252,14 @@ En esta sección se especifican las pruebas realizadas sobre la clase \textit{Int
     \DatosPrueba{%
         \textit{mutationProbability}: 0.3\\
         \textit{range}: 2\\
-        \textit{solution}: [0 ,2, 4]\\
+        \textit{solution}: [0, 2, 4]\\
         \textit{randomGenerator}: [0.2, 0.2, 0.4]\\
         \textit{boundedRandomGenerator}: [2, 0, 5]
     }
     \AccionesPrueba{%
         Pasar la solución al método \textit{execute}.
     }
-    \ResultadosEsperados{Las variables en la solución despues de realizar la mutación debe ser [2, 0, 4] }
+    \ResultadosEsperados{Las variables en la solución despues de realizar la mutación deben ser [2, 0, 4] }
 \end{prueba}
 
 \begin{prueba}
@@ -274,21 +274,21 @@ En esta sección se especifican las pruebas realizadas sobre la clase \textit{Int
     \DatosPrueba{%
         \textit{mutationProbability}: 0.3\\
         \textit{range}: 2\\
-        \textit{solution}: [0 ,2, 4]\\
+        \textit{solution}: [0, 2, 4]\\
         \textit{randomGenerator}: [0.5, 0.4, 0.4]\\
         \textit{boundedRandomGenerator}: [2, 0, 5]
     }
     \AccionesPrueba{%
         Pasar la solución al método \textit{execute}.
     }
-    \ResultadosEsperados{Las variables en la solución despues de realizar la llamada al método \textit{execute} debe ser los valores originales [0, 2, 4].}
+    \ResultadosEsperados{Las variables en la solución despues de realizar la llamada al método \textit{execute} deben ser los valores originales [0, 2, 4].}
 \end{prueba}
 
 \begin{prueba}
     \TestID{\atcounter}
     \Titulo{No mutar variables cuando no hay un rango de mutación.}
     \Caracteristica{No mutar variables cuando el rango de las variables a generar es 0.}
-    \Objetivo{Validar que la mutación no sucede si el \textit{range} tiene el valor 0.}
+    \Objetivo{Validar que la mutación no sucede si \textit{range} tiene asignado el valor 0.}
     \Configuracion{%
     Solucion con variables preestablecidas.\\
     Operador \textit{IntegerRangeRandomMutation} inicializado.
@@ -296,13 +296,13 @@ En esta sección se especifican las pruebas realizadas sobre la clase \textit{Int
     \DatosPrueba{%
         \textit{mutationProbability}: 0.3\\
         \textit{range}: 0\\
-        \textit{solution}: [0 ,2, 4]\\
+        \textit{solution}: [0, 2, 4]\\
         \textit{randomGenerator}: [0.1, 0.2, 0.3]
     }
     \AccionesPrueba{%
         Pasar la solución al método \textit{execute}.
     }
-    \ResultadosEsperados{Las variables en la solución despues de realizar la llamada al método \textit{execute} debe ser los valores originales [0, 2, 4].}
+    \ResultadosEsperados{Las variables en la solución despues de realizar la llamada al método \textit{execute} deben ser los valores originales [0, 2, 4].}
 \end{prueba}
 
 \section{\textit{ReflectionUtils}}
@@ -319,12 +319,12 @@ Durante esta sección nos referiremos a cualquier implementación de las interfaz 
         Implementación de \textit{Registrable} con la anotación \textit{@NewProblem} en su constructor.
     }
     \DatosPrueba{%
-        Nombre del problema: "Test"
+        Nombre del problema: ``Test''
     }
     \AccionesPrueba{%
         Pasar el objeto \textit{Class$<$?$>$} que hace referencia al tipo \textit{Registrable} al método \textit{getNameOfProblem}.
     }
-    \ResultadosEsperados{"Test"}
+    \ResultadosEsperados{``Test''}
 \end{prueba}
 
 \begin{prueba}
@@ -348,7 +348,7 @@ Durante esta sección nos referiremos a cualquier implementación de las interfaz 
     \TestID{\atcounter}
     \Titulo{\textit{Registrable} sin anotaciones.}
     \Caracteristica{Validar las anotaciones y el tipo de parámetros utilizados en el constructor de la clase \textit{Registrable}.}
-    \Objetivo{Validar que si en el constructor público no tiene ni la anotación \textit{@NewProblem} ni la anotación \textit{Parameters} se lanza una excepción.}
+    \Objetivo{Validar que si en el constructor público no tiene ni la anotación \textit{@NewProblem} ni la anotación \textit{@Parameters} se lanza una excepción.}
     \Configuracion{%
         Implementación de \textit{Registrable} sin anotaciones.
     }
@@ -365,7 +365,7 @@ Durante esta sección nos referiremos a cualquier implementación de las interfaz 
     \TestID{\atcounter}
     \Titulo{\textit{Registrable} con la anotación \textit{@NewProblem}.}
     \Caracteristica{Validar las anotaciones y el tipo de parámetros utilizados en el constructor de la clase \textit{Registrable}.}
-    \Objetivo{Validar si en el constructor público tiene ni la anotación \textit{@NewProblem}}
+    \Objetivo{Validar si en el constructor público está la anotación \textit{@NewProblem}}
     \Configuracion{%
         Implementación de \textit{Registrable} con la anotación \textit{@NewProblem}.
     }
@@ -382,9 +382,9 @@ Durante esta sección nos referiremos a cualquier implementación de las interfaz 
     \TestID{\atcounter}
     \Titulo{\textit{Registrable} cuyo constructor recibe los parámetros en el orden correcto dependiendo de su tipo.}
     \Caracteristica{Validar las anotaciones y el tipo de parámetros utilizados en el constructor de la clase \textit{Registrable}.}
-    \Objetivo{Validar que el constructor público con las anotaciones recibe los parametros en el siguiente orden: \textit{Object}, \textit{File}, \textit{(int \vb Integer \vb double \vb Double)}.}
+    \Objetivo{Validar que el constructor público con las anotaciones recibe los parámetros en el siguiente orden: \textit{Object}, \textit{File}, \textit{(int \vb Integer \vb double \vb Double)}.}
     \Configuracion{%
-        Implementación de \textit{Registrable} con las anotaciones \textit{@NewProblem} y \textit{@Parameters}, y con los parámetros recibidos en el orden esperado.
+        Implementación de \textit{Registrable} con las anotaciones \textit{@NewProblem} y \textit{@Parameters}, y con los parámetros recibidos en el constructor en el orden esperado.
     }
     \DatosPrueba{%
         Objeto \textit{Class$<$?$>$} que referencia al tipo \textit{Registrable}.
@@ -399,9 +399,9 @@ Durante esta sección nos referiremos a cualquier implementación de las interfaz 
     \TestID{\atcounter}
     \Titulo{\textit{Registrable} cuyo constructor recibe los parámetros en un orden incorrecto.}
     \Caracteristica{Validar las anotaciones y el tipo de parámetros utilizados en el constructor de la clase \textit{Registrable}.}
-    \Objetivo{Validar que el constructor público con las anotaciones recibe los parametros en un orden distinto a: \textit{Object}, \textit{File}, \textit{(int \vb Integer \vb double \vb Double)}.}
+    \Objetivo{Validar que el constructor público con las anotaciones recibe los parámetros en un orden distinto a: \textit{Object}, \textit{File}, \textit{(int \vb Integer \vb double \vb Double)}.}
     \Configuracion{%
-        Implementación de \textit{Registrable} con las anotaciones \textit{@NewProblem} y \textit{@Parameters}, y con los parámetros recibidos en un orden distinto al especificado.
+        Implementación de \textit{Registrable} con las anotaciones \textit{@NewProblem} y \textit{@Parameters}, y con los parámetros recibidos en el constructor en un orden distinto al especificado.
     }
     \DatosPrueba{%
         Objeto \textit{Class$<$?$>$} que referencia al tipo \textit{Registrable}.
@@ -469,7 +469,7 @@ Durante esta sección nos referiremos a cualquier implementación de las interfaz 
     \Caracteristica{Validar las anotaciones y el tipo de parámetros utilizados en el constructor de la clase \textit{Registrable}.}
     \Objetivo{Validar que si \textit{Registrable}, en el elemento \textit{numberToggle} de la anotación \textit{@Parameters} recibe las anotaciones \textit{@NumberToggleInput} de manera secuencial no se lanza una excepción. Con secuencial se refiere a que \textit{@NumberToggleInput} con el mismo \textit{groupID} deben estar juntos.}
     \Configuracion{%
-        Implementación de \textit{Registrable} las anotaciones \textit{@NewProblem} y \textit{@Parameters}. El elemento \textit{numberToggle} de \textit{@Parameters} tiene las anotaciones \textit{@NumberToggleInput} con el mismo \textit{groupID} juntos.
+        Implementación de \textit{Registrable} con las anotaciones \textit{@NewProblem} y \textit{@Parameters}. El elemento \textit{numberToggle} de \textit{@Parameters} tiene las anotaciones \textit{@NumberToggleInput} con el mismo \textit{groupID} juntos.
     }
     \DatosPrueba{%
         Objeto \textit{Class$<$?$>$} que referencia al tipo \textit{Registrable}.
@@ -486,7 +486,7 @@ Durante esta sección nos referiremos a cualquier implementación de las interfaz 
     \Caracteristica{Validar las anotaciones y el tipo de parámetros utilizados en el constructor de la clase \textit{Registrable}.}
     \Objetivo{Validar que si \textit{Registrable}, en el elemento \textit{numberToggle} de la anotación \textit{@Parameters} recibe las anotaciones \textit{@NumberToggleInput} de manera no secuencial se lanza una excepción. Con secuencial se refiere a que \textit{@NumberToggleInput} con el mismo \textit{groupID} deben estar juntos.}
     \Configuracion{%
-        Implementación de \textit{Registrable} las anotaciones \textit{@NewProblem} y \textit{@Parameters}. El elemento \textit{numberToggle} de \textit{@Parameters} no tiene las anotaciones \textit{@NumberToggleInput} con el mismo \textit{groupID} juntos.
+        Implementación de \textit{Registrable} con las anotaciones \textit{@NewProblem} y \textit{@Parameters}. El elemento \textit{numberToggle} de \textit{@Parameters} no tiene las anotaciones \textit{@NumberToggleInput} con el mismo \textit{groupID} juntos.
     }
     \DatosPrueba{%
         Objeto \textit{Class$<$?$>$} que referencia al tipo \textit{Registrable}.
@@ -503,7 +503,7 @@ Durante esta sección nos referiremos a cualquier implementación de las interfaz 
     \Caracteristica{Validar las anotaciones y el tipo de parámetros utilizados en el constructor de la clase \textit{Registrable}.}
     \Objetivo{Validar que si el constructor \textit{Registrable} tiene un párametro no correspondiente al indicado en la anotación \textit{@Parameters} se lanza una excepción.}
     \Configuracion{%
-        Implementación de \textit{Registrable} las anotaciones \textit{@NewProblem} y \textit{@Parameters}. El constructor indica que recibirá un \textit{File} mientras que la anotación \textit{@Parameters} indica que en esa posición debería recibirse un \textit{Object}, el cual hace referencia a un operador de la metaheurística.
+        Implementación de \textit{Registrable} con las anotaciones \textit{@NewProblem} y \textit{@Parameters}. El constructor indica que recibirá un \textit{File} mientras que la anotación \textit{@Parameters} indica que en esa posición debería recibirse un \textit{Object}, el cual hace referencia a un operador para un algoritmo metaheurístico.
     }
     \DatosPrueba{%
         Objeto \textit{Class$<$?$>$} que referencia al tipo \textit{Registrable}.
@@ -521,7 +521,7 @@ En esta sección se especifica los test automatizados realizados sobre la clase \
 \begin{prueba}
     \TestID{\atcounter}
     \Titulo{\textit{timeInSeconds} guardado correctamente.}
-    \Caracteristica{Validar que la clase abstracta guarda el parametro \textit{timeInSeconds} correctamente.}
+    \Caracteristica{Validar que la clase abstracta guarda el parámetro \textit{timeInSeconds} correctamente.}
     \Objetivo{Validar que al pasar el tiempo en segundos a la superclase \textit{ResultSimulation} se guarda el tiempo correctamente en el campo \textit{timeInSeconds}.}
     \Configuracion{%
         Clase que hereda de \textit{ResultSimulation} cuyo constructor delega el parámetro \textit{timeInSeconds} para que sea guardado en la superclase.
@@ -605,12 +605,12 @@ En esta sección se especifican los casos de prueba para la clase \textit{JsonSim
     \AccionesPrueba{%
         Llamar al método \textit{getInt}.
     }
-    \ResultadosEsperados{El entero leido desde el json con clave ``\textit{int}''.}
+    \ResultadosEsperados{El entero leido desde el json con la clave ``\textit{int}''.}
 \end{prueba}
 
 \begin{prueba}
     \TestID{\atcounter}
-    \Titulo{Leer un numero decimal (\textit{double}) desde un json.}
+    \Titulo{Leer un número decimal (\textit{double}) desde un json.}
     \Caracteristica{Leer valores desde un json.}
     \Objetivo{Validar que el método \textit{getDouble} retorna un \textit{double} cuando se lee un número desde una propiedad en json.}
     \Configuracion{%
@@ -622,7 +622,7 @@ En esta sección se especifican los casos de prueba para la clase \textit{JsonSim
     \AccionesPrueba{%
         Llamar al método \textit{getDouble}.
     }
-    \ResultadosEsperados{El double leido desde el json con clave ``\textit{double}''.}
+    \ResultadosEsperados{El double leido desde el json con la clave ``\textit{double}''.}
 \end{prueba}
 
 \begin{prueba}
@@ -639,7 +639,7 @@ En esta sección se especifican los casos de prueba para la clase \textit{JsonSim
     \AccionesPrueba{%
         Llamar al método \textit{getBoolean}.
     }
-    \ResultadosEsperados{El boleano leido desde el json con clave ``\textit{boolean}''.}
+    \ResultadosEsperados{El boleano leido desde el json con la clave ``\textit{boolean}''.}
 \end{prueba}
 
 \begin{prueba}
@@ -656,7 +656,7 @@ En esta sección se especifican los casos de prueba para la clase \textit{JsonSim
     \AccionesPrueba{%
         Llamar al método \textit{getIntegerArray}.
     }
-    \ResultadosEsperados{El arreglo de enteros desde el json con clave ``\textit{ints}''.}
+    \ResultadosEsperados{El arreglo de enteros leidos desde el json con la clave ``\textit{ints}''.}
 \end{prueba}
 
 \begin{prueba}
@@ -673,7 +673,7 @@ En esta sección se especifican los casos de prueba para la clase \textit{JsonSim
     \AccionesPrueba{%
         Llamar al método \textit{getDoubleArray}.
     }
-    \ResultadosEsperados{El arreglo de valores decimales leido desde el json con clave ``\textit{doubles}''.}
+    \ResultadosEsperados{El arreglo de valores decimales leido desde el json con la clave ``\textit{doubles}''.}
 \end{prueba}
 
 \begin{prueba}
@@ -690,7 +690,7 @@ En esta sección se especifican los casos de prueba para la clase \textit{JsonSim
     \AccionesPrueba{%
         Llamar al método \textit{getIntegerMatrix}.
     }
-    \ResultadosEsperados{La matriz de valores enteros leido desde el json con clave ``\textit{intMatrix}''.}
+    \ResultadosEsperados{La matriz de valores enteros leido desde el json con clave la ``\textit{intMatrix}''.}
 \end{prueba}
 
 \begin{prueba}
@@ -707,7 +707,7 @@ En esta sección se especifican los casos de prueba para la clase \textit{JsonSim
     \AccionesPrueba{%
         Llamar al método \textit{getDoubleMatrix}.
     }
-    \ResultadosEsperados{La matriz de valores decimales leido desde el json con clave ``\textit{doubleMatrix}''.}
+    \ResultadosEsperados{La matriz de valores decimales leido desde el json con la clave ``\textit{doubleMatrix}''.}
 \end{prueba}
 
 

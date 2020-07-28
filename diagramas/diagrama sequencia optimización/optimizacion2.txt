@@ -1,0 +1,51 @@
+title Diagrama para la simulación
+
+actor User
+participant MainWindowController
+participant ProblemMenuConfiguration
+participant DynamicConfigurationController
+participant SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController
+participant "SingleObjectiveExperimentTask / MultiObjectiveExperimentTask" as Task
+participant ResultPlotWindowController
+participant ResultWindowController
+participant Algorithm
+participant Problem
+ 
+autonumber on
+autoactivation on 
+
+
+loop Hasta que se alcance la condición de termino (isStoppingConditionReached())
+opt Opcional: Cancelar tarea o cerrar ventana
+User->SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController://Solicita la cancelación de la tarea//\nonCancelButtonClick()\n          o\n//Solicita cerrar la ventada//\nonCloseButtonClick()
+autoactivation off
+SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController->Task://Cancela la tarea si\nesta en ejecucion//\ncancel()
+deactivate SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController
+destroy Task
+end
+
+autoactivation on
+note left of Algorithm:La interacción con estas clases de\nhace a través de las clases //ExperimentAlgorithm// \nque llama a los métodos de //Algorithm//
+Task->Algorithm://Ejecutar un paso//\nrunSingleStep()
+deactivateafter Algorithm
+Task->Algorithm: Obtener estado de la ejecución
+Task<--Algorithm:Devuelve el progreso del algoritmo\ny los resultados parciales
+SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController<-Task:Notifica cambio del progreso de ejecución
+SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController->ResultPlotWindowController: Agrega el resultado parcial al grafico
+deactivateafter ResultPlotWindowController
+User<--SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController: Muestra el cambio el progreso al usuario
+opt Opcional: Mostrar grafico de resultados
+User->SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController://Mostrar grafico//\n//Cambia la pestaña//
+SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController->ResultPlotWindowController://Abre la ventada de graficos//\n
+deactivateafter ResultPlotWindowController
+deactivate SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController
+end 
+end
+SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController<--Task: Devuelve los resultados finales
+activate SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController
+SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController->*ResultWindowController: <<crear>>
+deactivate ResultWindowController
+MainWindowController<-SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController://Ejecuta un callback//\ncreateResultTab(ResultWindowController)
+deactivate SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController
+note over MainWindowController:Añade un nuevo pestaña a la ventana\nprincipal para mostrar los resultados\ny vincula propiedades (binding).
+User<--MainWindowController://Muestra la nueva pestaña//

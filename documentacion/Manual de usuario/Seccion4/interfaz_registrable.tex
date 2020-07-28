@@ -1,5 +1,5 @@
 \subsection{Interfaz Registrable}
-Con el fin de agregar un nuevo experimento en la aplicación se debe crear una clase que herede de \textit{SingleObjectiveRegistrable} o \textit{MultiObjectiveRegistrable}, dependiendo de si el problema es monoobjetivo o multiobjetivo respectivamente. En la Figura \ref{fig:Registrable}, se presenta la jerarquía de clases de la interfaz \textit{Registrable}.
+Con el fin de agregar un nuevo experimento en la aplicación, se debe crear una clase que herede de \textit{SingleObjectiveRegistrable} o \textit{MultiObjectiveRegistrable}, dependiendo de si el problema es monoobjetivo o multiobjetivo, respectivamente. La clases que heredan de \textit{Registrable} funcionan como \textit{templates} para crear nuevos experimentos. En la Figura \ref{fig:Registrable}, se presenta la jerarquía de clases de la interfaz \textit{Registrable}.
 
 \begin{figure}[H]
     \centering
@@ -14,7 +14,7 @@ Ambas interfaces devuelven como resultado una instancia del experimento la cual 
     \item \textit{getParameters}: Este método devuelve un par clave valor, el cual es usado para agregar columnas extras a la ventana de resultados. La clave es usada como el nombre de la columna, mientras que el valor es usado como el valor de la columna. Este método es opcional.
 \end{itemize}
 
-En el constructor público de la clase que herede de una de las subinterfaces de Registrable, debe utilizar la anotación \textit{@NewProblem}. Adicionalmente, si se quiere mostrar la interfaz de configuración, dicho constructor debe incluir la anotación \textit{@Parameter}.
+En el constructor público de la clase que herede de una de las subinterfaces de \textit{Registrable}, se debe utilizar la anotación \textit{@NewProblem}. Adicionalmente, si se quiere mostrar la interfaz de configuración, dicho constructor debe incluir la anotación \textit{@Parameters}.
 
 Las clases que implementen cualquiera de las dos interfaces mencionadas anteriormente deben ser guardados en una estructura de datos, la cual es recorrida cuando se inicie la ejecución del programa y analizada usando la \textit{Java Reflection API}. Este análisis consistirá en escanear y validar el cumplimiento de la convención establecida para las clases que implementan está interfaz. Esta convención consiste en lo siguiente:
 \begin{itemize}
@@ -41,7 +41,7 @@ El orden en el que son inyectados los parámetros consiste en el siguiente:
     \item Parámetros descritos por \textit{@NumberToggleInput}.
 \end{enumerate}
 
-Una vez que se haya configurado el problema a través de la interfaz, se creará la instancia de la clase que hereda de Registrable y se llamará a su método build, para crear el experimento y comenzar su ejecución.
+Una vez que se haya configurado el problema a través de la interfaz, se creará la instancia de la clase que hereda de \textit{Registrable} y se llamará a su método \textit{build}, para crear el experimento y comenzar su ejecución.
 
 La estructura de datos para registrar las clases que heredan de \textit{SingleObjectiveRegistrable} y \textit{MonoObjectiveRegistrable} se encontrará en la clase \textit{RegistrableConfiguration}.
 

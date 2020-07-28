@@ -20,18 +20,18 @@ Esta interfaz cuenta con los siguientes métodos:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{Seccion1/assets/SingleObjectiveRunningWindow.png}
-    \caption{Mensaje retornado por el método \textit{getStatusOfExecution} en la ventana monoobjetivo (Está indicado por la flecha roja).}
+    \caption[Mensaje retornado por el método \textit{getStatusOfExecution} en la ventana monoobjetivo.]{Mensaje retornado por el método \textit{getStatusOfExecution} en la ventana monoobjetivo (Está indicado por la flecha roja).}
     \label{fig:getStatusOfExecution}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{Seccion1/assets/MultiObjectiveRunningWindow.png}
-    \caption{Mensaje retornado por el método \textit{getStatusOfExecution} en la ventana multiobjetivo (Está indicado por la flecha roja).}
+    \caption[Mensaje retornado por el método \textit{getStatusOfExecution} en la ventana multiobjetivo.]{Mensaje retornado por el método \textit{getStatusOfExecution} en la ventana multiobjetivo (Está indicado por la flecha roja).}
     \label{fig:getStatusOfExecution2}
 \end{figure}
 
-Para llevar a cabo la simulación la aplicación llama al método \textit{RunSingleStep} hasta que \textit{isStoppingConditionReached} sea verdadero. Adicionalmente, dentro del mismo método \textit{RunSingleStep} también se debería asegurar que una vez sea alcanzada la condición de termino no se realicen nuevas operaciones. Un ejemplo de \textit{RunSingleStep} utilizado con el Algoritmo NSGAII y GA se puede ver en la Figura \ref{fig:runASingleStep}.
+Para llevar a cabo la simulación, la aplicación llama al método \textit{RunSingleStep} hasta que \textit{isStoppingConditionReached} sea verdadero. Adicionalmente, dentro del mismo método \textit{RunSingleStep} también se debería asegurar que una vez sea alcanzada la condición de termino no se realicen nuevas operaciones. Un ejemplo de \textit{RunSingleStep} utilizado en el Algoritmo NSGAII y GA se puede ver en la Figura \ref{fig:runASingleStep}.
  
 \begin{figure}[H]
     \centering

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 422.6 215" style="enable-background:new 0 0 422.6 215;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.2;fill:#C0C0C0;enable-background:new    ;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{font-family:'Arial-BoldMT';}
+	.st4{font-size:13px;}
+	.st5{fill:none;stroke:#000000;stroke-miterlimit:10;stroke-dasharray:3;}
+	.st6{font-family:'ArialMT';}
+	.st7{font-family:'Arial-BoldItalicMT';}
+</style>
+<g transform="translate(-590,-518) scale(1,1)">
+	<rect x="683.5" y="543" class="st0" width="228" height="34"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<rect x="874.7" y="525" class="st0" width="45.8" height="22"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<rect x="676.5" y="536" class="st1" width="228" height="34"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<path class="st2" d="M676.5,536h228v34h-228V536z"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<path class="st2" d="M676.5,561h228"/>
+</g>
+<text transform="matrix(1 0 0 1 167.6223 37.5)" class="st3 st4">Registrable</text>
+<g transform="translate(-590,-518) scale(1,1)">
+	<rect x="867.7" y="518" class="st1" width="45.8" height="22"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<path class="st5" d="M867.7,518h45.8v22h-45.8V518z"/>
+</g>
+<text transform="matrix(1 0 0 1 282.6519 17.5)" class="st6 st4">Result</text>
+<g transform="translate(-590,-518) scale(1,1)">
+	<rect x="603.5" y="686" class="st0" width="177.3" height="34"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<rect x="596.5" y="679" class="st1" width="177.3" height="34"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<path class="st2" d="M596.5,679h177.3v34H596.5V679z"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<path class="st2" d="M596.5,704h177.3"/>
+</g>
+<text transform="matrix(1 0 0 1 13.5 180.5)" class="st7 st4">SingleObjectiveRegistrable</text>
+<g transform="translate(-590,-518) scale(1,1)">
+	<path class="st2" d="M697.5,678l78-107"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<path class="st1" d="M770.3,592.4l5.2-21.4l-18.8,11.5"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<path class="st2" d="M770.3,592.4l5.2-21.4l-18.8,11.5L770.3,592.4"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<rect x="837.5" y="686" class="st0" width="168.6" height="34"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<rect x="830.5" y="679" class="st1" width="168.6" height="34"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<path class="st2" d="M830.5,679h168.6v34H830.5V679z"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<path class="st2" d="M830.5,704h168.6"/>
+</g>
+<text transform="matrix(1 0 0 1 245.6728 180.5)" class="st7 st4">MultiObjectiveRegistrable</text>
+<g transform="translate(-590,-518) scale(1,1)">
+	<path class="st2" d="M900.5,678l-84-107"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<path class="st1" d="M835.7,581.8L816.5,571l5.9,21.2"/>
+</g>
+<g transform="translate(-590,-518) scale(1,1)">
+	<path class="st2" d="M835.7,581.8L816.5,571l5.9,21.2L835.7,581.8"/>
+</g>
+</svg>

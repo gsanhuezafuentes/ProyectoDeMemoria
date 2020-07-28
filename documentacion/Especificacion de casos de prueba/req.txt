@@ -23,8 +23,8 @@
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS003}{Implementar algoritmo genético.}
-    \Descripcion{Implementar el algoritmo genético. La versión del algoritmo genético a ser implementado consiste en el algoritmo genético generacional. }
+    \Requisito{RS003}{Implementar Algoritmo Genético.}
+    \Descripcion{Implementar el Algoritmo Genético. La versión del Algoritmo Genético a ser implementado consiste en el Algoritmo Genético generacional. }
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Crítica}
     \Estabilidad{Intransable}
@@ -46,8 +46,8 @@
 \end{requisito}
 
 \begin{requisito}
-    \Requisito{RS005}{Utilizar algoritmo genético para resolver el problema Pipe Optimizing desde el enfoque monoobjetivo.}
-    \Descripcion{Utilizando el algoritmo genético y la clase que lleva a cabo la evaluación de las soluciones (La clase problema) se debe realizar la evaluación y optimización de los objetivos del problema.}
+    \Requisito{RS005}{Utilizar Algoritmo Genético para resolver el problema Pipe Optimizing desde el enfoque monoobjetivo.}
+    \Descripcion{Utilizando el Algoritmo Genético y la clase que lleva a cabo la evaluación de las soluciones (La clase problema) se debe realizar la evaluación y optimización de los objetivos del problema.}
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Crítica}
     \Estabilidad{Intransable}

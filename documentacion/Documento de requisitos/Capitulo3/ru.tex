@@ -31,7 +31,7 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
 \end{requisito}
     
 \begin{requisito}
-    \Requisito{RU003}{Resolver el problema multiobjetivo (\textit{Pumping Scheduling}) usando el Algoritmo NSGAII.}
+    \Requisito{RU003}{Resolver el problema multiobjetivo (\textit{Pumping Schedule}) usando el Algoritmo NSGAII.}
     \Descripcion{El algoritmo NSGAII debe ser aplicado al problema multiobjetivo cuyas funciones a optimizar son los costos energéticos y el número de encendido y apagado de las bombas (\textit{Pumping Schedule}).}
     
     \Fuente{Jimmy Gutiérrez}
@@ -146,7 +146,7 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
     
 \begin{requisito}
     \Requisito{RU011}{Implementar el operador UniformSelection.}
-    \Descripcion{El operador UniformSelection~\cite{Iglesias-2004} es un operador de selección. Este operador de selección ordena la población y asigna una probabilidad máxima y mínima a la mejor y peor solución respectivamente. A las soluciones que se encuentran entre la mejor y la peor solución se le asigna una probabilidad entre el máximo y mínimo obtenido anteriormente. Si la probabilidad de la solución es mayor a 1.5 entonces la solución se duplica en la nueva población. Si la probabilidad esta entre 0.5 y 1.5, entonces en la nueva población se agrega la solución solo una vez. Las soluciones cuya probabilidad es menor que 0.5 no aparecen en la nueva población.
+    \Descripcion{El operador UniformSelection~\cite{Iglesias-2004} es un operador de selección. Este operador de selección ordena la población y asigna una probabilidad máxima y mínima a la mejor y peor solución, respectivamente. A las soluciones que se encuentran entre la mejor y la peor solución se le asigna una probabilidad entre el máximo y mínimo obtenido anteriormente. Si la probabilidad de la solución es mayor a 1.5 entonces la solución se duplica en la nueva población. Si la probabilidad esta entre 0.5 y 1.5, entonces en la nueva población se agrega la solución solo una vez. Las soluciones cuya probabilidad es menor que 0.5 no aparecen en la nueva población.
     
     La probabilidad máxima puede se calcula como $p_{max} = \beta/N_c$ mientras que la probabilidad mínima se calcula de acuerdo a $p_{min} = (2-\beta)/N_c$. Donde $\beta$ es un numero entre 1.5 y 2, y $N_c$ es el número de soluciones presentes en el conjunto sobre el que se realizará la selección.
 
@@ -232,7 +232,7 @@ Durante la presentación de estos requisitos se hace referencia al archivo de con
     \singlespacing
     EJ:
     \singlespacing
-    Pumping Scheduling \\
+    Pumping Schedule \\
     $>$ NSGAII\\
     $>$ SPA2
 

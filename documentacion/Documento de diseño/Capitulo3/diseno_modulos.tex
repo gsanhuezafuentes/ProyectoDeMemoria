@@ -1,6 +1,6 @@
 \section{Diseño detallado de módulos}
 
-Los componentes que forman la aplicación son el componente de la GUI, el de los Controlladores, el componente de Epanet y el componente Metaheuristico. La relación entre los componentes puede ser apreciada en la Figura \ref{fig:diagrama_componentes}.
+Los componentes que forman la aplicación son el componente de la GUI, el de los Controlladores, el componente de Epanet y el componente Metaheurísticas. La relación entre los componentes puede ser apreciada en la Figura \ref{fig:diagrama_componentes}.
 
 \begin{figure}[H]
     \centering
@@ -12,9 +12,9 @@ Los componentes que forman la aplicación son el componente de la GUI, el de los 
 A continuación, se describe cada uno de los componentes presentados en la Figura \ref{fig:diagrama_componentes}:
 
 \begin{description}
-    \item[\textit{GUI (Graphics User Interface)}]	Este componente este encargado de presentar todas las vistas. Entre las vistas se encuentra la ventana principal de la aplicación, la ventana de configuración de para un problema, la ventana de ejecución de algoritmos y la ventana de resultados.
-    \item[\textit{Controller}]	El controlador se encarga de manejar los eventos generados por la \textit{GUI}. Generalmente la relación es uno a uno, es decir, por cada interfaz de usuario hay un controlador. Debido a que dentro de la interfaz de usuario está formada por varios componentes, se da el caso en que cada uno de estos componentes puede tener su propio controlador. 
-    \item[Epanet]	Este componente esta encargada de la lectura y la escritura de archivos inp. Este componente cuenta también con clases que representan una red cargada desde un inp. Estas clases permitirán editar, durante la ejecución del programa, algunas configuraciones de la red con el fin de crear un nuevo archivo de descripción de la red.
+    \item[\textit{GUI (Graphics User Interface)}]	Este componente está encargado de presentar todas las vistas. Entre las vistas se encuentra la ventana principal de la aplicación, la ventana de configuración de para un problema, la ventana de ejecución de algoritmos y la ventana de resultados.
+    \item[\textit{Controller}]	El controlador se encarga de manejar los eventos generados por la \textit{GUI}. Generalmente la relación es uno a uno, es decir, por cada interfaz de usuario hay un controlador. Debido a que la interfaz de usuario está formada por varios componentes gráficos, se da el caso en que cada uno de éstos puede tener su propio controlador. 
+    \item[Epanet]	Este componente esta encargada de la lectura y la escritura de archivos de configuración de red (Llamado desde ahora como archivo inp). Este componente cuenta también con clases que representan una red cargada desde un inp. Estas clases permitirán editar, durante la ejecución del programa, algunas configuraciones de la red.  Posteriormente, estas configuraciones podrán ser persistidas generando un nuevo archivo de configuración de red.
     \item[\textit{Metaheuristics}]	Este componente contiene los algoritmos metaheurísticos, así como los problemas y los operadores que pueden ser ocupados por los algoritmos.
     \item[epajava.jar]	Esta es una librería para la simulación de las redes de agua potable. Esta librería permite realizar llamadas nativas a la librería de Epanet. Estas llamadas nativas se hacen a través de la librería \textit{JNA (Java Native Access)}. Para ocupar la librería, esta requiere que se indique el archivo de descripción de la red (Archivo inp).
 \end{description}

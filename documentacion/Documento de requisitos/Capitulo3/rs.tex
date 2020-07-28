@@ -225,7 +225,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS019}{Implementar el operador UniformSelection.}
-    \Descripcion{El operador UniformSelection~\cite{Iglesias-2004} es un operador de selección. Este operador de selección ordena la población y asigna una probabilidad máxima y mínima a la mejor y peor solución respectivamente. A las soluciones que se encuentran entre la mejor y la peor solución se le asigna una probabilidad entre el máximo y mínimo obtenido anteriormente. Si la probabilidad de la solución es mayor a 1.5 entonces la solución se duplica en la nueva población. Si la probabilidad esta entre 0.5 y 1.5, entonces en la nueva población se agrega la solución solo una vez. Las soluciones cuya probabilidad es menor que 0.5 no aparecen en la nueva población.
+    \Descripcion{El operador UniformSelection~\cite{Iglesias-2004} es un operador de selección. Este operador de selección ordena la población y asigna una probabilidad máxima y mínima a la mejor y peor solución, respectivamente. A las soluciones que se encuentran entre la mejor y la peor solución se le asigna una probabilidad entre el máximo y mínimo obtenido anteriormente. Si la probabilidad de la solución es mayor a 1.5 entonces la solución se duplica en la nueva población. Si la probabilidad esta entre 0.5 y 1.5, entonces en la nueva población se agrega la solución solo una vez. Las soluciones cuya probabilidad es menor que 0.5 no aparecen en la nueva población.
     
     La probabilidad máxima puede se calcula como $p_{max} = \beta/N_c$ mientras que la probabilidad mínima se calcula de acuerdo a $p_{min} = (2-\beta)/N_c$. Donde $\beta$ es un numero entre 1.5 y 2, y $N_c$ es el número de soluciones presentes en el conjunto sobre el que se realizará la selección.
 
@@ -522,7 +522,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS043}{Implementar el algoritmo SMPSO.}
-    \Descripcion{Agregar el algoritmo SMPSO (Multiobjetivo) y utilizarlo para resolver el problema Pumping Scheduling.}
+    \Descripcion{Agregar el algoritmo SMPSO (Multiobjetivo) y utilizarlo para resolver el problema Pumping Schedule.}
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Baja}
     \Estabilidad{Intransable}
@@ -534,7 +534,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS044}{Implementar el algoritmo SPA2.}
-    \Descripcion{Agregar el algoritmo SPA2 (Multiobjetivo) y utilizarlo para resolver el problema Pumping Scheduling.}\Fuente{Jimmy Gutiérrez}
+    \Descripcion{Agregar el algoritmo SPA2 (Multiobjetivo) y utilizarlo para resolver el problema Pumping Schedule.}\Fuente{Jimmy Gutiérrez}
     \Prioridad{Baja}
     \Estabilidad{Intransable}
     \FechaA{13/05/2020}
@@ -774,7 +774,7 @@ La variable de decisión después de aplicado el operador puede tomar un valor ent
 
 \begin{requisito}
     \Requisito{RS064}{Mostrar en la ventana de configuración de los problemas los valores por defecto.}
-    \Descripcion{Al abrir la ventana de configuración de problemas mostrar los valores establecidos por defecto.}
+    \Descripcion{Al abrir la ventana de configuración de problemas se deben mostrar los valores establecidos por defecto para cada campo.}
     \Fuente{Jimmy Gutiérrez}
     \Prioridad{Moderada}
     \Estabilidad{Intransable}

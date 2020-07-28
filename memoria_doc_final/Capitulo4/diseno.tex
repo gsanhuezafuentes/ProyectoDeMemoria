@@ -167,7 +167,7 @@ En diferentes secciones de este documento se ha mencionado que la aplicación deb
   
 Finalmente se decidió utilizar un enfoque parecido al de los frameworks de Java Spring y JUnit utilizando las técnicas o patrones de diseño de inyección de dependencias e inversión de control. 
 
-El sistema define un flujo de trabajo, el cual se presenta en la Figura~\ref{diagrama_actividades}. En él se puede agregar un nuevo problema simplemente definiendo una nueva clase que es usada como plantilla para crear los nuevos experimentos de ese problema con un algoritmo especifico. Esta nueva clase debe heredar de una de las subclases de \textit{Registrable}. La jerarquía de herencia de la clase \textit{Registrable} se muestra en la Figura~\ref{fig:registrable}. En dicha clase se pueden usar anotaciones en el constructor para definir los tipos de las instancias a inyectar asi como los valores de configuración que necesita el experimento. En este caso los tipos corresponden a los operadores a utilizar en el algoritmo del experimento a configurar.
+El sistema define un flujo de trabajo, el cual se presenta en la Figura~\ref{fig:diagrama_actividades}. En él se puede agregar un nuevo problema simplemente definiendo una nueva clase que es usada como plantilla para crear los nuevos experimentos de ese problema con un algoritmo especifico. Esta nueva clase debe heredar de una de las subclases de \textit{Registrable}. La jerarquía de herencia de la clase \textit{Registrable} se muestra en la Figura~\ref{fig:registrable}. En dicha clase se pueden usar anotaciones en el constructor para definir los tipos de las instancias a inyectar asi como los valores de configuración que necesita el experimento. En este caso los tipos corresponden a los operadores a utilizar en el algoritmo del experimento a configurar.
 
 \begin{figure}[h]
     \centering
@@ -178,6 +178,28 @@ El sistema define un flujo de trabajo, el cual se presenta en la Figura~\ref{dia
 
 Las anotaciones permitidas en la interfaz \textit{Registrable} que se definieron son las siguientes:
 
+\begin{description}
+  \item[\textit{@NewProblem}:] Esta anotación permite indicar el nombre del problema y el algoritmo utilizado para resolverlo.
+  \item[\textit{@Parameters}:] Esta anotación permite agregar información acerca de los parámetros recibidos por el constructor. Esta anotación permite concatenar anotaciones.
+  \begin{description}
+    \item[\textit{@OperatorInput}:] Indica que se espera recibir un operador. Se utiliza \textit{@OperatorOption} para indicar los posibles operadores que pueden ser inyectados.
+    \begin{description}
+      \item[\textit{@OperatorOption}:]  Indica un posible operador para ser utilizado dentro del algoritmo.
+    \end{description}
+    \item[\textit{@FileInput}:] Indica que se espera recibir una ruta a un archivo. El archivo recibido puede contener valores para configurar el algoritmo.
+    \item[\textit{@NumberInput}:] Indica que se espera recibir un número (el tipo de este número lo indica el parametro en el constructor). Este número puede ser por ejemplo el número de iteraciones del algoritmo, etc.
+    \item[\textit{@NumberToggleInput}:]  Permite crear grupos de entradas númericas excluyentes entre si. Por ejemplo, si solo se puede configurar uno de los dos parámetros, ya sea el número de generaciones o el número de iteraciones sin mejora.
+  \end{description}
+\end{description}
+
+Estas anotaciones deben estar sobre el constructor publico de la clase \textit{Registrable}.
+
+Los operadores también pueden hacer uso de anotaciones. Las anotaciones permitidas para los operadores es:
+\begin{description}
+  \item[\textit{@DefaultConstructor}:] Esta anotación indica el constructor por defecto del operador que sera utilizado para inyectar los valores. Dentro de esta anotación se puede usar \textit{@NumberInput} para definir los parámetros que pueden ser inyectados al operador.
+\end{description}
+
+La aplicación leyendo las anotaciones presentadas anteriormente, construye una interfaz de usuario que se abre al momento de querer resolver el problema registrado.
 
 
 % Esta clase actuá como una plantilla para crear nuevos experimentos. Junto con esta jerarquía se definieron un conjunto de anotaciones que son leídas durante la ejecución del problema al querer optimizar una red y son utilizadas para construir la interfaz gráfica y posteriormente inyectar en el constructor de la clase al crear la instancia las configuraciones y operadores a utilizar para la optimización.

@@ -1,0 +1,59 @@
+title Diagrama para la simulación
+
+actor User
+participant MainWindowController
+participant ProblemMenuConfiguration
+participant DynamicConfigurationController
+participant SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController
+participant "SingleObjectiveExperimentTask / MultiObjectiveExperimentTask" as Task
+
+participant ResultPlotWindowController
+participant ResultWindowController
+
+participant Algorithm
+participant Problem
+ 
+autonumber on
+autoactivation on 
+
+
+User->ProblemMenuConfiguration://Elegir problema\ndesde un menu y \ndisparar evento\npara abrir la red//\nmenuItemEventHander()
+
+ProblemMenuConfiguration->*DynamicConfigurationController:<<crear>>
+
+deactivate DynamicConfigurationController
+
+ProblemMenuConfiguration->DynamicConfigurationController://Solicita al controlador que\n muestra la ventana//\nshowDinamicWindow()
+deactivate ProblemMenuConfiguration
+User<--DynamicConfigurationController:Ventana de configuración\nde algoritmo
+
+
+User->DynamicConfigurationController:Ingresa las configuraciones\ny disparar evento para crear\nla instancia de la clase registrable\nonRunButtonClick()
+
+DynamicConfigurationController->DynamicConfigurationController:Crear instancia \nde Registrable
+MainWindowController<-DynamicConfigurationController://Ejecuta el callback//\nrunSingleObjectiveExperiment(Registrable)
+deactivate DynamicConfigurationController
+deactivateafter DynamicConfigurationController
+destroyafter DynamicConfigurationController
+
+autoactivation off
+MainWindowController->MainWindowController://Construye el experimento//\nRegistrable.build()
+autoactivation on
+MainWindowController->SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController:<<crear>>
+SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController->Task: <<crear>
+deactivateafter Task
+SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController->ResultPlotWindowController:<<crear>>
+deactivateafter ResultPlotWindowController
+SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController->ResultPlotWindowController: getNode()
+SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController<--ResultPlotWindowController:Regresa el componente grafico
+deactivateafter SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController
+
+
+MainWindowController->SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController://Muestra la ventana de \nejecución y ejecuta \nel algoritmo//\nshowWindowAndRunAlgorithm()
+deactivate MainWindowController
+autoactivation off
+note over Task:Se ejecuta en otro\nhilo
+User<--SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController: Muestra la ventana de feedback
+autoactivation on
+SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController->Task://Iniciar la ejecución un nuevo hilo//\nrun()
+deactivate SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController

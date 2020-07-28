@@ -9,7 +9,7 @@ Para configurar los parámetros del operador desde la ventana de configuración, d
 
 \subsection{\textit{@DefaultConstructor}}
 
-La anotación \textit{@DefaultConstructor} indica el constructor que debe ser usado al momento de crear una instancia del operador. Esta anotación recibe un arreglo de \textit{NumberInput}, el cual se define en la siguiente sección. El arreglo debe tener la misma cantidad de argumentos que los parámetros del constructor como se muestra en la Figura \ref{fig:constructor_un_parametro} y Figura \ref{fig:constructor_multi_parametro}. 
+La anotación \textit{@DefaultConstructor} indica el constructor que debe ser usado al momento de crear una instancia del operador. Esta anotación recibe un arreglo de \textit{@NumberInput}, el cual se define en la siguiente sección. El arreglo debe tener la misma cantidad de argumentos que los parámetros del constructor como se muestra en la Figura \ref{fig:constructor_un_parametro} y Figura \ref{fig:constructor_multi_parametro}. 
 
 \begin{figure}[H]
     \centering
@@ -21,13 +21,13 @@ La anotación \textit{@DefaultConstructor} indica el constructor que debe ser usa
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Seccion3/assets/ConstructorMultiParametro.png}
-    \caption{Constructor de un solo parámetro.}
+    \caption{Constructor con varios parámetros.}
     \label{fig:constructor_multi_parametro}
 \end{figure}
 
 Esta anotación solo puede ser usada en un único constructor por clase. Usar esta anotación en más de un constructor lanzara una excepción en tiempo de ejecución. Adicionalmente, el constructor que use esta anotación solo puede tener parámetros de tipo \textit{int} o \textit{double}.
 
-La interfaz gráfica creada para cada anotación se puede ver en la Figura \ref{fig:interfaz_uniform_selection} y \ref{fig:interfaz_polynomial_mutation}.
+La interfaz gráfica creada a partir de las anotaciones de la Figura~\ref{fig:constructor_un_parametro} y \ref{fig:constructor_multi_parametro} se puede ver en la Figura \ref{fig:interfaz_uniform_selection} y \ref{fig:interfaz_polynomial_mutation}, respectivamente.
 
 \begin{figure}[H]
     \centering

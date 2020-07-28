@@ -3,9 +3,9 @@ RU001 ? Cargar una red (F - 09/09/2019)
     RS002 ? Cargar red dentro del programa (F - 09/09/2019)
 
 RU002 ? Resolver el problema monoobjetivo (Pipe Optimizing)  usando el Algoritmo Genético (F - 09/09/2019)
-	RS003 ? Implementar algoritmo genético (F - 09/09/2019)
+	RS003 ? Implementar Algoritmo Genético (F - 09/09/2019)
 	RS004 ? Implementar el problema multiobjetivo Pipe Optimizing (F - 09/09/2019)
-	RS005 ? Utilizar algoritmo genético para resolver el problema Pipe Optimizing desde el enfoque monoobjetivo. (F - 09/09/2019)
+	RS005 ? Utilizar Algoritmo Genético para resolver el problema Pipe Optimizing desde el enfoque monoobjetivo. (F - 09/09/2019)
     RS006 ? Evaluar soluciones al problema monoobjetivo usando la librería Epanet (F - 09/09/2019)
 
 RU003 ? Resolver el problema multiobjetivo (Pumping Scheduling) usando el Algoritmo NSGA-II (F - 09/09/2019)

@@ -1,7 +1,7 @@
 \section{Metaheurística}
-Algoritmos que permiten resolver un amplio rango de problemas de optimización empleando técnicas con algún grado de aleatoriedad para encontrar soluciones a un problema. Estos algoritmos no garantizan que la solución encontrada sea la óptima, pero permiten obtener generalmente aproximaciones a esta. La diferencia entra heurísticas y metaheurísticas, es que esta ultima puede ser aplicado a un amplio conjunto de problemas sin necesidad de realizar grandes cambios en el algoritmo, mientras que las heurísticas generalmente son aplicadas a un dominio especifico~\cite{Yang2015,Boussaid2013,Luke2013}.
+Algoritmos que permiten resolver un amplio rango de problemas de optimización empleando técnicas con algún grado de aleatoriedad para encontrar soluciones a un problema. Estos algoritmos no garantizan que la solución encontrada sea la óptima, pero permiten obtener generalmente aproximaciones a esta. La diferencia entre heurísticas y metaheurísticas, es que esta ultima puede ser aplicado a un amplio conjunto de problemas sin necesidad de realizar grandes cambios en el algoritmo, mientras que las heurísticas generalmente son aplicadas a un dominio especifico~\cite{Yang2015,Boussaid2013,Luke2013}.
 \subsection{Algoritmos Evolutivos}
-Conjunto de algoritmos inspirado en la teoría de la evolución de Darwin acerca de la capacidad de la naturaleza para evolucionar seres vivos bien adaptados a su entorno. Estos algoritmos hacen uso de diversos mecanismos entre los que se encuentra la selección, mutación y cruzamiento sobre los individuos de una población con el fin de generar una nueva generación de individuos~\cite{Boussaid2013}. En la Figura~\ref{fig:EA} muestra un un pseudocodigo de los pasos generales de un algoritmo evolutivo.
+Conjunto de algoritmos inspirado en la teoría de la evolución de Darwin acerca de la capacidad de la naturaleza para evolucionar seres vivos bien adaptados a su entorno. Estos algoritmos hacen uso de diversos mecanismos entre los que se encuentra la selección, mutación y cruzamiento sobre los individuos de una población con el fin de generar una nueva generación de individuos~\cite{Boussaid2013}. En la Figura~\ref{fig:EA} muestra un pseudocodigo de los pasos generales de un algoritmo evolutivo.
 
 
 %\begin{figure}[h]
@@ -64,7 +64,7 @@ Conjunto de algoritmos inspirado en la teoría de la evolución de Darwin acerca d
 	\label{fig:EA}
 \end{figure}
 
-Primero, se crea la población inicial. Luego, se evalúan los objetivos de dicha población y se itera hasta que la condición de termino haya sido alcanzada. La condición de término puede ser, por ejemplo un máximo numero de evaluaciones o evaluaciones sin mejoras en los resultados.  Dentro del ciclo se realiza la selección sobre la población con el fin de determinar las soluciones que serán usadas en los operadores de cruzamiento y mutación. Finalmente, se remplaza la población inicial con la descendiente.
+Primero, se crea la población inicial. Después se evalúan los objetivos de dicha población y se itera hasta que la condición de termino haya sido alcanzada. La condición de término puede ser, por ejemplo un máximo numero de evaluaciones o evaluaciones sin mejoras en los resultados.  Dentro del ciclo se realiza la selección sobre la población con el fin de determinar las soluciones que serán usadas en los operadores de cruzamiento y mutación. Finalmente, se remplaza la población inicial con la descendiente.
 
 \subsubsection{Población}
 Conjunto de soluciones candidatas sobre las cual opera el algoritmo. Durante cada iteración del algoritmo se generan nuevas soluciones que son agregadas a la población a la vez que se remueven otras. Una solución en la población se conoce como individuo~\cite{Heiss-Czedik1997}. 
