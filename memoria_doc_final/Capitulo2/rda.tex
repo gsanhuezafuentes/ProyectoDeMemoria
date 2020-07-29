@@ -1,13 +1,18 @@
-\section{Redes de agua potable}
+\section{Hidráulica hurbana}
 Este trabajo se centra en la implementación de una aplicación en el área de hidráulica. Es por ello, que es necesario comprender algunos conceptos básicos que se describen a continuación:
 
-\paragraph{Presion:} Fuerza ejercida sobre una superficie. En este caso se refiere a la fuerza que el agua ejerce durante su recorrido. Se expresa en el sistema internacional a través de metros columna de agua (mca)[Insertar cita].
-\paragraph{Caudal:} Cantidad de agua que se mueve a través de un segmento de la red. Se expresa en el sistema internacional como metros cúbicos por segundo ($m^3/s$).
-\paragraph{Factor de fricción:} Coeficiente adimensional que especifica la rugosidad de la tubería~\cite{Perez-2011}.
-\paragraph{Curva de consumo:} Patrón de consumo de agua en un periodo de tiempo. Generalmente el agua es demandada de forma irregular durante el tiempo debido principalmente a las diferentes actividades que la población realiza durante el día. Así, por ejemplo, el consumo de agua aumenta en los horarios de la mañana y tarde.
+
+\subsection{Conceptos de básicos de hidráulica}
+A pesar de que existe una gran diversidad de términos hidráulicos, sólo se describen los estrictamente necesarios para entender el funcionamiento del programa.
+\begin{itemize}
+	\item \textbf{Presión:} Fuerza ejercida sobre una superficie. En este caso se refiere a la fuerza que el agua ejerce durante su recorrido. Generalmente, se expresa como una unidad del  sistema técnico a través de metros columna de agua (mca)~\cite{fuertes2002modelacion}.
+	\item \textbf{Caudal:} Cantidad de agua que se mueve a través de un segmento de la red. Se expresa en el sistema internacional como metros cúbicos por segundo ($m^3/s$)~\cite{fuertes2002modelacion}.
+	% \item \textbf{Factor de fricción:} Coeficiente adimensional que especifica la rugosidad de la tubería~\cite{Perez-2011}.
+	\item \textbf{Curva de consumo:} Patrón de consumo de agua en un periodo de tiempo. Generalmente el agua es demandada de forma irregular durante el tiempo debido principalmente a las diferentes actividades que la población realiza durante el día. Así, por ejemplo, el consumo de agua aumenta en los horarios de la mañana y tarde~\cite{fuertes2002modelacion}.
+\end{itemize}
 
 \subsection{Red de distribución de agua}
-Conjunto de elementos enlazados de tal manera que permite suministrar cierta cantidad de agua a una presión establecida~\cite{Doctoral2012}. En la Figura~\ref{fig:componentesfisicos} se puede apreciar los componentes que conforman la red de agua potable.
+Conjunto de elementos enlazados de tal manera que permite suministrar cierta cantidad de agua a una presión establecida~\cite{fuertes2002modelacion, Doctoral2012}. En la Figura~\ref{fig:componentesfisicos} se puede apreciar los componentes que conforman la red de agua potable.
 % A continuación se define los componentes que conforman una red de agua potable~\cite{Rossman2017}, los cuales se aprecian en la Figura~\ref{fig:componentesfisicos}:
 
 \begin{figure}[h]
@@ -16,11 +21,10 @@ Conjunto de elementos enlazados de tal manera que permite suministrar cierta can
 	\caption[Componentes físicos de un sistema de distribución de agua]{Componentes físicos de un sistema de distribución de agua~\cite{Rossman2017}}
 	\label{fig:componentesfisicos}
 \end{figure}
-\subsubsection{Componentes}
-\paragraph{Nodos de consumo:} Son los puntos o extremos de una tubería, los cuales también permiten que estas se unan. Estos nudos pueden actuar como nudos de demanda a través de los cuales el flujo abandona la red.
-
-\paragraph{Reservorio:} Es una fuente de alimentación externa. (Fuente de alimentación externa desde la que se extrae el agua para alimentar la red, esta fuente puede ser un embalse, un rio, un lago, etc.)
-\paragraph{Deposito:} Son elementos con la capacidad de almacenar agua.
-\paragraph{Tuberias:} Es el medio por el cual transita el agua desde un lugar a otro.
-\paragraph{Bombas:} Son el componente que permiten impulsar el liquido con el fin de elevarlo a una posición superior.
-\paragraph{Válvulas:} Elementos que limitan la presión o el caudal que transita en un punto de la red.
+\subsubsection{Componentes de la red}
+\paragraph{Nodos de consumo:} Son puntos de extracción de agua. Los niveles de consumo son afectados por la curva de demanda. Cada uno de estos puntos puede requerir diferentes presiones dependiendo de la actividad que genere dicha demanda. En una ciudad, la mayor parte de estos nodos corresponden a viviendas.
+\paragraph{Reservorio:} Fuente de alimentación externa desde la que se extrae el agua para alimentar la red, esta fuente puede ser un embalse, un rio, un lago, etc.
+\paragraph{Bombas:} Componentes que permiten aportar energía al sistema con el fin de impulsar el agua a través de la red. Se encuentran agrupados en estaciones de bombeo. Y su consumo energético representa uno de los costos más significativos durante las operaciones en RDA. Por lo tanto, su estudio es verdaderamente importante.
+\paragraph{Deposito:} Son elementos con la capacidad de almacenar agua. Generalmente se utilizan para disminuir el trabajo que realizan los equipos de bombeo y permiten aumentar la disponibilidad del recurso en casos de emergencia.
+\paragraph{Tuberías:} Es el medio por el cual transita el agua desde un lugar a otro. Existen diferentes tipos de tuberías según su material, diámetros y largos. La selección de éstos constituye un problema importante en el diseño de RDA.
+% \paragraph{Válvulas:} Elementos que limitan la presión o el caudal que transita en un punto de la red.

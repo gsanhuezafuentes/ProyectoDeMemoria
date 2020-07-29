@@ -427,13 +427,10 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
   {3.25ex plus1ex minus.2ex}
   {-1em}
   {\normalfont\normalsize\bf}}
-\def\subparagraph{\@startsection
-  {subparagraph}{4}
-  {\parindent}
+\def\subparagraph{\@startsection{subparagraph}{4}{\parindent}
   {3.25ex plus1ex minus .2ex}
   {-1em}
   {\normalfont\normalsize\bf}}
-
 %%%
 % Glosario
 %%%

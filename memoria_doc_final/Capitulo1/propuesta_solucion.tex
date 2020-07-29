@@ -1,10 +1,10 @@
 \section{Propuesta de solución}
-La solución que se propone para abordar el problema consiste en el desarrollo de una aplicación de escritorio extensible que permita buscar soluciones a dos de los problemas existentes en las redes de agua potable. 
+La solución que se propone para abordar el problema consiste en el desarrollo de una aplicación de escritorio extensible que permita optimizar procesos de diseño y operación en RDA. Este software entrega a sus usuarios la posibilidad de agregar nuevos problemas y algoritmos si se consideran necesarios.%buscar soluciones a dos de los problemas existentes en las redes de agua potable. 
 
-Los problemas que se abordaran en el contexto de optimización de redes de agua potable serán:
+Los problemas que se abordan en el contexto de optimización de redes de agua potable serán:
 \begin{itemize}
 
-	\item \textbf{Problema de diseño:} Este tipo de problema busca optimizar las configuraciones y la disposición de los elementos que conforman la red previa a su construcción~\cite{Jimmy-2019}. El problema de diseño a tratar consiste en la optimización de los costo de inversión variando el diámetro de las tuberías (\textit{Pipe Optimizing}). Este problema sera abordado utilizando el Algoritmo Genético (GA). 
+	\item \textbf{Problema de diseño:} Este tipo de problema busca optimizar las configuraciones y la disposición de los elementos que conforman la red previa a su construcción~\cite{Jimmy-2019}. %El problema de diseño a tratar consiste en la optimización de los costo de inversión variando el diámetro de las tuberías (\textit{Pipe Optimizing}). Este problema sera abordado utilizando el Algoritmo Genético (GA). 
 	
 	% Este problema será abordado utilizando el Algoritmo Genético (GA). La ecuación \ref{eq:costos_de_inversion} presentada en \cite{Pereyra2017} muestra el objetivo a minimizar para el problema de diseño.
 	
@@ -26,7 +26,7 @@ Los problemas que se abordaran en el contexto de optimización de redes de agua p
 
 	% donde $H_i$ corresponde a la presión sobre la tubería $i$ y $H_{min}$ a la presión mínima de la red.
 
-	\item \textbf{Problema de operación:} Los problemas de construcción buscan optimizar las configuraciones de una red ya construida~\cite{Jimmy-2019}. El problema de operación a tratar consiste en la optimización de costos energéticos y el número de encendidos y apagados de las bombas (\textit{Pumping Schedule}). Este problema se aborda desde el enfoque multiobjetivo utilizando el algoritmo\textit{Non-Dominated Sorting Genetic Algorithm}, versión II (NSGAII). 
+	\item \textbf{Problema de operación:} Los problemas de operación buscan optimizar las configuraciones de una red ya construida~\cite{Jimmy-2019}. % El problema de operación consiste en la optimización de costos energéticos y el número de encendidos y apagados de las bombas (\textit{Pumping Schedule}). Este problema se aborda desde el enfoque multiobjetivo utilizando el algoritmo\textit{Non-Dominated Sorting Genetic Algorithm}, versión II (NSGAII). 
 	
 	% Las funciones a optimizar se presentan en \cite{JHawanet-2019,Jimmy-2019} y corresponden a:
 	
@@ -61,9 +61,17 @@ Los problemas que se abordaran en el contexto de optimización de redes de agua p
 	% La funciones \ref{eq:costos_energeticos} y \ref{eq:costos_de_mantenimiento} deben cumplir las restricciones asociadas a la conservación de la masa y la energía; la presión mínima, el caudal en la bomba $n$ y el nivel de agua almacenado en el reservorio en un periodo de tiempo especifico.
 \end{itemize}
 
-Se seleccionaron estos problemas teniendo en cuenta la necesidad de los interesados en el estudio de redes de distribución de agua. Específicamente, los participantes del proyecto de investigación \textit{Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms} financiado por la Agencia Nacional de Investigación y Desarrollo ANID, Chile y sus colaboradores en la Universidad Politécnica de Valencia, España.
+Con el fin de valorar la capacidad del programa, dos problemas hidráulicos son implementados. Cada uno con un algoritmo afín según sus características.
 
-Tanto GA como NSGAII, permiten la utilización de distintos operadores de cruzamiento y mutación que también serán implementados para ser utilizados. 
+La selección de estos problemas se llevo a cabo teniendo en cuenta la necesidad de los interesados en el estudio de redes de distribución de agua. Específicamente, los participantes del proyecto de investigación \textit{Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms} financiado por la Agencia Nacional de Investigación y Desarrollo ANID, Chile y sus colaboradores en la Universidad Politécnica de Valencia, España.
+
+Según lo anteriormente expuesto, los problemas seleccionados son los siguientes:
+
+\begin{enumerate}
+	\item Problema de diseño de RDA basado en el costo de tuberías.  El cual consiste en la optimización de los costo de inversión variando el diámetro de las tuberías (\textit{Pipe Optimizing}). Este problema sera abordado utilizando el Algoritmo Genético (GA). 
+	\item Problema de operación basado en el Régimen de bombeo. Éste consiste en la optimización de costos energéticos y el número de encendidos y apagados de las bombas (\textit{Pumping Schedule}). Este problema se aborda desde el enfoque multiobjetivo utilizando el algoritmo\textit{Non-Dominated Sorting Genetic Algorithm}, versión II (NSGAII). 
+\end{enumerate}
+
 
 % La solución planteada supone además el diseño e implementación de una interfaz gráfica para ayudar al usuario en el uso de la herramienta.
 

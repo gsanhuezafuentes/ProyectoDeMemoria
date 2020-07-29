@@ -1,13 +1,15 @@
-\section{Herramientas para la implementación del software}
+\section{Herramientas para el desarrollo del software}
 A continuación se presentan las herramientas utilizadas para el desarrollo del proyecto.
 
-\subsection{Java}
-Java es un lenguaje de programación de alto nivel orientado a objetos y de propósito general. Un programa Java se ejecuta sobre la maquina virtual llamada la \textit{Java Virtual Machine}, la cual le da a este lenguaje la característica de ser multiplataforma. Adicionalmente, Java incorpora el soporte para multi-hilos, una poderosa herramienta que permite la ejecución de distintas instrucciones de código al mismo tiempo~\cite{Gosling2015}. Ademas. este lenguaje también incorpora una característica conocida como el recolector de basura, que se encarga de limpiar la memoria de objetos que ya no están siendo utilizados.  Fue anunciado por Sun Microsystems en Mayo de 1995~\cite{3Java}. 
+\subsection{Lenguaje de programación Java}
+Java es un lenguaje de programación de alto nivel orientado a objetos y de propósito general. Fue anunciado por Sun Microsystems en Mayo de 1995~\cite{3Java}. Un programa Java se ejecuta sobre la maquina virtual llamada la \textit{Java Virtual Machine}, la cual le da a este lenguaje la característica de ser multiplataforma. Adicionalmente, Java incorpora el soporte para multi-hilos, una poderosa herramienta que permite la ejecución de distintas instrucciones de código al mismo tiempo~\cite{Gosling2015}. Ademas. este lenguaje también posee una característica conocida como el recolector de basura, que se encarga de limpiar la memoria de objetos que ya no están siendo utilizados. 
 
-La elección de Java como lenguaje de programación para desarrollar este proyecto se debe a la familiaridad que el grupo de trabajo que ha solicitado este sistema tiene con el lenguaje.
+La elección de Java como lenguaje de programación para desarrollar este proyecto fue un requerimiento de los investigadores que participan del proyecto ya que permite la incorporación directa de algunas herramientas que han sido diseñadas.
+
+A continuación se describen las funcionalidades de Java que han sido más importantes para desarrollar este trabajo.
 
 \subsubsection{Java Reflection}
-Característica de Java que permite que un programa se auto examine. Esta característica está disponible a través de la Java Reflection API, la cual cuenta con métodos para obtener los metadatos de las clases, métodos, constructores, campos o parámetros. Esta API también permite crear nuevos objetos cuyo tipo era desconocido al momento de compilar el programa~\cite{Braux1999}.
+Característica de Java que permite que un programa se auto examine. Esta característica está disponible a través de la \textit{Java Reflection API}, la cual cuenta con métodos para obtener los metadatos de las clases, métodos, constructores, campos o parámetros. Esta API también permite crear nuevos objetos cuyo tipo era desconocido al momento de compilar el programa~\cite{Braux1999}.
 
 \subsubsection{Java Annotation}
 Característica de Java para agregar metadatos a elementos del lenguaje como las clases, métodos, parámetros, etc~\cite{Rocha2011}. Las anotaciones no tienen efecto directo sobre el código. Sin embargo, combinadas con \textit{Java Reflection} permiten realizar una serie de tareas muy útiles como crear nuevos objetos cuyo tipo no conocemos en tiempo de compilación.
@@ -22,7 +24,7 @@ A continuación se presenta un ejemplo de la anotación \textit{@Override} en Java
 \end{lstlisting}
 
 \subsubsection{Polimorfismo}
-El polimorfismo~\cite{Cardelli-1985} es la técnica que permite modificar el comportamiento de un elemento del lenguaje, sea este una clase, función, método u operador, dependiendo del tipo de dato real con el que se esta trabajando. Existen muchas formas de polimorfismo. Las principales son nombrados a continuación usando su nombre en íngles:
+El polimorfismo es la técnica que permite modificar el comportamiento de un elemento del lenguaje~\cite{Cardelli-1985}, sea este una clase, función, método u operador, dependiendo del tipo de dato real con el que se esta trabajando. Existen muchas formas de polimorfismo. Las principales son nombrados a continuación usando su nombre en íngles:
 
 \begin{itemize}
     \item \textit{Universal Polymorphism}: Son aquellas técnicas que trabajar sobre un cualquier tipo de instancia con una estructura común, es por ello que pueden emplear la misma operación sin cambios en el código.
@@ -38,20 +40,19 @@ El polimorfismo~\cite{Cardelli-1985} es la técnica que permite modificar el comp
 \end{itemize}
 Java incorpora variaciones de los tipos anteriormente mencionados de polimorfismo.
 
-\subsection{Inversión de control}
+\subsection{Patrones de diseño}
+En esta sección se describen los patrones de diseño que fueron más importantes durante la realización del proyecto.
+
+\subsubsection{Inversión de control}
 La inversión de control~\cite{State2020} es un principio de ingeniería de software en que el control se transfiere desde el programador al programa, permitiendo así sistemas con menor acoplamiento. Utilizando este principio se establece un flujo de ejecución en la aplicación en el cual se incorporan las llamadas al código implementado por el cliente. Esta técnica es ampliamente usada en los \textit{frameworks}. Dos ejemplos de framework que usan esta técnica son Spring en Java y Angular en JavaScript \cite{Hudli2013}.
 
-\subsection{Inyección de dependencias}
+\subsubsection{Inyección de dependencias}
 La inyección de dependencias (DI)~\cite{State2020}, es un patrón de diseño que permite reducir el acoplamiento entre los componentes dejando la tarea de crear las dependencias de un objeto en manos de un externo, el cual podría ser un modulo dentro del programa, para posteriormente enviarla a la instancia que la requiera. Este es una de las técnicas utilizadas para implementar el principio de inversión de control en un sistema. De acuerdo a \cite{Hudli2013} la inyección de dependencias presenta los siguientes problemas~\cite{Hudli2013}:
 
 \begin{itemize}
     \item Las dependencias inyectadas deben ser compatibles con la abstracción definida en la clase, es decir, la instancia a inyectar debe ser un subtipo de la clase esperada.
     \item Las clases que se inyectan deben implementar el comportamiento que espera la clase que hace uso de esta dependencia.
 \end{itemize}
-
-
-
-% Estas herramientas pueden analizar estas anotaciones y realizar acciones en base a estas, por ejemplo, generar archivos adicionales como clases de Java, archivos xml, ser analizadas durante la ejecución del programa vía Java Reflection, para crear objetos cuyo tipo no conocemos en tiempo de compilación; etc. 
 
 \subsection{Epanet Programming Toolkit}
 % Software que permite simular el comportamiento hidráulico y la calidad del agua en redes de distribución de aguas compuesta por tuberías, nodos, bombas, válvulas y tanques de almacenamiento~\cite{Rossman2017}.  Este software cuenta también con una librería dinámica conocida bajo el nombre de Epanet Programming Toolkit, la cual cuenta con un conjunto de funciones para realizar simulaciones desde diferentes entornos de desarrollo como C, C++, VB, Java, etc~\cite{Rossman1999}.
