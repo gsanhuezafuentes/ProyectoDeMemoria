@@ -36,11 +36,19 @@ public class PipeOptimizingSolutionEvaluator {
 
         epanet.ENopenH();
         epanet.ENinitH(0);
-        // Set the diameter of network to the solutions
-        for (int i = 0; i < nDecisionVariables; i++) {
-            float diameter = (float) gamas.get(solution.getVariable(i) - 1).getDiameter();
-            epanet.ENsetlinkvalue(i + 1, LinkParameters.EN_DIAMETER, diameter);
+        int n_link = epanet.ENgetcount(Components.EN_LINKCOUNT);
+        // Set the diameter of pipes network to the solutions
+        // runs through all link change the diameters of pipes
+        int changed = 0; // count the number of pipes with his diameters modified.
+        for (int i = 1; i <= n_link; i++) {
+            LinkTypes type = epanet.ENgetlinktype(i);
+            if (type == LinkTypes.EN_PIPE){
+                float diameter = (float) gamas.get(solution.getVariable(i - 1) - 1).getDiameter();
+                epanet.ENsetlinkvalue(i, LinkParameters.EN_DIAMETER, diameter);
+                changed++;
+            }
         }
+        assert nDecisionVariables == changed;
         do {
 //			RecorrerNudos(epanet); // Borrar es solo para probar
 //			System.out.println(solution);

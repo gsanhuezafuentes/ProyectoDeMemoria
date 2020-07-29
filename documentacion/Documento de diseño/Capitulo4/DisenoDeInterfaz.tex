@@ -1,4 +1,5 @@
 \chapter{Diseño de interfaces}
+Durante este capítulo se presentan las interfaces que conforman la aplicación.
 
 \section{Interfaz de inicio}
 La interfaz de inicio se divide en tres secciones, el menú, el visualizador de red y un apartado para ver los elementos de la red. Para cargar una red debe ir a \textit{File} $>$ \textit{Open}. Para resolver un problema debe ir al menú \textit{Problems} y elegir el problema a resolver. Para ver más detalles de un componente de la red, entonces pulse dos veces en componente de la red en el apartado de elementos. Esta interfaz se muestra en la Figura \ref{fig:interfaz_inicio}.
@@ -11,7 +12,7 @@ La interfaz de inicio se divide en tres secciones, el menú, el visualizador de r
 \end{figure}
 
 \section{Interfaz de configuración y descripción del problema}
-Esta interfaz es mostrada cuando el problema tiene parámetros que configurar. Se puede ver un ejemplo del formato de esta en las siguientes Figuras. La Figura \ref{fig:interfaz_descripcion_problema}muestra la interfaz de descripción del problema a optimizar. La Figura \ref{fig:interfaz_configuracion_problema} muestra la interfaz para configurar los parámetros del problema.
+La interfaz de configuración y descripción del problema es mostrada cuando el problema tiene parámetros que configurar. La Figura~\ref{fig:interfaz_descripcion_problema} muestra la interfaz de descripción del problema a optimizar. La Figura~\ref{fig:interfaz_configuracion_problema} muestra la interfaz para configurar los parámetros del problema.
 
 \begin{figure}[H]
     \centering
@@ -50,17 +51,24 @@ La pestaña ``\textit{Chart}'' está disponible para la interfaz de los problemas 
 \end{figure}
 
 \section{Interfaz de gráficos}
-Esta interfaz será mostrada cuando la pestaña ``\textit{Chart}'' sea seleccionada. Esta interfaz contara con un gráfico de dos ejes. Si el problema es de un objetivo, entonces el eje vertical corresponderá al valor del objetivo después de realizar la evaluación. Mientras que el eje horizontal corresponderá al número de generaciones. Si el problema tiene dos objetivos, el eje vertical corresponderá al primer objetivo y el eje horizontal corresponderá al segundo objetivo. Esta interfaz es mostrada en la Figura \ref{fig:interfaz_grafica_soluciones}.
+Esta interfaz es mostrada cuando se selecciona la pestaña ``\textit{Chart}''. Ésta cuenta con un gráfico de dos ejes. Si el problema es de un objetivo, entonces el eje vertical corresponde al valor del objetivo después de realizar la evaluación, mientras que el eje horizontal corresponde al número de generaciones. Si el problema tiene dos objetivos, el eje vertical corresponde al primer objetivo y el eje horizontal corresponde al segundo objetivo. La interfaz para problemas monoobjetivos es mostrada en la Figura~\ref{fig:interfaz_grafica_soluciones_mono}, mientras que para el problema multiobjetivo se muestra la interfaz en la Figura~\ref{fig:interfaz_grafica_soluciones_multi}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Capitulo4/assets/InterfazDeGraficos.png}
-    \caption{Esquema de interfaz para graficar las soluciones}
-    \label{fig:interfaz_grafica_soluciones}
+    \includegraphics[scale=0.7]{Capitulo4/assets/grafico_soluciones_monoobjetivo.png}
+    \caption{Interfaz de gráfico de soluciones para problemas monoobjetivos}
+    \label{fig:interfaz_grafica_soluciones_mono}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{Capitulo4/assets/grafico_soluciones_multiobjetivo.png}
+    \caption{Interfaz de gráfico de soluciones para problemas multiobjetivos}
+    \label{fig:interfaz_grafica_soluciones_multi}
 \end{figure}
 
 \section{Interfaz de resultados}
-La interfaz de resultados será mostrada cuando la ejecución del algoritmo haya terminado exitosamente. Esta interfaz es mostrada en la ventana principal de la aplicación en una nueva pestaña. Al seleccionar una pestaña de resultado se activan tres botones como se muestra en la Figura \ref{fig:interfaz_resultados_optimizacion}.
+La interfaz de resultados es mostrada cuando la ejecución del algoritmo ha terminado exitosamente. Esta interfaz es mostrada en la ventana principal de la aplicación en una nueva pestaña. Al seleccionar una pestaña de resultado se activan tres botones como se muestra en la Figura \ref{fig:interfaz_resultados_optimizacion}.
 
 El botón ``\textit{Save selected ítem as inp}'' crea un inp para la solución selecciona. Para esto se envía una copia del objeto Network abierto y la solución al método applySolutionToNetwork, al objeto problema. Este método sustituye en el objeto Network los valores correspondientes indicados en la solución y devuelve nuevamente el objeto Network para poder guardarlo usando un objeto que implementa la interfaz OutputWriter.
 
@@ -76,7 +84,7 @@ El botón ``\textit{Save Table as Excel}'' exporta la tabla a una planilla Excel.
 \end{figure}
  
 \section{Interfaz de visualización de configuraciones de la red}
-Al seleccionar un componente de la red en la interfaz gráfica y hacer doble click se abrirá una interfaz que permitirá ver la configuración por defecto de los componentes de la red. Esta interfaz consiste en mostrar una tabla en donde la primera columna será el nombre del atributo de la red y la segunda el valor. Un ejemplo de esta interfaz para un componente de la red se puede visualizar en la Figura \ref{fig:interfaz_visualizacion_configuracion}.
+Al seleccionar un componente de la red en la interfaz gráfica y hacer doble click se abrirá una interfaz que permite ver la configuración por defecto de los componentes de la red. Esta interfaz consiste en mostrar una tabla en donde la primera columna será el nombre del atributo de la red y la segunda el valor. Un ejemplo de esta interfaz para un componente de la red se puede visualizar en la Figura \ref{fig:interfaz_visualizacion_configuracion}.
 
 \begin{figure}[H]
     \centering
@@ -95,4 +103,4 @@ Se puede ejecutar una red con su configuración por defecto. Una vez ejecutada la
     \label{fig:interfaz_resultado_simulacion}
 \end{figure}
 
-Los botones ``\textit{Time series for nodes}'' y ``\textit{Time series for link}'' solo son mostrados cuando la red está configurada para simular más de un tiempo.
+Los botones ``\textit{Time series for nodes}'' y ``\textit{Time series for link}'' solo son mostrados cuando la red está configurada para simular más de un periodo de tiempo de simulación.

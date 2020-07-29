@@ -1,10 +1,12 @@
 \section{Alcance del proyecto}
 
-Al final del período de desarrollo la herramienta contará con las siguientes prestaciones.
+Al final del período de desarrollo la herramienta debe contar con las siguientes prestaciones.
 \begin{itemize}
-    \item El sistema permitirá la carga y la visualización de la red gráficamente.
-    \item El sistema inicialmente solo resolverá dos clases de problemas de optimización, uno monoobjetivo y el otro multiobjetivo. El problema monoobjetivo será el de los costos de inversión. En cuanto al problema multiobjetivo, este será el de los costos energéticos y el número de encendidos y apagado de las bombas.  
-    \item El sistema inicialmente únicamente contará con dos algoritmos implementados los cuales serán el Algoritmo Genético y NSGAII. El Algoritmo Genético será el usado para tratar el problema monoobjetivo, mientras que NSGAII será aplicado al multiobjetivo.
+    \item El sistema permite la carga y la visualización de la red gráficamente.
+    \item El sistema implementa por defecto dos algoritmos. Uno de ellos monoobjetivo y el otro multiobjetivo. El algoritmo monoobjetivo corresponde al Algoritmo Genético (GA) mientras que el multiobjetivo a \textit{Non-Dominated Sorting Genetic Algorithm II} (NSGAII).
+	\item El sistema proporciona dos problemas ya implementados uno monoobjetivo y el otro multiobjetivo. El Algoritmo Genético se utiliza para generar soluciones para el problema monoobjetivo con el fin de optimizar el costo de inversión de las tuberías. Por otro lado, el algoritmo NSGAII aborda el problema multiobjetivo con el objetivo de optimizar los costos energéticos y el número de encendidos y apagado de las bombas.
+    \item El sistema permite visualizar y guardar las soluciones de los algoritmos en un archivo.
+    \item El sistema permite que el usuario agregue nuevos algoritmos, operadores o problemas sin tener que modificar la interfaz de usuario.
 \end{itemize}
 
-Este proyecto no contempla la creación de la red por lo que estas deberán ser ingresadas como entradas al programa. La creación de las redes puede realizarse a través de EPANET. Además, esta herramienta únicamente podrá ser ocupada en equipos cuyo sistema operativo sea Windows debido a que se realizan llamadas a librerías nativas.
+Este proyecto no contempla la creación de la red por lo que estas deberán ser ingresadas como entradas al programa. La creación de las redes puede realizarse a través de EPANET. Además, esta herramienta únicamente podrá ser ocupada en equipos cuyo sistema operativo sea Windows de 64bits debido a que se realizan llamadas a librerías nativas las cuales no son multiplataforma. Adicionalmente, el equipo debe contar con Java 1.8.

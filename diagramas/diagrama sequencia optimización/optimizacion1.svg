@@ -1,1 +1,442 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2492" height="1404"><defs/><g><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g><rect fill="white" stroke="none" x="0" y="0" width="2492" height="1404"/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="16.5pt" font-style="normal" font-weight="normal" text-decoration="normal" x="1106.6197129345117" y="24.50280495" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Diagrama para la simulación</text></g><g/><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 23.64361483359375 128.80307802049998 L 23.64361483359375 1404.0923996514996" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray="12.565541,5.445067766666667"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 146.91149808909375 128.80307802049998 L 146.91149808909375 1404.0923996514996" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray="12.565541,5.445067766666667"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 372.4643647551745 128.80307802049998 L 372.4643647551745 1404.0923996514996" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray="12.565541,5.445067766666667"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 633.8417861156875 319.4349005315 L 633.8417861156875 739.2496253415" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray="12.565541,5.445067766666667"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 1062.8826355815702 128.80307802049998 L 1062.8826355815702 1404.0923996514996" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray="12.565541,5.445067766666667"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 1595.395149476164 128.80307802049998 L 1595.395149476164 1404.0923996514996" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray="12.565541,5.445067766666667"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 1945.7889118448788 128.80307802049998 L 1945.7889118448788 1404.0923996514996" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray="12.565541,5.445067766666667"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 2167.4461706125194 128.80307802049998 L 2167.4461706125194 1404.0923996514996" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray="12.565541,5.445067766666667"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 2328.8099647195154 128.80307802049998 L 2328.8099647195154 1404.0923996514996" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray="12.565541,5.445067766666667"/><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 2438.845931372898 128.80307802049998 L 2438.845931372898 1404.0923996514996" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray="12.565541,5.445067766666667"/></g><g><g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 32.95468071459375 59.70516806150002 A 9.311065881 9.311065881 0 1 1 32.9546760590612 59.69585699717086 M 23.64361483359375 69.01623394250002 L 23.64361483359375 88.94518196850002 M 11.882268457593753 76.20372339450002 L 35.40496120959375 76.20372339450002 M 23.64361483359375 88.94518196850002 L 11.882268457593753 107.56731373050002 M 23.64361483359375 88.94518196850002 L 35.40496120959375 107.56731373050002" stroke-miterlimit="10" stroke-width="2.7769845610000004" stroke-dasharray=""/></g><g><g/><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="8.167601650000002" y="123.90251703050001" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">User</text></g><path fill="none" stroke="none"/><g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 55.4548313171875 84.69802911050002 L 238.36816486100003 84.69802911050002 L 238.36816486100003 128.8030780205 L 55.4548313171875 128.8030780205 L 55.4548313171875 84.69802911050002 Z" stroke-miterlimit="10" stroke-width="2.613632528" stroke-dasharray=""/></g><g><g/><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="73.1785268976875" y="112.46787472049999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">MainWindowController</text></g><path fill="none" stroke="none"/><g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 265.510208054069 84.69802911050002 L 479.4185214562799 84.69802911050002 L 479.4185214562799 128.8030780205 L 265.510208054069 128.8030780205 L 265.510208054069 84.69802911050002 Z" stroke-miterlimit="10" stroke-width="2.613632528" stroke-dasharray=""/></g><g><g/><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="283.233903634569" y="112.46787472049999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">ProblemMenuConfiguration</text></g><path fill="none" stroke="none"/><g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 771.787541075289 84.69802911050002 L 1353.9777300878513 84.69802911050002 L 1353.9777300878513 128.8030780205 L 771.787541075289 128.8030780205 L 771.787541075289 84.69802911050002 Z" stroke-miterlimit="10" stroke-width="2.613632528" stroke-dasharray=""/></g><g><g/><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="789.5112366557889" y="112.46787472049999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController</text></g><path fill="none" stroke="none"/><g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 1370.3129333878517 84.86138114350003 L 1820.4773655644767 84.86138114350003 L 1820.4773655644767 128.8030780205 L 1370.3129333878517 128.8030780205 L 1370.3129333878517 84.86138114350003 Z" stroke-miterlimit="10" stroke-width="2.613632528" stroke-dasharray=""/></g><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="1388.0366289683516" y="112.4678747205" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">SingleObjectiveExperimentTask / MultiObjectiveExperimentTask</text></g><path fill="none" stroke="none"/><g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 1836.8125688644766 84.69802911050002 L 2054.7652548252813 84.69802911050002 L 2054.7652548252813 128.8030780205 L 1836.8125688644766 128.8030780205 L 1836.8125688644766 84.69802911050002 Z" stroke-miterlimit="10" stroke-width="2.613632528" stroke-dasharray=""/></g><g><g/><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="1854.5362644449765" y="112.46787472049999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">ResultPlotWindowController</text></g><path fill="none" stroke="none"/><g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 2071.100458125281 84.69802911050002 L 2263.7918830997573 84.69802911050002 L 2263.7918830997573 128.8030780205 L 2071.100458125281 128.8030780205 L 2071.100458125281 84.69802911050002 Z" stroke-miterlimit="10" stroke-width="2.613632528" stroke-dasharray=""/></g><g><g/><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="2088.824153705781" y="112.46787472049999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">ResultWindowController</text></g><path fill="none" stroke="none"/><g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 2280.1270863997574 84.69802911050002 L 2377.492843039273 84.69802911050002 L 2377.492843039273 128.8030780205 L 2280.1270863997574 128.8030780205 L 2280.1270863997574 84.69802911050002 Z" stroke-miterlimit="10" stroke-width="2.613632528" stroke-dasharray=""/></g><g><g/><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="2297.8507819802576" y="112.46787472049999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Algorithm</text></g><path fill="none" stroke="none"/><g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 2393.828046339273 84.69802911050002 L 2483.863816406523 84.69802911050002 L 2483.863816406523 128.8030780205 L 2393.828046339273 128.8030780205 L 2393.828046339273 84.69802911050002 Z" stroke-miterlimit="10" stroke-width="2.613632528" stroke-dasharray=""/></g><g><g/><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="2411.551741919773" y="112.46787472049999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Problem</text></g></g><g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 364.2967631051745 248.0500621105 L 380.63196640517447 248.0500621105 L 380.63196640517447 397.84387637149996 L 364.2967631051745 397.84387637149996 L 364.2967631051745 248.0500621105" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 625.6741844656874 319.4349005315 L 642.0093877656875 319.4349005315 L 642.0093877656875 319.4349005315 L 625.6741844656874 319.4349005315 L 625.6741844656874 319.4349005315" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 625.6741844656874 397.84387637149996 L 642.0093877656875 397.84387637149996 L 642.0093877656875 459.91764891149995 L 625.6741844656874 459.91764891149995 L 625.6741844656874 397.84387637149996" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 625.6741844656874 554.6618280514999 L 642.0093877656875 554.6618280514999 L 642.0093877656875 711.4797797314999 L 625.6741844656874 711.4797797314999 L 625.6741844656874 554.6618280514999" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 633.8417861156875 637.9713648814999 L 650.1769894156876 637.9713648814999 L 650.1769894156876 700.0451374214999 L 633.8417861156875 700.0451374214999 L 633.8417861156875 637.9713648814999" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 138.74389643909376 700.0451374214999 L 155.07909973909375 700.0451374214999 L 155.07909973909375 1160.6978704814996 L 138.74389643909376 1160.6978704814996 L 138.74389643909376 700.0451374214999" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 1054.7150339315701 882.9994143814998 L 1071.0502372315702 882.9994143814998 L 1071.0502372315702 1077.3883336514998 L 1054.7150339315701 1077.3883336514998 L 1054.7150339315701 882.9994143814998" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 1587.227547826164 928.7379836214998 L 1603.5627511261641 928.7379836214998 L 1603.5627511261641 940.1726259314997 L 1587.227547826164 940.1726259314997 L 1587.227547826164 928.7379836214998" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 1937.6213101948788 974.4765528614997 L 1953.956513494879 974.4765528614997 L 1953.956513494879 985.9111951714997 L 1937.6213101948788 985.9111951714997 L 1937.6213101948788 974.4765528614997" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 1937.6213101948788 1020.2151221014997 L 1953.956513494879 1020.2151221014997 L 1953.956513494879 1065.9536913414997 L 1937.6213101948788 1065.9536913414997 L 1937.6213101948788 1020.2151221014997" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 1054.7150339315701 1160.6978704814996 L 1071.0502372315702 1160.6978704814996 L 1071.0502372315702 1346.9191881014997 L 1054.7150339315701 1346.9191881014997 L 1054.7150339315701 1160.6978704814996" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 1587.227547826164 1346.9191881014997 L 1603.5627511261641 1346.9191881014997 L 1603.5627511261641 1387.7571963514995 L 1587.227547826164 1387.7571963514995 L 1587.227547826164 1346.9191881014997" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g><g><rect fill="white" stroke="none" x="105.14914278834895" y="161.4734846205" width="119.79670967164063" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="117.37533907741145" y="177.80868792049998" width="121.44311775269531" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="117.37533907741145" y="194.14389122049997" width="105.95276130738281" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="117.37533907741145" y="210.47909452049996" width="108.38653816285156" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="117.37533907741145" y="226.81429782049995" width="165.41589607300781" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="italic" font-weight="normal" text-decoration="normal" x="119.82561957241145" y="176.17516759049997" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Elegir problema</text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="107.59942328334895" y="176.17516759049997" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">1 </text></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="italic" font-weight="normal" text-decoration="normal" x="119.82561957241145" y="192.51037089049996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">desde un menu y </text><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="italic" font-weight="normal" text-decoration="normal" x="119.82561957241145" y="208.84557419049995" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">disparar evento</text><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="italic" font-weight="normal" text-decoration="normal" x="119.82561957241145" y="225.18077749049993" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">para abrir la red</text><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="119.82561957241145" y="241.51598079049992" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">menuItemEventHander()</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 23.64361483359375 248.0500621105 L 361.57422922184116 248.0500621105" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g transform="translate(364.2967631051745,248.0500621105) translate(-364.2967631051745,-248.0500621105)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 350.6840936885078 241.24372740216666 L 364.2967631051745 248.0500621105 L 350.6840936885078 254.85639681883333 Z"/></g></g><path fill="none" stroke="none"/><g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 512.2312344560859 273.94135934099995 L 755.452337775289 273.94135934099995 L 755.452337775289 318.04640825099995 L 512.2312344560859 318.04640825099995 L 512.2312344560859 273.94135934099995 Z" stroke-miterlimit="10" stroke-width="2.613632528" stroke-dasharray=""/></g><g><g/><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="529.9549300365859" y="301.711204951" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">DynamicConfigurationController</text></g><g><g><rect fill="white" stroke="none" x="404.0457578018411" y="274.75811950599996" width="84.77168525757813" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="418.7222345859036" y="289.45980247599994" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">&lt;&lt;crear&gt;&gt;</text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="406.4960382968411" y="289.45980247599994" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">2 </text></g></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 380.63196640517447 295.993883796 L 509.50870057275256 295.993883796" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g transform="translate(512.2312344560859,295.993883796) translate(-512.2312344560859,-295.993883796)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 498.6185650394192 289.18754908766664 L 512.2312344560859 295.993883796 L 498.6185650394192 302.8002185043333 Z"/></g></g><g><g><rect fill="white" stroke="none" x="410.24471846338014" y="343.93770548149996" width="185.81671394410156" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="422.47091475244264" y="360.27290878149995" width="133.65498603882813" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="422.47091475244264" y="376.60811208149994" width="153.9770990759375" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="italic" font-weight="normal" text-decoration="normal" x="424.92119524744265" y="358.63938845149994" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Solicita al controlador que</text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="412.69499895838015" y="358.63938845149994" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">3 </text></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="italic" font-weight="normal" text-decoration="normal" x="424.92119524744265" y="374.97459175149993" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve"> muestra la ventana</text><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="424.92119524744265" y="391.3097950514999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">showDinamicWindow()</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 380.63196640517447 397.84387637149996 L 622.9516505823541 397.84387637149996" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g transform="translate(625.6741844656874,397.84387637149996) translate(-625.6741844656874,-397.84387637149996)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 612.0615150490207 391.0375416631666 L 625.6741844656874 397.84387637149996 L 612.0615150490207 404.6502110798333 Z"/></g></g><g><g><rect fill="white" stroke="none" x="233.3647089373554" y="422.34668132149994" width="182.58838142457031" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="245.5909052264179" y="438.68188462149993" width="85.57339729371094" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="248.0411857214179" y="437.0483642914999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Ventana de configuración</text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="235.8149894323554" y="437.0483642914999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">4 </text></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="248.0411857214179" y="453.3835675914999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">de algoritmo</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 625.6741844656874 459.91764891149995 L 26.366148716927086 459.91764891149995" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray="6.53408132"/><g transform="translate(23.64361483359375,459.91764891149995) translate(-23.64361483359375,-459.91764891149995)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 37.25628425026042 453.1113142031666 L 23.64361483359375 459.91764891149995 L 37.25628425026042 466.7239836198333 Z"/></g></g><g><g><rect fill="white" stroke="none" x="206.0848474871601" y="484.42045386149994" width="195.59480537476563" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="218.3110437762226" y="500.7556571614999" width="188.2433344275" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="218.3110437762226" y="517.0908604614999" width="224.92190803589844" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="218.3110437762226" y="533.4260637614999" width="132.0085932165625" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="220.76132427122258" y="499.1221368314999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Ingresa las configuraciones</text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="208.53512798216008" y="499.1221368314999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">5 </text></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="220.76132427122258" y="515.4573401314999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">y disparar evento para crear</text><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="220.76132427122258" y="531.7925434314999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">la instancia de la clase registrable</text><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="220.76132427122258" y="548.1277467314999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">onRunButtonClick()</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 23.64361483359375 554.6618280514999 L 622.9516505823541 554.6618280514999" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g transform="translate(625.6741844656874,554.6618280514999) translate(-625.6741844656874,-554.6618280514999)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 612.0615150490207 547.8554933431666 L 625.6741844656874 554.6618280514999 L 612.0615150490207 561.4681627598333 Z"/></g></g><g><g><rect fill="white" stroke="none" x="669.5069799873542" y="579.1646330014999" width="119.78955329957031" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="681.7331762764167" y="595.4998363014998" width="99.43165840210938" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="684.1834567714167" y="593.8663159714998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Crear instancia </text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="671.9572604823542" y="593.8663159714998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">6 </text></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="684.1834567714167" y="610.2015192714998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">de Registrable</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 642.0093877656875 616.7356005914999 L 715.5178026156874 616.7356005914999 L 715.5178026156874 637.9713648814999 L 652.8995232990208 637.9713648814999" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g transform="translate(650.1769894156874,637.9713648814999) translate(-650.1769894156874,-637.9713648814999)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 663.7896588323541 631.1650301731665 L 650.1769894156874 637.9713648814999 L 663.7896588323541 644.7776995898332 Z"/></g></g><g><g><rect fill="white" stroke="none" x="245.34237678785937" y="662.4741698314999" width="138.54400886597656" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="257.56857307692184" y="678.8093731314999" width="286.00993599" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="italic" font-weight="normal" text-decoration="normal" x="260.01885357192185" y="677.1758528014999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Ejecuta el callback</text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="247.79265728285935" y="677.1758528014999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">7 </text></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="260.01885357192185" y="693.5110561014999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">runSingleObjectiveExperiment(Registrable)</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 633.8417861156875 700.0451374214999 L 157.8016336224271 700.0451374214999" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g transform="translate(155.07909973909375,700.0451374214999) translate(-155.07909973909375,-700.0451374214999)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 168.69176915576043 693.2388027131666 L 155.07909973909375 700.0451374214999 L 168.69176915576043 706.8514721298333 Z"/></g></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 619.1401031456875 724.5479423715 L 648.5434690856874 753.9513083114999 M 648.5434690856874 724.5479423715 L 619.1401031456875 753.9513083114999" stroke-miterlimit="10" stroke-width="2.613632528" stroke-dasharray=""/></g><g><g><rect fill="white" stroke="none" x="174.40909031076043" y="778.4541132614999" width="184.17035163941406" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="186.63528659982293" y="794.7893165614998" width="123.86255134644531" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="italic" font-weight="normal" text-decoration="normal" x="189.08556709482292" y="793.1557962314998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Construye el experimento</text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="176.85937080576042" y="793.1557962314998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">8 </text></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="189.08556709482292" y="809.4909995314998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Registrable.build()</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 155.07909973909375 816.0250808514999 L 220.41991293909376 816.0250808514999 L 220.41991293909376 837.2608451414999 L 157.8016336224271 837.2608451414999" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g transform="translate(155.07909973909375,837.2608451414999) translate(-155.07909973909375,-837.2608451414999)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 168.69176915576043 830.4545104331665 L 155.07909973909375 837.2608451414999 L 168.69176915576043 844.0671798498332 Z"/></g></g><g><g><rect fill="white" stroke="none" x="562.5112242065429" y="861.7636500914998" width="84.77168525757813" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="577.1877009906054" y="876.4653330614998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">&lt;&lt;crear&gt;&gt;</text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="564.9615047015429" y="876.4653330614998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">9 </text></g></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 155.07909973909375 882.9994143814998 L 1051.9925000482367 882.9994143814998" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g transform="translate(1054.7150339315701,882.9994143814998) translate(-1054.7150339315701,-882.9994143814998)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 1041.1023645149035 876.1930796731665 L 1054.7150339315701 882.9994143814998 L 1041.1023645149035 889.8057490898332 Z"/></g></g><g><g><rect fill="white" stroke="none" x="1286.9570599098436" y="907.5022193314998" width="84.36366523804688" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="1309.7867196773045" y="922.2039023014997" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">&lt;&lt;crear&gt;</text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="1289.4073404048436" y="922.2039023014997" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">10 </text></g></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 1071.0502372315702 928.7379836214998 L 1584.5050139428306 928.7379836214998" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g transform="translate(1587.227547826164,928.7379836214998) translate(-1587.227547826164,-928.7379836214998)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 1573.6148784094974 921.9316489131664 L 1587.227547826164 928.7379836214998 L 1573.6148784094974 935.5443183298331 Z"/></g></g><g><g><rect fill="white" stroke="none" x="1458.2777814262324" y="953.2407885714997" width="92.11598457398438" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="1480.2985575267012" y="967.9424715414997" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">&lt;&lt;crear&gt;&gt;</text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="1460.7280619212324" y="967.9424715414997" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">11 </text></g></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 1071.0502372315702 974.4765528614997 L 1934.8987763115454 974.4765528614997" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g transform="translate(1937.6213101948788,974.4765528614997) translate(-1937.6213101948788,-974.4765528614997)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 1924.008640778212 967.6702181531664 L 1937.6213101948788 974.4765528614997 L 1924.008640778212 981.2828875698331 Z"/></g></g><g><g><rect fill="white" stroke="none" x="1459.1009702079707" y="998.9793578114997" width="90.46960701050781" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="1481.9306299754317" y="1013.6810407814996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">getNode()</text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="1461.5512507029707" y="1013.6810407814996" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">12 </text></g></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 1071.0502372315702 1020.2151221014997 L 1934.8987763115454 1020.2151221014997" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g transform="translate(1937.6213101948788,1020.2151221014997) translate(-1937.6213101948788,-1020.2151221014997)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 1924.008640778212 1013.4087873931663 L 1937.6213101948788 1020.2151221014997 L 1924.008640778212 1027.021456809833 Z"/></g></g><g><g><rect fill="white" stroke="none" x="1389.8311337821895" y="1044.7179270514998" width="229.00927986207031" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="1412.6607935496504" y="1059.4196100215" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Regresa el componente grafico</text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="1392.2814142771895" y="1059.4196100215" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">13 </text></g></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 1937.6213101948788 1065.9536913414997 L 1073.7727711149037 1065.9536913414997" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray="6.53408132"/><g transform="translate(1071.0502372315702,1065.9536913414997) translate(-1071.0502372315702,-1065.9536913414997)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 1084.662906648237 1059.1473566331665 L 1071.0502372315702 1065.9536913414997 L 1084.662906648237 1072.760026049833 Z"/></g></g><g><g><rect fill="white" stroke="none" x="486.7453245483398" y="1090.4564962914997" width="174.41374458375" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="507.12470382080073" y="1106.7916995914998" width="133.66212715210938" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="507.12470382080073" y="1123.1269028914999" width="80.67718757691406" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="507.12470382080073" y="1139.4621061915" width="215.92410530152344" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="italic" font-weight="normal" text-decoration="normal" x="509.57498431580075" y="1105.1581792614998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Muestra la ventana de </text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="489.1956050433398" y="1105.1581792614998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">14 </text></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="italic" font-weight="normal" text-decoration="normal" x="509.57498431580075" y="1121.4933825614999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">ejecución y ejecuta </text><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="italic" font-weight="normal" text-decoration="normal" x="509.57498431580075" y="1137.8285858615" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">el algoritmo</text><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="509.57498431580075" y="1154.1637891615" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">showWindowAndRunAlgorithm()</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 155.07909973909375 1160.6978704814996 L 1051.9925000482367 1160.6978704814996" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g transform="translate(1054.7150339315701,1160.6978704814996) translate(-1054.7150339315701,-1160.6978704814996)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 1041.1023645149035 1153.8915357731664 L 1054.7150339315701 1160.6978704814996 L 1041.1023645149035 1167.5042051898329 Z"/></g></g><path fill="white" stroke="black" paint-order="fill stroke markers" d=" M 1513.0305416750118 1185.2006754314998 L 1663.0580743073165 1185.2006754314998 L 1677.7597572773166 1199.9023584015 L 1677.7597572773166 1239.1068463214997 L 1513.0305416750118 1239.1068463214997 L 1513.0305416750118 1185.2006754314998 M 1663.0580743073165 1185.2006754314998 L 1663.0580743073165 1199.9023584015 L 1677.7597572773166 1199.9023584015" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="1535.8998262950117" y="1208.0699600515" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Se ejecuta en otro</text><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="1535.8998262950117" y="1224.4051633515" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">hilo</text></g><g><g><rect fill="white" stroke="none" x="422.2230014071132" y="1263.6096512714998" width="233.9126459509375" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="445.05266117457415" y="1278.3113342415" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Muestra la ventana de feedback</text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="424.6732819021132" y="1278.3113342415" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">15 </text></g></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 1054.7150339315701 1284.8454155614997 L 26.366148716927086 1284.8454155614997" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray="6.53408132"/><g transform="translate(23.64361483359375,1284.8454155614997) translate(-23.64361483359375,-1284.8454155614997)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 37.25628425026042 1278.0390808531665 L 23.64361483359375 1284.8454155614997 L 37.25628425026042 1291.651750269833 Z"/></g></g><g><g><rect fill="white" stroke="none" x="1210.5540981788865" y="1309.3482205114997" width="237.16958869996094" height="21.23576429"/></g><g><rect fill="white" stroke="none" x="1230.9334774513475" y="1325.6834238114998" width="35.85257209839844" height="21.23576429"/></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="italic" font-weight="normal" text-decoration="normal" x="1233.3837579463475" y="1324.0499034814998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">Iniciar la ejecución un nuevo hilo</text><g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="bold" text-decoration="normal" x="1213.0043786738865" y="1324.0499034814998" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">16 </text></g><text fill="black" stroke="none" font-family="sans-serif" font-size="11pt" font-style="normal" font-weight="normal" text-decoration="normal" x="1233.3837579463475" y="1340.3851067814999" text-anchor="start" dominant-baseline="alphabetic" xml:space="preserve">run()</text></g><g><path fill="none" stroke="black" paint-order="fill stroke markers" d=" M 1071.0502372315702 1346.9191881014997 L 1584.5050139428306 1346.9191881014997" stroke-miterlimit="10" stroke-width="1.3612669416666667" stroke-dasharray=""/><g transform="translate(1587.227547826164,1346.9191881014997) translate(-1587.227547826164,-1346.9191881014997)"><path fill="black" stroke="none" paint-order="stroke fill markers" d=" M 1573.6148784094974 1340.1128533931665 L 1587.227547826164 1346.9191881014997 L 1573.6148784094974 1353.725522809833 Z"/></g></g></g><g/><g/><g/><g/><g/><g/><g/><g/></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 2492 1404" style="enable-background:new 0 0 2492 1404;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{font-family:'ArialMT';}
+	.st2{font-size:16.5px;}
+	.st3{fill:none;stroke:#000000;stroke-width:1.3613;stroke-miterlimit:10;stroke-dasharray:12.5655,5.4451;}
+	.st4{fill:#FFFFFF;stroke:#000000;stroke-width:2.777;stroke-miterlimit:10;}
+	.st5{font-size:11px;}
+	.st6{fill:#FFFFFF;stroke:#000000;stroke-width:2.6136;stroke-miterlimit:10;}
+	.st7{fill:#FFFFFF;stroke:#000000;stroke-width:1.3613;stroke-miterlimit:10;}
+	.st8{font-family:'Arial-ItalicMT';}
+	.st9{font-family:'Arial-BoldMT';}
+	.st10{fill:none;stroke:#000000;stroke-width:1.3613;stroke-miterlimit:10;}
+	.st11{fill:none;stroke:#000000;stroke-width:1.3613;stroke-miterlimit:10;stroke-dasharray:6.5341;}
+	.st12{fill:none;stroke:#000000;stroke-width:2.6136;stroke-miterlimit:10;}
+</style>
+<g>
+	<g>
+		<rect class="st0" width="2492" height="1404"/>
+	</g>
+	<g>
+		<text transform="matrix(1 0 0 1 1106.6198 24.5028)" class="st1 st2">Diagrama para la simulación</text>
+	</g>
+	<g>
+		<path class="st3" d="M23.6,128.8v1275.3"/>
+		<path class="st3" d="M146.9,128.8v1275.3"/>
+		<path class="st3" d="M372.5,128.8v1275.3"/>
+		<path class="st3" d="M633.8,319.4v419.8"/>
+		<path class="st3" d="M1062.9,128.8v1275.3"/>
+		<path class="st3" d="M1595.4,128.8v1275.3"/>
+		<path class="st3" d="M1945.8,128.8v1275.3"/>
+		<path class="st3" d="M2167.4,128.8v1275.3"/>
+		<path class="st3" d="M2328.8,128.8v1275.3"/>
+		<path class="st3" d="M2438.8,128.8v1275.3"/>
+	</g>
+	<g>
+		<g>
+			<path class="st4" d="M33,59.7c0,5.1-4.2,9.3-9.3,9.3s-9.3-4.2-9.3-9.3s4.2-9.3,9.3-9.3C28.8,50.4,33,54.6,33,59.7 M23.6,69v19.9
+				 M11.9,76.2h23.5 M23.6,88.9l-11.8,18.6 M23.6,88.9l11.8,18.6"/>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 8.1676 123.9025)" class="st1 st5">User</text>
+		</g>
+		<path d="M0,0"/>
+		<g>
+			<path class="st6" d="M55.5,84.7h182.9v44.1H55.5V84.7z"/>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 73.1785 112.4679)" class="st1 st5">MainWindowController</text>
+		</g>
+		<path d="M0,0"/>
+		<g>
+			<path class="st6" d="M265.5,84.7h213.9v44.1H265.5V84.7z"/>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 283.2339 112.4679)" class="st1 st5">ProblemMenuConfiguration</text>
+		</g>
+		<path d="M0,0"/>
+		<g>
+			<path class="st6" d="M771.8,84.7H1354v44.1H771.8V84.7z"/>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 789.5112 112.4679)" class="st1 st5">SingleObjectiveRunningWindowController / MultiObjectiveRunningWindowController</text>
+		</g>
+		<path d="M0,0"/>
+		<g>
+			<path class="st6" d="M1370.3,84.9h450.2v43.9h-450.2V84.9z"/>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 1388.0366 112.4679)" class="st1 st5">SingleObjectiveExperimentTask / MultiObjectiveExperimentTask</text>
+		</g>
+		<path d="M0,0"/>
+		<g>
+			<path class="st6" d="M1836.8,84.7H2006v44.1h-169.2V84.7z"/>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 1854.5363 112.4679)" class="st1 st5">ResultPlotWindowController</text>
+		</g>
+		<path d="M0,0"/>
+		<g>
+			<path class="st6" d="M2071.1,84.7h146.1v44.1h-146.1V84.7z"/>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 2088.8242 112.4679)" class="st1 st5">ResultWindowController</text>
+		</g>
+		<path d="M0,0"/>
+		<g>
+			<path class="st6" d="M2280.1,84.7h81.1v44.1h-81.1V84.7z"/>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 2297.8508 112.4679)" class="st1 st5">Algorithm</text>
+		</g>
+		<path d="M0,0"/>
+		<g>
+			<path class="st6" d="M2393.8,84.7h71.8v44.1h-71.8V84.7z"/>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 2411.5518 112.4679)" class="st1 st5">Problem</text>
+		</g>
+	</g>
+	<g>
+		<path class="st7" d="M364.3,248.1h16.3v149.8h-16.3V248.1"/>
+		<path class="st7" d="M625.7,319.4H642l0,0H625.7L625.7,319.4"/>
+		<path class="st7" d="M625.7,397.8H642v62.1h-16.3V397.8"/>
+		<path class="st7" d="M625.7,554.7H642v156.8h-16.3V554.7"/>
+		<path class="st7" d="M633.8,638h16.3V700h-16.3V638"/>
+		<path class="st7" d="M138.7,700h16.3v460.7h-16.3V700"/>
+		<path class="st7" d="M1054.7,883h16.3v194.4h-16.3V883"/>
+		<path class="st7" d="M1587.2,928.7h16.3v11.4h-16.3V928.7"/>
+		<path class="st7" d="M1937.6,974.5h16.3v11.4h-16.3V974.5"/>
+		<path class="st7" d="M1937.6,1020.2h16.3v45.7h-16.3V1020.2"/>
+		<path class="st7" d="M1054.7,1160.7h16.3v186.2h-16.3V1160.7"/>
+		<path class="st7" d="M1587.2,1346.9h16.3v40.8h-16.3V1346.9"/>
+		<g>
+			<g>
+				<rect x="105.1" y="161.5" class="st0" width="119.8" height="21.2"/>
+			</g>
+			<g>
+				<rect x="117.4" y="177.8" class="st0" width="121.4" height="21.2"/>
+			</g>
+			<g>
+				<rect x="117.4" y="194.1" class="st0" width="106" height="21.2"/>
+			</g>
+			<g>
+				<rect x="117.4" y="210.5" class="st0" width="108.4" height="21.2"/>
+			</g>
+			<g>
+				<rect x="117.4" y="226.8" class="st0" width="165.4" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 119.8256 176.1752)" class="st8 st5">Elegir problema</text>
+			<g>
+				<text transform="matrix(1 0 0 1 107.5994 176.1752)" class="st9 st5">1 </text>
+			</g>
+			<text transform="matrix(1 0 0 1 119.8256 192.5104)" class="st8 st5">desde un menu y </text>
+			<text transform="matrix(1 0 0 1 119.8256 208.8456)" class="st8 st5">disparar evento</text>
+			<text transform="matrix(1 0 0 1 119.8256 225.1808)" class="st8 st5">para abrir la red</text>
+			<text transform="matrix(1 0 0 1 119.8256 241.516)" class="st1 st5">menuItemEventHander()</text>
+		</g>
+		<g>
+			<path class="st10" d="M23.6,248.1h337.9"/>
+			<g transform="translate(364.2967631051745,248.0500621105) translate(-364.2967631051745,-248.0500621105)">
+				<path d="M350.7,241.2l13.6,6.8l-13.6,6.8V241.2z"/>
+			</g>
+		</g>
+		<path d="M0,0"/>
+		<g>
+			<path class="st6" d="M512.2,273.9h243.2V318H512.2V273.9z"/>
+		</g>
+		<g>
+			<text transform="matrix(1 0 0 1 529.955 301.7112)" class="st1 st5">DynamicConfigurationController</text>
+		</g>
+		<g>
+			<g>
+				<rect x="404" y="274.8" class="st0" width="84.8" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 418.7222 289.4598)" class="st1 st5">&lt;&lt;crear&gt;&gt;</text>
+			<g>
+				<text transform="matrix(1 0 0 1 406.496 289.4598)" class="st9 st5">2 </text>
+			</g>
+		</g>
+		<g>
+			<path class="st10" d="M380.6,296h128.9"/>
+			<g transform="translate(512.2312344560859,295.993883796) translate(-512.2312344560859,-295.993883796)">
+				<path d="M498.6,289.2l13.6,6.8l-13.6,6.8V289.2z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<rect x="410.2" y="343.9" class="st0" width="185.8" height="21.2"/>
+			</g>
+			<g>
+				<rect x="422.5" y="360.3" class="st0" width="133.7" height="21.2"/>
+			</g>
+			<g>
+				<rect x="422.5" y="376.6" class="st0" width="154" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 424.9212 358.6394)" class="st8 st5">Solicita al controlador que</text>
+			<g>
+				<text transform="matrix(1 0 0 1 412.695 358.6394)" class="st9 st5">3 </text>
+			</g>
+			<text transform="matrix(1 0 0 1 424.9212 374.9746)" class="st8 st5"> muestra la ventana</text>
+			<text transform="matrix(1 0 0 1 424.9212 391.3098)" class="st1 st5">showDinamicWindow()</text>
+		</g>
+		<g>
+			<path class="st10" d="M380.6,397.8H623"/>
+			<g transform="translate(625.6741844656874,397.84387637149996) translate(-625.6741844656874,-397.84387637149996)">
+				<path d="M612.1,391l13.6,6.8l-13.6,6.8V391z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<rect x="233.4" y="422.3" class="st0" width="182.6" height="21.2"/>
+			</g>
+			<g>
+				<rect x="245.6" y="438.7" class="st0" width="85.6" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 248.0412 437.0483)" class="st1 st5">Ventana de configuración</text>
+			<g>
+				<text transform="matrix(1 0 0 1 235.815 437.0483)" class="st9 st5">4 </text>
+			</g>
+			<text transform="matrix(1 0 0 1 248.0412 453.3835)" class="st1 st5">de algoritmo</text>
+		</g>
+		<g>
+			<path class="st11" d="M625.7,459.9H26.4"/>
+			<g transform="translate(23.64361483359375,459.91764891149995) translate(-23.64361483359375,-459.91764891149995)">
+				<path d="M37.3,453.1l-13.6,6.8l13.6,6.8V453.1z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<rect x="206.1" y="484.4" class="st0" width="195.6" height="21.2"/>
+			</g>
+			<g>
+				<rect x="218.3" y="500.8" class="st0" width="188.2" height="21.2"/>
+			</g>
+			<g>
+				<rect x="218.3" y="517.1" class="st0" width="224.9" height="21.2"/>
+			</g>
+			<g>
+				<rect x="218.3" y="533.4" class="st0" width="132" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 220.7614 499.1221)" class="st1 st5">Ingresa las configuraciones</text>
+			<g>
+				<text transform="matrix(1 0 0 1 208.5352 499.1221)" class="st9 st5">5 </text>
+			</g>
+			<text transform="matrix(1 0 0 1 220.7614 515.4573)" class="st1 st5">y disparar evento para crear</text>
+			<text transform="matrix(1 0 0 1 220.7614 531.7925)" class="st1 st5">la instancia de la clase registrable</text>
+			<text transform="matrix(1 0 0 1 220.7614 548.1277)" class="st1 st5">onRunButtonClick()</text>
+		</g>
+		<g>
+			<path class="st10" d="M23.6,554.7H623"/>
+			<g transform="translate(625.6741844656874,554.6618280514999) translate(-625.6741844656874,-554.6618280514999)">
+				<path d="M612.1,547.9l13.6,6.8l-13.6,6.8V547.9z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<rect x="669.5" y="579.2" class="st0" width="119.8" height="21.2"/>
+			</g>
+			<g>
+				<rect x="681.7" y="595.5" class="st0" width="99.4" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 684.1835 593.8663)" class="st1 st5">Crear instancia </text>
+			<g>
+				<text transform="matrix(1 0 0 1 671.9573 593.8663)" class="st9 st5">6 </text>
+			</g>
+			<text transform="matrix(1 0 0 1 684.1835 610.2015)" class="st1 st5">de Registrable</text>
+		</g>
+		<g>
+			<path class="st10" d="M642,616.7h73.5V638h-62.6"/>
+			<g transform="translate(650.1769894156874,637.9713648814999) translate(-650.1769894156874,-637.9713648814999)">
+				<path d="M663.8,631.2l-13.6,6.8l13.6,6.8V631.2z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<rect x="245.3" y="662.5" class="st0" width="138.5" height="21.2"/>
+			</g>
+			<g>
+				<rect x="257.6" y="678.8" class="st0" width="286" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 260.0189 677.1758)" class="st8 st5">Ejecuta el callback</text>
+			<g>
+				<text transform="matrix(1 0 0 1 247.7927 677.1758)" class="st9 st5">7 </text>
+			</g>
+			<text transform="matrix(1 0 0 1 260.0189 693.511)" class="st1 st5">runSingleObjectiveExperiment(Registrable)</text>
+		</g>
+		<g>
+			<path class="st10" d="M633.8,700h-476"/>
+			<g transform="translate(155.07909973909375,700.0451374214999) translate(-155.07909973909375,-700.0451374214999)">
+				<path d="M168.7,693.2l-13.6,6.8l13.6,6.8V693.2z"/>
+			</g>
+		</g>
+		<g>
+			<path class="st12" d="M619.1,724.5l29.4,29.4 M648.5,724.5L619.1,754"/>
+		</g>
+		<g>
+			<g>
+				<rect x="174.4" y="778.5" class="st0" width="184.2" height="21.2"/>
+			</g>
+			<g>
+				<rect x="186.6" y="794.8" class="st0" width="123.9" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 189.0856 793.1558)" class="st8 st5">Construye el experimento</text>
+			<g>
+				<text transform="matrix(1 0 0 1 176.8594 793.1558)" class="st9 st5">8 </text>
+			</g>
+			<text transform="matrix(1 0 0 1 189.0856 809.491)" class="st1 st5">Registrable.build()</text>
+		</g>
+		<g>
+			<path class="st10" d="M155.1,816h65.3v21.2h-62.6"/>
+			<g transform="translate(155.07909973909375,837.2608451414999) translate(-155.07909973909375,-837.2608451414999)">
+				<path d="M168.7,830.5l-13.6,6.8l13.6,6.8V830.5z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<rect x="562.5" y="861.8" class="st0" width="84.8" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 577.1877 876.4653)" class="st1 st5">&lt;&lt;crear&gt;&gt;</text>
+			<g>
+				<text transform="matrix(1 0 0 1 564.9615 876.4653)" class="st9 st5">9 </text>
+			</g>
+		</g>
+		<g>
+			<path class="st10" d="M155.1,883H1052"/>
+			<g transform="translate(1054.7150339315701,882.9994143814998) translate(-1054.7150339315701,-882.9994143814998)">
+				<path d="M1041.1,876.2l13.6,6.8l-13.6,6.8V876.2z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<rect x="1287" y="907.5" class="st0" width="84.4" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 1309.7867 922.2039)" class="st1 st5">&lt;&lt;crear&gt;</text>
+			<g>
+				<text transform="matrix(1 0 0 1 1289.4073 922.2039)" class="st9 st5">10 </text>
+			</g>
+		</g>
+		<g>
+			<path class="st10" d="M1071.1,928.7h513.5"/>
+			<g transform="translate(1587.227547826164,928.7379836214998) translate(-1587.227547826164,-928.7379836214998)">
+				<path d="M1573.6,921.9l13.6,6.8l-13.6,6.8V921.9z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<rect x="1458.3" y="953.2" class="st0" width="92.1" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 1480.2986 967.9424)" class="st1 st5">&lt;&lt;crear&gt;&gt;</text>
+			<g>
+				<text transform="matrix(1 0 0 1 1460.728 967.9424)" class="st9 st5">11 </text>
+			</g>
+		</g>
+		<g>
+			<path class="st10" d="M1071.1,974.5h863.8"/>
+			<g transform="translate(1937.6213101948788,974.4765528614997) translate(-1937.6213101948788,-974.4765528614997)">
+				<path d="M1924,967.7l13.6,6.8l-13.6,6.8V967.7z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<rect x="1459.1" y="999" class="st0" width="90.5" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 1481.9307 1013.681)" class="st1 st5">getNode()</text>
+			<g>
+				<text transform="matrix(1 0 0 1 1461.5513 1013.681)" class="st9 st5">12 </text>
+			</g>
+		</g>
+		<g>
+			<path class="st10" d="M1071.1,1020.2h863.8"/>
+			<g transform="translate(1937.6213101948788,1020.2151221014997) translate(-1937.6213101948788,-1020.2151221014997)">
+				<path d="M1924,1013.4l13.6,6.8l-13.6,6.8V1013.4z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<rect x="1389.8" y="1044.7" class="st0" width="229" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 1412.6608 1059.4196)" class="st1 st5">Regresa el componente grafico</text>
+			<g>
+				<text transform="matrix(1 0 0 1 1392.2814 1059.4196)" class="st9 st5">13 </text>
+			</g>
+		</g>
+		<g>
+			<path class="st11" d="M1937.6,1066h-863.8"/>
+			<g transform="translate(1071.0502372315702,1065.9536913414997) translate(-1071.0502372315702,-1065.9536913414997)">
+				<path d="M1084.7,1059.1l-13.6,6.8l13.6,6.8V1059.1z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<rect x="486.7" y="1090.5" class="st0" width="174.4" height="21.2"/>
+			</g>
+			<g>
+				<rect x="507.1" y="1106.8" class="st0" width="133.7" height="21.2"/>
+			</g>
+			<g>
+				<rect x="507.1" y="1123.1" class="st0" width="80.7" height="21.2"/>
+			</g>
+			<g>
+				<rect x="507.1" y="1139.5" class="st0" width="215.9" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 509.575 1105.1582)" class="st8 st5">Muestra la ventana de </text>
+			<g>
+				<text transform="matrix(1 0 0 1 489.1956 1105.1582)" class="st9 st5">14 </text>
+			</g>
+			<text transform="matrix(1 0 0 1 509.575 1121.4934)" class="st8 st5">ejecución y ejecuta </text>
+			<text transform="matrix(1 0 0 1 509.575 1137.8286)" class="st8 st5">el algoritmo</text>
+			<text transform="matrix(1 0 0 1 509.575 1154.1638)" class="st1 st5">showWindowAndRunAlgorithm()</text>
+		</g>
+		<g>
+			<path class="st10" d="M155.1,1160.7H1052"/>
+			<g transform="translate(1054.7150339315701,1160.6978704814996) translate(-1054.7150339315701,-1160.6978704814996)">
+				<path d="M1041.1,1153.9l13.6,6.8l-13.6,6.8V1153.9z"/>
+			</g>
+		</g>
+		<path class="st7" d="M1513,1185.2h150l14.7,14.7v39.2H1513V1185.2 M1663.1,1185.2v14.7h14.7"/>
+		<g>
+			<text transform="matrix(1 0 0 1 1535.8998 1208.0699)" class="st1 st5">Se ejecuta en otro</text>
+			<text transform="matrix(1 0 0 1 1535.8998 1224.4052)" class="st1 st5">hilo</text>
+		</g>
+		<g>
+			<g>
+				<rect x="422.2" y="1263.6" class="st0" width="233.9" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 445.0527 1278.3113)" class="st1 st5">Muestra la ventana de feedback</text>
+			<g>
+				<text transform="matrix(1 0 0 1 424.6733 1278.3113)" class="st9 st5">15 </text>
+			</g>
+		</g>
+		<g>
+			<path class="st11" d="M1054.7,1284.8H26.4"/>
+			<g transform="translate(23.64361483359375,1284.8454155614997) translate(-23.64361483359375,-1284.8454155614997)">
+				<path d="M37.3,1278l-13.6,6.8l13.6,6.8V1278z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<rect x="1210.6" y="1309.3" class="st0" width="237.2" height="21.2"/>
+			</g>
+			<g>
+				<rect x="1230.9" y="1325.7" class="st0" width="35.9" height="21.2"/>
+			</g>
+			<text transform="matrix(1 0 0 1 1233.3838 1324.0499)" class="st8 st5">Iniciar la ejecución un nuevo hilo</text>
+			<g>
+				<text transform="matrix(1 0 0 1 1213.0044 1324.0499)" class="st9 st5">16 </text>
+			</g>
+			<text transform="matrix(1 0 0 1 1233.3838 1340.3851)" class="st1 st5">run()</text>
+		</g>
+		<g>
+			<path class="st10" d="M1071.1,1346.9h513.5"/>
+			<g transform="translate(1587.227547826164,1346.9191881014997) translate(-1587.227547826164,-1346.9191881014997)">
+				<path d="M1573.6,1340.1l13.6,6.8l-13.6,6.8V1340.1z"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

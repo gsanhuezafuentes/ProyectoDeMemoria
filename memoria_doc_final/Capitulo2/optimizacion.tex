@@ -19,9 +19,19 @@ Debido a la definición de las restricciones es posible dividir el espacio de bús
 \end{itemize}
 
 \subsection{Optimización monoobjetivo}
-La optimizaci
+La optimización monoobjetivo es aquella que busca maximizar o minimizar una única función. Como resultado del proceso de optimización se espera encontrar una sola solución la cual debiese ser lo mas cercano posible al valor óptimo de la función. Para resolver problemas que utilizan ente enfoque existen diversos algoritmos. Los algoritmos más conocidos para este tipo de optimización se clasifican bajo las siguientes categorías \cite{Boussaid2013}:
 
-En este tipo de metodología existe una solución única y que mejora en el tiempo.
+\begin{itemize}
+	\item Basados en una sola solución: Estos son métodos que buscan mejorar una única solución. Entre los algoritmos de esta categoría se encuentran \textit{Simulated Annealing}, \textit{Tabu Search}, \textit{Greedy Randomiz ed Adaptive Search Procedure} (GRASP), \textit{Local Search}, etc.
+	\item Basados en la población: Métodos en los cuales se realiza la búsqueda de la solución óptima a partir de un conjunto de soluciones~\cite{Beheshti2015}. Las principales categorías de este tipo de métodos son aquellos relacionados a los procesos evolutivos, clasificados como algoritmos evolutivos y los relacionados en el comportamiento colectivo de las entidades, clasificados como inteligencia de enjambre. 
+\end{itemize}
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[scale=0.5]{Capitulo2/assets/monoobjetivo.eps}
+% 	\caption{Gráfica objetivo versus generación para un problema}
+% 	\label{fig:monoobjetivo}
+% \end{figure}
 
 \subsection{Optimización multiobjetivo}
 Como resultado de un proceso de optimización multiobjetivo no existe una única solución a un problema, sino que se tiene un conjunto de soluciones. Es por ello que a continuación se presentarán una serie de criterios que permitirán analizar y determinar el conjunto de soluciones optimas. Los criterios son los siguientes~\cite{VanVeldhuizen1998}:

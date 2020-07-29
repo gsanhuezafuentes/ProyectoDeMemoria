@@ -1,9 +1,6 @@
 package model.metaheuristic.problem.impl;
 
-import epanet.core.Components;
-import epanet.core.EpanetAPI;
-import epanet.core.EpanetException;
-import epanet.core.LinkParameters;
+import epanet.core.*;
 import exception.ApplicationException;
 import model.epanet.element.Gama;
 import model.epanet.element.Network;
@@ -118,7 +115,6 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 			cost += this.LenghtLinks.get(i) * gama.getCost();
 		}
 		solution.setObjective(0, cost);
-
 		evaluator.evaluate(solution, gamas, epanet);
 	}
 
@@ -151,12 +147,16 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 		ArrayList<Float> length = new ArrayList<Float>();
 		int n_link;
 		n_link = epanet.ENgetcount(Components.EN_LINKCOUNT);
+//		System.out.println("Link count " + n_link);
 		for (int i = 1; i <= n_link; i++) {
-			float[] value = epanet.ENgetlinkvalue(i, LinkParameters.EN_LENGTH);
-			length.add(value[0]);
+			LinkTypes type = epanet.ENgetlinktype(i);
+			if (type == LinkTypes.EN_PIPE){
+				float[] value = epanet.ENgetlinkvalue(i, LinkParameters.EN_LENGTH);
+				length.add(value[0]);
+			}
 //			System.out.println(i + " " + value[0]);
 		}
-
+//		System.out.println("Link pipes " + length.size());
 		return length;
 	}
 
@@ -174,21 +174,11 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	@Override
 	public Network applySolutionToNetwork(Network network, Solution<?> solution) {
 		IntegerSolution iSolution = (IntegerSolution) solution;
-		Collection<Link> links = network.getLinks();
+		Collection<Pipe> pipes = network.getPipes();
 		int i = 0;
-		for (Link link : links) {
+		for (Pipe pipe : pipes) {
 			double diameter = this.gamas.get(iSolution.getVariable(i) - 1).getDiameter();
-			/*
-			 * Only pipe and valve has diameter. For this only in that elements the diameter
-			 * is set. If link is a Pump so the diameter of this is ignored.
-			 */
-			if (link instanceof Pipe) {
-				Pipe pipe = (Pipe) link;
-				pipe.setDiameter(diameter);
-			} else if (link instanceof Valve) {
-				Valve valve = (Valve) link;
-				valve.setDiameter(diameter);
-			}
+			pipe.setDiameter(diameter);
 			i++;
 		}
 		return network;

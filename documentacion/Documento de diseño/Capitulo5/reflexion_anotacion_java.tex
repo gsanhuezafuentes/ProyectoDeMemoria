@@ -1,5 +1,5 @@
 \section{Uso de \textit{Java Annotation} y \textit{Java Reflection}}
-Las anotaciones presentes en el sistema, su finalidad y donde deberían ser usadas se define a continuación:
+Las anotaciones presentes en el sistema, su finalidad y donde deben ser usadas se define a continuación:
 \subsection{Anotaciones para los operadores}
 
 \subsubsection{\textit{@DefaultConstructor}}
@@ -43,7 +43,7 @@ La anotación puede tener un arreglo vacío, lo cual indica que el constructor no 
 \subsection{Anotaciones para los objetos que heredan la interfaz \textit{Registrable}}
 
 \subsubsection{\textit{@NewProblem}}
-Esta anotación permite indicar el nombre del problema que será mostrado en la interfaz gráfica. Puedes ver el uso de esta anotación en la Figura \ref{fig:constructor_heredado_registrable}.
+Esta anotación permite indicar el nombre del problema que es mostrado en la interfaz gráfica. Puedes ver el uso de esta anotación en la Figura \ref{fig:constructor_heredado_registrable}.
 
 \begin{figure}[H]
     \centering
@@ -68,7 +68,7 @@ El nombre dado en el elemento \textit{displayName}, es el nombre visible del pro
     \label{fig:menu_del_problema}
 \end{figure}
 
-Esta anotación solo puede estar en un constructor, en caso de esta anotación no esté presente, un error en tiempo de ejecución será lanzado. 
+Esta anotación solo puede estar en un constructor, en caso de esta anotación no esté presente, se lanza un error en tiempo de ejecución. 
 
 \subsubsection{\textit{@Parameters}}
 Esta anotación permite agregar información acerca de los parámetros recibidos por el constructor. Cuando el constructor tiene esta anotación, por convención, está obligado a declarar los parámetros en un orden determinado en base a tu tipo. Este orden es el siguiente:
@@ -79,7 +79,7 @@ Esta anotación permite agregar información acerca de los parámetros recibidos po
     \item \textit{int} o \textit{double}
 \end{enumerate}
 
-Si el constructor no declara los parámetros en ese orden un error en tiempo de ejecución será lanzado.
+Si el constructor no declara los parámetros en ese orden un error en tiempo de ejecución es lanzado.
 
 Dentro de esta anotación existen varios elementos. Estos elementos son:
 \begin{itemize}
@@ -95,7 +95,7 @@ No usar la anotación \textit{@Parameters} tiene el mismo efecto que usar la anot
 Puede ver el uso de esta anotación en la Figura \ref{fig:constructor_heredado_registrable}. 
 
 \subsubsection{\textit{@OperatorInput}}
-Esta anotación agrega más información a uno de los parámetros del constructor. 
+Esta anotación agrega información a uno de los parámetros del constructor acerca de los posibles operadores que pueden ser recibidos por ese parámetro. 
 Dentro de esta anotación existen varios elementos. Estos elementos son:
 \begin{enumerate}
     \item \textit{displayName}: Nombre de categoría para los operadores.
@@ -128,7 +128,7 @@ Esta anotación permite indicar las alternativas de operadores que puede recibir 
 Dentro de esta anotación existen varios elementos. Estos elementos son:
 \begin{itemize}
     \item \textit{displayName}: Nombre del operador. Este es el nombre visualizado en el \textit{ComboBox} como se muestra en la Figura \ref{fig:componente_operator_input_expandido}.
-    \item \textit{value}: Arreglo que recibe instancias del tipo \textit{Class}.
+    \item \textit{value}: Instancia del tipo \textit{Class} que referencia el tipo de operador.
 \end{itemize}
 
 
@@ -147,10 +147,10 @@ Dentro de esta anotación existen solo un elemento. Éste es:
     \label{fig:componente_file_input}
 \end{figure}
 
-Si el \textit{TextField} donde se muestra la ruta este vacío, es decir, no se ha seleccionado un archivo, entonces será inyectado \textbf{\textit{null}} en el parámetro correspondiente del constructor.
+Si el \textit{TextField} donde se muestra la ruta está vacío, es decir, no se ha seleccionado un archivo o carpeta, entonces será inyectado \textbf{\textit{null}} en el parámetro correspondiente del constructor.
 
 \subsubsection{\textit{@NumberInput}}
-Esta anotación indica que hay un parámetro del tipo \textit{int} o \textit{double} o sus tipos envoltorios \textit{Integer} o \textit{Double}, respectivamente. Esta anotación agrega en la interfaz un \textit{TextField} que solo permite como entrada un número.  Si el tipo del parámetro es \textit{int} o \textit{Integer}, entonces el \textit{TextField} solo permitirá ingresar números enteros. Por otro lado, si el parámetro es \textit{double} o \textit{Double}, entonces en la interfaz se podrá ingresar números enteros o decimales. El apartado para esta anotación se muestra en la Figura \ref{fig:componente_number_input}.
+Esta anotación indica que hay un parámetro del tipo \textit{int} o \textit{double} o sus tipos envoltorios \textit{Integer} o \textit{Double}, respectivamente. Esta anotación agrega en la interfaz un \textit{TextField} que solo permite como entrada un número.  Si el tipo del parámetro es \textit{int} o \textit{Integer}, entonces el \textit{TextField} solo permite ingresar números enteros. Por otro lado, si el parámetro es \textit{double} o \textit{Double}, entonces en la interfaz se acepta el ingreso de números enteros o decimales. El apartado para esta anotación se muestra en la Figura \ref{fig:componente_number_input}.
 
 \begin{figure}[H]
     \centering
@@ -166,10 +166,10 @@ Dentro de esta anotación existen los siguientes elementos:
 \end{itemize}
 
 \subsubsection{\textit{@NumberToggleInput}}
-Esta anotación indica que hay un conjunto de parámetros que son mutuamente excluyentes entre ellos, es decir, que solo un parámetro puede recibir el valor. En la interfaz, el nombre del grupo aparecerá sobre los componentes. Dentro de un mismo grupo solo se podrá configurar un parámetro. El parámetro por configurar debe ser indicado activando el \textit{ToggleButton} correspondiente, lo cual conllevara a la activación del \textit{TextField}.
+Esta anotación indica que hay un conjunto de parámetros que son mutuamente excluyentes entre ellos, es decir, que solo un parámetro puede recibir el valor. En la interfaz, el nombre del grupo aparece sobre los componentes. Dentro de un mismo grupo solo se puede configurar un parámetro. El parámetro por configurar debe ser indicado activando el \textit{ToggleButton} correspondiente, lo cual conlleva a la activación del \textit{TextField}.
 Dentro de esta anotación existen varios elementos. Estos elementos son:
 \begin{itemize}
-    \item \textit{groudID}: \textit{String} con un id para el grupo. Las anotaciones \textit{NumberToggerInput} que tengan el mismo id, en la interfaz, se encontraran en una sección cuyo título es el nombre del grupo. Esto se aprecia en la Figura \ref{fig:componente_number_toggle_input}. 
+    \item \textit{groudID}: \textit{String} con un id para el grupo. Las anotaciones \textit{NumberToggerInput} que tengan el mismo id, en la interfaz, se encuentran en una sección cuyo título es el nombre del grupo. Esto se aprecia en la Figura \ref{fig:componente_number_toggle_input}. 
     \item \textit{displayName}: Nombre del parámetro.
     \item \textit{defaultValue}: Valor por defecto de la propiedad. Si el tipo de parámetro en el constructor de la clase que hereda de \textit{Registrable} es un entero, pero se ingresa un valor con decimales, los decimales serán truncados. Si este elemento no se define su valor por defecto es 0.
 \end{itemize}
@@ -181,11 +181,11 @@ Dentro de esta anotación existen varios elementos. Estos elementos son:
     \label{fig:componente_number_toggle_input}
 \end{figure}
 
-El parámetro configurado en la interfaz de usuario recibirá el valor indicado en el \textit{TextField}. Si el \textit{TextField} queda vacío entonces recibirá el valor cero. Sin embargo, los demás parámetros, cuyos \textit{TextField} están deshabilitados, recibirán el valor \textbf{\textit{Double.MIN\_VALUE}}, si el parámetro es de tipo \textit{double} o \textit{Double}; o \textbf{\textit{Integer.MIN\_VALUE}} si el parámetro es de tipo \textit{int} o \textit{Integer}. Por ejemplo, en la Figura \ref{fig:componente_number_toggle_input}, se observa que el parámetro ``\textit{Number of iteration without improvement}'' esta activado, pero no contiene un valor, entonces al crear la instancia el constructor va a recibir el valor cero. Pero el parámetro ``\textit{Max number of evaluation}'', al no haber sido escogido,  recibirá el valor \textit{Integer.MIN\_VALUE}, puesto que este parámetro era de tipo \textit{int} o \textit{Integer}.
+El parámetro configurado en la interfaz de usuario recibe el valor indicado en el \textit{TextField}. Si el \textit{TextField} queda vacío entonces recibe el valor cero. Sin embargo, los demás parámetros, cuyos \textit{TextField} están deshabilitados, van a recibir el valor \textbf{\textit{Double.MIN\_VALUE}}, si el parámetro es de tipo \textit{double} o \textit{Double}; o \textbf{\textit{Integer.MIN\_VALUE}} si el parámetro es de tipo \textit{int} o \textit{Integer}. Por ejemplo, en la Figura \ref{fig:componente_number_toggle_input}, se observa que el parámetro ``\textit{Number of iteration without improvement}'' esta activado, pero no contiene un valor, entonces al crear la instancia el constructor va a recibir el valor cero. Pero el parámetro ``\textit{Max number of evaluation}'', al no haber sido escogido, recibe el valor \textit{Integer.MIN\_VALUE}, puesto que este parámetro era de tipo \textit{int} o \textit{Integer}.
 
-En la Figura \ref{fig:constructor_heredado_registrable} se puede ver el uso de la anotación \textit{NumberToggleInput}. El componente que representa esta anotación en la GUI se puede aprecia en la Figura \ref{fig:componente_number_toggle_input}. El groupID es usado para nombrar la sección. 
+En la Figura \ref{fig:constructor_heredado_registrable} se puede ver el uso de la anotación \textit{NumberToggleInput}. El componente que representa esta anotación en la GUI se puede apreciar en la Figura \ref{fig:componente_number_toggle_input}. El groupID es usado para nombrar la sección. 
 
-En el elemento \textit{numbersToggle} de la anotación \textit{@Parameters}, las anotaciones que pertenezcan al mismo grupo deben estar continuas. En caso de que esto no se cumpla se lanzara una excepción al momento de ejecutar la aplicación.
+En el elemento \textit{numbersToggle} de la anotación \textit{@Parameters}, las anotaciones que pertenezcan al mismo grupo deben estar continuas. En caso de que esto no se cumpla se lanza una excepción al momento de ejecutar la aplicación.
 
 Las anotaciones presentadas en las dos secciones anteriores deben ser usadas en constructores públicos.
 

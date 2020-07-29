@@ -76,7 +76,7 @@ El diagrama de la Figura~\ref{fig:dia_sec_visualizacion} muestra el conjunto de 
 \begin{figure}[h]
   \centering
   \includegraphics[height=\textwidth, angle=90]{Capitulo4/assets/d_clases_metaheuristica.eps}
-  \caption{Diagrama de clases modulo metaheurística. Modificación a partir del diagrama presentado en~\cite{Durillo2010}}
+  \caption[Diagrama de clases modulo metaheurística.]{Diagrama de clases modulo metaheurística. Modificación a partir del diagrama presentado en~\cite{Durillo2010}}
   \label{fig:dia_class_met}
 \end{figure}
 
@@ -167,12 +167,12 @@ En diferentes secciones de este documento se ha mencionado que la aplicación deb
   
 Finalmente se decidió utilizar un enfoque parecido al de los frameworks de Java Spring y JUnit utilizando las técnicas o patrones de diseño de inyección de dependencias e inversión de control. 
 
-El sistema define un flujo de trabajo, el cual se presenta en la Figura~\ref{fig:diagrama_actividades}. En él se puede agregar un nuevo problema simplemente definiendo una nueva clase que es usada como plantilla para crear los nuevos experimentos de ese problema con un algoritmo especifico. Esta nueva clase debe heredar de una de las subclases de \textit{Registrable}. La jerarquía de herencia de la clase \textit{Registrable} se muestra en la Figura~\ref{fig:registrable}. En dicha clase se pueden usar anotaciones en el constructor para definir los tipos de las instancias a inyectar asi como los valores de configuración que necesita el experimento. En este caso los tipos corresponden a los operadores a utilizar en el algoritmo del experimento a configurar.
+El sistema define un flujo de trabajo. En el programa se puede agregar un nuevo problema simplemente definiendo una nueva clase que es usada como plantilla para crear los nuevos experimentos de un problema con un algoritmo especifico. Esta nueva clase debe heredar de una de las subclases de \textit{Registrable}. La jerarquía de herencia de la clase \textit{Registrable} se muestra en la Figura~\ref{fig:registrable}. En dicha clase se pueden usar anotaciones en el constructor para definir los tipos de las instancias a inyectar asi como los valores de configuración que necesita el experimento. En este caso los tipos corresponden a los operadores a utilizar en el algoritmo del experimento a configurar. El flujo que sigue la aplicación se presenta en la Figura~\ref{fig:diagrama_actividades}. Durante ``Configurar Experimento'' se leen las anotaciones para construir la interfaz gráfica, una vez configurado el experimento en esta interfaz se crean e inyectan las dependencias al momento de crear la instancia de \textit{Registrable} usando la \textit{Java Reflection API}.
 
 \begin{figure}[h]
     \centering
     \includegraphics[height=0.9\textheight]{Capitulo4/assets/d_actividad.eps}
-    \caption{Diagrama de actividades de la aplicación. Durante ``Configurar Experimento'' se leen las anotaciones para construir la interfaz gráfica, una vez configurado el experimento se crean e inyectan las dependencias.}
+    \caption[Diagrama de actividades de la aplicación]{Diagrama de actividades de la aplicación}
     \label{fig:diagrama_actividades}
 \end{figure}
 
