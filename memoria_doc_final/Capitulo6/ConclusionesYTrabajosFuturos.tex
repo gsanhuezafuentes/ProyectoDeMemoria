@@ -2,11 +2,19 @@
 En este capítulo se presentan las conclusiones del trabajo desarrollado asi como la propuestas de trabajo futuro que puede ser realizados sobre la herramienta.
 
 \section{Conclusiones}
-Se concluyen que los objetivos definidos para este trabajo son exitosamente logrados. Adicionalmente, la metodología de desarrollo escogida fue la correcta dando como resultado documentación extra que puede ser utilizado por aquellos que deseen continuar con este proyecto para futuros trabajos. Estos documentos son la especificacion de requisitos (Anexo~\ref{appendix:requisito}) y diseño (Anexo~\ref{appendix:diseno}); manual de usuario (Anexo~\ref{appendix:manual}); y la especificación de casos de prueba (Anexo~\ref{appendix:prueba}).
+Se ha desarrollado un software que permite optimizar los procesos de diseño y operación en redes de agua potable. Dicho software, incorpora por defecto dos problemas y dos algoritmos. Los problemas implementados son el de diseño de RDA basado en la selección del diámetro de tuberías y el problema del régimen de bombeo. En cuanto a los algoritmos añadidos, se encuentran el Algoritmo Genético y el algoritmo NSGAII. 
 
-Durante la aplicación de la metodología si bien hubieron algunos retrasos en su ejecución se logro implementar todas las funcionalidades solicitadas por los interesados. Adicionalmente, la utilización de \textit{Java Reflection} y \textit{Java Annotation} para hacer la aplicación extensible con el fin de agregar nuevos algoritmos, problemas y operadores fue de gran importancia.
+Los objetivos definidos para este trabajo son exitosamente logrados en el tiempo planificado. 
 
-En relación a la evaluación de la solución se concluye que la aplicación incorpora las funcionalidades solicitadas en un principio por los interesados y que éstas son de utilidad para los usuarios que se desempeñan en el área de redes de agua potable. Sin embargo, el manual de usuario generado deja que desear y debe ser mejorado.
+La aplicación de la metodología se llevo a cabo realizando las cuatro fases correspondientes a requisitos, diseño, implementación y pruebas en cada una de las iteraciones. Al finalizar el periodo de desarrollo todas las funcionalidades solicitadas se encuentran implementadas.
+
+La metodología de desarrollo utilizada fue la adecuada dando como resultado documentación extra que puede ser consultada por aquellos que deseen continuar mejorando el sistema en futuros trabajos. Los documentos generados son la especificación de requisitos (Anexo~\ref{appendix:requisito}), la especificación del diseño (Anexo~\ref{appendix:diseno}); el manual de usuario (Anexo~\ref{appendix:manual}); y la especificación de los casos de prueba (Anexo~\ref{appendix:prueba}). 
+
+Gracias a la utilización de los patrones de Inversión de Control y Inyección de Dependencias, así como la utilización de las funcionalidades de Java, \textit{Java Reflection} y \textit{Java Annotation}, se logra mejorar la capacidad de extensibilidad del programa facilitando la incorporación de nuevos algoritmos y problemas.
+
+En relación a la evaluación de la solución se concluye que la aplicación incorpora las funcionalidades solicitadas en un principio por los interesados, el software es evaluado como ``bueno'' en cuanto a la usabilidad de acuerdo a la escala SUS utilizada y es de utilidad para los usuarios que se desempeñan en el área de redes de agua potable. Sin embargo, el manual de usuario debe ser mejorado incorporando más detalles de la aplicación.
+
+La aplicación de encuentra disponible en el repositorio de GitHub \url{https://github.com/EinherjarSt/ProyectoDeMemoria}.
 
 \section{Trabajo futuro}
 Una vez terminado el desarrollo del proyecto se identifico por parte del desarrollador, los colaboradores y los sujetos del estudio realizado, una serie de cadencias y detalles que pueden ser mejorados, así como algunas funcionalidades extras que incrementan el valor de la aplicación. Éstas se listan a continuación:
@@ -24,5 +32,3 @@ Una vez terminado el desarrollo del proyecto se identifico por parte del desarro
     \item Permitir restablecer los valores por defecto en la pestaña de configuración del problema.
     \item Incorporar una cola de trabajo para ejecutar más de una optimización a la vez.
 \end{itemize}
-
-

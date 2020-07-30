@@ -6,6 +6,8 @@
 \RequirePackage[latin1]{inputenc}
 \RequirePackage{multirow}
 \RequirePackage{float}
+\RequirePackage{adjustbox}
+
 
 %%%%%% Requeriments enviroments
 
@@ -68,18 +70,21 @@
 \newcommand{\ResultadosEsperados}[1]{\textbf{Resultados esperados:} & #1\\
 \hline}
 
-\NewDocumentEnvironment { prueba } { o o }
+%first: label, second:caption, last: scale
+\NewDocumentEnvironment { prueba } { o o O{\textwidth}}
 {
 \begin{table}[H]
-  \begin{center}
-    \IfNoValueF{#2}{\caption{#2}}
-    \begin{tabular}{||p{0.30\textwidth-2\arraycolsep}|p{0.70\textwidth-2\arraycolsep}||}
-      \hline
+  \centering
+  \IfNoValueF{#2}{\caption{#2}}
+  \bigskip
+  \begin{adjustbox}{max width=#3}
+      \begin{tabular}{||p{0.30\textwidth-2\arraycolsep}|p{0.70\textwidth-2\arraycolsep}||}
+        \hline
 }
 {
-      \hline
-    \end{tabular}
+        \hline
+      \end{tabular}
+    \end{adjustbox}
     \IfNoValueF{#1}{\label{#1}}
-  \end{center}
 \end{table}
 }

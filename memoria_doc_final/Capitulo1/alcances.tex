@@ -8,12 +8,10 @@ Los alcances propuestos para este proyecto son los siguientes:
 	\item Este proyecto no contempla la creación de la red desde el programa a desarrollar.
 	\item El archivo de configuración de red debe ser creado utilizando la aplicación Epanet y guardado con la extension inp.
 	\item El sistema implementa por defecto dos algoritmos. Uno de ellos monoobjetivo y el otro multiobjetivo. El algoritmo monoobjetivo corresponde al Algoritmo Genético (GA) mientras que el multiobjetivo a \textit{Non-Dominated Sorting Genetic Algorithm II} (NSGAII).
-	\item El sistema proporciona dos problemas ya implementados uno monoobjetivo y el otro multiobjetivo. El Algoritmo Genético se utiliza para generar soluciones para el problema monoobjetivo con el fin de optimizar el costo de inversión de las tuberías. Por otro lado, el algoritmo NSGAII aborda el problema multiobjetivo con el objetivo de optimizar los costos energéticos y el número de encendidos y apagado de las bombas.  % El problema monoobjetivo será el de los costos de inversión. En cuanto al problema multiobjetivo, este será el de los costos energéticos y el número de encendidos y apagado de las bombas. 
+	\item El sistema proporciona dos problemas ya implementados uno monoobjetivo y el otro multiobjetivo. El Algoritmo Genético se utiliza para generar soluciones para el problema monoobjetivo con el fin de optimizar el costo de inversión de las tuberías. Por otro lado, el algoritmo NSGAII aborda el problema multiobjetivo con el objetivo de optimizar los costos energéticos y costo de mantenimiento de los equipos de bombeo.  
 	\item El sistema permite visualizar él o los resultados obtenidos al finalizar la ejecución del algoritmo.
-	\item El sistema permite utilizar una solución obtenida, a través de los algoritmos metaheurísticos, para generar un nuevo archivos de configuración de red. %Debido a que el archivo .inp contiene una gran cantidad de configuraciones, las únicas que se permitirán modificar serán las configuraciones asociadas a los conexiones (junctions) y tuberías (pipes).
+	\item El sistema permite utilizar una solución obtenida, a través de los algoritmos metaheurísticos, para generar un nuevo archivos de configuración de red. 
 	\item El sistema permite generar archivos con las soluciones obtenidas para cada problema, es decir, el valor de los objetivos y las variables de decisión involucradas.
 	\item El sistema permite gráficar visualmente las soluciones en un plano cartesiano.
 	\item La gráfica únicamente está disponible en problemas con uno o dos objetivos.
 \end{itemize}
-
-%Este proyecto no contempla la creación de la red por lo que estas deberán ser ingresadas como entradas al programa, es decir, estas deberán ser creadas usando EPANET o manualmente, pero siguiendo el formato establecido por EPANET. Además, esta herramienta únicamente podrá ser ocupada en equipos cuyo sistema operativo sea Windows debido a que se realizan llamadas a librerías nativas.

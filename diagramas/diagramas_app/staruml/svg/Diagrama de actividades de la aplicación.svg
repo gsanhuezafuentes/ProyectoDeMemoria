@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1044 1483" style="enable-background:new 0 0 1044 1483;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.2;fill:#C0C0C0;enable-background:new    ;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{font-family:'Arial-BoldMT';}
+	.st4{font-size:15px;}
+	.st5{font-family:'ArialMT';}
+	.st6{fill:#FFFF91;}
+	.st7{font-size:13px;}
+</style>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1238,174.8c0-5.2,4.3-9.5,9.5-9.5s9.5,4.3,9.5,9.5s-4.3,9.5-9.5,9.5S1238,180,1238,174.8z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path d="M1231,167.8c0-5.2,4.3-9.5,9.5-9.5s9.5,4.3,9.5,9.5s-4.3,9.5-9.5,9.5S1231,173,1231,167.8z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1215,221.3h64.9c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1215c-6.7,0-10-3.3-10-10v-22
+		C1205,224.6,1208.3,221.3,1215,221.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1208,214.3h64.9c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1208c-6.7,0-10-3.3-10-10v-22
+		C1198,217.6,1201.3,214.3,1208,214.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1208,214.3h64.9c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1208c-6.7,0-10-3.3-10-10v-22
+		C1198,217.6,1201.3,214.3,1208,214.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 326.5837 85.8)" class="st3 st4">Cargar red</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1227,310.8l20.5-17.5l19.5,17.5l-19.5,16.5L1227,310.8"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1220,303.3l20-17l20,17l-20,17L1220,303.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1220,303.3l20-17l20,17l-20,17L1220,303.3L1220,303.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1188,624.3h140c6.7,0,10,3.3,10,10v37c0,6.7-3.3,10-10,10h-140c-6.7,0-10-3.3-10-10v-37
+		C1178,627.6,1181.3,624.3,1188,624.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1181,617.3h140c6.7,0,10,3.3,10,10v37c0,6.7-3.3,10-10,10h-140c-6.7,0-10-3.3-10-10v-37
+		C1171,620.6,1174.3,617.3,1181,617.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1181,617.3h140c6.7,0,10,3.3,10,10v37c0,6.7-3.3,10-10,10h-140c-6.7,0-10-3.3-10-10v-37
+		C1171,620.6,1174.3,617.3,1181,617.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 307.9756 488.8)" class="st3 st4">Realizar simulación</text>
+<text transform="matrix(1 0 0 1 340.8979 503.8)" class="st3 st4">hidráulica</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1373,616.3h108c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-108c-6.7,0-10-3.3-10-10v-52
+		C1363,619.6,1366.3,616.3,1373,616.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1366,609.3h108c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-108c-6.7,0-10-3.3-10-10v-52
+		C1356,612.6,1359.3,609.3,1366,609.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1366,609.3h108c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-108c-6.7,0-10-3.3-10-10v-52
+		C1356,612.6,1359.3,609.3,1366,609.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 502.8118 480.8)" class="st3 st4">Seleccionar</text>
+<text transform="matrix(1 0 0 1 510.7329 495.8)" class="st3 st4">problema</text>
+<text transform="matrix(1 0 0 1 497.3882 510.8)" class="st3 st4">monoobjetivo</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1589,616.3h124c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-124c-6.7,0-10-3.3-10-10v-52
+		C1579,619.6,1582.3,616.3,1589,616.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1582,609.3h124c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-124c-6.7,0-10-3.3-10-10v-52
+		C1572,612.6,1575.3,609.3,1582,609.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1582,609.3h124c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-124c-6.7,0-10-3.3-10-10v-52
+		C1572,612.6,1575.3,609.3,1582,609.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 726.8118 480.8)" class="st3 st4">Seleccionar</text>
+<text transform="matrix(1 0 0 1 734.7329 495.8)" class="st3 st4">problema</text>
+<text transform="matrix(1 0 0 1 724.3142 510.8)" class="st3 st4">multiobjetivo</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1240,178.3v35"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1235.8,203.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1240,257.3v28"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1235.8,275.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1220,311.3h-120v-77h98"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1187.8,238.5l10.2-4.2l-10.2-4.2"/>
+</g>
+<text transform="matrix(1 0 0 1 108.5 128.8)" class="st5 st4">Red no cargada</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1196,365.3h103c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10h-103c-6.7,0-10-3.3-10-10v-22
+		C1186,368.6,1189.3,365.3,1196,365.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1189,358.3h103c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10h-103c-6.7,0-10-3.3-10-10v-22
+		C1179,361.6,1182.3,358.3,1189,358.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1189,358.3h103c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10h-103c-6.7,0-10-3.3-10-10v-22
+		C1179,361.6,1182.3,358.3,1189,358.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 309.2537 229.8)" class="st3 st4">Visualizar la red</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1149,437.3h197.4c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1149c-6.7,0-10-3.3-10-10v-22
+		C1139,440.6,1142.3,437.3,1149,437.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1142,430.3h197.4c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1142c-6.7,0-10-3.3-10-10v-22
+		C1132,433.6,1135.3,430.3,1142,430.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1142,430.3h197.4c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1142c-6.7,0-10-3.3-10-10v-22
+		C1132,433.6,1135.3,430.3,1142,430.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 265.9707 301.8)" class="st3 st4">Listar componentes de la red</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1240,321.3v36"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1235.8,347.1l4.2,10.2l4.2-10.2"/>
+</g>
+<text transform="matrix(1 0 0 1 373.5 190.8)" class="st5 st4">Red cargada</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1240,401.3v28"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1235.8,419.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1020,616.3h124c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-124c-6.7,0-10-3.3-10-10v-52
+		C1010,619.6,1013.3,616.3,1020,616.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1013,609.3h124c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-124c-6.7,0-10-3.3-10-10v-52
+		C1003,612.6,1006.3,609.3,1013,609.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1013,609.3h124c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-124c-6.7,0-10-3.3-10-10v-52
+		C1003,612.6,1006.3,609.3,1013,609.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 157.8118 480.8)" class="st3 st4">Seleccionar</text>
+<text transform="matrix(1 0 0 1 137.3735 495.8)" class="st3 st4">componente de la</text>
+<text transform="matrix(1 0 0 1 186.1602 510.8)" class="st3 st4">red</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1020,732.3h124c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-124c-6.7,0-10-3.3-10-10v-52
+		C1010,735.6,1013.3,732.3,1020,732.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1013,725.3h124c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-124c-6.7,0-10-3.3-10-10v-52
+		C1003,728.6,1006.3,725.3,1013,725.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1013,725.3h124c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-124c-6.7,0-10-3.3-10-10v-52
+		C1003,728.6,1006.3,725.3,1013,725.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 163.6602 596.8)" class="st3 st4">Mostrar la</text>
+<text transform="matrix(1 0 0 1 140.2959 611.8)" class="st3 st4">configuración del</text>
+<text transform="matrix(1 0 0 1 155.7207 626.8)" class="st3 st4">componente</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1200,725.3h116c6.7,0,10,3.3,10,10v67c0,6.7-3.3,10-10,10h-116c-6.7,0-10-3.3-10-10v-67
+		C1190,728.6,1193.3,725.3,1200,725.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1193,718.3h116c6.7,0,10,3.3,10,10v67c0,6.7-3.3,10-10,10h-116c-6.7,0-10-3.3-10-10v-67
+		C1183,721.6,1186.3,718.3,1193,718.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1193,718.3h116c6.7,0,10,3.3,10,10v67c0,6.7-3.3,10-10,10h-116c-6.7,0-10-3.3-10-10v-67
+		C1183,721.6,1186.3,718.3,1193,718.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 347.5813 589.8)" class="st3 st4">Mostrar</text>
+<text transform="matrix(1 0 0 1 320.0496 604.8)" class="st3 st4">resultados de la</text>
+<text transform="matrix(1 0 0 1 337.5691 619.8)" class="st3 st4">simulación</text>
+<text transform="matrix(1 0 0 1 340.8979 634.8)" class="st3 st4">hidráulica</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1741,781.3h92c6.7,0,10,3.3,10,10v37c0,6.7-3.3,10-10,10h-92c-6.7,0-10-3.3-10-10v-37
+		C1731,784.6,1734.3,781.3,1741,781.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st6" d="M1734,774.3h92c6.7,0,10,3.3,10,10v37c0,6.7-3.3,10-10,10h-92c-6.7,0-10-3.3-10-10v-37
+		C1724,777.6,1727.3,774.3,1734,774.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1734,774.3h92c6.7,0,10,3.3,10,10v37c0,6.7-3.3,10-10,10h-92c-6.7,0-10-3.3-10-10v-37
+		C1724,777.6,1727.3,774.3,1734,774.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 866.9829 645.8)" class="st3 st4">Configurar</text>
+<text transform="matrix(1 0 0 1 860.728 660.8)" class="st3 st4">experimento</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1493,745.8l24.5-20.5l23.5,20.5l-23.5,19.5L1493,745.8"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1486,738.3l24-20l24,20l-24,20L1486,738.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1486,738.3l24-20l24,20l-24,20L1486,738.3L1486,738.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1475,961.3h84c6.7,0,10,3.3,10,10v37c0,6.7-3.3,10-10,10h-84c-6.7,0-10-3.3-10-10v-37
+		C1465,964.6,1468.3,961.3,1475,961.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1468,954.3h84c6.7,0,10,3.3,10,10v37c0,6.7-3.3,10-10,10h-84c-6.7,0-10-3.3-10-10v-37
+		C1458,957.6,1461.3,954.3,1468,954.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1468,954.3h84c6.7,0,10,3.3,10,10v37c0,6.7-3.3,10-10,10h-84c-6.7,0-10-3.3-10-10v-37
+		C1458,957.6,1461.3,954.3,1468,954.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 604.4866 825.8)" class="st3 st4">Ejecutar</text>
+<text transform="matrix(1 0 0 1 590.728 840.8)" class="st3 st4">experimento</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1251,675.3v42"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1246.8,707.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1075,682.3v42"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1070.8,714.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1420,681.3v13h88v24"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1503.8,708.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1572,681.3v13h-64v24"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1503.8,708.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1534,734.3h238v40"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1767.8,764.1l4.2,10.2l4.2-10.2"/>
+</g>
+<text transform="matrix(1 0 0 1 900.0173 576.8)" class="st5 st4">Tiene</text>
+<text transform="matrix(1 0 0 1 880.5679 591.8)" class="st5 st4">parámetros</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1510,759.3v194"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1505.8,943.1l4.2,10.2l4.2-10.2"/>
+</g>
+<text transform="matrix(1 0 0 1 565.5654 704.8)" class="st5 st4">No tiene</text>
+<text transform="matrix(1 0 0 1 555.5679 719.8)" class="st5 st4">parámetros</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1498,1078.8l19.5-17.5l18.5,17.5l-18.5,16.5L1498,1078.8"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1491,1071.3l19-17l19,17l-19,17L1491,1071.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1491,1071.3l19-17l19,17l-19,17L1491,1071.3L1491,1071.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1541,1134.3h92c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-92c-6.7,0-10-3.3-10-10v-52
+		C1531,1137.6,1534.3,1134.3,1541,1134.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1541,1134.3h92c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-92c-6.7,0-10-3.3-10-10v-52
+		C1531,1137.6,1534.3,1134.3,1541,1134.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 683.5813 1005.8)" class="st3 st4">Mostrar</text>
+<text transform="matrix(1 0 0 1 676.063 1020.8)" class="st3 st4">gráfico de</text>
+<text transform="matrix(1 0 0 1 674.3967 1035.8)" class="st3 st4">resultados</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1292,1320.3h126.5c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1292c-6.7,0-10-3.3-10-10v-22
+		C1282,1323.6,1285.3,1320.3,1292,1320.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1285,1313.3h126.5c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1285c-6.7,0-10-3.3-10-10v-22
+		C1275,1316.6,1278.3,1313.3,1285,1313.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1285,1313.3h126.5c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1285c-6.7,0-10-3.3-10-10v-22
+		C1275,1316.6,1278.3,1313.3,1285,1313.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 407.3264 1184.8)" class="st3 st4">Mostrar soluciones</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1510,1012.3v41"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1505.8,1043.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1529,1088.3h59v46"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1583.8,1124.1l4.2,10.2l4.2-10.2"/>
+</g>
+<text transform="matrix(1 0 0 1 703.5676 967.8)" class="st5 st4">Ver el gráfico</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1491,1088.3h-143v225"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1343.8,1303.1l4.2,10.2l4.2-10.2"/>
+</g>
+<text transform="matrix(1 0 0 1 389.989 928.8)" class="st5 st4">No ver el</text>
+<text transform="matrix(1 0 0 1 397.489 943.8)" class="st5 st4">gráfico</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1685,1305.3h84c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-84c-6.7,0-10-3.3-10-10v-52
+		C1675,1308.6,1678.3,1305.3,1685,1305.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1678,1298.3h84c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-84c-6.7,0-10-3.3-10-10v-52
+		C1668,1301.6,1671.3,1298.3,1678,1298.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1678,1298.3h84c6.7,0,10,3.3,10,10v52c0,6.7-3.3,10-10,10h-84c-6.7,0-10-3.3-10-10v-52
+		C1668,1301.6,1671.3,1298.3,1678,1298.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 814.4866 1169.8)" class="st3 st4">Guardar</text>
+<text transform="matrix(1 0 0 1 805.3093 1184.8)" class="st3 st4">imagen del</text>
+<text transform="matrix(1 0 0 1 819.489 1199.8)" class="st3 st4">gráfico</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1578,1269.8l16.5-16.5l15.5,16.5l-15.5,15.5L1578,1269.8"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1571,1262.3l16-16l16,16l-16,16L1571,1262.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1571,1262.3l16-16l16,16l-16,16L1571,1262.3L1571,1262.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1587,1207.3v38"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1582.8,1235.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1603,1262.3h113v36"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1711.8,1288.1l4.2,10.2l4.2-10.2"/>
+</g>
+<text transform="matrix(1 0 0 1 759.9866 1109.8)" class="st5 st4">Guardar</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1571,1262.3h-223v51"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1343.8,1303.1l4.2,10.2l4.2-10.2"/>
+</g>
+<text transform="matrix(1 0 0 1 567.978 1103.8)" class="st5 st4">No guardar</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1109,1487.3h94.1c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1109c-6.7,0-10-3.3-10-10v-22
+		C1099,1490.6,1102.3,1487.3,1109,1487.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1102,1480.3h94.1c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1102c-6.7,0-10-3.3-10-10v-22
+		C1092,1483.6,1095.3,1480.3,1102,1480.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1102,1480.3h94.1c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1102c-6.7,0-10-3.3-10-10v-22
+		C1092,1483.6,1095.3,1480.3,1102,1480.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 222.2573 1351.8)" class="st3 st4">Exportar Excel</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1313,1487.3h84c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10h-84c-6.7,0-10-3.3-10-10v-22
+		C1303,1490.6,1306.3,1487.3,1313,1487.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1306,1480.3h84c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10h-84c-6.7,0-10-3.3-10-10v-22
+		C1296,1483.6,1299.3,1480.3,1306,1480.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1306,1480.3h84c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10h-84c-6.7,0-10-3.3-10-10v-22
+		C1296,1483.6,1299.3,1480.3,1306,1480.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 424.9976 1351.8)" class="st3 st4">Exportar TSV</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1533,1583.3h79.9c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1533c-6.7,0-10-3.3-10-10v-22
+		C1523,1586.6,1526.3,1583.3,1533,1583.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1526,1576.3h79.9c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1526c-6.7,0-10-3.3-10-10v-22
+		C1516,1579.6,1519.3,1576.3,1526,1576.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1526,1576.3h79.9c6.7,0,10,3.3,10,10v22c0,6.7-3.3,10-10,10H1526c-6.7,0-10-3.3-10-10v-22
+		C1516,1579.6,1519.3,1576.3,1526,1576.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 644.9976 1447.8)" class="st3 st4">Exportar INP</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1335,1405.8l20.5-16.5l19.5,16.5l-19.5,15.5L1335,1405.8"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1328,1398.3l20-16l20,16l-20,16L1328,1398.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1328,1398.3l20-16l20,16l-20,16L1328,1398.3L1328,1398.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1223,529.8l24.5-20.5l23.5,20.5l-23.5,19.5L1223,529.8"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1216,522.3l24-20l24,20l-24,20L1216,522.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1216,522.3l24-20l24,20l-24,20L1216,522.3L1216,522.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1240,473.3v28"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1235.8,491.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1244,542.3v32h-176v35"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1063.8,599.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1244,542.3v75"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1239.8,607.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1244,542.3v32h168v35"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1407.8,599.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1244,542.3v32h410v35"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1649.8,599.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1348,1356.3v25"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1343.8,1371.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1348,1414.3v32h-192v34"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1151.8,1470.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1348,1415.3v64"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1343.8,1469.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1348,1414.3v32h216v39"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1559.8,1475.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1667,1334.3h-244"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1433.2,1330.1l-10.2,4.2l10.2,4.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1003,752.3h-39v-234h252"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1205.8,522.5l10.2-4.2l-10.2-4.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1260,805.3v9H940v-296h276"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1205.8,522.5l10.2-4.2l-10.2-4.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1802,883.3h106v-365h-644"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1274.2,514.1l-10.2,4.2l10.2,4.2"/>
+</g>
+<text transform="matrix(1 0 0 1 951.8967 750.8)" class="st5 st4">Experimento</text>
+<text transform="matrix(1 0 0 1 985.6577 765.8)" class="st5 st4">no</text>
+<text transform="matrix(1 0 0 1 954.8044 780.8)" class="st5 st4">configurado</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1763,886.8l23.5-21.5l22.5,21.5l-22.5,20.5L1763,886.8"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1756,879.3l23-21l23,21l-23,21L1756,879.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1756,879.3l23-21l23,21l-23,21L1756,879.3L1756,879.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1780,832.3l-1,25"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1775.2,847l3.8,10.3l4.6-10"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1756,878.3h-72v78"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1679.8,946.1l4.2,10.2l4.2-10.2"/>
+</g>
+<text transform="matrix(1 0 0 1 724.3967 708.8)" class="st5 st4">Experimento</text>
+<text transform="matrix(1 0 0 1 727.3044 723.8)" class="st5 st4">configurado</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1771,633.8c0-6.9,5.6-12.5,12.5-12.5s12.5,5.6,12.5,12.5s-5.6,12.5-12.5,12.5S1771,640.7,1771,633.8z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1764,626.8c0-6.9,5.6-12.5,12.5-12.5s12.5,5.6,12.5,12.5s-5.6,12.5-12.5,12.5S1764,633.7,1764,626.8z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path d="M1769,626.8c0-4.1,3.4-7.5,7.5-7.5s7.5,3.4,7.5,7.5c0,4.1-3.4,7.5-7.5,7.5S1769,630.9,1769,626.8z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1244,542.3v32h532v40"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1771.8,604.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1328,1402.3H892v-884h324"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1205.8,522.5l10.2-4.2l-10.2-4.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1327,1604.8l28.5-24.5l27.5,24.5l-27.5,23.5L1327,1604.8"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1320,1597.3l28-24l28,24l-28,24L1320,1597.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1320,1597.3l28-24l28,24l-28,24L1320,1597.3L1320,1597.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1156,1522.3v12h192v39"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1343.8,1563.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1348,1523.3v49"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1343.8,1562.1l4.2,10.2l4.2-10.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1515,1597.3h-138"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1387.2,1593.1l-10.2,4.2l10.2,4.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1320,1597.3H916v-1079h300"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1205.8,522.5l10.2-4.2l-10.2-4.2"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1556,1508.8l16.5-16.5l15.5,16.5l-15.5,15.5L1556,1508.8"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st1" d="M1549,1501.3l16-16l16,16l-16,16L1549,1501.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1549,1501.3l16-16l16,16l-16,16L1549,1501.3L1549,1501.3"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1565,1518.3v57"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1560.8,1565.1l4.2,10.2l4.2-10.2"/>
+</g>
+<text transform="matrix(1 0 0 1 724.4131 1399.8)" class="st5 st4">Solución</text>
+<text transform="matrix(1 0 0 1 709.4021 1414.8)" class="st5 st4">seleccionada</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1549,1502.3h-33v32h-168v39"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1343.8,1563.1l4.2,10.2l4.2-10.2"/>
+</g>
+<text transform="matrix(1 0 0 1 546.085 1362.8)" class="st5 st4">Solución no</text>
+<text transform="matrix(1 0 0 1 541.5 1377.8)" class="st5 st4">seleccionada</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st0" d="M1621,963.3h129.2c6.7,0,10,3.3,10,10v33c0,6.7-3.3,10-10,10H1621c-6.7,0-10-3.3-10-10v-33
+		C1611,966.6,1614.3,963.3,1621,963.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st6" d="M1614,956.3h129.2c6.7,0,10,3.3,10,10v33c0,6.7-3.3,10-10,10H1614c-6.7,0-10-3.3-10-10v-33
+		C1604,959.6,1607.3,956.3,1614,956.3z"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1614,956.3h129.2c6.7,0,10,3.3,10,10v33c0,6.7-3.3,10-10,10H1614c-6.7,0-10-3.3-10-10v-33
+		C1604,959.6,1607.3,956.3,1614,956.3z"/>
+</g>
+<text transform="matrix(1 0 0 1 764.0886 825.8)" class="st3 st7">Inyección de</text>
+<text transform="matrix(1 0 0 1 760.1055 838.8)" class="st3 st7">dependencias</text>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1603,982.3h-40"/>
+</g>
+<g transform="translate(-878,-150) scale(1,1)">
+	<path class="st2" d="M1573.2,978.1l-10.2,4.2l10.2,4.2"/>
+</g>
+</svg>

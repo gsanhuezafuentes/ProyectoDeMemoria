@@ -11,10 +11,11 @@
 \usepackage{especificacionutility}
 \usepackage{enumitem}
 \usepackage{listings}
+
 % \usepackage{refcheck}
 \lstset{ %
     language=Java, % lenguaje
-    basicstyle=\bfseries\ttfamily,
+    basicstyle=\bfseries\ttfamily\scriptsize,
     % keywordstyle=\color{blue},
     % commentstyle=\color{brown},
     % backgroundcolor=\color{gray!10},
@@ -51,14 +52,14 @@ Dedicado a mis padres, hermanos y amigos.
 %% agradecimientos
 \begin{acknowledgment}
 
-A mi familia, mis padres Doris Fuentes y Julián Sanhueza y mi hermano Bastian Sanhueza; por apoyarme durante todo este tiempo.
+Al terminar este proceso quiero agradecer en primer lugar a Dios y a mi familia, a mi madre Doris Fuentes, mi padre Julian Sanhueza, mis hermanos Bastian Sanhueza y el pequeño Joaquín por ser mis mayores pilares y apoyo.
 
-A mi profesor guía y co-guia, Jimmy Gutierrez y Daniel Mora Melia por toda la paciencia que ha tenido conmigo y su apoyo para finalizar este proyecto.
+También agradecer a los profesores Jimmy Gutiérrez Bahamondes y Daniel Mora Melia por darme la oportunidad de participar en este proyecto y por su cooperación en el desarrollo y finalización de éste.
 
-Finalmente a mis amigos, especialmente a Ariel Cornejo, Diego Iturriaga, Diego Matus, José Nuñez, Benjamín Pino y Roberto Ureta. Por darme ánimos para continuar adelante y no rendirme en el camino.
+A mis amigos, especialmente a Ariel Cornejo, Diego Iturriaga, Diego Matus, Felipe Milla, José Nuñez, Benjamín Pino y Roberto Ureta y Maximiliano Viveros por darme ánimos para continuar adelante y no rendirme en el camino.
 
-Agradecimientos al proyecto Fondecyt Regular N° 1180660 ``Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms.'', 2018.
-% Finalmente, a mis queridos mangas, animes y novelas ligeras por ayudarme a desestresarme durante la realización de este proyecto.
+Finalmente, agradecer al proyecto Fondecyt Regular N° 1180660 ``Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms.'', 2018.
+
 \end{acknowledgment}
 
 %% indices
@@ -79,11 +80,11 @@ Agradecimientos al proyecto Fondecyt Regular N° 1180660 ``Optimization of real-w
 \input{Capitulo6/ConclusionesYTrabajosFuturos}
 
 %% ambiente glosario
-\begin{glosario}
-  \item[RDA] Red de distribución de agua potable
-  \item[GA] Algoritmo Genético
-  \item[NSGAII] Non-Dominated Sorting Genetic Algorithm II
-\end{glosario}
+% \begin{glosario}
+%   \item[RDA] Red de distribución de agua potable
+%   \item[GA] Algoritmo Genético
+%   \item[NSGAII] Non-Dominated Sorting Genetic Algorithm II
+% \end{glosario}
 
 
 %% genera las referencias
@@ -96,28 +97,33 @@ Agradecimientos al proyecto Fondecyt Regular N° 1180660 ``Optimization of real-w
 %% contenido del primer anexo
 \appendix{Documento de especificación de requisitos}
 \label{appendix:requisito}
-% \includepdf[pages=-]{Anexos/docreq.pdf}
+\includepdf[pages=-]{Anexos/docreq.pdf}
 
 %% contenido del segundo anexo
 \appendix{Documento de diseño}
 \label{appendix:diseno}
 
-% \includepdf[pages=-]{Anexos/docdisen.pdf}
+\includepdf[pages=-]{Anexos/docdisen.pdf}
 
 \appendix{Manual de usuario}
 \label{appendix:manual}
 
-% \includepdf[pages=-]{Anexos/manual.pdf}
+\includepdf[pages=-]{Anexos/manual.pdf}
 
 \appendix{Documento de casos de prueba}
 \label{appendix:prueba}
 
-% \includepdf[pages=-]{Anexos/doccu.pdf}
+\includepdf[pages=-]{Anexos/doccp.pdf}
 
-\appendix{Cuestionario para la evaluación de la aplicación}
+\appendix{Encuesta para la evaluación de la aplicación}
 \label{appendix:evaluacion}
 
-% \includepdf[pages=-]{Anexos/form.pdf}
+\includepdf[pages=-]{Anexos/form.pdf}
+
+\appendix{Respuestas de la encuesta aplicada para evaluar la aplicación}
+\label{appendix:respuesta}
+
+\includepdf[pages=-]{Anexos/respuestasform.pdf}
 
 %% fin
 \end{document}

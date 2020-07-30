@@ -32,14 +32,14 @@ Estos procedimientos permiten generar diversidad en las soluciones y a la vez ex
 	\item \textbf{Cruzamiento:} El cruzamiento es un mecanismo usado para generar nuevos soluciones a partir de dos o mas individuos seleccionados~\cite{Blum2003, Boussaid2013}. En la Figura~\ref{fig:crossover} se aprecia un cruce entre dos individuos en torno a un punto de cruzamiento.
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.5\textwidth]{Capitulo2/assets/Crossover.eps}
+		\includegraphics[width=0.7\textwidth]{Capitulo2/assets/Crossover.eps}
 		\caption{Cruzamiento en un punto}
 		\label{fig:crossover}
 	\end{figure}
 	\item \textbf{Mutación:} La mutación es un operador el cual permite mantener la diversidad en la descendencia~\cite{Boussaid2013} realizando modificaciones en ciertas partes de la solución. En la FIgura~\ref{fig:mutation} se puede ver una mutación aleatoria en un individuo codificados con números enteros.
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.6\textwidth]{Capitulo2/assets/Mutation.eps}
+		\includegraphics[width=0.7\textwidth]{Capitulo2/assets/Mutation.eps}
 		\caption{Mutación aleatoria}
 		\label{fig:mutation}
 	\end{figure}
@@ -115,9 +115,9 @@ Dentro de los algoritmos evolutivos más utilizados se encuentran el Algoritmo Ge
 Específicamente el GA ha presentado buenos resultados en el área de optimización de RDA~\cite{Doctoral2012}. Es por ello que ha sido seleccionado como uno de los algoritmos para ser implementados en este programa.
 
 \subsection{Algoritmo Genético}
-El Algoritmo Genético es uno de los algoritmos evolutivos más conocidos y que ha demostrado ser exitoso en una variedad de problemas diferentes. Estos algoritmo hacen uso de los mecanismos de selección y reproducción para generar nuevas soluciones a partir de la combinación de otras.
+El Algoritmo Genético es uno de los algoritmos evolutivos más conocidos y que ha demostrado ser exitoso en una variedad de problemas diferentes. Estos algoritmo hacen uso de los mecanismos de selección y reproducción para generar nuevas soluciones a partir de la combinación de otras~\cite{Heiss-Czedik1997}.
 
-Los individuos en el contexto del Algoritmo Genético son llamados cromosomas, los cuales como se mencionó en la sección de los algoritmos evolutivos pueden ser representados de diversas maneras.
+Los individuos en el contexto del Algoritmo Genético son llamados cromosomas, los cuales como se mencionó en la sección de los algoritmos evolutivos, pueden ser representados de diversas maneras.
 
 % El Algoritmo Genético es una estrategia de búsqueda de soluciones. Para realizar esto, el algoritmo parte desde un conjunto de soluciones denominada población he iterativamente, lleva a cabo un proceso de reproducción, generando nuevas soluciones~\cite{Heiss-Czedik1997}. Este algoritmo pertenece a la categoría de algoritmos evolutivos y por lo tanto puede usar el mismo esquema presentado en la Figura~\ref{fig:EA}.
 
@@ -125,10 +125,6 @@ Los individuos en el contexto del Algoritmo Genético son llamados cromosomas, lo
 
 \subsection{Algoritmo NSGAII (\textit{Non-Dominated Sorting Genetic Algorithm II})}
 El algoritmo NSGAII~\cite{Deb2002} pertenece a la categoría de algoritmo evolutivo multiobjetivo (MOEA). Este algoritmo al igual que el Algoritmo Genético hace uso de los operadores de selección, cruzamiento y mutación para encontrar un conjunto de soluciones optimas a problemas que cuentan con más de un objetivo. Adicionalmente, NSGAII añade conceptos y operadores adicionales los cuales permiten mejorar su rendimiento y la calidad de las soluciones obtenidas. NSGAII puede ser implementado siguiendo los mismos pasos de el algoritmo evolutivo mostrados en la Figura~\ref{fig:EA}, utilizando la función de remplazo mostrada en la Figura~\ref{fig:RemplaceNSGAII}.
-
-En la Figura~\ref{fig:RemplaceNSGAII} se puede ver que el proceso de remplazo dentro del Algoritmo Genético consiste en unir la población actual y la población descendiente (formada por los elementos resultantes del operador de selección y sobre la que se han aplicado el cruzamiento y la mutación) en un solo elemento llamada unionPoblación. Luego, esta  es enviada a un procedimiento el cual ordena y categoriza la población en diversos frentes de acuerdo al concepto de dominancia de Pareto. Después, de que la población a sido categorizada se procede a iterar sobre los frentes y añadir sus elementos a una nueva población con el cuidado de no sobrepasar el tamaño de la población deseada ($N$). En caso de que uno de los frentes no pueda ser añadido en su totalidad por sobrepasar dicho tamaño, se llevará a cabo un proceso por el cual se ordenaran las soluciones en dicho frente basadas en un criterio conocido como densidad de las soluciones. Una vez realizado el ordenamiento, se agregarán las mejores soluciones a la nueva población hasta alcanzar el tamaño deseado  $N$. Se puede ver un ejemplo de este procedimiento gráficamente en la Figura~\ref{fig:procedimientoNSGAII}.
-
-% Una vez las soluciones se encuentren ordenadas se rellenará la nueva población hasta alcanzar el tamaño de deseado $N$. 
 
 \begin{figure}[h]
 	\begin{algorithm}[H]
@@ -181,9 +177,12 @@ En la Figura~\ref{fig:RemplaceNSGAII} se puede ver que el proceso de remplazo de
 	\label{fig:RemplaceNSGAII}
 \end{figure}
 
+En la Figura~\ref{fig:RemplaceNSGAII} se puede ver que el proceso de remplazo dentro del Algoritmo Genético consiste en unir la población actual y la población descendiente (formada por los elementos resultantes del operador de selección y sobre la que se han aplicado el cruzamiento y la mutación) en un solo elemento llamada unionPoblación. Luego, esta  es enviada a un procedimiento el cual ordena y categoriza la población en diversos frentes de acuerdo al concepto de dominancia de Pareto. Después, de que la población a sido categorizada se procede a iterar sobre los frentes y añadir sus elementos a una nueva población con el cuidado de no sobrepasar el tamaño de la población deseada ($N$). En caso de que uno de los frentes no pueda ser añadido en su totalidad por sobrepasar dicho tamaño, se llevará a cabo un proceso por el cual se ordenaran las soluciones en dicho frente basadas en un criterio conocido como densidad de las soluciones. Una vez realizado el ordenamiento, se agregarán las mejores soluciones a la nueva población hasta alcanzar el tamaño deseado  $N$. Se puede ver un ejemplo de este procedimiento gráficamente en la Figura~\ref{fig:procedimientoNSGAII}.
 
-\begin{figure}[h]
-	 \includegraphics{Capitulo2/assets/ProcedimientoNSGAII.eps}
+% Una vez las soluciones se encuentren ordenadas se rellenará la nueva población hasta alcanzar el tamaño de deseado $N$. 
+
+\begin{figure}[H]
+	 \includegraphics[width=0.8\textwidth]{Capitulo2/assets/ProcedimientoNSGAII.eps}
 	\centering
 	\caption[Procedimiento NSGAII]{Procedimiento NSGAII~\cite{Deb2002}}
 	\label{fig:procedimientoNSGAII}
@@ -195,7 +194,7 @@ A continuación se procederá a explicar los operadores adicionales presentados en
 Uno de los procedimientos presentados en la Figura~\ref{fig:RemplaceNSGAII} consiste en ordenar las soluciones en frentes no dominados. Los frentes no dominados son conjuntos en los que se almacenan las soluciones que no se dominan entre si. En la Figura~\ref{fig:frente-no-dominados} se muestra un ejemplo con tres frentes.
 
 \begin{figure}[h]
-	 \includegraphics[scale=0.7]{Capitulo2/assets/frentes-no-dominados.eps}
+	 \includegraphics[scale=0.8]{Capitulo2/assets/frentes-no-dominados.eps}
 	\centering
 	\caption{Frentes no dominados}
 	\label{fig:frente-no-dominados}
@@ -272,8 +271,8 @@ Finalmente, se repite el procedimiento anterior sobre el nuevo frente hasta habe
 \subsubsection{Densidad de estimación (Crowing Distance)}
 Otra función presente en la Figura~\ref{fig:RemplaceNSGAII} es la asignación de las densidades sobre cada solución, la cual corresponde a la distancia promedio entre la solución anterior y la siguiente a partir de cada uno de los objetivos. En la Figura~\ref{fig:crowdingDistance} la densidad de la solución $i$ corresponde a la suma de la longitud del lado mayor y del lado menor del rectángulo.
 
-\begin{figure}[H]
-	\includegraphics[scale=0.6]{Capitulo2/assets/crowing-distance.eps}
+\begin{figure}[h]
+	\includegraphics{Capitulo2/assets/crowing-distance.eps}
 	\centering
 	\caption[Cálculo de la densidad de estimación al rededor de la solución $i$]{Cálculo de la densidad de estimación al rededor de la solución $i$~\cite{Deb2002}}
 	\label{fig:crowdingDistance}
@@ -283,7 +282,7 @@ El procedimiento para esta función  se muestra en la Figura~\ref{fig:crowdingDis
 
 Primero, crear e inicializar un arreglo $\mathcal{I}_{distancia}$, con el valor 0, en donde guardar las distancias para cada solución a medida que se van calculando. Luego, por cada uno de los objetivos se ordena el frente $\mathcal{I}$ y dentro $\mathcal{I}_{distancia}$ se le asigna al primer y ultimo elemento el valor infinito. Finalmente, se recorre desde la segunda hasta la penúltima solución calculando la distancia $\mathcal{I}[i]_{distancia}$. Notar que $f_m^{max}$ y $f_m^{min}$ corresponden al valor del objetivo $m$ de la primera y última solución.
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\begin{algorithm}[H]
 	\caption{Función de calculo de densidades}
 	\DontPrintSemicolon
@@ -318,5 +317,6 @@ Primero, crear e inicializar un arreglo $\mathcal{I}_{distancia}$, con el valor 
 	\caption[Pseudocódigo de la función de asignación de densidad]{Pseudocódigo de la función de asignación de densidad~\cite{Deb2002}}
 	\label{fig:CrowindDistance}
 \end{figure}
+
 \subsubsection{Comparador de densidad (Crowing Distance comparator)}
 Este operador compara las soluciones basados en dos conceptos los cuales son el rango de dominación y la densidad de soluciones. Estos fueron calculados al momento de generar los frentes y asignar la densidad a las soluciones. De acuerdo a Deb~\cite{Deb2002}, se define el orden dado por el operador de densidad ($\prec_n$) como: $i \prec_n j $, si $(i_{rango} < j_{rango})$ o $((i_{rango} = j_{rango})$ o $(i_{distancia} > j_{distancia}))$.

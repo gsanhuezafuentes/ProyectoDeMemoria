@@ -4,7 +4,7 @@ Una vez terminada la fase de requisitos se procede a diseñar la aplicación. Dent
 
 Mientras avanzaba el desarrollo fue necesario ir modificando el documento de diseño debido a la aparición o al cambio de requisitos, así como la realización de mejoras en los diagramas realizados. En el Cuadro~\ref{fig:cambios_diseno} se presentan más detalladamente los cambios realizados en cada iteración.
 
-\begin{table}
+\begin{table}[H]
   \begin{center}
     \caption{Actividades y cambios en la fase de diseño durante cada iteración}
     \begin{tabular}{||c| m{6cm}| m{6cm}||} 
@@ -29,9 +29,11 @@ Mientras avanzaba el desarrollo fue necesario ir modificando el documento de dis
   \end{center}
 \end{table}
 
+\newpage
+
 Como una de las primeras tareas realizadas durante esta fase se procedió a definir la arquitectura de la aplicación, tanto desde el punto físico como el lógico. 
 
-La arquitectura física del programa a desarrollar es la arquitectura monolítica, cuya característica es que software que posee esta arquitectura funciona localmente sin necesidad de interactuar con otros equipos. Esta elección se debe a que en reuniones con el cliente se estableció que el programa será usado localmente y debe operar sobre el sistema operativo Windows. Limitación debida principalmente al acceso a funciones nativas cuando se realizan simulaciones hidráulicas utilizando la  librería dinámica de Epanet. La Figura~\ref{fig:arq_fisica} muestra el diagrama de la arquitectura monolítica.
+La arquitectura física del programa a desarrollar es la arquitectura monolítica, cuya característica es que el software que posee esta arquitectura funciona localmente sin necesidad de interactuar con otros equipos. Esta elección se debe a que en reuniones con el cliente se estableció que el programa será usado localmente y debe operar sobre el sistema operativo Windows. Limitación debida principalmente al acceso a funciones nativas cuando se realizan simulaciones hidráulicas utilizando la  librería dinámica de Epanet. La Figura~\ref{fig:arq_fisica} muestra el diagrama de la arquitectura monolítica.
 
 \begin{figure}[h]
   \includegraphics[width=0.5\textwidth]{Capitulo4/assets/arquitectura_fisica.png}
@@ -42,8 +44,8 @@ La arquitectura física del programa a desarrollar es la arquitectura monolítica,
 
 En cuanto a la arquitectura lógica se escogió utilizar Modelo-Vista-Controlador. Ésta elección es debido al hecho de que dicha arquitectura nos permite separar la capa de interfaz de usuario de la lógica de la aplicación mejorando asi escalabilidad y mantenibilidad del software. La Figura~\ref{fig:arq_logica} muestra el diagrama de la arquitectura lógica, así como los principales módulos de la aplicación.
 
-\begin{figure}[h]
-  \includegraphics[width=\textwidth]{Capitulo4/assets/arquitectura_logica.eps}
+\begin{figure}[H]
+  \includegraphics[scale=0.7]{Capitulo4/assets/arquitectura_logica.eps}
   \centering
   \caption{Arquitectura lógica Modelo-Vista-Controlador}
   \label{fig:arq_logica}
@@ -51,42 +53,39 @@ En cuanto a la arquitectura lógica se escogió utilizar Modelo-Vista-Controlador.
 
 A continuación se presentarán los diseños relaciónados por cada una de las funcionalidades escogidas con anterioridad.
 
-\paragraph{Funcionalidad 1:} Para implementar esta funcionalidad es necesario abstraer en un conjunto de clases los datos almacenados en el archivo de configuración de red. La Figura~\ref{fig:dia_clase_network} muestra el diagrama de clases reducido (se dejan fuera varias clases que especifican las configuraciones generales de la red) de la estructura sobre la que se almacenan los datos al momento de cargar la red. La clase \textit{Network} actúa como un contenedor para las demás clases presentes en el diagrama.
+\paragraph{Funcionalidad 1:} Para implementar esta funcionalidad es necesario abstraer en un conjunto de clases los datos almacenados en el archivo de configuración de red. La Figura~\ref{fig:dia_clase_network} muestra el diagrama de clases resumido (se dejan fuera varias clases que especifican las configuraciones generales de la red) de la estructura sobre la que se almacenan los datos al momento de cargar la red. La clase \textit{Network} actúa como un contenedor para las demás clases presentes en el diagrama.
 
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textheight, angle=90]{Capitulo4/assets/d_clases_network.eps}
-  \caption{Diagrama de clases de la abstracción de la red reducido.}
+  \caption{Diagrama de clases de la abstracción de la red resumido}
   \label{fig:dia_clase_network}
 \end{figure}
 
-El diagrama de la Figura~\ref{fig:dia_sec_visualizacion} muestra el conjunto de clases y los mensajes de la clases que interactúan con la clase \textit{Network} con el fin de visualizar la red. 
+% El diagrama de la Figura~\ref{fig:dia_sec_visualizacion} muestra el conjunto de clases y los mensajes de la clases que interactúan con la clase \textit{Network} con el fin de visualizar la red. 
 
-\begin{figure}[h]
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=0.8\textheight, angle=90]{Capitulo4/assets/d_sec_visualizacion.eps}
+%   \caption{Diagrama de secuencia de la carga y visualización de la red}
+%   \label{fig:dia_sec_visualizacion}
+% \end{figure}
+
+\paragraph{Funcionalidad 2:} Esta es una de las funcionalidades ligada al modulo metaheurística y debido a uno de los requisitos establecidos por el cliente de que la aplicación debe poder extender el número de algoritmos, operadores y problemas implementados es necesario implementar una jerarquía de clases que facilite lo anteriormente mencionado. Es por ello, que se utilizó como base la jerarquía de clases utilizada por el Framework JMetal~\cite{Durillo2010} la cual fue adaptada para ser ocupada por esta aplicación. La Figura~\ref{fig:dia_class_met} corresponde a la adaptación mencionada anteriormente.
+
+Debido a la importancia que tienen las metaheurísticas para la aplicación, se explicará de manera general que es lo que realiza cada una de las clases e interfaces presentes en la Figura~\ref{fig:dia_class_met}.
+
+\begin{figure}[H]
   \centering
-  \includegraphics[height=\textwidth, angle=90]{Capitulo4/assets/d_sec_visualizacion.eps}
-  \caption{Diagrama de secuencia de la carga y visualización de la red}
-  \label{fig:dia_sec_visualizacion}
-\end{figure}
-
-\paragraph{Funcionalidad 2:} Esta es una de las funcionalidades ligada al modulo metaheurística y debido a uno de los requisitos establecidos por el cliente de que la aplicación debe poder extender el número de algoritmos, operadores y problemas implementados es necesario implementar una jerarquía de clases que facilite lo anteriormente mencionado. Es por ello, que se utilizo como base la jerarquía de clases utilizada por el Framework JMetal~\cite{Durillo2010} la cual fue adaptada para ser ocupada por esta aplicación. La Figura~\ref{fig:dia_class_met} corresponde a la jerarquía ya mencionada.
-
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[height=\textwidth, angle=90]{Capitulo4/assets/d_clases_metaheuristica.eps}
+  \includegraphics[width=0.9\textwidth]{Capitulo4/assets/d_clases_metaheuristica.eps}
   \caption[Diagrama de clases modulo metaheurística.]{Diagrama de clases modulo metaheurística. Modificación a partir del diagrama presentado en~\cite{Durillo2010}}
   \label{fig:dia_class_met}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Debido a la importancia que tienen las metaheurísticas para la aplicación, se explicará de manera general que realiza cada una de las clases e interfaces presentes en la Figura~\ref{fig:dia_class_met}.
-
 \textit{\textbf{Algorithm}} es la interfaz desde la que se heredan, ya sea directa o indirectamente, cada uno de los algoritmos metaheurísticos implementados por la aplicación. Su principal método es \textit{runASingleStep} puesto que éste permite realiza una única iteración del algoritmo, permitiendo así que el programa interactué con la instancia del algoritmo. Esta interacción permite recuperar los resultados intermedios de la optimización, así como también cancelar la ejecución. Un ejemplo de la implementación de este método para GA se muestra en la Figura~\ref{fig:runSingleStep}.
 
-\begin{figure}[h]
+\begin{figure}[H]
   \begin{lstlisting}
 int step = 0;
 List<IntegerSolution> population;
@@ -117,57 +116,65 @@ public void runSingleStep() throws Exception, EpanetException {
   \caption{Código del método \textit{runSingleStep} utilizado con GA y NSGAII}
   \label{fig:runSingleStep}
 \end{figure}
-
 \textit{\textbf{Solution}} es la interfaz que representa la solución del problema. La aplicación implementa esta interfaz en una clase llamada \textit{IntegerSolution}, la cual permite trabajar variables de decisión de tipo entero.
 
-\textit{\textbf{Operator}} es la interfaz de la que heredan todos los tipos de operadores usado en la aplicación. Los operadores son clases que contienen una función que trabaja sobre una o un conjunto de soluciones. Sus usos son muy variables, entre ellos se encuentra la selección de soluciones dentro de un conjunto, la modificación de las variables de decisión de una solución y la combinación de dos soluciones con el fin de generar unas nuevas.
+\textit{\textbf{Operator}} es la interfaz de la que heredan todos los tipos de operadores usados en la aplicación. Los operadores son clases que contienen una función que trabaja sobre una o un conjunto de soluciones. Sus usos son muy variables, entre ellos se encuentra la selección de soluciones dentro de un conjunto, la modificación de las variables de decisión de una solución y la combinación de dos soluciones con el fin de generar unas nuevas.
 
 \textit{\textbf{Problem}} es la interfaz de la que heredan todos los problemas. Las clases que implementan esta interfaz son las que se encargan de evaluar y penalizar las soluciones generadas por los algoritmos metaheurísticos en el método \textit{evaluate}. Adicionalmente, esta clase es usada para mapear una solución sobre la red cargada y de esta manera poder generar un nuevo archivo de configuración de red. El método que realiza esto ultimo es \textit{applySolutionToNetwork}.
 
 Las clases \textit{\textbf{ExperimentAlgorithm}} y \textit{\textbf{ExperimentProblem}} actúan como envoltorios para las clases \textit{Algorithm} y \textit{Problem} incorporando algunas funciones adicionales.
 
-Por ultimo la clase \textit{\textbf{Experiment}} es un contenedor de algoritmos. Cada algoritmo agregado al experimento corresponde a una iteración independiente. Actualmente, se pensaron los experimentos para solo contener varias instancias de un mismo algoritmo. Los algoritmos deben ser acoplados a un \textit{ExperimentAlgorithm} antes de ser agregados al Experimento.
+Por ultimo la clase \textit{\textbf{Experiment}} es un contenedor de algoritmos. Cada algoritmo agregado al experimento corresponde a una iteración independiente. Actualmente, se pensaron los experimentos para solo contener varias instancias del mismo algoritmo. Los algoritmos deben ser acoplados a un \textit{ExperimentAlgorithm} antes de ser agregados al Experimento.
 
 Cada una de las clases explicadas anteriormente tiene un bajo acoplamiento entre ellas, así como del resto de la aplicación puesto que se hace uso de la técnica llamada Polimorfismo. Esto permite combinar cada una de ellas de diferentes maneras, por ejemplo, se pueden usar distintos algoritmos para el mismo tipo de problema. La limitación de esto es que el problema debe ser compatible con el algoritmo, es decir, si el algoritmo esta diseñado para ser monoobjetivo, entonces el problema debe tener un solo objetivo.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-El diagrama de secuencia de la Figura~\ref{fig:dia_sec_opt} muestra la interacción de las clases con del modulo metaheurísticas, con el resto de clases de la aplicación.
+% El diagrama de secuencia de la Figura~\ref{fig:dia_sec_opt} muestra la interacción de las clases con del modulo metaheurísticas, con el resto de clases de la aplicación.
 
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{Capitulo4/assets/d_seq_simulacion-monomulti.eps}
-  \caption{Diagrama de secuencia para llevar a cabo la optimizacion de los problemas}
-  \label{fig:dia_sec_opt}
-\end{figure}
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[width=\textwidth]{Capitulo4/assets/d_seq_simulacion-monomulti.eps}
+%   \caption{Diagrama de secuencia para llevar a cabo la optimizacion de los problemas}
+%   \label{fig:dia_sec_opt}
+% \end{figure}
 
 \paragraph{Funcionalidad 3:} Para implementar esta funcionalidad es necesario implementar un conjunto de clases las cuales guardarán los resultados de la simulación para cada uno de los nodos y enlaces de una red. Estas nuevas clases son las mostradas en la Figura~\ref{fig:dia_class_sim_hyd}.
 
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{Capitulo4/assets/d_clases_hyd_simulation.eps}
+  \includegraphics[width=0.6\textwidth]{Capitulo4/assets/d_clases_hyd_simulation.eps}
   \caption{Diagrama de clases para la simulación hidráulica}
   \label{fig:dia_class_sim_hyd}
 \end{figure}
 
-El diagrama de secuencia presentado en la Figura~\ref{fig:dia_sec_sim_hyd} muestra la interacción entre las clases necesarias para realizar la simulación hidráulica utilizando los valores del archivo de red cargado.
+% El diagrama de secuencia presentado en la Figura~\ref{fig:dia_sec_sim_hyd} muestra la interacción entre las clases necesarias para realizar la simulación hidráulica utilizando los valores del archivo de red cargado.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[height=\textwidth, angle=90]{Capitulo4/assets/d_seq_simulacion-hidraulica.eps}
-  \caption{Diagrama de secuencia para realizar la simulación hidráulica}
-  \label{fig:dia_sec_sim_hyd}
-\end{figure}
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[height=\textwidth, angle=90]{Capitulo4/assets/d_seq_simulacion-hidraulica.eps}
+%   \caption{Diagrama de secuencia para realizar la simulación hidráulica}
+%   \label{fig:dia_sec_sim_hyd}
+% \end{figure}
 
 \subsection{Detalles de implementación}
 
 %% Extensibilidad
-En diferentes secciones de este documento se ha mencionado que la aplicación debe ser extensible, refiriéndonos al hecho de que se deben poder agregar nuevos algoritmos, operadores y problemas. Una vez alcanzada la tercera iteración fue necesario hacer frente a este problema. Sin embargo, éste no es un problema fácil de abordar. Las ideas que surgieron para tratar este problema eran diversas. Una de ellas, por ejemplo, consistía en que el usuario una vez haya creado un nuevo problema; implementara por si mismo la interfaz de configuración para éste y la integrara a la aplicación. No obstante, realizar ésta tarea consistía en que se debía tener conocimiento de la implementación de interfaces gráficas usando JavaFX, así como conocer el código de la aplicación para realizar cambios sobre este. Al momento de crear un nuevo algoritmo u operador también estaba presente este problema porque si el usuario quería poner a disposición un nuevo algoritmo para resolver el problema debía realizar cambios en el código de la aplicación.
+En diferentes secciones de este documento se ha mencionado que la aplicación debe ser extensible, refiriéndonos al hecho de que se deben poder agregar nuevos algoritmos, operadores y problemas. Una vez alcanzada la tercera iteración fue necesario hacer frente a este problema. Sin embargo, éste no es un problema fácil de abordar. Las ideas que surgieron para tratar este problema eran diversas. Una de ellas, por ejemplo, consistía en que el usuario una vez haya creado un nuevo problema; implementara por si mismo la interfaz de configuración para éste y la integrara a la aplicación. No obstante, realizar ésta tarea consistía en que se debía tener conocimiento de la implementación de interfaces gráficas usando JavaFX, así como conocer el código de la aplicación para realizar cambios sobre éste. 
   
-Finalmente se decidió utilizar un enfoque parecido al de los frameworks de Java Spring y JUnit utilizando las técnicas o patrones de diseño de inyección de dependencias e inversión de control. 
+Finalmente se opta por utilizar un enfoque parecido al de los frameworks de Java Spring y JUnit utilizando las técnicas o patrones de diseño de inyección de dependencias e inversión de control. Para ello, se define un flujo de trabajo general para la aplicación. El flujo que sigue la aplicación se presenta en la Figura~\ref{fig:diagrama_actividades}.
 
-El sistema define un flujo de trabajo. En el programa se puede agregar un nuevo problema simplemente definiendo una nueva clase que es usada como plantilla para crear los nuevos experimentos de un problema con un algoritmo especifico. Esta nueva clase debe heredar de una de las subclases de \textit{Registrable}. La jerarquía de herencia de la clase \textit{Registrable} se muestra en la Figura~\ref{fig:registrable}. En dicha clase se pueden usar anotaciones en el constructor para definir los tipos de las instancias a inyectar asi como los valores de configuración que necesita el experimento. En este caso los tipos corresponden a los operadores a utilizar en el algoritmo del experimento a configurar. El flujo que sigue la aplicación se presenta en la Figura~\ref{fig:diagrama_actividades}. Durante ``Configurar Experimento'' se leen las anotaciones para construir la interfaz gráfica, una vez configurado el experimento en esta interfaz se crean e inyectan las dependencias al momento de crear la instancia de \textit{Registrable} usando la \textit{Java Reflection API}.
+Se puede agregar un nuevo problema definiendo una nueva clase que es usada como plantilla para crear los nuevos experimentos con un algoritmo especifico. Esta nueva clase debe heredar de una de las subinterfaces de \textit{Registrable}. La jerarquía de herencia de la clase \textit{Registrable} se muestra en la Figura~\ref{fig:registrable}. En dicha clase se pueden usar las anotaciones definidas para la aplicación en el constructor para especificar los tipos de las instancias a inyectar, así como los valores de configuración que necesita el experimento. En este caso, las instancias inyectadas corresponden a los operadores a utilizar en el algoritmo del experimento a configurar.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{Capitulo4/assets/d_class_registrable.eps}
+  \caption{Interfaz de clase \textit{Registrable}.}
+  \label{fig:registrable}
+\end{figure}
+
+Durante la actividad de ``Configurar Experimento'' que se muestra en la Figura~\ref{fig:diagrama_actividades}, se leen las anotaciones para construir la interfaz gráfica, una vez configurado el experimento en esta interfaz se crean e inyectan las dependencias al momento de crear la instancia de \textit{Registrable} usando la \textit{Java Reflection API}.
 
 \begin{figure}[h]
     \centering
@@ -176,11 +183,11 @@ El sistema define un flujo de trabajo. En el programa se puede agregar un nuevo 
     \label{fig:diagrama_actividades}
 \end{figure}
 
-Las anotaciones permitidas en la interfaz \textit{Registrable} que se definieron son las siguientes:
+Las anotaciones permitidas en la interfaz \textit{Registrable} que se definieron para la herramienta son las siguientes:
 
 \begin{description}
   \item[\textit{@NewProblem}:] Esta anotación permite indicar el nombre del problema y el algoritmo utilizado para resolverlo.
-  \item[\textit{@Parameters}:] Esta anotación permite agregar información acerca de los parámetros recibidos por el constructor. Esta anotación permite concatenar anotaciones.
+  \item[\textit{@Parameters}:] Esta anotación permite agregar información acerca de los parámetros recibidos por el constructor. Como argumento para esta anotación se pueden usar otras las cuales son:
   \begin{description}
     \item[\textit{@OperatorInput}:] Indica que se espera recibir un operador. Se utiliza \textit{@OperatorOption} para indicar los posibles operadores que pueden ser inyectados.
     \begin{description}
@@ -196,25 +203,11 @@ Estas anotaciones deben estar sobre el constructor publico de la clase \textit{R
 
 Los operadores también pueden hacer uso de anotaciones. Las anotaciones permitidas para los operadores es:
 \begin{description}
-  \item[\textit{@DefaultConstructor}:] Esta anotación indica el constructor por defecto del operador que sera utilizado para inyectar los valores. Dentro de esta anotación se puede usar \textit{@NumberInput} para definir los parámetros que pueden ser inyectados al operador.
+  \item[\textit{@DefaultConstructor}:] Esta anotación indica el constructor por defecto del operador. El constructor que hace uso de esta anotación es el utilizado para instanciar al operador. Dentro de esta anotación se puede usar \textit{@NumberInput} para definir los parámetros que pueden ser inyectados.
 \end{description}
 
 La aplicación leyendo las anotaciones presentadas anteriormente, construye una interfaz de usuario que se abre al momento de querer resolver el problema registrado.
 
-
-% Esta clase actuá como una plantilla para crear nuevos experimentos. Junto con esta jerarquía se definieron un conjunto de anotaciones que son leídas durante la ejecución del problema al querer optimizar una red y son utilizadas para construir la interfaz gráfica y posteriormente inyectar en el constructor de la clase al crear la instancia las configuraciones y operadores a utilizar para la optimización.
-
-% que Esto es, crear anotaciones que puedan ser leídas en tiempo de ejecución por el programa. Las anotaciones creadas permiten indicar los valores que se pueden configurar del problema, asi como los operadores a ser utilizados por un algoritmo. Las anotaciones son leídas desde el programa al momento de querer optimizar una RDA, permitiendo de esa manera construir dinamicamente una interfaz de usuario para configurar los detalles del algoritmo, operador y el problema a resolver. Finalmente, una vez configurados todos los detalles anteriormente mencionados, haciendo uso de \textit{Java Reflection} se crea una nueva instancia.
-
-% , además de la modularidad proporcionada descrita por el diagrama de clases de la Figura \ref{fig:dia_class_met}, presentado para la Funcionalidad 2, se hace uso de una interfaz desde la cual se permiten definir plantillas para crear nuevos experimentos y acoplarlos a la aplicación. Dicha interfaz se muestra en la Figura~\ref{fig:registrable}.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\textwidth]{Capitulo4/assets/d_class_registrable.eps}
-    \caption{Interfaz de clase \textit{Registrable}.}
-    \label{fig:registrable}
-\end{figure}
-
-En el \textbf{Anexo~\ref{appendix:diseno}} se puede ver la el documento de diseño de la aplicación.
+En el \textbf{Anexo~\ref{appendix:diseno}} se puede ver el documento de diseño de la aplicación. En dicho documento se explican con más detalle las anotaciones definidas.
 
 \clearpage

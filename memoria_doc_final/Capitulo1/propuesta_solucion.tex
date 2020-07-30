@@ -1,64 +1,12 @@
 \section{Propuesta de solución}
-La solución que se propone para abordar el problema consiste en el desarrollo de una aplicación de escritorio extensible que permita optimizar procesos de diseño y operación en RDA. Este software entrega a sus usuarios la posibilidad de agregar nuevos problemas y algoritmos si se consideran necesarios.%buscar soluciones a dos de los problemas existentes en las redes de agua potable. 
+La solución que se propone para abordar el problema consiste en el desarrollo de una aplicación de escritorio extensible que permita optimizar procesos de diseño y operación en RDA. Este software entrega a sus usuarios la posibilidad de agregar nuevos problemas y algoritmos si se consideran necesarios.
 
 Los problemas que se abordan en el contexto de optimización de redes de agua potable serán:
 \begin{itemize}
 
-	\item \textbf{Problema de diseño:} Este tipo de problema busca optimizar las configuraciones y la disposición de los elementos que conforman la red previa a su construcción~\cite{Jimmy-2019}. %El problema de diseño a tratar consiste en la optimización de los costo de inversión variando el diámetro de las tuberías (\textit{Pipe Optimizing}). Este problema sera abordado utilizando el Algoritmo Genético (GA). 
-	
-	% Este problema será abordado utilizando el Algoritmo Genético (GA). La ecuación \ref{eq:costos_de_inversion} presentada en \cite{Pereyra2017} muestra el objetivo a minimizar para el problema de diseño.
-	
-	% \begin{equation}
-	% 	\label{eq:costos_de_inversion}
-	% 	\begin{aligned}
-	% 		\text{Costo de inversión} = \sum_{i=1}^{N} (C_i \times D_i \times L_i)
-	% 	\end{aligned}
-	% \end{equation}
+	\item \textbf{Problema de diseño:} Este tipo de problema busca optimizar las configuraciones y la disposición de los elementos que conforman la red previa a su construcción~\cite{Jimmy-2019}. 
 
-	% En la ecuación anteriormente presentada el termino $C_i$ se refiere al costo unitario de la tubería $i$, el término $D_i$ corresponde al diámetro de la tubería y finalmente $L_i$ se hace referencia su longitud. Adicionalmente, el problema debe satisfacer la siguiente restricción.
-
-	% \begin{equation}
-	% 	\label{eq:restriccion_costo_inversion}
-	% 	\begin{aligned}
-	% 		H_i < H_{min}
-	% 	\end{aligned}
-	% \end{equation}
-
-	% donde $H_i$ corresponde a la presión sobre la tubería $i$ y $H_{min}$ a la presión mínima de la red.
-
-	\item \textbf{Problema de operación:} Los problemas de operación buscan optimizar las configuraciones de una red ya construida~\cite{Jimmy-2019}. % El problema de operación consiste en la optimización de costos energéticos y el número de encendidos y apagados de las bombas (\textit{Pumping Schedule}). Este problema se aborda desde el enfoque multiobjetivo utilizando el algoritmo\textit{Non-Dominated Sorting Genetic Algorithm}, versión II (NSGAII). 
-	
-	% Las funciones a optimizar se presentan en \cite{JHawanet-2019,Jimmy-2019} y corresponden a:
-	
-	% \begin{equation}
-	% 	\label{eq:costos_energeticos}
-	% 	\begin{aligned}
-	% 		C_E(S) &= \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}(P_c(t) \times E_c(n, t) \times S(n, t))
-	% 	\end{aligned}
-	% \end{equation}
-	
-	% donde:
-	% \begin{itemize}
-	% 	\item	$C_E(S)$: corresponde a los costos energéticos.
-	% 	\item   $NP$: El numero de bombas.
-	% 	\item 	$NT$: Número de periodos de simulación. El máximo son 24 horas.
-	% 	\item 	$P_c(t)$: La tarifa energética en el periodo $t$.
-	% 	\item 	$E_c(n, t)$: Consumo energético de la bomba $n$ en el tiempo $t$.
-	% 	\item 	$S(n,t)$: El estado de la bomba. 1 si esta encendida y 0 si esta apagada.
-	% \end{itemize}
-	% \begin{equation}
-	% 	\label{eq:costos_de_mantenimiento}
-	% 	\begin{aligned}
-	% 		C_N(S) &= \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}r_t
-	% 	\end{aligned}
-	% \end{equation}
-	% donde:
-	% \begin{itemize}
-	% 	\item $C_N(S)$ Número de encendido y apagado de las bombas.
-	% 	\item $r_t$: Valor indicando si en el periodo $t$ hubo un cambio de estado .en la bomba. Este valor es 1 cuando la bomba a sido encendida.
-	% \end{itemize}
-	
-	% La funciones \ref{eq:costos_energeticos} y \ref{eq:costos_de_mantenimiento} deben cumplir las restricciones asociadas a la conservación de la masa y la energía; la presión mínima, el caudal en la bomba $n$ y el nivel de agua almacenado en el reservorio en un periodo de tiempo especifico.
+	\item \textbf{Problema de operación:} Los problemas de operación buscan optimizar las configuraciones de una red ya construida~\cite{Jimmy-2019}.
 \end{itemize}
 
 Con el fin de valorar la capacidad del programa, dos problemas hidráulicos son implementados. Cada uno con un algoritmo afín según sus características.
@@ -69,10 +17,7 @@ Según lo anteriormente expuesto, los problemas seleccionados son los siguientes:
 
 \begin{enumerate}
 	\item Problema de diseño de RDA basado en el costo de tuberías.  El cual consiste en la optimización de los costo de inversión variando el diámetro de las tuberías (\textit{Pipe Optimizing})~\cite{Iglesias-2004, Pereyra2017}. Este problema sera abordado utilizando el Algoritmo Genético (GA). 
-	\item Problema de operación basado en el Régimen de bombeo. Éste consiste en la optimización de costos energéticos y el número de encendidos y apagados de las bombas (\textit{Pumping Schedule}) \cite{JHawanet-2019}. Este problema se aborda desde el enfoque multiobjetivo utilizando el algoritmo\textit{Non-Dominated Sorting Genetic Algorithm}, versión II (NSGAII). 
+	\item Problema de operación basado en el Régimen de bombeo. Éste consiste en la optimización de costos energéticos y el costo de mantenimiento de las bombas (\textit{Pumping Schedule}) \cite{JHawanet-2019}. Este problema se aborda desde el enfoque multiobjetivo utilizando el algoritmo\textit{Non-Dominated Sorting Genetic Algorithm}, versión II (NSGAII). 
 \end{enumerate}
-
-
-% La solución planteada supone además el diseño e implementación de una interfaz gráfica para ayudar al usuario en el uso de la herramienta.
 
 Adicionalmente, se genera una guía para que los usuarios puedan implementar nuevos problemas, algoritmos y operadores. 

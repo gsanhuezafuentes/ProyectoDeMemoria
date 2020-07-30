@@ -14,7 +14,7 @@
 \RequirePackage[naturalnames, linktocpage, hidelinks]{hyperref}
 
 \selectlanguage{spanish}
-\bibliographystyle{plain}
+\bibliographystyle{unsrt}
 
 \def\utalca{Universidad de Talca}
 \def\facdeing{Facultad de Ingenier\'{\i}a}
