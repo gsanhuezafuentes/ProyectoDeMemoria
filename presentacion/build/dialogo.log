@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.4)  30 JUL 2020 22:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.4)  14 AUG 2020 18:20
 entering extended mode
 **c:/Users/gsanh/Desktop/Memoria/presentacion/dialogo.tex
 (c:/Users/gsanh/Desktop/Memoria/presentacion/dialogo.tex
@@ -101,17 +101,17 @@ LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 ) ) 
 Here is how much of TeX's memory you used:
- 1555 strings out of 480756
- 22788 string characters out of 2910598
- 277243 words of memory out of 3000000
- 17625 multiletter control sequences out of 15000+200000
- 535978 words of font info for 36 fonts, out of 3000000 for 9000
+ 1556 strings out of 480756
+ 22803 string characters out of 2910598
+ 276243 words of memory out of 3000000
+ 17626 multiletter control sequences out of 15000+200000
+ 536285 words of font info for 37 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,6n,35p,834b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
-<G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb>
-Output written on c:/Users\gsanh\Desktop\Memoria\presentacion\build\dialogo.pdf (4 pages, 79197 bytes).
+ 29i,6n,35p,825b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
+<G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb>
+Output written on c:/Users\gsanh\Desktop\Memoria\presentacion\build\dialogo.pdf (4 pages, 72718 bytes).
 PDF statistics:
- 39 PDF objects out of 1000 (max. 8388607)
+ 35 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

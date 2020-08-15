@@ -37,6 +37,7 @@ INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmsy8.tfm
 INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmsy6.tfm
 INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
 INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
+INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
 OUTPUT c:\Users\gsanh\Desktop\Memoria\presentacion\build\dialogo.pdf
 INPUT C:\Users\gsanh\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
 INPUT c:\Users\gsanh\Desktop\Memoria\presentacion\build\dialogo.aux
@@ -50,5 +51,3 @@ INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr17.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr17.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr5.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr5.pfb
-INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr7.pfb
-INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr7.pfb
