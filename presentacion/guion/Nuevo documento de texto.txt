@@ -1,0 +1,7 @@
+No explicar todo el antecedente, si no que explicar rapidamente.
+
+* Hablar de la adaptación de la metodología.
+* No explicar la metodología ni las ventajas genéricas de estas. Basta que se enuncie. Eso es super generico
+y actualmente super conocido. Si hay alguna ventaja específica para tu proyecto, entonces explicar ésta.
+* Si uno va a decir algo que es conocido, decir lo que tiene que ver con la memoria de uno. Por que si es conocido y no es muy importante para la memoria mejor no mencionarlo.
+

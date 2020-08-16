@@ -712,7 +712,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         Stage stage = new Stage();
         stage.setScene(new Scene(this.root));
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Status of execution");
+        stage.setTitle("Experiment Setup");
         this.window = stage;
 
         //Initialize the gridpane with the controls to configure the problem
