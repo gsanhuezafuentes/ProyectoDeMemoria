@@ -7,18 +7,18 @@
 
 \maketitle
 
-Buenas tardes profesores de la comisión e invitado. Mi nombre es Gabriel Sanhueza y procederé a presentar la defensa para mi proyecto de titulación.
+Buenas tardes profesores de la comisión e invitados. Mi nombre es Gabriel Sanhueza y procederé a presentar la defensa para mi proyecto de titulación.
 
 \section{Introducción}
-A continuación les voy a presentar el contexto, el problema, la solución propuesta y los objetivos que se buscan lograr.
+% A continuación les voy a presentar el contexto, el problema, la solución propuesta y los objetivos que se buscan lograr.
 
 \subsection{Contexto}
-Como bien se sabe la escasez de agua potable es sin duda una problemática a nivel mundial. Es por esto que optimizar los sistemas que permiten la distribución de agua es importante. Sin embargo, esto no es simple puesto que los sistemas de distribución de agua deben estar activos las 24 horas del día asegurando los niveles se servicio mínimos. Adicionalmente, la optimización de estos sistemas involucra la participación de múltiples criterios lo que dificulta la toma de decisiones respecto a éstos. 
+Como bien se sabe la escasez de agua potable es sin duda una problemática a nivel mundial. Es por esto que optimizar los sistemas que permiten la distribución de agua es importante. Sin embargo, esto no es simple puesto que los sistemas de distribución de agua deben estar activos las 24 horas del día asegurando los niveles de servicio mínimos. Adicionalmente, la optimización de estos sistemas involucra la participación de múltiples criterios lo que dificulta la toma de decisiones respecto a éstos. 
 
-Dentro del área de las redes de agua potable los problemas son clasificados entre dos tipos. Los problemas de diseño y los de operación.
+Dentro del área de las redes de agua potable nos encontramos con dos clases de problemas. Los problemas de diseño y los de operación.
 
 \subsection{Problema}
-Los problemas identificados son los siguientes:
+Los problemas identificados con este proyecto son los siguientes:
 
 Primero, no se cuenta con las suficientes herramientas y tiempo para la correcta gestión de las redes de distribución de agua potable (RDA). Por lo tanto, no es posible utilizar los recursos asociados de forma eficiente en estos sistemas.
 
@@ -62,7 +62,7 @@ Ahora se procede a hablar acerca del desarrollo del proyecto.
 Este proyecto se origina como una propuesta por parte del profesor Daniel Mora Melia del departamento de Ingeniería en Obras Civiles. El junto a un grupo de colaboradores forman parte del proyecto ``Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms'' el cual busca aplicar algoritmos metaheurísticos en la resolución de problemas asociados a las RDA. De este proyecto, surgieron varios artículos, entre ellos, se encuentra uno que consiste en la integración de dos herramientas independientes JMetal y Epanet para llevar a cabo optimizaciones sobre RDA. De dicho articulo surge la idea de implementar una herramienta gráfica con el fin de facilitar la optimización de redes de agua potable.
 
 \subsection{Tecnologías a utilizar}
-Las tecnologías utilizadas fueron Java, JavaFX y la librería EpanetToolkit para realizar las simulaciones hidráulicas.
+Las tecnologías utilizadas fueron Java, como lenguaje de programación, JavaFX, para implementar la interfaz y la librería EpanetToolkit para realizar las simulaciones hidráulicas y evaluar las soluciones generadas por los algoritmos metaheurísticos.
 
 La elección de Java como lenguaje de programación se debe a que éste fue el solicitado por el cliente, puesto que permite la incorporación directa de algunas herramientas ya desarrolladas.
 
@@ -77,7 +77,7 @@ Durante la fase de diseño se realizo la conceptualización del software generando
 
 La arquitectura física utilizada consiste en la monolítica, puesto que la aplicación no tiene interacción con otros sistemas computacionales y está diseñada para operar localmente en el equipo del usuario que la utilice.
 
-La arquitectura lógica consiste en la Modelo-Vista-Controlador. Esta arquitectura, permite dividir las responsabilidades de cada modulo separando el código para generar la interfaz de el utilizado para la lógica de la aplicación.
+En cuanto a la arquitectura lógica, ésta consiste en la arquitectura Modelo-Vista-Controlador la cual fue escogida porque nos permite separar los componentes de la aplicación en módulos reduciendo la dependencia entre el código de la interfaz de usuario y la lógica de la aplicación. (Y la librería JavaFX trabaja en base a esta arquitectura)
 
 \subsection{Implementación}
 Durante la fase de implementación se realizo la codificación de las funcionalidades de la aplicación y el manual de usuario de ésta.
@@ -99,7 +99,7 @@ En la ventana de simulación se muestran los resultados de la simulación utilizan
 \subsubsection{Java Reflection y Java Annotation}
 Una de las capacidades más importantes de la aplicación que es la extensibilidad, se logro haciendo uso de dos funcionalidades de Java, las cuales son la reflección y las anotaciones.
 
-Las anotaciones fueron utilizadas para agregar metadatos a los operadores y a la clase que hereden de \textit{Registrable}, los cuales son utilizados para identificar los parámetros que requeridos para cumplir con su función.
+Las anotaciones fueron utilizadas para agregar metadatos a los operadores y a la clase que hereden de la interfaz \textit{Registrable}. Estas anotaciones son utilizados para identificar los parámetros requeridos para cumplir con su función.
 
 Los Experimentos son contenedores que posee varias instancias de un mismo algoritmo para resolver un problema, esto le da a la aplicación la capacidad de realizar simulaciones independientes. 
 

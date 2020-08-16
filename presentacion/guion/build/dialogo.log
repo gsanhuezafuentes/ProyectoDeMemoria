@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.7.4)  15 AUG 2020 18:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.8.16)  16 AUG 2020 18:56
 entering extended mode
-**c:/Users/gsanh/Desktop/Memoria/presentacion/dialogo.tex
-(c:/Users/gsanh/Desktop/Memoria/presentacion/dialogo.tex
+**c:/Users/gsanh/Desktop/Memoria/presentacion/guion/dialogo.tex
+(c:/Users/gsanh/Desktop/Memoria/presentacion/guion/dialogo.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-06-18> ("G:\MiKTeX 2.9\tex/latex/base\article.cls"
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
@@ -62,7 +62,7 @@ Package babel Info: Making > an active character on input line 707.
 File: l3backend-pdfmode.def 2020-06-29 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count178
 \l__pdf_internal_box=\box45
-) (c:/Users\gsanh\Desktop\Memoria\presentacion\build\dialogo.aux
+) (c:/Users\gsanh\Desktop\Memoria\presentacion\guion\build\dialogo.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 )
@@ -110,20 +110,20 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 195.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 195.
-[7] [8] (c:/Users\gsanh\Desktop\Memoria\presentacion\build\dialogo.aux
+[7] [8] (c:/Users\gsanh\Desktop\Memoria\presentacion\guion\build\dialogo.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
 ) ) 
 Here is how much of TeX's memory you used:
  1557 strings out of 480756
- 22803 string characters out of 2910598
+ 22869 string characters out of 2910597
  277243 words of memory out of 3000000
  17625 multiletter control sequences out of 15000+200000
  536939 words of font info for 39 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,6n,35p,854b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,6n,35p,860b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
 <G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on c:/Users\gsanh\Desktop\Memoria\presentacion\build\dialogo.pdf (8 pages, 106229 bytes).
+Output written on c:/Users\gsanh\Desktop\Memoria\presentacion\guion\build\dialogo.pdf (8 pages, 106153 bytes).
 PDF statistics:
  53 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

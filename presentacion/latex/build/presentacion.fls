@@ -394,21 +394,31 @@ INPUT .\assets\Tecnologia\EpanetToolkit.png
 INPUT .\assets\Tecnologia\EpanetToolkit.png
 INPUT .\assets\Tecnologia\EpanetToolkit.png
 INPUT .\assets\Tecnologia\EpanetToolkit.png
-INPUT assets\Requisito.png
-INPUT .\assets\Requisito.png
-INPUT .\assets\Requisito.png
-INPUT .\assets\Requisito.png
-INPUT .\assets\Requisito.png
+INPUT assets\Requisito.eps
+INPUT .\assets\Requisito.eps
+INPUT .\assets\Requisito.eps
+INPUT .\assets\Requisito-eps-converted-to.pdf
+INPUT .\assets\Requisito-eps-converted-to.pdf
+INPUT .\assets\Requisito.eps
+INPUT .\assets\Requisito-eps-converted-to.pdf
+INPUT .\assets\Requisito-eps-converted-to.pdf
+INPUT .\assets\Requisito-eps-converted-to.pdf
+INPUT .\assets\Requisito-eps-converted-to.pdf
 INPUT assets\ArquitecturaFisica.png
 INPUT .\assets\ArquitecturaFisica.png
 INPUT .\assets\ArquitecturaFisica.png
 INPUT .\assets\ArquitecturaFisica.png
 INPUT .\assets\ArquitecturaFisica.png
-INPUT assets\ArquitecturaLogica.png
-INPUT .\assets\ArquitecturaLogica.png
-INPUT .\assets\ArquitecturaLogica.png
-INPUT .\assets\ArquitecturaLogica.png
-INPUT .\assets\ArquitecturaLogica.png
+INPUT assets\ArquitecturaLogica.eps
+INPUT .\assets\ArquitecturaLogica.eps
+INPUT .\assets\ArquitecturaLogica.eps
+INPUT .\assets\ArquitecturaLogica-eps-converted-to.pdf
+INPUT .\assets\ArquitecturaLogica-eps-converted-to.pdf
+INPUT .\assets\ArquitecturaLogica.eps
+INPUT .\assets\ArquitecturaLogica-eps-converted-to.pdf
+INPUT .\assets\ArquitecturaLogica-eps-converted-to.pdf
+INPUT .\assets\ArquitecturaLogica-eps-converted-to.pdf
+INPUT .\assets\ArquitecturaLogica-eps-converted-to.pdf
 INPUT assets\Interfaces\Principal.png
 INPUT .\assets\Interfaces\Principal.png
 INPUT .\assets\Interfaces\Principal.png
@@ -488,16 +498,26 @@ INPUT .\assets\NSGAII-eps-converted-to.pdf
 INPUT .\assets\NSGAII-eps-converted-to.pdf
 INPUT .\assets\NSGAII-eps-converted-to.pdf
 INPUT .\assets\NSGAII-eps-converted-to.pdf
-INPUT assets\PruebaAutomatizada.png
-INPUT .\assets\PruebaAutomatizada.png
-INPUT .\assets\PruebaAutomatizada.png
-INPUT .\assets\PruebaAutomatizada.png
-INPUT .\assets\PruebaAutomatizada.png
-INPUT assets\PruebaManual.png
-INPUT .\assets\PruebaManual.png
-INPUT .\assets\PruebaManual.png
-INPUT .\assets\PruebaManual.png
-INPUT .\assets\PruebaManual.png
+INPUT assets\PruebaAutomatizada.eps
+INPUT .\assets\PruebaAutomatizada.eps
+INPUT .\assets\PruebaAutomatizada.eps
+INPUT .\assets\PruebaAutomatizada-eps-converted-to.pdf
+INPUT .\assets\PruebaAutomatizada-eps-converted-to.pdf
+INPUT .\assets\PruebaAutomatizada.eps
+INPUT .\assets\PruebaAutomatizada-eps-converted-to.pdf
+INPUT .\assets\PruebaAutomatizada-eps-converted-to.pdf
+INPUT .\assets\PruebaAutomatizada-eps-converted-to.pdf
+INPUT .\assets\PruebaAutomatizada-eps-converted-to.pdf
+INPUT assets\PruebaManual.eps
+INPUT .\assets\PruebaManual.eps
+INPUT .\assets\PruebaManual.eps
+INPUT .\assets\PruebaManual-eps-converted-to.pdf
+INPUT .\assets\PruebaManual-eps-converted-to.pdf
+INPUT .\assets\PruebaManual.eps
+INPUT .\assets\PruebaManual-eps-converted-to.pdf
+INPUT .\assets\PruebaManual-eps-converted-to.pdf
+INPUT .\assets\PruebaManual-eps-converted-to.pdf
+INPUT .\assets\PruebaManual-eps-converted-to.pdf
 INPUT assets\Evaluacion\funcionality.eps
 INPUT .\assets\Evaluacion\funcionality.eps
 INPUT .\assets\Evaluacion\funcionality.eps
@@ -603,12 +623,16 @@ INPUT c:\Users\gsanh\Desktop\Memoria\presentacion\latex\build\presentacion.aux
 INPUT c:\Users\gsanh\Desktop\Memoria\presentacion\latex\build\presentacion.out
 INPUT c:\Users\gsanh\Desktop\Memoria\presentacion\latex\build\presentacion.out
 INPUT G:\MiKTeX 2.9\fonts\enc\dvips\base\8r.enc
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx12.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cmextra\cmex9.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cmextra\cmex9.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi6.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi6.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi9.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi9.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmss8.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmss8.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmss9.pfb
@@ -617,6 +641,8 @@ INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy6.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy6.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy9.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy9.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmti12.pfb
+INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmti12.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\urw\avantgar\uagd8a.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\urw\avantgar\uagd8a.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\urw\avantgar\uagk8a.pfb

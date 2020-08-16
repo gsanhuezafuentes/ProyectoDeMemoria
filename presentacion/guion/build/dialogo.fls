@@ -1,7 +1,7 @@
-PWD c:\Users\gsanh\Desktop\Memoria\presentacion
+PWD c:\Users\gsanh\Desktop\Memoria\presentacion\guion
 INPUT C:\Users\gsanh\AppData\Local\MiKTeX\2.9\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\gsanh\Desktop\Memoria\presentacion\dialogo.tex
-OUTPUT c:\Users\gsanh\Desktop\Memoria\presentacion\build\dialogo.log
+INPUT c:\Users\gsanh\Desktop\Memoria\presentacion\guion\dialogo.tex
+OUTPUT c:\Users\gsanh\Desktop\Memoria\presentacion\guion\build\dialogo.log
 INPUT G:\MiKTeX 2.9\tex\latex\base\article.cls
 INPUT G:\MiKTeX 2.9\tex\latex\base\article.cls
 INPUT G:\MiKTeX 2.9\tex\latex\base\size10.clo
@@ -22,9 +22,9 @@ INPUT G:\MiKTeX 2.9\tex\latex\babel-spanish\spanish.ldf
 INPUT G:\MiKTeX 2.9\tex\latex\babel-spanish\spanish.ldf
 INPUT G:\MiKTeX 2.9\tex\latex\l3backend\l3backend-pdfmode.def
 INPUT G:\MiKTeX 2.9\tex\latex\l3backend\l3backend-pdfmode.def
-INPUT c:\Users\gsanh\Desktop\Memoria\presentacion\build\dialogo.aux
-INPUT c:\Users\gsanh\Desktop\Memoria\presentacion\build\dialogo.aux
-OUTPUT c:\Users\gsanh\Desktop\Memoria\presentacion\build\dialogo.aux
+INPUT c:\Users\gsanh\Desktop\Memoria\presentacion\guion\build\dialogo.aux
+INPUT c:\Users\gsanh\Desktop\Memoria\presentacion\guion\build\dialogo.aux
+OUTPUT c:\Users\gsanh\Desktop\Memoria\presentacion\guion\build\dialogo.aux
 INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr17.tfm
 INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
 INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr8.tfm
@@ -38,11 +38,11 @@ INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmsy6.tfm
 INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
 INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
 INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
-OUTPUT c:\Users\gsanh\Desktop\Memoria\presentacion\build\dialogo.pdf
+OUTPUT c:\Users\gsanh\Desktop\Memoria\presentacion\guion\build\dialogo.pdf
 INPUT C:\Users\gsanh\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
 INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmbx10.tfm
 INPUT G:\MiKTeX 2.9\fonts\tfm\public\cm\cmti10.tfm
-INPUT c:\Users\gsanh\Desktop\Memoria\presentacion\build\dialogo.aux
+INPUT c:\Users\gsanh\Desktop\Memoria\presentacion\guion\build\dialogo.aux
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT G:\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx12.pfb

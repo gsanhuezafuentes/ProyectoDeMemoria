@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1597529014 "c:/Users/gsanh/Desktop/Memoria/presentacion/dialogo.tex" "c:/Users/gsanh/Desktop/Memoria/presentacion/build/dialogo.pdf" "dialogo" 1597533203
-  "C:/Users/gsanh/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt" 1593843494 10506243 7662af1eacb92bdc995f8871ff5964dd ""
+["pdflatex"] 1597618566 "c:/Users/gsanh/Desktop/Memoria/presentacion/guion/dialogo.tex" "c:/Users/gsanh/Desktop/Memoria/presentacion/guion/build/dialogo.pdf" "dialogo" 1597618566
+  "C:/Users/gsanh/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt" 1597603382 10506244 5a8af35b2fffdfd1bef3f07ed9d7cb39 ""
   "C:/Users/gsanh/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map" 1594146457 83779 e71ee75ff93fc04ad0084bef16b98711 ""
   "G:/MiKTeX 2.9/fonts/tfm/public/cm/cmbx10.tfm" 1136761453 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "G:/MiKTeX 2.9/fonts/tfm/public/cm/cmbx12.tfm" 1136761453 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -32,13 +32,13 @@
   "G:/MiKTeX 2.9/tex/latex/base/latin1.def" 1582868066 5677 47d885178412bc4a664f6185fb3adc32 ""
   "G:/MiKTeX 2.9/tex/latex/base/size10.clo" 1582868066 8446 9874cccac5fee462272c582807dbbf56 ""
   "G:/MiKTeX 2.9/tex/latex/l3backend/l3backend-pdfmode.def" 1593424850 24606 ecae4e851ce9ce4554d156050e5057f9 ""
-  "build/dialogo.aux" 1597529014 3202 d0e1db86e39bc59cedefca7a785c2549 "pdflatex"
-  "c:/Users/gsanh/Desktop/Memoria/presentacion/build/dialogo.aux" 1597529014 3202 d0e1db86e39bc59cedefca7a785c2549 ""
-  "c:/Users/gsanh/Desktop/Memoria/presentacion/dialogo.tex" 1597533201 18671 5e2131bf5be77126e2311a1193240582 ""
-  "dialogo.tex" 1597533201 18671 5e2131bf5be77126e2311a1193240582 ""
+  "build/dialogo.aux" 1597618566 3202 e8b49eaeac421b1a373d11e7f3e4baf4 "pdflatex"
+  "c:/Users/gsanh/Desktop/Memoria/presentacion/guion/build/dialogo.aux" 1597618566 3202 e8b49eaeac421b1a373d11e7f3e4baf4 ""
+  "c:/Users/gsanh/Desktop/Memoria/presentacion/guion/dialogo.tex" 1597618565 18948 baa61e3219f390bdf77ef4c827154707 ""
+  "dialogo.tex" 1597618565 18948 baa61e3219f390bdf77ef4c827154707 ""
   (generated)
-  "build/dialogo.pdf"
   "build/dialogo.log"
-  "c:/Users/gsanh/Desktop/Memoria/presentacion/build/dialogo.log"
+  "c:/Users/gsanh/Desktop/Memoria/presentacion/guion/build/dialogo.log"
   "build/dialogo.aux"
-  "c:/Users/gsanh/Desktop/Memoria/presentacion/build/dialogo.pdf"
+  "build/dialogo.pdf"
+  "c:/Users/gsanh/Desktop/Memoria/presentacion/guion/build/dialogo.pdf"

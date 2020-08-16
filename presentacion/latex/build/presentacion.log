@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.8.16)  16 AUG 2020 17:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.8.16)  16 AUG 2020 19:36
 entering extended mode
 **c:/Users/gsanh/Desktop/Memoria/presentacion/latex/presentacion.tex
 (c:/Users/gsanh/Desktop/Memoria/presentacion/latex/presentacion.tex
@@ -537,23 +537,23 @@ LaTeX Info: Redefining \% on input line 25.
 )
 \openout1 = `presentacion.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Trying to load font information for OT1+pag on input line 25.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Trying to load font information for OT1+pag on input line 22.
  ("G:\MiKTeX 2.9\tex/latex/psnfss\ot1pag.fd"
 File: ot1pag.fd 2001/06/04 font definitions for OT1/pag.
 )
@@ -609,7 +609,7 @@ Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 ) ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box75
-Package hyperref Info: Link coloring OFF on input line 25.
+Package hyperref Info: Link coloring OFF on input line 22.
  ("G:\MiKTeX 2.9\tex/latex/hyperref\nameref.sty"
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
  ("G:\MiKTeX 2.9\tex/latex/refcount\refcount.sty"
@@ -619,55 +619,55 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count320
 )
-LaTeX Info: Redefining \ref on input line 25.
-LaTeX Info: Redefining \pageref on input line 25.
-LaTeX Info: Redefining \nameref on input line 25.
+LaTeX Info: Redefining \ref on input line 22.
+LaTeX Info: Redefining \pageref on input line 22.
+LaTeX Info: Redefining \nameref on input line 22.
  (c:/Users\gsanh\Desktop\Memoria\presentacion\latex\build\presentacion.out) (c:/Users\gsanh\Desktop\Memoria\presentacion\latex\build\presentacion.out)
 \@outlinefile=\write5
 \openout5 = `presentacion.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 25.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 22.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 25.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 22.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/pnc/m/n on input line 25.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 25.
+(Font)                  OT1/cmss/m/n --> OT1/pnc/m/n on input line 22.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 22.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/pag/b/n on input line 25.
+(Font)                  OT1/cmr/bx/n --> OT1/pag/b/n on input line 22.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/pag/b/n on input line 25.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 25.
+(Font)                  OT1/cmr/bx/n --> OT1/pag/b/n on input line 22.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 22.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/pag/m/n on input line 25.
+(Font)                  OT1/cmss/m/n --> OT1/pag/m/n on input line 22.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/pag/m/n on input line 25.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 25.
+(Font)                  OT1/cmss/bx/n --> OT1/pag/m/n on input line 22.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 22.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/pag/m/it on input line 25.
+(Font)                  OT1/cmr/m/it --> OT1/pag/m/it on input line 22.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/pag/m/it on input line 25.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 25.
+(Font)                  OT1/cmr/bx/it --> OT1/pag/m/it on input line 22.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 22.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 25.
+(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 22.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 25.
+(Font)                  OT1/cmtt/m/n --> OT1/pcr/m/n on input line 22.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/pag/m/n --> OT1/pag/b/n on input line 25.
+(Font)                  OT1/pag/m/n --> OT1/pag/b/n on input line 22.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/pag/m/it --> OT1/pag/b/it on input line 25.
+(Font)                  OT1/pag/m/it --> OT1/pag/b/it on input line 22.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/pnc/b/n on input line 25.
+(Font)                  OT1/cmss/b/n --> OT1/pnc/b/n on input line 22.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/pag/b/n --> OT1/pag/b/n on input line 25.
+(Font)                  OT1/pag/b/n --> OT1/pag/b/n on input line 22.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/pag/m/n --> OT1/pag/b/n on input line 25.
+(Font)                  OT1/pag/m/n --> OT1/pag/b/n on input line 22.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/pag/m/it --> OT1/pag/b/it on input line 25.
+(Font)                  OT1/pag/m/it --> OT1/pag/b/it on input line 22.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/pcr/m/n --> OT1/pcr/b/n on input line 25.
+(Font)                  OT1/pcr/m/n --> OT1/pcr/b/n on input line 22.
  ("G:\MiKTeX 2.9\tex/latex/translator\translator-basic-dictionary-English.dict"
 Dictionary: translator-basic-dictionary, Language: English 
 ) ("G:\MiKTeX 2.9\tex/latex/translator\translator-bibliography-dictionary-English.dict"
@@ -681,10 +681,10 @@ Dictionary: translator-numbers-dictionary, Language: English
 ) ("G:\MiKTeX 2.9\tex/latex/translator\translator-theorem-dictionary-English.dict"
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \. on input line 25.
-LaTeX Info: Redefining \% on input line 25.
+LaTeX Info: Redefining \. on input line 22.
+LaTeX Info: Redefining \% on input line 22.
  (c:/Users\gsanh\Desktop\Memoria\presentacion\latex\build\presentacion.nav)
-Overfull \vbox (3.08551pt too high) detected at line 25
+Overfull \vbox (3.08551pt too high) detected at line 22
  []
 
 Package epstopdf Info: Source file: <utalca1.eps>
@@ -694,7 +694,7 @@ Package epstopdf Info: Source file: <utalca1.eps>
 (epstopdf)                    date: 2020-08-16 17:47:49
 (epstopdf)                    size: 9271 bytes
 (epstopdf)             Command: <epstopdf --outfile=utalca1-eps-converted-to.pdf utalca1.eps>
-(epstopdf)             \includegraphics on input line 27.
+(epstopdf)             \includegraphics on input line 24.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -702,7 +702,7 @@ pdfTeX warning: pdflatex (file ./utalca1-eps-converted-to.pdf): PDF inclusion: f
 <utalca1-eps-converted-to.pdf, id=135, 107.40125pt x 135.50626pt>
 File: utalca1-eps-converted-to.pdf Graphic file (type pdf)
 <use utalca1-eps-converted-to.pdf>
-Package pdftex.def Info: utalca1-eps-converted-to.pdf  used on input line 27.
+Package pdftex.def Info: utalca1-eps-converted-to.pdf  used on input line 24.
 (pdftex.def)             Requested size: 33.82664pt x 42.67912pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -715,24 +715,24 @@ Overfull \vbox (3.08551pt too high) has occurred while \output is active []
  [2
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 59.
  ("G:\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 59.
  ("G:\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `OT1/pag/m/it' in size <9> not available
-(Font)              Font shape `OT1/pag/m/sl' tried instead on input line 62.
+(Font)              Font shape `OT1/pag/m/sl' tried instead on input line 59.
 LaTeX Font Info:    Font shape `OT1/pag/m/it' in size <6> not available
-(Font)              Font shape `OT1/pag/m/sl' tried instead on input line 62.
+(Font)              Font shape `OT1/pag/m/sl' tried instead on input line 59.
 LaTeX Font Info:    Font shape `OT1/pag/m/it' in size <5> not available
-(Font)              Font shape `OT1/pag/m/sl' tried instead on input line 62.
+(Font)              Font shape `OT1/pag/m/sl' tried instead on input line 59.
 <assets/MunecosBlancos/Aproblemado.jpg, id=224, 1606.0pt x 1606.0pt>
 File: assets/MunecosBlancos/Aproblemado.jpg Graphic file (type jpg)
 <use assets/MunecosBlancos/Aproblemado.jpg>
-Package pdftex.def Info: assets/MunecosBlancos/Aproblemado.jpg  used on input line 62.
+Package pdftex.def Info: assets/MunecosBlancos/Aproblemado.jpg  used on input line 59.
 (pdftex.def)             Requested size: 122.91406pt x 122.89536pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -757,7 +757,7 @@ Package epstopdf Info: Source file: <assets/iedevelopment-v2.eps>
 (epstopdf)                    date: 2020-08-16 13:30:09
 (epstopdf)                    size: 15650 bytes
 (epstopdf)             Command: <epstopdf --outfile=assets/iedevelopment-v2-eps-converted-to.pdf assets/iedevelopment-v2.eps>
-(epstopdf)             \includegraphics on input line 119.
+(epstopdf)             \includegraphics on input line 116.
 Package epstopdf Info: Output file is already uptodate.
 
 
@@ -765,7 +765,7 @@ pdfTeX warning: pdflatex (file ./assets/iedevelopment-v2-eps-converted-to.pdf): 
 <assets/iedevelopment-v2-eps-converted-to.pdf, id=330, 300.12125pt x 154.5775pt>
 File: assets/iedevelopment-v2-eps-converted-to.pdf Graphic file (type pdf)
 <use assets/iedevelopment-v2-eps-converted-to.pdf>
-Package pdftex.def Info: assets/iedevelopment-v2-eps-converted-to.pdf  used on input line 119.
+Package pdftex.def Info: assets/iedevelopment-v2-eps-converted-to.pdf  used on input line 116.
 (pdftex.def)             Requested size: 199.73653pt x 102.87764pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -784,7 +784,7 @@ Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
 ]
 LaTeX Font Info:    Font shape `OT1/pag/b/n' in size <9> not available
-(Font)              Font shape `OT1/pag/db/n' tried instead on input line 154.
+(Font)              Font shape `OT1/pag/db/n' tried instead on input line 151.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
@@ -794,17 +794,17 @@ Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 <assets/Tecnologia/Java.png, id=485, 209.28188pt x 209.28188pt>
 File: assets/Tecnologia/Java.png Graphic file (type png)
 <use assets/Tecnologia/Java.png>
-Package pdftex.def Info: assets/Tecnologia/Java.png  used on input line 178.
+Package pdftex.def Info: assets/Tecnologia/Java.png  used on input line 175.
 (pdftex.def)             Requested size: 101.40622pt x 101.40578pt.
 <assets/Tecnologia/JavaFX.png, id=487, 225.971pt x 208.6669pt>
 File: assets/Tecnologia/JavaFX.png Graphic file (type png)
 <use assets/Tecnologia/JavaFX.png>
-Package pdftex.def Info: assets/Tecnologia/JavaFX.png  used on input line 178.
+Package pdftex.def Info: assets/Tecnologia/JavaFX.png  used on input line 175.
 (pdftex.def)             Requested size: 101.40622pt x 93.64133pt.
 <assets/Tecnologia/EpanetToolkit.png, id=488, 210.03468pt x 210.7875pt>
 File: assets/Tecnologia/EpanetToolkit.png Graphic file (type png)
 <use assets/Tecnologia/EpanetToolkit.png>
-Package pdftex.def Info: assets/Tecnologia/EpanetToolkit.png  used on input line 178.
+Package pdftex.def Info: assets/Tecnologia/EpanetToolkit.png  used on input line 175.
 (pdftex.def)             Requested size: 101.40622pt x 101.76866pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -812,69 +812,93 @@ Overfull \vbox (3.08551pt too high) has occurred while \output is active []
  [10
 
  <./assets/Tecnologia/Java.png> <./assets/Tecnologia/JavaFX.png> <./assets/Tecnologia/EpanetToolkit.png>]
-<assets/Requisito.png, id=528, 451.6875pt x 207.77625pt>
-File: assets/Requisito.png Graphic file (type png)
-<use assets/Requisito.png>
-Package pdftex.def Info: assets/Requisito.png  used on input line 194.
-(pdftex.def)             Requested size: 245.83282pt x 113.0852pt.
+Package epstopdf Info: Source file: <assets/Requisito.eps>
+(epstopdf)                    date: 2020-08-16 19:21:02
+(epstopdf)                    size: 1710230 bytes
+(epstopdf)             Output file: <assets/Requisito-eps-converted-to.pdf>
+(epstopdf)                    date: 2020-08-16 19:23:26
+(epstopdf)                    size: 27693 bytes
+(epstopdf)             Command: <epstopdf --outfile=assets/Requisito-eps-converted-to.pdf assets/Requisito.eps>
+(epstopdf)             \includegraphics on input line 191.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex (file ./assets/Requisito-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<assets/Requisito-eps-converted-to.pdf, id=528, 439.6425pt x 202.7575pt>
+File: assets/Requisito-eps-converted-to.pdf Graphic file (type pdf)
+<use assets/Requisito-eps-converted-to.pdf>
+Package pdftex.def Info: assets/Requisito-eps-converted-to.pdf  used on input line 191.
+(pdftex.def)             Requested size: 245.83282pt x 113.37326pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
  [11
 
- <./assets/Requisito.png>]
+ <./assets/Requisito-eps-converted-to.pdf>]
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
  [12
 
 ]
-<assets/ArquitecturaFisica.png, id=604, 209.28188pt x 145.29282pt>
+<assets/ArquitecturaFisica.png, id=615, 615.0478pt x 542.025pt>
 File: assets/ArquitecturaFisica.png Graphic file (type png)
 <use assets/ArquitecturaFisica.png>
-Package pdftex.def Info: assets/ArquitecturaFisica.png  used on input line 222.
-(pdftex.def)             Requested size: 153.64493pt x 106.66588pt.
+Package pdftex.def Info: assets/ArquitecturaFisica.png  used on input line 219.
+(pdftex.def)             Requested size: 153.64493pt x 135.39839pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
  [13
 
  <./assets/ArquitecturaFisica.png>]
-<assets/ArquitecturaLogica.png, id=643, 575.751pt x 274.626pt>
-File: assets/ArquitecturaLogica.png Graphic file (type png)
-<use assets/ArquitecturaLogica.png>
-Package pdftex.def Info: assets/ArquitecturaLogica.png  used on input line 232.
-(pdftex.def)             Requested size: 245.83282pt x 117.26135pt.
+Package epstopdf Info: Source file: <assets/ArquitecturaLogica.eps>
+(epstopdf)                    date: 2020-06-22 03:44:30
+(epstopdf)                    size: 46233 bytes
+(epstopdf)             Output file: <assets/ArquitecturaLogica-eps-converted-to.pdf>
+(epstopdf)                    date: 2020-08-16 19:09:02
+(epstopdf)                    size: 42713 bytes
+(epstopdf)             Command: <epstopdf --outfile=assets/ArquitecturaLogica-eps-converted-to.pdf assets/ArquitecturaLogica.eps>
+(epstopdf)             \includegraphics on input line 229.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex (file ./assets/ArquitecturaLogica-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<assets/ArquitecturaLogica-eps-converted-to.pdf, id=654, 680.5425pt x 325.215pt>
+File: assets/ArquitecturaLogica-eps-converted-to.pdf Graphic file (type pdf)
+<use assets/ArquitecturaLogica-eps-converted-to.pdf>
+Package pdftex.def Info: assets/ArquitecturaLogica-eps-converted-to.pdf  used on input line 229.
+(pdftex.def)             Requested size: 245.83282pt x 117.47926pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
  [14
 
- <./assets/ArquitecturaLogica.png>]
+ <./assets/ArquitecturaLogica-eps-converted-to.pdf>]
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
  [15
 
 ]
-<assets/Interfaces/Principal.png, id=719, 515.77957pt x 279.95116pt>
+<assets/Interfaces/Principal.png, id=732, 1444.64719pt x 782.925pt>
 File: assets/Interfaces/Principal.png Graphic file (type png)
 <use assets/Interfaces/Principal.png>
-Package pdftex.def Info: assets/Interfaces/Principal.png  used on input line 248.
-(pdftex.def)             Requested size: 307.28987pt x 166.79726pt.
+Package pdftex.def Info: assets/Interfaces/Principal.png  used on input line 245.
+(pdftex.def)             Requested size: 307.28987pt x 166.53362pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
  [16
 
  <./assets/Interfaces/Principal.png>]
-<assets/Interfaces/ConfiguracionProblema1.png, id=758, 1108.14pt x 684.30656pt>
+<assets/Interfaces/ConfiguracionProblema1.png, id=771, 1108.14pt x 684.30656pt>
 File: assets/Interfaces/ConfiguracionProblema1.png Graphic file (type png)
 <use assets/Interfaces/ConfiguracionProblema1.png>
-Package pdftex.def Info: assets/Interfaces/ConfiguracionProblema1.png  used on input line 264.
+Package pdftex.def Info: assets/Interfaces/ConfiguracionProblema1.png  used on input line 261.
 (pdftex.def)             Requested size: 153.64493pt x 94.87296pt.
-<assets/Interfaces/ConfiguracionProblema2.png, id=759, 993.7125pt x 587.19376pt>
+<assets/Interfaces/ConfiguracionProblema2.png, id=772, 993.7125pt x 587.19376pt>
 File: assets/Interfaces/ConfiguracionProblema2.png Graphic file (type png)
 <use assets/Interfaces/ConfiguracionProblema2.png>
-Package pdftex.def Info: assets/Interfaces/ConfiguracionProblema2.png  used on input line 264.
+Package pdftex.def Info: assets/Interfaces/ConfiguracionProblema2.png  used on input line 261.
 (pdftex.def)             Requested size: 153.64493pt x 90.79008pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -882,10 +906,10 @@ Overfull \vbox (3.08551pt too high) has occurred while \output is active []
  [17
 
  <./assets/Interfaces/ConfiguracionProblema1.png> <./assets/Interfaces/ConfiguracionProblema2.png>]
-<assets/Interfaces/EstadoEjecucion.png, id=797, 578.6418pt x 311.2428pt>
+<assets/Interfaces/EstadoEjecucion.png, id=810, 578.6418pt x 311.2428pt>
 File: assets/Interfaces/EstadoEjecucion.png Graphic file (type png)
 <use assets/Interfaces/EstadoEjecucion.png>
-Package pdftex.def Info: assets/Interfaces/EstadoEjecucion.png  used on input line 272.
+Package pdftex.def Info: assets/Interfaces/EstadoEjecucion.png  used on input line 269.
 (pdftex.def)             Requested size: 307.28987pt x 165.29033pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -893,33 +917,33 @@ Overfull \vbox (3.08551pt too high) has occurred while \output is active []
  [18
 
  <./assets/Interfaces/EstadoEjecucion.png>]
-<assets/Interfaces/GraficoResultados.png, id=836, 533.74406pt x 289.83281pt>
+<assets/Interfaces/GraficoResultados.png, id=849, 867.24pt x 613.54219pt>
 File: assets/Interfaces/GraficoResultados.png Graphic file (type png)
 <use assets/Interfaces/GraficoResultados.png>
-Package pdftex.def Info: assets/Interfaces/GraficoResultados.png  used on input line 280.
-(pdftex.def)             Requested size: 307.28987pt x 166.86926pt.
+Package pdftex.def Info: assets/Interfaces/GraficoResultados.png  used on input line 277.
+(pdftex.def)             Requested size: 230.46739pt x 163.04663pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
  [19
 
  <./assets/Interfaces/GraficoResultados.png>]
-<assets/Interfaces/Resultados.png, id=876, 542.025pt x 294.34969pt>
+<assets/Interfaces/Resultados.png, id=889, 1442.38875pt x 783.67781pt>
 File: assets/Interfaces/Resultados.png Graphic file (type png)
 <use assets/Interfaces/Resultados.png>
-Package pdftex.def Info: assets/Interfaces/Resultados.png  used on input line 288.
-(pdftex.def)             Requested size: 307.28987pt x 166.87828pt.
+Package pdftex.def Info: assets/Interfaces/Resultados.png  used on input line 285.
+(pdftex.def)             Requested size: 307.28987pt x 166.95682pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
  [20
 
  <./assets/Interfaces/Resultados.png>]
-<assets/Interfaces/ResultadosSimulacion.png, id=915, 396.7322pt x 374.14781pt>
+<assets/Interfaces/ResultadosSimulacion.png, id=928, 536.75531pt x 566.86781pt>
 File: assets/Interfaces/ResultadosSimulacion.png Graphic file (type png)
 <use assets/Interfaces/ResultadosSimulacion.png>
-Package pdftex.def Info: assets/Interfaces/ResultadosSimulacion.png  used on input line 296.
-(pdftex.def)             Requested size: 180.21074pt x 169.95412pt.
+Package pdftex.def Info: assets/Interfaces/ResultadosSimulacion.png  used on input line 293.
+(pdftex.def)             Requested size: 160.92136pt x 169.95412pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
@@ -927,22 +951,22 @@ Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
  <./assets/Interfaces/ResultadosSimulacion.png>]
 Package epstopdf Info: Source file: <assets/InterfazHumano-app.eps>
-(epstopdf)                    date: 2020-08-16 15:45:25
-(epstopdf)                    size: 127374 bytes
+(epstopdf)                    date: 2020-08-16 18:59:40
+(epstopdf)                    size: 2071922 bytes
 (epstopdf)             Output file: <assets/InterfazHumano-app-eps-converted-to.pdf>
-(epstopdf)                    date: 2020-08-16 15:45:35
-(epstopdf)                    size: 113813 bytes
+(epstopdf)                    date: 2020-08-16 19:00:13
+(epstopdf)                    size: 127446 bytes
 (epstopdf)             Command: <epstopdf --outfile=assets/InterfazHumano-app-eps-converted-to.pdf assets/InterfazHumano-app.eps>
-(epstopdf)             \includegraphics on input line 305.
+(epstopdf)             \includegraphics on input line 302.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex (file ./assets/InterfazHumano-app-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<assets/InterfazHumano-app-eps-converted-to.pdf, id=954, 771.88374pt x 371.3875pt>
+<assets/InterfazHumano-app-eps-converted-to.pdf, id=967, 880.28876pt x 366.36874pt>
 File: assets/InterfazHumano-app-eps-converted-to.pdf Graphic file (type pdf)
 <use assets/InterfazHumano-app-eps-converted-to.pdf>
-Package pdftex.def Info: assets/InterfazHumano-app-eps-converted-to.pdf  used on input line 305.
-(pdftex.def)             Requested size: 307.28987pt x 147.84966pt.
+Package pdftex.def Info: assets/InterfazHumano-app-eps-converted-to.pdf  used on input line 302.
+(pdftex.def)             Requested size: 307.28987pt x 127.88997pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
@@ -966,15 +990,15 @@ Package epstopdf Info: Source file: <assets/AlgoritmoGenetico.eps>
 (epstopdf)                    date: 2020-08-16 15:00:47
 (epstopdf)                    size: 23057 bytes
 (epstopdf)             Command: <epstopdf --outfile=assets/AlgoritmoGenetico-eps-converted-to.pdf assets/AlgoritmoGenetico.eps>
-(epstopdf)             \includegraphics on input line 352.
+(epstopdf)             \includegraphics on input line 349.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex (file ./assets/AlgoritmoGenetico-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<assets/AlgoritmoGenetico-eps-converted-to.pdf, id=1078, 561.09625pt x 273.02pt>
+<assets/AlgoritmoGenetico-eps-converted-to.pdf, id=1095, 561.09625pt x 273.02pt>
 File: assets/AlgoritmoGenetico-eps-converted-to.pdf Graphic file (type pdf)
 <use assets/AlgoritmoGenetico-eps-converted-to.pdf>
-Package pdftex.def Info: assets/AlgoritmoGenetico-eps-converted-to.pdf  used on input line 352.
+Package pdftex.def Info: assets/AlgoritmoGenetico-eps-converted-to.pdf  used on input line 349.
 (pdftex.def)             Requested size: 245.83282pt x 119.61676pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -989,15 +1013,15 @@ Package epstopdf Info: Source file: <assets/NSGAIIFlujo.eps>
 (epstopdf)                    date: 2020-08-16 15:03:10
 (epstopdf)                    size: 53965 bytes
 (epstopdf)             Command: <epstopdf --outfile=assets/NSGAIIFlujo-eps-converted-to.pdf assets/NSGAIIFlujo.eps>
-(epstopdf)             \includegraphics on input line 362.
+(epstopdf)             \includegraphics on input line 359.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex (file ./assets/NSGAIIFlujo-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<assets/NSGAIIFlujo-eps-converted-to.pdf, id=1123, 562.1pt x 273.02pt>
+<assets/NSGAIIFlujo-eps-converted-to.pdf, id=1140, 562.1pt x 273.02pt>
 File: assets/NSGAIIFlujo-eps-converted-to.pdf Graphic file (type pdf)
 <use assets/NSGAIIFlujo-eps-converted-to.pdf>
-Package pdftex.def Info: assets/NSGAIIFlujo-eps-converted-to.pdf  used on input line 362.
+Package pdftex.def Info: assets/NSGAIIFlujo-eps-converted-to.pdf  used on input line 359.
 (pdftex.def)             Requested size: 245.83282pt x 119.4043pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -1012,15 +1036,15 @@ Package epstopdf Info: Source file: <assets/NSGAII.eps>
 (epstopdf)                    date: 2020-08-16 15:03:11
 (epstopdf)                    size: 49239 bytes
 (epstopdf)             Command: <epstopdf --outfile=assets/NSGAII-eps-converted-to.pdf assets/NSGAII.eps>
-(epstopdf)             \includegraphics on input line 372.
+(epstopdf)             \includegraphics on input line 369.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex (file ./assets/NSGAII-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<assets/NSGAII-eps-converted-to.pdf, id=1165, 1059.96pt x 670.505pt>
+<assets/NSGAII-eps-converted-to.pdf, id=1182, 1059.96pt x 670.505pt>
 File: assets/NSGAII-eps-converted-to.pdf Graphic file (type pdf)
 <use assets/NSGAII-eps-converted-to.pdf>
-Package pdftex.def Info: assets/NSGAII-eps-converted-to.pdf  used on input line 372.
+Package pdftex.def Info: assets/NSGAII-eps-converted-to.pdf  used on input line 369.
 (pdftex.def)             Requested size: 245.83282pt x 155.50201pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -1033,28 +1057,52 @@ Overfull \vbox (3.08551pt too high) has occurred while \output is active []
  [28
 
 ]
-<assets/PruebaAutomatizada.png, id=1241, 664.73344pt x 313.9228pt>
-File: assets/PruebaAutomatizada.png Graphic file (type png)
-<use assets/PruebaAutomatizada.png>
-Package pdftex.def Info: assets/PruebaAutomatizada.png  used on input line 395.
-(pdftex.def)             Requested size: 245.83282pt x 116.09692pt.
+Package epstopdf Info: Source file: <assets/PruebaAutomatizada.eps>
+(epstopdf)                    date: 2020-08-16 19:25:00
+(epstopdf)                    size: 1750942 bytes
+(epstopdf)             Output file: <assets/PruebaAutomatizada-eps-converted-to.pdf>
+(epstopdf)                    date: 2020-08-16 19:26:47
+(epstopdf)                    size: 32167 bytes
+(epstopdf)             Command: <epstopdf --outfile=assets/PruebaAutomatizada-eps-converted-to.pdf assets/PruebaAutomatizada.eps>
+(epstopdf)             \includegraphics on input line 392.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex (file ./assets/PruebaAutomatizada-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<assets/PruebaAutomatizada-eps-converted-to.pdf, id=1258, 439.6425pt x 203.76125pt>
+File: assets/PruebaAutomatizada-eps-converted-to.pdf Graphic file (type pdf)
+<use assets/PruebaAutomatizada-eps-converted-to.pdf>
+Package pdftex.def Info: assets/PruebaAutomatizada-eps-converted-to.pdf  used on input line 392.
+(pdftex.def)             Requested size: 245.83282pt x 113.93451pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
  [29
 
- <./assets/PruebaAutomatizada.png>]
-<assets/PruebaManual.png, id=1279, 572.89032pt x 314.67563pt>
-File: assets/PruebaManual.png Graphic file (type png)
-<use assets/PruebaManual.png>
-Package pdftex.def Info: assets/PruebaManual.png  used on input line 404.
-(pdftex.def)             Requested size: 245.83282pt x 135.02939pt.
+ <./assets/PruebaAutomatizada-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <assets/PruebaManual.eps>
+(epstopdf)                    date: 2020-08-16 19:26:23
+(epstopdf)                    size: 1808306 bytes
+(epstopdf)             Output file: <assets/PruebaManual-eps-converted-to.pdf>
+(epstopdf)                    date: 2020-08-16 19:26:50
+(epstopdf)                    size: 31961 bytes
+(epstopdf)             Command: <epstopdf --outfile=assets/PruebaManual-eps-converted-to.pdf assets/PruebaManual.eps>
+(epstopdf)             \includegraphics on input line 401.
+Package epstopdf Info: Output file is already uptodate.
+
+
+pdfTeX warning: pdflatex (file ./assets/PruebaManual-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<assets/PruebaManual-eps-converted-to.pdf, id=1307, 439.6425pt x 221.82875pt>
+File: assets/PruebaManual-eps-converted-to.pdf Graphic file (type pdf)
+<use assets/PruebaManual-eps-converted-to.pdf>
+Package pdftex.def Info: assets/PruebaManual-eps-converted-to.pdf  used on input line 401.
+(pdftex.def)             Requested size: 245.83282pt x 124.03706pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
  [30
 
- <./assets/PruebaManual.png>]
+ <./assets/PruebaManual-eps-converted-to.pdf>]
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 
  [31
@@ -1077,15 +1125,15 @@ Package epstopdf Info: Source file: <assets/Evaluacion/funcionality.eps>
 (epstopdf)                    date: 2020-08-16 15:26:50
 (epstopdf)                    size: 18530 bytes
 (epstopdf)             Command: <epstopdf --outfile=assets/Evaluacion/funcionality-eps-converted-to.pdf assets/Evaluacion/funcionality.eps>
-(epstopdf)             \includegraphics on input line 489.
+(epstopdf)             \includegraphics on input line 486.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex (file ./assets/Evaluacion/funcionality-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<assets/Evaluacion/funcionality-eps-converted-to.pdf, id=1427, 635.37375pt x 386.44376pt>
+<assets/Evaluacion/funcionality-eps-converted-to.pdf, id=1462, 635.37375pt x 386.44376pt>
 File: assets/Evaluacion/funcionality-eps-converted-to.pdf Graphic file (type pdf)
 <use assets/Evaluacion/funcionality-eps-converted-to.pdf>
-Package pdftex.def Info: assets/Evaluacion/funcionality-eps-converted-to.pdf  used on input line 489.
+Package pdftex.def Info: assets/Evaluacion/funcionality-eps-converted-to.pdf  used on input line 486.
 (pdftex.def)             Requested size: 276.559pt x 168.21371pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -1093,10 +1141,10 @@ Overfull \vbox (3.08551pt too high) has occurred while \output is active []
  [34
 
  <./assets/Evaluacion/funcionality-eps-converted-to.pdf>]
-<assets/Evaluacion/SUS_Score.png, id=1476, 253.69781pt x 204.765pt>
+<assets/Evaluacion/SUS_Score.png, id=1511, 253.69781pt x 204.765pt>
 File: assets/Evaluacion/SUS_Score.png Graphic file (type png)
 <use assets/Evaluacion/SUS_Score.png>
-Package pdftex.def Info: assets/Evaluacion/SUS_Score.png  used on input line 506.
+Package pdftex.def Info: assets/Evaluacion/SUS_Score.png  used on input line 503.
 (pdftex.def)             Requested size: 184.3758pt x 148.81793pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -1111,15 +1159,15 @@ Package epstopdf Info: Source file: <assets/Evaluacion/utility.eps>
 (epstopdf)                    date: 2020-08-16 15:31:43
 (epstopdf)                    size: 18042 bytes
 (epstopdf)             Command: <epstopdf --outfile=assets/Evaluacion/utility-eps-converted-to.pdf assets/Evaluacion/utility.eps>
-(epstopdf)             \includegraphics on input line 515.
+(epstopdf)             \includegraphics on input line 512.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex (file ./assets/Evaluacion/utility-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<assets/Evaluacion/utility-eps-converted-to.pdf, id=1514, 627.34375pt x 386.44376pt>
+<assets/Evaluacion/utility-eps-converted-to.pdf, id=1549, 627.34375pt x 386.44376pt>
 File: assets/Evaluacion/utility-eps-converted-to.pdf Graphic file (type pdf)
 <use assets/Evaluacion/utility-eps-converted-to.pdf>
-Package pdftex.def Info: assets/Evaluacion/utility-eps-converted-to.pdf  used on input line 515.
+Package pdftex.def Info: assets/Evaluacion/utility-eps-converted-to.pdf  used on input line 512.
 (pdftex.def)             Requested size: 276.559pt x 170.36598pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -1134,15 +1182,15 @@ Package epstopdf Info: Source file: <assets/Evaluacion/manual_utility.eps>
 (epstopdf)                    date: 2020-08-16 15:31:44
 (epstopdf)                    size: 19387 bytes
 (epstopdf)             Command: <epstopdf --outfile=assets/Evaluacion/manual_utility-eps-converted-to.pdf assets/Evaluacion/manual_utility.eps>
-(epstopdf)             \includegraphics on input line 524.
+(epstopdf)             \includegraphics on input line 521.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex (file ./assets/Evaluacion/manual_utility-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<assets/Evaluacion/manual_utility-eps-converted-to.pdf, id=1561, 608.2725pt x 386.44376pt>
+<assets/Evaluacion/manual_utility-eps-converted-to.pdf, id=1596, 608.2725pt x 386.44376pt>
 File: assets/Evaluacion/manual_utility-eps-converted-to.pdf Graphic file (type pdf)
 <use assets/Evaluacion/manual_utility-eps-converted-to.pdf>
-Package pdftex.def Info: assets/Evaluacion/manual_utility-eps-converted-to.pdf  used on input line 524.
+Package pdftex.def Info: assets/Evaluacion/manual_utility-eps-converted-to.pdf  used on input line 521.
 (pdftex.def)             Requested size: 276.559pt x 175.70245pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -1177,15 +1225,15 @@ Package epstopdf Info: Source file: <assets/Anexo/TournamentSelection.eps>
 (epstopdf)                    date: 2020-08-16 17:17:10
 (epstopdf)                    size: 130078 bytes
 (epstopdf)             Command: <epstopdf --outfile=assets/Anexo/TournamentSelection-eps-converted-to.pdf assets/Anexo/TournamentSelection.eps>
-(epstopdf)             \includegraphics on input line 581.
+(epstopdf)             \includegraphics on input line 578.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex (file ./assets/Anexo/TournamentSelection-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<assets/Anexo/TournamentSelection-eps-converted-to.pdf, id=1745, 1252.68pt x 531.9875pt>
+<assets/Anexo/TournamentSelection-eps-converted-to.pdf, id=1780, 1252.68pt x 531.9875pt>
 File: assets/Anexo/TournamentSelection-eps-converted-to.pdf Graphic file (type pdf)
 <use assets/Anexo/TournamentSelection-eps-converted-to.pdf>
-Package pdftex.def Info: assets/Anexo/TournamentSelection-eps-converted-to.pdf  used on input line 581.
+Package pdftex.def Info: assets/Anexo/TournamentSelection-eps-converted-to.pdf  used on input line 578.
 (pdftex.def)             Requested size: 307.28987pt x 130.49637pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -1200,15 +1248,15 @@ Package epstopdf Info: Source file: <assets/Anexo/UniformSelection.eps>
 (epstopdf)                    date: 2020-08-16 17:18:00
 (epstopdf)                    size: 57750 bytes
 (epstopdf)             Command: <epstopdf --outfile=assets/Anexo/UniformSelection-eps-converted-to.pdf assets/Anexo/UniformSelection.eps>
-(epstopdf)             \includegraphics on input line 598.
+(epstopdf)             \includegraphics on input line 595.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex (file ./assets/Anexo/UniformSelection-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<assets/Anexo/UniformSelection-eps-converted-to.pdf, id=1790, 1591.9475pt x 1004.75375pt>
+<assets/Anexo/UniformSelection-eps-converted-to.pdf, id=1825, 1591.9475pt x 1004.75375pt>
 File: assets/Anexo/UniformSelection-eps-converted-to.pdf Graphic file (type pdf)
 <use assets/Anexo/UniformSelection-eps-converted-to.pdf>
-Package pdftex.def Info: assets/Anexo/UniformSelection-eps-converted-to.pdf  used on input line 598.
+Package pdftex.def Info: assets/Anexo/UniformSelection-eps-converted-to.pdf  used on input line 595.
 (pdftex.def)             Requested size: 153.64493pt x 96.9704pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -1223,15 +1271,15 @@ Package epstopdf Info: Source file: <assets/Anexo/Crossover.eps>
 (epstopdf)                    date: 2020-08-16 17:25:44
 (epstopdf)                    size: 15977 bytes
 (epstopdf)             Command: <epstopdf --outfile=assets/Anexo/Crossover-eps-converted-to.pdf assets/Anexo/Crossover.eps>
-(epstopdf)             \includegraphics on input line 609.
+(epstopdf)             \includegraphics on input line 606.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex (file ./assets/Anexo/Crossover-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<assets/Anexo/Crossover-eps-converted-to.pdf, id=1831, 1230.5975pt x 649.42625pt>
+<assets/Anexo/Crossover-eps-converted-to.pdf, id=1866, 1230.5975pt x 649.42625pt>
 File: assets/Anexo/Crossover-eps-converted-to.pdf Graphic file (type pdf)
 <use assets/Anexo/Crossover-eps-converted-to.pdf>
-Package pdftex.def Info: assets/Anexo/Crossover-eps-converted-to.pdf  used on input line 609.
+Package pdftex.def Info: assets/Anexo/Crossover-eps-converted-to.pdf  used on input line 606.
 (pdftex.def)             Requested size: 307.28987pt x 162.15797pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -1246,11 +1294,11 @@ Package epstopdf Info: Source file: <assets/Anexo/Crossover.eps>
 (epstopdf)                    date: 2020-08-16 17:25:44
 (epstopdf)                    size: 15977 bytes
 (epstopdf)             Command: <epstopdf --outfile=assets/Anexo/Crossover-eps-converted-to.pdf assets/Anexo/Crossover.eps>
-(epstopdf)             \includegraphics on input line 618.
+(epstopdf)             \includegraphics on input line 615.
 Package epstopdf Info: Output file is already uptodate.
 File: assets/Anexo/Crossover-eps-converted-to.pdf Graphic file (type pdf)
 <use assets/Anexo/Crossover-eps-converted-to.pdf>
-Package pdftex.def Info: assets/Anexo/Crossover-eps-converted-to.pdf  used on input line 618.
+Package pdftex.def Info: assets/Anexo/Crossover-eps-converted-to.pdf  used on input line 615.
 (pdftex.def)             Requested size: 307.28987pt x 162.15797pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -1275,15 +1323,15 @@ Package epstopdf Info: Source file: <assets/Anexo/representacion_solucion_monoob
 (epstopdf)                    date: 2020-08-16 17:27:59
 (epstopdf)                    size: 126467 bytes
 (epstopdf)             Command: <epstopdf --outfile=assets/Anexo/representacion_solucion_monoobjetivo-eps-converted-to.pdf assets/Anexo/representacion_solucion_monoobjetivo.eps>
-(epstopdf)             \includegraphics on input line 675.
+(epstopdf)             \includegraphics on input line 672.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex (file ./assets/Anexo/representacion_solucion_monoobjetivo-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<assets/Anexo/representacion_solucion_monoobjetivo-eps-converted-to.pdf, id=1981, 974.64125pt x 238.8925pt>
+<assets/Anexo/representacion_solucion_monoobjetivo-eps-converted-to.pdf, id=2016, 974.64125pt x 238.8925pt>
 File: assets/Anexo/representacion_solucion_monoobjetivo-eps-converted-to.pdf Graphic file (type pdf)
 <use assets/Anexo/representacion_solucion_monoobjetivo-eps-converted-to.pdf>
-Package pdftex.def Info: assets/Anexo/representacion_solucion_monoobjetivo-eps-converted-to.pdf  used on input line 675.
+Package pdftex.def Info: assets/Anexo/representacion_solucion_monoobjetivo-eps-converted-to.pdf  used on input line 672.
 (pdftex.def)             Requested size: 307.28987pt x 75.31714pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -1298,15 +1346,15 @@ Package epstopdf Info: Source file: <assets/Anexo/representacion_solucion_multio
 (epstopdf)                    date: 2020-08-16 17:28:02
 (epstopdf)                    size: 179400 bytes
 (epstopdf)             Command: <epstopdf --outfile=assets/Anexo/representacion_solucion_multiobjetivo-eps-converted-to.pdf assets/Anexo/representacion_solucion_multiobjetivo.eps>
-(epstopdf)             \includegraphics on input line 684.
+(epstopdf)             \includegraphics on input line 681.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: pdflatex (file ./assets/Anexo/representacion_solucion_multiobjetivo-eps-converted-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<assets/Anexo/representacion_solucion_multiobjetivo-eps-converted-to.pdf, id=2022, 798.985pt x 536.0025pt>
+<assets/Anexo/representacion_solucion_multiobjetivo-eps-converted-to.pdf, id=2057, 798.985pt x 536.0025pt>
 File: assets/Anexo/representacion_solucion_multiobjetivo-eps-converted-to.pdf Graphic file (type pdf)
 <use assets/Anexo/representacion_solucion_multiobjetivo-eps-converted-to.pdf>
-Package pdftex.def Info: assets/Anexo/representacion_solucion_multiobjetivo-eps-converted-to.pdf  used on input line 684.
+Package pdftex.def Info: assets/Anexo/representacion_solucion_multiobjetivo-eps-converted-to.pdf  used on input line 681.
 (pdftex.def)             Requested size: 239.69734pt x 160.80199pt.
 
 Overfull \vbox (3.08551pt too high) has occurred while \output is active []
@@ -1323,29 +1371,29 @@ Overfull \vbox (3.08551pt too high) has occurred while \output is active []
 \tf@snm=\write8
 \openout8 = `presentacion.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 687.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 687.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 684.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 684.
  (c:/Users\gsanh\Desktop\Memoria\presentacion\latex\build\presentacion.aux
 LaTeX Info: Redefining \. on input line 25.
 LaTeX Info: Redefining \% on input line 25.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 687.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 687.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 684.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 684.
 Package rerunfilecheck Info: File `presentacion.out' has not changed.
 (rerunfilecheck)             Checksum: 424C27B137EDD7FB6B321E643A91E5BB;1822.
  ) 
 Here is how much of TeX's memory you used:
- 19702 strings out of 480756
- 370009 string characters out of 2910597
+ 19700 strings out of 480756
+ 370332 string characters out of 2910597
  643074 words of memory out of 3000000
- 35077 multiletter control sequences out of 15000+200000
+ 35075 multiletter control sequences out of 15000+200000
  556418 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,20n,68p,856b,605s stack positions out of 5000i,500n,10000p,200000b,50000s
-{G:/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmex9.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss8.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss9.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><G:/MiKTeX 2.9/fonts/type1/urw/avantgar/uagd8a.pfb><G:/MiKTeX 2.9/fonts/type1/urw/avantgar/uagk8a.pfb><G:/MiKTeX 2.9/fonts/type1/urw/avantgar/uagko8a.pfb>
-Output written on c:/Users\gsanh\Desktop\Memoria\presentacion\latex\build\presentacion.pdf (49 pages, 2166523 bytes).
+{G:/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmex9.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss8.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss9.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><G:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><G:/MiKTeX 2.9/fonts/type1/urw/avantgar/uagd8a.pfb><G:/MiKTeX 2.9/fonts/type1/urw/avantgar/uagk8a.pfb><G:/MiKTeX 2.9/fonts/type1/urw/avantgar/uagko8a.pfb>
+Output written on c:/Users\gsanh\Desktop\Memoria\presentacion\latex\build\presentacion.pdf (49 pages, 2258483 bytes).
 PDF statistics:
- 2127 PDF objects out of 2487 (max. 8388607)
+ 2165 PDF objects out of 2487 (max. 8388607)
  126 named destinations out of 1000 (max. 500000)
  462 words of extra memory for PDF output out of 10000 (max. 10000000)
 
