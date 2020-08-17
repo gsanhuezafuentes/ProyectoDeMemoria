@@ -401,8 +401,18 @@
     \end{frame}
 
     \section{Evaluación}
-    \subsection{Diseño del caso}
+    \subsection{Estudio de caso}
 
+    \begin{frame}
+        \frametitle{Estudio de caso}                       
+        
+        \begin{figure}
+            \includegraphics[width=0.8\textwidth]{assets/Evaluacion/CasoDeEstudio.eps}
+        \end{figure}
+
+    \end{frame}
+
+    \subsection{Diseño del caso}
     \begin{frame}
         \frametitle{Diseño del caso}                       
         
@@ -487,7 +497,7 @@
 
     \begin{frame}      
         \frametitle{Análisis de datos}
-       
+        Usabilidad
        \begin{columns}
             \column{0.4\textwidth}
             $$ \bar{x}_{SUS} = 79.17$$
@@ -596,16 +606,7 @@
 
     \subsection{Operadores de Cruzamiento}
     \begin{frame}
-        \frametitle{Operadores de Selección}
-        \textit{SinglePointCrossover}
-
-        \begin{figure}
-            \includegraphics[width=\textwidth]{assets/Anexo/Crossover.eps}
-        \end{figure}
-
-    \end{frame}
-    \begin{frame}
-        \frametitle{Operadores de Selección}
+        \frametitle{Operadores de Cruzamiento}
         \textit{SinglePointCrossover}
 
         \begin{figure}
@@ -614,34 +615,45 @@
 
     \end{frame}
 
-    \subsection{Operadores de Mutación}
     \begin{frame}
-        \frametitle{Operadores de Mutación}
+        \frametitle{Operadores de Cruzamiento}
         \textit{SBXCrossover}
-
+        
         $$
         \begin{cases} 
-        \beta_q=\sqrt[d_i+1]{r\alpha} & \text{si $r\leq \frac{1}{\alpha}$} \\ 
-        \beta_q=\sqrt[d_i+1]{\frac{1}{2-r\alpha}} &  \text{si $r > \frac{1}{\alpha}$}
+            \beta_q=\sqrt[d_i+1]{r\alpha} & \text{si $r\leq \frac{1}{\alpha}$} \\ 
+            \beta_q=\sqrt[d_i+1]{\frac{1}{2-r\alpha}} &  \text{si $r > \frac{1}{\alpha}$}
         \end{cases}
         $$
-
+        
         
         \begin{columns}
             \column{0.5\textwidth}
             $$\beta = 1 + 2\frac{y_1-yL}{y_2-y_1}$$
             $$\alpha = 2 - \frac{1}{\beta^{di+1}}$$
-    
+            
             $$C_1 = 0.5 ((y_1+y_2)-\beta_q(y_2-y_1))$$
-           
+            
             \column{0.5\textwidth}
             $$\beta = 1 + 2 \cdot \frac{yU-y_2}{y_2-y_1}$$
             $$\alpha = 2 - \frac{1}{\beta^{di+1}}$$
-    
+            
             $$C_2 = 0.5 ((y_1+y_2)+\beta_q(y_2-y_1))$$
         \end{columns}
-
+        
     \end{frame}
+    
+    \subsection{Operadores de Mutación}
+
+    \begin{frame}
+        \frametitle{Operadores de Mutación}
+        \textit{RandomMutation}
+        \begin{figure}
+            \includegraphics[width=\textwidth]{assets/Anexo/Mutation.eps}
+        \end{figure}
+      
+    \end{frame}
+
     \begin{frame}
         \frametitle{Operadores de Mutación}
         \textit{PolynomialMutation}
