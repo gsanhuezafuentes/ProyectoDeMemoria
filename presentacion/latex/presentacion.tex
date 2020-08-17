@@ -1,19 +1,39 @@
 \documentclass[9pt]{beamer}
-\usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage{newcent}
+\usepackage{parskip}
+\usepackage{xpatch}
 
 \usetheme{Warsaw}
+\setbeamertemplate{footline}[frame number]{}
+% \setlength{\parskip}{1em} 
+
+%
+\xpatchcmd{\itemize}
+  {\def\makelabel}
+  {\ifnum\@itemdepth=1\relax
+     \setlength\itemsep{1em}% separation for first level
+   \else
+     \ifnum\@itemdepth=2\relax
+       \setlength\itemsep{1em}% separation for second level
+     \else
+       \ifnum\@itemdepth=3\relax
+         \setlength\itemsep{1em}% separation for third level
+   \fi\fi\fi\def\makelabel
+  }
+ {}
+ {}
+%
 
 \author{Gabriel Sanhueza}
 
 \title[JHawanet Framework]{Software para la optimización de redes de distribución de agua potable}
-\subtitle{JHawanet Framework}
+\subtitle{``JHawanet Framework''}
 %\setbeamercovered{transparent} 
-%\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{navigation symbols}{} 
 \titlegraphic{\includegraphics[height=1.5cm]{utalca1.eps}}
  
-\institute [Universidad de Talca]{Defensa de Título\\ Universidad de Talca} 
+\institute [Universidad de Talca]{Defensa de Título\\ Universidad de Talca \and Profesores guías\\ Jimmy Gutiérrez Bahamondes \\ Daniel Mora Melia} 
 
 \date{Agosto, 2020}
 
@@ -61,43 +81,59 @@
     \subsection{Propuesta de solución}
     \begin{frame}
         \frametitle{Propuesta de solución}
-        Aplicación de escritorio extensible que permita optimizar procesos de diseño y operación en RDA.
+        
+        \begin{columns}
+            \column{0.8\textwidth}
+            Aplicación de escritorio extensible que permita optimizar procesos de diseño y operación en RDA.\bigskip
+    
+            Problemas implementados:
+            \begin{itemize}
+                \item Problema de diseño de RDA basado en el costo de tuberías.
+                \item Problema de operación basado en el Régimen de bombeo.
+            \end{itemize}
 
-        Problemas implementados:
-        \begin{itemize}
-            \item Problema de diseño de RDA basado en el costo de tuberías.
-            \item Problema de operación basado en el Régimen de bombeo.
-        \end{itemize}
+            \column{0.2\textwidth}
+            \begin{figure}
+                \includegraphics[width=\textwidth]{assets/Relleno/Bombilla.png}
+            \end{figure}
+        \end{columns}
+
     \end{frame}
 
     \subsection{Objetivos}
     \begin{frame}
-        \frametitle{Objetivos}
+        \frametitle{Objetivo general}
         
         \begin{itemize}
-            \item Objetivo general    
-            \begin{itemize}
-                \item Diseñar y desarrollar una aplicación extensible de escritorio para optimizar el diseño y operación de una red de distribución de agua.
-            \end{itemize}
+            \item Diseñar y desarrollar una aplicación extensible de escritorio para optimizar el diseño y operación de una red de distribución de agua.
+        \end{itemize}
 
-            \item Objetivos específicos
-            \begin{itemize}
-                \item Diseñar software orientado a la optimización de RDA basado en la arquitectura lógica del framework multiobjetivo Jmetal.
-                \item Implementar un algoritmo metaheurístico de optimización monoobjetivo para aplicar al problema de diseño de RDA.
-                \item Implementar un algoritmo metaheurístico de optimización multiobjetivo para aplicar al problema de Régimen de bombeo en RDA.
-                \item Diseñar e implementar la interfaz gráfica del sistema de optimización de redes de agua potable desarrollado durante este proyecto.
-            \end{itemize}
+        \begin{figure}
+            \includegraphics[width=0.3\textwidth]{assets/Relleno/objetivo.png}
+        \end{figure}
+
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Objetivos específicos}
+        \begin{itemize}
+            \item Diseñar software orientado a la optimización de RDA basado en la arquitectura lógica del framework multiobjetivo Jmetal.
+            \item Implementar un algoritmo metaheurístico de optimización monoobjetivo para aplicar al problema de diseño de RDA.
+            \item Implementar un algoritmo metaheurístico de optimización multiobjetivo para aplicar al problema de Régimen de bombeo en RDA.
+            \item Diseñar e implementar la interfaz gráfica del sistema de optimización de redes de agua potable desarrollado durante este proyecto.
         \end{itemize}
     \end{frame}
 
     \section{Metodología de desarrollo}
+
     \subsection{Metodología de desarrollo}
     \begin{frame}
         \frametitle{Iterativa e incremental}
               
         \begin{columns}
-            \column{0.35\textwidth}
+            \column{0.3\textwidth}
             Fases:
+            \bigskip
             \begin{itemize}
                 \item Análisis
                 \item Diseño
@@ -105,26 +141,27 @@
                 \item Pruebas
             \end{itemize}
     
-            \column{0.65\textwidth}
+            \column{0.7\textwidth}
             \begin{figure}
                 \includegraphics[width=\textwidth]{assets/iedevelopment-v2.eps}
-                % \caption{caption}
+                \caption{Metodología iterativa e incremental}
                 % \label{label}
             \end{figure}
         \end{columns}
     
     \end{frame}
 
-    \subsection{Adaptaciones realizadas a la metodología}
-    \begin{frame}
-        \frametitle{Iterativa e incremental}            
-        Adaptaciones realizadas a la metodología
-        \begin{itemize}
-            \item Disminuir la cantidad de documentación de cada fase
-            \item Llevar a cabo más de una fase en una iteración al mismo tiempo
-            \item Los roles de analista, diseñador, implementador y tester son llevado a cabo por una sola persona.
-        \end{itemize}
-    \end{frame}
+    % \subsection{Adaptaciones realizadas a la metodología}
+    % \begin{frame}
+    %     \frametitle{Iterativa e incremental}            
+    %     Adaptaciones realizadas a la metodología
+    %     \bigskip
+    %     \begin{itemize}
+    %         \item Disminuir la cantidad de documentación de cada fase
+    %         \item Llevar a cabo más de una fase en una iteración al mismo tiempo
+    %         \item Los roles de analista, diseñador, implementador y tester son llevado a cabo por una sola persona.
+    %     \end{itemize}
+    % \end{frame}
 
     \section{Desarrollo}
 
@@ -157,19 +194,19 @@
             \column{0.33\textwidth}
             \begin{figure}[H]
                 \centering
-                \includegraphics[width=\textwidth]{assets/Tecnologia/Java.png}
+                \includegraphics[width=\textwidth]{assets/Tecnologia/Java.eps}
             \end{figure}
 
             \column{0.33\textwidth}
             \begin{figure}[H]
                 \centering
-                \includegraphics[width=\textwidth]{assets/Tecnologia/JavaFX.png}
+                \includegraphics[width=\textwidth]{assets/Tecnologia/JavaFX.eps}
             \end{figure}
 
             \column{0.33\textwidth}
             \begin{figure}[H]
                 \centering
-                \includegraphics[width=\textwidth]{assets/Tecnologia/EpanetToolkit.png}
+                \includegraphics[width=\textwidth]{assets/Tecnologia/EpanetToolkit.eps}
             \end{figure}
         \end{columns}
     \end{frame}
@@ -183,56 +220,128 @@
             \item 32 Requisitos de usuario
             \item Documento de especificación formal de requisitos.
         \end{itemize}
-
         \begin{figure}
-            \includegraphics[width=0.8\textwidth]{assets/Requisito.eps}
+            \includegraphics[width=0.7\textwidth]{assets/Requisito.png}
         \end{figure}
-
     \end{frame}
 
     \subsection{Diseño}
     \begin{frame}
         \frametitle{Diseño}                 
-                
+               
         \begin{itemize}
             \item Diseñar los módulos de la aplicación y la interacción entre ellos.
             \item Documento de diseño
-            
-            \begin{itemize}
-                \item Arquitectura Física
-                \item Arquitectura Lógica
-                \item Diagrama de clases
-                \item Diagrama de secuencia
-                \item Diseño de interfaces
-            \end{itemize}
+            % \begin{itemize}
+            %     \item Arquitectura Física
+            %     \item Arquitectura Lógica
+            %     \item Diagrama de clases
+            %     \item Diagrama de secuencia
+            %     \item Diseño de interfaces
+            % \end{itemize}
         \end{itemize}
 
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Arquitectura Fisica}                       
-        Monolítica
-        \begin{figure}
-            \includegraphics[width=0.5\textwidth]{assets/ArquitecturaFisica.png}
-        \end{figure}
-
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Arquitectura Lógica}  
-
-        Modelo-Vista-Controlador
         \begin{figure}
             \includegraphics[width=0.8\textwidth]{assets/ArquitecturaLogica.eps}
+            \caption{Arquitectura Lógica Modelo-Vista-Controlador}
         \end{figure}
 
     \end{frame}
+
+    % \begin{frame}
+    %     \frametitle{Arquitectura Fisica}                       
+    %     Monolítica
+    %     \begin{figure}
+    %         \includegraphics[width=0.5\textwidth]{assets/ArquitecturaFisica.png}
+    %     \end{figure}
+
+    % \end{frame}
+
+    % \begin{frame}
+    %     \frametitle{Arquitectura Lógica}  
+
+    %     Modelo-Vista-Controlador
+    %     \begin{figure}
+    %         \includegraphics[width=0.8\textwidth]{assets/ArquitecturaLogica.eps}
+    %     \end{figure}
+
+    % \end{frame}
 
     \subsection{Implementación}
 
     \begin{frame}
         \frametitle{Implementación}                       
-        Codificación y generación del manual de usuario.
+        \textit{Java Reflection} y \textit{Java Annotation}
+        \begin{figure}
+            \includegraphics[width=\textwidth]{assets/InterfazHumano-app.eps}
+            \caption{Diagrama de relaciones entre la aplicación y el modulo metaheurística}
+        \end{figure}
+
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Implementación}                       
+        \begin{itemize}
+            \item Problema de diseño de RDA basado en el costo de tuberías
+        \end{itemize} 
+
+        \begin{block}{Objetivo}
+            \begin{equation*}
+                \text{Costo de inversión} = \sum_{i=1}^{N} (C_i \times D_i \times L_i)
+            \end{equation*}
+        \end{block}
+        
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Implementación}                       
+        Problema de operación basado en el Régimen de bombeo
+        
+        \begin{block}{Objetivo 1}
+            \begin{equation*}
+                C_E(S) = \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}(P_c(t) \times E_c(n, t) \times S(n, t))
+            \end{equation*}
+        \end{block}
+
+        \begin{block}{Consumo energético}
+            \begin{equation*}
+                E_c(n, t) = \frac{10^{-3} \times \gamma \times Q(n, t) \times h(n, t)}{e(n, t)}
+            \end{equation*}
+        \end{block}
+        
+        \begin{block}{Objetivo 2}
+            \begin{equation*}
+                C_N(S) = \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}r_t
+            \end{equation*}
+        \end{block}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Implementación}                       
+        Algoritmo Genético
+
+        \begin{figure}
+            \includegraphics[width=0.8\textwidth]{assets/AlgoritmoGenetico.eps}
+        \end{figure}
+
+    \end{frame}
+
+    % \begin{frame}
+    %     \frametitle{Implementación}                       
+    %     Non-dominated Sorting Genetic Algorithm-II (INSGA-II)
+
+    %     \begin{figure}
+    %         \includegraphics[width=0.8\textwidth]{assets/NSGAIIFlujo.eps}
+    %     \end{figure}
+    % \end{frame}
+
+    \begin{frame}
+        \frametitle{Implementación}                       
+        Non-dominated Sorting Genetic Algorithm-II (INSGA-II)
+
+        \begin{figure}
+            \includegraphics[width=0.8\textwidth]{assets/NSGAII.eps}
+        \end{figure}
 
     \end{frame}
 
@@ -292,124 +401,66 @@
         \end{figure}
     \end{frame}
 
-    \begin{frame}
-        \frametitle{Implementación}                       
-        \textit{Java Reflection} y \textit{Java Annotation}
-        \begin{figure}
-            \includegraphics[width=\textwidth]{assets/InterfazHumano-app.eps}
-        \end{figure}
-
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Implementación}                       
-        \begin{itemize}
-            \item Problema de diseño de RDA basado en el costo de tuberías
-        \end{itemize} 
-
-        \begin{block}{Objetivo}
-            \begin{equation*}
-                \text{Costo de inversión} = \sum_{i=1}^{N} (C_i \times D_i \times L_i)
-            \end{equation*}
-        \end{block}
-        
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Implementación}                       
-        Problema de operación basado en el Régimen de bombeo
-        
-        \begin{block}{Objetivo 1}
-            \begin{equation*}
-                C_E(S) = \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}(P_c(t) \times E_c(n, t) \times S(n, t))
-            \end{equation*}
-        \end{block}
-
-        \begin{block}{Consumo energético}
-            \begin{equation*}
-                E_c(n, t) = \frac{10^{-3} \times \gamma \times Q(n, t) \times h(n, t)}{e(n, t)}
-            \end{equation*}
-        \end{block}
-        
-        \begin{block}{Objetivo 2}
-            \begin{equation*}
-                C_N(S) = \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}r_t
-            \end{equation*}
-        \end{block}
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Implementación}                       
-        Algoritmo Genético
-
-        \begin{figure}
-            \includegraphics[width=0.8\textwidth]{assets/AlgoritmoGenetico.eps}
-        \end{figure}
-
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Implementación}                       
-        Non-dominated Sorting Genetic Algorithm-II (INSGA-II)
-
-        \begin{figure}
-            \includegraphics[width=0.8\textwidth]{assets/NSGAIIFlujo.eps}
-        \end{figure}
-
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Implementación}                       
-        Non-dominated Sorting Genetic Algorithm-II (INSGA-II)
-
-        \begin{figure}
-            \includegraphics[width=0.8\textwidth]{assets/NSGAII.eps}
-        \end{figure}
-
-    \end{frame}
-
     \subsection{Pruebas}
     \begin{frame}
         \frametitle{Pruebas}                       
         
-        \begin{itemize}
-            \item Realización de pruebas y su especificación formal
-            \item 39 Pruebas automatizadas
-            \item 16 Pruebas manuales
-            \item Documento de especificación formal de pruebas
-        \end{itemize}
+        \begin{columns}
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item Realización de pruebas y su especificación formal
+                \item 39 Pruebas automatizadas
+                \item 16 Pruebas manuales
+                \item Documento de especificación formal de pruebas
+            \end{itemize}
 
+            \column{0.5\textwidth}
+            \begin{figure}
+                \includegraphics[width=\textwidth]{assets/PruebaAutomatizada.png}
+                \caption{Ejemplo de especificación de un caso de prueba}
+            \end{figure}
+        \end{columns}
 
     \end{frame}
 
-    \begin{frame}
-        \frametitle{Pruebas}     
-        Prueba Automatizada
-        \begin{figure}
-            \includegraphics[width=0.8\textwidth]{assets/PruebaAutomatizada.eps}
-        \end{figure}
+    % \begin{frame}
+    %     \frametitle{Pruebas}     
+    %     Prueba Automatizada
+    %     \begin{figure}
+    %         \includegraphics[width=0.8\textwidth]{assets/PruebaAutomatizada.png}
+    %     \end{figure}
         
-    \end{frame}
+    % \end{frame}
 
-    \begin{frame}
-        \frametitle{Pruebas}     
-        Prueba Manual
-        \begin{figure}
-            \includegraphics[width=0.8\textwidth]{assets/PruebaManual.eps}
-        \end{figure}
+    % \begin{frame}
+    %     \frametitle{Pruebas}     
+    %     Prueba Manual
+    %     \begin{figure}
+    %         \includegraphics[width=0.8\textwidth]{assets/PruebaManual.eps}
+    %     \end{figure}
         
-    \end{frame}
+    % \end{frame}
 
     \section{Evaluación}
     \subsection{Estudio de caso}
 
     \begin{frame}
         \frametitle{Estudio de caso}                       
-        
-        \begin{figure}
-            \includegraphics[width=0.8\textwidth]{assets/Evaluacion/CasoDeEstudio.eps}
-        \end{figure}
+       
+       \begin{columns}
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item Diseño de estudio de caso
+                \item Recolección de datos
+                \item Análisis de datos
+                \item Presentación de los resultados
+            \end{itemize}
 
+            \column{0.5\textwidth}
+            \begin{figure}
+                \includegraphics[width=\textwidth]{assets/Relleno/Investigacion.png}
+            \end{figure}
+       \end{columns}
     \end{frame}
 
     \subsection{Diseño del caso}
@@ -419,12 +470,12 @@
         \begin{itemize}
             \item Elección del caso
             \begin{itemize}
-                \item La aplicación desarrollada
+                \item \textbf{\textit{La aplicación desarrollada}}
             \end{itemize}
 
             \item Objetivos de la investigación
             \begin{itemize}
-                \item ¿Cómo el sistema desarrollado trabaja en la práctica?
+                \item \textbf{\textit{¿Cómo el sistema desarrollado trabaja en la práctica?}}
             \end{itemize}
 
             \item Características a evaluar
@@ -463,27 +514,27 @@
 
     \end{frame}
 
-    \subsection{Recolección de datos}
-    \begin{frame}
-        \frametitle{Recolección de datos}                       
+    % \subsection{Recolección de datos}
+    % \begin{frame}
+    %     \frametitle{Recolección de datos}                       
         
         
-        \begin{itemize}
-            \item Participantes
-            \begin{itemize}
-                \item Yamisleydi Salgueiro
-                \item Marco Alsina
-                \item Sergio Silva
-            \end{itemize}
+    %     \begin{itemize}
+    %         \item Participantes
+    %         \begin{itemize}
+    %             \item Yamisleydi Salgueiro
+    %             \item Marco Alsina
+    %             \item Sergio Silva
+    %         \end{itemize}
 
-            \item Instrumentos para la recolección de los datos
-            \begin{itemize}
-                \item Encuesta utilizando la escala de Likert
-                \item Test de usabilidad SUS
-            \end{itemize}
-        \end{itemize}
+    %         \item Instrumentos para la recolección de los datos
+    %         \begin{itemize}
+    %             \item Encuesta utilizando la escala de Likert
+    %             \item Test de usabilidad SUS
+    %         \end{itemize}
+    %     \end{itemize}
 
-    \end{frame}
+    % \end{frame}
 
     \subsection{Análisis de datos}
     \begin{frame}      
@@ -530,15 +581,15 @@
         \end{figure}
     \end{frame}
 
-    \subsection{Conclusiones estudio de caso}
-    \begin{frame}      
-        \frametitle{Conclusiones estudio de caso}
+    % \subsection{Conclusiones estudio de caso}
+    % \begin{frame}      
+    %     \frametitle{Conclusiones estudio de caso}
         
-        \begin{itemize}
-            \item Criterios de funcionalidad, usabilidad y utilidad cumplidos, concluyendo que el sistema trabaja bien en la práctica. 
-            \item Criterio de utilidad del manual de usuario no cumplido por lo que se deben realizar cambios para mejorar la información y ayuda que se entrega con éste.
-        \end{itemize}
-    \end{frame}
+    %     \begin{itemize}
+    %         \item Los criterios de funcionalidad, usabilidad y utilidad fueron cumplidos, concluyendo que el sistema trabaja bien en la práctica. 
+    %         \item Los criterio de utilidad del manual de usuario no fueron cumplido por lo que se deben realizar cambios para mejorar la información y ayuda que se entrega con éste.
+    %     \end{itemize}
+    % \end{frame}
 
     \section{Conclusiones y Trabajos Futuros}
     \subsection{Conclusiones}
@@ -547,15 +598,25 @@
         
         \begin{itemize}
             \item Software para la optimización de los procesos de diseño y operación  de RDA.
-            \item Todos los objetivos establecidos fueron logrados cumplidos
+            \item Es posible extender el sistema para mejorar su uso con diferentes algoritmos y diferentes problemas.
+            \item Todos los objetivos establecidos fueron cumplidos satisfactoriamente.
+            \item Los criterios de funcionalidad, usabilidad y utilidad fueron cumplidos, concluyendo que el sistema trabaja bien en la práctica. 
+            \item Los criterio de utilidad del manual de usuario no fueron cumplido por lo que se deben realizar cambios para mejorar la información y ayuda que se entrega con éste.
         \end{itemize}
     
     \end{frame}
 
     \subsection{Trabajos Futuros}
     \begin{frame}
-        \frametitle{Trabajos Futuros}                       
-           
+        \frametitle{Trabajos Futuros}  
+        % Todo esto es un comando para cambiar la separación de los items           
+        \xpatchcmd{\itemize}
+        {\def\makelabel}
+        {\setlength{\itemsep}{0.5ex}\def\makelabel}
+        {}
+        {}
+        %
+
         \begin{itemize}
             \item Agregar nuevos algoritmos, operadores y problemas
             \item Recortar el numero de decimales utilizados
@@ -576,121 +637,5 @@
         \centering       
         \Huge{Fin}
     \end{frame}
-
-    \section{Anexo}
-    \subsection{Operadores de Selección}
-    \begin{frame}
-        \frametitle{Operadores de Selección}                       
-        \textit{Tournament Selection}
-        \begin{figure}
-            \includegraphics[width=\textwidth]{assets/Anexo/TournamentSelection.eps}
-        \end{figure}
-    \end{frame}
-    \begin{frame}
-        \frametitle{Operadores de Selección}
-        \textit{Uniform Selection}
-        \begin{columns}
-            \column{0.5\textwidth}
-            $$p_{max} = \frac{\beta}{N_c}$$
-            $$p_{min} = \frac{2-\beta}{N_c}$$
-            $$1.5 <= \beta <= 2$$             
-            $$p_{i} = p_{min} + (p_{max} - p_{min}) \times \frac{N_c - i}{N_c - 1}$$                  
-        
-            \column{0.5\textwidth}
-            \begin{figure}
-                \includegraphics[width=\textwidth]{assets/Anexo/UniformSelection.eps}
-            \end{figure}
-        \end{columns}
-
-    \end{frame}
-
-    \subsection{Operadores de Cruzamiento}
-    \begin{frame}
-        \frametitle{Operadores de Cruzamiento}
-        \textit{SinglePointCrossover}
-
-        \begin{figure}
-            \includegraphics[width=\textwidth]{assets/Anexo/Crossover.eps}
-        \end{figure}
-
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Operadores de Cruzamiento}
-        \textit{SBXCrossover}
-        
-        $$
-        \begin{cases} 
-            \beta_q=\sqrt[d_i+1]{r\alpha} & \text{si $r\leq \frac{1}{\alpha}$} \\ 
-            \beta_q=\sqrt[d_i+1]{\frac{1}{2-r\alpha}} &  \text{si $r > \frac{1}{\alpha}$}
-        \end{cases}
-        $$
-        
-        
-        \begin{columns}
-            \column{0.5\textwidth}
-            $$\beta = 1 + 2\frac{y_1-yL}{y_2-y_1}$$
-            $$\alpha = 2 - \frac{1}{\beta^{di+1}}$$
-            
-            $$C_1 = 0.5 ((y_1+y_2)-\beta_q(y_2-y_1))$$
-            
-            \column{0.5\textwidth}
-            $$\beta = 1 + 2 \cdot \frac{yU-y_2}{y_2-y_1}$$
-            $$\alpha = 2 - \frac{1}{\beta^{di+1}}$$
-            
-            $$C_2 = 0.5 ((y_1+y_2)+\beta_q(y_2-y_1))$$
-        \end{columns}
-        
-    \end{frame}
-    
-    \subsection{Operadores de Mutación}
-
-    \begin{frame}
-        \frametitle{Operadores de Mutación}
-        \textit{RandomMutation}
-        \begin{figure}
-            \includegraphics[width=\textwidth]{assets/Anexo/Mutation.eps}
-        \end{figure}
-      
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Operadores de Mutación}
-        \textit{PolynomialMutation}
-
-        $$\Delta_1 = \frac{y-yL}{yU-yL}$$
-        $$\Delta_2 = \frac{yU-y}{yU-yL}$$
-
-        $$
-        \begin{cases} 
-        \Delta_q = \sqrt[di+1]{2r+(1-2r)(1-\Delta_{1})^{di+1}} - 1 & \text{si $r\leq 0.5$} \\ 
-        \Delta_q = 1 - \sqrt[di+1]{2(1-r)+2(r-0.5)(1-\Delta_{2})^{di+1}} &  \text{si $r > 0.5$}
-        \end{cases}
-        $$
-
-        $$y = y + \Delta_q(yU-yL)$$
-    \end{frame}
-
-
-    \subsection{Representación de las soluciones}
-    \begin{frame}
-        \frametitle{Representación de la solución del problema de diseño}
-        Problema de diseño de RDA basado en el costo de tuberías.
-
-        \begin{figure}
-            \includegraphics[width=\textwidth]{assets/Anexo/representacion_solucion_monoobjetivo.eps}
-        \end{figure}
-
-    \end{frame}
-
-    \begin{frame}
-        \frametitle{Representación de la solucion problema operacional}
-        Problema de operación basado en el Régimen de bombeo.
-        \begin{figure}
-            \includegraphics[scale=0.3]{assets/Anexo/representacion_solucion_multiobjetivo.eps}
-        \end{figure}
-
-    \end{frame}
-
 
 \end{document}
