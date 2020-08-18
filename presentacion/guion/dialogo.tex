@@ -14,7 +14,7 @@
 \title{Díalogo}
 \maketitle
 
-Buenas tardes profesores de la comisión e invitados. Mi nombre es Gabriel Sanhueza y les voy a presentar mi proyecto.
+Buenas tardes profesores de la comisión e invitados. Mi nombre es Gabriel Sanhueza. Mis profesores guías son Jimmy Gutierrez y Daniel Mora. Y ahora les voy a presentar la defensa de mi proyecto de titulación.
 
 \section{Introducción}
 % A continuación les voy a presentar el contexto, el problema, la solución propuesta y los objetivos que se buscan lograr.
@@ -65,9 +65,9 @@ Las adaptaciones que son realizadas sobre la metodología en general consisten en
 \section{Desarrollo}
 Ahora se procede a hablar acerca del desarrollo del proyecto.
 
-\subsection{Concepción del proyecto}
+% \subsection{Concepción del proyecto}
 
-Este proyecto se origina como una propuesta por parte del profesor Daniel Mora Melia del departamento de Ingeniería en Obras Civiles. El junto a un grupo de colaboradores forman parte del proyecto ``Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms'' el cual busca aplicar algoritmos metaheurísticos en la resolución de problemas asociados a las RDA. De este proyecto, surgieron varios artículos, entre ellos, se encuentra uno que consiste en la integración de dos herramientas independientes JMetal y Epanet para llevar a cabo optimizaciones sobre RDA. De dicho articulo surge la idea de implementar una herramienta gráfica con el fin de facilitar la optimización de redes de agua potable.
+% Este proyecto se origina como una propuesta por parte del profesor Daniel Mora Melia del departamento de Ingeniería en Obras Civiles. El junto a un grupo de colaboradores forman parte del proyecto ``Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms'' el cual busca aplicar algoritmos metaheurísticos en la resolución de problemas asociados a las RDA. De este proyecto, surgieron varios artículos, entre ellos, se encuentra uno que consiste en la integración de dos herramientas independientes JMetal y Epanet para llevar a cabo optimizaciones sobre RDA. De dicho articulo surge la idea de implementar una herramienta gráfica con el fin de facilitar la optimización de redes de agua potable.
 
 \subsection{Tecnologías a utilizar}
 Las tecnologías utilizadas fueron Java, como lenguaje de programación, JavaFX, para implementar la interfaz y la librería EpanetToolkit para realizar las simulaciones hidráulicas y evaluar las soluciones generadas por los algoritmos metaheurísticos.
@@ -126,23 +126,23 @@ Una cosa importante a mencionar para este algoritmo es la función de remplazo ut
 
 Para realizar el remplazo se deben operar tanto la población original asi como la descendiente generada a través del proceso de selección y reproducción. Estas dos poblaciones se agrupan y posteriormente se ordenan sus individuos en diversos Frentes formado por las soluciones que no se dominan entre sí. Posteriormente, se agregan a la nueva población las soluciones de los frentes hasta alcanzar el tope establecido. Si el último frente a agregar no cabe en su totalidad, éste debe ser ordenado en base a su densidad y las mejores soluciones son las conservadas.
 
-\subsubsection{Evidencia del desarrollo}
+\subsubsection{Evidencia del desarrollo (VIDEO)}
 
-Durante la fase de implementación se realizo la codificación de las funcionalidades de la aplicación y el manual de usuario de ésta.
+% Durante la fase de implementación se realizo la codificación de las funcionalidades de la aplicación y el manual de usuario de ésta.
 
-A continuación de mostrara como resultado de esta fase las interfaces gráficas implementadas para la aplicación.
+% A continuación de mostrara como resultado de esta fase las interfaces gráficas implementadas para la aplicación.
 
-La primera interfaz corresponde a la principal desde esta interfaz se pueden visualizar es esquema de la red, ver los elementos que la conforman y su configuración, realizar la simulación utilizando los valores definidos en el archivo de configuración de red y seleccionar el problema a optimizar.
+% La primera interfaz corresponde a la principal desde esta interfaz se pueden visualizar es esquema de la red, ver los elementos que la conforman y su configuración, realizar la simulación utilizando los valores definidos en el archivo de configuración de red y seleccionar el problema a optimizar.
 
-En la ventana de configuración del problema se puede ver una descripción de éste y establecer las configuraciones utilizadas para realizar la optimización.
+% En la ventana de configuración del problema se puede ver una descripción de éste y establecer las configuraciones utilizadas para realizar la optimización.
 
-Para la aplicación se tienen dos ventana de estado de ejecución. La primera correspondiente a la imagen de la izquiera es la utilizada para los problemas monoobjetivos, mientras que la derecha se utiliza para los multiobjetivos.
+% Para la aplicación se tienen dos ventana de estado de ejecución. La primera correspondiente a la imagen de la izquiera es la utilizada para los problemas monoobjetivos, mientras que la derecha se utiliza para los multiobjetivos.
 
-También, desde la ventana de estado se puede visualizar el gráfico de la ejecución, si este esta activo. En este caso se muestra el gráfico de la ejecución monoobjetivo, en donde cada color corresponde a una ejecución independiente del algoritmo.
+% También, desde la ventana de estado se puede visualizar el gráfico de la ejecución, si este esta activo. En este caso se muestra el gráfico de la ejecución monoobjetivo, en donde cada color corresponde a una ejecución independiente del algoritmo.
 
-En la ventana de resultados como su nombre lo dice se visualizan los resultados de la optimización. En esta illustración, se presentan los resultados para cada ejecución independiente de un algoritmo monoobjetivo, marcando con el color verde la mejor de las soluciones encontradas.
+% En la ventana de resultados como su nombre lo dice se visualizan los resultados de la optimización. En esta illustración, se presentan los resultados para cada ejecución independiente de un algoritmo monoobjetivo, marcando con el color verde la mejor de las soluciones encontradas.
 
-En la ventana de simulación se muestran los resultados de la simulación utilizando la configuración del archivo de configuración de red.
+% En la ventana de simulación se muestran los resultados de la simulación utilizando la configuración del archivo de configuración de red.
 
 \subsection{Pruebas}
 Durante la fase de pruebas se realizaron pruebas manuales y automatizadas, las cuales fueron especificadas en su documento respectivo.
@@ -186,17 +186,17 @@ Las características de la aplicación evaluadas fueron las siguientes:
     \item \textbf{Utilidad del manual de usuario }%Con este criterio se busca evaluar el manual de usuario realizado y si este fue de ayuda para aprender y poder conocer la aplicación.
 \end{itemize}
 
-Como protocolo para realizar el caso se estableció que el caso sería aplicado de manera asíncrona debido a las problemáticas a nivel país y la dificultad de coordinar una reunión. Y que los pasos para realizar el caso consisten en:
+% Como protocolo para realizar el caso se estableció que el caso sería aplicado de manera asíncrona debido a las problemáticas a nivel país y la dificultad de coordinar una reunión. Y que los pasos para realizar el caso consisten en:
 
-\begin{itemize}
-    \item Enviar la aplicación junto con su manual a los participantes del estudio.
-    \item Dar un tiempo para que el participante del estudio se interiorice con la aplicación.
-    \item Enviar la encuesta a los participantes.
-\end{itemize}
+% \begin{itemize}
+%     \item Enviar la aplicación junto con su manual a los participantes del estudio.
+%     \item Dar un tiempo para que el participante del estudio se interiorice con la aplicación.
+%     \item Enviar la encuesta a los participantes.
+% \end{itemize}
 
-Cómo unidad de análisis para llevar a cabo es estudio se escogieron a profesionales con conocimientos en computación, hidráulica y metaheurísticas.
+% Cómo unidad de análisis para llevar a cabo es estudio se escogieron a profesionales con conocimientos en computación, hidráulica y metaheurísticas.
 
-Como consideraciones para aplicar el caso, los encuestados debían tener un equipo con un sistema operativo Windows de 64 bits y la versión de Java 1.8 instalada. Adicionalmente, se establece que éstos deben contar con conocimientos en metaheuristicas e hidraulica para interpretar los resultados y en caso de que quisieran agregar nuevos problemas o algoritmos también deben saber programación, específicamente en Java. 
+% Como consideraciones para aplicar el caso, los encuestados debían tener un equipo con un sistema operativo Windows de 64 bits y la versión de Java 1.8 instalada. Adicionalmente, se establece que éstos deben contar con conocimientos en metaheuristicas e hidraulica para interpretar los resultados y en caso de que quisieran agregar nuevos problemas o algoritmos también deben saber programación, específicamente en Java. 
 
 % \subsection{Recolección de datos}
 % Como participantes del caso de estudio se contó con la participación de la profesora Yamisleydi Salgueiro, Doctora en Ciencias Técnicas; el profesor Marco Alsina, Doctor en Ciencias de la Ingeniería y especialista hidráulico y Sergio Silva, Ingeniero Civil en Computación.

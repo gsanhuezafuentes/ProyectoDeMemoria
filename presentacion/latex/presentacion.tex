@@ -7,6 +7,8 @@
 \usepackage{media9}
 % \usepackage{tikz}
 % \usepackage{multimedia}
+\usepackage[sort]{natbib}
+\usepackage{bibentry}
 
 \usetheme{Warsaw}
 \setbeamertemplate{footline}[frame number]{}
@@ -42,9 +44,7 @@
 \date{Agosto, 2020}
 
 
-
 \begin{document}
-
     \frame{\titlepage}
 
     \section{Introducción}
@@ -163,7 +163,7 @@
             \column{0.7\textwidth}
             \begin{figure}
                 \includegraphics[width=\textwidth]{assets/iedevelopment-v2.eps}
-                \caption{Metodología iterativa e incremental}
+                \caption{Metodología iterativa e incremental~\citet{Pressman2009}}
                 % \label{label}
             \end{figure}
         \end{columns}
@@ -208,26 +208,30 @@
 
     % \subsection{Tecnología utilizada}
     \begin{frame}
-        \frametitle{Tecnología utilizada}                 
-        \begin{columns}
-            \column{0.33\textwidth}
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=\textwidth]{assets/Tecnologia/Java.eps}
-            \end{figure}
+        \frametitle{Tecnología utilizada}  
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{assets/Tecnologia/tecnologias-full.eps}
+        \end{figure}               
+        % \begin{columns}
+        %     \column{0.33\textwidth}
+        %     \begin{figure}[H]
+        %         \centering
+        %         \includegraphics[width=\textwidth]{assets/Tecnologia/Java.eps}
+        %     \end{figure}
 
-            \column{0.33\textwidth}
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=\textwidth]{assets/Tecnologia/JavaFX.eps}
-            \end{figure}
+        %     \column{0.33\textwidth}
+        %     \begin{figure}[H]
+        %         \centering
+        %         \includegraphics[width=\textwidth]{assets/Tecnologia/JavaFX.eps}
+        %     \end{figure}
 
-            \column{0.33\textwidth}
-            \begin{figure}[H]
-                \centering
-                \includegraphics[width=\textwidth]{assets/Tecnologia/EpanetToolkit.eps}
-            \end{figure}
-        \end{columns}
+        %     \column{0.33\textwidth}
+        %     \begin{figure}[H]
+        %         \centering
+        %         \includegraphics[width=\textwidth]{assets/Tecnologia/EpanetToolkit.eps}
+        %     \end{figure}
+        % \end{columns}
     \end{frame}
 
     \subsection{Requisitos}
@@ -300,7 +304,7 @@
 
     \begin{frame}
         \frametitle{Implementación}                       
-        Problema de diseño de RDA basado en el costo de tuberías.
+        Problema de diseño de RDA basado en el costo de tuberías~\citet{Pereyra2017}.
 
         \begin{block}{Objetivo}
             \begin{equation*}
@@ -312,7 +316,7 @@
 
     \begin{frame}
         \frametitle{Implementación}                       
-        Problema de operación basado en el Régimen de bombeo.
+        Problema de operación basado en el Régimen de bombeo~\citet{JHawanet-2019}.
         
         \begin{block}{Objetivo 1}
             \begin{equation*}
@@ -339,6 +343,7 @@
 
         \begin{figure}
             \includegraphics[width=0.8\textwidth]{assets/AlgoritmoGenetico.eps}
+            \caption{Procedimiento Algoritmo Genético~\citet{Bonelli_2016}}
         \end{figure}
 
     \end{frame}
@@ -354,22 +359,24 @@
 
     \begin{frame}
         \frametitle{Implementación}                       
-        Non-dominated Sorting Genetic Algorithm-II (INSGA-II)
+        Non-dominated Sorting Genetic Algorithm-II (NSGA-II)
 
         \begin{figure}
             \includegraphics[width=0.8\textwidth]{assets/NSGAII.eps}
+            \caption{Procedimiento NSGAII~\citet{Deb2002}}
         \end{figure}
 
     \end{frame}
     \begin{frame}
         \frametitle{Implementación}
-        \vspace{-15.5pt}
+        \vspace{-16pt}
         \includemedia[
-                addresource=presentacion.mp4,
-                activate=pageopen,transparent,
-                flashvars={source=presentacion.mp4},
-                height=0.6\textwidth, width=1\textwidth
-              ]{}{VPlayer.swf}%
+            addresource=seq.mp4,
+            activate=pageopen,transparent,
+            flashvars={source=seq.mp4
+            },
+            height=0.6\textwidth, width=1\textwidth
+        ]{}{VPlayer.swf}%
         % \begin{tikzpicture}[remember picture, overlay]
         %     \node[anchor=south west, inner sep=0pt] at (current page.south west) {%
         %       \includemedia[
@@ -692,18 +699,26 @@
         %
 
         \begin{itemize}\justifying
-            \item Agregar nuevos algoritmos, operadores y problemas
-            \item Recortar el numero de decimales utilizados
-            \item Permitir exportar la imagen de la red
-            \item Guardar las imágenes exportadas en un formato vectorial
-            \item Cambiar tamaño de los iconos cuando el cursor este encima
-            \item Permitir agregar formulas LaTeX en la descripción del algoritmo
-            \item Permitir utilizar distintos algoritmos en un mismo Experimento
-            \item Añadir métricas de comparación entre algoritmos
-            \item Añadir en el menú contextual los patrones de bombeo o demanda en caso de que la red cargada los especifique.
-            \item Permitir resetear a los valores por defecto  en la ventana de configuración del problema
+            \item Mejorar el formato de salida.
+            % \item Recortar el numero de decimales utilizados
+            % \item Permitir exportar la imagen de la red
+            % \item Guardar las imágenes exportadas en un formato vectorial
+            % \item Permitir agregar formulas LaTeX en la descripción del algoritmo
+            % \item Cambiar tamaño de los iconos cuando el cursor este encima
+            % \item Añadir en el menú contextual los patrones de bombeo o demanda en caso de que la red cargada los especifique.
+            \item Agregar nuevos algoritmos, operadores y problemas.
+            \item Permitir comparar algoritmos utilizados para resolver un problema.
+            % \item Agregar nuevos algoritmos, operadores y problemas
+            % \item Permitir utilizar distintos algoritmos en un mismo Experimento
+            % \item Añadir métricas de comparación entre algoritmos
+            % \item Permitir resetear a los valores por defecto  en la ventana de configuración del problema
         \end{itemize}
 
     
     \end{frame}
+
+    \bibliographystyle{abbrvnat}
+    % \bibliography{refs} 
+    \nobibliography{refs}
+
 \end{document}
