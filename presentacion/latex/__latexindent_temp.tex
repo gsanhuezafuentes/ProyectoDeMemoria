@@ -4,9 +4,6 @@
 \usepackage{parskip}
 \usepackage{xpatch}
 \usepackage{ragged2e}
-\usepackage{media9}
-% \usepackage{tikz}
-% \usepackage{multimedia}
 
 \usetheme{Warsaw}
 \setbeamertemplate{footline}[frame number]{}
@@ -52,26 +49,17 @@
     \subsection{Contexto}
     \begin{frame}
         \frametitle{Contexto}
-        
-        \begin{columns}
-            \column{0.7\textwidth}
+        \begin{itemize}
+            \justifying
+            \item Escasez de agua
+            \item Sistemas que deben estar las 24 horas del día activo
+            \item Múltiples criterios para optimizar los sistemas de distribución
+            \item Las redes de agua (RDA) involucran dos tipos de problemas:
             \begin{itemize}
-                \justifying
-                \item Escasez de agua.
-                \item Sistemas que deben estar las 24 horas del día activo.
-                \item Múltiples criterios para optimizar los sistemas de distribución.
-                \item Las redes de agua (RDA) involucran dos tipos de problemas:
-                \begin{itemize}
-                    \item Problema de diseño.
-                    \item Problema de operación.
-                \end{itemize}
+                \item Problema de diseño
+                \item Problema de operación
             \end{itemize}
-
-            \column{0.3\textwidth}
-            \begin{figure}
-                \includegraphics[width=\textwidth]{assets/Relleno/grifo.eps}
-            \end{figure}
-        \end{columns}
+        \end{itemize}
     \end{frame}
 
     \subsection{Problema}
@@ -88,7 +76,7 @@
 
             \column{0.4\textwidth}
             \begin{figure}
-                \includegraphics[width=\textwidth]{assets/Relleno/pipes.eps}
+                \includegraphics[width=\textwidth]{assets/MunecosBlancos/Aproblemado.jpg}
             \end{figure}
         \end{columns}
     \end{frame}
@@ -98,8 +86,8 @@
         \frametitle{Propuesta de solución}
         
         \begin{columns}
-            \column{0.55\textwidth}
-            \textbf{Aplicación de escritorio extensible} que permita optimizar procesos de diseño y operación en RDA.\bigskip
+            \column{0.8\textwidth}
+           \textbf{Aplicación de escritorio extensible} que permita optimizar procesos de diseño y operación en RDA.\bigskip
     
             Problemas implementados:
             \bigskip
@@ -109,9 +97,9 @@
                 \item Problema de operación basado en el Régimen de bombeo.
             \end{itemize}
 
-            \column{0.45\textwidth}
+            \column{0.2\textwidth}
             \begin{figure}
-                \includegraphics[width=\textwidth]{assets/Interfaces/Principal_Propuesta.png}
+                \includegraphics[width=\textwidth]{assets/Relleno/Bombilla.png}
             \end{figure}
         \end{columns}
 
@@ -122,8 +110,8 @@
         \frametitle{Objetivo general}
         
         \begin{itemize}
-        \justifying
-            \item \textbf{Diseñar y desarrollar una aplicación extensible de escritorio para optimizar el diseño y operación de una red de distribución de agua.}
+\justifying
+            \item Diseñar y desarrollar una aplicación extensible de escritorio para optimizar el diseño y operación de una red de distribución de agua.
         \end{itemize}
 
         \begin{figure}
@@ -135,7 +123,6 @@
     \begin{frame}
         \frametitle{Objetivos específicos}
         \begin{itemize}
-            \justifying
             \item Diseñar software orientado a la optimización de RDA basado en la arquitectura lógica del framework multiobjetivo Jmetal.
             \item Implementar un algoritmo metaheurístico de optimización monoobjetivo para aplicar al problema de diseño de RDA.
             \item Implementar un algoritmo metaheurístico de optimización multiobjetivo para aplicar al problema de Régimen de bombeo en RDA.
@@ -151,7 +138,7 @@
               
         \begin{columns}
             \column{0.3\textwidth}
-            \textbf{Fases:}
+            Fases:
             \bigskip
             \begin{itemize}
                 \item Análisis
@@ -184,23 +171,23 @@
 
     \section{Desarrollo}
 
-    % \subsection{Concepción del proyecto y planificación del proyecto}
-    % \begin{frame}
-    %     \frametitle{Concepción del proyecto}                 
-    %     \begin{itemize}\justifying
-    %         \item Propuesta por parte del profesor Daniel Mora
-    %         \item Proyecto Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms
-    %         \item Jmetal + EpanetToolkit
-    %     \end{itemize}
-    % \end{frame}
+    \subsection{Concepción del proyecto y planificación del proyecto}
+    \begin{frame}
+        \frametitle{Concepción del proyecto}                 
+        \begin{itemize}
+            \item Propuesta por parte del profesor Daniel Mora
+            \item Proyecto Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms
+            \item Jmetal + EpanetToolkit
+        \end{itemize}
+    \end{frame}
 
     \begin{frame}
         \frametitle{Planificación}                 
-        \begin{itemize}\justifying
-            \item \textbf{Iteración 1:} Requisitos y Arquitectura.
-            \item \textbf{Iteración 2:} Problema monoobjetivo y Algoritmo Genético (GA).
-            \item \textbf{Iteración 3:} Interfaz gráfica (GUI).
-            \item \textbf{Iteración 4:} Problema multiobjetivo y Algoritmo Non-Dominated Sorting Genetic Algorithm II (NSGAII).
+        \begin{itemize}
+            \item \textbf{Iteración 1:} Requisitos y Arquitectura
+            \item \textbf{Iteración 2:} Problema monoobjetivo y Algoritmo Genético (GA)
+            \item \textbf{Iteración 3:} Interfaz gráfica (GUI)
+            \item \textbf{Iteración 4:} Problema multiobjetivo y Algoritmo Non-Dominated Sorting Genetic Algorithm II (NSGAII)
             \item \textbf{Iteración 5:} Experimentos y simulación hidraúlica.
             \item \textbf{Iteración 6:} Afinación de detalles.
         \end{itemize}
@@ -235,8 +222,8 @@
         \frametitle{Requisitos}                 
         
         \begin{itemize}
-            \item Captura, priorización y especificación formal de los requisitos.
-            \item 32 Requisitos de usuario.
+            \item Captura, priorización y especificación formal de los requisitos
+            \item 32 Requisitos de usuario
             \item Documento de especificación formal de requisitos.
         \end{itemize}
         \begin{figure}
@@ -250,7 +237,7 @@
                
         \begin{itemize}
             \item Diseñar los módulos de la aplicación y la interacción entre ellos.
-            \item Documento de diseño.
+            \item Documento de diseño
             % \begin{itemize}
             %     \item Arquitectura Física
             %     \item Arquitectura Lógica
@@ -300,7 +287,9 @@
 
     \begin{frame}
         \frametitle{Implementación}                       
-        Problema de diseño de RDA basado en el costo de tuberías.
+        \begin{itemize}
+            \item Problema de diseño de RDA basado en el costo de tuberías
+        \end{itemize} 
 
         \begin{block}{Objetivo}
             \begin{equation*}
@@ -312,7 +301,7 @@
 
     \begin{frame}
         \frametitle{Implementación}                       
-        Problema de operación basado en el Régimen de bombeo.
+        Problema de operación basado en el Régimen de bombeo
         
         \begin{block}{Objetivo 1}
             \begin{equation*}
@@ -361,81 +350,62 @@
         \end{figure}
 
     \end{frame}
+
     \begin{frame}
         \frametitle{Implementación}
-        \vspace{-15.5pt}
-        \includemedia[
-                addresource=presentacion.mp4,
-                activate=pageopen,transparent,
-                flashvars={source=presentacion.mp4},
-                height=0.6\textwidth, width=1\textwidth
-              ]{}{VPlayer.swf}%
-        % \begin{tikzpicture}[remember picture, overlay]
-        %     \node[anchor=south west, inner sep=0pt] at (current page.south west) {%
-        %       \includemedia[
-        %         addresource=presentacion.mp4,
-        %         activate=pageopen,transparent,
-        %         flashvars={source=presentacion.mp4},
-        %         width=\textwidth,height=\textwidth
-        %       ]{}{VPlayer.swf}%
-        %     };
-        %  \end{tikzpicture}
+        Ventana Principal                   
+        \begin{figure}
+            \includegraphics[width=\textwidth]{assets/Interfaces/Principal.png}
+        \end{figure}
     \end{frame}
-    % \begin{frame}
-    %     \frametitle{Implementación}
-    %     Ventana Principal                   
-    %     \begin{figure}
-    %         \includegraphics[width=\textwidth]{assets/Interfaces/Principal.png}
-    %     \end{figure}
-    % \end{frame}
     
-    % \begin{frame}
-    %     \frametitle{Implementación}
-    %     Ventana de Configuración                
+    \begin{frame}
+        \frametitle{Implementación}
+        Ventana de Configuración                
         
-    %     \begin{columns}
-    %         \column{0.5\textwidth}
-    %         \begin{figure}
-    %             \includegraphics[width=\textwidth]{assets/Interfaces/ConfiguracionProblema1.png}
-    %         \end{figure}
-    %         \column{0.5\textwidth}
-    %         \begin{figure}
-    %             \includegraphics[width=\textwidth]{assets/Interfaces/ConfiguracionProblema2.png}
-    %         \end{figure}
-    %     \end{columns}
-    % \end{frame}
+        \begin{columns}
+            \column{0.5\textwidth}
+            \begin{figure}
+                \includegraphics[width=\textwidth]{assets/Interfaces/ConfiguracionProblema1.png}
+            \end{figure}
+            \column{0.5\textwidth}
+            \begin{figure}
+                \includegraphics[width=\textwidth]{assets/Interfaces/ConfiguracionProblema2.png}
+            \end{figure}
+        \end{columns}
+    \end{frame}
     
-    % \begin{frame}
-    %     \frametitle{Implementación}
-    %     Ventana de ejecución               
-    %     \begin{figure}
-    %         \includegraphics[width=\textwidth]{assets/Interfaces/EstadoEjecucion.png}
-    %     \end{figure}
-    % \end{frame}
+    \begin{frame}
+        \frametitle{Implementación}
+        Ventana de ejecución               
+        \begin{figure}
+            \includegraphics[width=\textwidth]{assets/Interfaces/EstadoEjecucion.png}
+        \end{figure}
+    \end{frame}
 
-    % \begin{frame}
-    %     \frametitle{Implementación}
-    %     Gráfico de resultados                  
-    %     \begin{figure}
-    %         \includegraphics[width=0.75\textwidth]{assets/Interfaces/GraficoResultados.png}
-    %     \end{figure}
-    % \end{frame}
+    \begin{frame}
+        \frametitle{Implementación}
+        Gráfico de resultados                  
+        \begin{figure}
+            \includegraphics[width=0.75\textwidth]{assets/Interfaces/GraficoResultados.png}
+        \end{figure}
+    \end{frame}
 
-    % \begin{frame}
-    %     \frametitle{Implementación}
-    %     Resultados Optimización                
-    %     \begin{figure}
-    %         \includegraphics[width=\textwidth]{assets/Interfaces/Resultados.png}
-    %     \end{figure}
-    % \end{frame}
+    \begin{frame}
+        \frametitle{Implementación}
+        Resultados Optimización                
+        \begin{figure}
+            \includegraphics[width=\textwidth]{assets/Interfaces/Resultados.png}
+        \end{figure}
+    \end{frame}
 
-    % \begin{frame}
-    %     \frametitle{Implementación}
-    %     Ventana de simulación hidráulica                 
-    %     \begin{figure}
-    %         \includegraphics[height=0.8\textheight]{assets/Interfaces/ResultadosSimulacion.png}
-    %     \end{figure}
-    % \end{frame}
+    \begin{frame}
+        \frametitle{Implementación}
+        Ventana de simulación hidráulica                 
+        \begin{figure}
+            \includegraphics[height=0.8\textheight]{assets/Interfaces/ResultadosSimulacion.png}
+        \end{figure}
+    \end{frame}
 
     \subsection{Pruebas}
     \begin{frame}
@@ -443,11 +413,11 @@
         
         \begin{columns}
             \column{0.5\textwidth}
-            \begin{itemize}\justifying
-                \item Realización de pruebas y su especificación formal.
-                \item 39 Pruebas automatizadas.
-                \item 16 Pruebas manuales.
-                \item Documento de especificación formal de pruebas.
+            \begin{itemize}
+                \item Realización de pruebas y su especificación formal
+                \item 39 Pruebas automatizadas
+                \item 16 Pruebas manuales
+                \item Documento de especificación formal de pruebas
             \end{itemize}
 
             \column{0.5\textwidth}
@@ -480,84 +450,75 @@
     \section{Evaluación}
     \subsection{Estudio de caso}
 
-    % \begin{frame}
-    %     \frametitle{Estudio de caso}                       
+    \begin{frame}
+        \frametitle{Estudio de caso}                       
        
-    %    \begin{columns}
-    %         \column{0.5\textwidth}
-    %         \begin{itemize}
-    %             \item Diseño de estudio de caso
-    %             \item Recolección de datos
-    %             \item Análisis de datos
-    %             \item Presentación de los resultados
-    %         \end{itemize}
+       \begin{columns}
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item Diseño de estudio de caso
+                \item Recolección de datos
+                \item Análisis de datos
+                \item Presentación de los resultados
+            \end{itemize}
 
-    %         \column{0.5\textwidth}
-    %         \begin{figure}
-    %             \includegraphics[width=\textwidth]{assets/Relleno/Investigacion.png}
-    %         \end{figure}
-    %    \end{columns}
-    % \end{frame}
+            \column{0.5\textwidth}
+            \begin{figure}
+                \includegraphics[width=\textwidth]{assets/Relleno/Investigacion.png}
+            \end{figure}
+       \end{columns}
+    \end{frame}
 
     \subsection{Diseño del caso}
     \begin{frame}
         \frametitle{Diseño del caso}                       
         
-        
-        \begin{columns}
-            \column{0.7\textwidth}
+        \begin{itemize}
+            \item Elección del caso
             \begin{itemize}
-                \item Elección del caso
-                \begin{itemize}
-                    \item \textbf{\textit{La aplicación desarrollada}}
-                \end{itemize}
-    
-                \item Objetivos de la investigación
-                \begin{itemize}\justifying
-                    \item \textbf{\textit{¿Cómo el sistema desarrollado trabaja en la práctica?}}
-                \end{itemize}
-    
-                \item Características a evaluar
-                \begin{itemize}
-                    \item Funcionalidad
-                    \item Usabilidad
-                    \item Utilidad
-                    % \item Utilidad del manual de usuario
-                \end{itemize}
+                \item \textbf{\textit{La aplicación desarrollada}}
             \end{itemize}
 
-            \column{0.3\textwidth}
-            \begin{figure}
-                \includegraphics[width=\textwidth]{assets/Relleno/Investigacion.png}
-            \end{figure}
-        \end{columns}
+            \item Objetivos de la investigación
+            \begin{itemize}
+                \item \textbf{\textit{¿Cómo el sistema desarrollado trabaja en la práctica?}}
+            \end{itemize}
+
+            \item Características a evaluar
+            \begin{itemize}
+                \item Funcionalidad
+                \item Usabilidad
+                \item Utilidad
+                \item Utilidad del manual de usuario
+            \end{itemize}
+        \end{itemize}
 
     \end{frame}
 
-    % \begin{frame}
-    %     \frametitle{Diseño del caso}                       
+    \begin{frame}
+        \frametitle{Diseño del caso}                       
         
-    %     \begin{itemize}
-    %         \item Protocolo para conducir el estudio de caso
-    %         \item Unidad de análisis
-    %         \begin{itemize}
-    %             \item Profesionales con conocimientos en computación, hidráulica y metaheurísticas
-    %         \end{itemize}
+        \begin{itemize}
+            \item Protocolo para conducir el estudio de caso
+            \item Unidad de análisis
+            \begin{itemize}
+                \item Profesionales con conocimientos en computación, hidráulica y metaheurísticas
+            \end{itemize}
 
-    %         \item Consideraciones técnicas	  
-    %         \begin{itemize}
-    %             \item Window 64bits
-    %             \item Java 1.8
-    %         \end{itemize}
+            \item Consideraciones técnicas	  
+            \begin{itemize}
+                \item Window 64bits
+                \item Java 1.8
+            \end{itemize}
 
-    %         \item Consideraciones para los usuarios
-    %         \begin{itemize}\justifying
-    %             \item Conocimientos básicos en hidráulica y metaheurísticas para saber interpretar los resultados de la aplicación. Si se desea incorporar nuevos algoritmos debe tener conocimientos en programación.
+            \item Consideraciones para los usuarios
+            \begin{itemize}
+                \item Conocimientos básicos en hidráulica y metaheurísticas para saber interpretar los resultados de la aplicación. Si se desea incorporar nuevos algoritmos debe tener conocimientos en programación.
         
-    %         \end{itemize}
-    %     \end{itemize}
+            \end{itemize}
+        \end{itemize}
 
-    % \end{frame}
+    \end{frame}
 
     % \subsection{Recolección de datos}
     % \begin{frame}
@@ -586,74 +547,66 @@
         \frametitle{Análisis de datos}
         \begin{figure}
             \centering
-            \includegraphics[width=\textwidth]{assets/Evaluacion/resultadosv2.eps}
-            \caption{Resultados de la recolección de datos.}
+            \includegraphics[width=0.9\textwidth]{assets/Evaluacion/funcionality.eps}
+            % \caption{Gráfico circular de los resultados de la evaluación de funcionalidad de la aplicación}
         \end{figure}
     \end{frame}
-    % \begin{frame}      
-    %     \frametitle{Análisis de datos}
-    %     \begin{figure}
-    %         \centering
-    %         \includegraphics[width=0.9\textwidth]{assets/Evaluacion/funcionality.eps}
-    %         % \caption{Gráfico circular de los resultados de la evaluación de funcionalidad de la aplicación}
-    %     \end{figure}
-    % \end{frame}
 
-    % \begin{frame}      
-    %     \frametitle{Análisis de datos}
-    %     Usabilidad
-    %    \begin{columns}
-    %         \column{0.4\textwidth}
-    %         $$ \bar{x}_{SUS} = 79.17$$
-    %         $$ s_{SUS} = 9.46$$
+    \begin{frame}      
+        \frametitle{Análisis de datos}
+        Usabilidad
+       \begin{columns}
+            \column{0.4\textwidth}
+            $$ \bar{x}_{SUS} = 79.17$$
+            $$ s_{SUS} = 9.46$$
     
-    %         \column{0.6\textwidth}
-    %         % \begin{figure}
-    %         %     \centering
-    %         %     \includegraphics[width=\textwidth]{assets/Evaluacion/SUS_Score.png}
-    %         %     % \caption{Gráfico circular de los resultados de la evaluación de funcionalidad de la aplicación}
-    %         % \end{figure}
-    %         \begin{table}[H]
-    %             \centering
-    %             \caption[Escala de rangos de \textit{SUS Score}]{Escala de rangos de \textit{SUS Score}~\cite{sus-scale}}
-    %             \bigskip
-    %             \begin{tabular}{||c|c||}
-    %                 \hline
-    %                 \textit{SUS Score} & Calificación\\ [0.5ex] 
-    %                 \hline\hline
-    %                 $>$ 80,3 & Excelente\\
-    %                 \hline
-    %                 68 - 80,3 & Buena\\
-    %                 \hline
-    %                 68 & Regular\\
-    %                 \hline
-    %                 51 - 68 & Mala\\
-    %                 \hline
-    %                 $<$ 51 & Terrible\\
-    %                 \hline
-    %             \end{tabular}
-    %             \label{fig:sus}
-    %         \end{table}
-    %    \end{columns}
-    % \end{frame}
+            \column{0.6\textwidth}
+            % \begin{figure}
+            %     \centering
+            %     \includegraphics[width=\textwidth]{assets/Evaluacion/SUS_Score.png}
+            %     % \caption{Gráfico circular de los resultados de la evaluación de funcionalidad de la aplicación}
+            % \end{figure}
+            \begin{table}[H]
+                \centering
+                \caption[Escala de rangos de \textit{SUS Score}]{Escala de rangos de \textit{SUS Score}~\cite{sus-scale}}
+                \bigskip
+                \begin{tabular}{||c|c||}
+                    \hline
+                    \textit{SUS Score} & Calificación\\ [0.5ex] 
+                    \hline\hline
+                    $>$ 80,3 & Excelente\\
+                    \hline
+                    68 - 80,3 & Buena\\
+                    \hline
+                    68 & Regular\\
+                    \hline
+                    51 - 68 & Mala\\
+                    \hline
+                    $<$ 51 & Terrible\\
+                    \hline
+                \end{tabular}
+                \label{fig:sus}
+            \end{table}
+       \end{columns}
+    \end{frame}
 
-    % \begin{frame}      
-    %     \frametitle{Análisis de datos}
-    %     \begin{figure}
-    %         \centering
-    %         \includegraphics[width=0.9\textwidth]{assets/Evaluacion/utility.eps}
-    %         % \caption{Gráfico circular de los resultados de la evaluación de funcionalidad de la aplicación}
-    %     \end{figure}
-    % \end{frame}
+    \begin{frame}      
+        \frametitle{Análisis de datos}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.9\textwidth]{assets/Evaluacion/utility.eps}
+            % \caption{Gráfico circular de los resultados de la evaluación de funcionalidad de la aplicación}
+        \end{figure}
+    \end{frame}
 
-    % \begin{frame}      
-    %     \frametitle{Análisis de datos}
-    %     \begin{figure}
-    %         \centering
-    %         \includegraphics[width=0.9\textwidth]{assets/Evaluacion/manual_utility.eps}
-    %         % \caption{Gráfico circular de los resultados de la evaluación de funcionalidad de la aplicación}
-    %     \end{figure}
-    % \end{frame}
+    \begin{frame}      
+        \frametitle{Análisis de datos}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.9\textwidth]{assets/Evaluacion/manual_utility.eps}
+            % \caption{Gráfico circular de los resultados de la evaluación de funcionalidad de la aplicación}
+        \end{figure}
+    \end{frame}
 
     % \subsection{Conclusiones estudio de caso}
     % \begin{frame}      
@@ -670,12 +623,12 @@
     \begin{frame}
         \frametitle{Conclusiones}                       
         
-        \begin{itemize}\justifying
+        \begin{itemize}
             \item Software para la optimización de los procesos de diseño y operación  de RDA.
             \item Es posible extender el sistema para mejorar su uso con diferentes algoritmos y diferentes problemas.
             \item Todos los objetivos establecidos fueron cumplidos satisfactoriamente.
             \item Los criterios de funcionalidad, usabilidad y utilidad fueron cumplidos, concluyendo que el sistema trabaja bien en la práctica. 
-            % \item Los criterio de utilidad del manual de usuario no fueron cumplido por lo que se deben realizar cambios para mejorar la información y ayuda que se entrega con éste.
+            \item Los criterio de utilidad del manual de usuario no fueron cumplido por lo que se deben realizar cambios para mejorar la información y ayuda que se entrega con éste.
         \end{itemize}
     
     \end{frame}
@@ -691,7 +644,7 @@
         {}
         %
 
-        \begin{itemize}\justifying
+        \begin{itemize}
             \item Agregar nuevos algoritmos, operadores y problemas
             \item Recortar el numero de decimales utilizados
             \item Permitir exportar la imagen de la red
@@ -706,4 +659,10 @@
 
     
     \end{frame}
+
+    \begin{frame}    
+        \centering       
+        \Huge{Fin}
+    \end{frame}
+
 \end{document}

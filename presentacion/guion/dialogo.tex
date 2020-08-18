@@ -1,13 +1,20 @@
 \documentclass{article}
-\RequirePackage[latin1]{inputenc}
-\RequirePackage[english,spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[english,spanish]{babel}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    bottom=5mm,
+    top=5mm,
+}
+\setlength{\parskip}{1em} 
 
 \begin{document}
 \title{Díalogo}
-
 \maketitle
 
-Buenas tardes profesores de la comisión e invitados. Mi nombre es Gabriel Sanhueza y procederé a presentar la defensa para mi proyecto de titulación.
+Buenas tardes profesores de la comisión e invitados. Mi nombre es Gabriel Sanhueza y les voy a presentar mi proyecto.
 
 \section{Introducción}
 % A continuación les voy a presentar el contexto, el problema, la solución propuesta y los objetivos que se buscan lograr.
@@ -50,9 +57,10 @@ En cuanto a los objetivos específicos se tienen los siguientes:
 \end{itemize}
 
 \section{Metodología de desarrollo}
-La metodología escogida para llevar a cabo el desarrollo de este proyecto es la ``Iterativa e Incremental''. Esta metodología divide el proceso de construcción del programa en iteraciones que se componen de 4 fases las que son Análisis, Diseño, Implementación y Pruebas.
+Se escogió la metodología ``Iterativa e Incremental'' para llevar a cabo el desarrollo de este proyecto.
+% De acuerdo a esta metodología se dividió proceso de desarrollo en iteraciones que se componen de 4 fases las que son Análisis, Diseño, Implementación y Pruebas.
 
-Las adaptaciones que son realizadas sobre la metodología consisten en disminuir la cantidad de documentación generada, permitir la realización de más de una fase a la vez y finalmente una única persona desempeña todos los roles establecidos para la metodología.
+Las adaptaciones que son realizadas sobre la metodología en general consisten en disminuir la cantidad de documentación generada, permitir la realización de más de una fase a la vez y finalmente una única persona desempeña todos los roles establecidos para la metodología.
 
 \section{Desarrollo}
 Ahora se procede a hablar acerca del desarrollo del proyecto.
@@ -75,26 +83,9 @@ En total se obtuvieron 32 requisitos de usuarios y se generó como salida de esta
 \subsection{Diseño}
 Durante la fase de diseño se realizo la conceptualización del software generando como resultado un documento de diseño en que se especifica la arquitectura física y arquitectura lógica, asi como una serie de diagramas de clase y secuencia junto con los diseños de las interfaces.
 
-La arquitectura física utilizada consiste en la monolítica, puesto que la aplicación no tiene interacción con otros sistemas computacionales y está diseñada para operar localmente en el equipo del usuario que la utilice.
-
-En cuanto a la arquitectura lógica, ésta consiste en la arquitectura Modelo-Vista-Controlador la cual fue escogida porque nos permite separar los componentes de la aplicación en módulos reduciendo la dependencia entre el código de la interfaz de usuario y la lógica de la aplicación. (Y la librería JavaFX trabaja en base a esta arquitectura)
+Como arquitectura lógica se utilizo Modelo-Vista-Controlador la cual fue escogida porque nos permite separar los componentes de la aplicación en módulos reduciendo la dependencia entre el código de la interfaz de usuario y la lógica de la aplicación. (Y la librería JavaFX trabaja en base a esta arquitectura)
 
 \subsection{Implementación}
-Durante la fase de implementación se realizo la codificación de las funcionalidades de la aplicación y el manual de usuario de ésta.
-
-A continuación de mostrara como resultado de esta fase las interfaces gráficas implementadas para la aplicación.
-
-La primera interfaz corresponde a la principal desde esta interfaz se pueden visualizar es esquema de la red, ver los elementos que la conforman y su configuración, realizar la simulación utilizando los valores definidos en el archivo de configuración de red y seleccionar el problema a optimizar.
-
-En la ventana de configuración del problema se puede ver una descripción de éste y establecer las configuraciones utilizadas para realizar la optimización.
-
-Para la aplicación se tienen dos ventana de estado de ejecución. La primera correspondiente a la imagen de la izquiera es la utilizada para los problemas monoobjetivos, mientras que la derecha se utiliza para los multiobjetivos.
-
-También, desde la ventana de estado se puede visualizar el gráfico de la ejecución, si este esta activo. En este caso se muestra el gráfico de la ejecución monoobjetivo, en donde cada color corresponde a una ejecución independiente del algoritmo.
-
-En la ventana de resultados como su nombre lo dice se visualizan los resultados de la optimización. En esta illustración, se presentan los resultados para cada ejecución independiente de un algoritmo monoobjetivo, marcando con el color verde la mejor de las soluciones encontradas.
-
-En la ventana de simulación se muestran los resultados de la simulación utilizando la configuración del archivo de configuración de red.
 
 \subsubsection{Java Reflection y Java Annotation}
 Una de las capacidades más importantes de la aplicación que es la extensibilidad, se logro haciendo uso de dos funcionalidades de Java, las cuales son la reflección y las anotaciones.
@@ -118,7 +109,6 @@ En cuanto al problema operación, es utilizando el enfoque multiobjetivo para opt
 El costo energético para cada bomba en un tiempo determinado se calcula como precio de la energía por el consumo energético por el estado de la bomba, tomando este último el valor 0 o 1 dependiendo si la bomba esta apagada o encendida respectivamente.
 
 En cuanto al costo de mantención, éste se calcula como ``el numero de cambios de estado desde apagado a encendido por cada bomba en cada uno de los periodos de tiempo simulados''
-
 \subsubsection{GA}
 El algoritmo implementado para el problema de diseño mencionado anteriormente es el Algoritmo Genético. Los pasos para realizar este algoritmo son:
 
@@ -136,12 +126,32 @@ Una cosa importante a mencionar para este algoritmo es la función de remplazo ut
 
 Para realizar el remplazo se deben operar tanto la población original asi como la descendiente generada a través del proceso de selección y reproducción. Estas dos poblaciones se agrupan y posteriormente se ordenan sus individuos en diversos Frentes formado por las soluciones que no se dominan entre sí. Posteriormente, se agregan a la nueva población las soluciones de los frentes hasta alcanzar el tope establecido. Si el último frente a agregar no cabe en su totalidad, éste debe ser ordenado en base a su densidad y las mejores soluciones son las conservadas.
 
+\subsubsection{Evidencia del desarrollo}
+
+Durante la fase de implementación se realizo la codificación de las funcionalidades de la aplicación y el manual de usuario de ésta.
+
+A continuación de mostrara como resultado de esta fase las interfaces gráficas implementadas para la aplicación.
+
+La primera interfaz corresponde a la principal desde esta interfaz se pueden visualizar es esquema de la red, ver los elementos que la conforman y su configuración, realizar la simulación utilizando los valores definidos en el archivo de configuración de red y seleccionar el problema a optimizar.
+
+En la ventana de configuración del problema se puede ver una descripción de éste y establecer las configuraciones utilizadas para realizar la optimización.
+
+Para la aplicación se tienen dos ventana de estado de ejecución. La primera correspondiente a la imagen de la izquiera es la utilizada para los problemas monoobjetivos, mientras que la derecha se utiliza para los multiobjetivos.
+
+También, desde la ventana de estado se puede visualizar el gráfico de la ejecución, si este esta activo. En este caso se muestra el gráfico de la ejecución monoobjetivo, en donde cada color corresponde a una ejecución independiente del algoritmo.
+
+En la ventana de resultados como su nombre lo dice se visualizan los resultados de la optimización. En esta illustración, se presentan los resultados para cada ejecución independiente de un algoritmo monoobjetivo, marcando con el color verde la mejor de las soluciones encontradas.
+
+En la ventana de simulación se muestran los resultados de la simulación utilizando la configuración del archivo de configuración de red.
+
 \subsection{Pruebas}
 Durante la fase de pruebas se realizaron pruebas manuales y automatizadas, las cuales fueron especificadas en su documento respectivo.
 
 En total se realizaron 39 pruebas automatizadas y 16 pruebas manuales.
 
-En el documento de especificación de los casos de prueba se utiliza el formato presentado en la ilustración que se compone de el ID de la prueba, el titulo, la característica a evaluar, el objetivo del caso, la configuración de la aplicación al momento de realizar la prueba, los datos utilizados para la prueba, las acciones realizadas para ejecutar el caso y finalmente el resultado esperado. Este formato se usa tanto para las pruebas automatizadas como las manuales.
+En el documento de especificación de los casos de prueba se utiliza el formato presentado en la ilustración de ejemplo.
+
+%que se compone de el ID de la prueba, el titulo, la característica a evaluar, el objetivo del caso, la configuración de la aplicación al momento de realizar la prueba, los datos utilizados para la prueba, las acciones realizadas para ejecutar el caso y finalmente el resultado esperado. Este formato se usa tanto para las pruebas automatizadas como las manuales.
 
 \section{Metodología de evaluación}
 La metodología de evaluación escogida para aplicar sobre el sistema construido consiste en los estudios de caso. 
@@ -167,13 +177,13 @@ Como estudio de caso se establece la aplicación desarrollada durante este proyec
 Las características de la aplicación evaluadas fueron las siguientes:
 
 \begin{itemize}
-    \item \textbf{ Funcionalidad:} Con esta característica se busca evaluar lo que la aplicación puede hacer, es decir, si el sistema cumple con las operaciones solicitadas por el cliente.
+    \item \textbf{ Funcionalidad} %Con esta característica se busca evaluar lo que la aplicación puede hacer, es decir, si el sistema cumple con las operaciones solicitadas por el cliente.
 
-    \item \textbf{Usabilidad:} Esta característica busca medir la usabilidad del software, es decir, que tan fácil es de usar la aplicación.
+    \item \textbf{Usabilidad} %Esta característica busca medir la usabilidad del software, es decir, que tan fácil es de usar la aplicación.
 
-    \item \textbf{Utilidad:} Con este criterio se busca medir el valor de la aplicación. Con valor, nos referimos a si las funcionalidades implementadas por el sistema son de utilidad para quien haga uso de solución.
+    \item \textbf{Utilidad} %Con este criterio se busca medir el valor de la aplicación. Con valor, nos referimos a si las funcionalidades implementadas por el sistema son de utilidad para quien haga uso de solución.
 
-    \item \textbf{Utilidad del manual de usuario: }Con este criterio se busca evaluar el manual de usuario realizado y si este fue de ayuda para aprender y poder conocer la aplicación.
+    \item \textbf{Utilidad del manual de usuario }%Con este criterio se busca evaluar el manual de usuario realizado y si este fue de ayuda para aprender y poder conocer la aplicación.
 \end{itemize}
 
 Como protocolo para realizar el caso se estableció que el caso sería aplicado de manera asíncrona debido a las problemáticas a nivel país y la dificultad de coordinar una reunión. Y que los pasos para realizar el caso consisten en:
@@ -188,13 +198,13 @@ Cómo unidad de análisis para llevar a cabo es estudio se escogieron a profesiona
 
 Como consideraciones para aplicar el caso, los encuestados debían tener un equipo con un sistema operativo Windows de 64 bits y la versión de Java 1.8 instalada. Adicionalmente, se establece que éstos deben contar con conocimientos en metaheuristicas e hidraulica para interpretar los resultados y en caso de que quisieran agregar nuevos problemas o algoritmos también deben saber programación, específicamente en Java. 
 
-\subsection{Recolección de datos}
-Como participantes del caso de estudio se contó con la participación de la profesora Yamisleydi Salgueiro, Doctora en Ciencias Técnicas; el profesor Marco Alsina, Doctor en Ciencias de la Ingeniería y especialista hidráulico y Sergio Silva, Ingeniero Civil en Computación.
+% \subsection{Recolección de datos}
+% Como participantes del caso de estudio se contó con la participación de la profesora Yamisleydi Salgueiro, Doctora en Ciencias Técnicas; el profesor Marco Alsina, Doctor en Ciencias de la Ingeniería y especialista hidráulico y Sergio Silva, Ingeniero Civil en Computación.
 
-Los instrumentos utilizados para la evaluación son encuestas utilizando la escala de Likert. En el caso del test de usabilidad este se realizo utilizando un test de usabilidad bien conocido llamado SUS el cual cuenta con 10 preguntas realizadas en un orden especifico y que permiten medir el nivel de usabilidad de la aplicación. 
+% Los instrumentos utilizados para la evaluación son encuestas utilizando la escala de Likert. En el caso del test de usabilidad este se realizo utilizando un test de usabilidad bien conocido llamado SUS el cual cuenta con 10 preguntas realizadas en un orden especifico y que permiten medir el nivel de usabilidad de la aplicación. 
 
 \subsection{Análisis de datos}
-Como resultado de la evaluación de la funcionalidad se obtuvo que el 92.3\% de las respuestas indican que los requisitos establecidos fueron cumplidos.
+Como resultado de la evaluación de la funcionalidad se obtuvo que el 92.3\% de las respuestas indican que los requisitos capturados fueron cumplidos.
 
 Como resultado de la evaluación de usabilidad se obtuvo un puntaje promedio de 79.2\% con una desviación estándar de 9.5\% dando como resultado, utilizando la escala de la ilustración una evaluación de ``Buena''.
 
@@ -202,16 +212,16 @@ En cuanto a la evaluación de la utilizada aproximadamente el 89\% de las respues
 
 Como parte de la evaluación utilizada para evaluar el manual de usuario, el 44\% de las respuestas indican que este fue útil, mientras que el 22\% indica que no fue útil para comprender la aplicación.
 
-\subsection{Conclusión estudio de caso}
+% \subsection{Conclusión estudio de caso}
 
-Para concluir, del caso de estudio realizado se establece que para la aplicación, los criterios de funcionalidad, usabilidad y utilizad fueron cumplidos. Mientras que para el manual de usuario de la aplicación se establece que este no era deficiente debido a la falta de más detalles o ejemplos o a la carencia de algunos temas.
+% Para concluir, del caso de estudio realizado se establece que para la aplicación, los criterios de funcionalidad, usabilidad y utilizad fueron cumplidos. Mientras que para el manual de usuario de la aplicación se establece que este no era deficiente debido a la falta de más detalles o ejemplos o a la carencia de algunos temas.
 
 \section{Conclusión}
 Finalmente, como resultado de este proyecto se posee una aplicación escalable, la cual permite extender los algoritmos, problemas u operadores sin necesidad de conocer en detalle el funcionamiento total de la aplicación. Adicionalmente, la aplicación incorpora por defecto 2 problemas y dos algoritmos. Los cuales son el problema de diseño basado en el costo de las tuberías y el problema de operación basado en el régimen de bombeo junto con el Algoritmo Genético y el algoritmo NSGAII.
 
 Adicionalmente, se establece que los objetivos establecidos al comienzo del desarrollo son logrados exitosamente y que la metodología aplicada era la adecuada para generar la suficiente documentación con el fin de permitir a otros desarrolladores continuar con el desarrollo del proyecto.
 
-Finalmente se establece como resultado de la evaluación del software que la aplicación es valorada positivamente, mientras que su manual debe ser mejorado.
+Finalmente, para la evaluación realizada que la aplicación cumple con los criterios de funcionalidad, usabilidad y utilizad. Mientras que para el manual de usuario de la aplicación se establece que éste debe ser mejorado, detallando más algunos temas, junto con agregar ejemplos acerca de lo mencionado.
 
 \section{Trabajo Futuro}
 
