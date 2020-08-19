@@ -22,7 +22,7 @@ Buenas tardes profesores de la comisión e invitados. Mi nombre es Gabriel Sanhue
 \subsection{Contexto}
 Como bien se sabe la escasez de agua potable es sin duda una problemática a nivel mundial. Es por esto que optimizar los sistemas que permiten la distribución de agua es importante. Sin embargo, esto no es simple puesto que los sistemas de distribución de agua deben estar activos las 24 horas del día asegurando los niveles de servicio mínimos. Adicionalmente, la optimización de estos sistemas involucra la participación de múltiples criterios lo que dificulta la toma de decisiones respecto a éstos. 
 
-Dentro del área de las redes de agua potable nos encontramos con dos clases de problemas. Los problemas de diseño y los de operación.
+En el ámbito de los redes de agua se pueden clasificar los problemas en dos categorías. Los problemas de diseño y de operación.
 
 \subsection{Problema}
 Los problemas identificados con este proyecto son los siguientes:
@@ -40,7 +40,13 @@ El problema de diseño basado en el costo de tuberías abordado utilizando el Algo
 
 El problema problema de operación basado en el régimen de bombeo abordado a través del algoritmo Non-Dominated Sorting Genetic Algorithm II.
 
-La elección de estos problemas se debe a los intereses de los integrantes del equipo del proyecto ``Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms''.
+La elección de estos problemas se debe a los intereses de los integrantes del equipo del proyecto que ha solicitado este trabajo.
+\subsection{Usuarios}
+Se contemplan dos tipos de usuarios:
+\begin{itemize}
+    \item Usuarios que trabajan directamente con la aplicación gráfica.
+    \item Usuarios que utilizan la estructura para acoplar nuevos problemas desde el punto de vista computacional.
+\end{itemize}
 
 \subsection{Objetivo general}
 El objetivo general de este trabajo es el:
@@ -99,12 +105,12 @@ Para agregar un nuevo algoritmo, operador o problema se debe implementar la inte
 Estas dos funcionalidades permiten que el usuario que quiera agregar nuevos operadores o problemas no necesite modificar el código de la interfaz de usuario para que los nuevos elementos sean visualizados en la aplicación.
 
 \subsubsection{Problema de diseño de RDA basado en el costo de las tuberías}
-Ahora hablare un poco de los problemas y algoritmos implementados por defecto.
 
-El primero de estos problemas consiste en el problema de diseño abordado desde el enfoque monoobjetivo. Éste, busca optimizar el costo de inversión de las tuberías el cual se calcula como la sumatoria del costo por diámetro por el largo de la tubería. 
+El primero de estos problemas consiste en el problema de diseño abordado desde el enfoque monoobjetivo. Éste, busca seleccionar los diámetros de las tuberías adecuados para formar la red. Para ello se optimiza la función del costo de inversión de las tuberías el cual se calcula como la sumatoria del costo por diámetro por el largo de la tubería. 
 
 \subsubsection{Problema de operación de RDA basado en el régimen de bombeo}
-En cuanto al problema operación, es utilizando el enfoque multiobjetivo para optimizar el costos energético, así como el costo de mantención de las bombas.
+
+En cuanto al problema operación, se utiliza el enfoque multiobjetivo para determinar en que momento las bombas se encuentran encendidas y apagadas durante el día. Para ello se optimizan los costos energético, así como el costo de mantención de las bombas.
 
 El costo energético para cada bomba en un tiempo determinado se calcula como precio de la energía por el consumo energético por el estado de la bomba, tomando este último el valor 0 o 1 dependiendo si la bomba esta apagada o encendida respectivamente.
 
@@ -169,7 +175,7 @@ La realización del estudio de caso se llevo a cabo dividiendo éste en cuatro eta
 % Y finalmente durante la presentación de los resultados se dan a conocer las conclusiones del estudio.
 
 \section{Evaluación}
-A continuación se presentan los detalles de la evaluación realizada.
+A continuación se presentan los detalles de la evaluación realizada. (Diseño, recolección, ejecución y presentación de los resultados).
 
 \subsection{Diseño del caso}
 Como estudio de caso se establece la aplicación desarrollada durante este proyecto y se busca responder a la pregunta ``¿Cómo el sistema desarrollado trabaja en la practica?''.
