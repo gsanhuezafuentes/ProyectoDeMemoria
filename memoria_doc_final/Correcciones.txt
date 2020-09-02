@@ -7,7 +7,7 @@ Metodología iterativA e incremental
 metodología es niña :-p
 que elegante eso de reflexion :-)
 la definición de heuristica esta al reves. Es un metodo que pretende encontrar una buena solucion en una cantidad finita de pasos, pero no la optima
-Optimo -> Óptimo
+Óptimo -> Óptimo
 Escribe en presente (todo el documento). Se documentará -> Se documenta
 
 el trabajo relacionado se desarrolla en el capitulo de antecedentes

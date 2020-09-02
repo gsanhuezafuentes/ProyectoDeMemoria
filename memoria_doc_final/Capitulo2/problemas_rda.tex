@@ -1,5 +1,5 @@
 \section{Problemas de optimización en RDA}
-Basado en los requisitos se han seleccionado dos problemas; optimización del diseño de RDA basado en la selección del diámetro de tuberías (\textit{Pipe Optimizing}) y la optimización del régimen de bombeo (\textit{Pumping Schedule}). Y en esta sección se representan sus modelos matemáticos asi como la codificación implementada.
+Basado en los requisitos se han seleccionado dos problemas; optimización del diseño de RDA basado en la selección del diámetro de tuberías (\textit{Pipe Optimizing}) y la optimización del régimen de bombeo (\textit{Pumping Schedule}). Y en esta sección se representan sus modelos matemáticos así como la codificación implementada.
 
 \subsection{\textit{Pipe Optimizing}}
 \textit{Pipe Optimizing} es un problema de diseño cuyo objetivo es minimizar el costo de inversión en la construcción de las tuberías. Para ésto, se busca aquella combinación de diámetros que disminuyan el costo de la construcción de las tuberías a la vez que se cumplen las restricción de presión mínima impuesta sobre la red. La ecuación \ref{eq:costos_de_inversion} presentada en \cite{Pereyra2017} muestra la ecuación a optimizar.
@@ -173,7 +173,7 @@ Nivel de depósito:
     \item $TS_{i, 0}$: Nivel del reservorio $i$ en el tiempo $0$.
 \end{itemize}
 
-En la Figura~\ref{fig:solution_pump_schedule} muestra como se codifica la solución a este problema propuesta por~\cite{JHawanet-2019}. Como se puede observar la solución cuenta con 24 variables de decisión correspondiente a las 24 horas del día. Cada variable es un índice a la matriz de combinaciones posibles para cada bomba. Posteriormente, se genera una matriz binaria en donde cada fila es una bomba, cada columna es el periodo y el valor es el estado de la bomba en dicho periodo. Esta matriz binaria es usada para calcular el número de cambios de estado en las bombas de la ecuación \ref{eq:costos_de_mantenimiento}, asi como para obtener el estado de la bomba en el periodo $t$ de la ecuación \ref{eq:costos_energeticos} referente al termino $S(n, t)$.
+En la Figura~\ref{fig:solution_pump_schedule} muestra como se codifica la solución a este problema propuesta por~\cite{JHawanet-2019}. Como se puede observar la solución cuenta con 24 variables de decisión correspondiente a las 24 horas del día. Cada variable es un índice a la matriz de combinaciones posibles para cada bomba. Posteriormente, se genera una matriz binaria en donde cada fila es una bomba, cada columna es el periodo y el valor es el estado de la bomba en dicho periodo. Esta matriz binaria es usada para calcular el número de cambios de estado en las bombas de la ecuación \ref{eq:costos_de_mantenimiento}, así como para obtener el estado de la bomba en el periodo $t$ de la ecuación \ref{eq:costos_energeticos} referente al termino $S(n, t)$.
 
 \begin{figure}[H]
     \centering
