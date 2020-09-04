@@ -1,3 +1,0 @@
-¿Porque se usa fast nondominated sorting para obtener la frontera de pareto y no se usa el metodo convex hull?
-¿Como optimizar la ejecución de la evaluación del problema 2?
-¿Si tuvieras que rehacer este trabajo que harias, como lo harias y porque?
