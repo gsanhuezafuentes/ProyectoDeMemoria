@@ -84,6 +84,8 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
                 algorithm.prepareToRun(this.experiment);
             }
             int numberOfGenerations = 0;
+
+            // Run the algorithms
             while (algorithm.algorithmHasANextStep()) {
 
                 // run only a iteration of the current algorithm
@@ -98,6 +100,8 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
                 }
                 numberOfGenerations++;
             }
+
+            // Gets the final result of the repetition of the algorithm.
             if (!this.isCancelled()) {
                 List<? extends Solution<?>> solutions = algorithm.getResult();
                 // add an attribute to solution. It attribute is used in result window to show in which generation the solution was obtained.

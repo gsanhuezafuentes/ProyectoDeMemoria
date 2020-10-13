@@ -69,6 +69,7 @@ public class SingleObjectiveExperimentTask extends Task<List<SingleObjectiveExpe
                 break;
             }
             int numberOfGenerations = 0;
+            // Run the algorithms
             while (algorithm.algorithmHasANextStep()) {
 
                 // run only a iteration of the current algorithm
@@ -85,6 +86,7 @@ public class SingleObjectiveExperimentTask extends Task<List<SingleObjectiveExpe
                 }
                 numberOfGenerations++;
             }
+            // Gets the final result of the repetition of the algorithm.
             if (!this.isCancelled()) {
                 // add an attribute to solution. It attribute is used in result window to show in which generation the solution was obtained.
                 Solution<?> solution = algorithm.getResult().get(0);

@@ -129,6 +129,7 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
 
             this.paretoFront = nonDominatedSolutionArchive.getSolutionList();
 
+            // If has a reference directory save the solution in disk.
             if (hasReferenceDirectory) {
                 createOutputDirectory(outputDirectoryName);
                 taskLog.println("- Saving final pareto front in " + outputDirectoryName);

@@ -18,8 +18,8 @@ En el constructor público de la clase que herede de una de las subinterfaces de 
 
 Las clases que implementen cualquiera de las dos interfaces mencionadas anteriormente deben ser guardados en una estructura de datos, la cual es recorrida cuando se inicie la ejecución del programa y analizada usando la \textit{Java Reflection API}. Este análisis consistirá en escanear y validar el cumplimiento de la convención establecida para las clases que implementan está interfaz. Esta convención consiste en lo siguiente:
 \begin{itemize}
-    \item La clase debe contener un único constructor que use la anotación @NewProblem.
-    \item Si el constructor requiere parámetros éstos deben estar descritos usando la anotación @Parameters.
+    \item La clase debe contener un único constructor que use la anotación \textit{@NewProblem}.
+    \item Si el constructor requiere parámetros éstos deben estar descritos usando la anotación \textit{@Parameters}.
     \item El constructor debe declarar los parámetros en el siguiente orden, de acuerdo con su tipo.
     \begin{enumerate}
         \item \textit{Object}: Usado para inyectar los operadores. Estos parámetros pueden posteriormente ser casteados a su tipo correcto. La anotación correspondiente es \textit{@OperatorInput}.
@@ -63,7 +63,7 @@ En las Figura \ref{fig:constructor_registrable}, \ref{fig:build_registrable}, \r
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Seccion4/assets/BuildMethodPipeOptimizingRegister.png}
+    \includegraphics[width=\textwidth]{Seccion4/assets/getParametersMethodPipeOptimizingRegister.png}
     \caption{Implementación del método opcional getParameters de la clase \textit{PipeOptimizingRegister}.}
     \label{fig:getParameters_registrable}
 \end{figure}
