@@ -31,7 +31,7 @@
                      <RadioButton fx:id="networkLinkAtButton" mnemonicParsing="false" text="Network link at"
                                   toggleGroup="$toggleGroup"/>
                   </VBox>
-                  <ComboBox fx:id="timesComboBox" prefWidth="150.0"/>
+                  <ComboBox fx:id="timesComboBox" prefWidth="150.0" visible="${timeSeriesPane.visible}"/>
                </HBox>
             </VBox>
             <Separator orientation="VERTICAL" visible="${timeSeriesPane.visible}"
