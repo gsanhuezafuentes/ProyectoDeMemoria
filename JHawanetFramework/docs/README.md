@@ -16,3 +16,6 @@ $ asciidoctor index.adoc
 Lo que generará un archivo index.html que puede ser abierto con cualquier navegador.
 
 Si quiere aprender más de la sintaxis de asciidoctor [Haga click aquí](https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/) para una referencia rápida o [aquí](https://asciidoctor.org/docs/user-manual/) para el manual de la herramienta.
+
+
+** También se puede ver directamente desde github abriendo los archivos adoc. Pero éste no soporta algunas características como las formulas. Por eso, se recomienda descargarlo y abrirlo en un navegador el archivo index.html.
