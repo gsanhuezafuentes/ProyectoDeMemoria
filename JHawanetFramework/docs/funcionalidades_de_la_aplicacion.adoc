@@ -1,0 +1,140 @@
+== Funcionalidades de la aplicación
+
+=== Cargar una red
+
+Ve a menu:File[Open] , como se muentra en la imagen a continuación.
+
+image::images/funcionalidades/cargar_red/file.png[]
+
+Busca el directorio donde se encuentre el archivo de configuración de red (Archivo con extensión <file>.inp, *puede ser creado utilizando el programa EPANET versión en ingles* ).
+
+image::images/funcionalidades/cargar_red/seleccionar_red.png[]
+
+Una vez seleccionado el archivo la red ya debe poder visualizarse en la ventana de la aplicación. La siguiente imagen muestra la ventana de selección.
+
+image::images/funcionalidades/cargar_red/visualizar_red.png[]
+
+''' 
+
+=== Visualizar las características de los elementos de la red
+
+Hay dos formas para visualizar la características de los elementos de la red. 
+
+Estas son:
+
+. Hacer *doble click derecho*, en el gráfico, sobre el elemento de la red que quiere visualizar. En la siguiente imagen se muestra la interfaz que es abierta por esta función, la flecha indica donde se ha realizado ha pulsado.
++
+image::images/funcionalidades/visualizar_caracteristicas/doble_click_grafico.png[]
+
+. Hacer *doble click derecho* desde el visor de elementos. En la siguiente imagen se puede este visor y que se ha abierto la interfaz para ver los detalles de los elementos.
++
+image::images/funcionalidades/visualizar_caracteristicas/lista_de_elementos.png[]
+
+Al hacer *click derecho* sobre un elemento, ya sea desde el gráfico o desde el visor, el elemento seleccionado sera índicado con un círculo de color rojo, como lo muesta la siguiente imagen.
+
+image::images/funcionalidades/visualizar_caracteristicas/click_derecho.png[align=center]
+
+Si la ventana con la información del elemento de la red esta abierta, ésta sera actualizada al nuevo elemento seleccionado.
+
+''' 
+
+=== Realizar una simulación utilizando los valores por defecto del archivo de configuración de red
+
+Para realizar una simulación utilizando los valores que vienen en el archivo de red debe presionar sobre el boton de ejecución. En la siguiuente imagen este boton se puede visualizar bordeado por un cuadro rojo.
+
+image::images/funcionalidades/realizar_simulacion/ejecutar.png[]
+
+Una vez presionado el boton de ejecución se activara el boton de reporte mostrado a su lado. Al presionar sobre este boton se abrira la interfaz de reporte para ver los resultados de la simulación. En la siguiente imagen puede ver que el boton se ha activado y la interfaz utilizada para presentar los resultados cuando la red solo tiene un periodo de simulación.
+
+image::images/funcionalidades/realizar_simulacion/activacion_de_reporte.png[]
+
+Desde la interfaz puede indicar sobre que elemento quiere obtener el reporte. Éste puede ser generados para nodos los enlaces.
+
+image::images/funcionalidades/realizar_simulacion/ventana_resultados_un_periodo.png[]
+
+Una vez seleccionado lo que se quiere mostrar y pulsar el boton OK se muestran los datos como en la siguiente imagen.
+
+image::images/funcionalidades/realizar_simulacion/ventana_resultados_un_periodo_reporte.png[]
+
+En el caso de que la red realice una simulación por periodo de tiempo prolongado (simule más de un periodo) la interfaz visualizada permite indicar la hora del reporte a obtener o mostrar una serie de tiempo para un elemento específico de la red.
+
+Para mostrar la serie de tiempo de un elemento específico de la red debe seleccionar si este es un nodo o un enlace y posteriormente hacer click sobre el elemento a reportar. Como se puede ver en la siguiente imagen.
+
+image::images/funcionalidades/realizar_simulacion/ventana_resultados_multiples_periodos_reporte.png[]
+
+''' 
+
+=== Resolver un problema
+
+La aplicación cuenta con algunos problemas ya implementados siendo necesario solamente cargar la red y indicar el problema a abordar. Para esto debe buscar el problema que quiere resolver en el menu de la aplicación. Si el problema que quiere resolver no está implementado y tiene conocimientos en programación en el lenguaje Java puede implementarlo usted mismo como se muestra en <<Como agregar nuevos problemas>>. La siguiente imagen muestra los menús donde están los problemas.
+
+image::images/funcionalidades/resolver_problema/menu_problemas.png[]
+
+Como se puede observar de la imagen anterior, los problemas son divididos en dos menús, dependiendo del enfoque con el que fueron resueltos. Al momento de seleccionar el problema que se quiere abordar se abre una ventana de configuración del experimento. Desde esta ventana se puede ver el nombre del algoritmo utilizado para resolver el problema, el problema abordado, y una descripción de éste.
+
+image::images/funcionalidades/resolver_problema/ventana_de_configuracion_descripcion.png[]
+
+En la segunda pestaña "_Configuration_" se puede configurar los parámetros utilizados para configurar el experimento, algoritmos, operadores y problemas. Ésto se muestra en la siguiente imagen.
+
+image::images/funcionalidades/resolver_problema/ventana_de_configuracion.png[]
+
+Al configurar los parametros y pulsar el boton "_Run_" se ejecutara el experimento, si no hubo ningun error durante su creación. Adicionalmente, se abre una ventana en que se muestra el estado de la ejecución del experimento.
+
+Para el caso monoobjetivo esta ventana es la que se muestra a continuación.
+
+image::images/funcionalidades/resolver_problema/ventana_de_estado_ejecucion_monoobjetivo.png[]
+
+Desde esta ventana se puede ver la información del algoritmo que esta siendo ejecutado, el con el que se esta trabajando y el número de repeticiones a ejecutar del algoritmo, asi como detalles de la ejecución de éste último.
+
+Para el caso multiobjetivo la ventana es la siguiente:
+
+image::images/funcionalidades/resolver_problema/ventana_de_estado_ejecucion_multiobjetivo.png[]
+
+En esta ventana se muestra lo mismo que lo anteriormente mencionadado para el caso monoobjetivo. Pero adicionalmente, se muestra un cuadro de texto extra en la que se registra los accesos que se hacen al disco. Esto es debido a que en los experimentos para los algoritmos multiobjetivos, si se establece el parametro _ExperimentBaseDirectory_, los resultados de la ejecución son guardados en el equipo.
+
+==== Ver gráfico de las soluciones
+Desde la ventana de estado de la ejecución, para aquellos experimentos formados por algoritmo de 1 o 2 objetivos se puede visualizar el gráfico de las soluciones, si es que está activado en el menú de la aplicación.
+
+Para los experimentos de algoritmos monoobjetivo, el gráfico es realizado utilizando en el eje X el numero de las iteraciones y en el eje Y el valor objetivo a optimizar. A cada una de las repeticiones del algoritmo configurada en el experimento se le asigna un color, de entre una paleta de colores pre-establecida (paleta de 20 colores, si hay más de 20 repeticiones del un algoritmo se empezaran a repetir los colores). Cada uno de los puntos corresponde al resultado de una iteración del algoritmo en ejecución. En la siguiente imagen se puede apreciar el gráfico para un problema monoobjetivo.
+
+image::images/funcionalidades/resolver_problema/grafico_de_resultados_monoobjetivo.png[]
+
+En cuanto a los experimentos con algoritmos multiobjetivos, como se menciono anteriormente, con dos objetivos. El eje X corresponde al valor del primer objetivo, mientras que en el eje Y se tiene el valor del segundo objetivo. En este caso, cada color corresponde a las soluciones de la Frontera de Pareto de cada una de las repeticiones del algoritmo. A continuación se muestra el gráfico para un experimento con un algoritmo multiobjetivo.
+
+image::images/funcionalidades/resolver_problema/grafico_de_resultados_multiobjetivo.png[]
+
+==== Exportar como imagen el gráfico de las soluciones
+
+Desde la pestaña del gráfico se puede guardar este en formato png. El archivo guardado corresponde a una _snapshot_ del gráfico por lo que el tamaño de la pantalla influye en el tamaño del archivo guardado. La siguiente imagen indica con una flecha roja el boton de guardado.
+
+image::images/funcionalidades/resolver_problema/grafico_de_resultados_boton.png[]
+
+==== Visualizar los resultados
+
+Una vez terminada la ejecución del experimento se abre en la interfaz principal una pestaña con los resultados de éste. En el caso de los experimentos utilizando algoritmos monoobjetivos, la pestaña contiene la misma cantidad de resultados que el número de repeticiones del algoritmo configurado. Cada una de estas soluciones corresponde a la mejor solución de cada una de las repeticiones y de entre ellas la mejor es marcada con el color verde como se muestra a continuación.
+
+image::images/funcionalidades/resolver_problema/pestania_resultados_monoobjetivo.png[]
+
+Por otro lado, para los experimentos multiobjetivos, al momento de finalizar la ejecución del experimento, de las soluciones de cada una de las repeticiones del algoritmo utilizado (Cada solución tiene su propia frontera de pareto en los algoritmos multiobjetivos), se obtiene la *Frontera de Pareto* final resultante (De las fronteras de los diversos algoritmos multiobjetivos ejecutados se combinan las soluciones en un solo conjunto y se obtiene la frontera de éste).
+
+image::images/funcionalidades/resolver_problema/pestania_resultados_multiobjetivo.png[]
+
+==== Guardar los resultados
+
+Una vez terminada la ejecución de los experimentos, ya sea monoobjetivo o multiobjetivo, desde la pestaña abierta con las soluciones de pueden guardar los resultados de la optimización en diversos formatos. Estos son, como un archivo de configuración de red (archivo extensión .inp), un excel o un par de archivos de texto.
+
+Para guardar los resultados como un *archivo de configuración de red* (archivo extensión .inp), se debe seleccionar una solución y posteriormente pulsar el boton de guardado como se muestra en la imagen a continuación.
+
+image::images/funcionalidades/resolver_problema/guardar_inp.png[]
+
+Como se menciona en <<Como agregar nuevos problemas>> el método _applySolutionToNetwork_ debe estar implementado en la clase del problema. En el caso de que el método no este implementado la aplicación mostrara el siguiente mensaje de error.
+
+image::images/funcionalidades/resolver_problema/guardar_inp_fallo.png[]
+
+Para guardar los resultados como una *tabla de excel* se debe pulsar el boton asociado con la función de guardado, dicho boton se puede apreciar en la siguiente imagen. Al ser presionado ese boton se guardará toda la tabla.
+
+image::images/funcionalidades/resolver_problema/guardar_excel.png[]
+
+Por ultimo se pueden *exportar las soluciones a un archivo de texto*. Dicho archivo tendran la extensión tsv. Al usar esta función se generan dos archivos, uno tiene el prefijo FUN_ y el otro el prefijo VAR_. Por ejemplo, FUN_resultado.tsv y VAR_resultado.tsv. El archivo FUN almacena el valor de los objetivos de los resultados, mientras que el archivo VAR contiene las variables utilizadas para alcanzar dicho objetivo. La siguiente imagen indica el boton utilizado para guardar como archivo de texto.
+
+image::images/funcionalidades/resolver_problema/guardar_tsv.png[]

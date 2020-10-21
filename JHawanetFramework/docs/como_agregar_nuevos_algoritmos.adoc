@@ -1,0 +1,50 @@
+== Como agregar nuevos algoritmos
+Para agregar un nuevo algoritmo a la aplicación se debe implementar la interfaz _Algorithm_. En la siguiente figura se puede ver la interfaz correspondiente.
+
+image::images/nuevos_algoritmos/d_class_metaheuristics.svg[]
+
+Esta interfaz cuenta con los siguientes métodos:
+
+* _RunSingleStep_: Este método debe ejecutar un único paso del algoritmo (Una sola generación/iteración). 
+* _isStoppingConditionReached_: Este método indica si la condición de término del algoritmo ha sido alcanzada. 
+* _getStatusOfExecution_: Este método puede devolver un _String_ con información del algoritmo como se muestra en la dos siguientes imagenes. La primera correspondiente a un algoritmo monoobjetivo y la segunda a un algoritmo multiobjetivo.
+
+image::images/nuevos_algoritmos/SingleObjectiveRunningWindow.png[align=center] 
+
+image::images/nuevos_algoritmos/MultiObjectiveRunningWindow.png[align=center]
+
+* _getResult_: Devuelve el resultado del algoritmo.
+* _getName_: Devuelve el nombre del algoritmo.
+  
+Para llevar a cabo la simulación, la aplicación llama al método _RunSingleStep_ hasta que _isStoppingConditionReached_ sea verdadero. Adicionalmente, dentro del mismo método _RunSingleStep_ también se debería asegurar que una vez sea alcanzada la condición de termino no se realicen nuevas operaciones. Un ejemplo de _RunSingleStep_ utilizado en el Algoritmo NSGAII y GA se puede ver a continuación:
+ 
+[source,java]
+----
+@Override
+public void runSingleStep() throws Exception, EpanetException {
+    List<S> offspringPopulation;
+    List<S> selectionPopulation;
+
+    // Inicializa el algoritmo en la primera iteración.
+    if (step == 0) {
+        population = createInitialPopulation();
+        population = evaluatePopulation(population);
+        initProgress();
+    }
+
+    // Realiza la selección y reproducción.
+    if (!isStoppingConditionReached()) {
+        selectionPopulation = selection(population);
+        offspringPopulation = reproduction(selectionPopulation);
+        offspringPopulation = evaluatePopulation(offspringPopulation);
+        population = replacement(population, offspringPopulation);
+        updateProgress();
+    }
+    
+    this.step++;
+}
+----
+
+Se utiliza el metodo _RunSingleStep_ puesto que permite obtener resultados intermedio de la operación despues de cada iteración.
+
+Una vez agregado un nuevo algoritmo, si este lo quiere utilizar con un problema ya implementado debe crear el <<Como agregar nuevos experimentos, experimento>> y utilizar las clases de los problemas implementados. Puede utilizar las otras clases "_Registrable_" para guiarse.

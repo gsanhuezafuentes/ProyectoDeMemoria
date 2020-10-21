@@ -1,0 +1,65 @@
+== Como agregar nuevos operadores
+
+Para crear un nuevo operador se debe implementar la interfaz _Operator_ o alguna de sus subinterfaces o subclases. La interfaz se muestra a continuación.
+
+image::images/nuevos_algoritmos/d_class_metaheuristics.svg[]
+
+Como se puede ver la interfaz _Operador_ cuenta con un único método el cual es:
+
+* _execute_: Método que realiza una operación sobre un operando y devuelve un objeto resultante de dicha operación. Generalmente, este método realiza una acción sobre una solución o una lista de soluciones y retorna la solución resultante de la operación realizada.
+
+Para configurar los parámetros desde la ventana de configuración, debe haber un constructor público en el operador que posea la anotación _@DefaultConstructor_.
+
+=== _@DefaultConstructor_
+
+La anotación _@DefaultConstructor_ indica el constructor que debe ser usado al momento de crear una instancia del operador utilizando la ventana de configuración. Esta anotación recibe un arreglo de [_@NumberInput_](Anotaciones%20permitidas.md). El arreglo debe tener la misma cantidad de argumentos que los parámetros del constructor. A continuación se muestran el codigo de dos constructores de diferentes clases y su representación gráfica:
+
+[source,java]
+---
+/*
+ * Constructor de un solo parámetro. Se puede omitir las llaves del arreglo {}.
+ */
+@DefaultConstructor(@NumberInput(displayName = "constant", defaultValue = 1.5))
+public UniformSelection(double constant) {
+	this(constant, new DominanceComparator<S>());
+}
+---
+
+Que genera la siguiente interfaz:
+
+image::images/nuevos_operadores/InterfazConfiguracionUniformSelection.png[]
+
+[source,java]
+----
+/*
+ * Constructor  multi-parametros. Deben ir entre llaves {}.
+ */
+@DefaultConstructor({
+    @NumberInput(displayName = "MutationProbability", defaultValue = 0.01),
+    @NumberInput(displayName = "DistributionIndex", defaultValue = 20)
+    })
+public IntegerPolynomialMutation(double mutationProbability, double distributionIndex) {
+    this(mutationProbability, distributionIndex, () -> JavaRandom.getInstance().nextDouble());
+}
+----
+
+Que genera la siguiente interfaz:
+
+image::images/nuevos_operadores/InterfazConfiguracionIntegerPolynomialMutation.png[]
+
+Esta anotación solo puede ser usada en un único constructor por clase. Usar esta anotación en más de un constructor lanzara una excepción en tiempo de ejecución. Adicionalmente, **el constructor que use esta anotación solo puede tener parámetros de tipo _int_ o _double_**.
+
+La anotación puede tener un arreglo vacío, lo cual indica que el constructor no recibirá parámetros.
+
+[source,java]
+----
+/*
+ * Constructor sin parametros
+ */
+@DefaultConstructor
+public CustomMutation() {
+    //code
+}
+----  
+
+Si ha creado un nuevo operador y quiere agregarlo para resolver los problemas ya implementados, debe modificar las clases "_Registrable_" utilizadas para generar el experimento. Asegure que la signatura de su operador coincida con la de los párametros de los operadores esperados por el algoritmo. Si su operador no tiene una signatura que coincide con la esperada con los algoritmos, puede realizar una copia del algoritmo y modificarlo para funcionar con su operador y posteriormente generar una nueva clase "_Registrable_". Para mas información de como crear un algoritmo dirigete a <<Como agregar nuevos algoritmos>>, mientras que para crear nuevos experimentos ve a <<Como agregar nuevos experimentos>>.

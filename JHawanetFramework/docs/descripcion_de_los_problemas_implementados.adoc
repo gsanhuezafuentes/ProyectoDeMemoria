@@ -1,0 +1,249 @@
+== Problemas de optimización en RDA
+
+La aplicación incorpora dos problemas. Estos son la optimización del diseño de RDA basado en la selección del diámetro de tuberías (_Pipe Optimizing_) y la optimización del régimen de bombeo (_Pumping Schedule_).
+
+=== _Pipe Optimizing_
+
+_Pipe Optimizing_ es un problema de diseño cuyo objetivo es minimizar el costo de inversión en la construcción de las tuberías. Para ésto, se busca aquella combinación de diámetros que disminuyan el costo de la construcción de las tuberías a la vez que se cumplen las restricción de presión mínima impuesta sobre la red. La siguiente ecuación es presentada en <<Pereyra2017>> y muestra la función a optimizar.
+
+[stem]
+++++
+\text{Costo de inversión} = \sum_{i=1}^{N} (C_i \times D_i \times L_i)
+++++
+
+En la ecuación anteriormente presentada el termino stem:[C_i] se refiere al costo unitario de la tubería stem:[i], el término stem:[D_i] corresponde al diámetro de la tubería y finalmente stem:[L_i] hace referencia su longitud. Como se mencionó anteriormente, el problema debe satisfacer la siguiente restricción:
+
+[stem]
+++++
+H_i \geq H_{min} 
+++++
+
+donde stem:[H_i] corresponde a la presión sobre la tubería stem:[i] y stem:[H_{min}] a la presión mínima de la red.
+
+La solución retornada por el algoritmo utilizado, en este caso GA, se puede ver en la siguiente figura. En dicha solución los valores que toman la variable de decisión corresponden al índice a una tabla donde se encuentra el diámetro y el costo de la tubería. El largo de la tubería esta configurado en el archivo de configuración de red (El archivo con extensión inp). 
+
+image::images/problemas_implementados/pipe_optimizing/representacion_solucion_monoobjetivo.svg[]
+
+==== Ejecución
+
+Para ejecutar este experimento sobre una red vaya a menu:Singleobjective Optimization[Pipe Optimizing]. Como se puede apreciar, este experimento solo esta disponible con el algoritmo NSGAII. Al momento de escoger el algoritmo, se abrira la ventana de configuración, en la pentaña de configuración se tienen las opciones que se muestran a continuación.
+
+image::images\problemas_implementados\pipe_optimizing\pipe_optimizing_setup.png[]
+
+_Independent Run_:: Establece el número de ejecuciones independientes. Ej, si el valor es 5, significa que se ejecutará 5 veces el Algoritmo Genético. Esto, dara como resultado 5 soluciones.
+_Min pressure_:: Establece la presión mínima de la red. Se utiliza para penalizar las soluciones generadas.
+_Population Size_:: Establece el tamaño de la población.
+_Finish Condition_:: Define la condición de término del algoritmo a utilizar.
+    _Max number of evaluation_::: Establece que se detendrá la ejecución del algoritmo despues de haber realizado el número establecido de evaluaciones.
+    _Number of iteration without improvement_::: Establece que se detendrá el algoritmo despues de que se realizo un cierto número de iteraciones en que no hubieron mejora en los resultados.
+_Gama_:: Es un archivo con configuraciones extras de la red. Este archivo contiene el id de los nodos, el diametro de las tuberías, la rugosidad y el coste de éstas. A continuación se presenta un ejemplo del formato. *Adicionalmente, este archivo establece el número de alternativas posibles para la tuberías de la red.
++
+.<nombre_de_archivo>.Gama
+[source]
+----
+;ID	Dint	Rug	Coste		
+
+DN12	304.8	130	45.72614132
+DN16	406.4	130	70.4
+DN20	508.0	130	98.38699101
+DN24	609.6	130	129.3330584
+DN30	0762	130	180.748444
+DN40	1016	130	278.2804341
+----
+_Selection Operator_:: Establece el operador de selección a utilizar.
+_Crossover Operator_:: Establece el operador de cruzamiento a utilizar.
+_Mutation Operator_:: Establece el operador de mutación a utilizar.
+
+=== _Pumping Schedule_
+
+_Pumping Schedule_ <<Makaremi2017>> <<JHawanet-2019>> es un problema de operación que tiene como objetivos optimizar tanto el costo energético, así como el costo de mantención de los equipos de bombeos. A continuación se expresan las ecuaciones utilizadas para calcular los objetivos y las restricciones.
+
+[[costos-energeticos]]
+Para el cálculo de los *costos energéticos* se ocupa la siguiente ecuación:
+
+[stem]
+++++
+C_E(S) = \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}(P_c(t) \times E_c(n, t) \times S(n, t)) 
+++++
+
+donde:
+
+*	stem:[C_E(S)]: Costos energético.
+*   stem:[NP]: El numero de bombas.
+* 	stem:[NT]: Número de periodos de simulación. El máximo son 24 horas.
+* 	stem:[P_c(t)]: La tarifa energética en el periodo stem:[t].
+* 	stem:[E_c(n, t)]: Consumo energético de la bomba stem:[n] en el tiempo stem:[t].
+* 	stem:[S(n,t)]: El estado de la bomba. 1 si esta encendida y 0 si esta apagada.
+
+Para calcular el consumo energético de la bomba stem:[n] se utiliza la siguiente formula:
+
+[stem]
+++++
+E_c(n, t) = \frac{10^{-3} \times \gamma \times Q(n, t) \times h(n, t)}{e(n, t)} 
+++++
+
+donde:
+
+*	stem:[\gamma]: Peso del agua.
+*   stem:[Q(n, t)]: Flujo a través de la bomba stem:[n] en el tiempo stem:[t]
+* 	stem:[h(n, t)]: Altura manométrica de la bomba.
+* 	stem:[e(n, t)]: Eficiencia de la bomba stem:[n] en el tiempo stem:[t].
+
+[[costos-de-mantenimiento]]
+Para cálcular el **costo de mantenimiento** se cálcula el número de encendido y apagados de todas las bombas en el periodo de tiempo analizado. Matemáticamente la función para calcular dicho costo corresponde a:
+
+[stem]
+++++
+C_N(S) = \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}r_t 
+++++
+
+donde:
+
+*   stem:[C_N(S)]: Costo de mantenimiento.
+*   stem:[r_t]: Valor indicando si en el periodo stem:[t] hubo un cambio de estado en la bomba desde apagado a encendido. Este valor es 1 cuando la bomba ha sido encendida.
+
+Las funciones de los <<costos-energeticos, costos energéticos>> y los <<costos-de-mantenimiento, costos de mantenimiento>> deben cumplir las siguientes restricciones:
+
+*Conservación de la masa*:
+[stem]
+++++
+\sum q_{in}-q_{out} = C_j 
+++++
+
+donde:
+
+*   stem:[q_{in}]: Flujo de entrada.
+*   stem:[q_{out}]: Flujo de salida.
+*   stem:[C_j]: Consumo del nodo stem:[j].
+
+*Conservación de la energía*:
+
+[stem]
+++++
+\sum h_f - \sum E_p = 0 
+++++
+
+donde:
+
+*   stem:[h_f]: Perdida de energía por fricción.
+*   stem:[E_p]: Energía aportada por la bomba.
+
+*Perdida de carga por fricción*:
+
+[stem]
+++++
+h_f = \frac{10.67 \times L_q^{1.85}}{CH^{1.85} \times D^{4.87}} 
+++++
+
+donde:
+
+*   stem:[L_q]: Largo de la tubería.
+*   stem:[CH]: Coeficiente de Hazen-Williams.
+*   stem:[D]: Diámetro de la tubería.
+  
+*Presión mínima*:
+
+[stem]
+++++
+H_i \geq H_{min}
+++++
+
+donde:
+
+*   stem:[H_i]: Presión en el nodo stem:[i].
+*   stem:[H_{min}]: Presión mínima.
+
+*Caudal*:
+
+[stem]
+++++
+Q_{i,t} \leq Q_i^{max}
+++++
+
+donde:
+
+*   stem:[Q_{i,t}]: Caudal del nodo stem:[i] en el tiempo stem:[t].
+*   stem:[Q_i^{max}]: Caudal máximo del nodo stem:[i].
+
+*Nivel de depósito*:
+
+[stem]
+++++
+TS_{i, NT} \geq TS_{i, 0}
+++++
+
+donde:
+
+*  stem:[TS_{i, NT}]: Nivel del reservorio stem:[i] en el periodo de tiempo stem:[NT].
+*  stem:[TS_{i, 0}]: Nivel del reservorio stem:[i] en el tiempo stem:[0].
+
+En la siguiente figura se muestra como se codifica la solución a este problema, ésta es propuesta en <<JHawanet-2019>>. Como se puede observar la solución cuenta con 24 variables de decisión correspondiente a las 24 horas del día. Cada variable es un índice a la matriz de combinaciones posibles para cada bomba. Posteriormente, se genera una matriz binaria en donde cada fila es una bomba, cada columna es el periodo y el valor es el estado de la bomba en dicho periodo. Esta matriz binaria es usada para calcular el número de cambios de estado en las bombas de la ecuaciónde los <<costos-de-mantenimiento, costos de mantenimiento>>, así como para obtener el estado de la bomba en el periodo stem:[t] en la ecuación de los <<costos-energeticos, costos energéticos>> referente al termino stem:[S(n, t)].
+
+image::images/problemas_implementados/pump_schedule/representacion_solucion_multiobjetivo.svg[]
+
+==== Ejecución
+Para la ejecución de este experimento sobre una red vaya a menu:Multiobjetive Optimization[Pumping Scheduling] y selecciona el algoritmo a utilizar. 
+
+IMPORTANT: Los algoritmos disponibles para este experimento contienen párametros comunes por lo que se explicará utilizando el algoritmo NSGAII.
+
+Al momento de escoger el algoritmo, se abrira la ventana de configuración, en la pentaña de configuración se tienen las opciones que se muestran a continuación.
+
+image::images\problemas_implementados\pump_schedule\pump_schedule_setup.png[]
+
+_Independent Run_:: Establece el número de ejecuciones independientes. Ej, si el valor es 5, significa que se ejecutará 5 veces el Algoritmo Genético. Esto, dara como resultado 5 soluciones.
+_Max number of evaluation_:: Establece que se detendrá la ejecución del algoritmo despues de haber realizado el número establecido de evaluaciones.
+_Population Size_:: Establece el tamaño de la población.
+_Base directory_:: Es el directorio de salida del experimento. *Este atributo es opcional*. Si este atributo es configurado, entonces a medida que se van ejecutando las repeticiones del algoritmo se irán guardando los resultados en la carpeta indicada.
+_Configuration file_:: Es un archivo JSON con algunas configuraciones adicionales. El archivo JSON tiene los siguientes atributos.
++
+.configuration_file.json
+[source.to_long, json]
+----
+{
+  "numPumps": 3,
+  "totalOptimizationTime": 86400,
+  "intervalOptimizationTime": 3600,
+  "energyCostPerTime": [
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194
+  ],
+  "maintenanceCost": 1,
+  "minNodePressure": 15,
+  "numConstraints": 218,
+  "maxFlowrateEachPump": [300, 300, 150],
+  "minTank": [0, 0],
+  "maxTank": [10, 5]
+}
+----
+_Selection Operator_:: Establece el operador de selección a utilizar.
+_Crossover Operator_:: Establece el operador de cruzamiento a utilizar.
+_Mutation Operator_:: Establece el operador de mutación a utilizar.
+
+[bibliography]
+=== Referencias
+
+- [[[Pereyra2017,1]]] Pereyra, G., Pandolfi, D., & Villagra, A. (2017). Diseño y optimización de redes de distribución de agua utilizando algoritmos genéticos. Informes Científicos Técnicos - UNPA, 9(1), 37–63. https://doi.org/10.22305/ict-unpa.v9i1.236
+- [[[Makaremi2017,2]]] Makaremi, Y., Haghighi, A., & Ghafouri, H. R. (2017). Optimization of Pump Scheduling Program in Water Supply Systems Using a Self-Adaptive NSGA-II; a Review of Theory to Real Application. Water Resources Management, 31(4), 1283–1304. https://doi.org/10.1007/s11269-017-1577-x
+- [[[JHawanet-2019,3]]] Gutiérrez-Bahamondes, J. H., Salgueiro, Y., Silva-Rubio, S. A., Alsina, M. A., Mora-Meliá, D., & Fuertes-Miquel, V. S. (2019). jHawanet: An open-source project for the implementation and assessment of multi-objective evolutionary algorithms on water distribution networks. Water (Switzerland), 11(10). https://doi.org/10.3390/w11102018

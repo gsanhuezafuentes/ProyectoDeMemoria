@@ -1,0 +1,217 @@
+== Como agregar nuevos experimentos
+
+Un experimento, en el contexto de este programa, es una clase que contiene una lista de algoritmos para resolver un problema específico. Los algoritmos que conforman el experimento deben ser de un mismo tipo, por ejemplo, "n" repeticiones del Algoritmo Genético. Actuando "n" como el número de ejecuciones independientes del algoritmo. A continuación se muestran las interfaces del módulo metaheurísticas incluyendo las clases utilizadas para los experimentos.
+
+image::images/nuevos_experimentos/d_class_metaheuristics_extendido.svg[]
+
+
+Para crear el experimento la aplicación cuenta con una clase llamada _ExperimentBuilder_. 
+
+Los parámetros _ExperimentBaseDirectory_ y _ReferenceFrontDirectory_ solo tienen uso en experimentos multiobjetivos. _ExperimentBaseDirectory_ indica donde guardar la frontera de Pareto de cada repetición del algoritmo multiobjetivo. En cambio, _ReferenceFrontDirectory_ indica donde guardar la frontera de Pareto final, que se obtiene al unir las fronteras de cada repetición y extraer solamente las soluciones no dominadas de dicho conjunto. 
+
+=== Interfaz Registrable
+
+Con el fin de agregar un nuevo experimento en la aplicación, se debe crear una clase que herede de _SingleObjectiveRegistrable_ o _MultiObjectiveRegistrable_, dependiendo de si el problema es monoobjetivo o multiobjetivo, respectivamente. La clases que heredan de _Registrable_ funcionan como _templates_ para crear nuevos experimentos. En la siguiente imagen, se presenta la jerarquía de clases de la interfaz _Registrable_.
+
+image::images/nuevos_experimentos/d_class_registrable.svg[]
+ 
+Ambas interfaces devuelven como resultado una instancia del experimento la cual es usada para realizar la simulación. Los métodos utilizados por la interfaz _Registrable_ son:
+
+* _build_: Construye un experimento.
+* _getParameters_: Este método devuelve un mapa, el cual es usado para agregar columnas extras a la ventana de resultados. La clave es usada como el nombre de la columna, mientras que el valor es usado como el valor de la columna. *Este método es opcional*.
+
+En el constructor público de la clase que herede de una de las subinterfaces de _Registrable_, se debe utilizar la anotación _@NewProblem_. Adicionalmente, si se quiere mostrar la interfaz de configuración, dicho constructor debe incluir la anotación _@Parameters_.
+
+Las clases que implementen cualquiera de las dos interfaces mencionadas anteriormente deben ser guardados en una estructura de datos, la cual es recorrida cuando se inicie la ejecución del programa y analizada usando la _Java Reflection API_. Este análisis consistirá en escanear y validar el cumplimiento de la convención establecida para las clases que implementan está interfaz. Esta convención consiste en lo siguiente:
+
+* La clase "Registrable" debe contener un único constructor que use la anotación _@NewProblem_.
+* Si el constructor requiere parámetros éstos deben estar descritos usando la anotación _@Parameters_.
+* El constructor debe declarar los parámetros en el siguiente orden, de acuerdo con su tipo.
+  
+    1. _Object_: Usado para inyectar los operadores. Estos parámetros pueden posteriormente ser casteados a su tipo correcto. La anotación correspondiente es _@OperatorInput_.
+    2. _File_: Usados cuando el problema requiere información adicional que se encuentra en un archivo diferente. La anotación correspondiente es _@FileInput_.
+    3. _int_, _Integer_, _double_ o _Double_: Usado generalmente para configurar valores en el algoritmo o si el problema requiere otros valores que no fueron solicitados al crear los operadores. Las anotaciones correspondientes son _@NumberInput_ y _@NumberToggleInput_.
+    4. El constructor debe solicitar la misma cantidad de parámetros que las descritas en la anotación _@Parameters_.
+
+
+Si estas convenciones no se cumplen, entonces un error en tiempo de compilación será emitido. 
+
+El orden en el que son inyectados los parámetros consiste en el siguiente:
+
+1. Parámetros descritos por _@OperatorInput_.
+2. Parámetros descritos por _@FileInput_.
+3. Parámetros descritos por _@NumberInput_.
+4. Parámetros descritos por _@NumberToggleInput_.
+
+Una vez que se haya configurado el problema a través de la interfaz, se creará la instancia de la clase que hereda de _Registrable_ y se llamará a su método _build_, para crear el experimento y comenzar su ejecución.
+
+La estructura de datos para registrar las clases que heredan de _SingleObjectiveRegistrable_ y _MonoObjectiveRegistrable_ se encontrará en la clase _RegistrableConfiguration_ del paquete _application_ que consiste en dos listas con los experimentos existentes en la aplicación como se muestra a continuación.
+
+[source,java]
+----
+package application;
+
+public final class RegistrableConfiguration {
+	public static final List<Class<? extends SingleObjectiveRegistrable>> SINGLEOBJECTIVES_PROBLEMS = new ArrayList<>();
+	public static final List<Class<? extends MultiObjectiveRegistrable>> MULTIOBJECTIVES_PROBLEMS = new ArrayList<>();
+
+	//Agrega a la interfaz en el menu de optimización monoobjetivo
+	static {
+		SINGLEOBJECTIVES_PROBLEMS.add(PipeOptimizingRegister.class);
+	}
+	
+	//Agrega a la interfaz en el menu de optimización multiobjetivo
+	static {
+        // Cada uno de las siguientes sentencias agregan un registrable que resuelve el mismo problema pero utilizando diferentes algoritmos.
+		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingNSGAIIRegister.class);
+		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingSMPSORegister.class);
+		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingSPA2Register.class);
+	}
+ 
+}
+----
+
+A continuación se muestra un ejemplo del constructor utilizado para el problema de los costos de las tuberías (_PipeOptimizingRegistrable_).
+
+[source,java]
+----
+@NewProblem(displayName = "Pipe optimizing", algorithmName = "Genetic Algorithm", description = "The objective of this " +
+    "problem is to optimize the cost of construction of the network by " +
+    "varying the diameter of the pipe in order to ensure a minimum level of pressure.")
+@Parameters(operators = {
+    @OperatorInput(displayName = "Selection Operator", value = {
+            @OperatorOption(displayName = "Uniform Selection", value = UniformSelection.class)
+    }),
+    @OperatorInput(displayName = "Crossover Operator", value = {
+            @OperatorOption(displayName = "Integer Single Point Crossover", value = IntegerSinglePointCrossover.class),
+            @OperatorOption(displayName = "Integer SBX Crossover", value = IntegerSBXCrossover.class)
+    }), //
+    @OperatorInput(displayName = "Mutation Operator", value = {
+            @OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class),
+            @OperatorOption(displayName = "Integer Polynomial Mutation", value = IntegerPolynomialMutation.class),
+            @OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class)
+    })}, //
+    files = {@FileInput(displayName = "Gama *")}, //
+    numbers = {@NumberInput(displayName = "Independent run", defaultValue = 5),
+            @NumberInput(displayName = "Min pressure", defaultValue = 30),
+            @NumberInput(displayName = "Population Size", defaultValue = 100)}, //
+    numbersToggle = {
+            @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation", defaultValue = 25000),
+            @NumberToggleInput(groupID = "Finish Condition", displayName = "Number of iteration without improvement", defaultValue = 100)
+    }
+)
+public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama, int independentRun,
+                                int minPressure, int populationSize, int maxEvaluations, int numberWithoutImprovement) throws Exception {
+
+    this.selection = (SelectionOperator<List<IntegerSolution>, List<IntegerSolution>>) selectionOperator; // unchecked cast
+    this.crossover = (CrossoverOperator<IntegerSolution>) crossoverOperator; // unchecked cast
+    this.mutation = (MutationOperator<IntegerSolution>) mutationOperator; // unchecked cast
+    this.independentRun = independentRun;
+    this.minPressure = minPressure;
+    this.populationSize = populationSize;
+    this.numberWithoutImprovement = numberWithoutImprovement;
+    this.maxEvaluations = maxEvaluations;
+    this.gama = gama;
+}
+----
+
+En cuando al método build:
+
+[source,java]
+----
+@Override
+public Experiment<IntegerSolution> build(String inpPath) throws Exception {
+    if (inpPath == null || inpPath.isEmpty()) {
+        throw new ApplicationException("There isn't a network opened");
+    }
+
+    // Inicializa el simulador
+    EpanetAPI epanet = new EpanetAPI();
+    epanet.ENopen(inpPath, "ejecucion.rpt", "");
+
+    if (this.gama == null) {
+        throw new ApplicationException("There isn't gama file");
+    }
+
+
+    // Crea el problema asociado al experimento.
+    this.problem = new PipeOptimizing(epanet, this.gama.getAbsolutePath(), this.minPressure);
+
+    ExperimentProblem<IntegerSolution> experimentProblem = new ExperimentProblem<>(this.problem);
+
+    // Crea la lista con los algoritmos del experimento. Cada ExperimentAlgoritm en la lista tendra la referencia al problema, un numero de ejecución entre 0 e independentRun, así como su propia instancia del algoritmo creada utilizando el callback.
+    List<ExperimentAlgorithm<IntegerSolution>> experimentAlgorithms = ExperimentUtils.configureAlgorithmList(
+        experimentProblem,
+        this.independentRun,
+        () -> { // Callback. Es un template para crear los algoritmos.
+            GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<>(this.problem, populationSize, selection, crossover, mutation, new SequentialSolutionEvaluator<>());
+            if (this.numberWithoutImprovement != Integer.MIN_VALUE) {
+                algorithm.setMaxNumberOfIterationWithoutImprovement(this.numberWithoutImprovement);
+            } else {
+                algorithm.setMaxEvaluations(this.maxEvaluations);
+            }
+            return algorithm;
+        }
+    );
+
+    return new ExperimentBuilder<IntegerSolution>("PipeOptimizing")
+            .setIndependentRuns(this.independentRun)
+            .setAlgorithmList(experimentAlgorithms)
+            .setProblem(experimentProblem)
+            .build();
+}
+----
+
+Finalmente el método _getParameters_:
+
+[source,java]
+----
+@Override
+public Map<String, String> getParameters() {
+    Map<String, String> map = new LinkedHashMap<>();
+    map.put("Min Pressure", "" + this.minPressure);
+    map.put("Population Size", "" + this.populationSize);
+
+    // Ve si el parámetro numberWithoutImprovement fue configurado o no
+    if (this.numberWithoutImprovement != Integer.MIN_VALUE) {
+        map.put("Number without improvement", "" + this.numberWithoutImprovement);
+    } else {
+        map.put("Number of max evaluations", "" + this.maxEvaluations);
+    }
+
+    // Selección
+    if (this.selection instanceof UniformSelection) {
+        map.put("Selection", "UniformSelection");
+        map.put("Uniform Selection Constant", "" + ((UniformSelection<IntegerSolution>) this.selection).getConstant());
+    }
+
+    // Cruzamiento
+    if (this.crossover instanceof IntegerSBXCrossover) {
+        map.put("Crossover", "IntegerSBXCrossover");
+        map.put("Crossover Probability", "" + ((IntegerSBXCrossover) this.crossover).getCrossoverProbability());
+        map.put("Crossover Distribution Index", "" + ((IntegerSBXCrossover) this.crossover).getDistributionIndex());
+    } else if (this.crossover instanceof IntegerSinglePointCrossover) {
+        map.put("Crossover", "IntegerSinglePointCrossover");
+        map.put("Crossover Probability", "" + ((IntegerSinglePointCrossover) this.crossover).getCrossoverProbability());
+    }
+
+    // Mutación
+    if (this.mutation instanceof IntegerPolynomialMutation) {
+        map.put("Mutation", "IntegerPolynomialMutation");
+        map.put("Mutation Probability", "" + ((IntegerPolynomialMutation) this.mutation).getMutationProbability());
+        map.put("Mutation Distribution Index", "" + ((IntegerPolynomialMutation) this.mutation).getDistributionIndex());
+
+    } else if (this.mutation instanceof IntegerSimpleRandomMutation) {
+        map.put("Mutation", "IntegerSimpleRandomMutation");
+        map.put("Mutation Probability", "" + ((IntegerSimpleRandomMutation) this.mutation).getMutationProbability());
+
+    } else if (this.mutation instanceof IntegerRangeRandomMutation) {
+        map.put("Mutation", "IntegerRangeRandomMutation");
+        map.put("Mutation Probability", "" + ((IntegerRangeRandomMutation) this.mutation).getMutationProbability());
+        map.put("Mutation Range", "" + ((IntegerRangeRandomMutation) this.mutation).getRange());
+    }
+    return map;
+}
+----
+
+En <<Anotaciones de la aplicación, Anotaciones>> se pueden ver la definición de cada una de las anotaciones permitidas por la aplicación.

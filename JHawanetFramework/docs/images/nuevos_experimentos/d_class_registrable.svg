@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 567.6 317" style="enable-background:new 0 0 567.6 317;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.2;fill:#C0C0C0;enable-background:new    ;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{font-family:'Arial-BoldMT';}
+	.st4{font-size:13px;}
+	.st5{font-family:'ArialMT';}
+	.st6{fill:none;stroke:#000000;stroke-miterlimit:10;stroke-dasharray:3;}
+	.st7{font-family:'Arial-BoldItalicMT';}
+</style>
+<g transform="translate(-694,-158) scale(1,1)">
+	<rect x="850" y="189.5" class="st0" width="275" height="72"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<rect x="1088.2" y="171.5" class="st0" width="45.8" height="22"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<rect x="843" y="182.5" class="st1" width="275" height="72"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st2" d="M843,182.5h275v72H843V182.5z"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st2" d="M843,207.5h275"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st2" d="M843,217.5h275"/>
+</g>
+<text transform="matrix(1 0 0 1 253.6431 44)" class="st3 st4">Registrable</text>
+<text transform="matrix(1 0 0 1 154 77)" class="st5 st4">+build(pathToINP: String): Result</text>
+<text transform="matrix(1 0 0 1 154 92)" class="st5 st4">+getParameters(): Map&lt;String; String&gt;</text>
+<g transform="translate(-694,-158) scale(1,1)">
+	<rect x="1081.2" y="164.5" class="st1" width="45.8" height="22"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st6" d="M1081.2,164.5h45.8v22h-45.8V164.5z"/>
+</g>
+<text transform="matrix(1 0 0 1 392.1934 24)" class="st5 st4">Result</text>
+<g transform="translate(-694,-158) scale(1,1)">
+	<rect x="714" y="411.5" class="st0" width="227.6" height="57"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<rect x="707" y="404.5" class="st1" width="227.6" height="57"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st2" d="M707,404.5h227.6v57H707V404.5z"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st2" d="M707,429.5h227.6"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st2" d="M707,439.5h227.6"/>
+</g>
+<text transform="matrix(1 0 0 1 48.7463 266)" class="st7 st4">SingleObjectiveRegistrable</text>
+<text transform="matrix(1 0 0 1 18 299)" class="st5 st4">+build(pathToINP: String): Experiment</text>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st2" d="M841,403.5l110-148"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st1" d="M945.6,276.8l5.4-21.3l-18.9,11.3"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st2" d="M945.6,276.8l5.4-21.3l-18.9,11.3L945.6,276.8"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<rect x="1034" y="411.5" class="st0" width="227.6" height="57"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<rect x="1027" y="404.5" class="st1" width="227.6" height="57"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st2" d="M1027,404.5h227.6v57H1027V404.5z"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st2" d="M1027,429.5h227.6"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st2" d="M1027,439.5h227.6"/>
+</g>
+<text transform="matrix(1 0 0 1 373.0913 266)" class="st7 st4">MultiObjectiveRegistrable</text>
+<text transform="matrix(1 0 0 1 338 299)" class="st5 st4">+build(pathToINP: String): Experiment</text>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st2" d="M1120,403.5l-103-148"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st1" d="M1035.5,267.4l-18.5-11.9l4.7,21.5"/>
+</g>
+<g transform="translate(-694,-158) scale(1,1)">
+	<path class="st2" d="M1035.5,267.4l-18.5-11.9l4.7,21.5L1035.5,267.4"/>
+</g>
+</svg>

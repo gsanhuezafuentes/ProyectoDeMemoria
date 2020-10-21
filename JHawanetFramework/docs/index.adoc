@@ -1,0 +1,27 @@
+= JHawanetFramework
+Gabriel Sanhueza
+:toc: left
+:prewrap!:
+:source-highlighter: prettify
+:stem: latexmath
+:sectnums:
+:experimental:
+:toc-title: Tabla de Contenidos
+:stylesheet: asciidoctor.css
+
+include::introduccion.adoc[]
+
+include::funcionalidades_de_la_aplicacion.adoc[]
+
+include::como_agregar_nuevos_algoritmos.adoc[]
+
+include::como_agregar_nuevos_problemas.adoc[]
+
+include::como_agregar_nuevos_operadores.adoc[]
+
+include::como_agregar_nuevos_experimentos.adoc[]
+
+include::anotaciones_de_la_aplicacion.adoc[]
+
+include::descripcion_de_los_problemas_implementados.adoc[]
+

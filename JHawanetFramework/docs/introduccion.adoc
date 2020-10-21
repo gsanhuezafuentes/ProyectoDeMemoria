@@ -1,0 +1,44 @@
+== Introducción
+=== Contexto
+
+Como bien se sabe la escasez de agua potable es sin duda una problemática a nivel mundial. Es por esto que optimizar los sistemas que permiten la distribución de agua es importante. Sin embargo, esto no es simple puesto que los sistemas de distribución de agua deben estar activos las 24 horas del día asegurando los niveles de servicio mínimos. Adicionalmente, la optimización de estos sistemas involucra la participación de múltiples criterios lo que dificulta la toma de decisiones respecto a éstos. 
+
+En el ámbito de los redes de agua se pueden clasificar los problemas en dos categorías. Los problemas de diseño y de operación.
+
+=== Tipos de usuarios
+
+Se contemplan dos tipos de usuarios:
+
+*   Usuarios que trabajan directamente con la aplicación gráfica.
+*   Usuarios que utilizan la estructura para acoplar nuevos problemas desde el punto de vista computacional.
+
+=== Objetivo
+
+Para llevar a cabo el desarrollo de esta aplicación se tiene como objetivo general:
+
+*Diseñar y desarrollar una aplicación extensible de escritorio para optimizar el diseño y operación de una red de distribución de agua potable.*
+
+En cuanto a los *objetivos específicos* se tienen los siguientes:
+
+*   Diseñar software orientado a la optimización de RDA basado en la arquitectura lógica del framework multiobjetivo Jmetal.
+*   Implementar un algoritmo metaheurístico de optimización monoobjetivo para aplicar al problema de diseño de RDA.
+*   Implementar un algoritmo metaheurístico de optimización multiobjetivo para aplicar al problema de Régimen de bombeo en RDA.
+*   Diseñar e implementar la interfaz gráfica del sistema de optimización de redes de agua potable desarrollado durante este proyecto.    
+
+=== Tecnologias utilizadas
+
+Las tecnologías utilizadas fueron Java, como lenguaje de programación, JavaFX, para implementar la interfaz y la librería link:https://www.epa.gov/water-research/epanet[EpanetToolkit] para realizar las simulaciones hidráulicas y evaluar las soluciones generadas por los algoritmos metaheurísticos.
+
+La elección de Java como lenguaje de programación se debe a que éste fue el solicitado por el cliente, puesto que permite la incorporación directa de algunas herramientas ya desarrolladas.
+
+Adicionalmente, este trabajo estuvo fuertemente influenciado por la librería link:https://github.com/jMetal/jMetal[JMetal], especificamente la versión 5.9.
+
+=== Requisitos de la aplicación
+
+* Windows 64 bits
+* JDK 1.8 64 bits
+* Maven
+
+=== Repositorio
+
+El código de la aplicación se encuentra alojado en github en el siguiente enlace: link:https://github.com/EinherjarSt/ProyectoDeMemoria[]

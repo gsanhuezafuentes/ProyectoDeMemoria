@@ -1,0 +1,4180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="author" content="Gabriel Sanhueza">
+<title>JHawanetFramework</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+
+
+/* Uncomment @import statement to use as custom stylesheet */
+
+
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+    display: block
+}
+
+audio,
+video {
+    display: inline-block
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0
+}
+
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+a {
+    background: none
+}
+
+a:focus {
+    outline: thin dotted
+}
+
+a:active,
+a:hover {
+    outline: 0
+}
+
+h1 {
+    font-size: 2em;
+    margin: .67em 0
+}
+
+abbr[title] {
+    border-bottom: 1px dotted
+}
+
+b,
+strong {
+    font-weight: bold
+}
+
+dfn {
+    font-style: italic
+}
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0
+}
+
+mark {
+    background: #ff0;
+    color: #000
+}
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace;
+    font-size: 1em
+}
+
+pre {
+    white-space: pre-wrap
+}
+
+q {
+    quotes: "\201C" "\201D" "\2018" "\2019"
+}
+
+small {
+    font-size: 80%
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline
+}
+
+sup {
+    top: -.5em
+}
+
+sub {
+    bottom: -.25em
+}
+
+img {
+    border: 0
+}
+
+svg:not(:root) {
+    overflow: hidden
+}
+
+figure {
+    margin: 0
+}
+
+fieldset {
+    border: 1px solid silver;
+    margin: 0 2px;
+    padding: .35em .625em .75em
+}
+
+legend {
+    border: 0;
+    padding: 0
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0
+}
+
+button,
+input {
+    line-height: normal
+}
+
+button,
+select {
+    text-transform: none
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer
+}
+
+button[disabled],
+html input[disabled] {
+    cursor: default
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+*,
+*::before,
+*::after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+html,
+body {
+    font-size: 100%
+}
+
+body {
+    background: #fff;
+    color: rgba(0, 0, 0, .8);
+    padding: 0;
+    margin: 0;
+    font-family: "Noto Serif", "DejaVu Serif", serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1;
+    position: relative;
+    cursor: auto;
+    tab-size: 4;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased
+}
+
+a:hover {
+    cursor: pointer
+}
+
+img,
+object,
+embed {
+    max-width: 100%;
+    height: auto
+}
+
+object,
+embed {
+    height: 100%
+}
+
+img {
+    -ms-interpolation-mode: bicubic
+}
+
+.left {
+    float: left!important
+}
+
+.right {
+    float: right!important
+}
+
+.text-left {
+    text-align: left!important
+}
+
+.text-right {
+    text-align: right!important
+}
+
+.text-center {
+    text-align: center!important
+}
+
+.text-justify {
+    text-align: justify!important
+}
+
+.hide {
+    display: none
+}
+
+img,
+object,
+svg {
+    display: inline-block;
+    vertical-align: middle
+}
+
+textarea {
+    height: auto;
+    min-height: 50px
+}
+
+select {
+    width: 100%
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto
+}
+
+.stretch {
+    width: 100%
+}
+
+.subheader,
+.admonitionblock td.content>.title,
+.audioblock>.title,
+.exampleblock>.title,
+.imageblock>.title,
+.listingblock>.title,
+.literalblock>.title,
+.stemblock>.title,
+.openblock>.title,
+.paragraph>.title,
+.quoteblock>.title,
+table.tableblock>.title,
+.verseblock>.title,
+.videoblock>.title,
+.dlist>.title,
+.olist>.title,
+.ulist>.title,
+.qlist>.title,
+.hdlist>.title {
+    line-height: 1.45;
+    color: #7a2518;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: .25em
+}
+
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+#toctitle,
+.sidebarblock>.content>.title,
+h4,
+h5,
+h6,
+pre,
+form,
+p,
+blockquote,
+th,
+td {
+    margin: 0;
+    padding: 0;
+    direction: ltr
+}
+
+a {
+    color: #2156a5;
+    text-decoration: underline;
+    line-height: inherit
+}
+
+a:hover,
+a:focus {
+    color: #1d4b8f
+}
+
+a img {
+    border: 0
+}
+
+p {
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 1.25em;
+    text-rendering: optimizeLegibility
+}
+
+p aside {
+    font-size: .875em;
+    line-height: 1.35;
+    font-style: italic
+}
+
+h1,
+h2,
+h3,
+#toctitle,
+.sidebarblock>.content>.title,
+h4,
+h5,
+h6 {
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: #ba3925;
+    text-rendering: optimizeLegibility;
+    margin-top: 1em;
+    margin-bottom: .5em;
+    line-height: 1.0125em
+}
+
+h1 small,
+h2 small,
+h3 small,
+#toctitle small,
+.sidebarblock>.content>.title small,
+h4 small,
+h5 small,
+h6 small {
+    font-size: 60%;
+    color: #e99b8f;
+    line-height: 0
+}
+
+h1 {
+    font-size: 2.125em
+}
+
+h2 {
+    font-size: 1.6875em
+}
+
+h3,
+#toctitle,
+.sidebarblock>.content>.title {
+    font-size: 1.375em
+}
+
+h4,
+h5 {
+    font-size: 1.125em
+}
+
+h6 {
+    font-size: 1em
+}
+
+hr {
+    border: solid #dddddf;
+    border-width: 1px 0 0;
+    clear: both;
+    margin: 1.25em 0 1.1875em;
+    height: 0
+}
+
+em,
+i {
+    font-style: italic;
+    line-height: inherit
+}
+
+strong,
+b {
+    font-weight: bold;
+    line-height: inherit
+}
+
+small {
+    font-size: 60%;
+    line-height: inherit
+}
+
+code {
+    font-family: "Droid Sans Mono", "DejaVu Sans Mono", monospace;
+    font-weight: 400;
+    color: rgba(0, 0, 0, .9)
+}
+
+ul,
+ol,
+dl {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 1.25em;
+    list-style-position: outside;
+    font-family: inherit
+}
+
+ul,
+ol {
+    margin-left: 1.5em
+}
+
+ul li ul,
+ul li ol {
+    margin-left: 1.25em;
+    margin-bottom: 0;
+    font-size: 1em
+}
+
+ul.square li ul,
+ul.circle li ul,
+ul.disc li ul {
+    list-style: inherit
+}
+
+ul.square {
+    list-style-type: square
+}
+
+ul.circle {
+    list-style-type: circle
+}
+
+ul.disc {
+    list-style-type: disc
+}
+
+ol li ul,
+ol li ol {
+    margin-left: 1.25em;
+    margin-bottom: 0
+}
+
+dl dt {
+    margin-bottom: .3125em;
+    font-weight: bold
+}
+
+dl dd {
+    margin-bottom: 1.25em
+}
+
+abbr,
+acronym {
+    text-transform: uppercase;
+    font-size: 90%;
+    color: rgba(0, 0, 0, .8);
+    border-bottom: 1px dotted #ddd;
+    cursor: help
+}
+
+abbr {
+    text-transform: none
+}
+
+blockquote {
+    margin: 0 0 1.25em;
+    padding: .5625em 1.25em 0 1.1875em;
+    border-left: 1px solid #ddd
+}
+
+blockquote cite {
+    display: block;
+    font-size: .9375em;
+    color: rgba(0, 0, 0, .6)
+}
+
+blockquote cite::before {
+    content: "\2014 \0020"
+}
+
+blockquote cite a,
+blockquote cite a:visited {
+    color: rgba(0, 0, 0, .6)
+}
+
+blockquote,
+blockquote p {
+    line-height: 1.6;
+    color: rgba(0, 0, 0, .85)
+}
+
+@media screen and (min-width:768px) {
+    h1,
+    h2,
+    h3,
+    #toctitle,
+    .sidebarblock>.content>.title,
+    h4,
+    h5,
+    h6 {
+        line-height: 1.2
+    }
+    h1 {
+        font-size: 2.75em
+    }
+    h2 {
+        font-size: 2.3125em
+    }
+    h3,
+    #toctitle,
+    .sidebarblock>.content>.title {
+        font-size: 1.6875em
+    }
+    h4 {
+        font-size: 1.4375em
+    }
+}
+
+table {
+    background: #fff;
+    margin-bottom: 1.25em;
+    border: solid 1px #dedede
+}
+
+table thead,
+table tfoot {
+    background: #f7f8f7
+}
+
+table thead tr th,
+table thead tr td,
+table tfoot tr th,
+table tfoot tr td {
+    padding: .5em .625em .625em;
+    font-size: inherit;
+    color: rgba(0, 0, 0, .8);
+    text-align: left
+}
+
+table tr th,
+table tr td {
+    padding: .5625em .625em;
+    font-size: inherit;
+    color: rgba(0, 0, 0, .8)
+}
+
+table tr.even,
+table tr.alt {
+    background: #f8f8f7
+}
+
+table thead tr th,
+table tfoot tr th,
+table tbody tr td,
+table tr td,
+table tfoot tr td {
+    display: table-cell;
+    line-height: 1.6
+}
+
+h1,
+h2,
+h3,
+#toctitle,
+.sidebarblock>.content>.title,
+h4,
+h5,
+h6 {
+    line-height: 1.2;
+    word-spacing: -.05em
+}
+
+h1 strong,
+h2 strong,
+h3 strong,
+#toctitle strong,
+.sidebarblock>.content>.title strong,
+h4 strong,
+h5 strong,
+h6 strong {
+    font-weight: 400
+}
+
+.clearfix::before,
+.clearfix::after,
+.float-group::before,
+.float-group::after {
+    content: " ";
+    display: table
+}
+
+.clearfix::after,
+.float-group::after {
+    clear: both
+}
+
+:not(pre):not([class^=L])>code {
+    font-size: .9375em;
+    font-style: normal!important;
+    letter-spacing: 0;
+    padding: .1em .5ex;
+    word-spacing: -.15em;
+    background: #f7f7f8;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    line-height: 1.45;
+    text-rendering: optimizeSpeed;
+    word-wrap: break-word
+}
+
+:not(pre)>code.nobreak {
+    word-wrap: normal
+}
+
+:not(pre)>code.nowrap {
+    white-space: nowrap
+}
+
+pre {
+    color: rgba(0, 0, 0, .9);
+    font-family: "Droid Sans Mono", "DejaVu Sans Mono", monospace;
+    line-height: 1.45;
+    text-rendering: optimizeSpeed
+}
+
+pre code,
+pre pre {
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit
+}
+
+pre>code {
+    display: block
+}
+
+pre.nowrap,
+pre.nowrap pre {
+    white-space: pre;
+    word-wrap: normal
+}
+
+em em {
+    font-style: normal
+}
+
+strong strong {
+    font-weight: 400
+}
+
+.keyseq {
+    color: rgba(51, 51, 51, .8)
+}
+
+kbd {
+    font-family: "Droid Sans Mono", "DejaVu Sans Mono", monospace;
+    display: inline-block;
+    color: rgba(0, 0, 0, .8);
+    font-size: .65em;
+    line-height: 1.45;
+    background: #f7f7f7;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 0 0 .1em white inset;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 0 0 .1em #fff inset;
+    margin: 0 .15em;
+    padding: .2em .5em;
+    vertical-align: middle;
+    position: relative;
+    top: -.1em;
+    white-space: nowrap
+}
+
+.keyseq kbd:first-child {
+    margin-left: 0
+}
+
+.keyseq kbd:last-child {
+    margin-right: 0
+}
+
+.menuseq,
+.menuref {
+    color: #000
+}
+
+.menuseq b:not(.caret),
+.menuref {
+    font-weight: inherit
+}
+
+.menuseq {
+    word-spacing: -.02em
+}
+
+.menuseq b.caret {
+    font-size: 1.25em;
+    line-height: .8
+}
+
+.menuseq i.caret {
+    font-weight: bold;
+    text-align: center;
+    width: .45em
+}
+
+b.button::before,
+b.button::after {
+    position: relative;
+    top: -1px;
+    font-weight: 400
+}
+
+b.button::before {
+    content: "[";
+    padding: 0 3px 0 2px
+}
+
+b.button::after {
+    content: "]";
+    padding: 0 2px 0 3px
+}
+
+p a>code:hover {
+    color: rgba(0, 0, 0, .9)
+}
+
+#header,
+#content,
+#footnotes,
+#footer {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: 62.5em;
+    *zoom: 1;
+    position: relative;
+    padding-left: .9375em;
+    padding-right: .9375em
+}
+
+#header::before,
+#header::after,
+#content::before,
+#content::after,
+#footnotes::before,
+#footnotes::after,
+#footer::before,
+#footer::after {
+    content: " ";
+    display: table
+}
+
+#header::after,
+#content::after,
+#footnotes::after,
+#footer::after {
+    clear: both
+}
+
+#content {
+    margin-top: 1.25em
+}
+
+#content::before {
+    content: none
+}
+
+#header>h1:first-child {
+    color: rgba(0, 0, 0, .85);
+    margin-top: 2.25rem;
+    margin-bottom: 0
+}
+
+#header>h1:first-child+#toc {
+    margin-top: 8px;
+    border-top: 1px solid #dddddf
+}
+
+#header>h1:only-child,
+body.toc2 #header>h1:nth-last-child(2) {
+    border-bottom: 1px solid #dddddf;
+    padding-bottom: 8px
+}
+
+#header .details {
+    border-bottom: 1px solid #dddddf;
+    line-height: 1.45;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    padding-left: .25em;
+    color: rgba(0, 0, 0, .6);
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap
+}
+
+#header .details span:first-child {
+    margin-left: -.125em
+}
+
+#header .details span.email a {
+    color: rgba(0, 0, 0, .85)
+}
+
+#header .details br {
+    display: none
+}
+
+#header .details br+span::before {
+    content: "\00a0\2013\00a0"
+}
+
+#header .details br+span.author::before {
+    content: "\00a0\22c5\00a0";
+    color: rgba(0, 0, 0, .85)
+}
+
+#header .details br+span#revremark::before {
+    content: "\00a0|\00a0"
+}
+
+#header #revnumber {
+    text-transform: capitalize
+}
+
+#header #revnumber::after {
+    content: "\00a0"
+}
+
+#content>h1:first-child:not([class]) {
+    color: rgba(0, 0, 0, .85);
+    border-bottom: 1px solid #dddddf;
+    padding-bottom: 8px;
+    margin-top: 0;
+    padding-top: 1rem;
+    margin-bottom: 1.25rem
+}
+
+#toc {
+    border-bottom: 1px solid #e7e7e9;
+    padding-bottom: .5em
+}
+
+#toc>ul {
+    margin-left: .125em
+}
+
+#toc ul.sectlevel0>li>a {
+    font-style: italic
+}
+
+#toc ul.sectlevel0 ul.sectlevel1 {
+    margin: .5em 0
+}
+
+#toc ul {
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    list-style-type: none
+}
+
+#toc li {
+    line-height: 1.3334;
+    margin-top: .3334em
+}
+
+#toc a {
+    text-decoration: none
+}
+
+#toc a:active {
+    text-decoration: underline
+}
+
+#toctitle {
+    color: #7a2518;
+    font-size: 1.2em
+}
+
+@media screen and (min-width:768px) {
+    #toctitle {
+        font-size: 1.375em
+    }
+    body.toc2 {
+        padding-left: 15em;
+        padding-right: 0
+    }
+    #toc.toc2 {
+        margin-top: 0!important;
+        background: #f8f8f7;
+        position: fixed;
+        width: 15em;
+        left: 0;
+        top: 0;
+        border-right: 1px solid #e7e7e9;
+        border-top-width: 0!important;
+        border-bottom-width: 0!important;
+        z-index: 1000;
+        padding: 1.25em 1em;
+        height: 100%;
+        overflow: auto
+    }
+    #toc.toc2 #toctitle {
+        margin-top: 0;
+        margin-bottom: .8rem;
+        font-size: 1.2em
+    }
+    #toc.toc2>ul {
+        font-size: .9em;
+        margin-bottom: 0
+    }
+    #toc.toc2 ul ul {
+        margin-left: 0;
+        padding-left: 1em
+    }
+    #toc.toc2 ul.sectlevel0 ul.sectlevel1 {
+        padding-left: 0;
+        margin-top: .5em;
+        margin-bottom: .5em
+    }
+    body.toc2.toc-right {
+        padding-left: 0;
+        padding-right: 15em
+    }
+    body.toc2.toc-right #toc.toc2 {
+        border-right-width: 0;
+        border-left: 1px solid #e7e7e9;
+        left: auto;
+        right: 0
+    }
+}
+
+@media screen and (min-width:1280px) {
+    body.toc2 {
+        padding-left: 20em;
+        padding-right: 0
+    }
+    #toc.toc2 {
+        width: 20em
+    }
+    #toc.toc2 #toctitle {
+        font-size: 1.375em
+    }
+    #toc.toc2>ul {
+        font-size: .95em
+    }
+    #toc.toc2 ul ul {
+        padding-left: 1.25em
+    }
+    body.toc2.toc-right {
+        padding-left: 0;
+        padding-right: 20em
+    }
+}
+
+#content #toc {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #e0e0dc;
+    margin-bottom: 1.25em;
+    padding: 1.25em;
+    background: #f8f8f7;
+    -webkit-border-radius: 4px;
+    border-radius: 4px
+}
+
+#content #toc>:first-child {
+    margin-top: 0
+}
+
+#content #toc>:last-child {
+    margin-bottom: 0
+}
+
+#footer {
+    max-width: 100%;
+    background: rgba(0, 0, 0, .8);
+    padding: 1.25em
+}
+
+#footer-text {
+    color: rgba(255, 255, 255, .8);
+    line-height: 1.44
+}
+
+#content {
+    margin-bottom: .625em
+}
+
+.sect1 {
+    padding-bottom: .625em
+}
+
+@media screen and (min-width:768px) {
+    #content {
+        margin-bottom: 1.25em
+    }
+    .sect1 {
+        padding-bottom: 1.25em
+    }
+}
+
+.sect1:last-child {
+    padding-bottom: 0
+}
+
+.sect1+.sect1 {
+    border-top: 1px solid #e7e7e9
+}
+
+#content h1>a.anchor,
+h2>a.anchor,
+h3>a.anchor,
+#toctitle>a.anchor,
+.sidebarblock>.content>.title>a.anchor,
+h4>a.anchor,
+h5>a.anchor,
+h6>a.anchor {
+    position: absolute;
+    z-index: 1001;
+    width: 1.5ex;
+    margin-left: -1.5ex;
+    display: block;
+    text-decoration: none!important;
+    visibility: hidden;
+    text-align: center;
+    font-weight: 400
+}
+
+#content h1>a.anchor::before,
+h2>a.anchor::before,
+h3>a.anchor::before,
+#toctitle>a.anchor::before,
+.sidebarblock>.content>.title>a.anchor::before,
+h4>a.anchor::before,
+h5>a.anchor::before,
+h6>a.anchor::before {
+    content: "\00A7";
+    font-size: .85em;
+    display: block;
+    padding-top: .1em
+}
+
+#content h1:hover>a.anchor,
+#content h1>a.anchor:hover,
+h2:hover>a.anchor,
+h2>a.anchor:hover,
+h3:hover>a.anchor,
+#toctitle:hover>a.anchor,
+.sidebarblock>.content>.title:hover>a.anchor,
+h3>a.anchor:hover,
+#toctitle>a.anchor:hover,
+.sidebarblock>.content>.title>a.anchor:hover,
+h4:hover>a.anchor,
+h4>a.anchor:hover,
+h5:hover>a.anchor,
+h5>a.anchor:hover,
+h6:hover>a.anchor,
+h6>a.anchor:hover {
+    visibility: visible
+}
+
+#content h1>a.link,
+h2>a.link,
+h3>a.link,
+#toctitle>a.link,
+.sidebarblock>.content>.title>a.link,
+h4>a.link,
+h5>a.link,
+h6>a.link {
+    color: #ba3925;
+    text-decoration: none
+}
+
+#content h1>a.link:hover,
+h2>a.link:hover,
+h3>a.link:hover,
+#toctitle>a.link:hover,
+.sidebarblock>.content>.title>a.link:hover,
+h4>a.link:hover,
+h5>a.link:hover,
+h6>a.link:hover {
+    color: #a53221
+}
+
+details,
+.audioblock,
+.imageblock,
+.literalblock,
+.listingblock,
+.stemblock,
+.videoblock {
+    margin-bottom: 1.25em
+}
+
+details>summary:first-of-type {
+    cursor: pointer;
+    display: list-item;
+    outline: none;
+    margin-bottom: .75em
+}
+
+.admonitionblock td.content>.title,
+.audioblock>.title,
+.exampleblock>.title,
+.imageblock>.title,
+.listingblock>.title,
+.literalblock>.title,
+.stemblock>.title,
+.openblock>.title,
+.paragraph>.title,
+.quoteblock>.title,
+table.tableblock>.title,
+.verseblock>.title,
+.videoblock>.title,
+.dlist>.title,
+.olist>.title,
+.ulist>.title,
+.qlist>.title,
+.hdlist>.title {
+    text-rendering: optimizeLegibility;
+    text-align: left;
+    font-family: "Noto Serif", "DejaVu Serif", serif;
+    font-size: 1rem;
+    font-style: italic
+}
+
+table.tableblock.fit-content>caption.title {
+    white-space: nowrap;
+    width: 0
+}
+
+.paragraph.lead>p,
+#preamble>.sectionbody>[class="paragraph"]:first-of-type p {
+    font-size: 1.21875em;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, .85)
+}
+
+table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p {
+    font-size: inherit
+}
+
+.admonitionblock>table {
+    border-collapse: separate;
+    border: 0;
+    background: none;
+    width: 100%
+}
+
+.admonitionblock>table td.icon {
+    text-align: center;
+    width: 80px
+}
+
+.admonitionblock>table td.icon img {
+    max-width: none
+}
+
+.admonitionblock>table td.icon .title {
+    font-weight: bold;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    text-transform: uppercase
+}
+
+.admonitionblock>table td.content {
+    padding-left: 1.125em;
+    padding-right: 1.25em;
+    border-left: 1px solid #dddddf;
+    color: rgba(0, 0, 0, .6)
+}
+
+.admonitionblock>table td.content>:last-child>:last-child {
+    margin-bottom: 0
+}
+
+.exampleblock>.content {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #e6e6e6;
+    margin-bottom: 1.25em;
+    padding: 1.25em;
+    background: #fff;
+    -webkit-border-radius: 4px;
+    border-radius: 4px
+}
+
+.exampleblock>.content>:first-child {
+    margin-top: 0
+}
+
+.exampleblock>.content>:last-child {
+    margin-bottom: 0
+}
+
+.sidebarblock {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dbdbd6;
+    margin-bottom: 1.25em;
+    padding: 1.25em;
+    background: #f3f3f2;
+    -webkit-border-radius: 4px;
+    border-radius: 4px
+}
+
+.sidebarblock>:first-child {
+    margin-top: 0
+}
+
+.sidebarblock>:last-child {
+    margin-bottom: 0
+}
+
+.sidebarblock>.content>.title {
+    color: #7a2518;
+    margin-top: 0;
+    text-align: center
+}
+
+.exampleblock>.content>:last-child>:last-child,
+.exampleblock>.content .olist>ol>li:last-child>:last-child,
+.exampleblock>.content .ulist>ul>li:last-child>:last-child,
+.exampleblock>.content .qlist>ol>li:last-child>:last-child,
+.sidebarblock>.content>:last-child>:last-child,
+.sidebarblock>.content .olist>ol>li:last-child>:last-child,
+.sidebarblock>.content .ulist>ul>li:last-child>:last-child,
+.sidebarblock>.content .qlist>ol>li:last-child>:last-child {
+    margin-bottom: 0
+}
+
+.literalblock pre,
+.listingblock>.content>pre {
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    word-wrap: break-word;
+    overflow-x: auto;
+    padding: 1em;
+    font-size: .8125em
+}
+
+@media screen and (min-width:768px) {
+    .literalblock pre,
+    .listingblock>.content>pre {
+        font-size: .90625em
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .literalblock pre,
+    .listingblock>.content>pre {
+        font-size: 1em
+    }
+}
+
+.literalblock pre,
+.listingblock>.content>pre:not(.highlight),
+.listingblock>.content>pre[class="highlight"],
+.listingblock>.content>pre[class^="highlight "] {
+    background: #f7f7f8
+}
+
+.literalblock.output pre {
+    color: #f7f7f8;
+    background: rgba(0, 0, 0, .9)
+}
+
+.listingblock>.content {
+    position: relative
+}
+
+.listingblock code[data-lang]::before {
+    display: none;
+    content: attr(data-lang);
+    position: absolute;
+    font-size: .75em;
+    top: .425rem;
+    right: .5rem;
+    line-height: 1;
+    text-transform: uppercase;
+    color: inherit;
+    opacity: .5
+}
+
+.listingblock:hover code[data-lang]::before {
+    display: block
+}
+
+.listingblock.terminal pre .command::before {
+    content: attr(data-prompt);
+    padding-right: .5em;
+    color: inherit;
+    opacity: .5
+}
+
+.listingblock.terminal pre .command:not([data-prompt])::before {
+    content: "$"
+}
+
+.listingblock pre.highlightjs {
+    padding: 0
+}
+
+.listingblock pre.highlightjs>code {
+    padding: 1em;
+    -webkit-border-radius: 4px;
+    border-radius: 4px
+}
+
+.listingblock pre.prettyprint {
+    border-width: 0
+}
+
+.prettyprint {
+    background: #f7f7f8
+}
+
+pre.prettyprint .linenums {
+    line-height: 1.45;
+    margin-left: 2em
+}
+
+pre.prettyprint li {
+    background: none;
+    list-style-type: inherit;
+    padding-left: 0
+}
+
+pre.prettyprint li code[data-lang]::before {
+    opacity: 1
+}
+
+pre.prettyprint li:not(:first-child) code[data-lang]::before {
+    display: none
+}
+
+table.linenotable {
+    border-collapse: separate;
+    border: 0;
+    margin-bottom: 0;
+    background: none
+}
+
+table.linenotable td[class] {
+    color: inherit;
+    vertical-align: top;
+    padding: 0;
+    line-height: inherit;
+    white-space: normal
+}
+
+table.linenotable td.code {
+    padding-left: .75em
+}
+
+table.linenotable td.linenos {
+    border-right: 1px solid currentColor;
+    opacity: .35;
+    padding-right: .5em
+}
+
+pre.pygments .lineno {
+    border-right: 1px solid currentColor;
+    opacity: .35;
+    display: inline-block;
+    margin-right: .75em
+}
+
+pre.pygments .lineno::before {
+    content: "";
+    margin-right: -.125em
+}
+
+.quoteblock {
+    margin: 0 1em 1.25em 1.5em;
+    display: table
+}
+
+.quoteblock:not(.excerpt)>.title {
+    margin-left: -1.5em;
+    margin-bottom: .75em
+}
+
+.quoteblock blockquote,
+.quoteblock p {
+    color: rgba(0, 0, 0, .85);
+    font-size: 1.15rem;
+    line-height: 1.75;
+    word-spacing: .1em;
+    letter-spacing: 0;
+    font-style: italic;
+    text-align: justify
+}
+
+.quoteblock blockquote {
+    margin: 0;
+    padding: 0;
+    border: 0
+}
+
+.quoteblock blockquote::before {
+    content: "\201c";
+    float: left;
+    font-size: 2.75em;
+    font-weight: bold;
+    line-height: .6em;
+    margin-left: -.6em;
+    color: #7a2518;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .1)
+}
+
+.quoteblock blockquote>.paragraph:last-child p {
+    margin-bottom: 0
+}
+
+.quoteblock .attribution {
+    margin-top: .75em;
+    margin-right: .5ex;
+    text-align: right
+}
+
+.verseblock {
+    margin: 0 1em 1.25em
+}
+
+.verseblock pre {
+    font-family: "Open Sans", "DejaVu Sans", sans;
+    font-size: 1.15rem;
+    color: rgba(0, 0, 0, .85);
+    font-weight: 300;
+    text-rendering: optimizeLegibility
+}
+
+.verseblock pre strong {
+    font-weight: 400
+}
+
+.verseblock .attribution {
+    margin-top: 1.25rem;
+    margin-left: .5ex
+}
+
+.quoteblock .attribution,
+.verseblock .attribution {
+    font-size: .9375em;
+    line-height: 1.45;
+    font-style: italic
+}
+
+.quoteblock .attribution br,
+.verseblock .attribution br {
+    display: none
+}
+
+.quoteblock .attribution cite,
+.verseblock .attribution cite {
+    display: block;
+    letter-spacing: -.025em;
+    color: rgba(0, 0, 0, .6)
+}
+
+.quoteblock.abstract blockquote::before,
+.quoteblock.excerpt blockquote::before,
+.quoteblock .quoteblock blockquote::before {
+    display: none
+}
+
+.quoteblock.abstract blockquote,
+.quoteblock.abstract p,
+.quoteblock.excerpt blockquote,
+.quoteblock.excerpt p,
+.quoteblock .quoteblock blockquote,
+.quoteblock .quoteblock p {
+    line-height: 1.6;
+    word-spacing: 0
+}
+
+.quoteblock.abstract {
+    margin: 0 1em 1.25em;
+    display: block
+}
+
+.quoteblock.abstract>.title {
+    margin: 0 0 .375em;
+    font-size: 1.15em;
+    text-align: center
+}
+
+.quoteblock.excerpt>blockquote,
+.quoteblock .quoteblock {
+    padding: 0 0 .25em 1em;
+    border-left: .25em solid #dddddf
+}
+
+.quoteblock.excerpt,
+.quoteblock .quoteblock {
+    margin-left: 0
+}
+
+.quoteblock.excerpt blockquote,
+.quoteblock.excerpt p,
+.quoteblock .quoteblock blockquote,
+.quoteblock .quoteblock p {
+    color: inherit;
+    font-size: 1.0625rem
+}
+
+.quoteblock.excerpt .attribution,
+.quoteblock .quoteblock .attribution {
+    color: inherit;
+    text-align: left;
+    margin-right: 0
+}
+
+table.tableblock {
+    max-width: 100%;
+    border-collapse: separate
+}
+
+p.tableblock:last-child {
+    margin-bottom: 0
+}
+
+td.tableblock>.content>:last-child {
+    margin-bottom: -1.25em
+}
+
+td.tableblock>.content>:last-child.sidebarblock {
+    margin-bottom: 0
+}
+
+table.tableblock,
+th.tableblock,
+td.tableblock {
+    border: 0 solid #dedede
+}
+
+table.grid-all>thead>tr>.tableblock,
+table.grid-all>tbody>tr>.tableblock {
+    border-width: 0 1px 1px 0
+}
+
+table.grid-all>tfoot>tr>.tableblock {
+    border-width: 1px 1px 0 0
+}
+
+table.grid-cols>*>tr>.tableblock {
+    border-width: 0 1px 0 0
+}
+
+table.grid-rows>thead>tr>.tableblock,
+table.grid-rows>tbody>tr>.tableblock {
+    border-width: 0 0 1px
+}
+
+table.grid-rows>tfoot>tr>.tableblock {
+    border-width: 1px 0 0
+}
+
+table.grid-all>*>tr>.tableblock:last-child,
+table.grid-cols>*>tr>.tableblock:last-child {
+    border-right-width: 0
+}
+
+table.grid-all>tbody>tr:last-child>.tableblock,
+table.grid-all>thead:last-child>tr>.tableblock,
+table.grid-rows>tbody>tr:last-child>.tableblock,
+table.grid-rows>thead:last-child>tr>.tableblock {
+    border-bottom-width: 0
+}
+
+table.frame-all {
+    border-width: 1px
+}
+
+table.frame-sides {
+    border-width: 0 1px
+}
+
+table.frame-topbot,
+table.frame-ends {
+    border-width: 1px 0
+}
+
+table.stripes-all tr,
+table.stripes-odd tr:nth-of-type(odd),
+table.stripes-even tr:nth-of-type(even),
+table.stripes-hover tr:hover {
+    background: #f8f8f7
+}
+
+th.halign-left,
+td.halign-left {
+    text-align: left
+}
+
+th.halign-right,
+td.halign-right {
+    text-align: right
+}
+
+th.halign-center,
+td.halign-center {
+    text-align: center
+}
+
+th.valign-top,
+td.valign-top {
+    vertical-align: top
+}
+
+th.valign-bottom,
+td.valign-bottom {
+    vertical-align: bottom
+}
+
+th.valign-middle,
+td.valign-middle {
+    vertical-align: middle
+}
+
+table thead th,
+table tfoot th {
+    font-weight: bold
+}
+
+tbody tr th {
+    display: table-cell;
+    line-height: 1.6;
+    background: #f7f8f7
+}
+
+tbody tr th,
+tbody tr th p,
+tfoot tr th,
+tfoot tr th p {
+    color: rgba(0, 0, 0, .8);
+    font-weight: bold
+}
+
+p.tableblock>code:only-child {
+    background: none;
+    padding: 0
+}
+
+p.tableblock {
+    font-size: 1em
+}
+
+ol {
+    margin-left: 1.75em
+}
+
+ul li ol {
+    margin-left: 1.5em
+}
+
+dl dd {
+    margin-left: 1.125em
+}
+
+dl dd:last-child,
+dl dd:last-child>:last-child {
+    margin-bottom: 0
+}
+
+ol>li p,
+ul>li p,
+ul dd,
+ol dd,
+.olist .olist,
+.ulist .ulist,
+.ulist .olist,
+.olist .ulist {
+    margin-bottom: .625em
+}
+
+ul.checklist,
+ul.none,
+ol.none,
+ul.no-bullet,
+ol.no-bullet,
+ol.unnumbered,
+ul.unstyled,
+ol.unstyled {
+    list-style-type: none
+}
+
+ul.no-bullet,
+ol.no-bullet,
+ol.unnumbered {
+    margin-left: .625em
+}
+
+ul.unstyled,
+ol.unstyled {
+    margin-left: 0
+}
+
+ul.checklist {
+    margin-left: .625em
+}
+
+ul.checklist li>p:first-child>.fa-square-o:first-child,
+ul.checklist li>p:first-child>.fa-check-square-o:first-child {
+    width: 1.25em;
+    font-size: .8em;
+    position: relative;
+    bottom: .125em
+}
+
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child {
+    margin-right: .25em
+}
+
+ul.inline {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    list-style: none;
+    margin: 0 0 .625em -1.25em
+}
+
+ul.inline>li {
+    margin-left: 1.25em
+}
+
+.unstyled dl dt {
+    font-weight: 400;
+    font-style: normal
+}
+
+ol.arabic {
+    list-style-type: decimal
+}
+
+ol.decimal {
+    list-style-type: decimal-leading-zero
+}
+
+ol.loweralpha {
+    list-style-type: lower-alpha
+}
+
+ol.upperalpha {
+    list-style-type: upper-alpha
+}
+
+ol.lowerroman {
+    list-style-type: lower-roman
+}
+
+ol.upperroman {
+    list-style-type: upper-roman
+}
+
+ol.lowergreek {
+    list-style-type: lower-greek
+}
+
+.hdlist>table,
+.colist>table {
+    border: 0;
+    background: none
+}
+
+.hdlist>table>tbody>tr,
+.colist>table>tbody>tr {
+    background: none
+}
+
+td.hdlist1,
+td.hdlist2 {
+    vertical-align: top;
+    padding: 0 .625em
+}
+
+td.hdlist1 {
+    font-weight: bold;
+    padding-bottom: 1.25em
+}
+
+.literalblock+.colist,
+.listingblock+.colist {
+    margin-top: -.5em
+}
+
+.colist td:not([class]):first-child {
+    padding: .4em .75em 0;
+    line-height: 1;
+    vertical-align: top
+}
+
+.colist td:not([class]):first-child img {
+    max-width: none
+}
+
+.colist td:not([class]):last-child {
+    padding: .25em 0
+}
+
+.thumb,
+.th {
+    line-height: 0;
+    display: inline-block;
+    border: solid 4px #fff;
+    -webkit-box-shadow: 0 0 0 1px #ddd;
+    box-shadow: 0 0 0 1px #ddd
+}
+
+.imageblock.left {
+    margin: .25em .625em 1.25em 0
+}
+
+.imageblock.right {
+    margin: .25em 0 1.25em .625em
+}
+
+.imageblock>.title {
+    margin-bottom: 0
+}
+
+.imageblock.thumb,
+.imageblock.th {
+    border-width: 6px
+}
+
+.imageblock.thumb>.title,
+.imageblock.th>.title {
+    padding: 0 .125em
+}
+
+.image.left,
+.image.right {
+    margin-top: .25em;
+    margin-bottom: .25em;
+    display: inline-block;
+    line-height: 0
+}
+
+.image.left {
+    margin-right: .625em
+}
+
+.image.right {
+    margin-left: .625em
+}
+
+a.image {
+    text-decoration: none;
+    display: inline-block
+}
+
+a.image object {
+    pointer-events: none
+}
+
+sup.footnote,
+sup.footnoteref {
+    font-size: .875em;
+    position: static;
+    vertical-align: super
+}
+
+sup.footnote a,
+sup.footnoteref a {
+    text-decoration: none
+}
+
+sup.footnote a:active,
+sup.footnoteref a:active {
+    text-decoration: underline
+}
+
+#footnotes {
+    padding-top: .75em;
+    padding-bottom: .75em;
+    margin-bottom: .625em
+}
+
+#footnotes hr {
+    width: 20%;
+    min-width: 6.25em;
+    margin: -.25em 0 .75em;
+    border-width: 1px 0 0
+}
+
+#footnotes .footnote {
+    padding: 0 .375em 0 .225em;
+    line-height: 1.3334;
+    font-size: .875em;
+    margin-left: 1.2em;
+    margin-bottom: .2em
+}
+
+#footnotes .footnote a:first-of-type {
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: -1.05em
+}
+
+#footnotes .footnote:last-of-type {
+    margin-bottom: 0
+}
+
+#content #footnotes {
+    margin-top: -.625em;
+    margin-bottom: 0;
+    padding: .75em 0
+}
+
+.gist .file-data>table {
+    border: 0;
+    background: #fff;
+    width: 100%;
+    margin-bottom: 0
+}
+
+.gist .file-data>table td.line-data {
+    width: 99%
+}
+
+div.unbreakable {
+    page-break-inside: avoid
+}
+
+.big {
+    font-size: larger
+}
+
+.small {
+    font-size: smaller
+}
+
+.underline {
+    text-decoration: underline
+}
+
+.overline {
+    text-decoration: overline
+}
+
+.line-through {
+    text-decoration: line-through
+}
+
+.aqua {
+    color: #00bfbf
+}
+
+.aqua-background {
+    background: #00fafa
+}
+
+.black {
+    color: #000
+}
+
+.black-background {
+    background: #000
+}
+
+.blue {
+    color: #0000bf
+}
+
+.blue-background {
+    background: #0000fa
+}
+
+.fuchsia {
+    color: #bf00bf
+}
+
+.fuchsia-background {
+    background: #fa00fa
+}
+
+.gray {
+    color: #606060
+}
+
+.gray-background {
+    background: #7d7d7d
+}
+
+.green {
+    color: #006000
+}
+
+.green-background {
+    background: #007d00
+}
+
+.lime {
+    color: #00bf00
+}
+
+.lime-background {
+    background: #00fa00
+}
+
+.maroon {
+    color: #600000
+}
+
+.maroon-background {
+    background: #7d0000
+}
+
+.navy {
+    color: #000060
+}
+
+.navy-background {
+    background: #00007d
+}
+
+.olive {
+    color: #606000
+}
+
+.olive-background {
+    background: #7d7d00
+}
+
+.purple {
+    color: #600060
+}
+
+.purple-background {
+    background: #7d007d
+}
+
+.red {
+    color: #bf0000
+}
+
+.red-background {
+    background: #fa0000
+}
+
+.silver {
+    color: #909090
+}
+
+.silver-background {
+    background: #bcbcbc
+}
+
+.teal {
+    color: #006060
+}
+
+.teal-background {
+    background: #007d7d
+}
+
+.white {
+    color: #bfbfbf
+}
+
+.white-background {
+    background: #fafafa
+}
+
+.yellow {
+    color: #bfbf00
+}
+
+.yellow-background {
+    background: #fafa00
+}
+
+span.icon>.fa {
+    cursor: default
+}
+
+a span.icon>.fa {
+    cursor: inherit
+}
+
+.admonitionblock td.icon [class^="fa icon-"] {
+    font-size: 2.5em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
+    cursor: default
+}
+
+.admonitionblock td.icon .icon-note::before {
+    content: "\f05a";
+    color: #19407c
+}
+
+.admonitionblock td.icon .icon-tip::before {
+    content: "\f0eb";
+    text-shadow: 1px 1px 2px rgba(155, 155, 0, .8);
+    color: #111
+}
+
+.admonitionblock td.icon .icon-warning::before {
+    content: "\f071";
+    color: #bf6900
+}
+
+.admonitionblock td.icon .icon-caution::before {
+    content: "\f06d";
+    color: #bf3400
+}
+
+.admonitionblock td.icon .icon-important::before {
+    content: "\f06a";
+    color: #bf0000
+}
+
+.conum[data-value] {
+    display: inline-block;
+    color: #fff!important;
+    background: rgba(0, 0, 0, .8);
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    text-align: center;
+    font-size: .75em;
+    width: 1.67em;
+    height: 1.67em;
+    line-height: 1.67em;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-style: normal;
+    font-weight: bold
+}
+
+.conum[data-value] * {
+    color: #fff!important
+}
+
+.conum[data-value]+b {
+    display: none
+}
+
+.conum[data-value]::after {
+    content: attr(data-value)
+}
+
+pre .conum[data-value] {
+    position: relative;
+    top: -.125em
+}
+
+b.conum * {
+    color: inherit!important
+}
+
+.conum:not([data-value]):empty {
+    display: none
+}
+
+dt,
+th.tableblock,
+td.content,
+div.footnote {
+    text-rendering: optimizeLegibility
+}
+
+h1,
+h2,
+p,
+td.content,
+span.alt {
+    letter-spacing: -.01em
+}
+
+p strong,
+td.content strong,
+div.footnote strong {
+    letter-spacing: -.005em
+}
+
+p,
+blockquote,
+dt,
+td.content,
+span.alt {
+    font-size: 1.0625rem
+}
+
+p {
+    margin-bottom: 1.25rem
+}
+
+.sidebarblock p,
+.sidebarblock dt,
+.sidebarblock td.content,
+p.tableblock {
+    font-size: 1em
+}
+
+.exampleblock>.content {
+    background: #fffef7;
+    border-color: #e0e0dc;
+    -webkit-box-shadow: 0 1px 4px #e0e0dc;
+    box-shadow: 0 1px 4px #e0e0dc
+}
+
+.print-only {
+    display: none!important
+}
+
+@page {
+    margin: 1.25cm .75cm
+}
+
+@media print {
+    * {
+        -webkit-box-shadow: none!important;
+        box-shadow: none!important;
+        text-shadow: none!important
+    }
+    html {
+        font-size: 80%
+    }
+    a {
+        color: inherit!important;
+        text-decoration: underline!important
+    }
+    a.bare,
+    a[href^="#"],
+    a[href^="mailto:"] {
+        text-decoration: none!important
+    }
+    a[href^="http:"]:not(.bare)::after,
+    a[href^="https:"]:not(.bare)::after {
+        content: "(" attr(href) ")";
+        display: inline-block;
+        font-size: .875em;
+        padding-left: .25em
+    }
+    abbr[title]::after {
+        content: " (" attr(title) ")"
+    }
+    pre,
+    blockquote,
+    tr,
+    img,
+    object,
+    svg {
+        page-break-inside: avoid
+    }
+    thead {
+        display: table-header-group
+    }
+    svg {
+        max-width: 100%
+    }
+    p,
+    blockquote,
+    dt,
+    td.content {
+        font-size: 1em;
+        orphans: 3;
+        widows: 3
+    }
+    h2,
+    h3,
+    #toctitle,
+    .sidebarblock>.content>.title {
+        page-break-after: avoid
+    }
+    #toc,
+    .sidebarblock,
+    .exampleblock>.content {
+        background: none!important
+    }
+    #toc {
+        border-bottom: 1px solid #dddddf!important;
+        padding-bottom: 0!important
+    }
+    body.book #header {
+        text-align: center
+    }
+    body.book #header>h1:first-child {
+        border: 0!important;
+        margin: 2.5em 0 1em
+    }
+    body.book #header .details {
+        border: 0!important;
+        display: block;
+        padding: 0!important
+    }
+    body.book #header .details span:first-child {
+        margin-left: 0!important
+    }
+    body.book #header .details br {
+        display: block
+    }
+    body.book #header .details br+span::before {
+        content: none!important
+    }
+    body.book #toc {
+        border: 0!important;
+        text-align: left!important;
+        padding: 0!important;
+        margin: 0!important
+    }
+    body.book #toc,
+    body.book #preamble,
+    body.book h1.sect0,
+    body.book .sect1>h2 {
+        page-break-before: always
+    }
+    .listingblock code[data-lang]::before {
+        display: block
+    }
+    #footer {
+        padding: 0 .9375em
+    }
+    .hide-on-print {
+        display: none!important
+    }
+    .print-only {
+        display: block!important
+    }
+    .hide-for-print {
+        display: none!important
+    }
+    .show-for-print {
+        display: inherit!important
+    }
+}
+
+@media print,
+amzn-kf8 {
+    #header>h1:first-child {
+        margin-top: 1.25rem
+    }
+    .sect1 {
+        padding: 0!important
+    }
+    .sect1+.sect1 {
+        border: 0
+    }
+    #footer {
+        background: none
+    }
+    #footer-text {
+        color: rgba(0, 0, 0, .6);
+        font-size: .9em
+    }
+}
+
+@media amzn-kf8 {
+    #header,
+    #content,
+    #footnotes,
+    #footer {
+        padding: 0
+    }
+}
+
+.to_long>.content>pre {
+    height: 400px;
+}
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>JHawanetFramework</h1>
+<div class="details">
+<span id="author" class="author">Gabriel Sanhueza</span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Tabla de Contenidos</div>
+<ul class="sectlevel1">
+<li><a href="#_introducción">1. Introducción</a>
+<ul class="sectlevel2">
+<li><a href="#_contexto">1.1. Contexto</a></li>
+<li><a href="#_tipos_de_usuarios">1.2. Tipos de usuarios</a></li>
+<li><a href="#_objetivo">1.3. Objetivo</a></li>
+<li><a href="#_tecnologias_utilizadas">1.4. Tecnologias utilizadas</a></li>
+<li><a href="#_requisitos_de_la_aplicación">1.5. Requisitos de la aplicación</a></li>
+<li><a href="#_repositorio">1.6. Repositorio</a></li>
+</ul>
+</li>
+<li><a href="#_funcionalidades_de_la_aplicación">2. Funcionalidades de la aplicación</a>
+<ul class="sectlevel2">
+<li><a href="#_cargar_una_red">2.1. Cargar una red</a></li>
+<li><a href="#_visualizar_las_características_de_los_elementos_de_la_red">2.2. Visualizar las características de los elementos de la red</a></li>
+<li><a href="#_realizar_una_simulación_utilizando_los_valores_por_defecto_del_archivo_de_configuración_de_red">2.3. Realizar una simulación utilizando los valores por defecto del archivo de configuración de red</a></li>
+<li><a href="#_resolver_un_problema">2.4. Resolver un problema</a></li>
+</ul>
+</li>
+<li><a href="#_como_agregar_nuevos_algoritmos">3. Como agregar nuevos algoritmos</a></li>
+<li><a href="#_como_agregar_nuevos_problemas">4. Como agregar nuevos problemas</a></li>
+<li><a href="#_como_agregar_nuevos_operadores">5. Como agregar nuevos operadores</a>
+<ul class="sectlevel2">
+<li><a href="#_defaultconstructor">5.1. <em>@DefaultConstructor</em></a></li>
+</ul>
+</li>
+<li><a href="#_como_agregar_nuevos_experimentos">6. Como agregar nuevos experimentos</a>
+<ul class="sectlevel2">
+<li><a href="#_interfaz_registrable">6.1. Interfaz Registrable</a></li>
+</ul>
+</li>
+<li><a href="#_anotaciones_de_la_aplicación">7. Anotaciones de la aplicación</a>
+<ul class="sectlevel2">
+<li><a href="#_anotacion_permitida_en_la_clases_operator">7.1. Anotacion permitida en la clases <em>Operator</em></a></li>
+<li><a href="#_anotaciones_pemitidas_en_la_clases_registrable">7.2. Anotaciones pemitidas en la clases <em>Registrable</em></a></li>
+<li><a href="#_parameters">7.3. <em>@Parameters</em></a></li>
+</ul>
+</li>
+<li><a href="#_problemas_de_optimización_en_rda">8. Problemas de optimización en RDA</a>
+<ul class="sectlevel2">
+<li><a href="#_pipe_optimizing">8.1. <em>Pipe Optimizing</em></a></li>
+<li><a href="#_pumping_schedule">8.2. <em>Pumping Schedule</em></a></li>
+<li><a href="#_referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_introducción">1. Introducción</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_contexto">1.1. Contexto</h3>
+<div class="paragraph">
+<p>Como bien se sabe la escasez de agua potable es sin duda una problemática a nivel mundial. Es por esto que optimizar los sistemas que permiten la distribución de agua es importante. Sin embargo, esto no es simple puesto que los sistemas de distribución de agua deben estar activos las 24 horas del día asegurando los niveles de servicio mínimos. Adicionalmente, la optimización de estos sistemas involucra la participación de múltiples criterios lo que dificulta la toma de decisiones respecto a éstos.</p>
+</div>
+<div class="paragraph">
+<p>En el ámbito de los redes de agua se pueden clasificar los problemas en dos categorías. Los problemas de diseño y de operación.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tipos_de_usuarios">1.2. Tipos de usuarios</h3>
+<div class="paragraph">
+<p>Se contemplan dos tipos de usuarios:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Usuarios que trabajan directamente con la aplicación gráfica.</p>
+</li>
+<li>
+<p>Usuarios que utilizan la estructura para acoplar nuevos problemas desde el punto de vista computacional.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_objetivo">1.3. Objetivo</h3>
+<div class="paragraph">
+<p>Para llevar a cabo el desarrollo de esta aplicación se tiene como objetivo general:</p>
+</div>
+<div class="paragraph">
+<p><strong>Diseñar y desarrollar una aplicación extensible de escritorio para optimizar el diseño y operación de una red de distribución de agua potable.</strong></p>
+</div>
+<div class="paragraph">
+<p>En cuanto a los <strong>objetivos específicos</strong> se tienen los siguientes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Diseñar software orientado a la optimización de RDA basado en la arquitectura lógica del framework multiobjetivo Jmetal.</p>
+</li>
+<li>
+<p>Implementar un algoritmo metaheurístico de optimización monoobjetivo para aplicar al problema de diseño de RDA.</p>
+</li>
+<li>
+<p>Implementar un algoritmo metaheurístico de optimización multiobjetivo para aplicar al problema de Régimen de bombeo en RDA.</p>
+</li>
+<li>
+<p>Diseñar e implementar la interfaz gráfica del sistema de optimización de redes de agua potable desarrollado durante este proyecto.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tecnologias_utilizadas">1.4. Tecnologias utilizadas</h3>
+<div class="paragraph">
+<p>Las tecnologías utilizadas fueron Java, como lenguaje de programación, JavaFX, para implementar la interfaz y la librería <a href="https://www.epa.gov/water-research/epanet">EpanetToolkit</a> para realizar las simulaciones hidráulicas y evaluar las soluciones generadas por los algoritmos metaheurísticos.</p>
+</div>
+<div class="paragraph">
+<p>La elección de Java como lenguaje de programación se debe a que éste fue el solicitado por el cliente, puesto que permite la incorporación directa de algunas herramientas ya desarrolladas.</p>
+</div>
+<div class="paragraph">
+<p>Adicionalmente, este trabajo estuvo fuertemente influenciado por la librería <a href="https://github.com/jMetal/jMetal">JMetal</a>, especificamente la versión 5.9.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_requisitos_de_la_aplicación">1.5. Requisitos de la aplicación</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Windows 64 bits</p>
+</li>
+<li>
+<p>JDK 1.8 64 bits</p>
+</li>
+<li>
+<p>Maven</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_repositorio">1.6. Repositorio</h3>
+<div class="paragraph">
+<p>El código de la aplicación se encuentra alojado en github en el siguiente enlace: <a href="https://github.com/EinherjarSt/ProyectoDeMemoria" class="bare">https://github.com/EinherjarSt/ProyectoDeMemoria</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_funcionalidades_de_la_aplicación">2. Funcionalidades de la aplicación</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_cargar_una_red">2.1. Cargar una red</h3>
+<div class="paragraph">
+<p>Ve a <span class="menuseq"><b class="menu">File</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Open</b></span> , como se muentra en la imagen a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/cargar_red/file.png" alt="file">
+</div>
+</div>
+<div class="paragraph">
+<p>Busca el directorio donde se encuentre el archivo de configuración de red (Archivo con extensión *.inp, *puede ser creado utilizando el programa EPANET versión en ingles*).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/cargar_red/seleccionar_red.png" alt="seleccionar red">
+</div>
+</div>
+<div class="paragraph">
+<p>Una vez seleccionado el archivo la red ya debe poder visualizarse en la ventana de la aplicación. La siguiente imagen muestra la ventana de selección.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/cargar_red/visualizar_red.png" alt="visualizar red">
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_visualizar_las_características_de_los_elementos_de_la_red">2.2. Visualizar las características de los elementos de la red</h3>
+<div class="paragraph">
+<p>Hay dos formas para visualizar la características de los elementos de la red.</p>
+</div>
+<div class="paragraph">
+<p>Estas son:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Hacer <strong>doble click derecho</strong>, en el gráfico, sobre el elemento de la red que quiere visualizar. En la siguiente imagen se muestra la interfaz que es abierta por esta función, la flecha indica donde se ha realizado ha pulsado.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/visualizar_caracteristicas/doble_click_grafico.png" alt="doble click grafico">
+</div>
+</div>
+</li>
+<li>
+<p>Hacer <strong>doble click derecho</strong> desde el visor de elementos. En la siguiente imagen se puede este visor y que se ha abierto la interfaz para ver los detalles de los elementos.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/visualizar_caracteristicas/lista_de_elementos.png" alt="lista de elementos">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Al hacer <strong>click derecho</strong> sobre un elemento, ya sea desde el gráfico o desde el visor, el elemento seleccionado sera índicado con un círculo de color rojo, como lo muesta la siguiente imagen.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/funcionalidades/visualizar_caracteristicas/click_derecho.png" alt="click derecho">
+</div>
+</div>
+<div class="paragraph">
+<p>Si la ventana con la información del elemento de la red esta abierta, ésta sera actualizada al nuevo elemento seleccionado.</p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_realizar_una_simulación_utilizando_los_valores_por_defecto_del_archivo_de_configuración_de_red">2.3. Realizar una simulación utilizando los valores por defecto del archivo de configuración de red</h3>
+<div class="paragraph">
+<p>Para realizar una simulación utilizando los valores que vienen en el archivo de red debe presionar sobre el boton de ejecución. En la siguiuente imagen este boton se puede visualizar bordeado por un cuadro rojo.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/realizar_simulacion/ejecutar.png" alt="ejecutar">
+</div>
+</div>
+<div class="paragraph">
+<p>Una vez presionado el boton de ejecución se activara el boton de reporte mostrado a su lado. Al presionar sobre este boton se abrira la interfaz de reporte para ver los resultados de la simulación. En la siguiente imagen puede ver que el boton se ha activado y la interfaz utilizada para presentar los resultados cuando la red solo tiene un periodo de simulación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/realizar_simulacion/activacion_de_reporte.png" alt="activacion de reporte">
+</div>
+</div>
+<div class="paragraph">
+<p>Desde la interfaz puede indicar sobre que elemento quiere obtener el reporte. Éste puede ser generados para nodos los enlaces.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/realizar_simulacion/ventana_resultados_un_periodo.png" alt="ventana resultados un periodo">
+</div>
+</div>
+<div class="paragraph">
+<p>Una vez seleccionado lo que se quiere mostrar y pulsar el boton OK se muestran los datos como en la siguiente imagen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/realizar_simulacion/ventana_resultados_un_periodo_reporte.png" alt="ventana resultados un periodo reporte">
+</div>
+</div>
+<div class="paragraph">
+<p>En el caso de que la red realice una simulación por periodo de tiempo prolongado (simule más de un periodo) la interfaz visualizada permite indicar la hora del reporte a obtener o mostrar una serie de tiempo para un elemento específico de la red.</p>
+</div>
+<div class="paragraph">
+<p>Para mostrar la serie de tiempo de un elemento específico de la red debe seleccionar si este es un nodo o un enlace y posteriormente hacer click sobre el elemento a reportar. Como se puede ver en la siguiente imagen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/realizar_simulacion/ventana_resultados_multiples_periodos_reporte.png" alt="ventana resultados multiples periodos reporte">
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_resolver_un_problema">2.4. Resolver un problema</h3>
+<div class="paragraph">
+<p>La aplicación cuenta con algunos problemas ya implementados siendo necesario solamente cargar la red y indicar el problema a abordar. Para esto debe buscar el problema que quiere resolver en el menu de la aplicación. Si el problema que quiere resolver no está implementado y tiene conocimientos en programación en el lenguaje Java puede implementarlo usted mismo como se muestra en <a href="#_como_agregar_nuevos_problemas">Como agregar nuevos problemas</a>. La siguiente imagen muestra los menús donde están los problemas.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/resolver_problema/menu_problemas.png" alt="menu problemas">
+</div>
+</div>
+<div class="paragraph">
+<p>Como se puede observar de la imagen anterior, los problemas son divididos en dos menús, dependiendo del enfoque con el que fueron resueltos. Al momento de seleccionar el problema que se quiere abordar se abre una ventana de configuración del experimento. Desde esta ventana se puede ver el nombre del algoritmo utilizado para resolver el problema, el problema abordado, y una descripción de éste.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/resolver_problema/ventana_de_configuracion_descripcion.png" alt="ventana de configuracion descripcion">
+</div>
+</div>
+<div class="paragraph">
+<p>En la segunda pestaña "<em>Configuration</em>" se puede configurar los parámetros utilizados para configurar el experimento, algoritmos, operadores y problemas. Ésto se muestra en la siguiente imagen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/resolver_problema/ventana_de_configuracion.png" alt="ventana de configuracion">
+</div>
+</div>
+<div class="paragraph">
+<p>Al configurar los parametros y pulsar el boton "<em>Run</em>" se ejecutara el experimento, si no hubo ningun error durante su creación. Adicionalmente, se abre una ventana en que se muestra el estado de la ejecución del experimento.</p>
+</div>
+<div class="paragraph">
+<p>Para el caso monoobjetivo esta ventana es la que se muestra a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/resolver_problema/ventana_de_estado_ejecucion_monoobjetivo.png" alt="ventana de estado ejecucion monoobjetivo">
+</div>
+</div>
+<div class="paragraph">
+<p>Desde esta ventana se puede ver la información del algoritmo que esta siendo ejecutado, el con el que se esta trabajando y el número de repeticiones a ejecutar del algoritmo, asi como detalles de la ejecución de éste último.</p>
+</div>
+<div class="paragraph">
+<p>Para el caso multiobjetivo la ventana es la siguiente:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/resolver_problema/ventana_de_estado_ejecucion_multiobjetivo.png" alt="ventana de estado ejecucion multiobjetivo">
+</div>
+</div>
+<div class="paragraph">
+<p>En esta ventana se muestra lo mismo que lo anteriormente mencionadado para el caso monoobjetivo. Pero adicionalmente, se muestra un cuadro de texto extra en la que se registra los accesos que se hacen al disco. Esto es debido a que en los experimentos para los algoritmos multiobjetivos, si se establece el parametro <em>ExperimentBaseDirectory</em>, los resultados de la ejecución son guardados en el equipo.</p>
+</div>
+<div class="sect3">
+<h4 id="_ver_gráfico_de_las_soluciones">2.4.1. Ver gráfico de las soluciones</h4>
+<div class="paragraph">
+<p>Desde la ventana de estado de la ejecución, para aquellos experimentos formados por algoritmo de 1 o 2 objetivos se puede visualizar el gráfico de las soluciones, si es que está activado en el menú de la aplicación.</p>
+</div>
+<div class="paragraph">
+<p>Para los experimentos de algoritmos monoobjetivo, el gráfico es realizado utilizando en el eje X el numero de las iteraciones y en el eje Y el valor objetivo a optimizar. A cada una de las repeticiones del algoritmo configurada en el experimento se le asigna un color, de entre una paleta de colores pre-establecida (paleta de 20 colores, si hay más de 20 repeticiones del un algoritmo se empezaran a repetir los colores). Cada uno de los puntos corresponde al resultado de una iteración del algoritmo en ejecución. En la siguiente imagen se puede apreciar el gráfico para un problema monoobjetivo.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/resolver_problema/grafico_de_resultados_monoobjetivo.png" alt="grafico de resultados monoobjetivo">
+</div>
+</div>
+<div class="paragraph">
+<p>En cuanto a los experimentos con algoritmos multiobjetivos, como se menciono anteriormente, con dos objetivos. El eje X corresponde al valor del primer objetivo, mientras que en el eje Y se tiene el valor del segundo objetivo. En este caso, cada color corresponde a las soluciones de la Frontera de Pareto de cada una de las repeticiones del algoritmo. A continuación se muestra el gráfico para un experimento con un algoritmo multiobjetivo.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/resolver_problema/grafico_de_resultados_multiobjetivo.png" alt="grafico de resultados multiobjetivo">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_exportar_como_imagen_el_gráfico_de_las_soluciones">2.4.2. Exportar como imagen el gráfico de las soluciones</h4>
+<div class="paragraph">
+<p>Desde la pestaña del gráfico se puede guardar este en formato png. El archivo guardado corresponde a una <em>snapshot</em> del gráfico por lo que el tamaño de la pantalla influye en el tamaño del archivo guardado. La siguiente imagen indica con una flecha roja el boton de guardado.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/resolver_problema/grafico_de_resultados_boton.png" alt="grafico de resultados boton">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_visualizar_los_resultados">2.4.3. Visualizar los resultados</h4>
+<div class="paragraph">
+<p>Una vez terminada la ejecución del experimento se abre en la interfaz principal una pestaña con los resultados de éste. En el caso de los experimentos utilizando algoritmos monoobjetivos, la pestaña contiene la misma cantidad de resultados que el número de repeticiones del algoritmo configurado. Cada una de estas soluciones corresponde a la mejor solución de cada una de las repeticiones y de entre ellas la mejor es marcada con el color verde como se muestra a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/resolver_problema/pestania_resultados_monoobjetivo.png" alt="pestania resultados monoobjetivo">
+</div>
+</div>
+<div class="paragraph">
+<p>Por otro lado, para los experimentos multiobjetivos, al momento de finalizar la ejecución del experimento, de las soluciones de cada una de las repeticiones del algoritmo utilizado (Cada solución tiene su propia frontera de pareto en los algoritmos multiobjetivos), se obtiene la <strong>Frontera de Pareto</strong> final resultante (De las fronteras de los diversos algoritmos multiobjetivos ejecutados se combinan las soluciones en un solo conjunto y se obtiene la frontera de éste).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/resolver_problema/pestania_resultados_multiobjetivo.png" alt="pestania resultados multiobjetivo">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_guardar_los_resultados">2.4.4. Guardar los resultados</h4>
+<div class="paragraph">
+<p>Una vez terminada la ejecución de los experimentos, ya sea monoobjetivo o multiobjetivo, desde la pestaña abierta con las soluciones de pueden guardar los resultados de la optimización en diversos formatos. Estos son, como un archivo de configuración de red (archivo extensión .inp), un excel o un par de archivos de texto.</p>
+</div>
+<div class="paragraph">
+<p>Para guardar los resultados como un <strong>archivo de configuración de red</strong> (archivo extensión .inp), se debe seleccionar una solución y posteriormente pulsar el boton de guardado como se muestra en la imagen a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/resolver_problema/guardar_inp.png" alt="guardar inp">
+</div>
+</div>
+<div class="paragraph">
+<p>Como se menciona en <a href="#_como_agregar_nuevos_problemas">Como agregar nuevos problemas</a> el método <em>applySolutionToNetwork</em> debe estar implementado en la clase del problema. En el caso de que el método no este implementado la aplicación mostrara el siguiente mensaje de error.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/resolver_problema/guardar_inp_fallo.png" alt="guardar inp fallo">
+</div>
+</div>
+<div class="paragraph">
+<p>Para guardar los resultados como una <strong>tabla de excel</strong> se debe pulsar el boton asociado con la función de guardado, dicho boton se puede apreciar en la siguiente imagen. Al ser presionado ese boton se guardará toda la tabla.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/resolver_problema/guardar_excel.png" alt="guardar excel">
+</div>
+</div>
+<div class="paragraph">
+<p>Por ultimo se pueden <strong>exportar las soluciones a un archivo de texto</strong>. Dicho archivo tendran la extensión tsv. Al usar esta función se generan dos archivos, uno tiene el prefijo FUN_ y el otro el prefijo VAR_. Por ejemplo, FUN_resultado.tsv y VAR_resultado.tsv. El archivo FUN almacena el valor de los objetivos de los resultados, mientras que el archivo VAR contiene las variables utilizadas para alcanzar dicho objetivo. La siguiente imagen indica el boton utilizado para guardar como archivo de texto.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/funcionalidades/resolver_problema/guardar_tsv.png" alt="guardar tsv">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_como_agregar_nuevos_algoritmos">3. Como agregar nuevos algoritmos</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Para agregar un nuevo algoritmo a la aplicación se debe implementar la interfaz <em>Algorithm</em>. En la siguiente figura se puede ver la interfaz correspondiente.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_algoritmos/d_class_metaheuristics.svg" alt="d class metaheuristics">
+</div>
+</div>
+<div class="paragraph">
+<p>Esta interfaz cuenta con los siguientes métodos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>RunSingleStep</em>: Este método debe ejecutar un único paso del algoritmo (Una sola generación/iteración).</p>
+</li>
+<li>
+<p><em>isStoppingConditionReached</em>: Este método indica si la condición de término del algoritmo ha sido alcanzada.</p>
+</li>
+<li>
+<p><em>getStatusOfExecution</em>: Este método puede devolver un <em>String</em> con información del algoritmo como se muestra en la dos siguientes imagenes. La primera correspondiente a un algoritmo monoobjetivo y la segunda a un algoritmo multiobjetivo.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/nuevos_algoritmos/SingleObjectiveRunningWindow.png" alt="SingleObjectiveRunningWindow">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/nuevos_algoritmos/MultiObjectiveRunningWindow.png" alt="MultiObjectiveRunningWindow">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>getResult</em>: Devuelve el resultado del algoritmo.</p>
+</li>
+<li>
+<p><em>getName</em>: Devuelve el nombre del algoritmo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Para llevar a cabo la simulación, la aplicación llama al método <em>RunSingleStep</em> hasta que <em>isStoppingConditionReached</em> sea verdadero. Adicionalmente, dentro del mismo método <em>RunSingleStep</em> también se debería asegurar que una vez sea alcanzada la condición de termino no se realicen nuevas operaciones. Un ejemplo de <em>RunSingleStep</em> utilizado en el Algoritmo NSGAII y GA se puede ver a continuación:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">@Override
+public void runSingleStep() throws Exception, EpanetException {
+    List&lt;S&gt; offspringPopulation;
+    List&lt;S&gt; selectionPopulation;
+
+    // Inicializa el algoritmo en la primera iteración.
+    if (step == 0) {
+        population = createInitialPopulation();
+        population = evaluatePopulation(population);
+        initProgress();
+    }
+
+    // Realiza la selección y reproducción.
+    if (!isStoppingConditionReached()) {
+        selectionPopulation = selection(population);
+        offspringPopulation = reproduction(selectionPopulation);
+        offspringPopulation = evaluatePopulation(offspringPopulation);
+        population = replacement(population, offspringPopulation);
+        updateProgress();
+    }
+
+    this.step++;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Se utiliza el metodo <em>RunSingleStep</em> puesto que permite obtener resultados intermedio de la operación despues de cada iteración.</p>
+</div>
+<div class="paragraph">
+<p>Una vez agregado un nuevo algoritmo, si este lo quiere utilizar con un problema ya implementado debe crear el <a href="#_como_agregar_nuevos_experimentos">experimento</a> y utilizar las clases de los problemas implementados. Puede utilizar las otras clases "<em>Registrable</em>" para guiarse.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_como_agregar_nuevos_problemas">4. Como agregar nuevos problemas</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Para agregar un nuevo problema se debe implementar la interfaz <em>Problem</em> que se muestra a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_algoritmos/d_class_metaheuristics.svg" alt="d class metaheuristics">
+</div>
+</div>
+<div class="paragraph">
+<p>Esta interfaz posee los siguientes métodos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>getNumberOfVariables</em>: Indica el número de variables del problema.</p>
+</li>
+<li>
+<p><em>getNumberOfObjectives</em>: Indica el número de objetivos del problema.</p>
+</li>
+<li>
+<p><em>getNumberOfConstrains</em>: Indica el número de restricciones del problema.</p>
+</li>
+<li>
+<p><em>evaluate</em>: Evalúa una solución y sus restricciones.</p>
+</li>
+<li>
+<p><em>createSolution</em>: Crea una nueva solución para el problema.</p>
+</li>
+<li>
+<p><em>getLowerBound</em>: Indica el valor mínimo que puede tomar una variable en un índice específico.</p>
+</li>
+<li>
+<p><em>getUpperBound</em>: Indica el valor máximo que puede tomar una variable en un índice específico.</p>
+</li>
+<li>
+<p><em>getName</em>:  El nombre del problema.</p>
+</li>
+<li>
+<p><em>closeResources</em>: Cierra los recursos usado por el problema. Generalmente, el único recurso a cerrar sería el simulador hidráulico EpanetAPI. Implementar este método es opcional. Este método es llamado por la aplicación cuando se termina el experimento.</p>
+</li>
+<li>
+<p><em>applySolutionToNetwork</em>: Toma una solución y la aplica sobre una red (Instancia de <em>Network</em> que posteriormente puede ser guardada como un archivo inp). Este método es opcional y en caso de que no esté implementado devuelve el valor <em>null</em>. Este método es llamado por la aplicación cuando se selecciona una solución en la pestaña de resultados y se presiona el botón guardar como inp. Se puede ver un ejemplo de este método a continuación:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">@Override
+public Network applySolutionToNetwork(Network network, Solution&lt;?&gt; solution) {
+    IntegerSolution iSolution = (IntegerSolution) solution;
+    Collection&lt;Pipe&gt; pipes = network.getPipes();
+    int i = 0;
+    for (Pipe pipe : pipes) {
+        double diameter = this.gamas.get(iSolution.getVariable(i) - 1).getDiameter();
+        pipe.setDiameter(diameter);
+        i++;
+    }
+    return network;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Una vez que ha agregado un nuevo problema debe crear el <a href="#_como_agregar_nuevos_experimentos">experimento</a> para que este pueda ser ejecutado desde la interfaz gráfica.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_como_agregar_nuevos_operadores">5. Como agregar nuevos operadores</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Para crear un nuevo operador se debe implementar la interfaz <em>Operator</em> o alguna de sus subinterfaces o subclases. La interfaz se muestra a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_algoritmos/d_class_metaheuristics.svg" alt="d class metaheuristics">
+</div>
+</div>
+<div class="paragraph">
+<p>Como se puede ver la interfaz <em>Operador</em> cuenta con un único método el cual es:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>execute</em>: Método que realiza una operación sobre un operando y devuelve un objeto resultante de dicha operación. Generalmente, este método realiza una acción sobre una solución o una lista de soluciones y retorna la solución resultante de la operación realizada.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Para configurar los parámetros desde la ventana de configuración, debe haber un constructor público en el operador que posea la anotación <em>@DefaultConstructor</em>.</p>
+</div>
+<div class="sect2">
+<h3 id="_defaultconstructor">5.1. <em>@DefaultConstructor</em></h3>
+<div class="paragraph">
+<p>La anotación <em>@DefaultConstructor</em> indica el constructor que debe ser usado al momento de crear una instancia del operador utilizando la ventana de configuración. Esta anotación recibe un arreglo de [<em>@NumberInput</em>](Anotaciones%20permitidas.md). El arreglo debe tener la misma cantidad de argumentos que los parámetros del constructor. A continuación se muestran el codigo de dos constructores de diferentes clases y su representación gráfica:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">---
+/*
+ * Constructor de un solo parámetro. Se puede omitir las llaves del arreglo {}.
+ */
+@DefaultConstructor(@NumberInput(displayName = "constant", defaultValue = 1.5))
+public UniformSelection(double constant) {
+	this(constant, new DominanceComparator&lt;S&gt;());
+}
+---</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Que genera la siguiente interfaz:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_operadores/InterfazConfiguracionUniformSelection.png" alt="InterfazConfiguracionUniformSelection">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">/*
+ * Constructor  multi-parametros. Deben ir entre llaves {}.
+ */
+@DefaultConstructor({
+    @NumberInput(displayName = "MutationProbability", defaultValue = 0.01),
+    @NumberInput(displayName = "DistributionIndex", defaultValue = 20)
+    })
+public IntegerPolynomialMutation(double mutationProbability, double distributionIndex) {
+    this(mutationProbability, distributionIndex, () -&gt; JavaRandom.getInstance().nextDouble());
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Que genera la siguiente interfaz:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_operadores/InterfazConfiguracionIntegerPolynomialMutation.png" alt="InterfazConfiguracionIntegerPolynomialMutation">
+</div>
+</div>
+<div class="paragraph">
+<p>Esta anotación solo puede ser usada en un único constructor por clase. Usar esta anotación en más de un constructor lanzara una excepción en tiempo de ejecución. Adicionalmente, <strong>el constructor que use esta anotación solo puede tener parámetros de tipo <em>int</em> o <em>double</em></strong>.</p>
+</div>
+<div class="paragraph">
+<p>La anotación puede tener un arreglo vacío, lo cual indica que el constructor no recibirá parámetros.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">/*
+ * Constructor sin parametros
+ */
+@DefaultConstructor
+public CustomMutation() {
+    //code
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Si ha creado un nuevo operador y quiere agregarlo para resolver los problemas ya implementados, debe modificar las clases "<em>Registrable</em>" utilizadas para generar el experimento. Asegure que la signatura de su operador coincida con la de los párametros de los operadores esperados por el algoritmo. Si su operador no tiene una signatura que coincide con la esperada con los algoritmos, puede realizar una copia del algoritmo y modificarlo para funcionar con su operador y posteriormente generar una nueva clase "<em>Registrable</em>". Para mas información de como crear un algoritmo dirigete a <a href="#_como_agregar_nuevos_algoritmos">Como agregar nuevos algoritmos</a>, mientras que para crear nuevos experimentos ve a <a href="#_como_agregar_nuevos_experimentos">Como agregar nuevos experimentos</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_como_agregar_nuevos_experimentos">6. Como agregar nuevos experimentos</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Un experimento, en el contexto de este programa, es una clase que contiene una lista de algoritmos para resolver un problema específico. Los algoritmos que conforman el experimento deben ser de un mismo tipo, por ejemplo, "n" repeticiones del Algoritmo Genético. Actuando "n" como el número de ejecuciones independientes del algoritmo. A continuación se muestran las interfaces del módulo metaheurísticas incluyendo las clases utilizadas para los experimentos.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_experimentos/d_class_metaheuristics_extendido.svg" alt="d class metaheuristics extendido">
+</div>
+</div>
+<div class="paragraph">
+<p>Para crear el experimento la aplicación cuenta con una clase llamada <em>ExperimentBuilder</em>.</p>
+</div>
+<div class="paragraph">
+<p>Los parámetros <em>ExperimentBaseDirectory</em> y <em>ReferenceFrontDirectory</em> solo tienen uso en experimentos multiobjetivos. <em>ExperimentBaseDirectory</em> indica donde guardar la frontera de Pareto de cada repetición del algoritmo multiobjetivo. En cambio, <em>ReferenceFrontDirectory</em> indica donde guardar la frontera de Pareto final, que se obtiene al unir las fronteras de cada repetición y extraer solamente las soluciones no dominadas de dicho conjunto.</p>
+</div>
+<div class="sect2">
+<h3 id="_interfaz_registrable">6.1. Interfaz Registrable</h3>
+<div class="paragraph">
+<p>Con el fin de agregar un nuevo experimento en la aplicación, se debe crear una clase que herede de <em>SingleObjectiveRegistrable</em> o <em>MultiObjectiveRegistrable</em>, dependiendo de si el problema es monoobjetivo o multiobjetivo, respectivamente. La clases que heredan de <em>Registrable</em> funcionan como <em>templates</em> para crear nuevos experimentos. En la siguiente imagen, se presenta la jerarquía de clases de la interfaz <em>Registrable</em>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_experimentos/d_class_registrable.svg" alt="d class registrable">
+</div>
+</div>
+<div class="paragraph">
+<p>Ambas interfaces devuelven como resultado una instancia del experimento la cual es usada para realizar la simulación. Los métodos utilizados por la interfaz <em>Registrable</em> son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>build</em>: Construye un experimento.</p>
+</li>
+<li>
+<p><em>getParameters</em>: Este método devuelve un mapa, el cual es usado para agregar columnas extras a la ventana de resultados. La clave es usada como el nombre de la columna, mientras que el valor es usado como el valor de la columna. <strong>Este método es opcional</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En el constructor público de la clase que herede de una de las subinterfaces de <em>Registrable</em>, se debe utilizar la anotación <em>@NewProblem</em>. Adicionalmente, si se quiere mostrar la interfaz de configuración, dicho constructor debe incluir la anotación <em>@Parameters</em>.</p>
+</div>
+<div class="paragraph">
+<p>Las clases que implementen cualquiera de las dos interfaces mencionadas anteriormente deben ser guardados en una estructura de datos, la cual es recorrida cuando se inicie la ejecución del programa y analizada usando la <em>Java Reflection API</em>. Este análisis consistirá en escanear y validar el cumplimiento de la convención establecida para las clases que implementan está interfaz. Esta convención consiste en lo siguiente:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La clase "Registrable" debe contener un único constructor que use la anotación <em>@NewProblem</em>.</p>
+</li>
+<li>
+<p>Si el constructor requiere parámetros éstos deben estar descritos usando la anotación <em>@Parameters</em>.</p>
+</li>
+<li>
+<p>El constructor debe declarar los parámetros en el siguiente orden, de acuerdo con su tipo.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>Object</em>: Usado para inyectar los operadores. Estos parámetros pueden posteriormente ser casteados a su tipo correcto. La anotación correspondiente es <em>@OperatorInput</em>.</p>
+</li>
+<li>
+<p><em>File</em>: Usados cuando el problema requiere información adicional que se encuentra en un archivo diferente. La anotación correspondiente es <em>@FileInput</em>.</p>
+</li>
+<li>
+<p><em>int</em>, <em>Integer</em>, <em>double</em> o <em>Double</em>: Usado generalmente para configurar valores en el algoritmo o si el problema requiere otros valores que no fueron solicitados al crear los operadores. Las anotaciones correspondientes son <em>@NumberInput</em> y <em>@NumberToggleInput</em>.</p>
+</li>
+<li>
+<p>El constructor debe solicitar la misma cantidad de parámetros que las descritas en la anotación <em>@Parameters</em>.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Si estas convenciones no se cumplen, entonces un error en tiempo de compilación será emitido.</p>
+</div>
+<div class="paragraph">
+<p>El orden en el que son inyectados los parámetros consiste en el siguiente:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Parámetros descritos por <em>@OperatorInput</em>.</p>
+</li>
+<li>
+<p>Parámetros descritos por <em>@FileInput</em>.</p>
+</li>
+<li>
+<p>Parámetros descritos por <em>@NumberInput</em>.</p>
+</li>
+<li>
+<p>Parámetros descritos por <em>@NumberToggleInput</em>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Una vez que se haya configurado el problema a través de la interfaz, se creará la instancia de la clase que hereda de <em>Registrable</em> y se llamará a su método <em>build</em>, para crear el experimento y comenzar su ejecución.</p>
+</div>
+<div class="paragraph">
+<p>La estructura de datos para registrar las clases que heredan de <em>SingleObjectiveRegistrable</em> y <em>MonoObjectiveRegistrable</em> se encontrará en la clase <em>RegistrableConfiguration</em> del paquete <em>application</em> que consiste en dos listas con los experimentos existentes en la aplicación como se muestra a continuación.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">package application;
+
+public final class RegistrableConfiguration {
+	public static final List&lt;Class&lt;? extends SingleObjectiveRegistrable&gt;&gt; SINGLEOBJECTIVES_PROBLEMS = new ArrayList&lt;&gt;();
+	public static final List&lt;Class&lt;? extends MultiObjectiveRegistrable&gt;&gt; MULTIOBJECTIVES_PROBLEMS = new ArrayList&lt;&gt;();
+
+	//Agrega a la interfaz en el menu de optimización monoobjetivo
+	static {
+		SINGLEOBJECTIVES_PROBLEMS.add(PipeOptimizingRegister.class);
+	}
+
+	//Agrega a la interfaz en el menu de optimización multiobjetivo
+	static {
+        // Cada uno de las siguientes sentencias agregan un registrable que resuelve el mismo problema pero utilizando diferentes algoritmos.
+		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingNSGAIIRegister.class);
+		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingSMPSORegister.class);
+		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingSPA2Register.class);
+	}
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A continuación se muestra un ejemplo del constructor utilizado para el problema de los costos de las tuberías (<em>PipeOptimizingRegistrable</em>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">@NewProblem(displayName = "Pipe optimizing", algorithmName = "Genetic Algorithm", description = "The objective of this " +
+    "problem is to optimize the cost of construction of the network by " +
+    "varying the diameter of the pipe in order to ensure a minimum level of pressure.")
+@Parameters(operators = {
+    @OperatorInput(displayName = "Selection Operator", value = {
+            @OperatorOption(displayName = "Uniform Selection", value = UniformSelection.class)
+    }),
+    @OperatorInput(displayName = "Crossover Operator", value = {
+            @OperatorOption(displayName = "Integer Single Point Crossover", value = IntegerSinglePointCrossover.class),
+            @OperatorOption(displayName = "Integer SBX Crossover", value = IntegerSBXCrossover.class)
+    }), //
+    @OperatorInput(displayName = "Mutation Operator", value = {
+            @OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class),
+            @OperatorOption(displayName = "Integer Polynomial Mutation", value = IntegerPolynomialMutation.class),
+            @OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class)
+    })}, //
+    files = {@FileInput(displayName = "Gama *")}, //
+    numbers = {@NumberInput(displayName = "Independent run", defaultValue = 5),
+            @NumberInput(displayName = "Min pressure", defaultValue = 30),
+            @NumberInput(displayName = "Population Size", defaultValue = 100)}, //
+    numbersToggle = {
+            @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation", defaultValue = 25000),
+            @NumberToggleInput(groupID = "Finish Condition", displayName = "Number of iteration without improvement", defaultValue = 100)
+    }
+)
+public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama, int independentRun,
+                                int minPressure, int populationSize, int maxEvaluations, int numberWithoutImprovement) throws Exception {
+
+    this.selection = (SelectionOperator&lt;List&lt;IntegerSolution&gt;, List&lt;IntegerSolution&gt;&gt;) selectionOperator; // unchecked cast
+    this.crossover = (CrossoverOperator&lt;IntegerSolution&gt;) crossoverOperator; // unchecked cast
+    this.mutation = (MutationOperator&lt;IntegerSolution&gt;) mutationOperator; // unchecked cast
+    this.independentRun = independentRun;
+    this.minPressure = minPressure;
+    this.populationSize = populationSize;
+    this.numberWithoutImprovement = numberWithoutImprovement;
+    this.maxEvaluations = maxEvaluations;
+    this.gama = gama;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En cuando al método build:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">@Override
+public Experiment&lt;IntegerSolution&gt; build(String inpPath) throws Exception {
+    if (inpPath == null || inpPath.isEmpty()) {
+        throw new ApplicationException("There isn't a network opened");
+    }
+
+    // Inicializa el simulador
+    EpanetAPI epanet = new EpanetAPI();
+    epanet.ENopen(inpPath, "ejecucion.rpt", "");
+
+    if (this.gama == null) {
+        throw new ApplicationException("There isn't gama file");
+    }
+
+
+    // Crea el problema asociado al experimento.
+    this.problem = new PipeOptimizing(epanet, this.gama.getAbsolutePath(), this.minPressure);
+
+    ExperimentProblem&lt;IntegerSolution&gt; experimentProblem = new ExperimentProblem&lt;&gt;(this.problem);
+
+    // Crea la lista con los algoritmos del experimento. Cada ExperimentAlgoritm en la lista tendra la referencia al problema, un numero de ejecución entre 0 e independentRun, así como su propia instancia del algoritmo creada utilizando el callback.
+    List&lt;ExperimentAlgorithm&lt;IntegerSolution&gt;&gt; experimentAlgorithms = ExperimentUtils.configureAlgorithmList(
+        experimentProblem,
+        this.independentRun,
+        () -&gt; { // Callback. Es un template para crear los algoritmos.
+            GeneticAlgorithm2&lt;IntegerSolution&gt; algorithm = new GeneticAlgorithm2&lt;&gt;(this.problem, populationSize, selection, crossover, mutation, new SequentialSolutionEvaluator&lt;&gt;());
+            if (this.numberWithoutImprovement != Integer.MIN_VALUE) {
+                algorithm.setMaxNumberOfIterationWithoutImprovement(this.numberWithoutImprovement);
+            } else {
+                algorithm.setMaxEvaluations(this.maxEvaluations);
+            }
+            return algorithm;
+        }
+    );
+
+    return new ExperimentBuilder&lt;IntegerSolution&gt;("PipeOptimizing")
+            .setIndependentRuns(this.independentRun)
+            .setAlgorithmList(experimentAlgorithms)
+            .setProblem(experimentProblem)
+            .build();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finalmente el método <em>getParameters</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">@Override
+public Map&lt;String, String&gt; getParameters() {
+    Map&lt;String, String&gt; map = new LinkedHashMap&lt;&gt;();
+    map.put("Min Pressure", "" + this.minPressure);
+    map.put("Population Size", "" + this.populationSize);
+
+    // Ve si el parámetro numberWithoutImprovement fue configurado o no
+    if (this.numberWithoutImprovement != Integer.MIN_VALUE) {
+        map.put("Number without improvement", "" + this.numberWithoutImprovement);
+    } else {
+        map.put("Number of max evaluations", "" + this.maxEvaluations);
+    }
+
+    // Selección
+    if (this.selection instanceof UniformSelection) {
+        map.put("Selection", "UniformSelection");
+        map.put("Uniform Selection Constant", "" + ((UniformSelection&lt;IntegerSolution&gt;) this.selection).getConstant());
+    }
+
+    // Cruzamiento
+    if (this.crossover instanceof IntegerSBXCrossover) {
+        map.put("Crossover", "IntegerSBXCrossover");
+        map.put("Crossover Probability", "" + ((IntegerSBXCrossover) this.crossover).getCrossoverProbability());
+        map.put("Crossover Distribution Index", "" + ((IntegerSBXCrossover) this.crossover).getDistributionIndex());
+    } else if (this.crossover instanceof IntegerSinglePointCrossover) {
+        map.put("Crossover", "IntegerSinglePointCrossover");
+        map.put("Crossover Probability", "" + ((IntegerSinglePointCrossover) this.crossover).getCrossoverProbability());
+    }
+
+    // Mutación
+    if (this.mutation instanceof IntegerPolynomialMutation) {
+        map.put("Mutation", "IntegerPolynomialMutation");
+        map.put("Mutation Probability", "" + ((IntegerPolynomialMutation) this.mutation).getMutationProbability());
+        map.put("Mutation Distribution Index", "" + ((IntegerPolynomialMutation) this.mutation).getDistributionIndex());
+
+    } else if (this.mutation instanceof IntegerSimpleRandomMutation) {
+        map.put("Mutation", "IntegerSimpleRandomMutation");
+        map.put("Mutation Probability", "" + ((IntegerSimpleRandomMutation) this.mutation).getMutationProbability());
+
+    } else if (this.mutation instanceof IntegerRangeRandomMutation) {
+        map.put("Mutation", "IntegerRangeRandomMutation");
+        map.put("Mutation Probability", "" + ((IntegerRangeRandomMutation) this.mutation).getMutationProbability());
+        map.put("Mutation Range", "" + ((IntegerRangeRandomMutation) this.mutation).getRange());
+    }
+    return map;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En <a href="#_anotaciones_de_la_aplicación">Anotaciones</a> se pueden ver la definición de cada una de las anotaciones permitidas por la aplicación.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_anotaciones_de_la_aplicación">7. Anotaciones de la aplicación</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_anotacion_permitida_en_la_clases_operator">7.1. Anotacion permitida en la clases <em>Operator</em></h3>
+<div class="sect3">
+<h4 id="_defaultconstructor_2">7.1.1. <em>@DefaultConstructor</em></h4>
+<div class="paragraph">
+<p>Esta anotación indica el constructor principal utilizado para crear el operador a través de la interfaz gráfica.</p>
+</div>
+<div class="paragraph">
+<p>Los elementos en esta anotación son los siguientes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>value</em>: Arreglo que recibe anotaciones del tipo <em>@NumberInput</em>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_anotaciones_pemitidas_en_la_clases_registrable">7.2. Anotaciones pemitidas en la clases <em>Registrable</em></h3>
+<div class="sect3">
+<h4 id="_newproblem">7.2.1. <em>@NewProblem</em></h4>
+<div class="paragraph">
+<p>Esta anotación permite indicar el nombre del problema que será mostrado en la interfaz gráfica. Puedes ver el uso de esta anotación a continuación:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">@NewProblem(displayName = "Pipe optimizing", algorithmName = "Genetic Algorithm", description = "The objective of this " +
+    "problem is to optimize the cost of construction of the network by " +
+    "varying the diameter of the pipe in order to ensure a minimum level of pressure."
+)
+@Parameters(operators = {
+    @OperatorInput(displayName = "Selection Operator", value = {
+            @OperatorOption(displayName = "Uniform Selection", value = UniformSelection.class)
+    }),
+    @OperatorInput(displayName = "Crossover Operator", value = {
+            @OperatorOption(displayName = "Integer Single Point Crossover", value = IntegerSinglePointCrossover.class),
+            @OperatorOption(displayName = "Integer SBX Crossover", value = IntegerSBXCrossover.class)
+    }), //
+    @OperatorInput(displayName = "Mutation Operator", value = {
+            @OperatorOption(displayName = "Integer Simple Random Mutation", value = IntegerSimpleRandomMutation.class),
+            @OperatorOption(displayName = "Integer Polynomial Mutation", value = IntegerPolynomialMutation.class),
+            @OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class)
+    })}, //
+    files = {@FileInput(displayName = "Gama *")}, //
+    numbers = {@NumberInput(displayName = "Independent run", defaultValue = 5),
+            @NumberInput(displayName = "Min pressure", defaultValue = 30),
+            @NumberInput(displayName = "Population Size", defaultValue = 100)}, //
+    numbersToggle = {
+            @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation", defaultValue = 25000),
+            @NumberToggleInput(groupID = "Finish Condition", displayName = "Number of iteration without improvement", defaultValue = 100)
+    }
+)
+public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama, int independentRun,
+                                int minPressure, int populationSize, int maxEvaluations, int numberWithoutImprovement) throws Exception {
+    //code
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Los elementos en esta anotación consisten en:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>displayName</em>: El nombre del problema. Este nombre también actúa como el nombre de la categoría.</p>
+</li>
+<li>
+<p><em>algorithm</em>: Un <em>String</em> con el nombre del algoritmo usado para resolver el problema.</p>
+</li>
+<li>
+<p><em>description</em>: Un <em>String</em> con la descripción del algoritmo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>El nombre dado en el elemento <em>displayName</em>, es el nombre visible del problema en el menú de la aplicación y permite agrupar a los problemas que tengan el mismo nombre, pero distintos algoritmos, como se ve en la siguiente imagen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_experimentos/MenuDelProblema.png" alt="MenuDelProblema">
+</div>
+</div>
+<div class="paragraph">
+<p>Esta anotación solo puede estar en un constructor, en caso de que esta anotación no esté presente, un error en tiempo de ejecución será lanzado.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_parameters">7.3. <em>@Parameters</em></h3>
+<div class="paragraph">
+<p>Esta anotación permite agregar información acerca de los parámetros recibidos por el constructor. Cuando el constructor tiene esta anotación, por convención, está obligado a declarar los parámetros en un orden determinado en base a tu tipo. Este orden es el siguiente:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>Object</em></p>
+</li>
+<li>
+<p><em>File</em></p>
+</li>
+<li>
+<p><em>int</em> o <em>double</em></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Si el constructor no declara los parámetros en ese orden un error en tiempo de ejecución será lanzado.</p>
+</div>
+<div class="paragraph">
+<p>Dentro de esta anotación existen varios elementos. Estos elementos son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>operators</em>: Arreglo que recibe anotaciones del tipo <em>OperatorInput</em>.</p>
+</li>
+<li>
+<p><em>files</em>: Arreglo que recibe anotaciones del tipo <em>FileInput</em>.</p>
+</li>
+<li>
+<p><em>numbers</em>:  Arreglo que recibe anotaciones del tipo <em>NumberInput</em>.</p>
+</li>
+<li>
+<p><em>numbersToggle</em>: Arreglo que recibe anotaciones del tipo <em>NumberToggleInput</em>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>El valor por defecto para todos los elementos mencionados anteriormente es un arreglo vacío ({}).
+No usar la anotación <em>@Parameters</em> tiene el mismo efecto que usar la anotación, pero con sus valores por defecto.</p>
+</div>
+<div class="paragraph">
+<p>Puede ver el uso de esta anotación en la Figura \ref{fig:constructor_heredado_registrable}.</p>
+</div>
+<div class="sect3">
+<h4 id="_operatorinput">7.3.1. <em>@OperatorInput</em></h4>
+<div class="paragraph">
+<p>Esta anotación agrega información a uno de los parámetros del constructor acerca de los posibles operadores que pueden ser recibidos por ese parámetro.
+Dentro de esta anotación existen varios elementos. Estos elementos son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>displayName</em>: Nombre de categoría para los operadores.</p>
+</li>
+<li>
+<p><em>value</em>: Arreglo que recibe anotaciones del tipo <em>OperatorOption</em>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En la ventana de configuración de problema, estos parámetros son vistos con un <em>ComboBox</em> como muestra la siguiente imagen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_experimentos/ComponenteOperatorInput.png" alt="ComponenteOperatorInput">
+</div>
+</div>
+<div class="paragraph">
+<p>Las alternativas disponibles dentro del <em>ComboBox</em> están dadas por aquellas indicadas en el elemento value de este operador. Como se muestrará en la siguiente figura la única alternativa para el <em>Selection Operator</em> es el operador <em>UniformSelection</em>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_experimentos/ComponenteOperatorInputExpandido.png" alt="ComponenteOperatorInputExpandido">
+</div>
+</div>
+<div class="paragraph">
+<p>Por defecto, el <em>ComboBox</em> selecciona el primer elemento de la lista.
+El botón <em>Configure</em> permite configurar los parámetros que recibe el constructor del operador, aquel que posee la anotación <em>@DefaultConstructor</em>. Para el caso del operador <em>UniformSelection</em>, su interfaz es la siguiente:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_operadores/InterfazConfiguracionUniformSelection.png" alt="InterfazConfiguracionUniformSelection">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_operatoroption">7.3.2. <em>@OperatorOption</em></h4>
+<div class="paragraph">
+<p>Esta anotación permite indicar las alternativas de operadores que puede recibir un parámetro para una categoría de operador indicada por la anotación <em>@OperatorInput</em>.
+Dentro de esta anotación existen varios elementos. Estos elementos son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>displayName</em>: Nombre del operador. Este es el nombre visualizado en el <em>ComboBox</em>.</p>
+</li>
+<li>
+<p><em>value</em>: Instancia del tipo <em>Class</em> que referencia el tipo de operador.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fileinput">7.3.3. <em>@FileInput</em></h4>
+<div class="paragraph">
+<p>Esta anotación indica que hay un parámetro que espera recibir un objeto de tipo <em>File</em>. Cuando esta anotación está presente junto con su parámetro, en la interfaz, aparecerá un apartado que abre un <em>FileChooser</em> o un <em>DirectoryChooser</em> para buscar un archivo o directorio, respectivamente.
+Dentro de esta anotación existen varios elementos. Éstos son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>displayName</em>: Nombre del parámetro. Este nombre también corresponde al nombre visualizado en la ventana de configuración como se muestra a continuación.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_experimentos/ComponenteFileInput.png" alt="ComponenteFileInput">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>type</em>: Indica el modo en que se abrirá el <em>FileChooser</em>. Este elemento recibe un enumerado del tipo <em>Type</em>; los cuales son <em>Type.OPEN</em>, <em>Type.SAVE</em>, que abren un <em>FileChooser</em> para leer o guardar un archivo; y <em>Type.Directory</em>, el cual abre un <em>DirectoryChooser</em> para seleccionar un directorio. La opción por defecto es <em>FileType.OPEN</em>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Si el <em>TextField</em> donde se muestra la ruta está vacío, es decir, no se ha seleccionado un archivo o carpeta, entonces será inyectado <strong><em>null</em></strong> en el parámetro correspondiente del constructor.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_numberinput">7.3.4. <em>@NumberInput</em></h4>
+<div class="paragraph">
+<p>Esta anotación indica que hay un parámetro del tipo <em>int</em> o <em>double</em> o sus tipos envoltorios <em>Integer</em> o <em>Double</em>, respectivamente. Esta anotación agrega en la interfaz un <em>TextField</em> que solo permite como entrada un número.  Si el tipo del parámetro es <em>int</em> o <em>Integer</em>, entonces el <em>TextField</em> solo permite ingresar números enteros. Por otro lado, si el parámetro es <em>double</em> o <em>Double</em>, entonces en la interfaz se acepta el ingreso de números enteros o decimales. En la interfaz, esta anotación es visualizada como se muestra a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_experimentos/ComponenteNumberInput.png" alt="ComponenteNumberInput">
+</div>
+</div>
+<div class="paragraph">
+<p>Dentro de esta anotación existen los siguientes elementos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>displayName</em>: Nombre del parámetro.</p>
+</li>
+<li>
+<p><em>defaultValue</em>: Valor por defecto de la propiedad. Si el tipo de parámetro en el constructor de la clase que hereda de <em>Registrable</em> es un entero, pero se ingresa como valor por defecto un número con decimales, los decimales serán truncados. Si este elemento no se define su valor por defecto es 0.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Esta anotación puede ser utilizada dentro de la anotación <em>@DefaultConstructor</em></strong> definida al principio.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_numbertoggleinput">7.3.5. <em>@NumberToggleInput</em></h4>
+<div class="paragraph">
+<p>Esta anotación indica que hay un conjunto de parámetros que son mutuamente excluyentes entre ellos, es decir, que solo un parámetro puede recibir el valor.</p>
+</div>
+<div class="paragraph">
+<p>En la interfaz, el nombre del grupo aparece sobre los componentes. Dentro de un mismo grupo solo se puede configurar un parámetro. El parámetro por configurar debe ser indicado activando el <em>ToggleButton</em> correspondiente, lo cual conlleva a la activación del <em>TextField</em>.</p>
+</div>
+<div class="paragraph">
+<p>Dentro de esta anotación existen varios elementos. Estos elementos son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>groudID</em>: <em>String</em> con un id para el grupo. Las anotaciones <em>NumberToggerInput</em> que tengan el mismo id, en la interfaz, se encuentran en una sección cuyo título es el nombre del grupo. Esto se aprecia en la figura siguiente.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_experimentos/ComponenteNumberToggleInput.png" alt="ComponenteNumberToggleInput">
+</div>
+</div>
+</li>
+<li>
+<p><em>displayName</em>: Nombre del parámetro.</p>
+</li>
+<li>
+<p><em>defaultValue</em>: Valor por defecto de la propiedad. Si el tipo de parámetro en el constructor de la clase que hereda de <em>Registrable</em> es un entero, pero se ingresa como valor por defecto un número con decimales, los decimales serán truncados. Si este elemento no se define su valor por defecto es 0.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>El parámetro configurado en la interfaz de usuario recibe el valor indicado en el <em>TextField</em>. Si el <em>TextField</em> queda vacío entonces recibe el valor cero. Sin embargo, los demás parámetros, cuyos <em>TextField</em> están deshabilitados, van a recibir el valor <strong><em>Double.MIN_VALUE</em></strong>, si el parámetro es de tipo <em>double</em> o <em>Double</em>; o <strong><em>Integer.MIN_VALUE</em></strong> si el parámetro es de tipo <em>int</em> o <em>Integer</em>.</p>
+</div>
+<div class="paragraph">
+<p>A modo de ejemplo, en la figura anterior, se observa que el parámetro "<em>Number of iteration without improvement</em>'' esta activado, pero no contiene un valor, entonces al crear la instancia el constructor va a recibir el valor cero. Pero el parámetro "<em>Max number of evaluation</em>", al no haber sido escogido, recibe el valor <em>Integer.MIN_VALUE</em>, puesto que este parámetro era de tipo <em>int</em> o <em>Integer</em>.</p>
+</div>
+<div class="paragraph">
+<p>En el elemento <em>numbersToggle</em> de la anotación <em>@Parameters</em>, las anotaciones que pertenezcan al mismo grupo deben estar continuas. En caso de que esto no se cumpla se lanza una excepción al momento de ejecutar la aplicación.</p>
+</div>
+<div class="paragraph">
+<p>Las anotaciones presentadas en las dos secciones anteriores deben ser usadas en constructores públicos.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_problemas_de_optimización_en_rda">8. Problemas de optimización en RDA</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La aplicación incorpora dos problemas. Estos son la optimización del diseño de RDA basado en la selección del diámetro de tuberías (<em>Pipe Optimizing</em>) y la optimización del régimen de bombeo (<em>Pumping Schedule</em>).</p>
+</div>
+<div class="sect2">
+<h3 id="_pipe_optimizing">8.1. <em>Pipe Optimizing</em></h3>
+<div class="paragraph">
+<p><em>Pipe Optimizing</em> es un problema de diseño cuyo objetivo es minimizar el costo de inversión en la construcción de las tuberías. Para ésto, se busca aquella combinación de diámetros que disminuyan el costo de la construcción de las tuberías a la vez que se cumplen las restricción de presión mínima impuesta sobre la red. La siguiente ecuación es presentada en <a href="#Pereyra2017">[1]</a> y muestra la función a optimizar.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\text{Costo de inversión} = \sum_{i=1}^{N} (C_i \times D_i \times L_i)\]
+</div>
+</div>
+<div class="paragraph">
+<p>En la ecuación anteriormente presentada el termino \(C_i\) se refiere al costo unitario de la tubería \(i\), el término \(D_i\) corresponde al diámetro de la tubería y finalmente \(L_i\) hace referencia su longitud. Como se mencionó anteriormente, el problema debe satisfacer la siguiente restricción:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[H_i \geq H_{min}\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde \(H_i\) corresponde a la presión sobre la tubería \(i\) y \(H_{min}\) a la presión mínima de la red.</p>
+</div>
+<div class="paragraph">
+<p>La solución retornada por el algoritmo utilizado, en este caso GA, se puede ver en la siguiente figura. En dicha solución los valores que toman la variable de decisión corresponden al índice a una tabla donde se encuentra el diámetro y el costo de la tubería. El largo de la tubería esta configurado en el archivo de configuración de red (El archivo con extensión inp).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/problemas_implementados/pipe_optimizing/representacion_solucion_monoobjetivo.svg" alt="representacion solucion monoobjetivo">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ejecución">8.1.1. Ejecución</h4>
+<div class="paragraph">
+<p>Para ejecutar este experimento sobre una red vaya a <span class="menuseq"><b class="menu">Singleobjective Optimization</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Pipe Optimizing</b></span>. Como se puede apreciar, este experimento solo esta disponible con el algoritmo NSGAII. Al momento de escoger el algoritmo, se abrira la ventana de configuración, en la pentaña de configuración se tienen las opciones que se muestran a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/problemas_implementados/pipe_optimizing/pipe_optimizing_setup.png" alt="pipe optimizing setup">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><em>Independent Run</em></dt>
+<dd>
+<p>Establece el número de ejecuciones independientes. Ej, si el valor es 5, significa que se ejecutará 5 veces el Algoritmo Genético. Esto, dara como resultado 5 soluciones.</p>
+</dd>
+<dt class="hdlist1"><em>Min pressure</em></dt>
+<dd>
+<p>Establece la presión mínima de la red. Se utiliza para penalizar las soluciones generadas.</p>
+</dd>
+<dt class="hdlist1"><em>Population Size</em></dt>
+<dd>
+<p>Establece el tamaño de la población.</p>
+</dd>
+<dt class="hdlist1"><em>Finish Condition</em></dt>
+<dd>
+<p>Define la condición de término del algoritmo a utilizar.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><em>Max number of evaluation</em></dt>
+<dd>
+<p>Establece que se detendrá la ejecución del algoritmo despues de haber realizado el número establecido de evaluaciones.</p>
+</dd>
+<dt class="hdlist1"><em>Number of iteration without improvement</em></dt>
+<dd>
+<p>Establece que se detendrá el algoritmo despues de que se realizo un cierto número de iteraciones en que no hubieron mejora en los resultados.</p>
+</dd>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1"><em>Gama</em></dt>
+<dd>
+<p>Es un archivo con configuraciones extras de la red. Este archivo contiene el id de los nodos, el diametro de las tuberías, la rugosidad y el coste de éstas. A continuación se presenta un ejemplo del formato. *Adicionalmente, este archivo establece el número de alternativas posibles para la tuberías de la red.</p>
+<div class="listingblock">
+<div class="title">&lt;nombre_de_archivo&gt;.Gama</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>;ID	Dint	Rug	Coste
+
+DN12	304.8	130	45.72614132
+DN16	406.4	130	70.4
+DN20	508.0	130	98.38699101
+DN24	609.6	130	129.3330584
+DN30	0762	130	180.748444
+DN40	1016	130	278.2804341</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><em>Selection Operator</em></dt>
+<dd>
+<p>Establece el operador de selección a utilizar.</p>
+</dd>
+<dt class="hdlist1"><em>Crossover Operator</em></dt>
+<dd>
+<p>Establece el operador de cruzamiento a utilizar.</p>
+</dd>
+<dt class="hdlist1"><em>Mutation Operator</em></dt>
+<dd>
+<p>Establece el operador de mutación a utilizar.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pumping_schedule">8.2. <em>Pumping Schedule</em></h3>
+<div class="paragraph">
+<p><em>Pumping Schedule</em> <a href="#Makaremi2017">[2]</a> <a href="#JHawanet-2019">[3]</a> es un problema de operación que tiene como objetivos optimizar tanto el costo energético, así como el costo de mantención de los equipos de bombeos. A continuación se expresan las ecuaciones utilizadas para calcular los objetivos y las restricciones.</p>
+</div>
+<div id="costos-energeticos" class="paragraph">
+<p>Para el cálculo de los <strong>costos energéticos</strong> se ocupa la siguiente ecuación:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[C_E(S) = \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}(P_c(t) \times E_c(n, t) \times S(n, t))\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(C_E(S)\): Costos energético.</p>
+</li>
+<li>
+<p>\(NP\): El numero de bombas.</p>
+</li>
+<li>
+<p>\(NT\): Número de periodos de simulación. El máximo son 24 horas.</p>
+</li>
+<li>
+<p>\(P_c(t)\): La tarifa energética en el periodo \(t\).</p>
+</li>
+<li>
+<p>\(E_c(n, t)\): Consumo energético de la bomba \(n\) en el tiempo \(t\).</p>
+</li>
+<li>
+<p>\(S(n,t)\): El estado de la bomba. 1 si esta encendida y 0 si esta apagada.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Para calcular el consumo energético de la bomba \(n\) se utiliza la siguiente formula:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[E_c(n, t) = \frac{10^{-3} \times \gamma \times Q(n, t) \times h(n, t)}{e(n, t)}\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(\gamma\): Peso del agua.</p>
+</li>
+<li>
+<p>\(Q(n, t)\): Flujo a través de la bomba \(n\) en el tiempo \(t\)</p>
+</li>
+<li>
+<p>\(h(n, t)\): Altura manométrica de la bomba.</p>
+</li>
+<li>
+<p>\(e(n, t)\): Eficiencia de la bomba \(n\) en el tiempo \(t\).</p>
+</li>
+</ul>
+</div>
+<div id="costos-de-mantenimiento" class="paragraph">
+<p>Para cálcular el <strong>costo de mantenimiento</strong> se cálcula el número de encendido y apagados de todas las bombas en el periodo de tiempo analizado. Matemáticamente la función para calcular dicho costo corresponde a:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[C_N(S) = \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}r_t\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(C_N(S)\): Costo de mantenimiento.</p>
+</li>
+<li>
+<p>\(r_t\): Valor indicando si en el periodo \(t\) hubo un cambio de estado en la bomba desde apagado a encendido. Este valor es 1 cuando la bomba ha sido encendida.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Las funciones de los <a href="#costos-energeticos">costos energéticos</a> y los <a href="#costos-de-mantenimiento">costos de mantenimiento</a> deben cumplir las siguientes restricciones:</p>
+</div>
+<div class="paragraph">
+<p><strong>Conservación de la masa</strong>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\sum q_{in}-q_{out} = C_j\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(q_{in}\): Flujo de entrada.</p>
+</li>
+<li>
+<p>\(q_{out}\): Flujo de salida.</p>
+</li>
+<li>
+<p>\(C_j\): Consumo del nodo \(j\).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Conservación de la energía</strong>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\sum h_f - \sum E_p = 0\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(h_f\): Perdida de energía por fricción.</p>
+</li>
+<li>
+<p>\(E_p\): Energía aportada por la bomba.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Perdida de carga por fricción</strong>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[h_f = \frac{10.67 \times L_q^{1.85}}{CH^{1.85} \times D^{4.87}}\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(L_q\): Largo de la tubería.</p>
+</li>
+<li>
+<p>\(CH\): Coeficiente de Hazen-Williams.</p>
+</li>
+<li>
+<p>\(D\): Diámetro de la tubería.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Presión mínima</strong>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[H_i \geq H_{min}\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(H_i\): Presión en el nodo \(i\).</p>
+</li>
+<li>
+<p>\(H_{min}\): Presión mínima.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Caudal</strong>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[Q_{i,t} \leq Q_i^{max}\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(Q_{i,t}\): Caudal del nodo \(i\) en el tiempo \(t\).</p>
+</li>
+<li>
+<p>\(Q_i^{max}\): Caudal máximo del nodo \(i\).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Nivel de depósito</strong>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[TS_{i, NT} \geq TS_{i, 0}\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(TS_{i, NT}\): Nivel del reservorio \(i\) en el periodo de tiempo \(NT\).</p>
+</li>
+<li>
+<p>\(TS_{i, 0}\): Nivel del reservorio \(i\) en el tiempo \(0\).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En la siguiente figura se muestra como se codifica la solución a este problema, ésta es propuesta en <a href="#JHawanet-2019">[3]</a>. Como se puede observar la solución cuenta con 24 variables de decisión correspondiente a las 24 horas del día. Cada variable es un índice a la matriz de combinaciones posibles para cada bomba. Posteriormente, se genera una matriz binaria en donde cada fila es una bomba, cada columna es el periodo y el valor es el estado de la bomba en dicho periodo. Esta matriz binaria es usada para calcular el número de cambios de estado en las bombas de la ecuaciónde los <a href="#costos-de-mantenimiento">costos de mantenimiento</a>, así como para obtener el estado de la bomba en el periodo \(t\) en la ecuación de los <a href="#costos-energeticos">costos energéticos</a> referente al termino \(S(n, t)\).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/problemas_implementados/pump_schedule/representacion_solucion_multiobjetivo.svg" alt="representacion solucion multiobjetivo">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ejecución_2">8.2.1. Ejecución</h4>
+<div class="paragraph">
+<p>Para la ejecución de este experimento sobre una red vaya a <span class="menuseq"><b class="menu">Multiobjetive Optimization</b>&#160;<b class="caret">&#8250;</b> <b class="menuitem">Pumping Scheduling</b></span> y selecciona el algoritmo a utilizar.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+Los algoritmos disponibles para este experimento contienen párametros comunes por lo que se explicará utilizando el algoritmo NSGAII.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Al momento de escoger el algoritmo, se abrira la ventana de configuración, en la pentaña de configuración se tienen las opciones que se muestran a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/problemas_implementados/pump_schedule/pump_schedule_setup.png" alt="pump schedule setup">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><em>Independent Run</em></dt>
+<dd>
+<p>Establece el número de ejecuciones independientes. Ej, si el valor es 5, significa que se ejecutará 5 veces el Algoritmo Genético. Esto, dara como resultado 5 soluciones.</p>
+</dd>
+<dt class="hdlist1"><em>Max number of evaluation</em></dt>
+<dd>
+<p>Establece que se detendrá la ejecución del algoritmo despues de haber realizado el número establecido de evaluaciones.</p>
+</dd>
+<dt class="hdlist1"><em>Population Size</em></dt>
+<dd>
+<p>Establece el tamaño de la población.</p>
+</dd>
+<dt class="hdlist1"><em>Base directory</em></dt>
+<dd>
+<p>Es el directorio de salida del experimento. <strong>Este atributo es opcional</strong>. Si este atributo es configurado, entonces a medida que se van ejecutando las repeticiones del algoritmo se irán guardando los resultados en la carpeta indicada.</p>
+</dd>
+<dt class="hdlist1"><em>Configuration file</em></dt>
+<dd>
+<p>Es un archivo JSON con algunas configuraciones adicionales. El archivo JSON tiene los siguientes atributos.</p>
+<div class="listingblock to_long">
+<div class="title">configuration_file.json</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="json">{
+  "numPumps": 3,
+  "totalOptimizationTime": 86400,
+  "intervalOptimizationTime": 3600,
+  "energyCostPerTime": [
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194
+  ],
+  "maintenanceCost": 1,
+  "minNodePressure": 15,
+  "numConstraints": 218,
+  "maxFlowrateEachPump": [300, 300, 150],
+  "minTank": [0, 0],
+  "maxTank": [10, 5]
+}</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><em>Selection Operator</em></dt>
+<dd>
+<p>Establece el operador de selección a utilizar.</p>
+</dd>
+<dt class="hdlist1"><em>Crossover Operator</em></dt>
+<dd>
+<p>Establece el operador de cruzamiento a utilizar.</p>
+</dd>
+<dt class="hdlist1"><em>Mutation Operator</em></dt>
+<dd>
+<p>Establece el operador de mutación a utilizar.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_referencias">Referencias</h3>
+<div class="ulist bibliography">
+<ul class="bibliography">
+<li>
+<p><a id="Pereyra2017"></a>[1] Pereyra, G., Pandolfi, D., &amp; Villagra, A. (2017). Diseño y optimización de redes de distribución de agua utilizando algoritmos genéticos. Informes Científicos Técnicos - UNPA, 9(1), 37–63. <a href="https://doi.org/10.22305/ict-unpa.v9i1.236" class="bare">https://doi.org/10.22305/ict-unpa.v9i1.236</a></p>
+</li>
+<li>
+<p><a id="Makaremi2017"></a>[2] Makaremi, Y., Haghighi, A., &amp; Ghafouri, H. R. (2017). Optimization of Pump Scheduling Program in Water Supply Systems Using a Self-Adaptive NSGA-II; a Review of Theory to Real Application. Water Resources Management, 31(4), 1283–1304. <a href="https://doi.org/10.1007/s11269-017-1577-x" class="bare">https://doi.org/10.1007/s11269-017-1577-x</a></p>
+</li>
+<li>
+<p><a id="JHawanet-2019"></a>[3] Gutiérrez-Bahamondes, J. H., Salgueiro, Y., Silva-Rubio, S. A., Alsina, M. A., Mora-Meliá, D., &amp; Fuertes-Miquel, V. S. (2019). jHawanet: An open-source project for the implementation and assessment of multi-objective evolutionary algorithms on water distribution networks. Water (Switzerland), 11(10). <a href="https://doi.org/10.3390/w11102018" class="bare">https://doi.org/10.3390/w11102018</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2020-10-19 22:13:46 -0300
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

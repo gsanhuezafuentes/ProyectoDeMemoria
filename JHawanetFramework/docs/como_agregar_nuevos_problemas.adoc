@@ -1,0 +1,36 @@
+== Como agregar nuevos problemas
+
+Para agregar un nuevo problema se debe implementar la interfaz _Problem_ que se muestra a continuación.
+
+image::images/nuevos_algoritmos/d_class_metaheuristics.svg[]
+
+Esta interfaz posee los siguientes métodos:
+
+* _getNumberOfVariables_: Indica el número de variables del problema.
+* _getNumberOfObjectives_: Indica el número de objetivos del problema.
+* _getNumberOfConstrains_: Indica el número de restricciones del problema.
+* _evaluate_: Evalúa una solución y sus restricciones.
+* _createSolution_: Crea una nueva solución para el problema.
+* _getLowerBound_: Indica el valor mínimo que puede tomar una variable en un índice específico.
+* _getUpperBound_: Indica el valor máximo que puede tomar una variable en un índice específico.
+* _getName_:  El nombre del problema.
+* _closeResources_: Cierra los recursos usado por el problema. Generalmente, el único recurso a cerrar sería el simulador hidráulico EpanetAPI. Implementar este método es opcional. Este método es llamado por la aplicación cuando se termina el experimento.
+* _applySolutionToNetwork_: Toma una solución y la aplica sobre una red (Instancia de _Network_ que posteriormente puede ser guardada como un archivo inp). Este método es opcional y en caso de que no esté implementado devuelve el valor _null_. Este método es llamado por la aplicación cuando se selecciona una solución en la pestaña de resultados y se presiona el botón guardar como inp. Se puede ver un ejemplo de este método a continuación:
+
+[source,java]
+----
+@Override
+public Network applySolutionToNetwork(Network network, Solution<?> solution) {
+    IntegerSolution iSolution = (IntegerSolution) solution;
+    Collection<Pipe> pipes = network.getPipes();
+    int i = 0;
+    for (Pipe pipe : pipes) {
+        double diameter = this.gamas.get(iSolution.getVariable(i) - 1).getDiameter();
+        pipe.setDiameter(diameter);
+        i++;
+    }
+    return network;
+}
+----
+
+Una vez que ha agregado un nuevo problema debe crear el <<Como agregar nuevos experimentos, experimento>> para que este pueda ser ejecutado desde la interfaz gráfica.
