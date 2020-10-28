@@ -14,9 +14,9 @@ Se contemplan dos tipos de usuarios:
 
 === Objetivo
 
-Para llevar a cabo el desarrollo de esta aplicación se tiene como objetivo general:
+Para llevar a cabo el desarrollo de esta aplicación se tiene como *objetivo general*:
 
-*Diseñar y desarrollar una aplicación extensible de escritorio para optimizar el diseño y operación de una red de distribución de agua potable.*
+*Diseñar y desarrollar una aplicación extensible de escritorio para optimizar el diseño y operación de una red de distribución de agua potable.*
 
 En cuanto a los *objetivos específicos* se tienen los siguientes:
 
