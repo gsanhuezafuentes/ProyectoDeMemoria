@@ -8,6 +8,7 @@ Gabriel Sanhueza
 :experimental:
 :toc-title: Tabla de Contenidos
 :stylesheet: asciidoctor.css
+:icons: font 
 
 include::introduccion.adoc[]
 
@@ -25,3 +26,4 @@ include::anotaciones_de_la_aplicacion.adoc[]
 
 include::descripcion_de_los_problemas_implementados.adoc[]
 
+include::utilidades.adoc[]

@@ -1,0 +1,130 @@
+== Utilidades
+
+Dentro de la aplicación se tienen algunas clases que facilitan el paso de parámetros cuando son muchos a un experimento, como por ejemplo las clases _GamaParser.java_ y _JsonSimpleReader_.java. La clase _GamaParser_ es ocupada especificamente para el problema _Pipe Optimizing_, mientras que _JsonSimpleReader_, es más general y puede ser ocupado en una gran variedad de problemas o configuraciones.
+
+=== _GamaParser_
+
+Esta clase lee un archivo de texto con el formato que se indica a continuación utilizando el método _parse_.
+
+```
+;ID	Dint	Rug	Coste		
+
+DN12	304.8	130	45.72614132
+DN16	406.4	130	70.4
+DN20	508.0	130	98.38699101
+DN24	609.6	130	129.3330584
+DN30	0762	130	180.748444
+DN40	1016	130	278.2804341
+```
+
+Como resultado de la llamada al método _parse_ se devuelve una lista de objetos _Gama_ que contiene los siguientes atributos:
+
+.Atributos de la clase Gama
+* _Cost_: Costo de la tubería.
+* _Diameter_: Diametro de la tubería.
+
+cada uno de los objetos _Gama_ corresponde a una línea del archivo. En el ejemplo mostrado anteriormente, la lista vendría a ser de tamaño 6.
+
+El siguiente código muestra como se lee el archivo HanoiHW.Gama.
+
+[source, java]
+----
+GamaParser gparser = new GamaParser();
+try {
+    List<Gama> gamas = gparser.parser(new File("inp/HanoiHW.Gama"));
+    
+    for (Gama gama : gamas) {
+        System.out.println(gama);
+    }
+    
+} catch (Exception e) {
+    e.printStackTrace();
+}
+----
+
+Como se puede apreciar esta clase utilitaria solo sirve para problemas que requieran el costo o el díametro de la tubería. En la siguiente sección se va a ver una clase que puede ser usada de manera general en un ámplio número de problemas. 
+
+=== _JSonSimpleReader_
+
+Dentro de las dependencias de la aplicación se encuentra la libreria link:https://github.com/google/gson[Gson].  Por lo tanto, es posible utilizar las funciones de esta librería para parsear los parámetros que vengan en archivos Json. Sin embargo, la librería tiene muchas funciones y varias maneras de realizar la misma tarea, por lo que aumenta la cantidad de código a escribir.
+
+Para hacer frente a lo anterior, dentro de este proyecto se agregó una clase utilitaria que simplifica la lectura de archivos Json. Esta clase se llama *_JSonSimpleReader_* y tiene los siguientes métodos.
+
+* _read_: Parsea un archivo de texto que se encuentre en memoria. El método recibe la ruta del archivo.
+* _readJsonString_: Parsea un _String_ que tenga el formato Json mostrado en el ejemplo anterior. Recibe un _String_ con el formato especificado.
+* _getInt_: Lee un entero. El método recibe la key del atributo a leer.
+* _getDouble_: Lee un entero. El método recibe la key del atributo a leer.
+* _getBoolean_: Lee un valor boleano. El método recibe la key del atributo a leer.
+* _getIntegerArray_: Lee una lista de enteros. El método recibe la key del atributo a leer.
+* _getDoubleArray_: Lee una lista de doubles. El método recibe la key del atributo a leer.
+* _getIntegerMatrix_: Lee una matriz de enteros de dos dimensiones. El método recibe la key del atributo a leer.
+* _getDoublerMatrix_: Lee una matriz de doubles de dos dimensiones. El método recibe la key del atributo a leer.
+* _getString_: Lee un string. El método recibe la key del atributo a leer.
+* _toString_: Devuelve como un _String_ el Json leido.
+
+Con la clase mencionada anteriormente se pueden leer los archivos Json que tengan el siguiente formato.
+
+.configuration_file.json
+[source.to_long, json]
+----
+{ <1>
+  "numPumps": 3, <2>
+  "totalOptimizationTime": 86400,
+  "intervalOptimizationTime": 3600,
+  "energyCostPerTime": [<3>
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194
+  ],
+  "maintenanceCost": 1,
+  "minNodePressure": 15,
+  "numConstraints": 218,
+  "maxFlowrateEachPump": [300, 300, 150],
+  "minTank": [0, 0],
+  "maxTank": [10, 5]
+}<4>
+----
+<1> Llave de apertura del objeto Json, es obligatoria. Todos los pares clave valor deben estar dentro del par de llaves.
+<2> Un atributo cuya clave es "numPumps" y valor es 3. Se puede leer utilizando el método _getInt("numPumps")_ o _getDouble("numPumps")_. Dependiendo del método usado es el tipo de valor devuelto.
+<3> Lista de _doubles_. Se puede leer con el método  _getDoubleArray("energyCostPerTime")_.
+<4> Llave de cierre del objeto, es obligatoria. Cierra el parentesis inicial.
+
+A continuación se muestra un código de ejemplo del parseo del Json mostrado anteriormente.
+[source, java]
+----
+JsonSimpleReader config = JsonSimpleReader.read("configuration_file.json"); // Lee el archivo a parsear
+int numPumps = config.getInt("numPumps"); // lee 3;
+int totalOptimizationTime = config.getInt("totalOptimizationTime"); // lee 86400;
+int intervalOptimizationTime = config.getInt("intervalOptimizationTime"); // lee 3600;
+double[] energyCostPerTime = config.getDoubleArray("energyCostPerTime"); // lee {0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.0244, 0.1194, 0.1194, 0.1194,
+//0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194, 0.1194,
+//0.1194};
+double maintenanceCost = config.getDouble("maintenanceCost"); // lee 1;
+int minNodePressure = config.getInt("minNodePressure"); // lee 15;
+int numConstraints = config.getInt("numConstraints"); // lee 218;
+double[] maxFlowrateEachPump = config.getDoubleArray("maxFlowrateEachPump"); // lee {300, 300, 150};
+double[] minTank = config.getDoubleArray("minTank"); // lee {0, 0};
+double[] maxTank = config.getDoubleArray("maxTank"); // lee {10, 5};
+----
+
