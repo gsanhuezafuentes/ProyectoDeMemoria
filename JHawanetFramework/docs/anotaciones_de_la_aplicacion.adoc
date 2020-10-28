@@ -16,6 +16,7 @@ Los elementos en esta anotación son los siguientes:
 ==== _@NewProblem_
 Esta anotación permite indicar el nombre del problema que será mostrado en la interfaz gráfica. Puedes ver el uso de esta anotación a continuación:
 
+[[ejemplo-anotaciones]]
 [source,java]
 ----
 @NewProblem(displayName = "Pipe optimizing", algorithmName = "Genetic Algorithm", description = "The objective of this " +
@@ -82,7 +83,7 @@ Dentro de esta anotación existen varios elementos. Estos elementos son:
 El valor por defecto para todos los elementos mencionados anteriormente es un arreglo vacío ({}).
 No usar la anotación _@Parameters_ tiene el mismo efecto que usar la anotación, pero con sus valores por defecto.
 
-Puede ver el uso de esta anotación en la Figura \ref{fig:constructor_heredado_registrable}. 
+Puede ver el uso de esta anotación en el <<ejemplo-anotaciones, ejemplo anterior>>. 
 
 ==== _@OperatorInput_
 
