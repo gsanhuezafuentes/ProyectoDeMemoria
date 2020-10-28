@@ -41,4 +41,4 @@ Adicionalmente, este trabajo estuvo fuertemente influenciado por la librería li
 
 === Repositorio
 
-El código de la aplicación se encuentra alojado en github en el siguiente enlace: link:https://github.com/EinherjarSt/ProyectoDeMemoria[]
+El código de la aplicación se encuentra alojado en github en el siguiente enlace: link:https://github.com/EinherjarSt/ProyectoDeMemoria[Repositorio]

@@ -366,7 +366,8 @@ p {
     font-size: 1em;
     line-height: 1.6;
     margin-bottom: 1.25em;
-    text-rendering: optimizeLegibility
+    text-rendering: optimizeLegibility;
+    text-align: justify
 }
 
 p aside {
