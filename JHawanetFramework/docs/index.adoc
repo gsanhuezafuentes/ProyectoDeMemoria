@@ -10,6 +10,10 @@ Gabriel Sanhueza
 :stylesheet: asciidoctor.css
 :icons: font 
 
+image::images/Principal.png[]
+image::images/Principalv2.png[]
+image::images/Principalv3.png[]
+
 include::introduccion.adoc[]
 
 include::funcionalidades_de_la_aplicacion.adoc[]

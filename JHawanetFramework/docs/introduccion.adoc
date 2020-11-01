@@ -1,9 +1,13 @@
-== Introducción
-=== Contexto
+== Introducción al ambiente de JHawanet
+=== Que es JHawanetFramework
 
-Como bien se sabe la escasez de agua potable es sin duda una problemática a nivel mundial. Es por esto que optimizar los sistemas que permiten la distribución de agua es importante. Sin embargo, esto no es simple puesto que los sistemas de distribución de agua deben estar activos las 24 horas del día asegurando los niveles de servicio mínimos. Adicionalmente, la optimización de estos sistemas involucra la participación de múltiples criterios lo que dificulta la toma de decisiones respecto a éstos. 
+JHawanetFramework es un software que permite la optimización de redes de distribución de agua potable (RDA), incorporando una serie de problemas y algoritmos metaheurísticos. Adicionalmente, brinda al usuario avanzado la capacidad de extender la aplicación agregando nuevos algoritmos, problemas y operadores.
 
-En el ámbito de los redes de agua se pueden clasificar los problemas en dos categorías. Los problemas de diseño y de operación.
+Junto a lo anteriormente mencionado, JHawanetFramework permite realizar simulaciones hidráulicas utilizando las configuraciones que vienen en el archivo de configuración de red y ver la configuración de los elementos que conforman la red. 
+
+Al momento de realizar la optimización brinda la capacidad de visualizar gráficamente las soluciones. Una vez terminada la simulación, permite seleccionar la solución obtenida para un problema específico y generar un archivo de configuración de red que puede ser abierto en otros ambientes como Epanet o exportar el conjunto de soluciones a un archivo Excel.
+
+JHawanetFramework surge como parte del proyecto Fondecyt Regular N° 1180660 ``Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms.'', 2018.
 
 === Tipos de usuarios
 
@@ -14,26 +18,15 @@ Se contemplan dos tipos de usuarios:
 
 === Objetivo
 
-Para llevar a cabo el desarrollo de esta aplicación se tiene como *objetivo general*:
+Este software fue creado con el objetivo de optimizar el diseño y operación de redes de distribución de agua potable, proporcionando dichas capacidades a través de una interfaz gráfica amigable con el usuario. Está basado en la arquitectura lógica del framework multiobjetivo Jmetal implementando una serie de algoritmos metaheurísticos de optimización monoobjetivo y multiobjetivo aplicables en problemas de RDA.
 
-*Diseñar y desarrollar una aplicación extensible de escritorio para optimizar el diseño y operación de una red de distribución de agua potable.*
+=== Especificaciones técnicas del sistema
 
-En cuanto a los *objetivos específicos* se tienen los siguientes:
+El software fue desarrollado bajo el lenguaje de programación Java, utilizando la libreria JavaFX para la creación de la interfaz gráfica. Adicionalente, se hace uso de la librería dinámica link:https://www.epa.gov/water-research/epanet[EpanetToolkit] para realizar las simulaciones hidráulicas sobre las redes de agua potable y evaluar las soluciones generadas por los algoritmos metaheurísticos.
 
-*   Diseñar software orientado a la optimización de RDA basado en la arquitectura lógica del framework multiobjetivo Jmetal.
-*   Implementar un algoritmo metaheurístico de optimización monoobjetivo para aplicar al problema de diseño de RDA.
-*   Implementar un algoritmo metaheurístico de optimización multiobjetivo para aplicar al problema de Régimen de bombeo en RDA.
-*   Diseñar e implementar la interfaz gráfica del sistema de optimización de redes de agua potable desarrollado durante este proyecto.    
+Los algoritmos metaheurísticos implementados, estan basados en aquellos utilizados en la librería link:https://github.com/jMetal/jMetal[JMetal], especificamente la versión 5.9.
 
-=== Tecnologias utilizadas
-
-Las tecnologías utilizadas fueron Java, como lenguaje de programación, JavaFX, para implementar la interfaz y la librería link:https://www.epa.gov/water-research/epanet[EpanetToolkit] para realizar las simulaciones hidráulicas y evaluar las soluciones generadas por los algoritmos metaheurísticos.
-
-La elección de Java como lenguaje de programación se debe a que éste fue el solicitado por el cliente, puesto que permite la incorporación directa de algunas herramientas ya desarrolladas.
-
-Adicionalmente, este trabajo estuvo fuertemente influenciado por la librería link:https://github.com/jMetal/jMetal[JMetal], especificamente la versión 5.9.
-
-=== Requisitos de la aplicación
+Para poder ejecutar la aplicación se tienen los siguientes requisitos:
 
 * Windows 64 bits
 * JDK 1.8 64 bits

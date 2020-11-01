@@ -2456,14 +2456,13 @@ amzn-kf8 {
 <div id="toc" class="toc2">
 <div id="toctitle">Tabla de Contenidos</div>
 <ul class="sectlevel1">
-<li><a href="#_introducción">1. Introducción</a>
+<li><a href="#_introducción_al_ambiente_de_jhawanet">1. Introducción al ambiente de JHawanet</a>
 <ul class="sectlevel2">
-<li><a href="#_contexto">1.1. Contexto</a></li>
+<li><a href="#_que_es_jhawanetframework">1.1. Que es JHawanetFramework</a></li>
 <li><a href="#_tipos_de_usuarios">1.2. Tipos de usuarios</a></li>
 <li><a href="#_objetivo">1.3. Objetivo</a></li>
-<li><a href="#_tecnologias_utilizadas">1.4. Tecnologias utilizadas</a></li>
-<li><a href="#_requisitos_de_la_aplicación">1.5. Requisitos de la aplicación</a></li>
-<li><a href="#_repositorio">1.6. Repositorio</a></li>
+<li><a href="#_especificaciones_técnicas_del_sistema">1.4. Especificaciones técnicas del sistema</a></li>
+<li><a href="#_repositorio">1.5. Repositorio</a></li>
 </ul>
 </li>
 <li><a href="#_funcionalidades_de_la_aplicación">2. Funcionalidades de la aplicación</a>
@@ -2510,16 +2509,41 @@ amzn-kf8 {
 </div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/Principal.png" alt="Principal">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Principalv2.png" alt="Principalv2">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Principalv3.png" alt="Principalv3">
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
-<h2 id="_introducción">1. Introducción</h2>
+<h2 id="_introducción_al_ambiente_de_jhawanet">1. Introducción al ambiente de JHawanet</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_contexto">1.1. Contexto</h3>
+<h3 id="_que_es_jhawanetframework">1.1. Que es JHawanetFramework</h3>
 <div class="paragraph">
-<p>Como bien se sabe la escasez de agua potable es sin duda una problemática a nivel mundial. Es por esto que optimizar los sistemas que permiten la distribución de agua es importante. Sin embargo, esto no es simple puesto que los sistemas de distribución de agua deben estar activos las 24 horas del día asegurando los niveles de servicio mínimos. Adicionalmente, la optimización de estos sistemas involucra la participación de múltiples criterios lo que dificulta la toma de decisiones respecto a éstos.</p>
+<p>JHawanetFramework es un software que permite la optimización de redes de distribución de agua potable (RDA), incorporando una serie de problemas y algoritmos metaheurísticos. Adicionalmente, brinda al usuario avanzado la capacidad de extender la aplicación agregando nuevos algoritmos, problemas y operadores.</p>
 </div>
 <div class="paragraph">
-<p>En el ámbito de los redes de agua se pueden clasificar los problemas en dos categorías. Los problemas de diseño y de operación.</p>
+<p>Junto a lo anteriormente mencionado, JHawanetFramework permite realizar simulaciones hidráulicas utilizando las configuraciones que vienen en el archivo de configuración de red y ver la configuración de los elementos que conforman la red.</p>
+</div>
+<div class="paragraph">
+<p>Al momento de realizar la optimización brinda la capacidad de visualizar gráficamente las soluciones. Una vez terminada la simulación, permite seleccionar la solución obtenida para un problema específico y generar un archivo de configuración de red que puede ser abierto en otros ambientes como Epanet o exportar el conjunto de soluciones a un archivo Excel.</p>
+</div>
+<div class="paragraph">
+<p>JHawanetFramework surge como parte del proyecto Fondecyt Regular N° 1180660 ``Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms.'', 2018.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2541,45 +2565,20 @@ amzn-kf8 {
 <div class="sect2">
 <h3 id="_objetivo">1.3. Objetivo</h3>
 <div class="paragraph">
-<p>Para llevar a cabo el desarrollo de esta aplicación se tiene como <strong>objetivo general</strong>:</p>
-</div>
-<div class="paragraph">
-<p><strong>Diseñar y desarrollar una aplicación extensible de escritorio para optimizar el diseño y operación de una red de distribución de agua potable.</strong></p>
-</div>
-<div class="paragraph">
-<p>En cuanto a los <strong>objetivos específicos</strong> se tienen los siguientes:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Diseñar software orientado a la optimización de RDA basado en la arquitectura lógica del framework multiobjetivo Jmetal.</p>
-</li>
-<li>
-<p>Implementar un algoritmo metaheurístico de optimización monoobjetivo para aplicar al problema de diseño de RDA.</p>
-</li>
-<li>
-<p>Implementar un algoritmo metaheurístico de optimización multiobjetivo para aplicar al problema de Régimen de bombeo en RDA.</p>
-</li>
-<li>
-<p>Diseñar e implementar la interfaz gráfica del sistema de optimización de redes de agua potable desarrollado durante este proyecto.</p>
-</li>
-</ul>
+<p>Este software fue creado con el objetivo de optimizar el diseño y operación de redes de distribución de agua potable, proporcionando dichas capacidades a través de una interfaz gráfica amigable con el usuario. Está basado en la arquitectura lógica del framework multiobjetivo Jmetal implementando una serie de algoritmos metaheurísticos de optimización monoobjetivo y multiobjetivo aplicables en problemas de RDA.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_tecnologias_utilizadas">1.4. Tecnologias utilizadas</h3>
+<h3 id="_especificaciones_técnicas_del_sistema">1.4. Especificaciones técnicas del sistema</h3>
 <div class="paragraph">
-<p>Las tecnologías utilizadas fueron Java, como lenguaje de programación, JavaFX, para implementar la interfaz y la librería <a href="https://www.epa.gov/water-research/epanet">EpanetToolkit</a> para realizar las simulaciones hidráulicas y evaluar las soluciones generadas por los algoritmos metaheurísticos.</p>
-</div>
-<div class="paragraph">
-<p>La elección de Java como lenguaje de programación se debe a que éste fue el solicitado por el cliente, puesto que permite la incorporación directa de algunas herramientas ya desarrolladas.</p>
+<p>El software fue desarrollado bajo el lenguaje de programación Java, utilizando la libreria JavaFX para la creación de la interfaz gráfica. Adicionalente, se hace uso de la librería dinámica <a href="https://www.epa.gov/water-research/epanet">EpanetToolkit</a> para realizar las simulaciones hidráulicas sobre las redes de agua potable y evaluar las soluciones generadas por los algoritmos metaheurísticos.</p>
 </div>
 <div class="paragraph">
-<p>Adicionalmente, este trabajo estuvo fuertemente influenciado por la librería <a href="https://github.com/jMetal/jMetal">JMetal</a>, especificamente la versión 5.9.</p>
+<p>Los algoritmos metaheurísticos implementados, estan basados en aquellos utilizados en la librería <a href="https://github.com/jMetal/jMetal">JMetal</a>, especificamente la versión 5.9.</p>
 </div>
+<div class="paragraph">
+<p>Para poder ejecutar la aplicación se tienen los siguientes requisitos:</p>
 </div>
-<div class="sect2">
-<h3 id="_requisitos_de_la_aplicación">1.5. Requisitos de la aplicación</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2595,7 +2594,7 @@ amzn-kf8 {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_repositorio">1.6. Repositorio</h3>
+<h3 id="_repositorio">1.5. Repositorio</h3>
 <div class="paragraph">
 <p>El código de la aplicación se encuentra alojado en github en el siguiente enlace: <a href="https://github.com/EinherjarSt/ProyectoDeMemoria">Repositorio</a></p>
 </div>
@@ -4350,7 +4349,7 @@ double[] maxTank = config.getDoubleArray("maxTank"); // lee {10, 5};</code></pre
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-27 23:11:25 -0300
+Last updated 2020-10-31 07:57:30 -0300
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
