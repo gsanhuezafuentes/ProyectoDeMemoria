@@ -29,6 +29,7 @@ public final class RegistrableConfiguration {
 		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingNSGAIIRegister.class);
 		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingSMPSORegister.class);
 		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingSPA2Register.class);
+
 	}
  
 }

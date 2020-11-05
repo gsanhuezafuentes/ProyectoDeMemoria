@@ -117,6 +117,18 @@ public class ObjectSolution implements Solution<Object> {
 		return attributes.get(id);
 	}
 
+	/** {@inheritDoc} */
+	@Override
+	public boolean hasAttribute(Object id) {
+		return this.attributes.containsKey(id);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public Map<Object, Object> getAttributes() {
+		return attributes;
+	}
+
 	/**
 	 * This method compare only decision variables and objectives
 	 */
@@ -166,11 +178,7 @@ public class ObjectSolution implements Solution<Object> {
 		return result.toString();
 	}
 
-	@Override
-	public Map<Object, Object> getAttributes() {
-		return attributes;
-	}
-
+	/** {@inheritDoc} */
 	@Override
 	public String getVariableAsString(int index) {
 		return getVariable(index).toString();

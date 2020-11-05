@@ -113,6 +113,12 @@ public abstract class AbstractGenericSolution<T, P extends Problem<?>> implement
 
 	/** {@inheritDoc} */
 	@Override
+	public boolean hasAttribute(Object id) {
+		return this.attributes.containsKey(id);
+	}
+
+	/** {@inheritDoc} */
+	@Override
 	public Map<Object, Object> getAttributes() {
 		return attributes;
 	}

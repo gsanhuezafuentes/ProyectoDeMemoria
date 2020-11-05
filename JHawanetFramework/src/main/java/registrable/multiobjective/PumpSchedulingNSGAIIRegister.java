@@ -21,14 +21,11 @@ import model.metaheuristic.problem.Problem;
 import model.metaheuristic.problem.impl.VanzylOriginal;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.utils.comparator.DominanceComparator;
-import model.metaheuristic.utils.evaluator.SequentialSolutionEvaluator;
+import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.MultiObjectiveRegistrable;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class PumpSchedulingNSGAIIRegister implements MultiObjectiveRegistrable {
 

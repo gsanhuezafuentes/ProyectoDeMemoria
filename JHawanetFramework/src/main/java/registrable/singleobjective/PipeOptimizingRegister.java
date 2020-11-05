@@ -19,7 +19,7 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.UniformSelection;
 import model.metaheuristic.problem.impl.PipeOptimizing;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.evaluator.SequentialSolutionEvaluator;
+import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.Registrable;
 import registrable.SingleObjectiveRegistrable;
 import registrable.utils.ExperimentUtils;

@@ -1,5 +1,6 @@
 package model.metaheuristic.problem.impl;
 
+import epanet.core.EpanetAPI;
 import epanet.core.EpanetException;
 import model.epanet.element.Network;
 import model.metaheuristic.problem.Problem;

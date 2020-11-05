@@ -115,11 +115,19 @@ public interface Solution<Type> {
 	void setAttribute(Object id, Object value);
 
 	/**
+	 * Check if a specific attribute is present
+	 * @param id the id of the attribute
+	 * @return true if there is present; false in otherwise.
+	 */
+	boolean hasAttribute(Object id) ;
+
+	/**
 	 * Get all attributes
 	 * 
 	 * @return A Map with the keys and his respectives values.
 	 */
 	Map<Object, Object> getAttributes();
+
 
 	/**
 	 * Get the number of decision variables
