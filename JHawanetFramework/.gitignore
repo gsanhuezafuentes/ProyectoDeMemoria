@@ -174,3 +174,4 @@ buildNumber.properties
 build.fxbuild
 inp/*.rpt
 *.rpt
+logs/

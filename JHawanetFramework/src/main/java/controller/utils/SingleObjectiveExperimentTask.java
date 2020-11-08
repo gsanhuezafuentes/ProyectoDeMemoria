@@ -6,10 +6,14 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.concurrent.Task;
+import model.epanet.element.Network;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.solution.Solution;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +59,7 @@ public class SingleObjectiveExperimentTask extends Task<List<SingleObjectiveExpe
 
     @Override
     protected List<Result> call() throws Exception {
+
         Generation<Solution<?>> generationAttribute = new Generation<>();
         // count of algorithm executed
         int progress = 0;
@@ -104,7 +109,6 @@ public class SingleObjectiveExperimentTask extends Task<List<SingleObjectiveExpe
         if (this.isCancelled()) {
             return null;
         }
-
         return finalResultList;
     }
 

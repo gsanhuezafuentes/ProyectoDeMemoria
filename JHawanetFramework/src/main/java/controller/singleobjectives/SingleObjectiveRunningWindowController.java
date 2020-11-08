@@ -256,7 +256,7 @@ public class SingleObjectiveRunningWindowController {
         this.window = stage;
 
         LOGGER.debug("Creating new thread to run the singleobjective experiment.");
-        Thread t = new Thread(task);
+        Thread t = new Thread(task,"SingleObjective Thread");
         t.setDaemon(true);
         t.start();
     }

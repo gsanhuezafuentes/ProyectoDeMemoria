@@ -270,7 +270,7 @@ public class MultiObjectiveRunningWindowController {
         this.window = stage;
 
         LOGGER.debug("Creating new thread to run multiobjective experiment.");
-        Thread t = new Thread(task);
+        Thread t = new Thread(task, "MultiObjective Thread");
         t.setDaemon(true);
         t.start();
     }
