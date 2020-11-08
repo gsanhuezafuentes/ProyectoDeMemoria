@@ -1,5 +1,6 @@
 package model.epanet.element.utils;
 
+import controller.HydraulicSimulationResultWindowController;
 import model.epanet.element.Network;
 import model.epanet.element.networkcomponent.*;
 import model.epanet.element.networkcomponent.Pump.PumpProperty;
@@ -18,11 +19,17 @@ import model.epanet.element.waterquality.Mixing.MixingModel;
 import model.epanet.element.waterquality.Quality;
 import model.epanet.element.waterquality.ReactionOption;
 import model.epanet.element.waterquality.Source;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * This class write the network as inp.
+ */
 public final class ParseNetworkToINPString {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ParseNetworkToINPString.class);
 
 	private ParseNetworkToINPString(){}
 
@@ -33,6 +40,7 @@ public final class ParseNetworkToINPString {
 	 * @return the string that represent the network
 	 */
 	public static String parse(Network network) {
+		LOGGER.info("Parsing network to string.");
 		StringBuilder out = new StringBuilder();
 
 		createTitle(out, network.getTitle());
@@ -69,12 +77,14 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createTitle(StringBuilder out, String title) {
+		LOGGER.debug("Creating Title section.");
 		out.append("[TITLE]\n");
 		out.append(title).append("\n");
 
 	}
 
 	private static void createJunction(StringBuilder out, List<Junction> junctions) {
+		LOGGER.debug("Creating Junction section.");
 		out.append("[Junction]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\n", "ID", "Elev", "Demand", "Pattern"));
 		for (Junction junction : junctions) {
@@ -93,6 +103,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createReservoir(StringBuilder out, List<Reservoir> reservoirs) {
+		LOGGER.debug("Creating Reservoir section.");
+
 		out.append("[RESERVOIR]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\n", "ID", "Head", "Pattern"));
 		for (Reservoir reservoir : reservoirs) {
@@ -110,6 +122,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createTanks(StringBuilder out, List<Tank> tanks) {
+		LOGGER.debug("Creating Tank section.");
+
 		out.append("[TANK]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\n", "ID", "Elevation",
 				"InitLevel", "MinLevel", "MaxLevel", "Diameter", "MinVol", "VolCurve"));
@@ -133,6 +147,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createPipe(StringBuilder out, List<Pipe> pipes) {
+		LOGGER.debug("Creating Pipe section.");
+
 		out.append("[PIPE]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\n", "ID", "Node1", "Node2",
 				"Length", "Diameter", "Roughness", "MinorLoss", "Status"));
@@ -158,6 +174,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createPump(StringBuilder out, List<Pump> pumps) {
+		LOGGER.debug("Creating Pump section.");
+
 		out.append("[PUMP]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\n", "ID", "Node1", "Node2", "Parameters"));
 		for (Pump pump : pumps) {
@@ -197,6 +215,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createValve(StringBuilder out, List<Valve> valves) {
+		LOGGER.debug("Creating Valve section.");
+
 		out.append("[VALVE]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\t%-10s\n", "ID", "Node1", "Node2",
 				"Diameter", "Type", "Setting", "MinorLoss"));
@@ -221,6 +241,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createEmmiter(StringBuilder out, List<Junction> junctions) {
+		LOGGER.debug("Creating Emmiter section.");
+
 		out.append("[EMITTER]\n");
 		out.append(String.format(";%-10s\t%-10s\n", "Junction", "Coefficient"));
 		for (Junction junction : junctions) {
@@ -235,6 +257,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createEnergy(StringBuilder out, EnergyOption energy, List<Pump> pumps) {
+		LOGGER.debug("Creating Energy section.");
+
 		out.append("[ENERGY]\n");
 		if (energy != null) {
 			out.append(String.format("%-20s\t%10f\n", "Global Efficiency", energy.getGlobalEfficiency()));
@@ -268,6 +292,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createStatus(StringBuilder out, List<Pump> pumps, List<Valve> valves) {
+		LOGGER.debug("Creating Status section.");
+
 		out.append("[STATUS]\n");
 		out.append(String.format(";%-10s\t%-10s\n", "ID", "Status/Setting"));
 		for (Pump pump : pumps) {
@@ -291,6 +317,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createPattern(StringBuilder out, Collection<Pattern> patternList) {
+		LOGGER.debug("Creating Pattern section.");
+
 		out.append("[PATTERN]\n");
 		out.append(String.format(";%-10s\t%-10s\n", "ID", "Multipliers"));
 		for (Pattern pattern : patternList) {
@@ -311,6 +339,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createCurves(StringBuilder out, Collection<Curve> curveList) {
+		LOGGER.debug("Creating Curve section.");
+
 		out.append("[CURVE]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\n", "ID", "X-Value", "Y-Value"));
 		for (Curve curve : curveList) {
@@ -327,6 +357,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createControl(StringBuilder out, Control control) {
+		LOGGER.debug("Creating Control section.");
+
 		out.append("[CONTROL]\n");
 		if (control != null) {
 			out.append(control.getCode());
@@ -336,6 +368,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createRule(StringBuilder out, Rule rule) {
+		LOGGER.debug("Creating Rule section.");
+
 		out.append("[RULE]\n");
 		if (rule != null) {
 			out.append(rule.getCode());
@@ -344,6 +378,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createDemand(StringBuilder out, List<Junction> junctions) {
+		LOGGER.debug("Creating Demand section.");
+
 		out.append("[DEMAND]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\n", "Junction", "Demand", "Pattern", "Category"));
 		for (Junction junction : junctions) {
@@ -364,6 +400,8 @@ public final class ParseNetworkToINPString {
 
 	private static void createQuality(StringBuilder out, List<Junction> junctions, List<Reservoir> reservoirs,
 			List<Tank> tanks) {
+		LOGGER.debug("Creating Quality section.");
+
 		out.append("[QUALITY]\n");
 		out.append(String.format(";%-10s\t%-10s\n", "Node", "InitQual"));
 		for (Junction junction : junctions) {
@@ -395,6 +433,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createReaction(StringBuilder out, ReactionOption reaction, List<Pipe> pipes, List<Tank> tanks) {
+		LOGGER.debug("Creating Reaction section.");
+
 		out.append("[REACTION]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\n", "Type", "Pipe/Tank ", "Coefficient"));
 		for (Pipe pipe : pipes) {
@@ -435,6 +475,8 @@ public final class ParseNetworkToINPString {
 
 	private static void createSource(StringBuilder out, List<Junction> junctions, List<Reservoir> reservoirs,
 			List<Tank> tanks) {
+		LOGGER.debug("Creating Source section.");
+
 		out.append("[SOURCE]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\n", "Node", "Type", "Quality", "Pattern"));
 		for (Junction junction : junctions) {
@@ -478,6 +520,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createMixing(StringBuilder out, List<Tank> tanks) {
+		LOGGER.debug("Creating Mixing section.");
+
 		out.append("[MIXING]\n");
 		out.append(String.format(";%-10s\t%-10s\n", "Tank", "Model"));
 		for (Tank tank : tanks) {
@@ -496,6 +540,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createOption(StringBuilder out, Option option, QualityOption qualityOption) {
+		LOGGER.debug("Creating Option section.");
+
 		out.append("[OPTION]\n");
 		if (option != null) {
 			out.append(String.format("%-18s\t%-10s\n", "UNITS", option.getFlowUnit().getName()));
@@ -536,6 +582,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createTime(StringBuilder out, Time time) {
+		LOGGER.debug("Creating Time section.");
+
 		out.append("[TIME]\n");
 		if (time != null) {
 			out.append(String.format("%-18s\t%-10s\n", "Duration", time.getDuration()));
@@ -552,6 +600,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createReport(StringBuilder out, Report report) {
+		LOGGER.debug("Creating Report section.");
+
 		out.append("[REPORT]\n");
 		if (report != null) {
 			out.append(report.getCode()).append("\n");
@@ -560,6 +610,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createCoordinate(StringBuilder out, Collection<Node> nodes) {
+		LOGGER.debug("Creating Coordinates section.");
+
 		out.append("[COORDINATES]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\n", "Node", "X-Coord", "Y-Coord"));
 		for (Node node : nodes) {
@@ -570,6 +622,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createVertice(StringBuilder out, Collection<Link> links) {
+		LOGGER.debug("Creating Vertice section.");
+
 		out.append("[VERTICES]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\n", "Node", "X-Coord", "Y-Coord"));
 		for (Link link : links) {
@@ -581,6 +635,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createLabel(StringBuilder out, List<Label> labels) {
+		LOGGER.debug("Creating Labels section.");
+
 		out.append("[LABELS]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\t%-10s\n", "X-Coord", "Y-Coord", "Label", "Anchor Node"));
 		for (Label label : labels) {
@@ -595,6 +651,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createBackdrop(StringBuilder out, Backdrop backdrop) {
+		LOGGER.debug("Creating Backdrop section.");
+
 		out.append("[BACKDROP]\n");
 		if (backdrop != null) {
 			out.append(String.format("%-15s%-10f\t%-10f\t%-10f\t%-10f\n", "DIMENSION", backdrop.getXBottomLeft(),
@@ -607,6 +665,8 @@ public final class ParseNetworkToINPString {
 	}
 
 	private static void createTag(StringBuilder out, Collection<Node> nodes, Collection<Link> links) {
+		LOGGER.debug("Creating Tags section.");
+
 		out.append("[TAGS]\n");
 		out.append(String.format(";%-10s\t%-10s\t%-10s\n", "Object", "ID", "Label"));
 		for (Node node : nodes) {

@@ -2,12 +2,16 @@ package model.epanet.element.networkcomponent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 public final class Pump extends Link {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Pump.class);
 
     /**
      * Valid options to properties.
@@ -141,6 +145,8 @@ public final class Pump extends Link {
      */
     public Pump(@NotNull Pump pump) {
         super(Objects.requireNonNull(pump));
+        LOGGER.debug("Clonning pump {}.", pump.getId());
+
         this.properties = new HashMap<>(pump.properties);
         this.energyPrice = pump.energyPrice;
         this.efficiencyCurve = pump.efficiencyCurve;

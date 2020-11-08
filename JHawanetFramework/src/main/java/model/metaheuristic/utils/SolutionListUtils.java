@@ -34,14 +34,14 @@ public class SolutionListUtils {
      * @param random           Random generator
      * @param <S>              the type of solution
      * @return selected solution
-     * @throws ApplicationException if numberOfSolution is greater than the size of solution list.
+     * @throws IllegalArgumentException if numberOfSolution is greater than the size of solution list.
      */
     public static <S> List<S> selectNRandomDifferentSolutions(int numberOfSolution, List<S> solutionList,
                                                               BoundedRandomGenerator<Integer> random) {
 
         int sizeOfList = solutionList.size();
         if (numberOfSolution > sizeOfList) {
-            throw new ApplicationException("The number of solution is greater than the solution list");
+            throw new IllegalArgumentException("The number of solution is greater than the solution list");
         }
 
         Set<Integer> selectedIndex = new HashSet<Integer>();

@@ -2,11 +2,16 @@ package model.epanet.element.systemoperation;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 public final class Pattern {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Pattern.class);
+
     @NotNull
     private String id;
     @NotNull
@@ -26,6 +31,8 @@ public final class Pattern {
     public Pattern(@NotNull Pattern pattern) {
         this();
         Objects.requireNonNull(pattern);
+        LOGGER.debug("Clonning Pattern {}.", pattern.getId());
+
         this.id = pattern.id;
         this.multipliers.addAll(pattern.multipliers);
     }

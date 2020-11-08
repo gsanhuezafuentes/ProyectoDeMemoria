@@ -9,15 +9,20 @@ import model.epanet.element.optionsreport.QualityOption;
 import model.epanet.element.optionsreport.Report;
 import model.epanet.element.optionsreport.Time;
 import model.epanet.element.systemoperation.*;
+import model.epanet.element.utils.ParseNetworkToINPString;
 import model.epanet.element.waterquality.ReactionOption;
 import model.epanet.io.InpParser;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.*;
 
 public final class Network {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Network.class);
+
     //*********************************************************
     //Network Components
     //*********************************************************/
@@ -107,6 +112,7 @@ public final class Network {
     public Network(@NotNull Network network) {
         this();
         Objects.requireNonNull(network);
+        LOGGER.debug("Clonning Network.");
 
         // copy the title
         this.title = new StringBuilder(network.getTitle());

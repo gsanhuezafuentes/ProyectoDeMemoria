@@ -89,9 +89,9 @@ public class RankingAndCrowdingSelection<S extends Solution<?>> implements Selec
     public List<S> execute(List<S> solutionList) {
         Objects.requireNonNull(solutionList);
         if (solutionList.isEmpty()) {
-            throw new ApplicationException("The solution list is empty");
+            throw new IllegalArgumentException("The solution list is empty");
         } else if (solutionList.size() < solutionsToSelect) {
-            throw new ApplicationException("The population size (" + solutionList.size() + ") is smaller than"
+            throw new IllegalStateException("The population size (" + solutionList.size() + ") is smaller than"
                     + "the solutions to selected (" + solutionsToSelect + ")");
         }
 

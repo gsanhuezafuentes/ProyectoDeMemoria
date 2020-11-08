@@ -5,6 +5,9 @@ import controller.DynamicConfigurationWindowController;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import model.epanet.element.Network;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import registrable.MultiObjectiveRegistrable;
 import registrable.Registrable;
 import registrable.SingleObjectiveRegistrable;
@@ -26,6 +29,8 @@ import java.util.Map;
  * 
  */
 public class ProblemMenuConfiguration {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProblemMenuConfiguration.class);
+
 
 	/**
 	 * Add to menu a menu item for each problem registered. Also it method add the
@@ -37,6 +42,7 @@ public class ProblemMenuConfiguration {
 	 *                       RegistrableProblem is created.
 	 */
 	public void addSingleObjectiveProblems(Menu menu, CustomCallback<SingleObjectiveRegistrable> experimentEvent) {
+		LOGGER.info("Add SingleObjectives problems to menu.");
 		Map<String, Menu> addedMenu = new HashMap<>();
 		for (Class<? extends SingleObjectiveRegistrable> registrable : RegistrableConfiguration.SINGLEOBJECTIVES_PROBLEMS) {
 			ReflectionUtils.validateRegistrableProblem(registrable);
@@ -65,6 +71,8 @@ public class ProblemMenuConfiguration {
 	 *                       RegistrableProblem is created.
 	 */
 	public void addMultiObjectiveProblems(Menu menu, CustomCallback<MultiObjectiveRegistrable> experimentEvent) {
+		LOGGER.info("Add MultiObjectives problems to menu.");
+
 		Map<String, Menu> addedMenu = new HashMap<>();
 		for (Class<? extends MultiObjectiveRegistrable> registrable : RegistrableConfiguration.MULTIOBJECTIVES_PROBLEMS) {
 			ReflectionUtils.validateRegistrableProblem(registrable);
@@ -88,7 +96,7 @@ public class ProblemMenuConfiguration {
 	 * 
 	 * @param evt            the event info returned to menuItem.setOnAction
 	 * @param registrable    the problem class
-	 * @param algorithmEvent an event called when the window is close. It event create the experiment.
+	 * @param experimentEvent an event called when the window is close. It event create the experiment.
 	 */
 	private <T extends Registrable<?>> void menuItemEventHander(ActionEvent evt, Class<? extends T> registrable,
 			CustomCallback<T> experimentEvent) {
@@ -105,6 +113,7 @@ public class ProblemMenuConfiguration {
 				T registrableInstance = ReflectionUtils.createRegistrableInstance(registrable);
 				experimentEvent.notify(registrableInstance);
 			} catch (InvocationTargetException e) {
+				LOGGER.error("Error to create {} there is a exception throw by the registrable constructor.", registrable.getName(), e);
 				CustomDialogs.showExceptionDialog("Error", "Exception throw by the constructor",
 						"Can't be created an instance of " + registrable.getName(), e.getCause());
 			}

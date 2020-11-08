@@ -248,13 +248,13 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
      * A crossover operator is applied to a number of parents, and it assumed that
      * the population contains a valid number of solutions. This method checks that.
      *
-     * @param population                  the population
-     * @param numberOfParentsForCrossover the number of parent to crossover
-     * @throws ApplicationException if there is a wrong number of parent
+     * @param population                  the population.
+     * @param numberOfParentsForCrossover the number of parent to crossover.
+     * @throws IllegalStateException if there is a wrong number of parent (population size % number of parent is not equals to 0).
      */
     protected void checkNumberOfParents(List<S> population, int numberOfParentsForCrossover) {
         if ((population.size() % numberOfParentsForCrossover) != 0) {
-            throw new ApplicationException("Wrong number of parents: the remainder if the " + "population size ("
+            throw new IllegalStateException("Wrong number of parents: the remainder if the " + "population size ("
                     + population.size() + ") is not divisible by " + numberOfParentsForCrossover);
         }
     }

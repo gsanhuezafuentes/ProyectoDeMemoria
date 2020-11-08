@@ -70,15 +70,15 @@ public class IntegerSBXCrossover implements CrossoverOperator<IntegerSolution> {
      * @param crossoverProbability the crossover probability
      * @param distributionIndex    the distribution index
      * @param randomGenerator      a random generator
-     * @throws ApplicationException if crossover probability or distributionIndex is negative
+     * @throws IllegalArgumentException if crossover probability or distributionIndex is negative
      */
     public IntegerSBXCrossover(double crossoverProbability, double distributionIndex,
                                RandomGenerator<Double> randomGenerator) {
 
         if (crossoverProbability < 0) {
-            throw new ApplicationException("Crossover probability is negative: " + crossoverProbability);
+            throw new IllegalArgumentException("Crossover probability is negative: " + crossoverProbability);
         } else if (distributionIndex < 0) {
-            throw new ApplicationException("Distribution index is negative: " + distributionIndex);
+            throw new IllegalArgumentException("Distribution index is negative: " + distributionIndex);
         }
         this.crossoverProbability = crossoverProbability;
         this.distributionIndex = distributionIndex;

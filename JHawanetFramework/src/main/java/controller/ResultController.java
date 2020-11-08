@@ -1,5 +1,7 @@
 package controller;
 
+import controller.multiobjectives.MultiObjectiveRunningWindowController;
+import controller.utils.ControllerUtils;
 import controller.utils.solutionattribute.Generation;
 import exception.ApplicationException;
 import javafx.beans.property.BooleanProperty;
@@ -27,6 +29,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import view.utils.CustomDialogs;
 
 import java.io.File;
@@ -48,6 +52,8 @@ import java.util.Optional;
  * @author gsanh
  */
 public class ResultController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ResultController.class);
+
     private final Pane root;
 
     @FXML
@@ -83,6 +89,8 @@ public class ResultController {
      *                              network is null.
      */
     public ResultController(@NotNull String problemName, @NotNull List<? extends Solution<?>> solutions, @NotNull Problem<?> problem, @NotNull Network network, @Nullable Map<String, String> parameters) {
+        LOGGER.debug("Initializing ResultController class.");
+
         this.problemName = Objects.requireNonNull(problemName);
         this.solutionList = Objects.requireNonNull(solutions);
         this.problem = Objects.requireNonNull(problem);
@@ -91,7 +99,7 @@ public class ResultController {
 
         this.parameters = parameters;
 
-        this.root = loadFXML();
+        this.root = ControllerUtils.loadFXML("/view/Result.fxml", this);
         this.hasSelectedItem = new SimpleBooleanProperty();
 
         configureResultTable();
@@ -99,25 +107,11 @@ public class ResultController {
     }
 
     /**
-     * Load the FXML view associated to this controller.
-     *
-     * @return the root pane.
-     * @throws ApplicationException if there is an error in load the .fxml.
-     */
-    private Pane loadFXML() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Result.fxml"));
-        fxmlLoader.setController(this);
-        try {
-            return fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new ApplicationException(exception);
-        }
-    }
-
-    /**
      * Configure the table view adding the needed columns and the element that will be showned.
      */
     private void configureResultTable() {
+        LOGGER.info("Setting up table of results.");
+
         if (!this.solutionList.isEmpty()) {
             Generation<Solution<?>> generationAttribute = new Generation<>();
             OverallConstraintViolation<Solution<?>> overallConstraintViolationAttribute = new OverallConstraintViolation<>();
@@ -126,6 +120,7 @@ public class ResultController {
             int numberOfDecisionVariables = this.solutionList.get(0).getNumberOfVariables();
 
             // add column for the objectives
+            LOGGER.debug("Creating {} row of objectives.", numberOfObjectives);
             for (int i = 0; i < numberOfObjectives; i++) {
                 final int index = i;
                 TableColumn<SolutionWrap, String> column = new TableColumn<>("Objective " + (i + 1));
@@ -137,6 +132,7 @@ public class ResultController {
             }
 
             // add column for the decision variables
+            LOGGER.debug("Creating {} rows of variables.", numberOfDecisionVariables);
             for (int i = 0; i < numberOfDecisionVariables; i++) {
                 final int index = i;
                 TableColumn<SolutionWrap, String> column = new TableColumn<>("X" + (i + 1));
@@ -166,6 +162,9 @@ public class ResultController {
                 );
             }
 
+            LOGGER.debug("Add overall constrain column: {} and generation column: {}",
+                    hasOverallConstraintViolationColumn,
+                    hasGenerationColumn);
             if (hasOverallConstraintViolationColumn) {
 
                 // add column for extra variables
@@ -200,6 +199,8 @@ public class ResultController {
 
             // add columns for parameters.
             if (parameters != null) {
+                LOGGER.debug("Creating rows for extra parameters.");
+
                 for (String key : parameters.keySet()) {
                     TableColumn<SolutionWrap, String> column = new TableColumn<>(key);
                     resultTable.getColumns().add(column);
@@ -216,6 +217,7 @@ public class ResultController {
 
             // If the problem is monoobjective SolutionWrap fill with red the cell of best solution
             if (this.problem.getNumberOfObjectives() == 1){
+                LOGGER.debug("Setting color of row with best solution to problem with {} objectives.", this.problem.getNumberOfObjectives());
                 Optional<SolutionWrap> optional = this.resultTable.getItems().stream().min((o1, o2) -> Double.compare(o1.solution.getObjective(0), o2.solution.getObjective(0)));
                 if (optional.isPresent()){
                     SolutionWrap best = optional.get();
@@ -248,6 +250,8 @@ public class ResultController {
      * Save selected item as INP
      */
     public void saveSelectedItemAsINP() {
+        LOGGER.info("Save selected solution as inp.");
+
         SolutionWrap solutionWrap = this.resultTable.getSelectionModel().getSelectedItem();
         Solution<?> solution = solutionWrap.solution;
 
@@ -261,12 +265,15 @@ public class ResultController {
             if (netCopy != null) {
                 OutputInpWriter outputInpWriter = new OutputInpWriter();
                 try {
+                    LOGGER.debug("Writting inp file {}.", file.getAbsolutePath());
                     outputInpWriter.write(netCopy, file.getAbsolutePath());
                 } catch (IOException e) {
+                    LOGGER.error("The file can't be created.",e);
                     CustomDialogs.showExceptionDialog("Error", "Error in the creation of the inp file",
                             "The file can't be created", e);
                 }
             } else {
+                LOGGER.debug("Save selected item has inp is not supported for {} problem.", problem.getClass().getName());
                 CustomDialogs.showDialog("Unsupported Operation",
                         "The save as inp operation is not supported by this problem",
                         "The method applySolutionToNetwork of " + problem.getName()
@@ -281,18 +288,27 @@ public class ResultController {
      * Save table. It save the solutions in Fun y Var file.
      */
     public void saveTable() {
+        LOGGER.info("Save solution in tsv file.");
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TSV file", "*.tsv"));
         fileChooser.setTitle("Save table");
 
         File file = fileChooser.showSaveDialog(this.resultTable.getScene().getWindow());
         if (file != null) {
+            String funFilePath = Paths.get(file.getParent(), "FUN_" + file.getName()).toString();
+            String varFilePath = Paths.get(file.getParent(), "VAR_" + file.getName()).toString();
+
             SolutionListOutput output = new SolutionListOutput(this.solutionList)
-                    .setFunFileName(Paths.get(file.getParent(), "FUN_" + file.getName()).toString())
-                    .setVarFileName(Paths.get(file.getParent(), "VAR_" + file.getName()).toString());
+                    .setFunFileName(funFilePath)
+                    .setVarFileName(varFilePath);
             try {
+                LOGGER.debug("Writting {} and {} files.", funFilePath, varFilePath);
+
                 output.write();
             } catch (IOException e) {
+                LOGGER.error("The file can't be created.",e);
+
                 CustomDialogs.showExceptionDialog("Error", "Error in the creation of fun/var file",
                         "The file can't be created", e);
             }
@@ -303,6 +319,7 @@ public class ResultController {
      * It write the whole table in a excel
      */
     public void saveTableAsExcel() {
+        LOGGER.info("Save table in excel.");
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel file", "*.xlsx"));
@@ -336,12 +353,18 @@ public class ResultController {
         }
 
         try (FileOutputStream fileOut = new FileOutputStream(file.getAbsolutePath())) {
+            LOGGER.debug("Writting excel file {}.", file.getAbsolutePath());
             workbook.write(fileOut);
         } catch (FileNotFoundException e) {
+            LOGGER.error("The file can't be created because the file exists but is a directory rather than a regular file"
+                    + "does not exist but cannot be created, or cannot be opened for any other reason.", e);
+
             CustomDialogs.showDialog("Error", "Error in the creation of the excel file",
                     "The file can't be created because the file exists but is a directory rather than a regular file," +
                             " does not exist but cannot be created, or cannot be opened for any other reason", AlertType.ERROR);
         } catch (IOException e) {
+            LOGGER.error("The excel can't be written.", e);
+
             CustomDialogs.showExceptionDialog("Error", "Error in the creation of the excel file",
                     "The file can't be created", e);
         }

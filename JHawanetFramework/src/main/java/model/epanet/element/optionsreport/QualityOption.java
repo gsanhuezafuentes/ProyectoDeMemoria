@@ -2,14 +2,19 @@ package model.epanet.element.optionsreport;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public final class QualityOption {
+	private static final Logger LOGGER = LoggerFactory.getLogger(QualityOption.class);
+
 	private static final String DEFAULT_PARAMETER = "NONE";
 	private static final double DEFAULT_RELATIVE_DIFFUSIVITY = 1;
 	private static final double DEFAULT_QUALITY_TOLERANCE = 0.1;
@@ -74,6 +79,8 @@ public final class QualityOption {
 	 */
 	public QualityOption(@NotNull QualityOption qualityOption) {
 		Objects.requireNonNull(qualityOption);
+		LOGGER.debug("Clonning QualityOption.");
+
 		this.parameter = qualityOption.parameter;
 		this.massUnit = qualityOption.massUnit;
 		this.relativeDiffusivity = qualityOption.relativeDiffusivity;

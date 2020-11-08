@@ -24,6 +24,8 @@ import model.epanet.io.InpParser;
 import model.metaheuristic.experiment.Experiment;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import registrable.MultiObjectiveRegistrable;
 import registrable.SingleObjectiveRegistrable;
 import view.ElementViewer;
@@ -45,6 +47,9 @@ import java.util.ResourceBundle;
  * menu item.
  */
 public class MainWindowController implements Initializable {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MainWindowController.class);
+
+
     @FXML
     private BorderPane root;
 
@@ -161,8 +166,10 @@ public class MainWindowController implements Initializable {
         networkComponent.selectedProperty().bindBidirectional(elementViewer.selectedProperty());
 
         // Configure tabpane behaviour when the default network tab is selected
+        // Disable buttons to save results when is in the network tab
         this.networkTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) { // clean bind and disable button when default tab "network" is selected
+                LOGGER.debug("Disable 'Save Results' buttons.");
                 this.saveTableButton.setDisable(true);
                 this.saveTableAsExcelButton.setDisable(true);
                 this.saveSelectedAsINPButton.disableProperty().unbind();
@@ -195,7 +202,6 @@ public class MainWindowController implements Initializable {
         if (file != null) {
             this.inpFile = file;
             loadNetwork(this.inpFile);
-
         }
     }
 
@@ -205,6 +211,7 @@ public class MainWindowController implements Initializable {
      * @param file the file
      */
     private void loadNetwork(@NotNull File file) {
+        LOGGER.info("Loading network from '{}'.", file.getAbsolutePath());
         this.network.setValue(null);
         this.hydraulicSimulation.setValue(null);
         InpParser parse = new InpParser();
@@ -217,6 +224,7 @@ public class MainWindowController implements Initializable {
                 this.network.set(networkO);
             }
         } catch (@NotNull IOException | InputException e) {
+            LOGGER.error("The network '{}' can't be loaded.", file.getAbsolutePath(), e);
             CustomDialogs.showExceptionDialog("Error", "Error loading the network", "The network can't be loaded", e);
         }
 
@@ -249,8 +257,10 @@ public class MainWindowController implements Initializable {
         }
         Experiment<?> experiment = null;
         try {
+            LOGGER.info("Build SingleObjective experiment ({}).", registrableProblem.getClass().getName());
             experiment = Objects.requireNonNull(registrableProblem.build(path));
         } catch (Exception e) {
+            LOGGER.error("The SingleObjective experiment({}) can't be created.", registrableProblem.getClass().getName());
             CustomDialogs.showExceptionDialog("Error", "Error in the creation of the experiment",
                     "The experiment can't be created", e);
         }
@@ -283,8 +293,10 @@ public class MainWindowController implements Initializable {
         }
         Experiment<?> experiment = null;
         try {
+            LOGGER.info("Build MultiObjective experiment ({}).", registrableProblem.getClass().getName());
             experiment = Objects.requireNonNull(registrableProblem.build(path));
         } catch (Exception e) {
+            LOGGER.error("The MultiObjective experiment ({}) can't be created.", registrableProblem.getClass().getName());
             CustomDialogs.showExceptionDialog("Error", "Error in the creation of the experiment",
                     "The experiment can't be created", e);
         }
@@ -296,6 +308,9 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * This variable is used to add a number to the name of Tab.
+     */
     private int resultCount = 0;
 
     /**
@@ -304,6 +319,7 @@ public class MainWindowController implements Initializable {
      * @param resultController the result controller
      */
     private void createResultTab(@NotNull ResultController resultController) {
+        LOGGER.info("Showing results for '{}' in a new tab in the main window.", resultController.getProblemName());
         Tab tab = new Tab(resultCount++
                 + " - " + resultController.getProblemName()
                 + "-" + inpFile.getName().substring(0, inpFile.getName().lastIndexOf('.'))
@@ -312,9 +328,12 @@ public class MainWindowController implements Initializable {
 
         // add bind when select the tab
         tab.setOnSelectionChanged(event -> {
-            if (tab.selectedProperty().getValue()) {
 
-                //to save as fun and var
+            if (tab.selectedProperty().getValue()) {
+                LOGGER.debug("Enabled buttons to tabs '{}'", tab.getText());
+
+                // add event to enable the buttons to save results
+                // to save as fun and var
                 this.saveTableButton.setDisable(false);
                 this.saveTableButton.setOnAction(event1 -> resultController.saveTable());
 
@@ -322,13 +341,14 @@ public class MainWindowController implements Initializable {
                 this.saveTableAsExcelButton.setDisable(false);
                 this.saveTableAsExcelButton.setOnAction(event1 -> resultController.saveTableAsExcel());
 
-                //to save as inp
+                // to save as inp
                 this.saveSelectedAsINPButton.disableProperty().bind(resultController.hasSelectedItemProperty().not());
                 this.saveSelectedAsINPButton.setOnAction(event1 -> resultController.saveSelectedItemAsINP());
             }
         });
 
         tab.setOnClosed(event -> { // remove the bind when switch tab
+            LOGGER.debug("Remove event of the tab '{}' because was closed", tab.getText());
             tab.setOnSelectionChanged(null);
             tab.setOnClosed(null);
         });
@@ -342,10 +362,12 @@ public class MainWindowController implements Initializable {
      * @param actionEvent the info of event
      */
     public void runOnAction(ActionEvent actionEvent) {
+        LOGGER.info("Run hydraulic simulation using default values of network configuration file.");
         try {
             assert inpFile != null;
             this.hydraulicSimulation.setValue(HydraulicSimulation.run(inpFile.getAbsolutePath()));
         } catch (EpanetException e) {
+            LOGGER.error("An error has occurred during the hydraulic simulation of the network.", e);
             CustomDialogs.showExceptionDialog("Error", "Error in the simulation.",
                     "An error has occurred during the simulation of the network.", e);
         }
@@ -359,7 +381,8 @@ public class MainWindowController implements Initializable {
      * @param actionEvent the info of event
      */
     public void resultReportOnAction(ActionEvent actionEvent) {
-        HydraulicSimulationResultController controller = new HydraulicSimulationResultController(this.hydraulicSimulation.getValue(), networkComponent.selectedProperty());
+        LOGGER.info("Showing hydraulic simulation result.");
+        HydraulicSimulationResultWindowController controller = new HydraulicSimulationResultWindowController(this.hydraulicSimulation.getValue(), networkComponent.selectedProperty());
         controller.showWindow();
     }
 

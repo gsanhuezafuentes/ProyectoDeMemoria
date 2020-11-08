@@ -46,7 +46,7 @@ public class InpParser implements InputParser {
     /**
      * {@inheritDoc}
      *
-     * @throws InputException if there is a error to parse the inp file
+     * @throws InputException if there is a error to parse the inp file.
      * @throws IOException if file doesn't exist or there is a error in IO operation
      * @throws NullPointerException if net or filename are null
      */

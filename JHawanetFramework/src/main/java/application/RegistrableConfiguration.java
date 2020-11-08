@@ -1,5 +1,7 @@
 package application;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import registrable.MultiObjectiveRegistrable;
 import registrable.SingleObjectiveRegistrable;
 import registrable.multiobjective.PumpSchedulingNSGAIIRegister;
@@ -16,16 +18,20 @@ import java.util.List;
  *
  */
 public final class RegistrableConfiguration {
+	private static final Logger LOGGER = LoggerFactory.getLogger(RegistrableConfiguration.class);
+
 	public static final List<Class<? extends SingleObjectiveRegistrable>> SINGLEOBJECTIVES_PROBLEMS = new ArrayList<>();
 	public static final List<Class<? extends MultiObjectiveRegistrable>> MULTIOBJECTIVES_PROBLEMS = new ArrayList<>();
 
 	//Add here the Registrable clases (SingleObjectives).
 	static {
+		LOGGER.debug("Initializing SINGLEOBJECTIVES_PROBLEMS of RegistrableConfiguration class.");
 		SINGLEOBJECTIVES_PROBLEMS.add(PipeOptimizingRegister.class);
 	}
 	
 	// Multiobjectives
 	static {
+		LOGGER.debug("Initializing MULTIOBJECTIVES_PROBLEMS of RegistrableConfiguration class.");
 		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingNSGAIIRegister.class);
 		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingSMPSORegister.class);
 		MULTIOBJECTIVES_PROBLEMS.add(PumpSchedulingSPA2Register.class);

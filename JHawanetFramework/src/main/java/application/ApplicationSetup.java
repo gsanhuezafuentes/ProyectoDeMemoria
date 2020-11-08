@@ -7,6 +7,9 @@ import com.dlsc.preferencesfx.model.Group;
 import com.dlsc.preferencesfx.model.Setting;
 import javafx.application.Platform;
 import javafx.beans.property.*;
+import javafx.beans.value.ChangeListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class contain setup and let show a window.
@@ -14,22 +17,37 @@ import javafx.beans.property.*;
  * The config modified with this class will persistance. This config are saved with Preference API of java.
  */
 public class ApplicationSetup {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationSetup.class);
+
     private static ApplicationSetup instance;
 
     private final PreferencesFx preferencesFx;
 
-    BooleanProperty isNetworkLegendEnable = new SimpleBooleanProperty(false);
-    BooleanProperty isChartEnable = new SimpleBooleanProperty(true);
-    IntegerProperty chartPointSize = new SimpleIntegerProperty(5);
-    BooleanProperty isNumberOfMultiObjectiveResultLimited = new SimpleBooleanProperty(false);
-    IntegerProperty numberOfResultMultiObjectiveProblem = new SimpleIntegerProperty(0);
+    BooleanProperty isNetworkLegendEnable = new SimpleBooleanProperty(this,"isNetworkLegendEnable",false);
+    BooleanProperty isChartEnable = new SimpleBooleanProperty(this, "isChartEnable",true);
+    IntegerProperty chartPointSize = new SimpleIntegerProperty(this, "chartPointSize", 5);
+    BooleanProperty isNumberOfMultiObjectiveResultLimited = new SimpleBooleanProperty(this, "isNumberOfMultiObjectiveResultLimited", false);
+    IntegerProperty numberOfResultMultiObjectiveProblem = new SimpleIntegerProperty(this, "numberOfResultMultiObjectiveProblem", 0);
 
     static {
         instance = new ApplicationSetup();
     }
 
     private ApplicationSetup() {
+
         preferencesFx = createPreference();
+
+        ChangeListener<Object> listener = (prop, oldV, newV) -> {
+            ReadOnlyProperty<Object> property = (ReadOnlyProperty<Object>) prop;
+            LOGGER.debug("The value of property in {} of {} has changed to {}.", property.getBean().getClass().getName(), property.getName()
+                    , newV);
+        };
+
+        this.isNetworkLegendEnable.addListener(listener);
+        this.isChartEnable.addListener(listener);
+        this.chartPointSize.addListener(listener);
+        this.isNumberOfMultiObjectiveResultLimited.addListener(listener);
+        this.numberOfResultMultiObjectiveProblem.addListener(listener);
     }
 
     /**
@@ -88,7 +106,7 @@ public class ApplicationSetup {
      * @return true if is enable, false otherwise.
      * @throws IllegalStateException if call to method is realized other than FX Application Thread.
      */
-    public boolean isChartEnable() {
+    public boolean isChartEnabled() {
         checkThread();
         return isChartEnable.get();
     }

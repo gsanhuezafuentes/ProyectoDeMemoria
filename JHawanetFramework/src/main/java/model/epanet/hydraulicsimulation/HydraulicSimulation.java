@@ -1,8 +1,11 @@
 package model.epanet.hydraulicsimulation;
 
+import controller.HydraulicSimulationResultWindowController;
 import epanet.core.*;
 import exception.ApplicationException;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URISyntaxException;
 import java.util.*;
@@ -13,6 +16,7 @@ import java.util.*;
  * be added to the network object passed to the method.
  */
 public final class HydraulicSimulation {
+    private static final Logger LOGGER = LoggerFactory.getLogger(HydraulicSimulation.class);
 
     private final String inpPath;
     private List<String> times;
@@ -27,13 +31,13 @@ public final class HydraulicSimulation {
     }
 
     /**
-     * Run the total simulation and save result in the network object
+     * Run the total simulation and save result in the network object.
      *
-     * @param inpPath the inp file
-     * @throws NullPointerException     if inpPath is null
-     * @throws IllegalArgumentException if inpPath is a empty string
-     * @throws ApplicationException     if there is a error when DLL is loaded
-     * @throws EpanetException          if there is an error in simulation
+     * @param inpPath the inp file.
+     * @throws NullPointerException     if inpPath is null.
+     * @throws IllegalArgumentException if inpPath is a empty string.
+     * @throws ApplicationException     if there is a error when DLL is loaded.
+     * @throws EpanetException          if there is an error in simulation.
      *
      * @return the hydralucsimulation instance with that store the result of simulation.
      */
@@ -47,9 +51,9 @@ public final class HydraulicSimulation {
     }
 
     /**
-     * Initialize the list of nodeResult
+     * Initialize the list of nodeResult.
      *
-     * @param nelement number of elements in list
+     * @param nelement number of elements in list.
      */
     private void initializeNodeList(int nelement) {
         this.nodeIndex = new HashMap<>(nelement);
@@ -60,9 +64,9 @@ public final class HydraulicSimulation {
     }
 
     /**
-     * Initialize the list of linkResult
+     * Initialize the list of linkResult.
      *
-     * @param nelement number of element in list
+     * @param nelement number of element in list.
      */
     private void initializeLinkList(int nelement) {
         this.linkIndex = new HashMap<>(nelement);
@@ -81,8 +85,14 @@ public final class HydraulicSimulation {
         this.times = new ArrayList<>(nelement);
     }
 
+    /**
+     * Run the simulation.
+     * @throws ApplicationException If there is a error with URI Syntax.
+     * @throws EpanetException if there is a error in simulation.
+     */
     private void run() throws ApplicationException, EpanetException {
         try {
+            LOGGER.debug("Open epanet with {} network", inpPath);
             EpanetAPI epanet = new EpanetAPI();
             epanet.ENopen(inpPath, "defaultSimulation.rpt", "");
 
@@ -98,6 +108,7 @@ public final class HydraulicSimulation {
                 rtstart = 0;
             }
             long numberOfElement = (duration - rtstart) / rtstep + 1; //the number of element that have to be retrieved
+            LOGGER.debug("The hydraulic simulation will have {} periods.", numberOfElement);
 
             int nodeCount = epanet.ENgetcount(Components.EN_NODECOUNT);
             int linkCount = epanet.ENgetcount(Components.EN_LINKCOUNT);
@@ -142,8 +153,10 @@ public final class HydraulicSimulation {
             epanet.ENcloseH();
 //            System.out.println("n element " + numberOfElement);
             epanet.ENclose();
+            LOGGER.debug("Closing epanet.", inpPath);
+
         } catch (URISyntaxException e) {
-            throw new ApplicationException(e);
+            throw new ApplicationException("There is a error with EpanetToolkit.",e);
         }
     }
 
@@ -167,13 +180,13 @@ public final class HydraulicSimulation {
     }
 
     /**
-     * Get the link result of the simulation
+     * Get the link result of the simulation.
      *
-     * @param timeInSeconds the time in second
-     * @param index         the index of link
-     * @param epanet        the simulation engine
-     * @return the result of the simulation
-     * @throws NullPointerException if epanet is null
+     * @param timeInSeconds the time in second.
+     * @param index         the index of link.
+     * @param epanet        the simulation engine.
+     * @return the result of the simulation.
+     * @throws NullPointerException if epanet is null.
      */
     private @NotNull LinkSimulationResult getLinkResult(long timeInSeconds, int index, @NotNull EpanetAPI epanet) throws EpanetException {
         String linkId = epanet.ENgetlinkid(index);
@@ -185,10 +198,10 @@ public final class HydraulicSimulation {
     }
 
     /**
-     * A method to test the time of a timestep
+     * A method to test the time of a timestep.
      *
-     * @param time the time in seconds
-     * @return the time as string
+     * @param time the time in seconds.
+     * @return the time as string.
      */
     private @NotNull String timeToStringTime(long time) {
         // Transform the seconds in a time in formar HH:mm:ss
@@ -205,9 +218,9 @@ public final class HydraulicSimulation {
      * <p>
      * Available times can be retrieved using the {@link #getTimes} method.
      *
-     * @param time the time as string
-     * @return the node results in a specific time or empty list if time is not valid
-     * @throws NullPointerException if time is null
+     * @param time the time as string.
+     * @return the node results in a specific time or empty list if time is not valid.
+     * @throws NullPointerException if time is null.
      */
     public @NotNull List<NodeSimulationResult> getNodeResultsInTime(String time) {
         Objects.requireNonNull(time);
@@ -227,9 +240,9 @@ public final class HydraulicSimulation {
      * <p>
      * Available times can be retrieved using the {@link #getTimes} method.
      *
-     * @param time the time as string
-     * @return the links result in a specific time or empty list if time is not valid
-     * @throws NullPointerException if time is null
+     * @param time the time as string.
+     * @return the links result in a specific time or empty list if time is not valid.
+     * @throws NullPointerException if time is null.
      */
     public @NotNull List<LinkSimulationResult> getLinkResultInTime(String time) {
         Objects.requireNonNull(time);
@@ -248,7 +261,7 @@ public final class HydraulicSimulation {
     /**
      * Get the available times of simulation
      *
-     * @return the list of times
+     * @return the list of times.
      */
     public @NotNull List<String> getTimes() {
         return times;
@@ -257,9 +270,9 @@ public final class HydraulicSimulation {
     /**
      * Return for a node the result of execution in all times.
      *
-     * @param nodeId the id of a node
-     * @return the result of execution for that node in all time
-     * @throws NullPointerException if nodeId is null
+     * @param nodeId the id of a node.
+     * @return the result of execution for that node in all time.
+     * @throws NullPointerException if nodeId is null.
      */
     public @NotNull List<NodeSimulationResult> getTimeSeriesForNode(@NotNull String nodeId) {
         Objects.requireNonNull(nodeId);
@@ -273,9 +286,9 @@ public final class HydraulicSimulation {
     /**
      * Return for a link the result of execution in all times.
      *
-     * @param linkId the id of a link
-     * @return the result of execution for that link in all time
-     * @throws NullPointerException if linkId is null
+     * @param linkId the id of a link.
+     * @return the result of execution for that link in all time.
+     * @throws NullPointerException if linkId is null.
      */
     public @NotNull List<LinkSimulationResult> getTimeSeriesForLink(@NotNull String linkId) {
         Objects.requireNonNull(linkId);

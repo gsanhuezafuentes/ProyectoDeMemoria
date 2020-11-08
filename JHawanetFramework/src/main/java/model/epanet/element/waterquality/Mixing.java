@@ -2,14 +2,18 @@ package model.epanet.element.waterquality;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public final class Mixing {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Mixing.class);
 
 	public enum MixingModel {
 		MIXED("MIXED"), TWOCOMP("2COMP"), FIFO("FIFO"), LIFO("LIFO");
@@ -54,8 +58,12 @@ public final class Mixing {
 	/**
 	 * Copy constructor
 	 * @param mixing the object to copy
+	 * @throws NullPointerException if mixing is null.
 	 */
 	public Mixing(@NotNull Mixing mixing) {
+		Objects.requireNonNull(mixing);
+		LOGGER.debug("Clonning Mixing.");
+
 		this.model = mixing.model;
 		this.mixingFraction = mixing.mixingFraction;
 	}

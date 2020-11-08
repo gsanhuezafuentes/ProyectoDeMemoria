@@ -2,13 +2,18 @@ package model.epanet.element.waterquality;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public final class Quality {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Quality.class);
+
 	private double initialQuality;
 	
 	public Quality() {
@@ -22,6 +27,8 @@ public final class Quality {
 	 */
 	public Quality(@NotNull Quality quality) {
 		Objects.requireNonNull(quality);
+		LOGGER.debug("Clonning Quality.");
+
 		this.initialQuality = quality.initialQuality;
 	}
 	

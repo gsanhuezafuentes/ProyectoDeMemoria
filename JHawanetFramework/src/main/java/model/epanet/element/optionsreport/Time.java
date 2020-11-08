@@ -2,7 +2,10 @@ package model.epanet.element.optionsreport;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -45,6 +48,8 @@ import java.util.Objects;
  * The format is not validated
  */
 public final class Time {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Time.class);
+
 	public enum Statistic {
 		NONE("NONE"), AVERAGE("AVERAGE"), MINIMUM("MINIMUM"), MAXIMUM("MAXIMUM"), RANGE("RANGE");
 
@@ -116,6 +121,8 @@ public final class Time {
 	 */
 	public Time(@NotNull Time time) {
 		Objects.requireNonNull(time);
+		LOGGER.debug("Clonning Time.");
+
 		this.duration = time.duration;
 		this.hydraulicTimestep = time.hydraulicTimestep;
 		this.qualityTimestep = time.qualityTimestep;

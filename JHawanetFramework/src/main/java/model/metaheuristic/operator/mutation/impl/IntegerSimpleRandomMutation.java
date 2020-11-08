@@ -33,16 +33,19 @@ public class IntegerSimpleRandomMutation implements MutationOperator<IntegerSolu
 	
 	/**
 	 * Constructor
-	 * @param probability the probability of mutation
-	 * @param randomGenerator a random generator
-	 * @param pointRandomGenerator a random generator that generate numbers between a lower and a upper bound
-	 * @throws ApplicationException if probability is negative
+	 * @param probability the probability of mutation.
+	 * @param randomGenerator a random generator.
+	 * @param pointRandomGenerator a random generator that generate numbers between a lower and a upper bound.
+	 * @throws IllegalArgumentException if probability is negative.
+	 * @throws NullPointerException if randomGenerator or pointRandonGenerator is null.
 	 */
 	public IntegerSimpleRandomMutation(double probability, RandomGenerator<Double> randomGenerator,
 			BoundedRandomGenerator<Integer> pointRandomGenerator) {
 		if (probability < 0) {
-			throw new ApplicationException("Mutation probability is negative: " + mutationProbability);
+			throw new IllegalArgumentException("Mutation probability is negative: " + mutationProbability);
 		}
+		Objects.requireNonNull(randomGenerator);
+		Objects.requireNonNull(pointRandomGenerator);
 
 		this.mutationProbability = probability;
 		this.randomGenerator = randomGenerator;

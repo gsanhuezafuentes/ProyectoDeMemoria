@@ -51,16 +51,19 @@ public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolut
      * @param range                the range of mutation
      * @param randomGenerator      the random function to use
      * @param pointRandomGenerator a random generator that generate numbers between a lower and a upper bound
+     * @throws IllegalArgumentException if probability or range is less than 0.
+     * @throws NullPointerException if randomGenerator or pointRandomGenerator is null.
      */
     public IntegerRangeRandomMutation(double probability, int range, RandomGenerator<Double> randomGenerator,
                                       BoundedRandomGenerator<Integer> pointRandomGenerator) {
         if (probability < 0) {
-            throw new RuntimeException("Mutation probability is negative: " + mutationProbability);
+            throw new IllegalArgumentException("Mutation probability is negative: " + mutationProbability);
         }
         if (range < 0) {
-            throw new RuntimeException("Range is negative: " + mutationProbability);
+            throw new IllegalArgumentException("Range is negative: " + mutationProbability);
         }
-
+        Objects.requireNonNull(randomGenerator);
+        Objects.requireNonNull(pointRandomGenerator);
         this.mutationProbability = probability;
         this.range = range;
         this.randomGenerator = randomGenerator;

@@ -50,13 +50,13 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	 *                              gama.
 	 * @throws EpanetException      if there is a error in epatoolkit
 	 * @throws NullPointerException if epanet is null or networkGama is null
-	 * @throws ApplicationException if networkGama is empty
+	 * @throws IllegalArgumentException if networkGama is empty
 	 */
 	public PipeOptimizing(EpanetAPI epanet, String networkGama, int minPressure) throws IOException, EpanetException {
 		Objects.requireNonNull(epanet, "EpanetAPI can't be null in CostConstructionProblem");
 		Objects.requireNonNull(networkGama);
 		if (networkGama.equals("")) {
-			throw new ApplicationException("The parameter networkGama can't be empty");
+			throw new IllegalArgumentException("The parameter networkGama can't be empty");
 		}
 		this.numberOfConstrains = 1;
 		this.numberOfObjectives = 1;

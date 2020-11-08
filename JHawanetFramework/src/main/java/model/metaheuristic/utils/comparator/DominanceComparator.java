@@ -68,7 +68,7 @@ public class DominanceComparator<S extends Solution<?>> implements Comparator<S>
      * @param solution2 Object representing the second <code>Solution</code>.
      * @return less than 0, zero , or greater than 0 if solution1 dominates solution2, both are
      * non-dominated, or solution1 is dominated by solution2, respectively.
-     * @throws ApplicationException if the number of objective of solution1 and solution2 is not the same.
+     * @throws IllegalStateException if the number of objective of solution1 and solution2 is not the same.
      */
     @Override
     public int compare(S solution1, S solution2) {
@@ -77,7 +77,7 @@ public class DominanceComparator<S extends Solution<?>> implements Comparator<S>
         Objects.requireNonNull(solution2, "Solution2 is null");
 
         if (solution1.getNumberOfObjectives() != solution2.getNumberOfObjectives()) {
-            throw new ApplicationException("Cannot compare because solution1 has " + solution1.getNumberOfObjectives()
+            throw new IllegalStateException("Cannot compare because solution1 has " + solution1.getNumberOfObjectives()
                     + " objectives and solution2 has " + solution2.getNumberOfObjectives());
         }
         int result;

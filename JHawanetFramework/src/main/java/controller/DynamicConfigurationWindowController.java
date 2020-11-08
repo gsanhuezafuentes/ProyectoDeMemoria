@@ -1,13 +1,13 @@
 package controller;
 
 import annotations.*;
+import controller.utils.ControllerUtils;
 import controller.utils.CustomCallback;
 import controller.utils.ReflectionUtils;
 import exception.ApplicationException;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -20,11 +20,12 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import registrable.Registrable;
 import view.utils.CustomDialogs;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -38,8 +39,10 @@ import java.util.stream.Collectors;
  * @param <T> The type of registrable class
  */
 public class DynamicConfigurationWindowController<T extends Registrable<?>> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(DynamicConfigurationWindowController.class);
+
     private final CustomCallback<T> experimentEvent;
-    private final Class<? extends T> problemClass;
+    private final Class<? extends T> registrableClass;
     private final Pane root;
     private static final double defaultSpaceInConfigurationGrid = 5;
     private int gridLayoutRowCount;
@@ -107,7 +110,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
 
     public DynamicConfigurationWindowController(Class<? extends T> registrable,
                                                 CustomCallback<T> experimentEvent) {
-        this.problemClass = Objects.requireNonNull(registrable);
+        this.registrableClass = Objects.requireNonNull(registrable);
         this.experimentEvent = Objects.requireNonNull(experimentEvent);
 
         // save the values of each operator to use when contructor will be called
@@ -128,23 +131,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         //save the combobox of operator seccion
         this.comboBoxesAdded = new ArrayList<>();
 
-        this.root = loadFXML();
-    }
-
-    /**
-     * Load the FXML view associated to this controller.
-     *
-     * @return the root pane.
-     * @throws ApplicationException if there is an error in load the .fxml.
-     */
-    private Pane loadFXML() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/DynamicConfigurationWindow.fxml"));
-        fxmlLoader.setController(this);
-        try {
-            return fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new ApplicationException(exception);
-        }
+        this.root = ControllerUtils.loadFXML("/view/DynamicConfigurationWindow.fxml",this);
     }
 
     /**
@@ -170,13 +157,13 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
     }
 
     /**
-     * Read the problem using reflection and build the interface to configure the
-     * problem
+     * Read the registrable class using reflection and build the interface to configure the
+     * experiment.
      *
      * @throws NullPointerException if the ProblemRegister class has no constructor with {@link NewProblem} annotation.
      */
     private void createContentLayout() {
-        Constructor<?> constructor = ReflectionUtils.getNewProblemConstructor(problemClass);
+        Constructor<?> constructor = ReflectionUtils.getNewProblemConstructor(registrableClass);
         Parameters parameters = Objects.requireNonNull(constructor).getAnnotation(Parameters.class);
         if (parameters != null) {
             /*
@@ -585,15 +572,14 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         // create the operators and add to parameters array
         for (Class<?> operator : operatorsAndConfig.keySet()) {
             try {
-                Object operatorObject = Objects.requireNonNull(ReflectionUtils.getDefaultConstructor(operator))
-                        .newInstance(operatorsAndConfig.get(operator).toArray());
+                Object operatorObject = ReflectionUtils.createOperatorInstance(operator, operatorsAndConfig.get(operator).toArray());
                 parameters[i++] = operatorObject;
             } catch (InvocationTargetException e) {
+                LOGGER.error("Error to create {} there is a exception throw by the operator constructor.", operator.getName(), e);
+
                 CustomDialogs.showExceptionDialog("Error", "Error in the creation of the operator",
                         "The operator " + operator.getName() + " can't be created", e.getCause());
                 return;
-            } catch (InstantiationException | IllegalArgumentException | IllegalAccessException e) {
-                throw new ApplicationException("Error in reflection call", e);
             }
         }
 
@@ -610,12 +596,14 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         }
 
         try {
-            T registrable = ReflectionUtils.createRegistrableInstance(this.problemClass, parameters);
+            T registrable = ReflectionUtils.createRegistrableInstance(this.registrableClass, parameters);
             closeWindow();
             notifyExperimentCreation(registrable);
         } catch (InvocationTargetException e) {
+            LOGGER.error("Error to create {} there is a exception throw by the registrable constructor.", this.registrableClass.getName(), e);
+
             CustomDialogs.showExceptionDialog("Error", "Exception throw by the constructor",
-                    "Can't be created an instance of " + this.problemClass.getName(), e.getCause());
+                    "Can't be created an instance of " + this.registrableClass.getName(), e.getCause());
         }
 
     }
@@ -715,13 +703,14 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         stage.setTitle("Experiment Setup");
         this.window = stage;
 
-        //Initialize the gridpane with the controls to configure the problem
+        //Initialize the gridpane with the controls to configure the experiment
         createContentLayout();
         //Fill description tab
         fillDescriptionTab();
         //add binding to run and close button
         addBindingAndListener();
 
+        LOGGER.info("Show DynamicConfigurationWindow for {}.", this.registrableClass.getName());
         stage.show();
     }
 
@@ -729,8 +718,8 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
      * Add the values to description tab.
      */
     private void fillDescriptionTab() {
-        algorithmNameLabel.setText(ReflectionUtils.getNameOfAlgorithm(problemClass));
-        problemNameLabel.setText(ReflectionUtils.getNameOfProblem(problemClass));
-        descriptionTextArea.setText(ReflectionUtils.getDescriptionOfProblem(problemClass));
+        algorithmNameLabel.setText(ReflectionUtils.getNameOfAlgorithm(registrableClass));
+        problemNameLabel.setText(ReflectionUtils.getNameOfProblem(registrableClass));
+        descriptionTextArea.setText(ReflectionUtils.getDescriptionOfProblem(registrableClass));
     }
 }

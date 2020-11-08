@@ -2,13 +2,18 @@ package model.epanet.element.systemoperation;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public final class Control {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Control.class);
+
 	@NotNull private String code;
 
 	public Control() {
@@ -23,6 +28,8 @@ public final class Control {
 	 */
 	public Control(@NotNull Control control) {
 		Objects.requireNonNull(control);
+		LOGGER.debug("Clonning Control.");
+
 		this.code = control.code;
 	}
 

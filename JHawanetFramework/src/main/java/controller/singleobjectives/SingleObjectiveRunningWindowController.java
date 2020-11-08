@@ -3,13 +3,12 @@ package controller.singleobjectives;
 import application.ApplicationSetup;
 import controller.ResultController;
 import controller.ResultPlotController;
+import controller.utils.ControllerUtils;
 import controller.utils.CustomCallback;
 import controller.utils.SingleObjectiveExperimentTask;
 import epanet.core.EpanetException;
-import exception.ApplicationException;
 import javafx.concurrent.Worker.State;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
@@ -21,9 +20,10 @@ import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import view.utils.CustomDialogs;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -40,6 +40,8 @@ import java.util.stream.Collectors;
  * ResultWindow.
  */
 public class SingleObjectiveRunningWindowController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SingleObjectiveRunningWindowController.class);
+
     @FXML
     private Label headerText;
     @FXML
@@ -92,6 +94,8 @@ public class SingleObjectiveRunningWindowController {
      * @throws IllegalArgumentException if the problem is multiobjective or there aren't element in experiment algorithm.
      */
     public SingleObjectiveRunningWindowController(@NotNull Experiment<?> experiment, @Nullable Map<String, String> parameters, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
+        LOGGER.debug("Initializing SingleObjectiveRunningWindowController.");
+
         this.experiment = Objects.requireNonNull(experiment);
         this.problem = Objects.requireNonNull(experiment.getProblem()).getProblem();
         this.parameters = parameters;
@@ -106,22 +110,28 @@ public class SingleObjectiveRunningWindowController {
          * Only add the the showChartButton if the number of objectives is less than 2.
          */
         if (problem.getNumberOfObjectives() != 1) {
+            LOGGER.error("The number of objectives is different from 1.");
             throw new IllegalArgumentException("The number of objective to to this type of Registrable should be 1.");
         }
 
         // Used to create a new thread
-        this.task = new SingleObjectiveExperimentTask(experiment, ApplicationSetup.getInstance().isChartEnable());
+        this.task = new SingleObjectiveExperimentTask(experiment, ApplicationSetup.getInstance().isChartEnabled());
 
-        this.root = loadFXML(); //initialize fxml and all parameters defined with @FXML
+        this.root = ControllerUtils.loadFXML("/view/SingleObjectiveRunningWindow.fxml", this); //initialize fxml and all parameters defined with @FXML
 
         // Create the controller to add point even if plot windows is not showed
-        if (ApplicationSetup.getInstance().isChartEnable()) {
+        if (ApplicationSetup.getInstance().isChartEnabled()) {
+            LOGGER.debug("Chart is enabled to this experiment. Chart enabled: {}.", ApplicationSetup.getInstance().isChartEnabled());
+
             this.resultPlotController = new ResultPlotController(this.problem.getNumberOfObjectives());
             this.chartTab.setContent(this.resultPlotController.getNode());
         } else {
+            LOGGER.debug("Chart is disabled for this experiment. Chart enabled: '{}'.", ApplicationSetup.getInstance().isChartEnabled());
+
             this.resultPlotController = null;
             this.chartTab.setDisable(true);
         }
+
         //add the name of algorithm and the name of problem. (The experiment should have only one type of algorithm. Eg. GeneticAlgorithm)
         this.algorithmNameLabel.setText(experiment.getAlgorithmList().get(0).getAlgorithmTag());
         this.problemNameLabel.setText(experiment.getProblem().getTag());
@@ -130,25 +140,11 @@ public class SingleObjectiveRunningWindowController {
     }
 
     /**
-     * Load the FXML view associated to this controller.
-     *
-     * @return the root pane.
-     * @throws ApplicationException if there is an error in load the .fxml.
-     */
-    private Pane loadFXML() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/SingleObjectiveRunningWindow.fxml"));
-        fxmlLoader.setController(this);
-        try {
-            return fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new ApplicationException(exception);
-        }
-    }
-
-    /**
      * Add binding to task and gui elements.
      */
     private void addBindingAndListener() {
+        LOGGER.debug("Initializing extra properties to the SingleObjectiveRunningWindow.");
+
         // bind the textArea text with the value of message property of task
         textArea.textProperty().bind(this.task.messageProperty());
         cancelButton.disableProperty().bind(task.stateProperty().isNotEqualTo(State.RUNNING));
@@ -165,11 +161,13 @@ public class SingleObjectiveRunningWindowController {
         // listener to handle when a exception is generated in the other thread.
         task.exceptionProperty().addListener((property, oldValue, newValue) -> {
             if (newValue instanceof EpanetException) {
+                LOGGER.error("Error in EpanetToolkit.", newValue);
                 CustomDialogs.showExceptionDialog("Error", "Error in the simulation.",
-                        "An error has occurred during the validation of the solutions.", newValue);
+                        "An error has occurred during the validation of the solutions with EpanetToolkit.", newValue);
             } else {
+                LOGGER.error("Error in the experiment execution thread.", newValue);
                 CustomDialogs.showExceptionDialog("Error", "Error in the execution of the algorithm",
-                        "An error has occurred while trying to close the resources of the problem.", newValue);
+                        "An error has occurred while trying to execute the experiment.", newValue);
             }
         });
 
@@ -203,6 +201,8 @@ public class SingleObjectiveRunningWindowController {
 
         // listener when task finishes successfully
         task.setOnSucceeded(e -> {
+            LOGGER.info("Experiment execution thread successfully executed.");
+
             List<SingleObjectiveExperimentTask.Result> result = task.getValue();
             List<? extends Solution<?>> solutions = result.stream().map(SingleObjectiveExperimentTask.Result::getSolution).collect(Collectors.toList());
             ResultController resultController = new ResultController(experiment.getProblem().getTag(), solutions, this.problem,
@@ -216,6 +216,7 @@ public class SingleObjectiveRunningWindowController {
      */
     @FXML
     private void onCancelButtonClick() {
+        LOGGER.debug("Cancelling thread task event.");
         // cancel the task
         this.task.cancel();
     }
@@ -225,8 +226,11 @@ public class SingleObjectiveRunningWindowController {
      */
     @FXML
     private void onCloseButtonClick() {
+        LOGGER.debug("Closed SingleObjectiveRunningWindow event.");
+
         // if task is not cancelled, so cancel it.
         if (!task.isCancelled()) {
+            LOGGER.debug("Cancelling thread task.");
             task.cancel();
         }
 
@@ -246,9 +250,12 @@ public class SingleObjectiveRunningWindowController {
 //		stage.initStyle(StageStyle.UTILITY);
         stage.setTitle("Status of execution");
         stage.setOnCloseRequest((e) -> onCloseButtonClick());
+
+        LOGGER.info("Show SingleObjectiveRunningWindow.");
         stage.show();
         this.window = stage;
 
+        LOGGER.debug("Creating new thread to run the singleobjective experiment.");
         Thread t = new Thread(task);
         t.setDaemon(true);
         t.start();

@@ -43,7 +43,7 @@ class GeneticAlgorithm2Test {
 	void setMaxEvaluations_LessThanZero_Exception() throws Exception {
 		GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10,
 				selectionOperator, crossoverOperator, mutationOperator, new SequentialSolutionEvaluator<>());
-		assertThrows(ApplicationException.class, () -> algorithm.setMaxEvaluations(-1));
+		assertThrows(IllegalArgumentException.class, () -> algorithm.setMaxEvaluations(-1));
 	}
 
 	/**
@@ -55,7 +55,7 @@ class GeneticAlgorithm2Test {
 	void setMaxNumberOfIterationWithoutImprovement_LessThanZero_Exception() {
 		GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10,
 				selectionOperator, crossoverOperator, mutationOperator,  new SequentialSolutionEvaluator<>());
-		assertThrows(ApplicationException.class, () -> algorithm.setMaxNumberOfIterationWithoutImprovement(-1));
+		assertThrows(IllegalArgumentException.class, () -> algorithm.setMaxNumberOfIterationWithoutImprovement(-1));
 	}
 
 	/**

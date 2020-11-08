@@ -2,15 +2,20 @@ package model.epanet.element.networkdesign;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import model.epanet.element.utils.Point;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public final class Label {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Label.class);
+
 
     @Nullable
     private Point position;
@@ -28,8 +33,12 @@ public final class Label {
      * Copy constructor. This is a deep copy.
      *
      * @param label the object to copy
+     * @throws NullPointerException if label is null.
      */
     public Label(@NotNull Label label) {
+        Objects.requireNonNull(label);
+        LOGGER.debug("Clonning Label.");
+
         this.position = label.position;
         this.label = label.label;
         this.anchorNode = label.anchorNode;
