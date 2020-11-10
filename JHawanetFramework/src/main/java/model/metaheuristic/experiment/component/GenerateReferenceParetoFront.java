@@ -57,7 +57,6 @@ import java.util.Objects;
  * <p>
  * If {@link Experiment#getReferenceFrontDirectory()}  is a empty string (is not set up) the final pareto front will not be saved automatically
  * in disk.
- *
  */
 public class GenerateReferenceParetoFront implements ExperimentComponent {
     @NotNull
@@ -113,16 +112,13 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
             NonDominatedSolutionListArchive<Solution<?>> nonDominatedSolutionArchive = new NonDominatedSolutionListArchive<>();
 
             for (ExperimentAlgorithm<?> algorithm : experiment.getAlgorithmList()) {
-                //read solution of disk
-                for (int i = 0; i < experiment.getIndependentRuns(); i++) {
-                    List<? extends Solution<?>> solutionList = algorithm.getResult();
-                    SolutionAttribute<Solution<?>, String> solutionAttribute = new SolutionAttribute<>();
+                List<? extends Solution<?>> solutionList = algorithm.getResult();
+                SolutionAttribute<Solution<?>, String> solutionAttribute = new SolutionAttribute<>();
 
-                    for (Solution<?> solution : solutionList) {
-                        // Save algorithm tag
-                        solutionAttribute.setAttribute(solution, algorithm.getAlgorithmTag());
-                        nonDominatedSolutionArchive.add(solution);
-                    }
+                for (Solution<?> solution : solutionList) {
+                    // Save algorithm tag
+                    solutionAttribute.setAttribute(solution, algorithm.getAlgorithmTag());
+                    nonDominatedSolutionArchive.add(solution);
                 }
             }
 
