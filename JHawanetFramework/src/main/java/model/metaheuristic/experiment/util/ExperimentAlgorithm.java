@@ -32,7 +32,7 @@ import epanet.core.EpanetException;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.io.SolutionListOutput;
+import model.metaheuristic.util.io.SolutionListOutput;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

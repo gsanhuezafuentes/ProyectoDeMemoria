@@ -28,13 +28,12 @@
  */
 package model.metaheuristic.operator.selection.impl;
 
-import exception.ApplicationException;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.comparator.CrowdingDistanceComparator;
-import model.metaheuristic.utils.comparator.DominanceComparator;
-import model.metaheuristic.utils.solutionattribute.CrowdingDistance;
-import model.metaheuristic.utils.solutionattribute.DominanceRanking;
+import model.metaheuristic.util.comparator.CrowdingDistanceComparator;
+import model.metaheuristic.util.comparator.DominanceComparator;
+import model.metaheuristic.util.solutionattribute.CrowdingDistance;
+import model.metaheuristic.util.solutionattribute.DominanceRanking;
 
 import java.util.*;
 
@@ -85,13 +84,14 @@ public class RankingAndCrowdingSelection<S extends Solution<?>> implements Selec
      *
      * @param solutionList the list of solutions from which to select.
      * @throws NullPointerException if the solutionList is empty or his size is less than solutionsToSelect received by constructor.
+     * @throws IllegalArgumentException if the solutionList is empty or solutionList size is less than solution to select.
      */
     public List<S> execute(List<S> solutionList) {
         Objects.requireNonNull(solutionList);
         if (solutionList.isEmpty()) {
             throw new IllegalArgumentException("The solution list is empty");
         } else if (solutionList.size() < solutionsToSelect) {
-            throw new IllegalStateException("The population size (" + solutionList.size() + ") is smaller than"
+            throw new IllegalArgumentException("The population size (" + solutionList.size() + ") is smaller than"
                     + "the solutions to selected (" + solutionsToSelect + ")");
         }
 

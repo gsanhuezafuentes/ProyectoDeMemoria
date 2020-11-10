@@ -31,12 +31,11 @@ package model.metaheuristic.operator.mutation.impl;
 
 import annotations.DefaultConstructor;
 import annotations.NumberInput;
-import exception.ApplicationException;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.random.JavaRandom;
-import model.metaheuristic.utils.random.RandomGenerator;
+import model.metaheuristic.util.random.JavaRandom;
+import model.metaheuristic.util.random.RandomGenerator;
 
 import java.util.Objects;
 

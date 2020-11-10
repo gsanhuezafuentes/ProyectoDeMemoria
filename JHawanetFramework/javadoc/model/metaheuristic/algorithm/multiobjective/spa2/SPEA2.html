@@ -146,7 +146,7 @@ extends <a href="../../../../../model/metaheuristic/algorithm/AbstractEvolutiona
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html#environmentalSelection">environmentalSelection</a></span></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../model/metaheuristic/utils/evaluator/SolutionListEvaluator.html" title="interface in model.metaheuristic.utils.evaluator">SolutionListEvaluator</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;</code></td>
+<td class="colFirst"><code>protected <a href="../../../../../model/metaheuristic/utils/evaluator/SolutionListEvaluator.html" title="interface in model.metaheuristic.util.evaluator">SolutionListEvaluator</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html#evaluator">evaluator</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -162,7 +162,7 @@ extends <a href="../../../../../model/metaheuristic/algorithm/AbstractEvolutiona
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html#maxIterations">maxIterations</a></span></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../model/metaheuristic/utils/solutionattribute/StrengthRawFitness.html" title="class in model.metaheuristic.utils.solutionattribute">StrengthRawFitness</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;</code></td>
+<td class="colFirst"><code>protected <a href="../../../../../model/metaheuristic/utils/solutionattribute/StrengthRawFitness.html" title="class in model.metaheuristic.util.solutionattribute">StrengthRawFitness</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html#strenghtRawFitness">strenghtRawFitness</a></span></code>&nbsp;</td>
 </tr>
 </table>
@@ -193,7 +193,7 @@ extends <a href="../../../../../model/metaheuristic/algorithm/AbstractEvolutiona
      <a href="../../../../../model/metaheuristic/operator/crossover/CrossoverOperator.html" title="interface in model.metaheuristic.operator.crossover">CrossoverOperator</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;&nbsp;crossoverOperator,
      <a href="../../../../../model/metaheuristic/operator/mutation/MutationOperator.html" title="interface in model.metaheuristic.operator.mutation">MutationOperator</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;&nbsp;mutationOperator,
      <a href="../../../../../model/metaheuristic/operator/selection/SelectionOperator.html" title="interface in model.metaheuristic.operator.selection">SelectionOperator</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;,<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;&nbsp;selectionOperator,
-     <a href="../../../../../model/metaheuristic/utils/evaluator/SolutionListEvaluator.html" title="interface in model.metaheuristic.utils.evaluator">SolutionListEvaluator</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;&nbsp;evaluator,
+     <a href="../../../../../model/metaheuristic/utils/evaluator/SolutionListEvaluator.html" title="interface in model.metaheuristic.util.evaluator">SolutionListEvaluator</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;&nbsp;evaluator,
      int&nbsp;k)</code>&nbsp;</td>
 </tr>
 </table>
@@ -324,7 +324,7 @@ extends <a href="../../../../../model/metaheuristic/algorithm/AbstractEvolutiona
 <ul class="blockList">
 <li class="blockList">
 <h4>evaluator</h4>
-<pre>protected final&nbsp;<a href="../../../../../model/metaheuristic/utils/evaluator/SolutionListEvaluator.html" title="interface in model.metaheuristic.utils.evaluator">SolutionListEvaluator</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a> extends <a href="../../../../../model/metaheuristic/solution/Solution.html" title="interface in model.metaheuristic.solution">Solution</a>&lt;?&gt;&gt; evaluator</pre>
+<pre>protected final&nbsp;<a href="../../../../../model/metaheuristic/utils/evaluator/SolutionListEvaluator.html" title="interface in model.metaheuristic.util.evaluator">SolutionListEvaluator</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a> extends <a href="../../../../../model/metaheuristic/solution/Solution.html" title="interface in model.metaheuristic.solution">Solution</a>&lt;?&gt;&gt; evaluator</pre>
 </li>
 </ul>
 <a name="iterations">
@@ -351,7 +351,7 @@ extends <a href="../../../../../model/metaheuristic/algorithm/AbstractEvolutiona
 <ul class="blockList">
 <li class="blockList">
 <h4>strenghtRawFitness</h4>
-<pre>protected final&nbsp;<a href="../../../../../model/metaheuristic/utils/solutionattribute/StrengthRawFitness.html" title="class in model.metaheuristic.utils.solutionattribute">StrengthRawFitness</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a> extends <a href="../../../../../model/metaheuristic/solution/Solution.html" title="interface in model.metaheuristic.solution">Solution</a>&lt;?&gt;&gt; strenghtRawFitness</pre>
+<pre>protected final&nbsp;<a href="../../../../../model/metaheuristic/utils/solutionattribute/StrengthRawFitness.html" title="class in model.metaheuristic.util.solutionattribute">StrengthRawFitness</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a> extends <a href="../../../../../model/metaheuristic/solution/Solution.html" title="interface in model.metaheuristic.solution">Solution</a>&lt;?&gt;&gt; strenghtRawFitness</pre>
 </li>
 </ul>
 <a name="environmentalSelection">
@@ -392,7 +392,7 @@ extends <a href="../../../../../model/metaheuristic/algorithm/AbstractEvolutiona
              <a href="../../../../../model/metaheuristic/operator/crossover/CrossoverOperator.html" title="interface in model.metaheuristic.operator.crossover">CrossoverOperator</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;&nbsp;crossoverOperator,
              <a href="../../../../../model/metaheuristic/operator/mutation/MutationOperator.html" title="interface in model.metaheuristic.operator.mutation">MutationOperator</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;&nbsp;mutationOperator,
              <a href="../../../../../model/metaheuristic/operator/selection/SelectionOperator.html" title="interface in model.metaheuristic.operator.selection">SelectionOperator</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;,<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;&nbsp;selectionOperator,
-             <a href="../../../../../model/metaheuristic/utils/evaluator/SolutionListEvaluator.html" title="interface in model.metaheuristic.utils.evaluator">SolutionListEvaluator</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;&nbsp;evaluator,
+             <a href="../../../../../model/metaheuristic/utils/evaluator/SolutionListEvaluator.html" title="interface in model.metaheuristic.util.evaluator">SolutionListEvaluator</a>&lt;<a href="../../../../../model/metaheuristic/algorithm/multiobjective/spa2/SPEA2.html" title="type parameter in SPEA2">S</a>&gt;&nbsp;evaluator,
              int&nbsp;k)</pre>
 </li>
 </ul>

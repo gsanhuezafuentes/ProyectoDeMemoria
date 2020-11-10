@@ -1,12 +1,10 @@
 package controller;
 
 import application.ApplicationSetup;
-import controller.utils.ControllerUtils;
-import exception.ApplicationException;
+import controller.util.ControllerUtils;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.ScatterChart;

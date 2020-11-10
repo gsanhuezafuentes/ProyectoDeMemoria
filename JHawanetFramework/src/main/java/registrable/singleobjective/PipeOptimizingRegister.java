@@ -2,7 +2,6 @@ package registrable.singleobjective;
 
 import annotations.*;
 import epanet.core.EpanetAPI;
-import exception.ApplicationException;
 import model.metaheuristic.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithm2;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentBuilder;
@@ -19,7 +18,7 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.UniformSelection;
 import model.metaheuristic.problem.impl.PipeOptimizing;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
+import model.metaheuristic.util.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.Registrable;
 import registrable.SingleObjectiveRegistrable;
 import registrable.utils.ExperimentUtils;

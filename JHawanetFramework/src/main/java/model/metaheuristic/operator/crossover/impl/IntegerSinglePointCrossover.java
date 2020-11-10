@@ -2,12 +2,11 @@ package model.metaheuristic.operator.crossover.impl;
 
 import annotations.DefaultConstructor;
 import annotations.NumberInput;
-import exception.ApplicationException;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.random.BoundedRandomGenerator;
-import model.metaheuristic.utils.random.JavaRandom;
-import model.metaheuristic.utils.random.RandomGenerator;
+import model.metaheuristic.util.random.BoundedRandomGenerator;
+import model.metaheuristic.util.random.JavaRandom;
+import model.metaheuristic.util.random.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,13 +83,13 @@ public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSol
      * {@inheritDoc}
      *
      * @throws NullPointerException if solutions is null
-     * @throws IllegalStateException if the size of solutions list is not 2.
+     * @throws IllegalArgumentException if the size of solutions list is not 2.
      */
     @Override
     public List<IntegerSolution> execute(List<IntegerSolution> solutions) {
         Objects.requireNonNull(solutions);
         if (solutions.size() != 2) {
-            throw new IllegalStateException("There must be two parents instead of " + solutions.size());
+            throw new IllegalArgumentException("There must be two parents instead of " + solutions.size());
         }
 
         return doCrossover(crossoverProbability, solutions.get(0), solutions.get(1));

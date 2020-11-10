@@ -1,7 +1,7 @@
 package application;
 
 import controller.MainWindowController;
-import controller.utils.ProblemMenuConfiguration;
+import controller.util.ProblemMenuConfiguration;
 import exception.ViewLoadException;
 import javafx.application.Application;
 import javafx.application.Platform;

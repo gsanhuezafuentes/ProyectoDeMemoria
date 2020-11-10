@@ -36,8 +36,8 @@ import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.evaluator.SolutionListEvaluator;
-import model.metaheuristic.utils.solutionattribute.StrengthRawFitness;
+import model.metaheuristic.util.evaluator.SolutionListEvaluator;
+import model.metaheuristic.util.solutionattribute.StrengthRawFitness;
 
 import java.util.ArrayList;
 import java.util.List;

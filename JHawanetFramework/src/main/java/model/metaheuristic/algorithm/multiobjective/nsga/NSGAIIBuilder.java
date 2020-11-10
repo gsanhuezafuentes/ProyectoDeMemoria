@@ -34,9 +34,9 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.TournamentSelection;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.comparator.DominanceComparator;
-import model.metaheuristic.utils.comparator.RankingAndCrowdingDistanceComparator;
-import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
+import model.metaheuristic.util.comparator.DominanceComparator;
+import model.metaheuristic.util.comparator.RankingAndCrowdingDistanceComparator;
+import model.metaheuristic.util.evaluator.impl.SequentialSolutionEvaluator;
 
 import java.util.List;
 import java.util.Objects;

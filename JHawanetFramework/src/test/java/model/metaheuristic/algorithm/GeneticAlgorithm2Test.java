@@ -1,13 +1,12 @@
 package model.metaheuristic.algorithm;
 
-import exception.ApplicationException;
 import model.metaheuristic.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithm2;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
+import model.metaheuristic.util.evaluator.impl.SequentialSolutionEvaluator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

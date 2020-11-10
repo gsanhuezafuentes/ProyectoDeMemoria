@@ -1,19 +1,13 @@
 package controller;
 
-import exception.ApplicationException;
-import exception.ViewLoadException;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.IOException;
-
-import static controller.utils.ControllerUtils.loadFXML;
+import static controller.util.ControllerUtils.loadFXML;
 
 public class AboutWindowController {
     private @Nullable Stage window;

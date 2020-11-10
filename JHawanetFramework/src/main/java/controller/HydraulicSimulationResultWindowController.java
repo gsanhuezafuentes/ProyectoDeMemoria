@@ -1,6 +1,6 @@
 package controller;
 
-import controller.utils.ControllerUtils;
+import controller.util.ControllerUtils;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;

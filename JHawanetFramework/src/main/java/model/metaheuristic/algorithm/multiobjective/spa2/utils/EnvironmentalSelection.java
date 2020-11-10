@@ -30,10 +30,10 @@ package model.metaheuristic.algorithm.multiobjective.spa2.utils;
 
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.SolutionListUtils;
-import model.metaheuristic.utils.solutionattribute.LocationAttribute;
-import model.metaheuristic.utils.solutionattribute.StrengthFitnessComparator;
-import model.metaheuristic.utils.solutionattribute.StrengthRawFitness;
+import model.metaheuristic.util.SolutionListUtils;
+import model.metaheuristic.util.solutionattribute.LocationAttribute;
+import model.metaheuristic.util.solutionattribute.StrengthFitnessComparator;
+import model.metaheuristic.util.solutionattribute.StrengthRawFitness;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;

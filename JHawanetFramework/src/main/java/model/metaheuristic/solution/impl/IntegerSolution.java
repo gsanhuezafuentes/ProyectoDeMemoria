@@ -30,8 +30,8 @@ package model.metaheuristic.solution.impl;
 
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.random.BoundedRandomGenerator;
-import model.metaheuristic.utils.random.JavaRandom;
+import model.metaheuristic.util.random.BoundedRandomGenerator;
+import model.metaheuristic.util.random.JavaRandom;
 
 import java.util.HashMap;
 

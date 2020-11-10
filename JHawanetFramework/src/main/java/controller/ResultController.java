@@ -1,14 +1,11 @@
 package controller;
 
-import controller.multiobjectives.MultiObjectiveRunningWindowController;
-import controller.utils.ControllerUtils;
-import controller.utils.solutionattribute.Generation;
-import exception.ApplicationException;
+import controller.util.ControllerUtils;
+import controller.util.solutionattribute.Generation;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
@@ -21,8 +18,8 @@ import model.epanet.element.Network;
 import model.epanet.io.OutputInpWriter;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.io.SolutionListOutput;
-import model.metaheuristic.utils.solutionattribute.OverallConstraintViolation;
+import model.metaheuristic.util.io.SolutionListOutput;
+import model.metaheuristic.util.solutionattribute.OverallConstraintViolation;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;

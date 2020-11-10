@@ -20,8 +20,8 @@ import model.metaheuristic.operator.selection.impl.TournamentSelection;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.problem.impl.VanzylOriginal;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.comparator.DominanceComparator;
-import model.metaheuristic.utils.evaluator.impl.SequentialSolutionEvaluator;
+import model.metaheuristic.util.comparator.DominanceComparator;
+import model.metaheuristic.util.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.MultiObjectiveRegistrable;
 
 import java.io.File;

@@ -27,7 +27,7 @@
  */
 package model.metaheuristic.experiment.component;
 
-import controller.utils.MultiObjectiveExperimentTask;
+import controller.util.MultiObjectiveExperimentTask;
 import exception.ApplicationException;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentComponent;
@@ -35,9 +35,9 @@ import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.experiment.util.ExperimentProblem;
 import model.metaheuristic.experiment.util.ObservableStringBuffer;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.archive.impl.NonDominatedSolutionListArchive;
-import model.metaheuristic.utils.io.SolutionListOutput;
-import model.metaheuristic.utils.solutionattribute.SolutionAttribute;
+import model.metaheuristic.util.archive.impl.NonDominatedSolutionListArchive;
+import model.metaheuristic.util.io.SolutionListOutput;
+import model.metaheuristic.util.solutionattribute.SolutionAttribute;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;

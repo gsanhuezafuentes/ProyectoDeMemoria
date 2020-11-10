@@ -14,7 +14,7 @@ import model.metaheuristic.operator.mutation.impl.IntegerRangeRandomMutation;
 import model.metaheuristic.operator.mutation.impl.IntegerSimpleRandomMutation;
 import model.metaheuristic.problem.impl.VanzylOriginal;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.archive.impl.CrowdingDistanceArchive;
+import model.metaheuristic.util.archive.impl.CrowdingDistanceArchive;
 import registrable.MultiObjectiveRegistrable;
 import registrable.utils.ExperimentUtils;
 

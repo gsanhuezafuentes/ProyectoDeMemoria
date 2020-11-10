@@ -29,7 +29,6 @@
 package model.metaheuristic.algorithm.multiobjective.nsga;
 
 import epanet.core.EpanetException;
-import exception.ApplicationException;
 import model.metaheuristic.algorithm.AbstractEvolutionaryAlgorithm;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.mutation.MutationOperator;
@@ -37,8 +36,8 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.RankingAndCrowdingSelection;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.SolutionListUtils;
-import model.metaheuristic.utils.evaluator.SolutionListEvaluator;
+import model.metaheuristic.util.SolutionListUtils;
+import model.metaheuristic.util.evaluator.SolutionListEvaluator;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -250,11 +249,11 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
      *
      * @param population                  the population.
      * @param numberOfParentsForCrossover the number of parent to crossover.
-     * @throws IllegalStateException if there is a wrong number of parent (population size % number of parent is not equals to 0).
+     * @throws IllegalArgumentException if there is a wrong number of parent (population size % number of parent is not equals to 0).
      */
     protected void checkNumberOfParents(List<S> population, int numberOfParentsForCrossover) {
         if ((population.size() % numberOfParentsForCrossover) != 0) {
-            throw new IllegalStateException("Wrong number of parents: the remainder if the " + "population size ("
+            throw new IllegalArgumentException("Wrong number of parents: the remainder if the " + "population size ("
                     + population.size() + ") is not divisible by " + numberOfParentsForCrossover);
         }
     }

@@ -1,16 +1,11 @@
 package model.metaheuristic.operator.mutation.impl;
 
 import epanet.core.EpanetException;
-import model.epanet.element.Network;
 import model.metaheuristic.problem.Problem;
-import model.metaheuristic.solution.Solution;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.random.BoundedRandomGenerator;
-import model.metaheuristic.utils.random.JavaRandom;
-import model.metaheuristic.utils.random.RandomGenerator;
+import model.metaheuristic.util.random.BoundedRandomGenerator;
+import model.metaheuristic.util.random.RandomGenerator;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

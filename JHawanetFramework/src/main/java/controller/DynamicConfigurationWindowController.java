@@ -1,9 +1,9 @@
 package controller;
 
 import annotations.*;
-import controller.utils.ControllerUtils;
-import controller.utils.CustomCallback;
-import controller.utils.ReflectionUtils;
+import controller.util.ControllerUtils;
+import controller.util.CustomCallback;
+import controller.util.ReflectionUtils;
 import exception.ApplicationException;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;

@@ -33,10 +33,10 @@ import model.metaheuristic.algorithm.AbstractParticleSwarmOptimization;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.archive.BoundedArchive;
-import model.metaheuristic.utils.evaluator.SolutionListEvaluator;
-import model.metaheuristic.utils.random.JavaRandom;
-import model.metaheuristic.utils.solutionattribute.SolutionAttribute;
+import model.metaheuristic.util.archive.BoundedArchive;
+import model.metaheuristic.util.evaluator.SolutionListEvaluator;
+import model.metaheuristic.util.random.JavaRandom;
+import model.metaheuristic.util.solutionattribute.SolutionAttribute;
 
 import java.util.ArrayList;
 import java.util.List;

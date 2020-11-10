@@ -28,7 +28,7 @@
  */
 package model.metaheuristic.solution;
 
-import model.metaheuristic.utils.io.SolutionListOutput;
+import model.metaheuristic.util.io.SolutionListOutput;
 
 import java.util.List;
 import java.util.Map;
@@ -44,16 +44,16 @@ public interface Solution<Type> {
 	/**
 	 * Get the decision variables indicated by index.
 	 * 
-	 * @param index Index of decision variable
-	 * @return the variable in the index
+	 * @param index Index of decision variable.
+	 * @return the variable in the index.
 	 */
 	Type getVariable(int index);
 
 	/**
-	 * Let set or add new decision variables to solution
+	 * Let set or add new decision variables to solution.
 	 * 
-	 * @param index the index associated to variable to be added or modified
-	 * @param value the value associated to decision variable
+	 * @param index the index associated to variable to be added or modified.
+	 * @param value the value associated to decision variable.
 	 */
 	void setVariable(int index, Type value);
 
@@ -63,66 +63,66 @@ public interface Solution<Type> {
 	 * <br><br><strong>Notes:</strong> <br>
 	 * This method is used by the result window to get the variable values and for {@link SolutionListOutput}.
 	 *
-	 * @param index the index of variable to return
-	 * @return the variable
+	 * @param index the index of variable to return.
+	 * @return the variable.
 	 */
 	String getVariableAsString(int index);
 
 	/**
-	 * Get all variables
+	 * Get all variables.
 	 * 
-	 * @return a list with the value of variables
+	 * @return a list with the value of variables.
 	 */
 	List<Type> getVariables();
 
 	/**
-	 * Get the objective value associated to index
+	 * Get the objective value associated to index.
 	 * 
 	 * @param index the index assigned to objective value when was saved.
-	 * @return the value of objective in the position index
+	 * @return the value of objective in the position index.
 	 */
 	double getObjective(int index);
 
 	/**
-	 * Set or add a new objective
+	 * Set or add a new objective.
 	 * 
-	 * @param index the index associated to objective
-	 * @param value the value of this objective
+	 * @param index the index associated to objective.
+	 * @param value the value of this objective.
 	 */
 	void setObjective(int index, double value);
 
 	/**
-	 * Get all objective values
+	 * Get all objective values.
 	 * 
-	 * @return A array with all values of objective function
+	 * @return A array with all values of objective function.
 	 */
 	double[] getObjectives();
 
 	/**
-	 * Get attributed added to solution
+	 * Get attributed added to solution.
 	 * 
-	 * @param id The element associated to attribute when was saved
-	 * @return The attribute
+	 * @param id The element associated to attribute when was saved.
+	 * @return The attribute.
 	 */
 	Object getAttribute(Object id);
 
 	/**
-	 * Set or add attribute in this solution
+	 * Set or add attribute in this solution.
 	 * 
-	 * @param id    The key associated to value
-	 * @param value The value
+	 * @param id    The key associated to value.
+	 * @param value The value.
 	 */
 	void setAttribute(Object id, Object value);
 
 	/**
-	 * Check if a specific attribute is present
-	 * @param id the id of the attribute
+	 * Check if a specific attribute is present.
+	 * @param id the id of the attribute.
 	 * @return true if there is present; false in otherwise.
 	 */
 	boolean hasAttribute(Object id) ;
 
 	/**
-	 * Get all attributes
+	 * Get all attributes.
 	 * 
 	 * @return A Map with the keys and his respectives values.
 	 */
@@ -130,23 +130,23 @@ public interface Solution<Type> {
 
 
 	/**
-	 * Get the number of decision variables
+	 * Get the number of decision variables.
 	 * 
-	 * @return the number of variables
+	 * @return the number of variables.
 	 */
 	int getNumberOfVariables();
 
 	/**
-	 * Get the number of objectives
+	 * Get the number of objectives.
 	 * 
-	 * @return the number of objectives
+	 * @return the number of objectives.
 	 */
 	int getNumberOfObjectives();
 
 	/**
 	 * Copy the solution and make a new without any reference to original solution.
 	 * 
-	 * @return the copy solution
+	 * @return the copy solution.
 	 */
 	Solution<Type> copy();
 

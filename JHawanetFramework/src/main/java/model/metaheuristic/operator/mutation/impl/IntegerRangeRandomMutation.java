@@ -4,9 +4,9 @@ import annotations.DefaultConstructor;
 import annotations.NumberInput;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.random.BoundedRandomGenerator;
-import model.metaheuristic.utils.random.JavaRandom;
-import model.metaheuristic.utils.random.RandomGenerator;
+import model.metaheuristic.util.random.BoundedRandomGenerator;
+import model.metaheuristic.util.random.JavaRandom;
+import model.metaheuristic.util.random.RandomGenerator;
 
 import java.util.Objects;
 

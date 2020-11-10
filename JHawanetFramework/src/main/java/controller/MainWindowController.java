@@ -3,7 +3,7 @@ package controller;
 import application.ApplicationSetup;
 import controller.multiobjectives.MultiObjectiveRunningWindowController;
 import controller.singleobjectives.SingleObjectiveRunningWindowController;
-import controller.utils.ProblemMenuConfiguration;
+import controller.util.ProblemMenuConfiguration;
 import epanet.core.EpanetException;
 import exception.InputException;
 import javafx.beans.property.BooleanProperty;
