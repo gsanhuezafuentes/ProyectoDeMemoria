@@ -38,7 +38,9 @@ import model.metaheuristic.util.front.util.FrontNormalizer;
 import model.metaheuristic.util.front.util.FrontUtils;
 import model.metaheuristic.util.point.Point;
 import model.metaheuristic.util.solutionattribute.HypervolumeContributionAttribute;
+
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -78,9 +80,10 @@ public class PISAHypervolume<S extends Solution<?>> extends Hypervolume<S> {
      * Constructor
      *
      * @param referenceParetoFrontFile
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException if the reference front file isn't found.
+     * @throws IOException           if there is a error reading the file.
      */
-    public PISAHypervolume(String referenceParetoFrontFile) throws FileNotFoundException {
+    public PISAHypervolume(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
         super(referenceParetoFrontFile);
     }
 
@@ -278,7 +281,8 @@ public class PISAHypervolume<S extends Solution<?>> extends Hypervolume<S> {
 
     /**
      * Compute the hypervolume contribution.
-     * @param solutionList the solution list
+     *
+     * @param solutionList       the solution list
      * @param referenceFrontList the reference front list.
      * @return the solutions list with the contribution attribute.
      */

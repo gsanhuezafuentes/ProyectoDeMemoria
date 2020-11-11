@@ -34,6 +34,7 @@ import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.front.util.FrontUtils;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -62,9 +63,10 @@ public class GenerationalDistance<S extends Solution<?>> extends GenericIndicato
      *
      * @param referenceParetoFrontFile
      * @param p
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException if the file isn't found.
+     * @throws IOException if there is a error reading the file.
      */
-    public GenerationalDistance(String referenceParetoFrontFile, double p) throws FileNotFoundException {
+    public GenerationalDistance(String referenceParetoFrontFile, double p) throws IOException, FileNotFoundException {
         super(referenceParetoFrontFile);
         pow = p;
     }
@@ -73,9 +75,10 @@ public class GenerationalDistance<S extends Solution<?>> extends GenericIndicato
      * Constructor
      *
      * @param referenceParetoFrontFile
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException if the file isn't found.
+     * @throws IOException if there is a error reading the file.
      */
-    public GenerationalDistance(String referenceParetoFrontFile) throws FileNotFoundException {
+    public GenerationalDistance(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
         this(referenceParetoFrontFile, 2.0);
     }
 

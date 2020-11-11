@@ -34,6 +34,7 @@ import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.front.util.FrontUtils;
 import model.metaheuristic.util.point.Point;
 import model.metaheuristic.util.point.impl.ArrayPoint;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -47,58 +48,60 @@ import java.util.List;
 @SuppressWarnings("serial")
 public abstract class Hypervolume<S> extends GenericIndicator<S> {
 
-  public Hypervolume() {}
-
-  /**
-   * Constructor.
-   * @param referenceParetoFrontFile
-   * @throws IOException if there is a error reading file.
-   * @throws FileNotFoundException the file can't be found.
-   */
-  public Hypervolume(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
-    super(referenceParetoFrontFile);
-  }
-
-  public Hypervolume(double[] referencePoint) {
-    Front referenceFront = new ArrayFront(referencePoint.length, referencePoint.length);
-    for (int i = 0; i < referencePoint.length; i++) {
-      Point point = new ArrayPoint(referencePoint.length);
-      for (int j = 0; j < referencePoint.length; j++) {
-        if (j == i) {
-          double v = referencePoint[i] ;
-          point.setValue(j, v);
-        } else {
-          point.setValue(j, 0.0);
-        }
-      }
-      referenceFront.setPoint(i, point);
+    public Hypervolume() {
     }
-    this.referenceParetoFront = referenceFront;
-  }
 
-  public Hypervolume(Front referenceParetoFront) {
-    super(referenceParetoFront);
-  }
+    /**
+     * Constructor.
+     *
+     * @param referenceParetoFrontFile
+     * @throws IOException           if there is a error reading file.
+     * @throws FileNotFoundException the file can't be found.
+     */
+    public Hypervolume(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
+        super(referenceParetoFrontFile);
+    }
 
-  public abstract List<S> computeHypervolumeContribution(
-      List<S> solutionList, List<S> referenceFrontList);
+    public Hypervolume(double[] referencePoint) {
+        Front referenceFront = new ArrayFront(referencePoint.length, referencePoint.length);
+        for (int i = 0; i < referencePoint.length; i++) {
+            Point point = new ArrayPoint(referencePoint.length);
+            for (int j = 0; j < referencePoint.length; j++) {
+                if (j == i) {
+                    double v = referencePoint[i];
+                    point.setValue(j, v);
+                } else {
+                    point.setValue(j, 0.0);
+                }
+            }
+            referenceFront.setPoint(i, point);
+        }
+        this.referenceParetoFront = referenceFront;
+    }
 
-  public List<S> computeHypervolumeContribution(List<S> solutionList) {
-    return this.computeHypervolumeContribution(
-        solutionList, (List<S>) FrontUtils.convertFrontToSolutionList(referenceParetoFront));
-  }
+    public Hypervolume(Front referenceParetoFront) {
+        super(referenceParetoFront);
+    }
 
-  public abstract double getOffset();
+    public abstract List<S> computeHypervolumeContribution(
+            List<S> solutionList, List<S> referenceFrontList);
 
-  public abstract void setOffset(double offset);
+    public List<S> computeHypervolumeContribution(List<S> solutionList) {
+        return this.computeHypervolumeContribution(
+                solutionList, (List<S>) FrontUtils.convertFrontToSolutionList(referenceParetoFront));
+    }
 
-  @Override
-  public String getName() {
-    return "Hypervolume";
-  }
+    public abstract double getOffset();
 
-  @Override
-  public boolean isTheLowerTheIndicatorValueTheBetter() {
-    return false;
-  }
+    public abstract void setOffset(double offset);
+
+    @Override
+    public String getName() {
+        return "Hypervolume";
+    }
+
+    @Override
+    public boolean isTheLowerTheIndicatorValueTheBetter() {
+        return false;
+    }
 }

@@ -70,7 +70,7 @@ public class WFGHypervolume<S extends Solution<?>> extends Hypervolume<S> {
      *
      * @param referenceParetoFrontFile the reference pareto front file.
      * @throws FileNotFoundException if file can't be found.
-     * @throws IOException if there is a error reading the file.
+     * @throws IOException           if there is a error reading the file.
      */
     public WFGHypervolume(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
         super(referenceParetoFrontFile);

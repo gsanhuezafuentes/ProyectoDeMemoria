@@ -32,6 +32,7 @@ import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.front.util.FrontUtils;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -49,79 +50,82 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class InvertedGenerationalDistance<S extends Solution<?>> extends GenericIndicator<S> {
 
-  private double pow = 2.0;
+    private double pow = 2.0;
 
-  /**
-   * Default constructor
-   */
-  public InvertedGenerationalDistance() {
-  }
-
-  /**
-   * Constructor
-   *
-   * @param referenceParetoFrontFile the reference pareto front.
-   * @throws FileNotFoundException if can't find the file.
-   * @throws IOException if there is a error reading file.
-   */
-  public InvertedGenerationalDistance(String referenceParetoFrontFile, double p) throws IOException, FileNotFoundException {
-    super(referenceParetoFrontFile) ;
-    pow = p ;
-  }
-
-  /**
-   * Constructor
-   *
-   * @param referenceParetoFrontFile the reference pareto front.
-   * @throws FileNotFoundException if can't find the file.
-   * @throws IOException if there is a error reading file.
-   */
-  public InvertedGenerationalDistance(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
-    this(referenceParetoFrontFile, 2.0) ;
-  }
-
-  /**
-   * Constructor
-   *
-   * @param referenceParetoFront
-   */
-  public InvertedGenerationalDistance(Front referenceParetoFront) {
-    super(referenceParetoFront) ;
-  }
-
-  /**
-   * Evaluate() method
-   * @param solutionList
-   * @return
-   */
-  @Override public Double evaluate(List<S> solutionList) {
-    return invertedGenerationalDistance(new ArrayFront(solutionList), referenceParetoFront);
-  }
-
-  /**
-   * Returns the inverted generational distance value for a given front
-   *
-   * @param front The front
-   * @param referenceFront The reference pareto front
-   */
-  public double invertedGenerationalDistance(Front front, Front referenceFront) {
-    double sum = 0.0;
-    for (int i = 0 ; i < referenceFront.getNumberOfPoints(); i++) {
-      sum += Math.pow(FrontUtils.distanceToClosestPoint(referenceFront.getPoint(i),
-          front), pow);
+    /**
+     * Default constructor
+     */
+    public InvertedGenerationalDistance() {
     }
 
-    sum = Math.pow(sum, 1.0 / pow);
+    /**
+     * Constructor
+     *
+     * @param referenceParetoFrontFile the reference pareto front.
+     * @throws FileNotFoundException if can't find the file.
+     * @throws IOException           if there is a error reading file.
+     */
+    public InvertedGenerationalDistance(String referenceParetoFrontFile, double p) throws IOException, FileNotFoundException {
+        super(referenceParetoFrontFile);
+        pow = p;
+    }
 
-    return sum / referenceFront.getNumberOfPoints();
-  }
+    /**
+     * Constructor
+     *
+     * @param referenceParetoFrontFile the reference pareto front.
+     * @throws FileNotFoundException if can't find the file.
+     * @throws IOException           if there is a error reading file.
+     */
+    public InvertedGenerationalDistance(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
+        this(referenceParetoFrontFile, 2.0);
+    }
 
-  @Override public String getName() {
-    return "Inverted generational distance" ;
-  }
+    /**
+     * Constructor
+     *
+     * @param referenceParetoFront
+     */
+    public InvertedGenerationalDistance(Front referenceParetoFront) {
+        super(referenceParetoFront);
+    }
 
-  @Override
-  public boolean isTheLowerTheIndicatorValueTheBetter() {
-    return true ;
-  }
+    /**
+     * Evaluate() method
+     *
+     * @param solutionList
+     * @return
+     */
+    @Override
+    public Double evaluate(List<S> solutionList) {
+        return invertedGenerationalDistance(new ArrayFront(solutionList), referenceParetoFront);
+    }
+
+    /**
+     * Returns the inverted generational distance value for a given front
+     *
+     * @param front          The front
+     * @param referenceFront The reference pareto front
+     */
+    public double invertedGenerationalDistance(Front front, Front referenceFront) {
+        double sum = 0.0;
+        for (int i = 0; i < referenceFront.getNumberOfPoints(); i++) {
+            sum += Math.pow(FrontUtils.distanceToClosestPoint(referenceFront.getPoint(i),
+                    front), pow);
+        }
+
+        sum = Math.pow(sum, 1.0 / pow);
+
+        return sum / referenceFront.getNumberOfPoints();
+    }
+
+    @Override
+    public String getName() {
+        return "Inverted generational distance";
+    }
+
+    @Override
+    public boolean isTheLowerTheIndicatorValueTheBetter() {
+        return true;
+    }
 }

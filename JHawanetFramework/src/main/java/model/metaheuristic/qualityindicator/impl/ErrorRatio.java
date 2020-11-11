@@ -33,6 +33,7 @@ import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.point.Point;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -41,7 +42,7 @@ import java.util.Objects;
 /**
  * The Error Ratio (ER) quality indicator reports the ratio of solutions in a front of points
  * that are not members of the true Pareto front.
- *
+ * <p>
  * NOTE: the indicator merely checks if the solutions in the front are not members of the
  * second front. No assumption is made about the second front is a true Pareto front, i.e,
  * the front could contain solutions that dominate some of those of the supposed Pareto front.
@@ -52,84 +53,86 @@ import java.util.Objects;
  */
 @SuppressWarnings("serial")
 public class ErrorRatio<Evaluate extends List<? extends Solution<?>>>
-    implements QualityIndicator<Evaluate, Double> {
-  private Front referenceParetoFront ;
+        implements QualityIndicator<Evaluate, Double> {
+    private Front referenceParetoFront;
 
-  /**
-   * Constructor
-   *
-   * @param referenceParetoFrontFile
-   * @throws FileNotFoundException if file can't be found.
-   * @throws NullPointerException if referenceParetoFrontFile is null.
-   * @throws IOException if there is a error reading the file.
-   */
-  public ErrorRatio(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
-    Objects.requireNonNull(referenceParetoFrontFile, "The pareto front object is null");
+    /**
+     * Constructor
+     *
+     * @param referenceParetoFrontFile
+     * @throws FileNotFoundException if file can't be found.
+     * @throws NullPointerException  if referenceParetoFrontFile is null.
+     * @throws IOException           if there is a error reading the file.
+     */
+    public ErrorRatio(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
+        Objects.requireNonNull(referenceParetoFrontFile, "The pareto front object is null");
 
-    Front front = new ArrayFront(referenceParetoFrontFile);
-    referenceParetoFront = front ;
-  }
-
-  /**
-   * Constructor
-   *
-   * @param referenceParetoFront the reference pareto front.
-   * @throws NullPointerException if referenceParetoFront is null.
-   */
-  public ErrorRatio(Front referenceParetoFront) {
-    Objects.requireNonNull(referenceParetoFront);
-
-    this.referenceParetoFront = referenceParetoFront ;
-  }
-
-  /**
-   * Evaluate() method
-   * @param solutionList evaluate the quality indicator.
-   * @return the value.
-   */
-  @Override public Double evaluate(Evaluate solutionList) {
-    Objects.requireNonNull(solutionList);
-    return er(new ArrayFront(solutionList), referenceParetoFront);
-  }
-
-  /**
-   * Returns the value of the error ratio indicator.
-   *
-   * @param front Solution front
-   * @param referenceFront True Pareto front
-   *
-   * @return the value of the error ratio indicator
-   */
-  private double er(Front front, Front referenceFront){
-    int numberOfObjectives = referenceFront.getPointDimensions() ;
-    double sum = 0;
-
-    for (int i = 0; i < front.getNumberOfPoints(); i++) {
-      Point currentPoint = front.getPoint(i);
-      boolean thePointIsInTheParetoFront = false;
-      for (int j = 0; j < referenceFront.getNumberOfPoints(); j++) {
-        Point currentParetoFrontPoint = referenceFront.getPoint(j);
-        boolean found = true;
-        for (int k = 0; k < numberOfObjectives; k++) {
-          if(currentPoint.getValue(k) != currentParetoFrontPoint.getValue(k)){
-            found = false;
-            break;
-          }
-        }
-        if(found){
-          thePointIsInTheParetoFront = true;
-          break;
-        }
-      }
-      if(!thePointIsInTheParetoFront){
-        sum++;
-      }
+        Front front = new ArrayFront(referenceParetoFrontFile);
+        referenceParetoFront = front;
     }
 
-    return sum / front.getNumberOfPoints();
-  }
+    /**
+     * Constructor
+     *
+     * @param referenceParetoFront the reference pareto front.
+     * @throws NullPointerException if referenceParetoFront is null.
+     */
+    public ErrorRatio(Front referenceParetoFront) {
+        Objects.requireNonNull(referenceParetoFront);
 
-  @Override public String getName() {
-    return "Error Ratio" ;
-  }
+        this.referenceParetoFront = referenceParetoFront;
+    }
+
+    /**
+     * Evaluate() method
+     *
+     * @param solutionList evaluate the quality indicator.
+     * @return the value.
+     */
+    @Override
+    public Double evaluate(Evaluate solutionList) {
+        Objects.requireNonNull(solutionList);
+        return er(new ArrayFront(solutionList), referenceParetoFront);
+    }
+
+    /**
+     * Returns the value of the error ratio indicator.
+     *
+     * @param front          Solution front
+     * @param referenceFront True Pareto front
+     * @return the value of the error ratio indicator
+     */
+    private double er(Front front, Front referenceFront) {
+        int numberOfObjectives = referenceFront.getPointDimensions();
+        double sum = 0;
+
+        for (int i = 0; i < front.getNumberOfPoints(); i++) {
+            Point currentPoint = front.getPoint(i);
+            boolean thePointIsInTheParetoFront = false;
+            for (int j = 0; j < referenceFront.getNumberOfPoints(); j++) {
+                Point currentParetoFrontPoint = referenceFront.getPoint(j);
+                boolean found = true;
+                for (int k = 0; k < numberOfObjectives; k++) {
+                    if (currentPoint.getValue(k) != currentParetoFrontPoint.getValue(k)) {
+                        found = false;
+                        break;
+                    }
+                }
+                if (found) {
+                    thePointIsInTheParetoFront = true;
+                    break;
+                }
+            }
+            if (!thePointIsInTheParetoFront) {
+                sum++;
+            }
+        }
+
+        return sum / front.getNumberOfPoints();
+    }
+
+    @Override
+    public String getName() {
+        return "Error Ratio";
+    }
 }

@@ -1,4 +1,4 @@
-package controller.util;
+package controller.singleobjectives.util;
 
 import controller.util.solutionattribute.Generation;
 import javafx.application.Platform;

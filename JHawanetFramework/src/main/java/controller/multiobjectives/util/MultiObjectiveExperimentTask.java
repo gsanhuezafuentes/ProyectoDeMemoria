@@ -1,4 +1,4 @@
-package controller.util;
+package controller.multiobjectives.util;
 
 import controller.util.solutionattribute.Generation;
 import exception.ApplicationException;
@@ -58,6 +58,11 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
         });
     }
 
+    /**
+     * Execute the algorithm in experiment.
+     * @return the solution list or a empty list if the task is cancel.
+     * @throws Exception if there is a error while execute.
+     */
     @Override
     protected List<? extends Solution<?>> call() throws Exception {
         Generation<Solution<?>> generationAttribute = new Generation<>();
@@ -85,7 +90,7 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
             }
             int numberOfGenerations = 0;
 
-            // Run the algorithms
+            // Run the algorithm
             while (algorithm.algorithmHasANextStep()) {
 
                 // run only a iteration of the current algorithm
@@ -106,7 +111,7 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
                 List<? extends Solution<?>> solutions = algorithm.getResult();
                 // add an attribute to solution. It attribute is used in result window to show in which generation the solution was obtained.
                 for (Solution<?> solution : solutions) {
-                    generationAttribute.setAttribute(solution, numberOfGenerations+1);
+                    generationAttribute.setAttribute(solution, numberOfGenerations + 1);
                 }
                 if (!saveResult) {
                     algorithm.saveSolutionList();

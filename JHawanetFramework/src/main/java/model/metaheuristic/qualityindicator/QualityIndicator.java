@@ -29,15 +29,16 @@
 package model.metaheuristic.qualityindicator;
 
 import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
 
 /**
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
-
  * @param <Evaluate> Entity to runAlgorithm
- * @param <Result> Result of the evaluation
+ * @param <Result>   Result of the evaluation
+ * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
 public interface QualityIndicator<Evaluate, Result> extends Serializable {
-  @NotNull Result evaluate(Evaluate evaluate) ;
-  @NotNull String getName();
+    @NotNull Result evaluate(Evaluate evaluate);
+
+    @NotNull String getName();
 }

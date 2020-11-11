@@ -32,8 +32,8 @@ import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
 
-
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -62,9 +62,10 @@ public class Epsilon<S extends Solution<?>> extends GenericIndicator<S> {
      * Constructor
      *
      * @param referenceParetoFrontFile
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException if the file isn't found.
+     * @throws IOException if there is a error reading the file.
      */
-    public Epsilon(String referenceParetoFrontFile) throws FileNotFoundException {
+    public Epsilon(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
         super(referenceParetoFrontFile);
     }
 
@@ -102,7 +103,7 @@ public class Epsilon<S extends Solution<?>> extends GenericIndicator<S> {
      * @param referenceFront Optimal Pareto front
      * @return the value of the epsilon indicator
      */
-    private double epsilon(Front front, Front referenceFront){
+    private double epsilon(Front front, Front referenceFront) {
         double eps, epsJ = 0.0, epsK = 0.0, epsTemp;
 
         int numberOfObjectives = front.getPointDimensions();

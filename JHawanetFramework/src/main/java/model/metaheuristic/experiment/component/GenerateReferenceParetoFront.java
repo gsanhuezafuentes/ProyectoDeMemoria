@@ -27,7 +27,7 @@
  */
 package model.metaheuristic.experiment.component;
 
-import controller.util.MultiObjectiveExperimentTask;
+import controller.multiobjectives.util.MultiObjectiveExperimentTask;
 import exception.ApplicationException;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentComponent;
@@ -113,7 +113,6 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
             NonDominatedSolutionListArchive<Solution<?>> nonDominatedSolutionArchive = new NonDominatedSolutionListArchive<>();
 
             for (ExperimentAlgorithm<?> algorithm : experiment.getAlgorithmList()) {
-                //read solution of disk
                 for (int i = 0; i < experiment.getIndependentRuns(); i++) {
                     List<? extends Solution<?>> solutionList = algorithm.getResult();
                     SolutionAttribute<Solution<?>, String> solutionAttribute = new SolutionAttribute<>();

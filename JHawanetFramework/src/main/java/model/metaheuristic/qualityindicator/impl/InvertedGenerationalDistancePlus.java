@@ -34,7 +34,6 @@ import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.front.util.FrontUtils;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -50,69 +49,72 @@ import java.util.Objects;
 @SuppressWarnings("serial")
 public class InvertedGenerationalDistancePlus<S extends Solution<?>> extends GenericIndicator<S> {
 
-  /**
-   * Default constructor
-   */
-  public InvertedGenerationalDistancePlus() {
-  }
-
-  /**
-   * Constructor
-   *
-   * @param referenceParetoFrontFile the reference pareto front.
-   * @throws FileNotFoundException if can't find the file.
-   * @throws IOException if there is a error reading file.
-   */
-  public InvertedGenerationalDistancePlus(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
-    super(referenceParetoFrontFile) ;
-  }
-
-  /**
-   * Constructor
-   *
-   * @param referenceParetoFront
-   * @throws FileNotFoundException
-   */
-  public InvertedGenerationalDistancePlus(Front referenceParetoFront) {
-    super(referenceParetoFront) ;
-  }
-
-  /**
-   * Evaluate() method
-   * @param solutionList
-   * @return the indicator value.
-   * @throws NullPointerException of the solution list is null.
-   */
-  @Override public Double evaluate(List<S> solutionList) {
-    Objects.requireNonNull(solutionList);
-
-    return invertedGenerationalDistancePlus(new ArrayFront(solutionList), referenceParetoFront);
-  }
-
-  /**
-   * Returns the inverted generational distance plus value for a given front
-   *
-   * @param front The front
-   * @param referenceFront The reference pareto front
-   */
-  public double invertedGenerationalDistancePlus(Front front, Front referenceFront) {
-
-    double sum = 0.0;
-    for (int i = 0 ; i < referenceFront.getNumberOfPoints(); i++) {
-      sum += FrontUtils.distanceToClosestPoint(referenceFront.getPoint(i),
-          front, new DominanceDistanceBetweenVectors());
+    /**
+     * Default constructor
+     */
+    public InvertedGenerationalDistancePlus() {
     }
 
-    // STEP 4. Divide the sum by the maximum number of points of the reference Pareto front
-    return sum / referenceFront.getNumberOfPoints();
-  }
+    /**
+     * Constructor
+     *
+     * @param referenceParetoFrontFile the reference pareto front.
+     * @throws FileNotFoundException if can't find the file.
+     * @throws IOException           if there is a error reading file.
+     */
+    public InvertedGenerationalDistancePlus(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
+        super(referenceParetoFrontFile);
+    }
 
-  @Override public String getName() {
-    return "Inverted generational distance plus" ;
-  }
+    /**
+     * Constructor
+     *
+     * @param referenceParetoFront
+     * @throws FileNotFoundException
+     */
+    public InvertedGenerationalDistancePlus(Front referenceParetoFront) {
+        super(referenceParetoFront);
+    }
 
-  @Override
-  public boolean isTheLowerTheIndicatorValueTheBetter() {
-    return true ;
-  }
+    /**
+     * Evaluate() method
+     *
+     * @param solutionList
+     * @return the indicator value.
+     * @throws NullPointerException of the solution list is null.
+     */
+    @Override
+    public Double evaluate(List<S> solutionList) {
+        Objects.requireNonNull(solutionList);
+
+        return invertedGenerationalDistancePlus(new ArrayFront(solutionList), referenceParetoFront);
+    }
+
+    /**
+     * Returns the inverted generational distance plus value for a given front
+     *
+     * @param front          The front
+     * @param referenceFront The reference pareto front
+     */
+    public double invertedGenerationalDistancePlus(Front front, Front referenceFront) {
+
+        double sum = 0.0;
+        for (int i = 0; i < referenceFront.getNumberOfPoints(); i++) {
+            sum += FrontUtils.distanceToClosestPoint(referenceFront.getPoint(i),
+                    front, new DominanceDistanceBetweenVectors());
+        }
+
+        // STEP 4. Divide the sum by the maximum number of points of the reference Pareto front
+        return sum / referenceFront.getNumberOfPoints();
+    }
+
+    @Override
+    public String getName() {
+        return "Inverted generational distance plus";
+    }
+
+    @Override
+    public boolean isTheLowerTheIndicatorValueTheBetter() {
+        return true;
+    }
 }

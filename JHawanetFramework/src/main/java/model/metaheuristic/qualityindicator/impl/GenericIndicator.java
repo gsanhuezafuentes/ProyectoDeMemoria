@@ -31,6 +31,7 @@ package model.metaheuristic.qualityindicator.impl;
 import model.metaheuristic.qualityindicator.QualityIndicator;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -54,10 +55,11 @@ public abstract class GenericIndicator<S> implements QualityIndicator<List<S>, D
 
     /**
      * Constructor.
+     *
      * @param referenceParetoFrontFile the path to file.
      * @throws FileNotFoundException if the file can't be found.
-     * @throws NullPointerException if the referenceParetoFrontFile is null
-     * @throws IOException if there is a error reading the file.
+     * @throws NullPointerException  if the referenceParetoFrontFile is null
+     * @throws IOException           if there is a error reading the file.
      */
     public GenericIndicator(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
         setReferenceParetoFront(referenceParetoFrontFile);
@@ -65,6 +67,7 @@ public abstract class GenericIndicator<S> implements QualityIndicator<List<S>, D
 
     /**
      * Constructor.
+     *
      * @param referenceParetoFront the reference pareto front to use.
      * @throws NullPointerException if the referenceParetoFront is null.
      */
@@ -80,7 +83,7 @@ public abstract class GenericIndicator<S> implements QualityIndicator<List<S>, D
      * @param referenceParetoFrontFile the reference front.
      * @throws FileNotFoundException if the file can't be found.
      * @throws NullPointerException  if referenceParetoFrontFile is null.
-     * @throws IOException if there is a error reading the file.
+     * @throws IOException           if there is a error reading the file.
      */
     public void setReferenceParetoFront(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
         Objects.requireNonNull(referenceParetoFrontFile);
@@ -109,6 +112,7 @@ public abstract class GenericIndicator<S> implements QualityIndicator<List<S>, D
 
     /**
      * Get the reference pareto front.
+     *
      * @return the reference pareto front.
      */
     public Front getReferenceParetoFront() {
@@ -117,6 +121,7 @@ public abstract class GenericIndicator<S> implements QualityIndicator<List<S>, D
 
     /**
      * The name of indicator.
+     *
      * @return the name of indicator.
      */
     public abstract String getName();

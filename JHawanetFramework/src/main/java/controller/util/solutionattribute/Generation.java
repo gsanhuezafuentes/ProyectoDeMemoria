@@ -1,5 +1,7 @@
 package controller.util.solutionattribute;
 
+import controller.multiobjectives.util.MultiObjectiveExperimentTask;
+import controller.singleobjectives.util.SingleObjectiveExperimentTask;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.solutionattribute.SolutionAttribute;
 
@@ -8,7 +10,7 @@ import model.metaheuristic.util.solutionattribute.SolutionAttribute;
  * <strong>Notes:</strong>
  * <p>
  * This attribute is used by the GUI. If it is used by an algorithm this will be overwritten when the GUI execute the algorithm.<br>
- * This attribute is used by {@link controller.util.SingleObjectiveExperimentTask} and {@link controller.util.MultiObjectiveExperimentTask} to save the generation
+ * This attribute is used by {@link SingleObjectiveExperimentTask} and {@link MultiObjectiveExperimentTask} to save the generation
  * when the result was generated.
  *
  * @param <S> the type of solution.

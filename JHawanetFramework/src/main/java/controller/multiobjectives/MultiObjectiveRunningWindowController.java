@@ -5,7 +5,7 @@ import controller.ResultController;
 import controller.ResultPlotController;
 import controller.util.ControllerUtils;
 import controller.util.CustomCallback;
-import controller.util.MultiObjectiveExperimentTask;
+import controller.multiobjectives.util.MultiObjectiveExperimentTask;
 import epanet.core.EpanetException;
 import javafx.concurrent.Worker.State;
 import javafx.fxml.FXML;

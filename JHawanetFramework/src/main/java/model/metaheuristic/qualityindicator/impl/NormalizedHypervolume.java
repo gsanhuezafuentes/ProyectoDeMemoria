@@ -42,100 +42,104 @@ import java.util.List;
 /**
  * Class providing an implementation of the normalized hypervolume, which is calculated as follows:
  * relative hypervolume = 1 - (HV of the front / HV of the reference front)
- *
+ * <p>
  * Before computing this indicator it must be checked that the HV of the reference front is not zero.
  *
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
 @SuppressWarnings("serial")
 public class NormalizedHypervolume<S extends Solution<?>> extends GenericIndicator<S> {
-  private double referenceFrontHypervolume;
-  private Hypervolume<S> hypervolume;
+    private double referenceFrontHypervolume;
+    private Hypervolume<S> hypervolume;
 
-  public NormalizedHypervolume() {
-  }
+    public NormalizedHypervolume() {
+    }
 
-  /**
-   * Contructor
-   * @param referenceParetoFrontFile reference pareto front.
-   * @throws IOException if there is a error reading the file.
-   * @throws FileNotFoundException if the file can't be found.
-   */
-  public NormalizedHypervolume(String referenceParetoFrontFile)
-          throws IOException, FileNotFoundException {
-    super(referenceParetoFrontFile);
-    Front referenceFront = new ArrayFront(referenceParetoFrontFile);
-    hypervolume = new PISAHypervolume<>(referenceParetoFrontFile) ;
+    /**
+     * Contructor
+     *
+     * @param referenceParetoFrontFile reference pareto front.
+     * @throws IOException           if there is a error reading the file.
+     * @throws FileNotFoundException if the file can't be found.
+     */
+    public NormalizedHypervolume(String referenceParetoFrontFile)
+            throws IOException, FileNotFoundException {
+        super(referenceParetoFrontFile);
+        Front referenceFront = new ArrayFront(referenceParetoFrontFile);
+        hypervolume = new PISAHypervolume<>(referenceParetoFrontFile);
 
-    referenceFrontHypervolume =
-        this.hypervolume.evaluate(
-            (List<S>) FrontUtils.convertFrontToSolutionList(referenceFront));
-  }
+        referenceFrontHypervolume =
+                this.hypervolume.evaluate(
+                        (List<S>) FrontUtils.convertFrontToSolutionList(referenceFront));
+    }
 
-  /**
-   * Constructor
-   * @param referencePoint the reference point.
-   */
-  public NormalizedHypervolume(double[] referencePoint) {
-    Front referenceFront = new ArrayFront(referencePoint.length, referencePoint.length);
-    hypervolume = new PISAHypervolume<>();
-    hypervolume.setReferenceParetoFront(referenceFront);
+    /**
+     * Constructor
+     *
+     * @param referencePoint the reference point.
+     */
+    public NormalizedHypervolume(double[] referencePoint) {
+        Front referenceFront = new ArrayFront(referencePoint.length, referencePoint.length);
+        hypervolume = new PISAHypervolume<>();
+        hypervolume.setReferenceParetoFront(referenceFront);
 
-    referenceFrontHypervolume =
-        hypervolume.evaluate((List<S>) FrontUtils.convertFrontToSolutionList(referenceFront));
-  }
+        referenceFrontHypervolume =
+                hypervolume.evaluate((List<S>) FrontUtils.convertFrontToSolutionList(referenceFront));
+    }
 
-  /**
-   * Constructor.
-   * @param referenceParetoFront the reference front.
-   */
-  public NormalizedHypervolume(Front referenceParetoFront) {
-    super(referenceParetoFront);
-    hypervolume = new PISAHypervolume<>(referenceParetoFront) ;
+    /**
+     * Constructor.
+     *
+     * @param referenceParetoFront the reference front.
+     */
+    public NormalizedHypervolume(Front referenceParetoFront) {
+        super(referenceParetoFront);
+        hypervolume = new PISAHypervolume<>(referenceParetoFront);
 
-    referenceFrontHypervolume =
-            this.hypervolume.evaluate(
-                    (List<S>) FrontUtils.convertFrontToSolutionList(referenceParetoFront));
-  }
+        referenceFrontHypervolume =
+                this.hypervolume.evaluate(
+                        (List<S>) FrontUtils.convertFrontToSolutionList(referenceParetoFront));
+    }
 
-  @Override
-  public void setReferenceParetoFront(Front referenceFront) {
-    super.setReferenceParetoFront(referenceFront);
+    @Override
+    public void setReferenceParetoFront(Front referenceFront) {
+        super.setReferenceParetoFront(referenceFront);
 
-    hypervolume = new PISAHypervolume<>(referenceFront) ;
-    referenceFrontHypervolume =
-            hypervolume.evaluate((List<S>) FrontUtils.convertFrontToSolutionList(new ArrayFront(referenceFront)));
-  }
+        hypervolume = new PISAHypervolume<>(referenceFront);
+        referenceFrontHypervolume =
+                hypervolume.evaluate((List<S>) FrontUtils.convertFrontToSolutionList(new ArrayFront(referenceFront)));
+    }
 
-  /**
-   * Set the reference pareto front.
-   * @param referenceParetoFrontFile the reference front.
-   * @throws IOException if there is a error reading the file.
-   * @throws FileNotFoundException if the file can't be found.
-   */
-  @Override
-  public void setReferenceParetoFront(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
-    super.setReferenceParetoFront(referenceParetoFrontFile);
+    /**
+     * Set the reference pareto front.
+     *
+     * @param referenceParetoFrontFile the reference front.
+     * @throws IOException           if there is a error reading the file.
+     * @throws FileNotFoundException if the file can't be found.
+     */
+    @Override
+    public void setReferenceParetoFront(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
+        super.setReferenceParetoFront(referenceParetoFrontFile);
 
-    hypervolume = new PISAHypervolume<>(referenceParetoFrontFile) ;
-    referenceFrontHypervolume =
-            hypervolume.evaluate((List<S>) FrontUtils.convertFrontToSolutionList(new ArrayFront(referenceParetoFrontFile)));
-  }
+        hypervolume = new PISAHypervolume<>(referenceParetoFrontFile);
+        referenceFrontHypervolume =
+                hypervolume.evaluate((List<S>) FrontUtils.convertFrontToSolutionList(new ArrayFront(referenceParetoFrontFile)));
+    }
 
-  @Override
-  public String getName() {
-    return "Normalized Hypervolume";
-  }
+    @Override
+    public String getName() {
+        return "Normalized Hypervolume";
+    }
 
-  @Override
-  public boolean isTheLowerTheIndicatorValueTheBetter() {
-    return true;
-  }
+    @Override
+    public boolean isTheLowerTheIndicatorValueTheBetter() {
+        return true;
+    }
 
-  @Override
-  public Double evaluate(List<S> solutionList) {
-    double hypervolumeValue = hypervolume.evaluate(solutionList);
+    @Override
+    public Double evaluate(List<S> solutionList) {
+        double hypervolumeValue = hypervolume.evaluate(solutionList);
 
-    return 1 - (hypervolumeValue / referenceFrontHypervolume);
-  }
+        return 1 - (hypervolumeValue / referenceFrontHypervolume);
+    }
 }
