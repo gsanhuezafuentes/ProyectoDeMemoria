@@ -37,6 +37,7 @@ import model.metaheuristic.util.archive.BoundedArchive;
 import model.metaheuristic.util.evaluator.SolutionListEvaluator;
 import model.metaheuristic.util.random.JavaRandom;
 import model.metaheuristic.util.solutionattribute.SolutionAttribute;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,7 +117,7 @@ public class SMPSOInteger extends AbstractParticleSwarmOptimization<IntegerSolut
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "SMPSOInteger";
     }
 
@@ -142,7 +143,7 @@ public class SMPSOInteger extends AbstractParticleSwarmOptimization<IntegerSolut
     }
 
     @Override
-    public String getStatusOfExecution() {
+    public @NotNull String getStatusOfExecution() {
         return "Number of evaluations: " + this.iterations + " / " + this.maxIterations;
     }
 
@@ -300,7 +301,7 @@ public class SMPSOInteger extends AbstractParticleSwarmOptimization<IntegerSolut
     }
 
     @Override
-    public List<IntegerSolution> getResult() {
+    public @NotNull List<IntegerSolution> getResult() {
         return leaders.getSolutionList();
     }
 }

@@ -41,7 +41,7 @@ public class EuclideanDistanceBetweenSolutionsInObjectiveSpace<S extends Solutio
     implements Distance<S, S> {
 
 
-  private EuclideanDistanceBetweenVectors distance = new EuclideanDistanceBetweenVectors() ;
+  private final EuclideanDistanceBetweenVectors distance = new EuclideanDistanceBetweenVectors() ;
 
   /**
    * Compute the distance.

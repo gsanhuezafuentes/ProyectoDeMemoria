@@ -91,10 +91,10 @@ public final class ExperimentBuilder<S extends Solution<?>> {
     @NotNull private final String experimentName;
     @Nullable private List<ExperimentAlgorithm<S>> algorithmList;
     @Nullable private ExperimentProblem<S> problem;
-    @NotNull private String referenceFrontDirectory;
-    @NotNull private String experimentBaseDirectory;
-    @NotNull private String objectiveOutputFileName;
-    @NotNull private String variablesOutputFileName;
+//    @NotNull private String referenceFrontDirectory;
+//    @NotNull private String experimentBaseDirectory;
+//    @NotNull private String objectiveOutputFileName;
+//    @NotNull private String variablesOutputFileName;
     private int independentRuns;
 
     /**
@@ -110,10 +110,10 @@ public final class ExperimentBuilder<S extends Solution<?>> {
         }
         this.experimentName = experimentName;
         this.independentRuns = 1;
-        this.objectiveOutputFileName = "FUN";
-        this.variablesOutputFileName = "VAR";
-        this.referenceFrontDirectory = "";
-        this.experimentBaseDirectory = "";
+//        this.objectiveOutputFileName = "FUN";
+//        this.variablesOutputFileName = "VAR";
+//        this.referenceFrontDirectory = "";
+//        this.experimentBaseDirectory = "";
     }
 
     /**

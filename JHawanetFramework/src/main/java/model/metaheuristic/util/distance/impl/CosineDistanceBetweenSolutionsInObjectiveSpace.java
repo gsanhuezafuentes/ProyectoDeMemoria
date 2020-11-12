@@ -39,7 +39,7 @@ import model.metaheuristic.util.distance.Distance;
 public class CosineDistanceBetweenSolutionsInObjectiveSpace<S extends Solution<?>>
     implements Distance<S, S> {
 
-  private S referencePoint;
+  private final S referencePoint;
 
   public CosineDistanceBetweenSolutionsInObjectiveSpace(S referencePoint) {
     this.referencePoint = referencePoint ;

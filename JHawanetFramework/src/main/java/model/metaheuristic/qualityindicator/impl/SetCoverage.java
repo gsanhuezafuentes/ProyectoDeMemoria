@@ -33,6 +33,7 @@ import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.SolutionListUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -54,7 +55,7 @@ public class SetCoverage
     }
 
     @Override
-    public Pair<Double, Double> evaluate(
+    public @NotNull Pair<Double, Double> evaluate(
             Pair<? extends List<? extends Solution<?>>, ? extends List<? extends Solution<?>>> pairOfSolutionLists) {
         List<? extends Solution<?>> front1 = pairOfSolutionLists.getLeft();
         List<? extends Solution<?>> front2 = pairOfSolutionLists.getRight();
@@ -94,7 +95,7 @@ public class SetCoverage
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "Set Coverage";
     }
 }

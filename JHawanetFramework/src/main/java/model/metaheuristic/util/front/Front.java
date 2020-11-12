@@ -29,6 +29,7 @@
 package model.metaheuristic.util.front;
 
 import model.metaheuristic.util.point.Point;
+
 import java.io.Serializable;
 import java.util.Comparator;
 

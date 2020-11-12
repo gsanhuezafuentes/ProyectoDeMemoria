@@ -54,11 +54,16 @@ import java.util.Objects;
  * algorithms are gathered per problem; then, the dominated solutions are
  * removed and the final result is a file per problem containing the reference
  * Pareto front.
+ * <Strong>Notes:</Strong>
  * <p>
- * If {@link Experiment#getReferenceFrontDirectory()}  is a empty string (is not set up) the final pareto front will not be saved automatically
+ * If {@link Experiment#getReferenceFrontDirectory()} is a empty string (is not set up) the final pareto front will not be saved automatically
  * in disk.
+ * <p>
+ * This class use the solution in RAM to generate the reference pareto front.
+ * <p>
+ * This class is used when run a multiobjective optimization.
  */
-public class GenerateReferenceParetoFront implements ExperimentComponent {
+public class GenerateReferenceParetoFrontInRAM implements ExperimentComponent {
     @NotNull
     private final Experiment<?> experiment;
     private final ObservableStringBuffer taskLog;
@@ -72,7 +77,7 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
      * @param taskLog                 the log where print the status of execution
      * @throws NullPointerException if experimentConfiguration or taskLog is null
      */
-    public GenerateReferenceParetoFront(@NotNull Experiment<?> experimentConfiguration, @NotNull ObservableStringBuffer taskLog) {
+    public GenerateReferenceParetoFrontInRAM(@NotNull Experiment<?> experimentConfiguration, @NotNull ObservableStringBuffer taskLog) {
         this.taskLog = taskLog;
         Objects.requireNonNull(experimentConfiguration);
         Objects.requireNonNull(taskLog);

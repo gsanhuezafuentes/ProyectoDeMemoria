@@ -43,7 +43,7 @@ public abstract class AbstractGenericSolution<T, P extends Problem<?>> implement
 	private final List<T> decisionVariables;
 	private final double[] objectives;
 	protected Map<Object, Object> attributes;
-	protected P problem;
+	protected final P problem;
 
 	/**
 	 * Constructor.

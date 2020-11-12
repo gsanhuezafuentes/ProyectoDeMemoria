@@ -34,6 +34,7 @@ import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.front.util.FrontNormalizer;
 import model.metaheuristic.util.front.util.FrontUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -137,7 +138,7 @@ public class R2<Evaluate extends List<? extends Solution<?>>>
                 while (line != null) {
                     StringTokenizer st = new StringTokenizer(line);
                     for (int i = 0; i < numberOfObjectives; i++)
-                        lambda[index][i] = Double.valueOf(st.nextToken());
+                        lambda[index][i] = Double.parseDouble(st.nextToken());
                     index++;
                     line = br.readLine();
                 }
@@ -160,12 +161,12 @@ public class R2<Evaluate extends List<? extends Solution<?>>>
 
 
     @Override
-    public Double evaluate(Evaluate solutionList) {
+    public @NotNull Double evaluate(Evaluate solutionList) {
         return r2(new ArrayFront(solutionList));
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "R2";
     }
 

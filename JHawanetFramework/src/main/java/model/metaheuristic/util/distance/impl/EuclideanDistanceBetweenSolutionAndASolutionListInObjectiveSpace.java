@@ -44,7 +44,7 @@ public class EuclideanDistanceBetweenSolutionAndASolutionListInObjectiveSpace
         <S extends Solution<?>, L extends List<S>>
         implements Distance<S, L> {
 
-  private EuclideanDistanceBetweenVectors distance ;
+  private final EuclideanDistanceBetweenVectors distance ;
 
   public EuclideanDistanceBetweenSolutionAndASolutionListInObjectiveSpace() {
     distance = new EuclideanDistanceBetweenVectors() ;
@@ -60,8 +60,8 @@ public class EuclideanDistanceBetweenSolutionAndASolutionListInObjectiveSpace
   public double compute(S solution, L solutionList) {
     double bestDistance = Double.MAX_VALUE;
 
-    for (int i = 0; i < solutionList.size();i++){
-      double aux = distance.compute(solution.getObjectives(), solutionList.get(i).getObjectives());
+    for (S s : solutionList) {
+      double aux = distance.compute(solution.getObjectives(), s.getObjectives());
       if (aux < bestDistance)
         bestDistance = aux;
     }

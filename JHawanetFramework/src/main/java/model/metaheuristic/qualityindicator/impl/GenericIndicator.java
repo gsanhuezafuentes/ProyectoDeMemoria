@@ -31,6 +31,7 @@ package model.metaheuristic.qualityindicator.impl;
 import model.metaheuristic.qualityindicator.QualityIndicator;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -124,5 +125,5 @@ public abstract class GenericIndicator<S> implements QualityIndicator<List<S>, D
      *
      * @return the name of indicator.
      */
-    public abstract String getName();
+    public abstract @NotNull String getName();
 }

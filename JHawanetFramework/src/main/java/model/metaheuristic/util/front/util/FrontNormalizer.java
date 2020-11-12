@@ -31,6 +31,7 @@ package model.metaheuristic.util.front.util;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -40,8 +41,8 @@ import java.util.Objects;
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
 public class FrontNormalizer {
-  private double[] maximumValues;
-  private double[] minimumValues;
+  private final double[] maximumValues;
+  private final double[] minimumValues;
 
   /**
    * Constructor.

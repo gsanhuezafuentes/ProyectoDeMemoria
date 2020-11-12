@@ -42,7 +42,6 @@ import java.util.List;
 /**
  * This class implements an archive containing non-dominated solutions
  */
-@SuppressWarnings("serial")
 public class NonDominatedSolutionListArchive<S extends Solution<?>> implements Archive<S> {
 	private final List<S> solutionList;
 	private final Comparator<S> dominanceComparator;

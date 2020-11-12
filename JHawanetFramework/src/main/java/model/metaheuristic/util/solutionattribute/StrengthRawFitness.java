@@ -40,7 +40,7 @@ public class StrengthRawFitness <S extends Solution<?>>
         extends SolutionAttribute<S, Double>{
     private static final Comparator<Solution<?>> DOMINANCE_COMPARATOR = new DominanceComparator<Solution<?>>();
 
-    private int k ; // k-th individual
+    private final int k ; // k-th individual
 
     public StrengthRawFitness(int k) {
         this.k = k ;
@@ -59,7 +59,7 @@ public class StrengthRawFitness <S extends Solution<?>>
         // strength(i) = |{j | j <- SolutionSet and i dominate j}|
         for (int i = 0; i < solutionSet.size(); i++) {
             for (int j = 0; j < solutionSet.size();j++) {
-                if (DOMINANCE_COMPARATOR.compare(solutionSet.get(i),solutionSet.get(j))==-1) {
+                if (DOMINANCE_COMPARATOR.compare(solutionSet.get(i), solutionSet.get(j)) < 0) {
                     strength[i] += 1.0;
                 }
             }
@@ -69,7 +69,7 @@ public class StrengthRawFitness <S extends Solution<?>>
         // rawFitness(i) = |{sum strenght(j) | j <- SolutionSet and j dominate i}|
         for (int i = 0;i < solutionSet.size(); i++) {
             for (int j = 0; j < solutionSet.size();j++) {
-                if (DOMINANCE_COMPARATOR.compare(solutionSet.get(i),solutionSet.get(j))==1) {
+                if (DOMINANCE_COMPARATOR.compare(solutionSet.get(i), solutionSet.get(j)) > 0) {
                     rawFitness[i] += strength[j];
                 }
             }

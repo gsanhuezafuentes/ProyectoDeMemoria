@@ -37,7 +37,7 @@ import model.metaheuristic.util.distance.Distance;
  */
 public class CosineSimilarityBetweenVectors implements Distance<double[], double[]> {
 
-  private double[] referencePoint;
+  private final double[] referencePoint;
 
   /**
    * Constructor.

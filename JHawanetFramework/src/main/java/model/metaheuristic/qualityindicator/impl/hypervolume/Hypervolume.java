@@ -34,6 +34,7 @@ import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.front.util.FrontUtils;
 import model.metaheuristic.util.point.Point;
 import model.metaheuristic.util.point.impl.ArrayPoint;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -96,7 +97,7 @@ public abstract class Hypervolume<S> extends GenericIndicator<S> {
     public abstract void setOffset(double offset);
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "Hypervolume";
     }
 

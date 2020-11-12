@@ -72,13 +72,7 @@ public class CrowdingDistanceComparator<S extends Solution<?>> implements Compar
 				distance2 = crowdingDistance.getAttribute(solution2);
 			}
 
-			if (distance1 > distance2) {
-				result = -1;
-			} else if (distance1 < distance2) {
-				result = 1;
-			} else {
-				result = 0;
-			}
+			result = Double.compare(distance2, distance1);
 		}
 
 		return result;

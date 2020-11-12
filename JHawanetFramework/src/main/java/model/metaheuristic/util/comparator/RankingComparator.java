@@ -72,13 +72,7 @@ public class RankingComparator<S extends Solution<?>> implements Comparator<S> {
 				rank2 = ranking.getAttribute(solution2);
 			}
 
-			if (rank1 < rank2) {
-				result = -1;
-			} else if (rank1 > rank2) {
-				result = 1;
-			} else {
-				result = 0;
-			}
+			result = Integer.compare(rank1, rank2);
 		}
 
 		return result;

@@ -9,8 +9,8 @@ import tech.tablesaw.plotly.api.Scatter3DPlot;
 import java.util.Objects;
 
 public class Plot3D implements PlotFront {
-    private double[][] matrix;
-    private String plotTitle;
+    private final double[][] matrix;
+    private final String plotTitle;
 
     /**
      *

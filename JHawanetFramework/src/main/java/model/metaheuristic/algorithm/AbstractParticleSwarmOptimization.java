@@ -30,6 +30,7 @@ package model.metaheuristic.algorithm;
 
 import epanet.core.EpanetException;
 import model.metaheuristic.solution.Solution;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -70,7 +71,7 @@ public abstract class AbstractParticleSwarmOptimization<S extends Solution<?>> i
     protected abstract void updateParticlesMemory(List<S> swarm);
 
     @Override
-    public abstract List<S> getResult();
+    public abstract @NotNull List<S> getResult();
 
 //    @Override
 //    public void run() throws EpanetException {

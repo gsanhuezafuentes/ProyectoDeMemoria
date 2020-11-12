@@ -37,6 +37,7 @@ import model.metaheuristic.util.point.Point;
 import model.metaheuristic.util.point.impl.ArrayPoint;
 import model.metaheuristic.util.point.util.comparator.LexicographicalPointComparator;
 import model.metaheuristic.util.point.util.comparator.PointDimensionComparator;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -66,7 +67,7 @@ public class GeneralizedSpread<S extends Solution<?>> extends GenericIndicator<S
      *
      * @param referenceParetoFrontFile
      * @throws FileNotFoundException if the file isn't found.
-     * @throws IOException if there is a error reading the file.
+     * @throws IOException           if there is a error reading the file.
      */
     public GeneralizedSpread(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
         super(referenceParetoFrontFile);
@@ -89,7 +90,7 @@ public class GeneralizedSpread<S extends Solution<?>> extends GenericIndicator<S
      * @return
      */
     @Override
-    public Double evaluate(List<S> solutionList) {
+    public @NotNull Double evaluate(List<S> solutionList) {
         return generalizedSpread(new ArrayFront(solutionList), referenceParetoFront);
     }
 
@@ -134,8 +135,8 @@ public class GeneralizedSpread<S extends Solution<?>> extends GenericIndicator<S
             dmean = dmean / (numberOfPoints);
 
             double dExtrems = 0.0;
-            for (int i = 0; i < extremeValues.length; i++) {
-                dExtrems += FrontUtils.distanceToClosestPoint(extremeValues[i], front);
+            for (Point extremeValue : extremeValues) {
+                dExtrems += FrontUtils.distanceToClosestPoint(extremeValue, front);
             }
 
             double mean = 0.0;
@@ -149,7 +150,7 @@ public class GeneralizedSpread<S extends Solution<?>> extends GenericIndicator<S
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "Generalized Spread";
     }
 

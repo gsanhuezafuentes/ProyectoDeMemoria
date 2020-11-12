@@ -41,9 +41,9 @@ public class FriedmanTest {
   public static final boolean MAXIMIZAR = false;
 
   private Table results;
-  private boolean minimizar;
-  private int numberOfAlgorithms;
-  private int datasetCount;
+  private final boolean minimizar;
+  private final int numberOfAlgorithms;
+  private final int datasetCount;
 
   public FriedmanTest(
       boolean minimizar,
@@ -131,8 +131,8 @@ public class FriedmanTest {
         }
         sum /= (double) ig;
         rank[i][j].setIndice(sum);
-        for (int k = 0; k < notVisited.size(); k++) {
-          rank[i][notVisited.get(k)].setIndice(sum);
+        for (Integer integer : notVisited) {
+          rank[i][integer].setIndice(sum);
         }
       }
     }

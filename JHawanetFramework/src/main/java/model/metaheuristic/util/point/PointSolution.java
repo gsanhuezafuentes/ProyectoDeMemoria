@@ -37,10 +37,9 @@ import java.util.*;
  *
  * @author Antonio J. Nebro
  */
-@SuppressWarnings("serial")
 public class PointSolution implements Solution<Double> {
-    private int numberOfObjectives;
-    private double[] objectives;
+    private final int numberOfObjectives;
+    private final double[] objectives;
     protected Map<Object, Object> attributes;
 
     /**

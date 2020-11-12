@@ -9,8 +9,8 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class CrowdingDistanceArchive<S extends Solution<?>> extends AbstractBoundedArchive<S> {
-    private Comparator<S> crowdingDistanceComparator;
-    private CrowdingDistance<S> crowdingDistance ;
+    private final Comparator<S> crowdingDistanceComparator;
+    private final CrowdingDistance<S> crowdingDistance ;
 
     public CrowdingDistanceArchive(int maxSize) {
         super(maxSize);

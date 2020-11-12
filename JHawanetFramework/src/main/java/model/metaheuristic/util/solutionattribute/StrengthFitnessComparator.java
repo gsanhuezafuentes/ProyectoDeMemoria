@@ -58,13 +58,7 @@ public class StrengthFitnessComparator<S extends Solution<?>> implements Compara
                 strengthFitness2 = (double) fitnessValue.getAttribute(solution2);
             }
 
-            if (strengthFitness1 < strengthFitness2) {
-                result = -1;
-            } else  if (strengthFitness1 > strengthFitness2) {
-                result = 1;
-            } else {
-                result = 0;
-            }
+            result = Double.compare(strengthFitness1, strengthFitness2);
         }
         return result;
     }

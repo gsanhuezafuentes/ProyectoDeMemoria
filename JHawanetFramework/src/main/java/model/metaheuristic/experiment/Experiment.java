@@ -58,7 +58,8 @@ public final class Experiment<S extends Solution<?>> {
     final String objectiveOutputFileName;
     private @NotNull
     final String variablesOutputFileName;
-    private @NotNull String referenceFrontDirectory;
+    private @NotNull
+    final String referenceFrontDirectory;
 
     private final int independentRuns;
 

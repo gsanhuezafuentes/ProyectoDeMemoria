@@ -11,8 +11,8 @@ import java.util.Objects;
 
 
 public class PlotSmile implements PlotFront {
-  private double[][] matrix;
-  private String plotTitle;
+  private final double[][] matrix;
+  private final String plotTitle;
 
   public PlotSmile(double[][] matrix) {
     this(matrix, "Front") ;

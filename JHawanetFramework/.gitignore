@@ -175,3 +175,4 @@ build.fxbuild
 inp/*.rpt
 *.rpt
 logs/
+temp/

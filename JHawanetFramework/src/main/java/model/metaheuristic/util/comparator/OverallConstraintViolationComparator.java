@@ -68,13 +68,7 @@ public class OverallConstraintViolationComparator<S extends Solution<?>> impleme
 		violationDegreeSolution2 = overallConstraintViolation.getAttribute(solution2);
 
 		if ((violationDegreeSolution1 < 0) && (violationDegreeSolution2 < 0)) {
-			if (violationDegreeSolution1 > violationDegreeSolution2) {
-				return -1;
-			} else if (violationDegreeSolution2 > violationDegreeSolution1) {
-				return 1;
-			} else {
-				return 0;
-			}
+			return Double.compare(violationDegreeSolution2, violationDegreeSolution1);
 		} else if ((violationDegreeSolution1 == 0) && (violationDegreeSolution2 < 0)) {
 			return -1;
 		} else if ((violationDegreeSolution1 < 0) && (violationDegreeSolution2 == 0)) {

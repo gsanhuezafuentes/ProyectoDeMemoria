@@ -32,6 +32,7 @@ import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.front.util.FrontUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -97,7 +98,7 @@ public class InvertedGenerationalDistance<S extends Solution<?>> extends Generic
      * @return
      */
     @Override
-    public Double evaluate(List<S> solutionList) {
+    public @NotNull Double evaluate(List<S> solutionList) {
         return invertedGenerationalDistance(new ArrayFront(solutionList), referenceParetoFront);
     }
 
@@ -120,7 +121,7 @@ public class InvertedGenerationalDistance<S extends Solution<?>> extends Generic
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "Inverted generational distance";
     }
 

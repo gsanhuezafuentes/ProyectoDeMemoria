@@ -48,7 +48,7 @@ public class Html {
 
   public static String PATH_FOLDER = "html";
 
-  private String title;
+  private final String title;
   private final List<HtmlComponent> components = new LinkedList<>();
 
   public Html(String title) {

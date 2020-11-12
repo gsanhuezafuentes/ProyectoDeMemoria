@@ -19,7 +19,7 @@ import java.util.List;
 public class UniformSelection<S extends Solution<?>> implements SelectionOperator<List<S>, List<S>> {
 
 	private final Comparator<S> comparator;
-	private double constant;
+	private final double constant;
 
 	/**
 	 * Constructor

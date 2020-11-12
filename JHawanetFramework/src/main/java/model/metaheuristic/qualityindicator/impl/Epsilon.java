@@ -31,6 +31,7 @@ package model.metaheuristic.qualityindicator.impl;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -63,7 +64,7 @@ public class Epsilon<S extends Solution<?>> extends GenericIndicator<S> {
      *
      * @param referenceParetoFrontFile
      * @throws FileNotFoundException if the file isn't found.
-     * @throws IOException if there is a error reading the file.
+     * @throws IOException           if there is a error reading the file.
      */
     public Epsilon(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
         super(referenceParetoFrontFile);
@@ -91,7 +92,7 @@ public class Epsilon<S extends Solution<?>> extends GenericIndicator<S> {
      * @throws NullPointerException if solutionList is null.
      */
     @Override
-    public Double evaluate(List<S> solutionList) {
+    public @NotNull Double evaluate(List<S> solutionList) {
         Objects.requireNonNull(solutionList);
         return epsilon(new ArrayFront(solutionList), referenceParetoFront);
     }
@@ -137,7 +138,7 @@ public class Epsilon<S extends Solution<?>> extends GenericIndicator<S> {
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "EP";
     }
 }

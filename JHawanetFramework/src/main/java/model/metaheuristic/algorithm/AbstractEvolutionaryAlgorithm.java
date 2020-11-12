@@ -26,6 +26,7 @@ package model.metaheuristic.algorithm;
 import epanet.core.EpanetException;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -75,7 +76,7 @@ public abstract class AbstractEvolutionaryAlgorithm<S extends Solution<?>> imple
 	 * Get the result of execution of algorithm
 	 */
 	@Override
-	public abstract List<S> getResult();
+	public abstract @NotNull List<S> getResult();
 
 	/**
 	 * Create the initial population to the problem

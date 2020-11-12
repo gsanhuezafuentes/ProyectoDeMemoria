@@ -32,6 +32,7 @@ import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.front.util.FrontUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -64,7 +65,7 @@ public class GenerationalDistance<S extends Solution<?>> extends GenericIndicato
      * @param referenceParetoFrontFile
      * @param p
      * @throws FileNotFoundException if the file isn't found.
-     * @throws IOException if there is a error reading the file.
+     * @throws IOException           if there is a error reading the file.
      */
     public GenerationalDistance(String referenceParetoFrontFile, double p) throws IOException, FileNotFoundException {
         super(referenceParetoFrontFile);
@@ -76,7 +77,7 @@ public class GenerationalDistance<S extends Solution<?>> extends GenericIndicato
      *
      * @param referenceParetoFrontFile
      * @throws FileNotFoundException if the file isn't found.
-     * @throws IOException if there is a error reading the file.
+     * @throws IOException           if there is a error reading the file.
      */
     public GenerationalDistance(String referenceParetoFrontFile) throws IOException, FileNotFoundException {
         this(referenceParetoFrontFile, 2.0);
@@ -98,7 +99,7 @@ public class GenerationalDistance<S extends Solution<?>> extends GenericIndicato
      * @return the indicator value.
      */
     @Override
-    public Double evaluate(List<S> solutionList) {
+    public @NotNull Double evaluate(List<S> solutionList) {
         Objects.requireNonNull(solutionList, "The pareto front approximation is null");
         return generationalDistance(new ArrayFront(solutionList), referenceParetoFront);
     }
@@ -122,7 +123,7 @@ public class GenerationalDistance<S extends Solution<?>> extends GenericIndicato
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "Generational distance";
     }
 

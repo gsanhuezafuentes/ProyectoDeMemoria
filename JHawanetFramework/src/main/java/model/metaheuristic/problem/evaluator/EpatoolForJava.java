@@ -37,24 +37,22 @@ public class EpatoolForJava {
     public List<Valve> valvesList = null;
     public List<Tank> tanksList = null;
     public List<Reservoir> reservoirsList = null;
-    
-    private int num_nodes;
-    private int num_links;
-    private int num_tanks;
+
+	private int num_tanks;
     
     //NODES INDEX
-    private ArrayList<Integer> nodeIndex = new ArrayList<>(); // todos los nodos
-    private ArrayList<Integer> nodeDemandIndex = new ArrayList<>(); // nodos con Demanda
-    private ArrayList<Integer> tankIndex = new ArrayList<>(); // tanques
+    private final ArrayList<Integer> nodeIndex = new ArrayList<>(); // todos los nodos
+    private final ArrayList<Integer> nodeDemandIndex = new ArrayList<>(); // nodos con Demanda
+    private final ArrayList<Integer> tankIndex = new ArrayList<>(); // tanques
     
     //LINK INDEX
-    public ArrayList<Integer> pumpIndex = new ArrayList<>();
-    private ArrayList<Integer> linkIndex = new ArrayList<>();
+    public final ArrayList<Integer> pumpIndex = new ArrayList<>();
+    private final ArrayList<Integer> linkIndex = new ArrayList<>();
     
-    private ArrayList<Double> listPressureNodesDiff = new ArrayList<>(); 
-	private ArrayList<Double> listPressureTanksDiff = new ArrayList<>();
-	private ArrayList<Double> listFlowratePumpsDiff = new ArrayList<>();
-	private ArrayList<Double> ListInfactibilidad = new ArrayList<>();
+    private final ArrayList<Double> listPressureNodesDiff = new ArrayList<>();
+	private final ArrayList<Double> listPressureTanksDiff = new ArrayList<>();
+	private final ArrayList<Double> listFlowratePumpsDiff = new ArrayList<>();
+	private final ArrayList<Double> ListInfactibilidad = new ArrayList<>();
 	
 
 
@@ -86,9 +84,9 @@ public class EpatoolForJava {
 
         ep = new EpanetAPI();
         ep.ENopen(inInp, inInp + ".rpt", "");
-        
-        this.num_nodes = ep.ENgetcount(Components.EN_NODECOUNT);
-        this.num_links = ep.ENgetcount(Components.EN_LINKCOUNT);
+
+		int num_nodes = ep.ENgetcount(Components.EN_NODECOUNT);
+		int num_links = ep.ENgetcount(Components.EN_LINKCOUNT);
         
         for (int i = 1; i <= num_nodes; i++) {
 			if(ep.ENgetnodetype(i)==NodeTypes.EN_JUNCTION) {

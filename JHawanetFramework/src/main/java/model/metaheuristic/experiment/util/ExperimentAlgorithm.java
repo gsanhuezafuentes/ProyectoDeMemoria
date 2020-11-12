@@ -62,22 +62,27 @@ import java.util.Objects;
  *     <li> A calls to {@link #saveSolutionList}</li>
  * </ul>
  * <p>
- *
  */
 public final class ExperimentAlgorithm<S extends Solution<?>> {
 
-    @NotNull private final Algorithm<S> algorithm;
-    @NotNull private final String algorithmTag;
-    @NotNull private final String problemTag;
+    @NotNull
+    private final Algorithm<S> algorithm;
+    @NotNull
+    private String algorithmTag;
+    @NotNull
+    private String problemTag;
     private final int runId;
 
     /**
      * A StringBuffer that can be used has a log to the operation realize from this
      * object
      */
-    @Nullable private ObservableStringBuffer log;
-    @Nullable private String funFile;
-    @Nullable private String varFile;
+    @Nullable
+    private ObservableStringBuffer log;
+    @Nullable
+    private String funFile;
+    @Nullable
+    private String varFile;
 
     /**
      * Constructor
@@ -86,19 +91,19 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
      * @param algorithmTag the algorithm tag (is used to create the directory)
      * @param problem      the ExperimentProblem setting up with the same problem of the algorithm
      * @param runId        runId the id of execution of this algorithm for a experiment
-     * @throws NullPointerException if algorithm, algorithmTag or problem is null.
+     * @throws NullPointerException     if algorithm, algorithmTag or problem is null.
+     * @throws IllegalArgumentException if algorithmTag is empty.
      */
     public ExperimentAlgorithm(@NotNull Algorithm<S> algorithm, @NotNull String algorithmTag, @NotNull ExperimentProblem<S> problem, int runId) {
         Objects.requireNonNull(algorithm);
         Objects.requireNonNull(algorithmTag);
         Objects.requireNonNull(problem);
+        if (algorithmTag.isEmpty()) {
+            throw new IllegalArgumentException("algorithmTag is empty.");
+        }
+
+        this.algorithmTag = algorithmTag;
         this.algorithm = algorithm;
-        if (algorithm.getName().isEmpty()){
-            this.algorithmTag = algorithm.getClass().getSimpleName();
-        }
-        else{
-            this.algorithmTag = algorithmTag;
-        }
         this.problemTag = problem.getTag();
         this.runId = runId;
     }
@@ -134,7 +139,7 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
      * @throws IllegalArgumentException if experiment base directory set up in experimentData is a empty string.
      */
     public void prepareToRun(@NotNull Experiment<?> experimentData) {
-        if (experimentData.getExperimentBaseDirectory().isEmpty()){
+        if (experimentData.getExperimentBaseDirectory().isEmpty()) {
             throw new IllegalArgumentException("Experiment base directory is a empty string");
         }
         String outputDirectoryName = experimentData.getExperimentBaseDirectory() + "/data/" + algorithmTag + "/"
@@ -209,6 +214,7 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
 
     /**
      * Get the algorithm tag.
+     *
      * @return the algorithm tag.
      */
     public @NotNull String getAlgorithmTag() {
@@ -216,7 +222,48 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
     }
 
     /**
+     * Set the algorithm tag. <p>
+     * <strong>Notes:</strong><p>
+     * Don't call this method. It is used internally when run quality indicators. Depending on the values set in the GUI the name is changed.<br>
+     *
+     * @param algorithmTag the new name for algorithm tag.
+     */
+    // This method has to be called before of prepareToRun.
+    public void setAlgorithmTag(@NotNull String algorithmTag) {
+        this.algorithmTag = Objects.requireNonNull(algorithmTag);
+        if (this.algorithmTag.isEmpty()){
+            throw new IllegalArgumentException("Algorithm tag is empty.");
+        }
+    }
+
+    /**
+     * Get the problem tag associated to the algorithms configured.
+     *
+     * @return the problem tag.
+     */
+    public @NotNull String getProblemTag() {
+        return problemTag;
+    }
+
+    /**
+     * Set the problem tag associated.
+     * <p>
+     * <strong>Notes:</strong><p>
+     * Don't call this method. It is used internally when run quality indicators. Depending on the values set in the GUI the name is changed.
+     * @param problemTag the new name of problem tag.
+     * @throws NullPointerException if problemTag is null
+     */
+    // This method has to be called before of prepareToRun.
+    public void setProblemTag(@NotNull String problemTag) {
+        this.problemTag = Objects.requireNonNull(problemTag);
+        if (this.problemTag.isEmpty()){
+            throw new IllegalArgumentException("Problem tag is empty.");
+        }
+    }
+
+    /**
      * Get the run id.
+     *
      * @return the run id.
      */
     public int getRunId() {
@@ -225,6 +272,7 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
 
     /**
      * Get the log buffer. This property is set up automatically when the algorithm will be execute.
+     *
      * @return the log buffer;
      */
     public @NotNull ObservableStringBuffer getLogBuffer() {
@@ -236,6 +284,7 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
 
     /**
      * Set the log buffer. This property is set up automatically when the algorithm will be execute. So no set up it.
+     *
      * @param logBuffer log buffer.
      * @throws NullPointerException if logBuffer is null.
      */
@@ -253,7 +302,7 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
      * @return the result.
      * @see Algorithm
      */
-    public @NotNull List<? extends Solution<?>> getResult(){
+    public @NotNull List<? extends Solution<?>> getResult() {
         return algorithm.getResult();
     }
 }

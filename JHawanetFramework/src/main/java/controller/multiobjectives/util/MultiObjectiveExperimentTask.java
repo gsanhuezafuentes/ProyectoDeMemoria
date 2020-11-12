@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.concurrent.Task;
 import model.metaheuristic.experiment.Experiment;
-import model.metaheuristic.experiment.component.GenerateReferenceParetoFront;
+import model.metaheuristic.experiment.component.GenerateReferenceParetoFrontInRAM;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.experiment.util.ObservableStringBuffer;
 import model.metaheuristic.solution.Solution;
@@ -127,7 +127,7 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
         }
 
         // return only one pareto front
-        GenerateReferenceParetoFront reference = new GenerateReferenceParetoFront(experiment, taskLog);
+        GenerateReferenceParetoFrontInRAM reference = new GenerateReferenceParetoFrontInRAM(experiment, taskLog);
         reference.run();
 
         return reference.getReferenceToParetoFront();

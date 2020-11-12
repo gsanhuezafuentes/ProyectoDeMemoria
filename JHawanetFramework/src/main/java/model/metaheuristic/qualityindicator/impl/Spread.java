@@ -33,6 +33,7 @@ import model.metaheuristic.util.distance.impl.EuclideanDistanceBetweenVectors;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.point.util.comparator.LexicographicalPointComparator;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -83,7 +84,7 @@ public class Spread<S extends Solution<?>> extends GenericIndicator<S> {
      * @return
      */
     @Override
-    public Double evaluate(List<S> solutionList) {
+    public @NotNull Double evaluate(List<S> solutionList) {
         return spread(new ArrayFront(solutionList), referenceParetoFront);
     }
 
@@ -132,7 +133,7 @@ public class Spread<S extends Solution<?>> extends GenericIndicator<S> {
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "SPREAD";
     }
 

@@ -38,6 +38,7 @@ import model.metaheuristic.util.front.util.FrontNormalizer;
 import model.metaheuristic.util.front.util.FrontUtils;
 import model.metaheuristic.util.point.Point;
 import model.metaheuristic.util.solutionattribute.HypervolumeContributionAttribute;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -105,7 +106,7 @@ public class PISAHypervolume<S extends Solution<?>> extends Hypervolume<S> {
      * @throws NullPointerException if paretoFrontApproximation is null.
      */
     @Override
-    public Double evaluate(List<S> paretoFrontApproximation) {
+    public @NotNull Double evaluate(List<S> paretoFrontApproximation) {
         Objects.requireNonNull(paretoFrontApproximation);
         return hypervolume(new ArrayFront(paretoFrontApproximation), referenceParetoFront);
     }
@@ -114,7 +115,7 @@ public class PISAHypervolume<S extends Solution<?>> extends Hypervolume<S> {
      * returns true if 'point1' dominates 'points2' with respect to the
      * to the first 'noObjectives' objectives
      */
-    private boolean dominates(double point1[], double point2[], int noObjectives) {
+    private boolean dominates(double[] point1, double[] point2, int noObjectives) {
         int i;
         int betterInAnyObjective;
 
@@ -372,7 +373,7 @@ public class PISAHypervolume<S extends Solution<?>> extends Hypervolume<S> {
      * @return the string name.
      */
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "PISAHypervolume";
     }
 }

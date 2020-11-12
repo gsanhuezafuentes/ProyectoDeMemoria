@@ -31,8 +31,8 @@ package model.metaheuristic.util.front.impl;
 import exception.InvalidConditionException;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.front.Front;
-import model.metaheuristic.util.point.impl.ArrayPoint;
 import model.metaheuristic.util.point.Point;
+import model.metaheuristic.util.point.impl.ArrayPoint;
 
 import java.io.*;
 import java.util.*;
@@ -149,7 +149,7 @@ public class ArrayFront implements Front {
             String[] stringValues = line.split(separator);
             double[] values = new double[stringValues.length];
             for (int i = 0; i < stringValues.length; i++) {
-                values[i] = Double.valueOf(stringValues[i]);
+                values[i] = Double.parseDouble(stringValues[i]);
             }
 
             if (numberOfObjectives == 0) {

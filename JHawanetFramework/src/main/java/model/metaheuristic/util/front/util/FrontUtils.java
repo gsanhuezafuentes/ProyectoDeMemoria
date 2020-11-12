@@ -34,6 +34,7 @@ import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.point.Point;
 import model.metaheuristic.util.point.PointSolution;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

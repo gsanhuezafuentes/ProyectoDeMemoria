@@ -38,6 +38,7 @@ import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.evaluator.SolutionListEvaluator;
 import model.metaheuristic.util.solutionattribute.StrengthRawFitness;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +92,7 @@ public class SPEA2<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<
     }
 
     @Override
-    public String getStatusOfExecution() {
+    public @NotNull String getStatusOfExecution() {
         return "Number of evaluations: " + this.iterations + " / " + this.maxIterations;
     }
 
@@ -137,7 +138,7 @@ public class SPEA2<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<
     }
 
     @Override
-    public List<S> getResult() {
+    public @NotNull List<S> getResult() {
         return archive;
     }
 
@@ -160,7 +161,7 @@ public class SPEA2<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<
         return this.maxPopulationSize;
     }
 
-    @Override public String getName() {
+    @Override public @NotNull String getName() {
         return "SPEA2" ;
     }
 }

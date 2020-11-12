@@ -33,7 +33,6 @@ import model.metaheuristic.solution.Solution;
 /**
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
-@SuppressWarnings("serial")
 public class HypervolumeContributionAttribute<S extends Solution<?>>
     extends SolutionAttribute<S, Double>  {
 }

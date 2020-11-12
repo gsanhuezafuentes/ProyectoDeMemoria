@@ -33,6 +33,7 @@ import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.point.Point;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -54,7 +55,7 @@ import java.util.Objects;
 @SuppressWarnings("serial")
 public class ErrorRatio<Evaluate extends List<? extends Solution<?>>>
         implements QualityIndicator<Evaluate, Double> {
-    private Front referenceParetoFront;
+    private final Front referenceParetoFront;
 
     /**
      * Constructor
@@ -90,7 +91,7 @@ public class ErrorRatio<Evaluate extends List<? extends Solution<?>>>
      * @return the value.
      */
     @Override
-    public Double evaluate(Evaluate solutionList) {
+    public @NotNull Double evaluate(Evaluate solutionList) {
         Objects.requireNonNull(solutionList);
         return er(new ArrayFront(solutionList), referenceParetoFront);
     }
@@ -132,7 +133,7 @@ public class ErrorRatio<Evaluate extends List<? extends Solution<?>>>
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "Error Ratio";
     }
 }

@@ -35,9 +35,9 @@ import java.util.List;
 
 public class CoverageFront<S extends Solution<?>> {
 
-    private double coverageValue;
+    private final double coverageValue;
     private double lastCoverageValue;
-    private GenericIndicator<S> indicator;
+    private final GenericIndicator<S> indicator;
 
     private List<S> lastFront;
 

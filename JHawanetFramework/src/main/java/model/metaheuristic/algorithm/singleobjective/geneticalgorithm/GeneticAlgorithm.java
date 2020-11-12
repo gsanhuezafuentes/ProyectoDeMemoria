@@ -33,6 +33,7 @@ import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.comparator.ObjectiveComparator;
 import model.metaheuristic.util.evaluator.SolutionListEvaluator;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -264,7 +265,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<S> getResult() {
+	public @NotNull List<S> getResult() {
 		Collections.sort(getPopulation(), comparator);
 		return Collections.singletonList(this.getPopulation().get(0));
 	}
@@ -355,7 +356,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 
 	/** {@inheritDoc} */
 	@Override
-	public String getStatusOfExecution() {
+	public @NotNull String getStatusOfExecution() {
 		if (getMaxEvaluations() > 0) {
 			return "Number of evaluations: " + this.performedEvaluationsNumber + " / " + this.maxEvaluations + "\n";
 		}
@@ -367,7 +368,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	}
 
 	@Override
-	public String getName() {
+	public @NotNull String getName() {
 		return "Genetic Algorithm";
 	}
 

@@ -46,9 +46,9 @@ public class StudyVisualizer {
   private static final String PROBLEM = "Problem";
   private static final String INDICATOR_NAME = "IndicatorName";
   private static final String INDICATOR_VALUE = "IndicatorValue";
-  private String folderPath;
-  private Table table;
-  private TYPE_OF_FRONT_TO_SHOW typeOfFrontToShow;
+  private final String folderPath;
+  private final Table table;
+  private final TYPE_OF_FRONT_TO_SHOW typeOfFrontToShow;
 
   public StudyVisualizer(String path, TYPE_OF_FRONT_TO_SHOW typeOfFrontToShow) throws IOException {
     folderPath = path;

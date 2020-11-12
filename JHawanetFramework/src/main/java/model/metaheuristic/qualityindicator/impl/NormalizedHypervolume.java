@@ -34,6 +34,7 @@ import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.front.util.FrontUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -127,7 +128,7 @@ public class NormalizedHypervolume<S extends Solution<?>> extends GenericIndicat
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "Normalized Hypervolume";
     }
 
@@ -137,7 +138,7 @@ public class NormalizedHypervolume<S extends Solution<?>> extends GenericIndicat
     }
 
     @Override
-    public Double evaluate(List<S> solutionList) {
+    public @NotNull Double evaluate(List<S> solutionList) {
         double hypervolumeValue = hypervolume.evaluate(solutionList);
 
         return 1 - (hypervolumeValue / referenceFrontHypervolume);

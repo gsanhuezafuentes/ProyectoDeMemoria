@@ -38,6 +38,7 @@ import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.SolutionListUtils;
 import model.metaheuristic.util.evaluator.SolutionListEvaluator;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -51,15 +52,15 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
     protected final int maxEvaluations;
 
     protected int numberOfEvaluations;
-    protected Comparator<S> dominanceComparator;
+    protected final Comparator<S> dominanceComparator;
 
     protected int maxPopulationSize;
-    protected int matingPoolSize;
-    protected int offspringPopulationSize;
+    protected final int matingPoolSize;
+    protected final int offspringPopulationSize;
 
-    protected SelectionOperator<List<S>, S> selectionOperator;
-    protected CrossoverOperator<S> crossoverOperator;
-    protected MutationOperator<S> mutationOperator;
+    protected final SelectionOperator<List<S>, S> selectionOperator;
+    protected final CrossoverOperator<S> crossoverOperator;
+    protected final MutationOperator<S> mutationOperator;
     protected List<S> population;
     protected final SolutionListEvaluator<S> evaluator;
 
@@ -125,10 +126,10 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
         numberOfEvaluations = getMaxPopulationSize();
     }
 
-    @Override
     /**
      * {@inheritDoc}
      */
+    @Override
     protected List<S> evaluatePopulation(List<S> population) throws EpanetException {
         return this.evaluator.evaluate(population, problem);
     }
@@ -239,7 +240,7 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
      * {@inheritDoc}
      */
     @Override
-    public List<S> getResult() {
+    public @NotNull List<S> getResult() {
         return SolutionListUtils.getNondominatedSolutions(getPopulation());
     }
 
@@ -262,12 +263,12 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
      * {@inheritDoc}
      */
     @Override
-    public String getStatusOfExecution() {
+    public @NotNull String getStatusOfExecution() {
         return "Number of evaluations: " + this.numberOfEvaluations + " / " + this.maxEvaluations;
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "NSGA-II";
     }
 

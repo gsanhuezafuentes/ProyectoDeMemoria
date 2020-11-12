@@ -35,6 +35,7 @@ import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.front.util.FrontNormalizer;
 import model.metaheuristic.util.front.util.FrontUtils;
 import model.metaheuristic.util.solutionattribute.HypervolumeContributionAttribute;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -102,7 +103,7 @@ public class WFGHypervolume<S extends Solution<?>> extends Hypervolume<S> {
      * @return te indicator value.
      */
     @Override
-    public Double evaluate(List<S> paretoFrontApproximation) {
+    public @NotNull Double evaluate(List<S> paretoFrontApproximation) {
         Objects.requireNonNull(paretoFrontApproximation, "The pareto front approximation is null");
         return hypervolume(new ArrayFront(paretoFrontApproximation), referenceParetoFront);
     }
@@ -121,7 +122,7 @@ public class WFGHypervolume<S extends Solution<?>> extends Hypervolume<S> {
     }
 
     static class Point {
-        double[] objectives;
+        final double[] objectives;
 
         public Point(int size) {
             objectives = new double[size];
@@ -130,16 +131,14 @@ public class WFGHypervolume<S extends Solution<?>> extends Hypervolume<S> {
 
     static class Front {
         int nPoints;
-        Point[] points;
+        final Point[] points;
 
-        public Front(double frente[][]) {
+        public Front(double[][] frente) {
             points = new Point[frente.length];
             this.nPoints = frente.length;
             for (int x = 0; x < frente.length; x++) {
                 points[x] = new Point(frente[0].length);
-                for (int j = 0; j < frente[0].length; j++) {
-                    points[x].objectives[j] = frente[x][j];
-                }
+                System.arraycopy(frente[x], 0, points[x].objectives, 0, frente[0].length);
             }
         }
     }
@@ -561,18 +560,17 @@ public class WFGHypervolume<S extends Solution<?>> extends Hypervolume<S> {
         if (n == 2)
             return hv2(ps, ps.nPoints);
 
+        double volume;
         if (n == 3 && safe > 0) {
-            double volume = ps.points[0].objectives[2] * hv2(ps, safe);
+            volume = ps.points[0].objectives[2] * hv2(ps, safe);
             n--;
             for (int i = safe; i < ps.nPoints; i++) { // we can ditch dominated points here, but they will be ditched anyway
                 // in
                 // makeDominatedBit
                 volume += ps.points[i].objectives[n] * exclhv(ps, i);
             }
-            n++;
-            return volume;
         } else {
-            double volume = inclhv4(ps.points[0], ps.points[1], ps.points[2], ps.points[3]);
+            volume = inclhv4(ps.points[0], ps.points[1], ps.points[2], ps.points[3]);
             n--;
             for (int i = 4; i < ps.nPoints; i++) { // we can ditch dominated points here, but they will be ditched anyway in
                 // makeDominatedBit
@@ -580,9 +578,9 @@ public class WFGHypervolume<S extends Solution<?>> extends Hypervolume<S> {
                 double b = exclhv(ps, i);
                 volume += a * b;
             }
-            n++;
-            return volume;
         }
+        n++;
+        return volume;
     }
 
     /**

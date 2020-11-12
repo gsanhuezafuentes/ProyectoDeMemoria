@@ -181,9 +181,7 @@ public class ArrayPoint implements Point {
               + "while the parameter point has a dimension of " + point.length);
     }
 
-    for (int i = 0; i < point.length; i++) {
-      this.point[i] = point[i] ;
-    }
+    System.arraycopy(point, 0, this.point, 0, point.length);
   }
 
   /**
@@ -192,12 +190,12 @@ public class ArrayPoint implements Point {
    */
   @Override
   public String toString() {
-    String result = "";
+    StringBuilder result = new StringBuilder();
     for (double anObjectives_ : point) {
-      result += anObjectives_ + " ";
+      result.append(anObjectives_).append(" ");
     }
 
-    return result;
+    return result.toString();
   }
 
   /**

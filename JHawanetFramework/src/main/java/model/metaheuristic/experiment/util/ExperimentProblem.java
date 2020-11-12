@@ -46,17 +46,17 @@ public final class ExperimentProblem<S extends Solution<?>> {
 	 * @param problem the problem.
 	 * @param tag the tag of algorithm.
 	 * @throws NullPointerException if problem or tag is null.
+	 * @throws IllegalArgumentException if experiment tag is empty.
 	 */
 	public ExperimentProblem(@NotNull Problem<S> problem, @NotNull String tag) {
 		Objects.requireNonNull(problem);
 		Objects.requireNonNull(tag);
+		if (tag.isEmpty()){
+			throw new IllegalArgumentException("Experiment problem tag is empty.");
+		}
+
 		this.problem = problem;
-		if (problem.getName().isEmpty()){
-			this.tag = problem.getClass().getSimpleName();
-		}
-		else{
-			this.tag = tag;
-		}
+		this.tag = tag;
 	}
 
 	/**

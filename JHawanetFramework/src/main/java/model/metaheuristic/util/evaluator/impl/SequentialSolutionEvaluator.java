@@ -41,7 +41,7 @@ import java.util.List;
 public class SequentialSolutionEvaluator<S extends Solution<?>> implements SolutionListEvaluator<S> {
 
     @Override
-    public List evaluate(List<S> solutionList, Problem<S> problem) throws EpanetException {
+    public List<S> evaluate(List<S> solutionList, Problem<S> problem) throws EpanetException {
         for (S s : solutionList) {
             problem.evaluate(s);
         }

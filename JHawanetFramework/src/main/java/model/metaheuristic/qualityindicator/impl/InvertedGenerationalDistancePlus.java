@@ -33,6 +33,7 @@ import model.metaheuristic.util.distance.impl.DominanceDistanceBetweenVectors;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.front.util.FrontUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -84,7 +85,7 @@ public class InvertedGenerationalDistancePlus<S extends Solution<?>> extends Gen
      * @throws NullPointerException of the solution list is null.
      */
     @Override
-    public Double evaluate(List<S> solutionList) {
+    public @NotNull Double evaluate(List<S> solutionList) {
         Objects.requireNonNull(solutionList);
 
         return invertedGenerationalDistancePlus(new ArrayFront(solutionList), referenceParetoFront);
@@ -109,7 +110,7 @@ public class InvertedGenerationalDistancePlus<S extends Solution<?>> extends Gen
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "Inverted generational distance plus";
     }
 

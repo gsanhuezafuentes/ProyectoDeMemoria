@@ -39,7 +39,7 @@ import model.metaheuristic.util.distance.Distance;
 public class EuclideanDistanceBetweenSolutionsInSolutionSpace<S extends Solution<Double>>
     implements Distance<S, S> {
 
-  private EuclideanDistanceBetweenVectors distance = new EuclideanDistanceBetweenVectors() ;
+  private final EuclideanDistanceBetweenVectors distance = new EuclideanDistanceBetweenVectors() ;
 
   /**
    * Calcule the euclidean distance between two points.

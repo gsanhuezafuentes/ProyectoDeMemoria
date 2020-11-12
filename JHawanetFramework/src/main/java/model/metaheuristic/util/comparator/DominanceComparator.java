@@ -40,7 +40,7 @@ import java.util.Objects;
  */
 @SuppressWarnings("serial")
 public class DominanceComparator<S extends Solution<?>> implements Comparator<S>, Serializable {
-    private ConstraintViolationComparator<S> constraintViolationComparator;
+    private final ConstraintViolationComparator<S> constraintViolationComparator;
 
     /**
      * Constructor
@@ -111,13 +111,7 @@ public class DominanceComparator<S extends Solution<?>> implements Comparator<S>
                 }
             }
         }
-        if (bestIsOne > bestIsTwo) {
-            result = -1;
-        } else if (bestIsTwo > bestIsOne) {
-            result = 1;
-        } else {
-            result = 0;
-        }
+        result = Integer.compare(bestIsTwo, bestIsOne);
         return result;
     }
 }
