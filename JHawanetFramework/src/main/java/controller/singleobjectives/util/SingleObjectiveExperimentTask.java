@@ -50,6 +50,8 @@ public class SingleObjectiveExperimentTask extends Task<List<SingleObjectiveExpe
     public SingleObjectiveExperimentTask(Experiment<?> experiment, boolean returnPartialResult) {
         Objects.requireNonNull(experiment);
         this.experiment = experiment;
+        // Remove experiment base directory. This only is used by multiobjetive experiments.
+        this.experiment.setExperimentBaseDirectory("");
         this.returnPartialResult = returnPartialResult;
     }
 

@@ -29,7 +29,6 @@ public class PumpSchedulingSPA2Register implements MultiObjectiveRegistrable {
     private VanzylOriginal problem;
     private final CrossoverOperator<IntegerSolution> crossover;
     private final MutationOperator<IntegerSolution> mutation;
-    private final File baseDirectory;
     private final File json;
     private final int independentRun;
 
@@ -48,26 +47,20 @@ public class PumpSchedulingSPA2Register implements MultiObjectiveRegistrable {
                             @OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class)
                     })
             }, //
-            files = {@FileInput(displayName = "Base directory", type = FileInput.Type.Directory), @FileInput(displayName = "Configuration file (json) *")}, //
+            files = {@FileInput(displayName = "Configuration file (json) *")}, //
             numbers = {
             		@NumberInput(displayName = "Independent run", defaultValue = 10)
             }
     )
-    public PumpSchedulingSPA2Register(Object crossover, Object mutation, File baseDirectory, File json, int independentRun) {
+    public PumpSchedulingSPA2Register(Object crossover, Object mutation, File json, int independentRun) {
         this.crossover = (CrossoverOperator<IntegerSolution>) crossover;
         this.mutation = (MutationOperator<IntegerSolution>) mutation;
-        this.baseDirectory = baseDirectory;
         this.json = Objects.requireNonNull(json, "The json configuration file was not indicated");
         this.independentRun = independentRun;
     }
 
     @Override
     public Experiment<?> build(String inpPath) throws Exception {
-        String experimentBaseDirectory;
-        if (baseDirectory == null)
-            experimentBaseDirectory = "";
-        else experimentBaseDirectory = baseDirectory.getAbsolutePath();
-
         /* *******************vanzylOriginal ***************************/
 
         String inpPathVanzyl = inpPath; // "src/resources/vanzylOriginal.inp";
@@ -113,12 +106,6 @@ public class PumpSchedulingSPA2Register implements MultiObjectiveRegistrable {
                 .setProblem(problem)
                 .setIndependentRuns(independentRun);
         // if baseDirectory isn't null so add the output directory.
-        if (baseDirectory != null) {
-            builder.setExperimentBaseDirectory(experimentBaseDirectory)
-                    .setObjectiveOutputFileName("FUN")
-                    .setVariablesOutputFileName("VAR")
-                    .setReferenceFrontDirectory(experimentBaseDirectory + "/PSMOStudy/referenceFronts");
-        }
         Experiment<IntegerSolution> experiment = builder.build();
 
         return experiment;

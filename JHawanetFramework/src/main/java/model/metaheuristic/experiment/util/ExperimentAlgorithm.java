@@ -55,6 +55,12 @@ import java.util.Objects;
  * The method {@link #runASingleStepOfAlgorithm()} run the algorithm step by
  * step. <br>
  * <br>
+ * The sequence of call to the method of this class are:<br>
+ * <ul>
+ *     <li> A call to {@link #prepareToRun}</li>
+ *     <li> Many calls to {@link #runASingleStepOfAlgorithm} until {@link #algorithmHasANextStep} is false</li>
+ *     <li> A calls to {@link #saveSolutionList}</li>
+ * </ul>
  * <p>
  *
  */
@@ -144,8 +150,8 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
             }
         }
 
-        funFile = outputDirectoryName + "/" + experimentData.getObjectiveOutputFileName() + runId + ".tsv";
-        varFile = outputDirectoryName + "/" + experimentData.getVariablesOutputFileName() + runId + ".tsv";
+        this.funFile = outputDirectoryName + "/" + experimentData.getObjectiveOutputFileName() + runId + ".csv";
+        this.varFile = outputDirectoryName + "/" + experimentData.getVariablesOutputFileName() + runId + ".csv";
         getLogBuffer().println("- Running algorithm: " + algorithmTag + ", problem: " + problemTag + ", run: " + runId
                 + ", funFile: " + funFile);
     }
@@ -179,7 +185,7 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
         }
 
         List<S> population = algorithm.getResult();
-        new SolutionListOutput(population).setSeparator("\t").setVarFileName(this.varFile).setFunFileName(this.funFile)
+        new SolutionListOutput(population).setSeparator(",").setVarFileName(this.varFile).setFunFileName(this.funFile)
                 .write();
     }
 

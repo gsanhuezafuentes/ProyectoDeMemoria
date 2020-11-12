@@ -15,6 +15,8 @@ import model.metaheuristic.solution.Solution;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -60,19 +62,16 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
 
     /**
      * Execute the algorithm in experiment.
+     *
      * @return the solution list or a empty list if the task is cancel.
      * @throws Exception if there is a error while execute.
      */
     @Override
     protected List<? extends Solution<?>> call() throws Exception {
         Generation<Solution<?>> generationAttribute = new Generation<>();
-        boolean saveResult = experiment.getExperimentBaseDirectory().isEmpty();
-        if (!saveResult) {
-            taskLog.println("ExecuteAlgorithms: Preparing output directory");
-            prepareOutputDirectory();
-        } else {
-            taskLog.println("ExecuteAlgorithms: The result will not be saved by default");
-        }
+        prepareOutputDirectory();
+
+        taskLog.println("ExecuteAlgorithms.");
         // Progress of the count of algorithm finished
         int progress = 0;
         updateProgress(progress, experiment.getAlgorithmList().size());
@@ -85,9 +84,7 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
             }
 
             // execute the algorithm
-            if (!saveResult) {
-                algorithm.prepareToRun(this.experiment);
-            }
+            algorithm.prepareToRun(this.experiment);
             int numberOfGenerations = 0;
 
             // Run the algorithm
@@ -113,9 +110,7 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
                 for (Solution<?> solution : solutions) {
                     generationAttribute.setAttribute(solution, numberOfGenerations + 1);
                 }
-                if (!saveResult) {
-                    algorithm.saveSolutionList();
-                }
+                algorithm.saveSolutionList();
                 progress++;
                 if (returnPartialResult) {
                     updateValue(solutions);
@@ -138,41 +133,55 @@ public class MultiObjectiveExperimentTask extends Task<List<? extends Solution<?
         return reference.getReferenceToParetoFront();
     }
 
+    /**
+     * Prepare the temp folder and create in this a temporal directory to save the result of execution.
+     */
     private void prepareOutputDirectory() {
         if (!experimentDirectoryExist()) {
             createExperimentDirectory();
         }
+        Path experimentDirectory = FileSystems.getDefault().getPath("temp");
+        Path tempDirectory;
+        try {
+            tempDirectory = Files.createTempDirectory(experimentDirectory, null);
+        } catch (IOException e) {
+            throw new ApplicationException(
+                    "Error creating temporary directory in temp folder.");
+        }
+        this.experiment.setExperimentBaseDirectory(tempDirectory.toFile().getAbsolutePath());
     }
 
+    /**
+     * Check if exist the temp directory in the current directory of the application.
+     */
     private boolean experimentDirectoryExist() {
         boolean result;
         File experimentDirectory;
 
-        experimentDirectory = new File(experiment.getExperimentBaseDirectory());
+        experimentDirectory = new File("temp");
         result = experimentDirectory.exists() && experimentDirectory.isDirectory();
 
         return result;
     }
 
     /**
-     * Create the experiment directory
+     * Create the experiment directory (temp folder in current directory.).
      *
      * @throws ApplicationException if there is a error to create the experiment
      *                              directory
      */
     private void createExperimentDirectory() {
         File experimentDirectory;
-        experimentDirectory = new File(experiment.getExperimentBaseDirectory());
+        experimentDirectory = new File("temp");
 
         if (experimentDirectory.exists()) {
             experimentDirectory.delete();
         }
 
-        boolean result;
-        result = new File(experiment.getExperimentBaseDirectory()).mkdirs();
+        boolean result = experimentDirectory.mkdirs();
         if (!result) {
             throw new ApplicationException(
-                    "Error creating experiment directory: " + experiment.getExperimentBaseDirectory());
+                    "Error creating experiment directory: temp");
         }
     }
 

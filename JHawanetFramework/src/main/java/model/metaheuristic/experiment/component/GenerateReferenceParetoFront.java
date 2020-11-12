@@ -57,7 +57,6 @@ import java.util.Objects;
  * <p>
  * If {@link Experiment#getReferenceFrontDirectory()}  is a empty string (is not set up) the final pareto front will not be saved automatically
  * in disk.
- *
  */
 public class GenerateReferenceParetoFront implements ExperimentComponent {
     @NotNull
@@ -104,8 +103,7 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
     @Override
     public void run() throws IOException {
 
-        String outputDirectoryName = experiment.getReferenceFrontDirectory();
-        boolean hasReferenceDirectory = !outputDirectoryName.isEmpty();
+        String outputDirectoryName = experiment.getExperimentBaseDirectory() + "/" + experiment.getReferenceFrontDirectory();
 
         ExperimentProblem<?> problem = experiment.getProblem();
 
@@ -128,16 +126,15 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
 
             this.paretoFront = nonDominatedSolutionArchive.getSolutionList();
 
-            // If has a reference directory save the solution in disk.
-            if (hasReferenceDirectory) {
-                createOutputDirectory(outputDirectoryName);
-                taskLog.println("- Saving final pareto front in " + outputDirectoryName);
+            // Save values in temp folder. The temporal folder is read where run quality indicators.
+            createOutputDirectory(outputDirectoryName);
+            taskLog.println("- Saving final pareto front in " + outputDirectoryName);
 
-                String referenceFrontFileName = outputDirectoryName + "/" + problem.getTag() + ".pf";
-                new SolutionListOutput(this.paretoFront).printObjectivesToFile(referenceFrontFileName);
+            String referenceFrontFileName = outputDirectoryName + "/" + problem.getTag() + ".csv";
+            new SolutionListOutput(this.paretoFront).setSeparator(",").printObjectivesToFile(referenceFrontFileName);
 
-                writeFilesWithTheSolutionsContributedByEachAlgorithm(outputDirectoryName, problem, this.paretoFront);
-            }
+            writeFilesWithTheSolutionsContributedByEachAlgorithm(outputDirectoryName, problem, this.paretoFront);
+
         }
     }
 
@@ -184,8 +181,8 @@ public class GenerateReferenceParetoFront implements ExperimentComponent {
                 }
             }
 
-            new SolutionListOutput(solutionsPerAlgorithm).printObjectivesToFile(
-                    outputDirectoryName + "/" + problem.getTag() + "." + algorithm.getAlgorithmTag() + ".pf");
+            new SolutionListOutput(solutionsPerAlgorithm).setSeparator(",").printObjectivesToFile(
+                    outputDirectoryName + "/" + problem.getTag() + "." + algorithm.getAlgorithmTag() + ".csv");
         }
     }
 

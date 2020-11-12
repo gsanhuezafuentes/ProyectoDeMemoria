@@ -6,8 +6,6 @@ import model.metaheuristic.util.visualization.html.impl.HtmlGridView;
 import model.metaheuristic.util.visualization.html.impl.htmlTable.impl.FriedmanTestTable;
 import model.metaheuristic.util.visualization.html.impl.htmlTable.impl.MedianValuesTable;
 import model.metaheuristic.util.visualization.html.impl.htmlTable.impl.WilcoxonTestTable;
-import org.uma.jmetal.lab.experiment.Experiment;
-import org.uma.jmetal.util.errorchecking.JMetalException;
 import tech.tablesaw.api.StringColumn;
 import tech.tablesaw.api.Table;
 import tech.tablesaw.io.csv.CsvReadOptions;

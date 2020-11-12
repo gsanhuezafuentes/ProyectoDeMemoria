@@ -39,123 +39,127 @@ import java.util.Objects;
  * Class with methods to write solutions to file
  */
 public class SolutionListOutput {
-	private String separator = "\t";
-	private String funFileName = "FUN";
-	private String varFileName = "VAR";
-	private final List<? extends Solution<?>> solutionList;
+    private String separator = "\t";
+    private String funFileName = "FUN";
+    private String varFileName = "VAR";
+    private final List<? extends Solution<?>> solutionList;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param solutionList the list of solution
-	 * @throws NullPointerException if solutionList is null
-	 */
-	public SolutionListOutput(List<? extends Solution<?>> solutionList) {
-		Objects.requireNonNull(solutionList);
-		this.solutionList = solutionList;
-	}
+    /**
+     * Constructor
+     *
+     * @param solutionList the list of solution
+     * @throws NullPointerException if solutionList is null
+     */
+    public SolutionListOutput(List<? extends Solution<?>> solutionList) {
+        Objects.requireNonNull(solutionList);
+        this.solutionList = solutionList;
+    }
 
-	public SolutionListOutput setSeparator(String separator) {
-		this.separator = separator;
-		return this;
-	}
+    public SolutionListOutput setSeparator(String separator) {
+        this.separator = separator;
+        return this;
+    }
 
-	public SolutionListOutput setFunFileName(String name) {
-		this.funFileName = name;
-		return this;
-	}
+    public SolutionListOutput setFunFileName(String name) {
+        this.funFileName = name;
+        return this;
+    }
 
-	public SolutionListOutput setVarFileName(String name) {
-		this.varFileName = name;
-		return this;
-	}
+    public SolutionListOutput setVarFileName(String name) {
+        this.varFileName = name;
+        return this;
+    }
 
-	/**
-	 * Write a FUN and VAR file. The FUN has the objectives. The VAR file has the
-	 * decision variables.
-	 * 
-	 * @throws IOException           If an I/O error occurs
-	 * @throws FileNotFoundException if the file exists but is a directory rather
-	 *                               than a regular file, does not exist but cannot
-	 *                               be created, or cannot be opened for any other
-	 *                               reason.
-	 */
-	public void write() throws FileNotFoundException, IOException {
-		printObjectivesToFile();
-		printVariablesToFile();
-	}
+    /**
+     * Write a FUN and VAR file. The FUN has the objectives. The VAR file has the
+     * decision variables.
+     *
+     * @throws IOException           If an I/O error occurs
+     * @throws FileNotFoundException if the file exists but is a directory rather
+     *                               than a regular file, does not exist but cannot
+     *                               be created, or cannot be opened for any other
+     *                               reason.
+     */
+    public void write() throws FileNotFoundException, IOException {
+        printObjectivesToFile();
+        printVariablesToFile();
+    }
 
-	/**
-	 * Format the variables of each solution to a String
-	 * 
-	 * @param solution the solution
-	 * @return a string with the variables
-	 */
-	private String formatVAR(Solution<?> solution) {
-		StringBuilder text = new StringBuilder();
-		for (int i = 0; i < solution.getNumberOfVariables(); i++){
-			text.append(solution.getVariableAsString(i)).append(this.separator);
-		}
-		return text.toString();
-	}
+    /**
+     * Format the variables of each solution to a String
+     *
+     * @param solution the solution
+     * @return a string with the variables
+     */
+    private String formatVAR(Solution<?> solution) {
+        StringBuilder text = new StringBuilder();
+        int numberOfVariables = solution.getNumberOfVariables();
+        for (int i = 0; i < numberOfVariables - 1; i++) {
+            text.append(solution.getVariableAsString(i)).append(this.separator);
+        }
+        text.append(solution.getVariableAsString(numberOfVariables - 1));
+        return text.toString();
+    }
 
-	/**
-	 * Format the objectives of each solution to a String
-	 * 
-	 * @param solution the solution
-	 * @return a string with the objectives
-	 */
-	private String formatFUN(Solution<?> solution) {
-		StringBuilder text = new StringBuilder();
-		for (double objective : solution.getObjectives()) {
-			text.append(objective).append(this.separator);
-		}
-		return text.toString();
-	}
-	
-	public void printObjectivesToFile(String filepath) throws FileNotFoundException, IOException {
-		try (BufferedWriter buffFunWriter = new BufferedWriter(
-				new OutputStreamWriter(new FileOutputStream(filepath), StandardCharsets.ISO_8859_1))) {
-			for (Solution<?> solution : this.solutionList) {
-				buffFunWriter.write(formatFUN(solution));
-				buffFunWriter.write("\n");
-			}
-		}
-	}
-	
-	public void printVariablesToFile(String filepath) throws FileNotFoundException, IOException{
-		try (BufferedWriter buffVarWriter = new BufferedWriter(
-				new OutputStreamWriter(new FileOutputStream(filepath), StandardCharsets.ISO_8859_1))) {
-			for (Solution<?> solution : this.solutionList) {
-				buffVarWriter.write(formatVAR(solution));
-				buffVarWriter.write("\n");
-			}
-		}
-	}
+    /**
+     * Format the objectives of each solution to a String
+     *
+     * @param solution the solution
+     * @return a string with the objectives
+     */
+    private String formatFUN(Solution<?> solution) {
+        StringBuilder text = new StringBuilder();
+        int numberOfObjectives = solution.getNumberOfObjectives();
+        for (int i = 0; i < numberOfObjectives - 1; i++) {
+            text.append(solution.getObjective(i)).append(this.separator);
+        }
+        text.append(solution.getObjective(numberOfObjectives - 1));
+        return text.toString();
+    }
 
-	/**
-	 * Write the Objectives file
-	 * 
-	 * @throws FileNotFoundException if the file exists but is a directory rather
-	 *                               than a regular file, does not exist but
-	 *                               can not be created, or cannot be opened for any
-	 *                               other reason
-	 * @throws IOException If an I/O error occurs
-	 */
-	public void printObjectivesToFile() throws FileNotFoundException, IOException {
-		printObjectivesToFile(this.funFileName);
-	}
+    public void printObjectivesToFile(String filepath) throws FileNotFoundException, IOException {
+        try (BufferedWriter buffFunWriter = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(filepath), StandardCharsets.ISO_8859_1))) {
+            for (Solution<?> solution : this.solutionList) {
+                buffFunWriter.write(formatFUN(solution));
+                buffFunWriter.write("\n");
+            }
+        }
+    }
 
-	/**
-	 * Write the variables file
-	 * 
-	 * @throws FileNotFoundException if the file exists but is a directory rather
-	 *                               than a regular file, does not exist but
-	 *                               can not be created, or cannot be opened for any
-	 *                               other reason
-	 * @throws IOException If an I/O error occurs
-	 */
-	public void printVariablesToFile() throws FileNotFoundException, IOException {
-		printVariablesToFile(this.varFileName);
-	}
+    public void printVariablesToFile(String filepath) throws FileNotFoundException, IOException {
+        try (BufferedWriter buffVarWriter = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(filepath), StandardCharsets.ISO_8859_1))) {
+            for (Solution<?> solution : this.solutionList) {
+                buffVarWriter.write(formatVAR(solution));
+                buffVarWriter.write("\n");
+            }
+        }
+    }
+
+    /**
+     * Write the Objectives file
+     *
+     * @throws FileNotFoundException if the file exists but is a directory rather
+     *                               than a regular file, does not exist but
+     *                               can not be created, or cannot be opened for any
+     *                               other reason
+     * @throws IOException           If an I/O error occurs
+     */
+    public void printObjectivesToFile() throws FileNotFoundException, IOException {
+        printObjectivesToFile(this.funFileName);
+    }
+
+    /**
+     * Write the variables file
+     *
+     * @throws FileNotFoundException if the file exists but is a directory rather
+     *                               than a regular file, does not exist but
+     *                               can not be created, or cannot be opened for any
+     *                               other reason
+     * @throws IOException           If an I/O error occurs
+     */
+    public void printVariablesToFile() throws FileNotFoundException, IOException {
+        printVariablesToFile(this.varFileName);
+    }
 }
