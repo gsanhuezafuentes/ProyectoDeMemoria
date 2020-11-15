@@ -25,7 +25,7 @@ public class ControllerUtils {
         try {
             return fxmlLoader.load();
         } catch (IOException exception) {
-            throw new ViewLoadException("The FXML " + pathToResource + "can't be loaded.",exception);
+            throw new ViewLoadException("The FXML " + pathToResource + " can't be loaded.",exception);
         }
     }
 
@@ -57,7 +57,7 @@ public class ControllerUtils {
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
-            throw new ViewLoadException("The FXML " + pathToResource + "can't be loaded.",exception);
+            throw new ViewLoadException("The FXML " + pathToResource + " can't be loaded.",exception);
         }
     }
 }
