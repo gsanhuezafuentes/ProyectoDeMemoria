@@ -1,8 +1,8 @@
 package controller;
 
 import application.ApplicationSetup;
-import controller.multiobjectives.MultiObjectiveRunningWindowController;
-import controller.singleobjectives.SingleObjectiveRunningWindowController;
+import controller.multiobjective.MultiObjectiveRunningWindowController;
+import controller.singleobjective.SingleObjectiveRunningWindowController;
 import controller.util.ProblemMenuConfiguration;
 import epanet.core.EpanetException;
 import exception.InputException;

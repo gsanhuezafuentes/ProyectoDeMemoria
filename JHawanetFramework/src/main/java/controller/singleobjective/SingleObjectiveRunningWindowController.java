@@ -1,11 +1,11 @@
-package controller.multiobjectives;
+package controller.singleobjective;
 
 import application.ApplicationSetup;
 import controller.ResultController;
 import controller.ResultPlotController;
 import controller.util.ControllerUtils;
 import controller.util.CustomCallback;
-import controller.multiobjectives.util.MultiObjectiveExperimentTask;
+import controller.singleobjective.util.SingleObjectiveExperimentTask;
 import epanet.core.EpanetException;
 import javafx.concurrent.Worker.State;
 import javafx.fxml.FXML;
@@ -30,7 +30,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * This class is the controller for MultiObjectiveRunningWindow. <br>
+ * This class is the controller for SingleObjectiveRunningWindow.fxml. <br>
  * <br>
  * <p>
  * The experiment received by this class will be executed in other thread.<br>
@@ -39,8 +39,8 @@ import java.util.stream.Collectors;
  * When the experiment finishes successfully this controller will open the
  * ResultWindow.
  */
-public class MultiObjectiveRunningWindowController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MultiObjectiveRunningWindowController.class);
+public class SingleObjectiveRunningWindowController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SingleObjectiveRunningWindowController.class);
 
     @FXML
     private Label headerText;
@@ -55,9 +55,7 @@ public class MultiObjectiveRunningWindowController {
     @FXML
     private Label progressLabel;
     @FXML
-    private TextArea algorithmStatusTextArea;
-    @FXML
-    private TextArea logExperimentTextArea;
+    private TextArea textArea;
     @FXML
     private Tab chartTab;
     @FXML
@@ -68,38 +66,35 @@ public class MultiObjectiveRunningWindowController {
     @NotNull
     private final Pane root;
     @NotNull
-    private final CustomCallback<ResultController> callback;
+    private final SingleObjectiveExperimentTask task;
     @Nullable
     private final ResultPlotController resultPlotController;
-    @NotNull
-    private final MultiObjectiveExperimentTask task;
     @Nullable
     private Stage window;
 
     @NotNull
-    private final Experiment<?> experiment;
-    @NotNull
     private final Problem<?> problem;
+    @NotNull
+    private final Experiment<?> experiment;
     @Nullable
     private final Map<String, String> parameters;
     @NotNull
     private final Network network;
-
-    private int numberOfSolutionToReturn;
-    private final boolean isNumberOfResultLimited;
+    @NotNull
+    private final CustomCallback<ResultController> callback;
 
     /**
      * Constructor
      *
-     * @param experiment the experiment to execute
+     * @param experiment the algorithm to execute
      * @param parameters the configurations parameter of experiment.
      * @param network    the network opened.
      * @param callback   a callback function to return the result node when task finish
      * @throws NullPointerException     if experiment, experiment problem, network or callback are null.
-     * @throws IllegalArgumentException if problem is singleobjective or there aren't element in experiment algorithm.
+     * @throws IllegalArgumentException if the problem is multiobjective or there aren't element in experiment algorithm.
      */
-    public MultiObjectiveRunningWindowController(@NotNull Experiment<?> experiment, @Nullable Map<String, String> parameters, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
-        LOGGER.debug("Initializing MultiObjectiveRunningWindowController.");
+    public SingleObjectiveRunningWindowController(@NotNull Experiment<?> experiment, @Nullable Map<String, String> parameters, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
+        LOGGER.debug("Initializing SingleObjectiveRunningWindowController.");
 
         this.experiment = Objects.requireNonNull(experiment);
         this.problem = Objects.requireNonNull(experiment.getProblem()).getProblem();
@@ -107,58 +102,51 @@ public class MultiObjectiveRunningWindowController {
         this.network = Objects.requireNonNull(network);
         this.callback = Objects.requireNonNull(callback);
 
-        if (experiment.getAlgorithmList().isEmpty()){
+        if (experiment.getAlgorithmList().isEmpty()) {
             throw new IllegalArgumentException("There aren't algorithms configured in experiment");
         }
 
-        if (this.problem.getNumberOfObjectives() == 1) {
-            LOGGER.error("The number of objectives is 1.");
+        /*
+         * Only add the the showChartButton if the number of objectives is less than 2.
+         */
+        if (problem.getNumberOfObjectives() != 1) {
+            LOGGER.error("The number of objectives is different from 1.");
             throw new IllegalArgumentException("The number of objective to to this type of Registrable should be 1.");
         }
 
-        this.root = ControllerUtils.loadFXML("/view/MultiObjectiveRunningWindow.fxml", this); //initialize root and @FXML by injection
+        // Used to create a new thread
+        this.task = new SingleObjectiveExperimentTask(experiment, ApplicationSetup.getInstance().isChartEnabled());
 
-        this.task = new MultiObjectiveExperimentTask(experiment, ApplicationSetup.getInstance().isChartEnabled());
+        this.root = ControllerUtils.loadFXML("/view/singleobjective/SingleObjectiveRunningWindow.fxml", this); //initialize fxml and all parameters defined with @FXML
 
-        // Create the controller to add point even if plot windows is not showed.
-        // Only created if number of objectives is 2
-        if (this.problem.getNumberOfObjectives() == 2 && ApplicationSetup.getInstance().isChartEnabled()) {
-            LOGGER.debug("Chart is enabled to this experiment. Number of objectives: {}, Chart enabled: {}."
-            ,this.problem.getNumberOfObjectives(), ApplicationSetup.getInstance().isChartEnabled());
+        // Create the controller to add point even if plot windows is not showed
+        if (ApplicationSetup.getInstance().isChartEnabled()) {
+            LOGGER.debug("Chart is enabled to this experiment. Chart enabled: {}.", ApplicationSetup.getInstance().isChartEnabled());
 
             this.resultPlotController = new ResultPlotController(this.problem.getNumberOfObjectives());
             this.chartTab.setContent(this.resultPlotController.getNode());
         } else {
-            LOGGER.debug("Chart is disabled for this experiment. Number of objectives: {}, Chart enabled: {}."
-            ,this.problem.getNumberOfObjectives(), ApplicationSetup.getInstance().isChartEnabled());
+            LOGGER.debug("Chart is disabled for this experiment. Chart enabled: '{}'.", ApplicationSetup.getInstance().isChartEnabled());
 
             this.resultPlotController = null;
             this.chartTab.setDisable(true);
         }
 
-        // limit the number of result to return
-        isNumberOfResultLimited = ApplicationSetup.getInstance().isNumberOfMultiObjectiveResultLimited();
-        if (isNumberOfResultLimited) {
-            this.numberOfSolutionToReturn = ApplicationSetup.getInstance().getNumberOfResultMultiObjectiveProblem();
-        }
-
-        //add the name of algorithm and the name of problem. (The experiment should have only one type of algorithm. Eg. NSGAII)
+        //add the name of algorithm and the name of problem. (The experiment should have only one type of algorithm. Eg. GeneticAlgorithm)
         this.algorithmNameLabel.setText(experiment.getAlgorithmList().get(0).getAlgorithmTag());
         this.problemNameLabel.setText(experiment.getProblem().getTag());
-        addBindingAndListener();
 
+        addBindingAndListener();
     }
 
     /**
-     * Add binding to task and gui elements
+     * Add binding to task and gui elements.
      */
     private void addBindingAndListener() {
         LOGGER.debug("Initializing extra properties to the SingleObjectiveRunningWindow.");
 
         // bind the textArea text with the value of message property of task
-        algorithmStatusTextArea.textProperty().bind(this.task.messageProperty());
-        logExperimentTextArea.textProperty().bind(this.task.logProperty());
-
+        textArea.textProperty().bind(this.task.messageProperty());
         cancelButton.disableProperty().bind(task.stateProperty().isNotEqualTo(State.RUNNING));
 
         // Add listener to detect when the task has finished and change the
@@ -174,11 +162,11 @@ public class MultiObjectiveRunningWindowController {
         task.exceptionProperty().addListener((property, oldValue, newValue) -> {
             if (newValue instanceof EpanetException) {
                 LOGGER.error("Error in EpanetToolkit.", newValue);
-                CustomDialogs.showExceptionDialog("Error", "Error in the execution of the experiment.",
+                CustomDialogs.showExceptionDialog("Error", "Error in the simulation.",
                         "An error has occurred during the validation of the solutions with EpanetToolkit.", newValue);
             } else {
                 LOGGER.error("Error in the experiment execution thread.", newValue);
-                CustomDialogs.showExceptionDialog("Error", "Error in the execution of the experiment",
+                CustomDialogs.showExceptionDialog("Error", "Error in the execution of the algorithm",
                         "An error has occurred while trying to execute the experiment.", newValue);
             }
         });
@@ -197,14 +185,17 @@ public class MultiObjectiveRunningWindowController {
             if (this.resultPlotController != null) {
                 this.resultPlotController.updateExecutionStatusLabel(String.format("Execution %s/%s of the %s", workDone, totalWork, this.algorithmNameLabel.getText()));
             }
+
             progressLabel.setText(progressText);
 
         });
 
-        // update the chart
-        task.valueProperty().addListener((prop, oldv, newv) -> {
-            if (resultPlotController != null) {
-                this.resultPlotController.addData(newv);
+        // Receive the value of thread and add to chart
+        task.customValueProperty().addListener((prop, oldv, newv) -> {
+            if (this.resultPlotController != null) {
+                this.resultPlotController.addData(newv.getSolution()
+                        , newv.getNumberOfGeneration()
+                        , newv.getRepeatNumberOfAlgorithm());
             }
         });
 
@@ -212,27 +203,20 @@ public class MultiObjectiveRunningWindowController {
         task.setOnSucceeded(e -> {
             LOGGER.info("Experiment execution thread successfully executed.");
 
-            List<? extends Solution<?>> solutions = task.getValue();
-            if (this.resultPlotController != null) {
-                this.resultPlotController.addData(solutions);
-            }
-            // slice the list to a given size
-            if (this.isNumberOfResultLimited) {
-                solutions = solutions.stream().limit(this.numberOfSolutionToReturn).collect(Collectors.toList());
-            }
+            List<SingleObjectiveExperimentTask.Result> result = task.getValue();
+            List<? extends Solution<?>> solutions = result.stream().map(SingleObjectiveExperimentTask.Result::getSolution).collect(Collectors.toList());
             ResultController resultController = new ResultController(experiment.getProblem().getTag(), solutions, this.problem,
-                    this.network, this.parameters);
+                    this.network, parameters);
             callback.notify(resultController);
         });
     }
 
     /**
-     * Method to handle the view event when Cancel button will be click on.
+     * Method to handle the view event when Cancel button will be click on. This method is called by fxml
      */
     @FXML
     private void onCancelButtonClick() {
         LOGGER.debug("Cancelling thread task event.");
-
         // cancel the task
         this.task.cancel();
     }
@@ -242,15 +226,17 @@ public class MultiObjectiveRunningWindowController {
      */
     @FXML
     private void onCloseButtonClick() {
-        LOGGER.debug("Closed window event.");
+        LOGGER.debug("Closed SingleObjectiveRunningWindow event.");
 
         // if task is not cancelled, so cancel it.
         if (!task.isCancelled()) {
             LOGGER.debug("Cancelling thread task.");
             task.cancel();
         }
+
         // close the dialog
         assert this.window != null;
+
         this.window.close();
     }
 
@@ -260,17 +246,17 @@ public class MultiObjectiveRunningWindowController {
     public void showWindowAndRunExperiment() {
         Stage stage = new Stage();
         stage.setScene(new Scene(this.root));
-//		stage.initStyle(StageStyle.UTILITY);
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setOnCloseRequest((e) -> onCloseButtonClick());
+//		stage.initStyle(StageStyle.UTILITY);
         stage.setTitle("Status of execution");
+        stage.setOnCloseRequest((e) -> onCloseButtonClick());
 
-        LOGGER.info("Show MultiObjectiveRunningWindow.");
+        LOGGER.info("Show SingleObjectiveRunningWindow.");
         stage.show();
         this.window = stage;
 
-        LOGGER.debug("Creating new thread to run multiobjective experiment.");
-        Thread t = new Thread(task, "MultiObjective Thread");
+        LOGGER.debug("Creating new thread to run the singleobjective experiment.");
+        Thread t = new Thread(task,"SingleObjective Thread");
         t.setDaemon(true);
         t.start();
     }

@@ -1,4 +1,4 @@
-package controller.singleobjectives.util;
+package controller.singleobjective.util;
 
 import controller.util.solutionattribute.Generation;
 import javafx.application.Platform;
@@ -51,7 +51,6 @@ public class SingleObjectiveExperimentTask extends Task<List<SingleObjectiveExpe
         Objects.requireNonNull(experiment);
         this.experiment = experiment;
         // Remove experiment base directory. This only is used by multiobjetive experiments.
-        this.experiment.setExperimentBaseDirectory("");
         this.returnPartialResult = returnPartialResult;
     }
 

@@ -1,4 +1,4 @@
-package controller.multiobjectives.util;
+package controller.multiobjective.util;
 
 import controller.util.solutionattribute.Generation;
 import exception.ApplicationException;

@@ -98,7 +98,7 @@ public abstract class Hypervolume<S> extends GenericIndicator<S> {
 
     @Override
     public @NotNull String getName() {
-        return "Hypervolume";
+        return "HV";
     }
 
     @Override

@@ -4,6 +4,7 @@ import annotations.*;
 import controller.util.ControllerUtils;
 import controller.util.CustomCallback;
 import controller.util.ReflectionUtils;
+import controller.util.TextInputUtil;
 import exception.ApplicationException;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
@@ -29,8 +30,6 @@ import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
-import java.util.function.UnaryOperator;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -215,11 +214,11 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         assert parameterType.getName().matches("int|Integer|double|Double");
         // if the type is int or integer use a validator that only let whole number
         if (parameterType.getName().matches("int|Integer")) {
-            textfield.setTextFormatter(createWholeTextFormatter((int) annotation.defaultValue()));
+            textfield.setTextFormatter(TextInputUtil.createWholeTextFormatter((int) annotation.defaultValue()));
         }
         // if the type is double use a validator that let real numbers
         if (parameterType.getName().matches("double|Double")) {
-            textfield.setTextFormatter(createDecimalTextFormatter(annotation.defaultValue()));
+            textfield.setTextFormatter(TextInputUtil.createDecimalTextFormatter(annotation.defaultValue()));
         }
 
         // add the row to grid pane
@@ -263,9 +262,9 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         assert parameterType.getName().matches("int|Integer|double|Double");
         //add validator to textfield
         if (parameterType.getName().matches("int|Integer")) {
-            textfield.setTextFormatter(createWholeTextFormatter((int) annotation.defaultValue()));
+            textfield.setTextFormatter(TextInputUtil.createWholeTextFormatter((int) annotation.defaultValue()));
         } else if (parameterType.getName().matches("double|Double")) {
-            textfield.setTextFormatter(createDecimalTextFormatter(annotation.defaultValue()));
+            textfield.setTextFormatter(TextInputUtil.createDecimalTextFormatter(annotation.defaultValue()));
         }
 
         this.configurationGridPane.addRow(gridLayoutRowCount++, radioButton, textfield);
@@ -442,11 +441,11 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
 
             // cast the default value from double to int (truncating the results)
             if (parameters[i].getName().matches("int|Integer")) {
-                textfield.setTextFormatter(createWholeTextFormatter((int) annotation.value()[i].defaultValue()));
+                textfield.setTextFormatter(TextInputUtil.createWholeTextFormatter((int) annotation.value()[i].defaultValue()));
             }
 
             if (parameters[i].getName().matches("double|Double")) {
-                textfield.setTextFormatter(createDecimalTextFormatter(annotation.value()[i].defaultValue()));
+                textfield.setTextFormatter(TextInputUtil.createDecimalTextFormatter(annotation.value()[i].defaultValue()));
             }
 
             // If there was previous result of a previous configuration so load it.
@@ -606,82 +605,6 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
                     "Can't be created an instance of " + this.registrableClass.getName(), e.getCause());
         }
 
-    }
-
-    /**
-     * Create a DecimalFormater. It when is attached a textfield only let valid
-     * values for a decimal
-     *
-     * @return the formatter
-     */
-    private @NotNull TextFormatter<Double> createDecimalTextFormatter(double defaultValue) {
-        Pattern validEditingState = Pattern.compile("-?(([1-9][0-9]*)|0)?(\\.[0-9]*)?");
-
-        UnaryOperator<TextFormatter.Change> filter = c -> {
-            String text = c.getControlNewText();
-            if (validEditingState.matcher(text).matches()) {
-                return c;
-            } else {
-                return null;
-            }
-        };
-
-        StringConverter<Double> converter = new StringConverter<Double>() {
-
-            @Override
-            public Double fromString(String s) {
-                if (s.isEmpty() || "-".equals(s) || ".".equals(s) || "-.".equals(s)) {
-                    return 0.0;
-                } else {
-                    return Double.valueOf(s);
-                }
-            }
-
-            @Override
-            public String toString(Double d) {
-                return d.toString();
-            }
-        };
-
-        return new TextFormatter<>(converter, defaultValue, filter);
-    }
-
-    /**
-     * Create a WholeFormatter. It when is attached a textfield only let valid
-     * values for a whole number
-     *
-     * @return the formatter
-     */
-    private @NotNull TextFormatter<Integer> createWholeTextFormatter(int defaultValue) {
-        Pattern validEditingState = Pattern.compile("-?(([1-9][0-9]*)|0)?");
-
-        UnaryOperator<TextFormatter.Change> filter = c -> {
-            String text = c.getControlNewText();
-            if (validEditingState.matcher(text).matches()) {
-                return c;
-            } else {
-                return null;
-            }
-        };
-
-        StringConverter<Integer> converter = new StringConverter<Integer>() {
-
-            @Override
-            public Integer fromString(String s) {
-                if (s.isEmpty() || "-".equals(s)) {
-                    return 0;
-                } else {
-                    return Integer.valueOf(s);
-                }
-            }
-
-            @Override
-            public String toString(Integer i) {
-                return i.toString();
-            }
-        };
-
-        return new TextFormatter<>(converter, defaultValue, filter);
     }
 
     /**

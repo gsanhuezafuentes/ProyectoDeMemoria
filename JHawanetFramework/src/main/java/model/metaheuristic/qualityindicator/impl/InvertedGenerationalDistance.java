@@ -122,7 +122,7 @@ public class InvertedGenerationalDistance<S extends Solution<?>> extends Generic
 
     @Override
     public @NotNull String getName() {
-        return "Inverted generational distance";
+        return "IGD";
     }
 
     @Override

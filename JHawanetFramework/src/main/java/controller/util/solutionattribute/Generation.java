@@ -1,7 +1,7 @@
 package controller.util.solutionattribute;
 
-import controller.multiobjectives.util.MultiObjectiveExperimentTask;
-import controller.singleobjectives.util.SingleObjectiveExperimentTask;
+import controller.multiobjective.util.MultiObjectiveExperimentTask;
+import controller.singleobjective.util.SingleObjectiveExperimentTask;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.solutionattribute.SolutionAttribute;
 

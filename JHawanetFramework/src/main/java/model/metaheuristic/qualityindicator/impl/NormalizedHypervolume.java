@@ -129,7 +129,7 @@ public class NormalizedHypervolume<S extends Solution<?>> extends GenericIndicat
 
     @Override
     public @NotNull String getName() {
-        return "Normalized Hypervolume";
+        return "NHV";
     }
 
     @Override

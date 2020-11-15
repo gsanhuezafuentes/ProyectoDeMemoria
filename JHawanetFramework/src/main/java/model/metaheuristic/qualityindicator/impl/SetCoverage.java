@@ -96,6 +96,6 @@ public class SetCoverage
 
     @Override
     public @NotNull String getName() {
-        return "Set Coverage";
+        return "SC";
     }
 }

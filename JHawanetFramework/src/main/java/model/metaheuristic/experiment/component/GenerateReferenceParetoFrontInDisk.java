@@ -1,6 +1,6 @@
 package model.metaheuristic.experiment.component;
 
-import controller.multiobjectives.util.MultiObjectiveExperimentTask;
+import controller.multiobjective.util.MultiObjectiveExperimentTask;
 import model.metaheuristic.experiment.ExperimentComponent;
 import model.metaheuristic.experiment.ExperimentSet;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;

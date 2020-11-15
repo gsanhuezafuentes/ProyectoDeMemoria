@@ -134,6 +134,6 @@ public class ErrorRatio<Evaluate extends List<? extends Solution<?>>>
 
     @Override
     public @NotNull String getName() {
-        return "Error Ratio";
+        return "ER";
     }
 }

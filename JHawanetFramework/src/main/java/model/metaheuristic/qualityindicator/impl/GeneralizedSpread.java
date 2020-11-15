@@ -151,7 +151,7 @@ public class GeneralizedSpread<S extends Solution<?>> extends GenericIndicator<S
 
     @Override
     public @NotNull String getName() {
-        return "Generalized Spread";
+        return "GSPREAD";
     }
 
     @Override

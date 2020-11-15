@@ -1,8 +1,8 @@
 annotations
 application
 controller
-controller.multiobjectives
-controller.singleobjectives
+controller.multiobjective
+controller.singleobjective
 controller.util
 controller.util.solutionattribute
 exception

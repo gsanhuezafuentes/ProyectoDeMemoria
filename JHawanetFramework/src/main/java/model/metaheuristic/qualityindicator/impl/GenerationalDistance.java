@@ -124,7 +124,7 @@ public class GenerationalDistance<S extends Solution<?>> extends GenericIndicato
 
     @Override
     public @NotNull String getName() {
-        return "Generational distance";
+        return "GD";
     }
 
     @Override

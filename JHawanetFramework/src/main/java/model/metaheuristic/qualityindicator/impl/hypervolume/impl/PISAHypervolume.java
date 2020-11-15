@@ -366,14 +366,4 @@ public class PISAHypervolume<S extends Solution<?>> extends Hypervolume<S> {
         }
         return contributions;
     }
-
-    /**
-     * Get the name of indicator.
-     *
-     * @return the string name.
-     */
-    @Override
-    public @NotNull String getName() {
-        return "PISAHypervolume";
-    }
 }

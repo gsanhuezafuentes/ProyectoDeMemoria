@@ -27,7 +27,7 @@
  */
 package model.metaheuristic.experiment.component;
 
-import controller.multiobjectives.util.MultiObjectiveExperimentTask;
+import controller.multiobjective.util.MultiObjectiveExperimentTask;
 import exception.ApplicationException;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentComponent;

@@ -1,4 +1,4 @@
-package controller.multiobjectives.util;
+package controller.multiobjective.util;
 
 import exception.ApplicationException;
 import javafx.concurrent.Task;
@@ -7,7 +7,6 @@ import model.metaheuristic.experiment.ExperimentSet;
 import model.metaheuristic.experiment.component.ComputeQualityIndicators;
 import model.metaheuristic.experiment.component.GenerateReferenceParetoFrontInDisk;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
-import model.metaheuristic.solution.Solution;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +16,6 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 
 public class ExecutionIndicatorTask extends Task<String> {

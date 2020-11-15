@@ -111,7 +111,7 @@ public class InvertedGenerationalDistancePlus<S extends Solution<?>> extends Gen
 
     @Override
     public @NotNull String getName() {
-        return "Inverted generational distance plus";
+        return "IGD+";
     }
 
     @Override
