@@ -29,6 +29,10 @@
     </Appenders>
 
     <Loggers>
+        <!-- Disable tree party library logger -->
+        <Logger name="com.mitchellbosecke.pebble" level="OFF" additivity="false">
+        </Logger>
+
         <Root level="debug">
             <AppenderRef ref="RoutingAppender"/>
             <AppenderRef ref="Console"/>
