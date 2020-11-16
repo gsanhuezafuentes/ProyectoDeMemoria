@@ -3,6 +3,8 @@ package controller;
 import application.ApplicationSetup;
 import controller.multiobjective.MultiObjectiveRunningWindowController;
 import controller.multiobjective.indicator.IndicatorConfigurationWindowController;
+import controller.multiobjective.indicator.IndicatorRunningWindowController;
+import controller.multiobjective.indicator.ResultIndicatorController;
 import controller.singleobjective.SingleObjectiveRunningWindowController;
 import controller.util.ProblemMenuConfiguration;
 import epanet.core.EpanetException;
@@ -333,7 +335,7 @@ public class MainWindowController implements Initializable {
     private int resultCount = 0;
 
     /**
-     * Create a new result tab
+     * Create a new result tab for the result of experiment
      *
      * @param resultController the result controller
      */
@@ -410,14 +412,27 @@ public class MainWindowController implements Initializable {
      * @param event the event.
      */
     public void runMultiObjectiveIndicatorsOnAction(ActionEvent event){
-        new IndicatorConfigurationWindowController(inpFile.getAbsolutePath(), this::runMultiobjectiveIndicators);
+        new IndicatorConfigurationWindowController(inpFile.getAbsolutePath(), this::runMultiobjectiveIndicators).showWindow();
     }
 
     /**
      * Run the comparison between multiobjectives experiments using indicators.
      */
     public void runMultiobjectiveIndicators(ExperimentSet<?> experimentSet) {
+        new IndicatorRunningWindowController(experimentSet, this::createIndicatorResultTab).showWindowAndRunExperiment();
+    }
 
+    /**
+     * Create a new result tab
+     *
+     * @param resultController the result controller
+     */
+    private void createIndicatorResultTab(@NotNull ResultIndicatorController resultController) {
+        LOGGER.info("Showing results for indicators in a new tab in the main window.");
+        Tab tab = new Tab("Indicator result " + LocalDate.now(), resultController.getNode());
+
+        this.tabPane.getTabs().addAll(tab);
+        this.tabPane.getSelectionModel().select(tab);
     }
 
     public void aboutOnAction(ActionEvent actionEvent) {

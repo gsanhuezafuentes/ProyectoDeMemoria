@@ -92,7 +92,15 @@ public class IndicatorConfigurationWindowController {
             this.configurationTab.setContent(this.indicatorExperimentConfigurationComponent);
 
         } else {
-            List<Callable<Experiment<?>>> registrableList = this.indicatorExperimentConfigurationComponent.getRegistrableList(inpPath);
+            List<Callable<Experiment<?>>> registrableList = null;
+            try {
+                registrableList = this.indicatorExperimentConfigurationComponent.getRegistrableList(inpPath);
+            } catch (InvocationTargetException e) {
+                LOGGER.error("Error while create a registrable instance.", e);
+                CustomDialogs.showExceptionDialog("Error", "Error in the creation of the experiments.",
+                        "A operator or a registrable instance can't be created. Check if all ingresed parameters are correct.", e.getCause());
+                return;
+            }
             ObservableList<Class<? extends GenericIndicator>> selectedIndicators = this.indicatorsListView.getSelectedIndicators();
             List<GenericIndicator> indicators = new ArrayList<>();
             for (Class<? extends GenericIndicator> indicator : selectedIndicators) {

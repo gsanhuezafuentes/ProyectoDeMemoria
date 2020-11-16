@@ -1,5 +1,6 @@
 package model.metaheuristic.experiment.component;
 
+import controller.multiobjective.indicator.util.ExecutionIndicatorTask;
 import exception.ApplicationException;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentComponent;
@@ -36,7 +37,7 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 /**
  * This class computes the {@link QualityIndicator}s of an experiment. Once the algorithms of an
- * experiment have been executed through running an instance of class {@link controller.multiobjective.util.ExecutionIndicatorTask},
+ * experiment have been executed through running an instance of class {@link ExecutionIndicatorTask},
  * the list of indicators in obtained from the {@link ExperimentSet #getIndicatorsList()} method.
  * Then, for every combination algorithm + problem, the indicators are applied to all the FUN files and
  * the resulting values are store in a file called as {@link QualityIndicator #getName()}, which is located

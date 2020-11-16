@@ -14,13 +14,17 @@ import javafx.scene.control.TreeView;
 import javafx.scene.layout.StackPane;
 import javafx.util.Callback;
 import model.metaheuristic.experiment.Experiment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import registrable.MultiObjectiveRegistrable;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 
 public class IndicatorExperimentConfigurationComponent extends StackPane {
+    private static final Logger LOGGER = LoggerFactory.getLogger(IndicatorExperimentConfigurationComponent.class);
 
     @FXML
     private TreeView<Item> experimentTreeView;
@@ -35,6 +39,7 @@ public class IndicatorExperimentConfigurationComponent extends StackPane {
      * Creates a new SplitPane with no content.
      */
     public IndicatorExperimentConfigurationComponent(Map<String, List<List<Class<? extends MultiObjectiveRegistrable>>>> items) {
+        LOGGER.debug("Initializing IndicatorExperimentConfigurationComponent.");
         Objects.requireNonNull(items);
         ControllerUtils.loadFXML("/view/multiobjective/indicator/component/IndicatorExperimentConfigurationComponent.fxml", this);
         fillTreeView(items);
@@ -129,8 +134,11 @@ public class IndicatorExperimentConfigurationComponent extends StackPane {
      * Return a list with callback to create each experiment
      *
      * @return the list with callbacks.
+     * @throws InvocationTargetException if there is a error while create some of registrable instances or his operators.
      */
-    public List<Callable<Experiment<?>>> getRegistrableList(String inpPath) {
+    public List<Callable<Experiment<?>>> getRegistrableList(String inpPath) throws InvocationTargetException {
+        LOGGER.debug("Creating the registrable list for use with indicators with the network '{}'.",inpPath);
+
         Objects.requireNonNull(inpPath);
         if (inpPath.isEmpty()) {
             throw new IllegalArgumentException("The inpPath is empty");

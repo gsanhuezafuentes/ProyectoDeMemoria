@@ -190,7 +190,7 @@ public class ExperimentConfigurationComponent<T extends Registrable<?>> extends 
             textfield.setTextFormatter(TextInputUtil.createDecimalTextFormatter(annotation.defaultValue()));
         }
 
-       addRow(gridLayoutRowCount++, radioButton, textfield);
+        addRow(gridLayoutRowCount++, radioButton, textfield);
         gridLayoutRowCount++;
 
     }
@@ -214,7 +214,7 @@ public class ExperimentConfigurationComponent<T extends Registrable<?>> extends 
             if (annotation.type() == FileInput.Type.OPEN) {
                 FileChooser fileChooser = new FileChooser();
                 f = fileChooser.showOpenDialog(getScene().getWindow());
-            } else if (annotation.type() == FileInput.Type.SAVE){
+            } else if (annotation.type() == FileInput.Type.SAVE) {
                 FileChooser fileChooser = new FileChooser();
                 f = fileChooser.showSaveDialog(getScene().getWindow());
             } else { // is a directory
@@ -228,7 +228,7 @@ public class ExperimentConfigurationComponent<T extends Registrable<?>> extends 
         });
 
         this.filesTextFieldAdded.add(textfield);
-       addRow(gridLayoutRowCount, label, textfield, button);
+        addRow(gridLayoutRowCount, label, textfield, button);
         gridLayoutRowCount++;
     }
 
@@ -284,7 +284,7 @@ public class ExperimentConfigurationComponent<T extends Registrable<?>> extends 
                 if (parameters.length > 0) {
                     List<Number> defaultValues = new ArrayList<>(parameters.length);
                     // for each number input annotation in default constructor get the default value and cast it in the respective type.
-                    for (int i = 0; i < parameters.length; i++){
+                    for (int i = 0; i < parameters.length; i++) {
                         // cast the default value from double to int (truncating the results)
                         if (parameters[i].getName().matches("int|Integer")) {
                             defaultValues.add((int) numberInputs[i].defaultValue());
@@ -308,7 +308,7 @@ public class ExperimentConfigurationComponent<T extends Registrable<?>> extends 
         configButton.setOnAction((evt) -> createAndShowOperatorConfigureDialog(annotation.displayName(),
                 comboBox.getSelectionModel().getSelectedItem()));
 
-       addRow(gridLayoutRowCount, label, comboBox, configButton);
+        addRow(gridLayoutRowCount, label, comboBox, configButton);
         gridLayoutRowCount++;
     }
 
@@ -395,9 +395,11 @@ public class ExperimentConfigurationComponent<T extends Registrable<?>> extends 
 
     /**
      * Create the registrable class based in values of attributes configured.
+     *
      * @return the registrable instance or null if wasn't created.
+     * @throws InvocationTargetException if there is a error while create the operator or the registrable instance.
      */
-    public T getRegistrableInstance() {
+    public T getRegistrableInstance() throws InvocationTargetException {
         Map<Class<?>, List<Number>> operatorsAndConfig = new LinkedHashMap<>(
                 this.comboBoxesAdded.size());
         File[] files = new File[this.filesTextFieldAdded.size()];
@@ -472,10 +474,11 @@ public class ExperimentConfigurationComponent<T extends Registrable<?>> extends 
      *                           toggle input.If there isn't number inputs so
      *                           receive a empty array of Number[].
      * @return The registrable instance or null if can't be created.
-     * @throws NullPointerException if some operator hasn't a constructor with {@link DefaultConstructor} annotation.
+     * @throws NullPointerException if some operator hasn't a constructor with {@link DefaultConstructor} annotation or some of the values received is null.
+     * @throws InvocationTargetException if there is a error while create the operator or the registrable instance
      */
     private T createInstance(Map<Class<?>, List<Number>> operatorsAndConfig, File[] fileInputs,
-                             Number[] numberInputs, Number[] toggleInputs) {
+                             Number[] numberInputs, Number[] toggleInputs) throws InvocationTargetException {
         Objects.requireNonNull(operatorsAndConfig);
         Objects.requireNonNull(fileInputs);
         Objects.requireNonNull(numberInputs);
@@ -486,16 +489,8 @@ public class ExperimentConfigurationComponent<T extends Registrable<?>> extends 
         int i = 0;
         // create the operators and add to parameters array
         for (Class<?> operator : operatorsAndConfig.keySet()) {
-            try {
-                Object operatorObject = ReflectionUtils.createOperatorInstance(operator, operatorsAndConfig.get(operator).toArray());
-                parameters[i++] = operatorObject;
-            } catch (InvocationTargetException e) {
-                LOGGER.error("Error to create {} there is a exception throw by the operator constructor.", operator.getName(), e);
-
-                CustomDialogs.showExceptionDialog("Error", "Error in the creation of the operator",
-                        "The operator " + operator.getName() + " can't be created", e.getCause());
-                return null;
-            }
+            Object operatorObject = ReflectionUtils.createOperatorInstance(operator, operatorsAndConfig.get(operator).toArray()); // It can throw InvocationTargetException
+            parameters[i++] = operatorObject;
         }
 
         for (File file : fileInputs) {
@@ -510,16 +505,8 @@ public class ExperimentConfigurationComponent<T extends Registrable<?>> extends 
             parameters[i++] = toggleInput;
         }
 
-        try {
-            T registrable = ReflectionUtils.createRegistrableInstance(this.registrableClass, parameters);
-            return registrable;
-        } catch (InvocationTargetException e) {
-            LOGGER.error("Error to create {} there is a exception throw by the registrable constructor.", this.registrableClass.getName(), e);
-
-            CustomDialogs.showExceptionDialog("Error", "Exception throw by the constructor",
-                    "Can't be created an instance of " + this.registrableClass.getName(), e.getCause());
-            return null;
-        }
+        T registrable = ReflectionUtils.createRegistrableInstance(this.registrableClass, parameters); // It can throw InvocationTargetException
+        return registrable;
 
     }
 }
