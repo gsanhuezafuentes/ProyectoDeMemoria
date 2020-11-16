@@ -41,58 +41,59 @@ public class ExecutionIndicatorTask extends Task<String> {
      */
     @Override
     protected String call() throws Exception {
-        prepareOutputDirectory();
-
-        // Progress of the count of algorithm finished
-        int progress = 0;
-        updateProgress(progress, experimentSet.getNumberOfAlgorithms());
-        for (Experiment<?> experiment : experimentSet.getExperimentList()) {
-            for (ExperimentAlgorithm<?> algorithm : experiment.getAlgorithmList()) {
-
-                // break the for loop if the task is cancelled
-                if (this.isCancelled()) {
-                    break;
-                }
-
-                // execute the algorithm
-                algorithm.prepareToRun(experiment);
-
-                // Run the algorithm
-                while (algorithm.algorithmHasANextStep()) {
-
-                    // run only a iteration of the current algorithm
-                    algorithm.runASingleStepOfAlgorithm();
-
-                    // update the message of progress of the current algorithm
-                    updateMessage("Progress of current algorithm:\n" + algorithm.getAlgorithm().getStatusOfExecution());
-
-                    // break the while loop if the task is cancelled
-                    if (this.isCancelled()) {
-                        break;
-                    }
-                }
-
-                // Gets the final result of the repetition of the algorithm.
-                if (!this.isCancelled()) {
-                    algorithm.saveSolutionList();
-                    progress++;
-                    updateProgress(progress, experiment.getAlgorithmList().size());
-                }
-            }
-        }
-
-
-        // close the resources of the problems.
-        experimentSet.closeProblemsResources();
-        // if task is cancelled return a empty list
-        if (this.isCancelled()) {
-            return "";
-        }
-
-        // return only one pareto front
-        new GenerateReferenceParetoFrontInDisk(experimentSet).run();
-        new ComputeQualityIndicators(experimentSet).run();
-        return experimentSet.getExperimentBaseDirectory();
+//        prepareOutputDirectory();
+//
+//        // Progress of the count of algorithm finished
+//        int progress = 0;
+//        updateProgress(progress, experimentSet.getNumberOfAlgorithms());
+//        for (Experiment<?> experiment : experimentSet.getExperimentList()) {
+//            for (ExperimentAlgorithm<?> algorithm : experiment.getAlgorithmList()) {
+//
+//                // break the for loop if the task is cancelled
+//                if (this.isCancelled()) {
+//                    break;
+//                }
+//
+//                // execute the algorithm
+//                algorithm.prepareToRun(experiment);
+//
+//                // Run the algorithm
+//                while (algorithm.algorithmHasANextStep()) {
+//
+//                    // run only a iteration of the current algorithm
+//                    algorithm.runASingleStepOfAlgorithm();
+//
+//                    // update the message of progress of the current algorithm
+//                    updateMessage("Progress of current algorithm:\n" + algorithm.getAlgorithm().getStatusOfExecution());
+//
+//                    // break the while loop if the task is cancelled
+//                    if (this.isCancelled()) {
+//                        break;
+//                    }
+//                }
+//
+//                // Gets the final result of the repetition of the algorithm.
+//                if (!this.isCancelled()) {
+//                    algorithm.saveSolutionList();
+//                    progress++;
+//                    updateProgress(progress, experiment.getAlgorithmList().size());
+//                }
+//            }
+//        }
+//
+//
+//        // close the resources of the problems.
+//        experimentSet.closeProblemsResources();
+//        // if task is cancelled return a empty list
+//        if (this.isCancelled()) {
+//            return "";
+//        }
+//
+//        // return only one pareto front
+//        new GenerateReferenceParetoFrontInDisk(experimentSet).run();
+//        new ComputeQualityIndicators(experimentSet).run();
+//        return experimentSet.getExperimentBaseDirectory();
+        return "directory";
     }
 
     /**

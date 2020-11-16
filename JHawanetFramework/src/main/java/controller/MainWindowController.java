@@ -2,6 +2,7 @@ package controller;
 
 import application.ApplicationSetup;
 import controller.multiobjective.MultiObjectiveRunningWindowController;
+import controller.multiobjective.indicator.IndicatorConfigurationWindowController;
 import controller.singleobjective.SingleObjectiveRunningWindowController;
 import controller.util.ProblemMenuConfiguration;
 import epanet.core.EpanetException;
@@ -22,6 +23,7 @@ import model.epanet.element.Network;
 import model.epanet.hydraulicsimulation.HydraulicSimulation;
 import model.epanet.io.InpParser;
 import model.metaheuristic.experiment.Experiment;
+import model.metaheuristic.experiment.ExperimentSet;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -45,6 +47,8 @@ import java.util.ResourceBundle;
  * <p>
  * From this class is opened the RunningWindow when the problem is selected in
  * menu item.
+ * <p>
+ *  Many of events in this controller are setting up in the FXML associated fxml.
  */
 public class MainWindowController implements Initializable {
     private static final Logger LOGGER = LoggerFactory.getLogger(MainWindowController.class);
@@ -84,12 +88,26 @@ public class MainWindowController implements Initializable {
      */
     @FXML
     private Menu singleobjectiveMenu;
+
     /**
      * Is the option of menu for multiobjectives problem. It is filled using reflection through
      * ProblemRegistrar.
      */
     @FXML
     private Menu multiobjectiveMenu;
+
+    /**
+     * Is the option of menu with indicators items.
+     */
+    @FXML
+    private Menu indicatorMenu;
+
+    /**
+     * Is the option of menu used to execute indicators with multiobjective experiments execution.
+     */
+    @FXML
+    private MenuItem compareMultiObjectiveExperimentMenuItem;
+
     /**
      * Run a simulation with default network configuration
      */
@@ -159,6 +177,7 @@ public class MainWindowController implements Initializable {
         // disable problem menu and the run button until a network is loaded
         this.singleobjectiveMenu.disableProperty().bind(isNetworkLoaded.not());
         this.multiobjectiveMenu.disableProperty().bind(isNetworkLoaded.not());
+        this.indicatorMenu.disableProperty().bind(isNetworkLoaded.not());
         this.runButton.disableProperty().bind(isNetworkLoaded.not());
 
         networkComponent.networkProperty().bind(network);
@@ -384,6 +403,21 @@ public class MainWindowController implements Initializable {
         LOGGER.info("Showing hydraulic simulation result.");
         HydraulicSimulationResultWindowController controller = new HydraulicSimulationResultWindowController(this.hydraulicSimulation.getValue(), networkComponent.selectedProperty());
         controller.showWindow();
+    }
+
+    /**
+     * The event action used when the menu item to compare algorithms is pressed.
+     * @param event the event.
+     */
+    public void runMultiObjectiveIndicatorsOnAction(ActionEvent event){
+        new IndicatorConfigurationWindowController(inpFile.getAbsolutePath(), this::runMultiobjectiveIndicators);
+    }
+
+    /**
+     * Run the comparison between multiobjectives experiments using indicators.
+     */
+    public void runMultiobjectiveIndicators(ExperimentSet<?> experimentSet) {
+
     }
 
     public void aboutOnAction(ActionEvent actionEvent) {

@@ -70,7 +70,7 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
     @NotNull
     private String algorithmTag;
     @NotNull
-    private String problemTag;
+    private ExperimentProblem<S> problem;
     private final int runId;
 
     /**
@@ -89,7 +89,7 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
      *
      * @param algorithm    the algorithm
      * @param algorithmTag the algorithm tag (is used to create the directory)
-     * @param problem      the ExperimentProblem setting up with the same problem of the algorithm
+     * @param problem the ExperimentProblem setting up with the same problem of the algorithm
      * @param runId        runId the id of execution of this algorithm for a experiment
      * @throws NullPointerException     if algorithm, algorithmTag or problem is null.
      * @throws IllegalArgumentException if algorithmTag is empty.
@@ -104,7 +104,7 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
 
         this.algorithmTag = algorithmTag;
         this.algorithm = algorithm;
-        this.problemTag = problem.getTag();
+        this.problem = problem;
         this.runId = runId;
     }
 
@@ -143,7 +143,7 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
             throw new IllegalArgumentException("Experiment base directory is a empty string");
         }
         String outputDirectoryName = experimentData.getExperimentBaseDirectory() + "/data/" + algorithmTag + "/"
-                + problemTag;
+                + getProblemTag();
 
         File outputDirectory = new File(outputDirectoryName);
         if (!outputDirectory.exists()) {
@@ -157,7 +157,7 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
 
         this.funFile = outputDirectoryName + "/" + experimentData.getObjectiveOutputFileName() + runId + ".csv";
         this.varFile = outputDirectoryName + "/" + experimentData.getVariablesOutputFileName() + runId + ".csv";
-        getLogBuffer().println("- Running algorithm: " + algorithmTag + ", problem: " + problemTag + ", run: " + runId
+        getLogBuffer().println("- Running algorithm: " + algorithmTag + ", problem: " + getProblemTag() + ", run: " + runId
                 + ", funFile: " + funFile);
     }
 
@@ -242,23 +242,7 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
      * @return the problem tag.
      */
     public @NotNull String getProblemTag() {
-        return problemTag;
-    }
-
-    /**
-     * Set the problem tag associated.
-     * <p>
-     * <strong>Notes:</strong><p>
-     * Don't call this method. It is used internally when run quality indicators. Depending on the values set in the GUI the name is changed.
-     * @param problemTag the new name of problem tag.
-     * @throws NullPointerException if problemTag is null
-     */
-    // This method has to be called before of prepareToRun.
-    public void setProblemTag(@NotNull String problemTag) {
-        this.problemTag = Objects.requireNonNull(problemTag);
-        if (this.problemTag.isEmpty()){
-            throw new IllegalArgumentException("Problem tag is empty.");
-        }
+        return problem.getTag();
     }
 
     /**

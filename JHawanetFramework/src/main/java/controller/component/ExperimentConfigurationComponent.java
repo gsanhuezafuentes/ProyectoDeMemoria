@@ -1,25 +1,16 @@
-package controller;
+package controller.component;
 
 import annotations.*;
-import controller.util.ControllerUtils;
 import controller.util.ReflectionUtils;
 import controller.util.TextInputUtil;
-import exception.ApplicationException;
 import javafx.application.Platform;
-import javafx.beans.binding.BooleanBinding;
-import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import registrable.Registrable;
@@ -29,51 +20,22 @@ import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-/**
- * This is the controller of ConfigurationDynamicWindow.
- *
- * @param <T> The type of registrable class
- */
-public class DynamicConfigurationWindowController<T extends Registrable<?>> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DynamicConfigurationWindowController.class);
+public class ExperimentConfigurationComponent<T extends Registrable<?>> extends GridPane {
+    private static Logger LOGGER = LoggerFactory.getLogger(ExperimentConfigurationComponent.class);
 
-    private final Consumer<T> experimentEvent;
     private final Class<? extends T> registrableClass;
-    private final Pane root;
     private static final double defaultSpaceInConfigurationGrid = 5;
     private int gridLayoutRowCount;
 
-    private @Nullable BooleanBinding isRunButtonDisabled;
-
-    private @Nullable Stage window;
-
-    @FXML
-    private Label algorithmNameLabel;
-
-    @FXML
-    private Label problemNameLabel;
-
-    @FXML
-    private TextArea descriptionTextArea;
-
-    @FXML
-    private GridPane configurationGridPane;
-
-    @FXML
-    private Button runButton;
-
-    @FXML
-    private Button cancelButton;
 
     /*
      * It has references to textfield with number input. The order of this list is
      * the same that the order in Parameters annotation (numbers)
      */
     @NotNull
-    private final List<TextField> numbersTextFieldAdded;
+    private final List<TextField> numbersTextFieldAdded = new ArrayList<>();
 
     /*
      * It has references to textfield with number input of the number toogle
@@ -81,7 +43,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
      * annotation (numbersToogle).
      */
     @NotNull
-    private final List<TextField> numbersToogleTextFieldAdded;
+    private final List<TextField> numbersToogleTextFieldAdded = new ArrayList<>();
 
     /*
      * It has a reference to textfield with fileInput(It shown the path of some
@@ -89,70 +51,31 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
      * annotation (files)
      */
     @NotNull
-    private final List<TextField> filesTextFieldAdded;
+    private final List<TextField> filesTextFieldAdded = new ArrayList<>();
 
     // A map with the value of operator configured in comboBox
     @NotNull
-    private final Map<Class<?>, List<Number>> resultOfOperatorConfiguration;
+    private final Map<Class<?>, List<Number>> resultOfOperatorConfiguration = new HashMap<>();
     /*
      * it has a reference to all comboboxes added. The order of this list is the
      * same that the order in Parameters annotation (operators)
      */
     @NotNull
-    private final List<ComboBox<Class<?>>> comboBoxesAdded;
+    private final List<ComboBox<Class<?>>> comboBoxesAdded = new ArrayList<>();
 
     /*
      * Used by numberToogleSection to persist the group created from one call to
      * other of the method.
      */
-    private final Map<String, ToggleGroup> numberToggleGroupAdded;
+    private final Map<String, ToggleGroup> numberToggleGroupAdded = new HashMap<>();
 
-    public DynamicConfigurationWindowController(Class<? extends T> registrable,
-                                                Consumer<T> experimentEvent) {
-        this.registrableClass = Objects.requireNonNull(registrable);
-        this.experimentEvent = Objects.requireNonNull(experimentEvent);
+    public ExperimentConfigurationComponent(Class<? extends T> registrableClass) {
+        this.registrableClass = registrableClass;
+        setVgap(defaultSpaceInConfigurationGrid);
+        setHgap(defaultSpaceInConfigurationGrid);
 
-        // save the values of each operator to use when contructor will be called
-        this.resultOfOperatorConfiguration = new HashMap<>();
-
-        //save the textfield of number section
-        this.numbersTextFieldAdded = new ArrayList<>();
-
-        //save the textfield of number toggle section
-        this.numbersToogleTextFieldAdded = new ArrayList<>();
-
-        //save the group of number toggle section
-        this.numberToggleGroupAdded = new HashMap<>();
-
-        //save the textfield of file section
-        this.filesTextFieldAdded = new ArrayList<>();
-
-        //save the combobox of operator seccion
-        this.comboBoxesAdded = new ArrayList<>();
-
-        this.root = ControllerUtils.loadFXML("/view/DynamicConfigurationWindow.fxml",this);
-    }
-
-    /**
-     * Configurate the binding and listener of Run button and cancel button
-     */
-    private void addBindingAndListener() {
-        //disable the run button until all combobox as a selected operator.
-        this.runButton.disableProperty().bind(isRunButtonDisabled);
-        this.runButton.setOnAction((evt) -> onRunButtonClick());
-        this.cancelButton.setOnAction((evt) -> closeWindow());
-    }
-
-    /**
-     * Is a class to fire the notification when the experiment is created.
-     *
-     * @param registrable the experiment registrable class
-     * @throws ApplicationException if there isn't register the notification
-     *                              callback
-     */
-    private void notifyExperimentCreation(T registrable) throws ApplicationException {
-
-        experimentEvent.accept(registrable);
+        //Initialize the gridpane with the controls to configure the experiment
+        createContentLayout();
     }
 
     /**
@@ -222,7 +145,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         }
 
         // add the row to grid pane
-        this.configurationGridPane.addRow(gridLayoutRowCount++, label, textfield);
+        addRow(gridLayoutRowCount++, label, textfield);
         gridLayoutRowCount++;
     }
 
@@ -239,7 +162,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
             this.numberToggleGroupAdded.put(annotation.groupID(), toggleGroup);
 
             Label groupTitle = new Label(annotation.groupID());
-            this.configurationGridPane.addRow(gridLayoutRowCount, groupTitle);
+            addRow(gridLayoutRowCount, groupTitle);
             gridLayoutRowCount++;
         }
         ToggleGroup toggleGroup = this.numberToggleGroupAdded.get(annotation.groupID());
@@ -267,7 +190,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
             textfield.setTextFormatter(TextInputUtil.createDecimalTextFormatter(annotation.defaultValue()));
         }
 
-        this.configurationGridPane.addRow(gridLayoutRowCount++, radioButton, textfield);
+       addRow(gridLayoutRowCount++, radioButton, textfield);
         gridLayoutRowCount++;
 
     }
@@ -290,13 +213,13 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
 
             if (annotation.type() == FileInput.Type.OPEN) {
                 FileChooser fileChooser = new FileChooser();
-                f = fileChooser.showOpenDialog(window);
+                f = fileChooser.showOpenDialog(getScene().getWindow());
             } else if (annotation.type() == FileInput.Type.SAVE){
                 FileChooser fileChooser = new FileChooser();
-                f = fileChooser.showSaveDialog(window);
+                f = fileChooser.showSaveDialog(getScene().getWindow());
             } else { // is a directory
                 DirectoryChooser directoryChooser = new DirectoryChooser();
-                f = directoryChooser.showDialog(window);
+                f = directoryChooser.showDialog(getScene().getWindow());
             }
 
             if (f != null) {
@@ -305,7 +228,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         });
 
         this.filesTextFieldAdded.add(textfield);
-        this.configurationGridPane.addRow(gridLayoutRowCount, label, textfield, button);
+       addRow(gridLayoutRowCount, label, textfield, button);
         gridLayoutRowCount++;
     }
 
@@ -381,20 +304,11 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
 
         comboBox.getSelectionModel().select(0);
 
-        // Update the isRunButtonDisable property to bind the combobox created in this
-        // execution of method. So if all combobox has a selected item the run button is
-        // enable.
-        if (isRunButtonDisabled == null) {
-            this.isRunButtonDisabled = comboBox.getSelectionModel().selectedItemProperty().isNull();
-        } else {
-            this.isRunButtonDisabled = this.isRunButtonDisabled
-                    .or(comboBox.getSelectionModel().selectedItemProperty().isNull());
-        }
         // show a window to configure the operator
         configButton.setOnAction((evt) -> createAndShowOperatorConfigureDialog(annotation.displayName(),
                 comboBox.getSelectionModel().getSelectedItem()));
 
-        this.configurationGridPane.addRow(gridLayoutRowCount, label, comboBox, configButton);
+       addRow(gridLayoutRowCount, label, comboBox, configButton);
         gridLayoutRowCount++;
     }
 
@@ -480,9 +394,10 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
     }
 
     /**
-     * Collect the user input from the UI controls and call method to create the instance.
+     * Create the registrable class based in values of attributes configured.
+     * @return the registrable instance or null if wasn't created.
      */
-    private void onRunButtonClick() {
+    public T getRegistrableInstance() {
         Map<Class<?>, List<Number>> operatorsAndConfig = new LinkedHashMap<>(
                 this.comboBoxesAdded.size());
         File[] files = new File[this.filesTextFieldAdded.size()];
@@ -496,7 +411,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
             if (operatorParameters == null) {
                 CustomDialogs.showDialog("Error", "Error in the creation of the operator.",
                         "The operator " + operator.getName() + " can't be configured", Alert.AlertType.ERROR);
-                return;
+                return null;
             }
             operatorsAndConfig.put(operator, operatorParameters);
         }
@@ -535,13 +450,13 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
             }
         }
         // Notify to controller to build the elements
-        createInstance(operatorsAndConfig, files, numberInputs, toggleInputs);
+        return createInstance(operatorsAndConfig, files, numberInputs, toggleInputs);
     }
 
     /**
      * Is called when the run button is pressed in view. It method create the
      * registrable instance based in the input field. When the experiment is created
-     * an {@link Consumer} is fired.
+     * an {@link java.util.function.Consumer} is fired.
      *
      * @param operatorsAndConfig A map where the key are the operators and the
      *                           values are the configuration. If there isn't
@@ -556,10 +471,11 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
      * @param toggleInputs       An array with the number setting in view for the
      *                           toggle input.If there isn't number inputs so
      *                           receive a empty array of Number[].
+     * @return The registrable instance or null if can't be created.
      * @throws NullPointerException if some operator hasn't a constructor with {@link DefaultConstructor} annotation.
      */
-    private void createInstance(Map<Class<?>, List<Number>> operatorsAndConfig, File[] fileInputs,
-                                Number[] numberInputs, Number[] toggleInputs) {
+    private T createInstance(Map<Class<?>, List<Number>> operatorsAndConfig, File[] fileInputs,
+                             Number[] numberInputs, Number[] toggleInputs) {
         Objects.requireNonNull(operatorsAndConfig);
         Objects.requireNonNull(fileInputs);
         Objects.requireNonNull(numberInputs);
@@ -578,7 +494,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
 
                 CustomDialogs.showExceptionDialog("Error", "Error in the creation of the operator",
                         "The operator " + operator.getName() + " can't be created", e.getCause());
-                return;
+                return null;
             }
         }
 
@@ -596,53 +512,14 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
 
         try {
             T registrable = ReflectionUtils.createRegistrableInstance(this.registrableClass, parameters);
-            closeWindow();
-            notifyExperimentCreation(registrable);
+            return registrable;
         } catch (InvocationTargetException e) {
             LOGGER.error("Error to create {} there is a exception throw by the registrable constructor.", this.registrableClass.getName(), e);
 
             CustomDialogs.showExceptionDialog("Error", "Exception throw by the constructor",
                     "Can't be created an instance of " + this.registrableClass.getName(), e.getCause());
+            return null;
         }
 
-    }
-
-    /**
-     * Close the window
-     */
-    private void closeWindow() {
-        if (this.window != null) {
-            this.window.close();
-        }
-    }
-
-    /**
-     * Show the associated window
-     */
-    public void showWindow() {
-        Stage stage = new Stage();
-        stage.setScene(new Scene(this.root));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Experiment Setup");
-        this.window = stage;
-
-        //Initialize the gridpane with the controls to configure the experiment
-        createContentLayout();
-        //Fill description tab
-        fillDescriptionTab();
-        //add binding to run and close button
-        addBindingAndListener();
-
-        LOGGER.info("Show DynamicConfigurationWindow for {}.", this.registrableClass.getName());
-        stage.show();
-    }
-
-    /**
-     * Add the values to description tab.
-     */
-    private void fillDescriptionTab() {
-        algorithmNameLabel.setText(ReflectionUtils.getNameOfAlgorithm(registrableClass));
-        problemNameLabel.setText(ReflectionUtils.getNameOfProblem(registrableClass));
-        descriptionTextArea.setText(ReflectionUtils.getDescriptionOfProblem(registrableClass));
     }
 }

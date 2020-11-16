@@ -29,6 +29,7 @@
 package model.metaheuristic.qualityindicator.impl;
 
 import model.metaheuristic.qualityindicator.QualityIndicator;
+import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
 import org.jetbrains.annotations.NotNull;
@@ -44,7 +45,7 @@ import java.util.Objects;
  * @author Antonio J. Nebro <antonio@lcc.uma.es>
  */
 @SuppressWarnings("serial")
-public abstract class GenericIndicator<S> implements QualityIndicator<List<S>, Double> {
+public abstract class GenericIndicator<S extends Solution<?>> implements QualityIndicator<List<S>, Double> {
 
     protected Front referenceParetoFront = null;
 

@@ -29,6 +29,7 @@
 package model.metaheuristic.qualityindicator.impl.hypervolume;
 
 import model.metaheuristic.qualityindicator.impl.GenericIndicator;
+import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.front.Front;
 import model.metaheuristic.util.front.impl.ArrayFront;
 import model.metaheuristic.util.front.util.FrontUtils;
@@ -47,7 +48,7 @@ import java.util.List;
  * @author Juan J. Durillo
  */
 @SuppressWarnings("serial")
-public abstract class Hypervolume<S> extends GenericIndicator<S> {
+public abstract class Hypervolume<S extends Solution<?>> extends GenericIndicator<S> {
 
     public Hypervolume() {
     }

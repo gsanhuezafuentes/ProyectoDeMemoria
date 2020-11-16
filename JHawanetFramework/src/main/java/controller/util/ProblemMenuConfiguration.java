@@ -15,6 +15,7 @@ import view.utils.CustomDialogs;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 
 /**
  * In this class are added the problems that will be added to menu using
@@ -40,7 +41,7 @@ public class ProblemMenuConfiguration {
 	 * @param experimentEvent the event that will be fired when the
 	 *                       RegistrableProblem is created.
 	 */
-	public void addSingleObjectiveProblems(Menu menu, CustomCallback<SingleObjectiveRegistrable> experimentEvent) {
+	public void addSingleObjectiveProblems(Menu menu, Consumer<SingleObjectiveRegistrable> experimentEvent) {
 		LOGGER.info("Add SingleObjectives problems to menu.");
 		Map<String, Menu> addedMenu = new HashMap<>();
 		for (Class<? extends SingleObjectiveRegistrable> registrable : RegistrableConfiguration.SINGLEOBJECTIVES_PROBLEMS) {
@@ -69,7 +70,7 @@ public class ProblemMenuConfiguration {
 	 * @param experimentEvent the event that will be fired when the
 	 *                       RegistrableProblem is created.
 	 */
-	public void addMultiObjectiveProblems(Menu menu, CustomCallback<MultiObjectiveRegistrable> experimentEvent) {
+	public void addMultiObjectiveProblems(Menu menu, Consumer<MultiObjectiveRegistrable> experimentEvent) {
 		LOGGER.info("Add MultiObjectives problems to menu.");
 
 		Map<String, Menu> addedMenu = new HashMap<>();
@@ -98,7 +99,7 @@ public class ProblemMenuConfiguration {
 	 * @param experimentEvent an event called when the window is close. It event create the experiment.
 	 */
 	private <T extends Registrable<?>> void menuItemEventHander(ActionEvent evt, Class<? extends T> registrable,
-			CustomCallback<T> experimentEvent) {
+			Consumer<T> experimentEvent) {
 
 		// If the registrable class has a constructor with parameters so a new window to
 		// configure its is created,
@@ -110,7 +111,7 @@ public class ProblemMenuConfiguration {
 					// algorithmEvent.notify is called.
 			try {
 				T registrableInstance = ReflectionUtils.createRegistrableInstance(registrable);
-				experimentEvent.notify(registrableInstance);
+				experimentEvent.accept(registrableInstance);
 			} catch (InvocationTargetException e) {
 				LOGGER.error("Error to create {} there is a exception throw by the registrable constructor.", registrable.getName(), e);
 				CustomDialogs.showExceptionDialog("Error", "Exception throw by the constructor",

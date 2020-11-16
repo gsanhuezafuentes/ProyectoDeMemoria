@@ -1,16 +1,17 @@
 package model.metaheuristic.experiment;
 
+import exception.ApplicationException;
 import exception.InvalidConditionException;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.experiment.util.ExperimentProblem;
 import model.metaheuristic.qualityindicator.impl.GenericIndicator;
 import model.metaheuristic.solution.Solution;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.concurrent.Callable;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,60 +26,81 @@ import java.util.stream.Stream;
  * if it isn't the case could be a error when compute indicators or while generate the results of this.
  */
 /*This class is use with indicators.*/
-public class ExperimentSet<S extends Solution<?>> {
+public class ExperimentSet<S extends Solution<?>> implements Iterable<Experiment<S>> {
     private @NotNull
-    final List<Experiment<S>> experimentList;
+    final List<Callable<Experiment<S>>> callbackList;
     private @NotNull
-    final List<GenericIndicator<S>> indicatorList;
+    final List<GenericIndicator> indicatorList;
+    private @Nullable List<Experiment<S>> experimentList;
 
     /**
      * Contructor.
      *
-     * @param experimentList the list with the experiment to execute.
+     * @param callbackList the list with the callback to create each experiment.
      * @throws NullPointerException     if experimentList or indicatorsList is null.
      * @throws IllegalArgumentException if experiment list or indicatorsList is null.
      */
-    public ExperimentSet(@NotNull List<Experiment<S>> experimentList, @NotNull List<GenericIndicator<S>> indicatorsList) {
-        Objects.requireNonNull(experimentList);
+    public ExperimentSet(@NotNull List<Callable<Experiment<S>>> callbackList, @NotNull List<GenericIndicator> indicatorsList) {
+        Objects.requireNonNull(callbackList);
         Objects.requireNonNull(indicatorsList);
-        if (experimentList.isEmpty()) {
+        if (callbackList.isEmpty()) {
             throw new IllegalArgumentException("The experiment list is empty.");
         }
         if (indicatorsList.isEmpty()) {
             throw new IllegalArgumentException("The indicator list is empty.");
         }
-        this.experimentList = Collections.unmodifiableList(experimentList);
+        this.callbackList = Collections.unmodifiableList(callbackList);
         this.indicatorList = Collections.unmodifiableList(indicatorsList);
     }
 
     /**
-     * Return a unmodifiable list.
+     * Returns an iterator over elements of type {@code T}.
+     *
+     * @return an Iterator.
+     */
+    @NotNull
+    @Override
+    public Iterator<Experiment<S>> iterator() {
+        return new Iterator<Experiment<S>>() {
+            int i = 0;
+
+            @Override
+            public boolean hasNext() {
+                return i < callbackList.size();
+            }
+
+            @Override
+            public Experiment<S> next() {
+                if (experimentList == null) experimentList = new ArrayList<>();
+
+                Experiment<S> experiment = null;
+                Callable<Experiment<S>> experimentCallable = callbackList.get(i++);
+                try {
+                    experiment = experimentCallable.call();
+                } catch (Exception e) {
+                    throw new ApplicationException("Unhandled error when create the experiment for using with indicators.", e);
+                }
+                experimentList.add(experiment);
+                return experiment;
+            }
+        };
+    }
+
+    /**
+     * Return a unmodifiable list with experiments that has been created until the call to this method.
      *
      * @return the experiment list.
      */
     public @NotNull List<Experiment<S>> getExperimentList() {
-        return experimentList;
+        return experimentList == null ? Collections.emptyList() : Collections.unmodifiableList(experimentList);
     }
-
-//    /**
-//     * Set the indicator list to use.
-//     *
-//     * @param indicatorsList the indicators list
-//     */
-//    public void setIndicatorsList(List<GenericIndicator<S>> indicatorsList) {
-//        Objects.requireNonNull(indicatorsList);
-//        if (indicatorsList.isEmpty()) {
-//            throw new IllegalArgumentException("The indicator list is empty.");
-//        }
-//        this.indicatorList = Collections.unmodifiableList(indicatorsList);
-//    }
 
     /**
      * Get the indicators list as a unmodifiable list.
      *
      * @return the indicator list or a empty list if there isn't indicators.
      */
-    public List<GenericIndicator<S>> getIndicatorList() {
+    public List<GenericIndicator> getIndicatorList() {
         return indicatorList != null ? indicatorList : Collections.emptyList();
     }
 
@@ -88,10 +110,11 @@ public class ExperimentSet<S extends Solution<?>> {
      * @return the number of experiments.
      */
     public int getNumberOfExperiments() {
-        return this.experimentList.size();
+        return this.callbackList.size();
     }
 
     /**
+     * Call this method after of finish the execution.
      * Remove duplicated algorithms of each experiment.
      */
     public void removeDuplicatedAlgorithms() {
@@ -197,26 +220,5 @@ public class ExperimentSet<S extends Solution<?>> {
             throw new InvalidConditionException("All experiments hasn't have the same number of independent run.");
         }
         return distinct.collect(Collectors.toList()).get(0);
-    }
-
-    /**
-     * Close all resource of all experiments problems in each experiment.
-     *
-     * @throws Exception if there is a problem closing the resources.
-     */
-    public void closeProblemsResources() throws Exception {
-        for (Experiment<S> experiment : this.experimentList) {
-            experiment.getProblem().closeResources();
-        }
-    }
-
-    /**
-     * Check if elements in set are the correct.
-     *
-     * @throws InvalidConditionException if the experiment set is not valid.
-     */
-    public void validExperiments() {
-        getIndependentRuns();
-        getExperimentBaseDirectory();
     }
 }

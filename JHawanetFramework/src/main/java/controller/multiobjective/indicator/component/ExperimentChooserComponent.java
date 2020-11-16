@@ -22,7 +22,7 @@ import registrable.MultiObjectiveRegistrable;
 
 import java.util.*;
 
-public class ChooseExperimentComponent extends VBox {
+public class ExperimentChooserComponent extends VBox {
 
     @FXML
     private TableView<ProblemItem> problemTableView;
@@ -38,8 +38,8 @@ public class ChooseExperimentComponent extends VBox {
     /**
      * Creates a VBox layout with spacing = 0 and alignment at TOP_LEFT.
      */
-    public ChooseExperimentComponent() {
-        ControllerUtils.loadFXML("/view/multiobjective/indicator/component/ChooseExperimentComponent.fxml", this);
+    public ExperimentChooserComponent() {
+        ControllerUtils.loadFXML("/view/multiobjective/indicator/component/ExperimentChooserComponent.fxml", this);
         preventColumnReordering(problemTableView);
         preventColumnReordering(algorithmTableView);
         generateItems();

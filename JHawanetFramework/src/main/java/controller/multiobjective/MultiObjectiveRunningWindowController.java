@@ -4,7 +4,6 @@ import application.ApplicationSetup;
 import controller.ResultController;
 import controller.ResultPlotController;
 import controller.util.ControllerUtils;
-import controller.util.CustomCallback;
 import controller.multiobjective.util.MultiObjectiveExperimentTask;
 import epanet.core.EpanetException;
 import javafx.concurrent.Worker.State;
@@ -27,6 +26,7 @@ import view.utils.CustomDialogs;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
@@ -68,7 +68,7 @@ public class MultiObjectiveRunningWindowController {
     @NotNull
     private final Pane root;
     @NotNull
-    private final CustomCallback<ResultController> callback;
+    private final Consumer<ResultController> callback;
     @Nullable
     private final ResultPlotController resultPlotController;
     @NotNull
@@ -98,7 +98,7 @@ public class MultiObjectiveRunningWindowController {
      * @throws NullPointerException     if experiment, experiment problem, network or callback are null.
      * @throws IllegalArgumentException if problem is singleobjective or there aren't element in experiment algorithm.
      */
-    public MultiObjectiveRunningWindowController(@NotNull Experiment<?> experiment, @Nullable Map<String, String> parameters, @NotNull Network network, @NotNull CustomCallback<ResultController> callback) {
+    public MultiObjectiveRunningWindowController(@NotNull Experiment<?> experiment, @Nullable Map<String, String> parameters, @NotNull Network network, @NotNull Consumer<ResultController> callback) {
         LOGGER.debug("Initializing MultiObjectiveRunningWindowController.");
 
         this.experiment = Objects.requireNonNull(experiment);
@@ -222,7 +222,7 @@ public class MultiObjectiveRunningWindowController {
             }
             ResultController resultController = new ResultController(experiment.getProblem().getTag(), solutions, this.problem,
                     this.network, this.parameters);
-            callback.notify(resultController);
+            callback.accept(resultController);
         });
     }
 
