@@ -254,7 +254,7 @@ public class ComputeQualityIndicators<S extends Solution<?>> implements Experime
     private void writeSummaryFile(ExperimentSet<S> experimentSet) throws IOException {
         LOGGER.info("Writing org.uma.jmetal.experiment summary file");
         String headerOfCSVFile = "Algorithm,Problem,IndicatorName,ExecutionId,IndicatorValue";
-        String csvFileName = this.experimentSet.getExperimentBaseDirectory() + "/QualityIndicatorSummary.csv";
+        String csvFileName = this.experimentSet.getExperimentList().get(0).getExperimentBaseDirectory() + "/QualityIndicatorSummary.csv";
         resetFile(csvFileName);
 
         try (FileWriter os = new FileWriter(csvFileName, true)) {

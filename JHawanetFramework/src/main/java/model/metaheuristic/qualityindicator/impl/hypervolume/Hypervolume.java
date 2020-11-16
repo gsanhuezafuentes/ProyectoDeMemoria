@@ -98,11 +98,6 @@ public abstract class Hypervolume<S extends Solution<?>> extends GenericIndicato
     public abstract void setOffset(double offset);
 
     @Override
-    public @NotNull String getName() {
-        return "HV";
-    }
-
-    @Override
     public boolean isTheLowerTheIndicatorValueTheBetter() {
         return false;
     }

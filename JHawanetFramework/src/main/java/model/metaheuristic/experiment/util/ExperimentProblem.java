@@ -90,7 +90,7 @@ public final class ExperimentProblem<S extends Solution<?>> {
 	 * @throws NullPointerException if tag is null.
 	 * @throws IllegalArgumentException if tag is empty.
 	 */
-	public void setTag(String tag) {
+	public void setTag(@NotNull String tag) {
 		// El metodo se usa en IndicatorExperimentConfigurationComponent para agregar un numero al final ej (PumpScheduling - 1).
 		Objects.requireNonNull(tag);
 		if (tag.isEmpty()){

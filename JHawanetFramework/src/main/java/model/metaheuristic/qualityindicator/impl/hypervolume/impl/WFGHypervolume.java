@@ -87,6 +87,16 @@ public class WFGHypervolume<S extends Solution<?>> extends Hypervolume<S> {
         super(referenceParetoFront);
     }
 
+    /**
+     * The name of indicator.
+     *
+     * @return the name of indicator.
+     */
+    @Override
+    public @NotNull String getName() {
+        return "WFG-HV";
+    }
+
     public double getOffset() {
         return offset;
     }

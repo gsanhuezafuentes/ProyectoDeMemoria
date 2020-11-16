@@ -11,7 +11,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.concurrent.Callable;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -20,10 +19,13 @@ import java.util.stream.Stream;
  * <p>
  * <Strong>Note:</Strong> <p>
  * * The experiment list only has to have multiobjective algorithms.<br>
- * * All experiments in experiment list has to have the same base directory. <br>
+ * * All experiments in experiment list has to have the same base directory and it is initialized in {@link controller.multiobjective.indicator.util.ExecutionIndicatorTask}. <br>
  * * All experiments in experiment list has to have the same number of independent run. <br>
  * * All problems should be resolved with the same algorithm. For example: Problem1 resolved with NSGAII and SPA2; Problem2 resolved with NSGAII and SPA2.
  * if it isn't the case could be a error when compute indicators or while generate the results of this.
+ * <p>
+ * {@link #getExperimentList()} can return a empty list if you hasn't iterate using {@link #iterator()}. Iterate using {@link #iterator()} create the element of the
+ * experiment list. If you go to the end of iterator (Iterator.hasNext == false) so the {@link #getExperimentList()} return the final elements.
  */
 /*This class is use with indicators.*/
 public class ExperimentSet<S extends Solution<?>> implements Iterable<Experiment<S>> {
@@ -72,22 +74,33 @@ public class ExperimentSet<S extends Solution<?>> implements Iterable<Experiment
             @Override
             public Experiment<S> next() {
                 if (experimentList == null) experimentList = new ArrayList<>();
-
                 Experiment<S> experiment = null;
-                Callable<Experiment<S>> experimentCallable = callbackList.get(i++);
-                try {
-                    experiment = experimentCallable.call();
-                } catch (Exception e) {
-                    throw new ApplicationException("Unhandled error when create the experiment for using with indicators.", e);
+
+                /*
+                 * If the element already has been created so get it.
+                 */
+                if (i < experimentList.size()) {
+                    experimentList.get(i);
+                } else {
+                    /*
+                     * If the list hasn't the same size so there is elements that hasn't been created.
+                     */
+                    Callable<Experiment<S>> experimentCallable = callbackList.get(i);
+                    try {
+                        experiment = experimentCallable.call();
+                    } catch (Exception e) {
+                        throw new ApplicationException("Unhandled error when create the experiment for using with indicators.", e);
+                    }
+                    experimentList.add(experiment);
                 }
-                experimentList.add(experiment);
+                i++;
                 return experiment;
             }
         };
     }
 
     /**
-     * Return a unmodifiable list with experiments that has been created until the call to this method.
+     * Return a unmodifiable list with experiments that has been created until the call to this method. The list is filled when you iterate using the {@link #iterator()}
      *
      * @return the experiment list.
      */
@@ -119,43 +132,6 @@ public class ExperimentSet<S extends Solution<?>> implements Iterable<Experiment
      */
     public void removeDuplicatedAlgorithms() {
         experimentList.forEach((experiment) -> experiment.removeDuplicatedAlgorithms());
-    }
-
-    /**
-     * Get experiment base directory.
-     * <p>
-     * <Strong>Notes:</Strong>
-     * <p>
-     * All experiment in this set should have the same experiments base directory.
-     *
-     * @return The experiment base directory of all problems.
-     * @throws InvalidConditionException if all experiment in experiment set hasn't the same experiment base directory.
-     */
-    public String getExperimentBaseDirectory() {
-        boolean isValid = this.experimentList.stream().map(Experiment::getExperimentBaseDirectory)
-                .distinct().limit(2).count() == 1;
-        if (!isValid) {
-            throw new InvalidConditionException("All experiment in Experiment Set hasn't the same base directory.");
-        }
-        return this.experimentList.get(0).getExperimentBaseDirectory();
-    }
-
-    /**
-     * Set experiment base directory of all experiments.
-     * <p>
-     * <Strong>Notes:</Strong>
-     * <p>
-     * All experiment in this set should have the same experiments base directory.
-     *
-     * @throws NullPointerException     if directory is null.
-     * @throws IllegalArgumentException if directory is empty.
-     */
-    public void setExperimentBaseDirectory(String directory) {
-        Objects.requireNonNull(directory);
-        if (directory.isEmpty()) {
-            throw new IllegalArgumentException("Directory is empty.");
-        }
-        this.experimentList.forEach(experiment -> experiment.setExperimentBaseDirectory(directory));
     }
 
     /**
@@ -215,10 +191,10 @@ public class ExperimentSet<S extends Solution<?>> implements Iterable<Experiment
      * @throws InvalidConditionException if the number of independent run isn't the same in all experiments.
      */
     public int getIndependentRuns() {
-        Stream<Integer> distinct = this.experimentList.stream().map(Experiment::getIndependentRuns).distinct();
-        if (distinct.count() != 1) {
+        List<Integer> result = this.experimentList.stream().map(Experiment::getIndependentRuns).distinct().collect(Collectors.toList());
+        if (result.size() != 1) {
             throw new InvalidConditionException("All experiments hasn't have the same number of independent run.");
         }
-        return distinct.collect(Collectors.toList()).get(0);
+        return result.get(0);
     }
 }

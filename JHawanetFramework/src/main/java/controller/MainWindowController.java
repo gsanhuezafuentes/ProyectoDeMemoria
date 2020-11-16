@@ -50,7 +50,7 @@ import java.util.ResourceBundle;
  * From this class is opened the RunningWindow when the problem is selected in
  * menu item.
  * <p>
- *  Many of events in this controller are setting up in the FXML associated fxml.
+ * Many of events in this controller are setting up in the FXML associated fxml.
  */
 public class MainWindowController implements Initializable {
     private static final Logger LOGGER = LoggerFactory.getLogger(MainWindowController.class);
@@ -408,10 +408,11 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * The event action used when the menu item to compare algorithms is pressed.
+     * The event action used when the menu item to compare algorithms is pressed. Show the window to select indicators and experiments.
+     *
      * @param event the event.
      */
-    public void runMultiObjectiveIndicatorsOnAction(ActionEvent event){
+    public void runMultiObjectiveIndicatorsOnAction(ActionEvent event) {
         new IndicatorConfigurationWindowController(inpFile.getAbsolutePath(), this::runMultiobjectiveIndicators).showWindow();
     }
 
@@ -423,7 +424,7 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * Create a new result tab
+     * Create a new result tab for show result of experiments.
      *
      * @param resultController the result controller
      */

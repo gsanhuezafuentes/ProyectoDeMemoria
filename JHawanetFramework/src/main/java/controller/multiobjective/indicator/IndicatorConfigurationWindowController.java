@@ -101,6 +101,7 @@ public class IndicatorConfigurationWindowController {
                         "A operator or a registrable instance can't be created. Check if all ingresed parameters are correct.", e.getCause());
                 return;
             }
+
             ObservableList<Class<? extends GenericIndicator>> selectedIndicators = this.indicatorsListView.getSelectedIndicators();
             List<GenericIndicator> indicators = new ArrayList<>();
             for (Class<? extends GenericIndicator> indicator : selectedIndicators) {

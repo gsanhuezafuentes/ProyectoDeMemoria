@@ -49,7 +49,8 @@ public class GenerateReferenceParetoFrontInDisk implements ExperimentComponent {
     @Override
     public void run() throws IOException {
         // All the experiment has the same reference front directory
-        String outputDirectoryName = experimentSet.getExperimentBaseDirectory() + "/"
+        String experimentBaseDirectory = experimentSet.getExperimentList().get(0).getExperimentBaseDirectory();
+        String outputDirectoryName = experimentBaseDirectory + "/"
                 + experimentSet.getExperimentList().get(0).getReferenceFrontDirectory();
 
         createOutputDirectory(outputDirectoryName);
@@ -60,7 +61,7 @@ public class GenerateReferenceParetoFrontInDisk implements ExperimentComponent {
                     new NonDominatedSolutionListArchive<PointSolution>();
 
             for (ExperimentAlgorithm<?> algorithm : experimentSet.getExperimentAlgorithms(problem)) {
-                String problemDirectory = experimentSet.getExperimentBaseDirectory() + "/data/" +
+                String problemDirectory = experimentBaseDirectory + "/data/" +
                         algorithm.getAlgorithmTag() + "/" + problem.getTag();
 
                 for (int i = 0; i < experimentSet.getIndependentRuns(); i++) {

@@ -366,4 +366,14 @@ public class PISAHypervolume<S extends Solution<?>> extends Hypervolume<S> {
         }
         return contributions;
     }
+
+    /**
+     * The name of indicator.
+     *
+     * @return the name of indicator.
+     */
+    @Override
+    public @NotNull String getName() {
+        return "PISA-HV";
+    }
 }

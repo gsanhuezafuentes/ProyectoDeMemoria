@@ -5,6 +5,7 @@ import model.metaheuristic.experiment.ExperimentComponent;
 import model.metaheuristic.util.visualization.StudyVisualizer;
 
 import java.io.IOException;
+import java.nio.file.Path;
 
 /**
  * This class executes a StudyVisualizer on the experiment provided.
@@ -17,23 +18,23 @@ import java.io.IOException;
 public class GenerateHtmlPages
     implements ExperimentComponent {
 
-  private final Experiment<?> experiment;
   private final StudyVisualizer.TYPE_OF_FRONT_TO_SHOW defaultTypeOfFrontToShow;
+  private final Path baseDirectory;
 
-  public GenerateHtmlPages(Experiment<?> experimentConfiguration) {
-    this(experimentConfiguration, StudyVisualizer.TYPE_OF_FRONT_TO_SHOW.BEST);
+  public GenerateHtmlPages(Path baseDirectory) {
+    this(baseDirectory, StudyVisualizer.TYPE_OF_FRONT_TO_SHOW.BEST);
   }
 
   public GenerateHtmlPages(
-      Experiment<?> experimentConfiguration,
+      Path baseDirectory,
       StudyVisualizer.TYPE_OF_FRONT_TO_SHOW defaultTypeOfFrontToShow) {
-    this.experiment = experimentConfiguration;
+    this.baseDirectory = baseDirectory;
     this.defaultTypeOfFrontToShow = defaultTypeOfFrontToShow;
   }
 
   @Override
   public void run() throws IOException {
-    String directory = experiment.getExperimentBaseDirectory();
+    String directory = this.baseDirectory.toFile().getAbsolutePath();
     StudyVisualizer visualizer = new StudyVisualizer(directory, defaultTypeOfFrontToShow);
     visualizer.createHTMLPageForEachIndicator();
   }

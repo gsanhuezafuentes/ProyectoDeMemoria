@@ -8,10 +8,16 @@ import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.concurrent.Task;
 import javafx.util.Pair;
+import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentSet;
+import model.metaheuristic.experiment.component.ComputeQualityIndicators;
+import model.metaheuristic.experiment.component.GenerateHtmlPages;
+import model.metaheuristic.experiment.component.GenerateReferenceParetoFrontInDisk;
+import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,68 +62,71 @@ public class ExecutionIndicatorTask extends Task<String> {
      *
      * @return the temporary folder that where results are saved.
      * @throws Exception if there is a error while execute.
-     */
+     *//**/
     @Override
     protected String call() throws Exception {
-//        prepareOutputDirectory();
-//
-//        // Progress of the count of algorithm finished
-//        int progress = 0;
-//        updateProgress(progress, experimentSet.getNumberOfAlgorithms());
-//        for (Experiment<?> experiment : experimentSet.getExperimentList()) {
-//            for (ExperimentAlgorithm<?> algorithm : experiment.getAlgorithmList()) {
-//
-//                // break the for loop if the task is cancelled
-//                if (this.isCancelled()) {
-//                    break;
-//                }
-//
-//                // execute the algorithm
-//                algorithm.prepareToRun(experiment);
-//
-//                // Run the algorithm
-//                while (algorithm.algorithmHasANextStep()) {
-//
-//                    // run only a iteration of the current algorithm
-//                    algorithm.runASingleStepOfAlgorithm();
-//
-//                    // update the message of progress of the current algorithm
-//                    updateMessage("Progress of current algorithm:\n" + algorithm.getAlgorithm().getStatusOfExecution());
-//
-//                    // break the while loop if the task is cancelled
-//                    if (this.isCancelled()) {
-//                        break;
-//                    }
-//                }
-//
-//                // Gets the final result of the repetition of the algorithm.
-//                if (!this.isCancelled()) {
-//                    algorithm.saveSolutionList();
-//                    progress++;
-//                    updateProgress(progress, experiment.getAlgorithmList().size());
-//                }
-//            }
-//        }
-//
-//
-//        // close the resources of the problems.
-//        experimentSet.closeProblemsResources();
-//        // if task is cancelled return a empty list
-//        if (this.isCancelled()) {
-//            return "";
-//        }
-//
-//        // return only one pareto front
-//        new GenerateReferenceParetoFrontInDisk(experimentSet).run();
-//        new ComputeQualityIndicators(experimentSet).run();
-//        return experimentSet.getExperimentBaseDirectory();
-        return "D:\\gsanh\\2Desktop\\ProyectosJimmy\\NSGAIIComputingReferenceParetoFrontsStudy";
+        MDC.put("logFileName", "ExecutionIndicatorTask");
+        Path path = prepareOutputDirectory();
+        // Progress of the count of algorithm finished
+        int progress = 0;
+        updateProgress(progress, experimentSet.getNumberOfExperiments());
+        for (Experiment<?> experiment : experimentSet) {
+            experiment.setExperimentBaseDirectory(path.toAbsolutePath().toString());
+            for (ExperimentAlgorithm<?> algorithm : experiment.getAlgorithmList()) {
+                updateCustomValue(new Pair<>(algorithm.getProblemTag(), algorithm.getAlgorithmTag()));
+
+                // break the for loop if the task is cancelled
+                if (this.isCancelled()) {
+                    break;
+                }
+
+                // execute the algorithm
+                algorithm.prepareToRun(experiment);
+
+                // Run the algorithm
+                while (algorithm.algorithmHasANextStep()) {
+
+                    // run only a iteration of the current algorithm
+                    algorithm.runASingleStepOfAlgorithm();
+
+                    // update the message of progress of the current algorithm
+                    updateMessage("Progress of current algorithm:\n" + algorithm.getAlgorithm().getStatusOfExecution());
+
+                    // break the while loop if the task is cancelled
+                    if (this.isCancelled()) {
+                        break;
+                    }
+                }
+
+                // Gets the final result of the repetition of the algorithm.
+                if (!this.isCancelled()) {
+                    algorithm.saveSolutionList();
+                }
+            }
+            progress++;
+            updateProgress(progress, experimentSet.getNumberOfExperiments());
+            experiment.getProblem().closeResources();
+        }
+        // if task is cancelled return a empty list
+        if (this.isCancelled()) {
+            return "";
+        }
+
+        // return only one pareto front
+        new GenerateReferenceParetoFrontInDisk(experimentSet).run();
+        new ComputeQualityIndicators(experimentSet).run();
+        new GenerateHtmlPages(path.toAbsolutePath()).run();
+
+        MDC.remove("logFileName");
+
+        return path.toAbsolutePath().toString();
+//        return "D:\\gsanh\\2Desktop\\ProyectosJimmy\\NSGAIIComputingReferenceParetoFrontsStudy";
     }
 
     /**
      * Prepare the temp folder and create in this a temporal directory to save the result of execution.
      */
-    private void prepareOutputDirectory() {
+    private Path prepareOutputDirectory() {
         LOGGER.info("Prepare OutputDirectory.");
         if (!experimentDirectoryExist()) {
             createExperimentDirectory();
@@ -132,7 +141,7 @@ public class ExecutionIndicatorTask extends Task<String> {
         }
         LOGGER.info("Experiment base directory {}.", tempDirectory.toFile().getAbsolutePath());
 
-        this.experimentSet.setExperimentBaseDirectory(tempDirectory.toFile().getAbsolutePath());
+        return tempDirectory;
     }
 
     /**
