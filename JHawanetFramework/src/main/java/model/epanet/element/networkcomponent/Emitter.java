@@ -2,13 +2,18 @@ package model.epanet.element.networkcomponent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public final class Emitter {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Emitter.class);
+
 	private double coefficient;
 
 	public Emitter() {
@@ -22,6 +27,8 @@ public final class Emitter {
 	 */
 	public Emitter(@NotNull Emitter emitter) {
 		Objects.requireNonNull(emitter);
+		LOGGER.debug("Clonning Emmiter {}.");
+
 		this.coefficient = emitter.coefficient;
 	}
 

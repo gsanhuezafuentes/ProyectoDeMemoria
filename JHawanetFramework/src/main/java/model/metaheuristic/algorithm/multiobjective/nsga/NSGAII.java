@@ -29,7 +29,6 @@
 package model.metaheuristic.algorithm.multiobjective.nsga;
 
 import epanet.core.EpanetException;
-import exception.ApplicationException;
 import model.metaheuristic.algorithm.AbstractEvolutionaryAlgorithm;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.mutation.MutationOperator;
@@ -37,8 +36,9 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.RankingAndCrowdingSelection;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.SolutionListUtils;
-import model.metaheuristic.utils.evaluator.SolutionListEvaluator;
+import model.metaheuristic.util.SolutionListUtils;
+import model.metaheuristic.util.evaluator.SolutionListEvaluator;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -52,15 +52,15 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
     protected final int maxEvaluations;
 
     protected int numberOfEvaluations;
-    protected Comparator<S> dominanceComparator;
+    protected final Comparator<S> dominanceComparator;
 
     protected int maxPopulationSize;
-    protected int matingPoolSize;
-    protected int offspringPopulationSize;
+    protected final int matingPoolSize;
+    protected final int offspringPopulationSize;
 
-    protected SelectionOperator<List<S>, S> selectionOperator;
-    protected CrossoverOperator<S> crossoverOperator;
-    protected MutationOperator<S> mutationOperator;
+    protected final SelectionOperator<List<S>, S> selectionOperator;
+    protected final CrossoverOperator<S> crossoverOperator;
+    protected final MutationOperator<S> mutationOperator;
     protected List<S> population;
     protected final SolutionListEvaluator<S> evaluator;
 
@@ -126,10 +126,10 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
         numberOfEvaluations = getMaxPopulationSize();
     }
 
-    @Override
     /**
      * {@inheritDoc}
      */
+    @Override
     protected List<S> evaluatePopulation(List<S> population) throws EpanetException {
         return this.evaluator.evaluate(population, problem);
     }
@@ -240,7 +240,7 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
      * {@inheritDoc}
      */
     @Override
-    public List<S> getResult() {
+    public @NotNull List<S> getResult() {
         return SolutionListUtils.getNondominatedSolutions(getPopulation());
     }
 
@@ -248,13 +248,13 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
      * A crossover operator is applied to a number of parents, and it assumed that
      * the population contains a valid number of solutions. This method checks that.
      *
-     * @param population                  the population
-     * @param numberOfParentsForCrossover the number of parent to crossover
-     * @throws ApplicationException if there is a wrong number of parent
+     * @param population                  the population.
+     * @param numberOfParentsForCrossover the number of parent to crossover.
+     * @throws IllegalArgumentException if there is a wrong number of parent (population size % number of parent is not equals to 0).
      */
     protected void checkNumberOfParents(List<S> population, int numberOfParentsForCrossover) {
         if ((population.size() % numberOfParentsForCrossover) != 0) {
-            throw new ApplicationException("Wrong number of parents: the remainder if the " + "population size ("
+            throw new IllegalArgumentException("Wrong number of parents: the remainder if the " + "population size ("
                     + population.size() + ") is not divisible by " + numberOfParentsForCrossover);
         }
     }
@@ -263,12 +263,12 @@ public class NSGAII<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm
      * {@inheritDoc}
      */
     @Override
-    public String getStatusOfExecution() {
+    public @NotNull String getStatusOfExecution() {
         return "Number of evaluations: " + this.numberOfEvaluations + " / " + this.maxEvaluations;
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "NSGA-II";
     }
 

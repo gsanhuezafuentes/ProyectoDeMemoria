@@ -1,13 +1,12 @@
 package model.metaheuristic.algorithm;
 
-import exception.ApplicationException;
 import model.metaheuristic.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithm2;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.evaluator.SequentialSolutionEvaluator;
+import model.metaheuristic.util.evaluator.impl.SequentialSolutionEvaluator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -43,7 +42,7 @@ class GeneticAlgorithm2Test {
 	void setMaxEvaluations_LessThanZero_Exception() throws Exception {
 		GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10,
 				selectionOperator, crossoverOperator, mutationOperator, new SequentialSolutionEvaluator<>());
-		assertThrows(ApplicationException.class, () -> algorithm.setMaxEvaluations(-1));
+		assertThrows(IllegalArgumentException.class, () -> algorithm.setMaxEvaluations(-1));
 	}
 
 	/**
@@ -55,7 +54,7 @@ class GeneticAlgorithm2Test {
 	void setMaxNumberOfIterationWithoutImprovement_LessThanZero_Exception() {
 		GeneticAlgorithm2<IntegerSolution> algorithm = new GeneticAlgorithm2<IntegerSolution>(problem, 10,
 				selectionOperator, crossoverOperator, mutationOperator,  new SequentialSolutionEvaluator<>());
-		assertThrows(ApplicationException.class, () -> algorithm.setMaxNumberOfIterationWithoutImprovement(-1));
+		assertThrows(IllegalArgumentException.class, () -> algorithm.setMaxNumberOfIterationWithoutImprovement(-1));
 	}
 
 	/**

@@ -43,7 +43,7 @@ public abstract class AbstractGenericSolution<T, P extends Problem<?>> implement
 	private final List<T> decisionVariables;
 	private final double[] objectives;
 	protected Map<Object, Object> attributes;
-	protected P problem;
+	protected final P problem;
 
 	/**
 	 * Constructor.
@@ -109,6 +109,12 @@ public abstract class AbstractGenericSolution<T, P extends Problem<?>> implement
 	@Override
 	public void setAttribute(Object id, Object value) {
 		attributes.put(id, value);
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	public boolean hasAttribute(Object id) {
+		return this.attributes.containsKey(id);
 	}
 
 	/** {@inheritDoc} */

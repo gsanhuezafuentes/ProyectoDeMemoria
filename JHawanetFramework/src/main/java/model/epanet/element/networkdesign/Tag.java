@@ -2,14 +2,19 @@ package model.epanet.element.networkdesign;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public final class Tag {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Tag.class);
+
 	public enum TagType {
 		NODE("NODE"), LINK("LINK");
 
@@ -58,6 +63,8 @@ public final class Tag {
 	 */
 	public Tag(@NotNull Tag tag) {
 		Objects.requireNonNull(tag);
+		LOGGER.debug("Clonning tag.");
+
 		this.type = tag.type;
 		this.label = tag.label;
 	}

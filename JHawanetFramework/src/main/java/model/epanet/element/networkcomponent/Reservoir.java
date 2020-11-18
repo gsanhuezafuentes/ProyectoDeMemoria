@@ -2,13 +2,18 @@ package model.epanet.element.networkcomponent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public final class Reservoir extends Node {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Reservoir.class);
+
 	public static final double DEFAULT_TOTAL_HEAD = 0;
 
 	private double totalHead;
@@ -27,6 +32,8 @@ public final class Reservoir extends Node {
 	 */
 	public Reservoir(@NotNull Reservoir reservoir) {
 		super(Objects.requireNonNull(reservoir));
+		LOGGER.debug("Clonning Reservoir {}.", reservoir.getId());
+
 		totalHead = reservoir.totalHead;
 		headPattern = reservoir.headPattern;
 	}

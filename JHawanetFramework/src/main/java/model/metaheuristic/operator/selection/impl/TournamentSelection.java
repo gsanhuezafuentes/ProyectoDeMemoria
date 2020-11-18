@@ -30,12 +30,11 @@ package model.metaheuristic.operator.selection.impl;
 
 import annotations.DefaultConstructor;
 import annotations.NumberInput;
-import exception.ApplicationException;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.SolutionListUtils;
-import model.metaheuristic.utils.SolutionUtils;
-import model.metaheuristic.utils.comparator.DominanceComparator;
+import model.metaheuristic.util.SolutionListUtils;
+import model.metaheuristic.util.SolutionUtils;
+import model.metaheuristic.util.comparator.DominanceComparator;
 
 import java.util.Comparator;
 import java.util.List;
@@ -82,14 +81,14 @@ public class TournamentSelection<S extends Solution<?>> implements SelectionOper
     /**
      * Execute() method.
      *
-     * @throws NullPointerException if solutionList is null
-     * @throws ApplicationException if solutionList is empty
+     * @throws NullPointerException if solutionList is null.
+     * @throws IllegalArgumentException if solutionList is empty.
      */
     @Override
     public S execute(List<S> solutionList) {
         Objects.requireNonNull(solutionList);
         if (solutionList.isEmpty()) {
-            throw new ApplicationException("The solution list is empty");
+            throw new IllegalArgumentException("The solution list is empty");
         }
 
         S result;

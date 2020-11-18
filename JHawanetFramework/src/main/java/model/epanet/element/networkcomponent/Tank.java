@@ -2,10 +2,13 @@ package model.epanet.element.networkcomponent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import model.epanet.element.systemoperation.Curve;
 import model.epanet.element.waterquality.Mixing;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -16,6 +19,8 @@ import java.util.Objects;
  *
  */
 public final class Tank extends Node {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Tank.class);
+
 	public static final double DEFAULT_ELEVATION = 0;
 	public static final double DEFAULT_INITIAL_LEVEL = 10;
 	public static final double DEFAULT_MINIMUM_LEVEL = 0;
@@ -54,6 +59,8 @@ public final class Tank extends Node {
 	 */
 	public Tank(@NotNull Tank tank) {
 		super(tank);
+		LOGGER.debug("Clonning Tank {}.", tank);
+
 		this.elevation = tank.elevation;
 		this.initialLevel = tank.initialLevel;
 		this.minimumLevel = tank.minimumLevel;

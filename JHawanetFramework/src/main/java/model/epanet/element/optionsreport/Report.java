@@ -2,7 +2,10 @@ package model.epanet.element.optionsreport;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -13,6 +16,8 @@ import java.util.Objects;
  *
  */
 public final class Report {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Report.class);
+
 	//code contains the code of all report section
 	@NotNull private String code;
 	
@@ -27,6 +32,8 @@ public final class Report {
 	 */
 	public Report(Report report) {
 		Objects.requireNonNull(report);
+		LOGGER.debug("Clonning Report.");
+
 		this.code = report.code;
 	}
 	

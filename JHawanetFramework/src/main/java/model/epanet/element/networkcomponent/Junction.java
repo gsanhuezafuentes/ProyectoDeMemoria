@@ -2,10 +2,13 @@ package model.epanet.element.networkcomponent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import model.epanet.element.systemoperation.Demand;
 import model.epanet.element.systemoperation.Pattern;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
@@ -28,6 +31,8 @@ import java.util.*;
  * emitter is optional<br>
  */
 public final class Junction extends Node {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Junction.class);
+
     /**
      * The default value for elevation
      */
@@ -64,6 +69,8 @@ public final class Junction extends Node {
      */
     public Junction(@NotNull Junction junction) {
         super(Objects.requireNonNull(junction));
+        LOGGER.debug("Clonning Junction {}.", junction.getId());
+
         this.elevation = junction.elevation;
 //		this.baseDemand = junction.baseDemand;
 //		this.demandPattern = junction.demandPattern;

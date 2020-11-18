@@ -1,17 +1,15 @@
 package model.metaheuristic.problem.impl;
 
 import epanet.core.*;
-import exception.ApplicationException;
 import model.epanet.element.Gama;
 import model.epanet.element.Network;
-import model.epanet.element.networkcomponent.Link;
 import model.epanet.element.networkcomponent.Pipe;
-import model.epanet.element.networkcomponent.Valve;
 import model.io.GamaParser;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.problem.evaluator.PipeOptimizingSolutionEvaluator;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.solution.impl.IntegerSolution;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,18 +25,16 @@ import java.util.Objects;
 public class PipeOptimizing implements Problem<IntegerSolution> {
 
 	private int numberOfVariables;
-	private int numberOfObjectives;
-	private int numberOfConstrains;
+	private final int numberOfObjectives;
+	private final int numberOfConstrains;
 	private int lowerBound;
 	private int upperBound;
-	private String networkGama;
+	private final String networkGama;
 	private final PipeOptimizingSolutionEvaluator evaluator;
-	private EpanetAPI epanet;
+	private final EpanetAPI epanet;
 
 	private List<Gama> gamas;
 	private List<Float> LenghtLinks;
-
-	private int minPressure;
 
 	/**
 	 * Constructor
@@ -50,20 +46,19 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	 *                              gama.
 	 * @throws EpanetException      if there is a error in epatoolkit
 	 * @throws NullPointerException if epanet is null or networkGama is null
-	 * @throws ApplicationException if networkGama is empty
+	 * @throws IllegalArgumentException if networkGama is empty
 	 */
 	public PipeOptimizing(EpanetAPI epanet, String networkGama, int minPressure) throws IOException, EpanetException {
 		Objects.requireNonNull(epanet, "EpanetAPI can't be null in CostConstructionProblem");
 		Objects.requireNonNull(networkGama);
 		if (networkGama.equals("")) {
-			throw new ApplicationException("The parameter networkGama can't be empty");
+			throw new IllegalArgumentException("The parameter networkGama can't be empty");
 		}
 		this.numberOfConstrains = 1;
 		this.numberOfObjectives = 1;
 		this.networkGama = networkGama;
 		this.epanet = epanet;
-		this.minPressure = minPressure;
-		this.evaluator = new PipeOptimizingSolutionEvaluator(this.minPressure);
+		this.evaluator = new PipeOptimizingSolutionEvaluator(minPressure);
 		initialize();
 	}
 
@@ -120,7 +115,7 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 
 	/** {@inheritDoc} */
 	@Override
-	public IntegerSolution createSolution() {
+	public @NotNull IntegerSolution createSolution() {
 		return new IntegerSolution(this);
 	}
 
@@ -185,7 +180,7 @@ public class PipeOptimizing implements Problem<IntegerSolution> {
 	}
 
 	@Override
-	public String getName() {
+	public @NotNull String getName() {
 		return "Pipe Optimizing";
 	}
 }

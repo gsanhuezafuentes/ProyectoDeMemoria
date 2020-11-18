@@ -1,11 +1,10 @@
 package controller;
 
 import application.ApplicationSetup;
-import exception.ApplicationException;
+import controller.util.ControllerUtils;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.ScatterChart;
@@ -19,6 +18,8 @@ import javafx.scene.transform.Transform;
 import javafx.stage.FileChooser;
 import model.metaheuristic.solution.Solution;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import view.utils.CustomDialogs;
 
 import javax.imageio.ImageIO;
@@ -28,6 +29,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class ResultPlotController {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ResultPlotController.class);
 
 	private static final String[] KELLY_COLORS = {
 			"#FFB300",    // Vivid Yellow
@@ -72,30 +74,15 @@ public class ResultPlotController {
 	 *                                  one or two.
 	 */
 	public ResultPlotController(int numberOfObjectives) {
+		LOGGER.debug("Initializing ResultPlotController.");
 		if (numberOfObjectives != 1 && numberOfObjectives != 2) {
 			throw new IllegalArgumentException(
 					"The plot only support one until two objectives, but the number of objectives received is "
 							+ numberOfObjectives);
 		}
 		this.numberOfObjectives = numberOfObjectives;
-		this.root = loadFXML();
+		this.root = ControllerUtils.loadFXML("/view/ResultPlot.fxml", this);
 		configurePlot();
-	}
-
-	/**
-	 * Load the FXML view associated to this controller.
-	 *
-	 * @return the root pane.
-	 * @throws ApplicationException if there is an error in load the .fxml.
-	 */
-	private Pane loadFXML() {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ResultPlot.fxml"));
-		fxmlLoader.setController(this);
-		try {
-			return fxmlLoader.load();
-		} catch (IOException exception) {
-			throw new ApplicationException(exception);
-		}
 	}
 
 	/**
@@ -115,9 +102,11 @@ public class ResultPlotController {
 		//this.resultsPlot.setVerticalGridLinesVisible(false);
 		//this.resultsPlot.setHorizontalGridLinesVisible(false);
 		if (this.numberOfObjectives == 1) {
+			LOGGER.debug("Setting X axis: 'Number of Generations', Y axis: 'Objective'.");
 			this.resultsPlot.getXAxis().setLabel("Number of generations");
 			this.resultsPlot.getYAxis().setLabel("Objective");
 		} else {
+			LOGGER.debug("Setting X axis: 'Objective1, Y axis: 'Objective2'.");
 			this.resultsPlot.getXAxis().setLabel("Objective1");
 			this.resultsPlot.getYAxis().setLabel("Objective2");
 		}
@@ -159,7 +148,7 @@ public class ResultPlotController {
 			// Resize node size
 			applyStyleToData(data);
 		} else { // is 2. Use objective1 vs Objective2
-			throw new IllegalStateException("You can't call this method when the problem is mono objective (number of objectives > 2).");
+			throw new IllegalStateException("You can't call this method when the problem is multi objective (number of objectives > 2).");
 		}
 	}
 
@@ -175,6 +164,7 @@ public class ResultPlotController {
 		Objects.requireNonNull(solutionList);
 
 		if (this.numberOfObjectives == 1) {
+			LOGGER.error("Invalid call to addData method in ResultPlotController. The method has to be called only by singleobjectives problems.");
 			throw new IllegalStateException("You can't call this method when the problem is single objective.");
 		} else { // is 2. Use objective1 vs Objective2
 			XYChart.Series<Number, Number> serie = new XYChart.Series<>();
@@ -225,6 +215,7 @@ public class ResultPlotController {
 	 */
 	@FXML
 	private void takeSnapshotOnAction(){
+		LOGGER.info("Taking a snapshot of plot.");
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
 		fileChooser.setTitle("Save plot");
@@ -237,8 +228,10 @@ public class ResultPlotController {
 		WritableImage writableImage = pixelScaleAwareChartSnapshot(this.resultsPlot, 2);
 
 		try {
+			LOGGER.debug("Save snapshop in {}.", file.getAbsolutePath());
 			ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
 		} catch (IOException exception) {
+			LOGGER.error("The snapshop can't be saved.", exception);
 			CustomDialogs.showDialog("Error", "Error in the creation of the image",
 					"The image of chart can't be saved", Alert.AlertType.ERROR);
 		}

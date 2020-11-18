@@ -2,14 +2,19 @@ package model.epanet.element.optionsreport;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public final class Option {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Option.class);
+
 	/**
 	 * This are enum of flow unit. This are the next:<br>
 	 * <br>
@@ -166,6 +171,8 @@ public final class Option {
 	 */
 	public Option(@NotNull Option option) {
 		Objects.requireNonNull(option);
+		LOGGER.debug("Clonning Option.");
+
 		this.flowUnit = option.flowUnit;
 		this.headlossFormule = option.headlossFormule;
 		this.hydraulic = option.hydraulic;

@@ -2,12 +2,16 @@ package model.epanet.element.systemoperation;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import model.epanet.element.utils.Point;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 public final class Curve {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Curve.class);
 
 	public enum Type {
 		PUMP("PUMP"), EFFICIENCY("EFFICIENCY"), VOLUME("VOLUME"), HEADLOSS("HEADLOSS");
@@ -63,6 +67,8 @@ public final class Curve {
 	public Curve(@NotNull Curve curve) {
 		this();
 		Objects.requireNonNull(curve);
+		LOGGER.debug("Clonning Curve {}.", curve.getId());
+
 		this.id = curve.id;
 		this.points.addAll(curve.points);
 		this.description = curve.description;

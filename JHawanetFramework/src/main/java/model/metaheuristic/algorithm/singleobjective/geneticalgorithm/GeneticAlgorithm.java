@@ -24,7 +24,6 @@
 package model.metaheuristic.algorithm.singleobjective.geneticalgorithm;
 
 import epanet.core.EpanetException;
-import exception.ApplicationException;
 import model.metaheuristic.algorithm.AbstractEvolutionaryAlgorithm;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.operator.mutation.MutationOperator;
@@ -32,8 +31,9 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.TournamentSelection;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.comparator.ObjectiveComparator;
-import model.metaheuristic.utils.evaluator.SolutionListEvaluator;
+import model.metaheuristic.util.comparator.ObjectiveComparator;
+import model.metaheuristic.util.evaluator.SolutionListEvaluator;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -265,7 +265,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<S> getResult() {
+	public @NotNull List<S> getResult() {
 		Collections.sort(getPopulation(), comparator);
 		return Collections.singletonList(this.getPopulation().get(0));
 	}
@@ -288,13 +288,13 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	 * A crossover operator is applied to a number of parents, and it assumed that
 	 * the population contains a valid number of solutions. This method checks that.
 	 * 
-	 * @param population the population
-	 * @param numberOfParentsForCrossover the number of parent for crossover
-	 * @throws ApplicationException if there is a wrong number of parent
+	 * @param population the population.
+	 * @param numberOfParentsForCrossover the number of parent for crossover.
+	 * @throws IllegalArgumentException if there is a wrong number of parent (population size % number of parent is not equals to 0).
 	 */
 	protected void checkNumberOfParents(List<S> population, int numberOfParentsForCrossover) {
 		if ((population.size() % numberOfParentsForCrossover) != 0) {
-			throw new ApplicationException("Wrong number of parents: the remainder if the " + "population size ("
+			throw new IllegalArgumentException("Wrong number of parents: the remainder if the " + "population size ("
 					+ population.size() + ") is not divisible by " + numberOfParentsForCrossover);
 		}
 	}
@@ -305,15 +305,15 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	 * <br>
 	 * To be valid both can't be less than 0 and both can't be 0 at the same time.
 	 * @param maxEvaluations the max number of evaluation for the algorithm.
-	 * @param maxNumberOfIterationWithoutImprovement the max number of iteration without improvement
-	 * @throws if some of the parameters have a negative value
+	 * @param maxNumberOfIterationWithoutImprovement the max number of iteration without improvement.
+	 * @throws IllegalArgumentException if some of the parameters have a negative value.
 	 */
 	private void validateMaxStoppingConditionCounters(int maxEvaluations, int maxNumberOfIterationWithoutImprovement) {
 		if (maxEvaluations < 0) {
-			throw new ApplicationException("Wrong MaxEvaluations can't be less than 0");
+			throw new IllegalArgumentException("Wrong MaxEvaluations can't be less than 0");
 		}
 		if (maxNumberOfIterationWithoutImprovement < 0) {
-			throw new ApplicationException("Wrong MaxNumberOfIterationWithoutImprovement can't be less than 0");
+			throw new IllegalArgumentException("Wrong MaxNumberOfIterationWithoutImprovement can't be less than 0");
 		}
 	}
 
@@ -356,7 +356,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 
 	/** {@inheritDoc} */
 	@Override
-	public String getStatusOfExecution() {
+	public @NotNull String getStatusOfExecution() {
 		if (getMaxEvaluations() > 0) {
 			return "Number of evaluations: " + this.performedEvaluationsNumber + " / " + this.maxEvaluations + "\n";
 		}
@@ -368,7 +368,7 @@ public class GeneticAlgorithm<S extends Solution<?>> extends AbstractEvolutionar
 	}
 
 	@Override
-	public String getName() {
+	public @NotNull String getName() {
 		return "Genetic Algorithm";
 	}
 

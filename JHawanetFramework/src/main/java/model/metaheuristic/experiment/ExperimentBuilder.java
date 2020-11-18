@@ -91,10 +91,10 @@ public final class ExperimentBuilder<S extends Solution<?>> {
     @NotNull private final String experimentName;
     @Nullable private List<ExperimentAlgorithm<S>> algorithmList;
     @Nullable private ExperimentProblem<S> problem;
-    @NotNull private String referenceFrontDirectory;
-    @NotNull private String experimentBaseDirectory;
-    @NotNull private String objectiveOutputFileName;
-    @NotNull private String variablesOutputFileName;
+//    @NotNull private String referenceFrontDirectory;
+//    @NotNull private String experimentBaseDirectory;
+//    @NotNull private String objectiveOutputFileName;
+//    @NotNull private String variablesOutputFileName;
     private int independentRuns;
 
     /**
@@ -110,10 +110,10 @@ public final class ExperimentBuilder<S extends Solution<?>> {
         }
         this.experimentName = experimentName;
         this.independentRuns = 1;
-        this.objectiveOutputFileName = "FUN";
-        this.variablesOutputFileName = "VAR";
-        this.referenceFrontDirectory = "";
-        this.experimentBaseDirectory = "";
+//        this.objectiveOutputFileName = "FUN";
+//        this.variablesOutputFileName = "VAR";
+//        this.referenceFrontDirectory = "";
+//        this.experimentBaseDirectory = "";
     }
 
     /**
@@ -142,66 +142,66 @@ public final class ExperimentBuilder<S extends Solution<?>> {
         return this;
     }
 
-    /**
-     * Set the experiment base directory where result will be stored.
-     * @param experimentBaseDirectory the directory or a empty string to not save result.
-     * @return this object
-     * @throws  NullPointerException if experimentBaseDirectory is null
-     */
-    public @NotNull ExperimentBuilder<S> setExperimentBaseDirectory(@NotNull String experimentBaseDirectory) {
-        Objects.requireNonNull(experimentBaseDirectory);
-        if (!experimentBaseDirectory.isEmpty())
-            this.experimentBaseDirectory = experimentBaseDirectory + "/" + experimentName;
-        else
-            this.experimentBaseDirectory = "";
-
-        return this;
-    }
-
-    /**
-     * Set the reference front directory (pareto front directory) where result will be save when the problem will be multiobjective.
-     * @param referenceFrontDirectory the reference front directory
-     * @return this object
-     * @throws NullPointerException if referenceFrontDirectory is null.
-     */
-    public @NotNull ExperimentBuilder<S> setReferenceFrontDirectory(@NotNull String referenceFrontDirectory) {
-        Objects.requireNonNull(referenceFrontDirectory);
-        this.referenceFrontDirectory = referenceFrontDirectory;
-
-        return this;
-    }
-
-    /**
-     * Set the file name where the objectives will be stored. If the value received is a empty string the default value is used.
-     * @param objectiveOutputFileName the objective output file name
-     * @return this objects
-     * @throws NullPointerException if referenceFrontDirectory is null.
-     */
-    public @NotNull ExperimentBuilder<S> setObjectiveOutputFileName(@NotNull String objectiveOutputFileName) {
-        Objects.requireNonNull(objectiveOutputFileName);
-        if (objectiveOutputFileName.isEmpty()){
-            objectiveOutputFileName = "FUN";
-        }
-        this.objectiveOutputFileName = objectiveOutputFileName;
-
-        return this;
-    }
-
-    /**
-     * Set the file name where the objectives will be stored. If the value received is a empty string the default value is used.
-     * @param variablesOutputFileName the objective output file name
-     * @return this objects
-     * @throws NullPointerException if referenceFrontDirectory is null.
-     */
-    public @NotNull ExperimentBuilder<S> setVariablesOutputFileName(@NotNull String variablesOutputFileName) {
-        Objects.requireNonNull(variablesOutputFileName);
-        if (variablesOutputFileName.isEmpty()){
-            variablesOutputFileName = "VAR";
-        }
-        this.variablesOutputFileName = variablesOutputFileName;
-
-        return this;
-    }
+//    /**
+//     * Set the experiment base directory where result will be stored.
+//     * @param experimentBaseDirectory the directory or a empty string to not save result.
+//     * @return this object
+//     * @throws  NullPointerException if experimentBaseDirectory is null
+//     */
+//    public @NotNull ExperimentBuilder<S> setExperimentBaseDirectory(@NotNull String experimentBaseDirectory) {
+//        Objects.requireNonNull(experimentBaseDirectory);
+//        if (!experimentBaseDirectory.isEmpty())
+//            this.experimentBaseDirectory = experimentBaseDirectory + "/" + experimentName;
+//        else
+//            this.experimentBaseDirectory = "";
+//
+//        return this;
+//    }
+//
+//    /**
+//     * Set the reference front directory (pareto front directory) where result will be save when the problem will be multiobjective.
+//     * @param referenceFrontDirectory the reference front directory
+//     * @return this object
+//     * @throws NullPointerException if referenceFrontDirectory is null.
+//     */
+//    public @NotNull ExperimentBuilder<S> setReferenceFrontDirectory(@NotNull String referenceFrontDirectory) {
+//        Objects.requireNonNull(referenceFrontDirectory);
+//        this.referenceFrontDirectory = referenceFrontDirectory;
+//
+//        return this;
+//    }
+//
+//    /**
+//     * Set the file name where the objectives will be stored. If the value received is a empty string the default value is used.
+//     * @param objectiveOutputFileName the objective output file name
+//     * @return this objects
+//     * @throws NullPointerException if referenceFrontDirectory is null.
+//     */
+//    public @NotNull ExperimentBuilder<S> setObjectiveOutputFileName(@NotNull String objectiveOutputFileName) {
+//        Objects.requireNonNull(objectiveOutputFileName);
+//        if (objectiveOutputFileName.isEmpty()){
+//            objectiveOutputFileName = "FUN";
+//        }
+//        this.objectiveOutputFileName = objectiveOutputFileName;
+//
+//        return this;
+//    }
+//
+//    /**
+//     * Set the file name where the objectives will be stored. If the value received is a empty string the default value is used.
+//     * @param variablesOutputFileName the objective output file name
+//     * @return this objects
+//     * @throws NullPointerException if referenceFrontDirectory is null.
+//     */
+//    public @NotNull ExperimentBuilder<S> setVariablesOutputFileName(@NotNull String variablesOutputFileName) {
+//        Objects.requireNonNull(variablesOutputFileName);
+//        if (variablesOutputFileName.isEmpty()){
+//            variablesOutputFileName = "VAR";
+//        }
+//        this.variablesOutputFileName = variablesOutputFileName;
+//
+//        return this;
+//    }
 
     /**
      * Set the number of independent run.
@@ -255,29 +255,29 @@ public final class ExperimentBuilder<S extends Solution<?>> {
         return this.problem;
     }
 
-    /**
-     * Get the experiment base directory where the pareto front for each algorithm execution will be stored.
-     * @return the experiment base directory name or a empty string if it isn't set up.
-     */
-    public @NotNull String getExperimentBaseDirectory() {
-        return experimentBaseDirectory;
-    }
-
-    /**
-     * Get the name of output file for objectives.
-     * @return the file name of objective file.
-     */
-    public @NotNull String getObjectiveOutputFileName() {
-        return objectiveOutputFileName;
-    }
-
-    /**
-     * Get the name of output file for variables.
-     * @return the file name of variables file.
-     */
-    public @NotNull String getVariablesOutputFileName() {
-        return variablesOutputFileName;
-    }
+//    /**
+//     * Get the experiment base directory where the pareto front for each algorithm execution will be stored.
+//     * @return the experiment base directory name or a empty string if it isn't set up.
+//     */
+//    public @NotNull String getExperimentBaseDirectory() {
+//        return experimentBaseDirectory;
+//    }
+//
+//    /**
+//     * Get the name of output file for objectives.
+//     * @return the file name of objective file.
+//     */
+//    public @NotNull String getObjectiveOutputFileName() {
+//        return objectiveOutputFileName;
+//    }
+//
+//    /**
+//     * Get the name of output file for variables.
+//     * @return the file name of variables file.
+//     */
+//    public @NotNull String getVariablesOutputFileName() {
+//        return variablesOutputFileName;
+//    }
 
     /**
      * Get the number of independent runs.
@@ -287,12 +287,12 @@ public final class ExperimentBuilder<S extends Solution<?>> {
         return independentRuns;
     }
 
-    /**
-     * Get the file name where reference front (Final Pareto Front) will be stored when the problem are multiobjective.
-     * @return the reference file name or a empty string if it isn't set up.
-     */
-    public @NotNull String getReferenceFrontDirectory() {
-        return referenceFrontDirectory;
-    }
+//    /**
+//     * Get the file name where reference front (Final Pareto Front) will be stored when the problem are multiobjective.
+//     * @return the reference file name or a empty string if it isn't set up.
+//     */
+//    public @NotNull String getReferenceFrontDirectory() {
+//        return referenceFrontDirectory;
+//    }
 
 }

@@ -1,13 +1,16 @@
 package application;
 
 import controller.MainWindowController;
-import controller.utils.ProblemMenuConfiguration;
+import controller.util.ProblemMenuConfiguration;
+import exception.ViewLoadException;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import view.utils.CustomDialogs;
 
 import java.io.IOException;
@@ -21,16 +24,19 @@ import java.io.IOException;
  *
  */
 public class Main extends Application {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
 	@Override
 	public void start(Stage primaryStage) {
 		Thread.currentThread().setUncaughtExceptionHandler((thread, throwable) -> {
+			LOGGER.error("Unexpected error. The application will be closed.", throwable);
 			CustomDialogs.showExceptionDialog("Critical error", "Unhandled error"
 					, "Unhandled error. The application will be closed when close this dialog."
 					, throwable, primaryStage, true);
 			Platform.exit();
 		});
 		try {
+			LOGGER.debug("Loading MainWindow.fxml.");
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainWindow.fxml"));
 			BorderPane root = loader.load();
 			MainWindowController controller = loader.getController();
@@ -42,9 +48,12 @@ public class Main extends Application {
 			primaryStage.setMinHeight(600);
 			primaryStage.setScene(scene);
 			primaryStage.sizeToScene();
+
+			LOGGER.info("Show MainWindow.");
+
 			primaryStage.show();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new ViewLoadException("The FXML MainWindow.fxml can't be loaded.", e);
 		}
 	}
 

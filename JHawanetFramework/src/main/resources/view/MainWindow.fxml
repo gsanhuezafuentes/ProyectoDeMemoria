@@ -7,20 +7,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import view.ElementViewer?>
 <?import view.NetworkComponent?>
-<BorderPane fx:id="root" prefHeight="800.0" prefWidth="1280.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
+<BorderPane fx:id="root" prefHeight="800.0" prefWidth="1280.0" stylesheets="@application.css"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.MainWindowController">
     <top>
         <VBox>
             <MenuBar BorderPane.alignment="CENTER">
                 <menus>
                     <Menu mnemonicParsing="false" text="File">
                         <items>
-                            <MenuItem mnemonicParsing="false" onAction="#openOnAction" text="Open" />
+                            <MenuItem mnemonicParsing="false" onAction="#openOnAction" text="Open"/>
                             <MenuItem mnemonicParsing="false" text="Settings" onAction="#settingOnAction"/>
                         </items>
                     </Menu>
                     <Menu fx:id="singleobjectiveMenu" mnemonicParsing="false" text="Singleobjective Optimization">
                     </Menu>
                     <Menu fx:id="multiobjectiveMenu" mnemonicParsing="false" text="Multiobjective Optimization">
+                    </Menu>
+                    <Menu fx:id="indicatorMenu" text="Indicators">
+                        <items>
+                            <MenuItem fx:id="compareMultiObjectiveExperimentMenuItem"
+                                      text="Compare Multiobjective experiments"
+                                      onAction="#runMultiObjectiveIndicatorsOnAction"></MenuItem>
+                        </items>
                     </Menu>
                     <Menu mnemonicParsing="false" text="Help">
                         <items>
@@ -33,43 +42,54 @@
                 <Button fx:id="runButton" onAction="#runOnAction" styleClass="imageButton">
                     <graphic>
                         <ImageView>
-                            <Image url="@icons/Play_32px.png" />
+                            <Image url="@icons/Play_32px.png"/>
                         </ImageView>
                     </graphic>
-                    <tooltip><Tooltip text="Execute" /></tooltip>
+                    <tooltip>
+                        <Tooltip text="Execute"/>
+                    </tooltip>
                 </Button>
-                <Button fx:id="resultReportButton" onAction="#resultReportOnAction" disable="false" styleClass="imageButton">
+                <Button fx:id="resultReportButton" onAction="#resultReportOnAction" disable="false"
+                        styleClass="imageButton">
                     <graphic>
                         <ImageView>
-                            <Image url="@icons/iconfinder-document-table-32.png" />
+                            <Image url="@icons/iconfinder-document-table-32.png"/>
                         </ImageView>
                     </graphic>
-                    <tooltip><Tooltip text="Show Result" /></tooltip>
+                    <tooltip>
+                        <Tooltip text="Show Result"/>
+                    </tooltip>
                 </Button>
-                <Separator orientation="VERTICAL" />
+                <Separator orientation="VERTICAL"/>
                 <Button fx:id="saveTableAsExcelButton" disable="true" styleClass="imageButton">
                     <graphic>
                         <ImageView>
-                            <Image url="@icons/iconfinder-excel-32.png" />
+                            <Image url="@icons/iconfinder-excel-32.png"/>
                         </ImageView>
                     </graphic>
-                    <tooltip><Tooltip text="Save table as excel" /></tooltip>
+                    <tooltip>
+                        <Tooltip text="Save table as excel"/>
+                    </tooltip>
                 </Button>
                 <Button fx:id="saveTableButton" disable="true" styleClass="imageButton">
                     <graphic>
                         <ImageView>
-                            <Image url="@icons/iconfinder_table_save_64777.png" />
+                            <Image url="@icons/iconfinder_table_save_64777.png"/>
                         </ImageView>
                     </graphic>
-                    <tooltip><Tooltip text="Export solutions to tsv" /></tooltip>
+                    <tooltip>
+                        <Tooltip text="Export solutions to tsv"/>
+                    </tooltip>
                 </Button>
                 <Button fx:id="saveSelectedAsINPButton" disable="true" styleClass="imageButton">
                     <graphic>
                         <ImageView>
-                            <Image url="@icons/iconfinder_save_32.png" />
+                            <Image url="@icons/iconfinder_save_32.png"/>
                         </ImageView>
                     </graphic>
-                    <tooltip><Tooltip text="Export selected to inp" /></tooltip>
+                    <tooltip>
+                        <Tooltip text="Export selected to inp"/>
+                    </tooltip>
                 </Button>
             </ToolBar>
         </VBox>
@@ -81,11 +101,13 @@
             </styleClass>
             <tabs>
                 <Tab fx:id="networkTab" closable="false" text="Network">
-                    <SplitPane fx:id="splitPane" dividerPositions="0.5" style="-fx-border-color: darkgrey;-fx-border-radius: 1">
+                    <SplitPane fx:id="splitPane" dividerPositions="0.5"
+                               style="-fx-border-color: darkgrey;-fx-border-radius: 1">
                         <!--bind elementViewer to 20% of splitPane size-->
-                        <ElementViewer fx:id="elementViewer" maxWidth="${splitPane.width * 0.20}" />
+                        <ElementViewer fx:id="elementViewer" maxWidth="${splitPane.width * 0.20}"/>
                         <Pane fx:id="canvasWrapper">
-                            <NetworkComponent fx:id="networkComponent" height="${canvasWrapper.height}" width="${canvasWrapper.width}" />
+                            <NetworkComponent fx:id="networkComponent" height="${canvasWrapper.height}"
+                                              width="${canvasWrapper.width}"/>
                         </Pane>
                     </SplitPane>
                 </Tab>

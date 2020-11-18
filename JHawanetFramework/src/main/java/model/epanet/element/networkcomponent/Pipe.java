@@ -2,14 +2,19 @@ package model.epanet.element.networkcomponent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public final class Pipe extends Link {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Pipe.class);
+
 
 	/**
 	 * A enumerator that to define the status of Pipe.
@@ -92,6 +97,8 @@ public final class Pipe extends Link {
 	 */
 	public Pipe(@NotNull Pipe pipe) {
 		super(Objects.requireNonNull(pipe));
+		LOGGER.debug("Clonning Pipe {}.", pipe.getId());
+
 		this.length = pipe.length;
 		this.diameter = pipe.diameter;
 		this.roughness = pipe.roughness;

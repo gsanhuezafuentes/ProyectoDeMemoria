@@ -4,7 +4,7 @@ import annotations.DefaultConstructor;
 import annotations.NumberInput;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.comparator.DominanceComparator;
+import model.metaheuristic.util.comparator.DominanceComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,7 +19,7 @@ import java.util.List;
 public class UniformSelection<S extends Solution<?>> implements SelectionOperator<List<S>, List<S>> {
 
 	private final Comparator<S> comparator;
-	private double constant;
+	private final double constant;
 
 	/**
 	 * Constructor

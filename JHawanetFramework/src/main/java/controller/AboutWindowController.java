@@ -1,33 +1,20 @@
 package controller;
 
-import exception.ApplicationException;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.IOException;
+import static controller.util.ControllerUtils.loadFXML;
 
 public class AboutWindowController {
     private @Nullable Stage window;
     private @NotNull Parent root;
 
     public AboutWindowController(){
-        this.root = loadFXML();
-    }
-
-    private Pane loadFXML() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/AboutWindow.fxml"));
-        fxmlLoader.setController(this);
-        try {
-            return fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new ApplicationException(exception);
-        }
+        this.root = loadFXML("/view/AboutWindow.fxml", this);
     }
 
     /**

@@ -31,12 +31,11 @@ package model.metaheuristic.operator.mutation.impl;
 
 import annotations.DefaultConstructor;
 import annotations.NumberInput;
-import exception.ApplicationException;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.random.JavaRandom;
-import model.metaheuristic.utils.random.RandomGenerator;
+import model.metaheuristic.util.random.JavaRandom;
+import model.metaheuristic.util.random.RandomGenerator;
 
 import java.util.Objects;
 
@@ -88,18 +87,20 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
     /**
      * Constructor
      *
-     * @param mutationProbability the mutation probability
-     * @param distributionIndex   the distribution index
-     * @param random              the random function to use
-     * @throws ApplicationException if mutationProbability or distributionIndex is negative
+     * @param mutationProbability the mutation probability.
+     * @param distributionIndex   the distribution index.
+     * @param random              the random function to use.
+     * @throws IllegalArgumentException if mutationProbability or distributionIndex is negative.
+     * @throws NullPointerException if random is null.
      */
     public IntegerPolynomialMutation(double mutationProbability, double distributionIndex,
                                      RandomGenerator<Double> random) {
         if (mutationProbability < 0) {
-            throw new ApplicationException("Mutation probability is negative: " + mutationProbability);
+            throw new IllegalArgumentException("Mutation probability is negative: " + mutationProbability);
         } else if (distributionIndex < 0) {
-            throw new ApplicationException("Distribution index is negative: " + distributionIndex);
+            throw new IllegalArgumentException("Distribution index is negative: " + distributionIndex);
         }
+        Objects.requireNonNull(random);
         this.mutationProbability = mutationProbability;
         this.distributionIndex = distributionIndex;
 

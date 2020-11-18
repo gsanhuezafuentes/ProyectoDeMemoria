@@ -30,10 +30,10 @@ package model.metaheuristic.algorithm.multiobjective.spa2.utils;
 
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.solution.Solution;
-import model.metaheuristic.utils.SolutionListUtils;
-import model.metaheuristic.utils.solutionattribute.LocationAttribute;
-import model.metaheuristic.utils.solutionattribute.StrengthFitnessComparator;
-import model.metaheuristic.utils.solutionattribute.StrengthRawFitness;
+import model.metaheuristic.util.SolutionListUtils;
+import model.metaheuristic.util.solutionattribute.LocationAttribute;
+import model.metaheuristic.util.solutionattribute.StrengthFitnessComparator;
+import model.metaheuristic.util.solutionattribute.StrengthRawFitness;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
@@ -43,8 +43,8 @@ import java.util.List;
 
 public class EnvironmentalSelection<S extends Solution<?>> implements SelectionOperator<List<S>,List<S>> {
 
-    private int solutionsToSelect ;
-    private StrengthRawFitness<S> strengthRawFitness ;
+    private final int solutionsToSelect ;
+    private final StrengthRawFitness<S> strengthRawFitness ;
 
     public EnvironmentalSelection(int solutionsToSelect) {
         this(solutionsToSelect, 1) ;
@@ -104,15 +104,9 @@ public class EnvironmentalSelection<S extends Solution<?>> implements SelectionO
             distanceList.add(distanceNodeList);
         }
 
-        for (int q = 0; q < distanceList.size(); q++){
-            Collections.sort(distanceList.get(q), (pair1, pair2) -> {
-                if (pair1.getRight()  < pair2.getRight()) {
-                    return -1;
-                } else if (pair1.getRight()  > pair2.getRight()) {
-                    return 1;
-                } else {
-                    return 0;
-                }
+        for (List<Pair<Integer, Double>> pairs : distanceList) {
+            Collections.sort(pairs, (pair1, pair2) -> {
+                return pair1.getRight().compareTo(pair2.getRight());
             });
         }
 
@@ -120,10 +114,8 @@ public class EnvironmentalSelection<S extends Solution<?>> implements SelectionO
             double minDistance = Double.MAX_VALUE;
             int toRemove = 0;
             i = 0;
-            Iterator<List<Pair<Integer, Double>>> iterator = distanceList.iterator();
-            while (iterator.hasNext()){
-                List<Pair<Integer, Double>> dn = iterator.next();
-                if (dn.get(0).getRight() < minDistance){
+            for (List<Pair<Integer, Double>> dn : distanceList) {
+                if (dn.get(0).getRight() < minDistance) {
                     toRemove = i;
                     minDistance = dn.get(0).getRight();
                     //i y toRemove have the same distance to the first solution
@@ -131,7 +123,7 @@ public class EnvironmentalSelection<S extends Solution<?>> implements SelectionO
                     int k = 0;
                     while ((dn.get(k).getRight().equals(
                             distanceList.get(toRemove).get(k).getRight())) &&
-                            k < (distanceList.get(i).size()-1)) {
+                            k < (distanceList.get(i).size() - 1)) {
                         k++;
                     }
 
@@ -147,11 +139,10 @@ public class EnvironmentalSelection<S extends Solution<?>> implements SelectionO
             aux.remove(toRemove);
             distanceList.remove(toRemove);
 
-            Iterator<List<Pair<Integer, Double>>> externIterator = distanceList.iterator();
-            while (externIterator.hasNext()){
-                Iterator<Pair<Integer, Double>> interIterator = externIterator.next().iterator();
-                while (interIterator.hasNext()){
-                    if (interIterator.next().getLeft() == tmp){
+            for (List<Pair<Integer, Double>> pairs : distanceList) {
+                Iterator<Pair<Integer, Double>> interIterator = pairs.iterator();
+                while (interIterator.hasNext()) {
+                    if (interIterator.next().getLeft() == tmp) {
                         interIterator.remove();
                         continue;
                     }

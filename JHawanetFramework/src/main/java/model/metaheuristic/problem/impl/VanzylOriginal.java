@@ -1,13 +1,12 @@
 package model.metaheuristic.problem.impl;
 
 import epanet.core.EpanetException;
-import model.epanet.element.Network;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.problem.evaluator.EpatoolForJava;
-import model.metaheuristic.solution.Solution;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.solutionattribute.NumberOfViolatedConstraints;
-import model.metaheuristic.utils.solutionattribute.OverallConstraintViolation;
+import model.metaheuristic.util.solutionattribute.NumberOfViolatedConstraints;
+import model.metaheuristic.util.solutionattribute.OverallConstraintViolation;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,20 +23,19 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
     private static final long serialVersionUID = 1L;
     public OverallConstraintViolation<IntegerSolution> overallConstraintViolationDegree;
     public NumberOfViolatedConstraints<IntegerSolution> numberOfViolatedConstraints;
-    private InputPse inputPse;
 
-    protected int numPumps;
-    protected int numInterval;
+    protected final int numPumps;
+    protected final int numInterval;
     protected int[][] combination;
-    protected int totalOptimizationTime;
-    protected int intervalOptimizationTime;
-    protected double[] energyCostPerTime;
-    protected double maintenanceCost;
-    protected int minNodePressure;
-    protected double[] minTank;
-    protected double[] maxTank;
-    protected double[] maxFlowrateEachPump;
-    static EpatoolForJava epatool;
+    protected final int totalOptimizationTime;
+    protected final int intervalOptimizationTime;
+    protected final double[] energyCostPerTime;
+    protected final double maintenanceCost;
+    protected final int minNodePressure;
+    protected final double[] minTank;
+    protected final double[] maxTank;
+    protected final double[] maxFlowrateEachPump;
+    private final EpatoolForJava epatool;
 
     private int numberOfObjectives;
     private int numberOfConstrains;
@@ -48,21 +46,21 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 
     public VanzylOriginal(String psePath, String inpPath) {
 
-        this.inputPse = new InputPse();
-        this.inputPse.loadFile(psePath);
+        InputPse inputPse = new InputPse();
+        inputPse.loadFile(psePath);
 
-        this.numPumps = this.inputPse.getNumPumps();
-        this.totalOptimizationTime = this.inputPse.getTotalOptimizationTime();
-        this.intervalOptimizationTime = this.inputPse.getIntervalOptimizationTime();
-        this.energyCostPerTime = this.inputPse.getEnergyCostPerTime();
-        this.maintenanceCost = this.inputPse.getMaintenanceCost();
-        this.minNodePressure = this.inputPse.getMinNodePressure();
-        int numConstraints = this.inputPse.getNumConstraints();
-        this.maxFlowrateEachPump = this.inputPse.getMaxFlowrateEachPump();
+        this.numPumps = inputPse.getNumPumps();
+        this.totalOptimizationTime = inputPse.getTotalOptimizationTime();
+        this.intervalOptimizationTime = inputPse.getIntervalOptimizationTime();
+        this.energyCostPerTime = inputPse.getEnergyCostPerTime();
+        this.maintenanceCost = inputPse.getMaintenanceCost();
+        this.minNodePressure = inputPse.getMinNodePressure();
+        int numConstraints = inputPse.getNumConstraints();
+        this.maxFlowrateEachPump = inputPse.getMaxFlowrateEachPump();
 
         // REVISAR
-        this.minTank = this.inputPse.getMinTank();
-        this.maxTank = this.inputPse.getMaxTank();
+        this.minTank = inputPse.getMinTank();
+        this.maxTank = inputPse.getMaxTank();
 
         this.numInterval = (int) (totalOptimizationTime / intervalOptimizationTime);
 
@@ -360,7 +358,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
 
     public static class InputPse {
 
-        private HashMap<String, ArrayList<String>> labelValues;
+        private final HashMap<String, ArrayList<String>> labelValues;
 
         /*
          * Constructor: Se inicializa HashMap "labelValues" con: keys: igual a
@@ -520,7 +518,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
     }
 
     @Override
-    public IntegerSolution createSolution() {
+    public @NotNull IntegerSolution createSolution() {
         IntegerSolution solution = new IntegerSolution(this);
 
         return solution;
@@ -538,7 +536,7 @@ public class VanzylOriginal implements Problem<IntegerSolution> {
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         // TODO Auto-generated method stub
         return this.problemName;
     }

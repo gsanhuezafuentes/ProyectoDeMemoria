@@ -2,13 +2,18 @@ package model.epanet.element.waterquality;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public final class ReactionOption {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReactionOption.class);
+
 	public static final double DEFAULT_ORDER_BULK = 1;
 	public static final double DEFAULT_ORDER_TANK = 1;
 	public static final int DEFAULT_ORDER_WALL = 1;
@@ -45,6 +50,8 @@ public final class ReactionOption {
 	 */
 	public ReactionOption(@NotNull ReactionOption reaction) {
 		Objects.requireNonNull(reaction);
+		LOGGER.debug("Clonning ReactionOption.");
+
 		this.orderBulk = reaction.orderBulk;
 		this.orderTank = reaction.orderTank;
 		this.orderWall = reaction.orderWall;

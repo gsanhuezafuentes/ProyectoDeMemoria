@@ -2,7 +2,6 @@ package registrable.singleobjective;
 
 import annotations.*;
 import epanet.core.EpanetAPI;
-import exception.ApplicationException;
 import model.metaheuristic.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithm2;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentBuilder;
@@ -19,7 +18,7 @@ import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.operator.selection.impl.UniformSelection;
 import model.metaheuristic.problem.impl.PipeOptimizing;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.evaluator.SequentialSolutionEvaluator;
+import model.metaheuristic.util.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.Registrable;
 import registrable.SingleObjectiveRegistrable;
 import registrable.utils.ExperimentUtils;
@@ -118,19 +117,19 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
     /**
      * {@inheritDoc}
      *
-     * @throws ApplicationException if inpPath is empty or null or if gama file is
+     * @throws IllegalArgumentException if inpPath is empty or null or if gama file is
      *                              null
      */
     @Override
     public Experiment<IntegerSolution> build(String inpPath) throws Exception {
         if (inpPath == null || inpPath.isEmpty()) {
-            throw new ApplicationException("There isn't a network opened");
+            throw new IllegalArgumentException("There isn't a network opened");
         }
         EpanetAPI epanet = new EpanetAPI();
         epanet.ENopen(inpPath, "ejecucion.rpt", "");
 
         if (this.gama == null) {
-            throw new ApplicationException("There isn't gama file");
+            throw new IllegalArgumentException("There isn't gama file");
         }
 
         this.problem = new PipeOptimizing(epanet, this.gama.getAbsolutePath(), this.minPressure);

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+
+    <!-- Logging Properties -->
+    <Properties>
+        <Property name="LOG_PATTERN">[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</Property>
+        <Property name="filename">logs</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+        <!-- File Appender -->
+<!--        <File name="LOGFILE" fileName="${filename}/app.log" append="false">-->
+<!--            <PatternLayout pattern="${LOG_PATTERN}"></PatternLayout>-->
+<!--        </File>-->
+
+        <!--Logging the app. Each day compress the logging of the previous day.     -->
+        <RollingFile name="RollingFile">
+            <FileName>${filename}/app.log</FileName>
+            <FilePattern>${filename}/%d{yyyy-MM-dd}/%d{yyyy-MM-dd}.log.zip</FilePattern>
+            <PatternLayout>
+                <Pattern>${LOG_PATTERN}</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+            <DefaultRolloverStrategy max="5" />
+        </RollingFile>
+
+        <Routing name="RoutingAppender">
+            <Routes pattern="$${ctx:logFileName}">
+                <Route>
+                    <!--Logging different thread of the application if logging is configured. Each day compress the file of previous day     -->
+                    <RollingFile name="RollingFileThreads">
+                        <FileName>${filename}/${ctx:logFileName}.log</FileName>
+                        <FilePattern>${filename}/%d{yyyy-MM-dd}/${ctx:logFileName}-%d{yyyy-MM-dd}.log.zip</FilePattern>
+                        <PatternLayout>
+                            <Pattern>${LOG_PATTERN}</Pattern>
+                        </PatternLayout>
+                        <Policies>
+                            <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                        </Policies>
+                        <DefaultRolloverStrategy max="5" />
+                    </RollingFile>
+                </Route>
+                <Route ref="RollingFile" key="$${ctx:logFileName}"/>
+            </Routes>
+        </Routing>
+    </Appenders>
+
+    <Loggers>
+        <!-- Disable tree party library logger -->
+        <Logger name="com.mitchellbosecke.pebble" level="OFF" additivity="false">
+        </Logger>
+
+        <Root level="debug">
+            <AppenderRef ref="RoutingAppender"/>
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

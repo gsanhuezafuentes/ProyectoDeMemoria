@@ -1,13 +1,13 @@
 package controller;
 
 import annotations.*;
-import controller.utils.CustomCallback;
-import controller.utils.ReflectionUtils;
+import controller.util.ControllerUtils;
+import controller.util.ReflectionUtils;
+import controller.util.TextInputUtil;
 import exception.ApplicationException;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -20,16 +20,16 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import registrable.Registrable;
 import view.utils.CustomDialogs;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
-import java.util.function.UnaryOperator;
-import java.util.regex.Pattern;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
@@ -38,8 +38,10 @@ import java.util.stream.Collectors;
  * @param <T> The type of registrable class
  */
 public class DynamicConfigurationWindowController<T extends Registrable<?>> {
-    private final CustomCallback<T> experimentEvent;
-    private final Class<? extends T> problemClass;
+    private static final Logger LOGGER = LoggerFactory.getLogger(DynamicConfigurationWindowController.class);
+
+    private final Consumer<T> experimentEvent;
+    private final Class<? extends T> registrableClass;
     private final Pane root;
     private static final double defaultSpaceInConfigurationGrid = 5;
     private int gridLayoutRowCount;
@@ -106,8 +108,8 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
     private final Map<String, ToggleGroup> numberToggleGroupAdded;
 
     public DynamicConfigurationWindowController(Class<? extends T> registrable,
-                                                CustomCallback<T> experimentEvent) {
-        this.problemClass = Objects.requireNonNull(registrable);
+                                                Consumer<T> experimentEvent) {
+        this.registrableClass = Objects.requireNonNull(registrable);
         this.experimentEvent = Objects.requireNonNull(experimentEvent);
 
         // save the values of each operator to use when contructor will be called
@@ -128,23 +130,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         //save the combobox of operator seccion
         this.comboBoxesAdded = new ArrayList<>();
 
-        this.root = loadFXML();
-    }
-
-    /**
-     * Load the FXML view associated to this controller.
-     *
-     * @return the root pane.
-     * @throws ApplicationException if there is an error in load the .fxml.
-     */
-    private Pane loadFXML() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/DynamicConfigurationWindow.fxml"));
-        fxmlLoader.setController(this);
-        try {
-            return fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new ApplicationException(exception);
-        }
+        this.root = ControllerUtils.loadFXML("/view/DynamicConfigurationWindow.fxml",this);
     }
 
     /**
@@ -166,17 +152,17 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
      */
     private void notifyExperimentCreation(T registrable) throws ApplicationException {
 
-        experimentEvent.notify(registrable);
+        experimentEvent.accept(registrable);
     }
 
     /**
-     * Read the problem using reflection and build the interface to configure the
-     * problem
+     * Read the registrable class using reflection and build the interface to configure the
+     * experiment.
      *
      * @throws NullPointerException if the ProblemRegister class has no constructor with {@link NewProblem} annotation.
      */
     private void createContentLayout() {
-        Constructor<?> constructor = ReflectionUtils.getNewProblemConstructor(problemClass);
+        Constructor<?> constructor = ReflectionUtils.getNewProblemConstructor(registrableClass);
         Parameters parameters = Objects.requireNonNull(constructor).getAnnotation(Parameters.class);
         if (parameters != null) {
             /*
@@ -228,11 +214,11 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         assert parameterType.getName().matches("int|Integer|double|Double");
         // if the type is int or integer use a validator that only let whole number
         if (parameterType.getName().matches("int|Integer")) {
-            textfield.setTextFormatter(createWholeTextFormatter((int) annotation.defaultValue()));
+            textfield.setTextFormatter(TextInputUtil.createWholeTextFormatter((int) annotation.defaultValue()));
         }
         // if the type is double use a validator that let real numbers
         if (parameterType.getName().matches("double|Double")) {
-            textfield.setTextFormatter(createDecimalTextFormatter(annotation.defaultValue()));
+            textfield.setTextFormatter(TextInputUtil.createDecimalTextFormatter(annotation.defaultValue()));
         }
 
         // add the row to grid pane
@@ -276,9 +262,9 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         assert parameterType.getName().matches("int|Integer|double|Double");
         //add validator to textfield
         if (parameterType.getName().matches("int|Integer")) {
-            textfield.setTextFormatter(createWholeTextFormatter((int) annotation.defaultValue()));
+            textfield.setTextFormatter(TextInputUtil.createWholeTextFormatter((int) annotation.defaultValue()));
         } else if (parameterType.getName().matches("double|Double")) {
-            textfield.setTextFormatter(createDecimalTextFormatter(annotation.defaultValue()));
+            textfield.setTextFormatter(TextInputUtil.createDecimalTextFormatter(annotation.defaultValue()));
         }
 
         this.configurationGridPane.addRow(gridLayoutRowCount++, radioButton, textfield);
@@ -455,11 +441,11 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
 
             // cast the default value from double to int (truncating the results)
             if (parameters[i].getName().matches("int|Integer")) {
-                textfield.setTextFormatter(createWholeTextFormatter((int) annotation.value()[i].defaultValue()));
+                textfield.setTextFormatter(TextInputUtil.createWholeTextFormatter((int) annotation.value()[i].defaultValue()));
             }
 
             if (parameters[i].getName().matches("double|Double")) {
-                textfield.setTextFormatter(createDecimalTextFormatter(annotation.value()[i].defaultValue()));
+                textfield.setTextFormatter(TextInputUtil.createDecimalTextFormatter(annotation.value()[i].defaultValue()));
             }
 
             // If there was previous result of a previous configuration so load it.
@@ -555,7 +541,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
     /**
      * Is called when the run button is pressed in view. It method create the
      * registrable instance based in the input field. When the experiment is created
-     * an {@link CustomCallback} is fired.
+     * an {@link Consumer} is fired.
      *
      * @param operatorsAndConfig A map where the key are the operators and the
      *                           values are the configuration. If there isn't
@@ -585,15 +571,14 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         // create the operators and add to parameters array
         for (Class<?> operator : operatorsAndConfig.keySet()) {
             try {
-                Object operatorObject = Objects.requireNonNull(ReflectionUtils.getDefaultConstructor(operator))
-                        .newInstance(operatorsAndConfig.get(operator).toArray());
+                Object operatorObject = ReflectionUtils.createOperatorInstance(operator, operatorsAndConfig.get(operator).toArray());
                 parameters[i++] = operatorObject;
             } catch (InvocationTargetException e) {
+                LOGGER.error("Error to create {} there is a exception throw by the operator constructor.", operator.getName(), e);
+
                 CustomDialogs.showExceptionDialog("Error", "Error in the creation of the operator",
                         "The operator " + operator.getName() + " can't be created", e.getCause());
                 return;
-            } catch (InstantiationException | IllegalArgumentException | IllegalAccessException e) {
-                throw new ApplicationException("Error in reflection call", e);
             }
         }
 
@@ -610,90 +595,16 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         }
 
         try {
-            T registrable = ReflectionUtils.createRegistrableInstance(this.problemClass, parameters);
+            T registrable = ReflectionUtils.createRegistrableInstance(this.registrableClass, parameters);
             closeWindow();
             notifyExperimentCreation(registrable);
         } catch (InvocationTargetException e) {
+            LOGGER.error("Error to create {} there is a exception throw by the registrable constructor.", this.registrableClass.getName(), e);
+
             CustomDialogs.showExceptionDialog("Error", "Exception throw by the constructor",
-                    "Can't be created an instance of " + this.problemClass.getName(), e.getCause());
+                    "Can't be created an instance of " + this.registrableClass.getName(), e.getCause());
         }
 
-    }
-
-    /**
-     * Create a DecimalFormater. It when is attached a textfield only let valid
-     * values for a decimal
-     *
-     * @return the formatter
-     */
-    private @NotNull TextFormatter<Double> createDecimalTextFormatter(double defaultValue) {
-        Pattern validEditingState = Pattern.compile("-?(([1-9][0-9]*)|0)?(\\.[0-9]*)?");
-
-        UnaryOperator<TextFormatter.Change> filter = c -> {
-            String text = c.getControlNewText();
-            if (validEditingState.matcher(text).matches()) {
-                return c;
-            } else {
-                return null;
-            }
-        };
-
-        StringConverter<Double> converter = new StringConverter<Double>() {
-
-            @Override
-            public Double fromString(String s) {
-                if (s.isEmpty() || "-".equals(s) || ".".equals(s) || "-.".equals(s)) {
-                    return 0.0;
-                } else {
-                    return Double.valueOf(s);
-                }
-            }
-
-            @Override
-            public String toString(Double d) {
-                return d.toString();
-            }
-        };
-
-        return new TextFormatter<>(converter, defaultValue, filter);
-    }
-
-    /**
-     * Create a WholeFormatter. It when is attached a textfield only let valid
-     * values for a whole number
-     *
-     * @return the formatter
-     */
-    private @NotNull TextFormatter<Integer> createWholeTextFormatter(int defaultValue) {
-        Pattern validEditingState = Pattern.compile("-?(([1-9][0-9]*)|0)?");
-
-        UnaryOperator<TextFormatter.Change> filter = c -> {
-            String text = c.getControlNewText();
-            if (validEditingState.matcher(text).matches()) {
-                return c;
-            } else {
-                return null;
-            }
-        };
-
-        StringConverter<Integer> converter = new StringConverter<Integer>() {
-
-            @Override
-            public Integer fromString(String s) {
-                if (s.isEmpty() || "-".equals(s)) {
-                    return 0;
-                } else {
-                    return Integer.valueOf(s);
-                }
-            }
-
-            @Override
-            public String toString(Integer i) {
-                return i.toString();
-            }
-        };
-
-        return new TextFormatter<>(converter, defaultValue, filter);
     }
 
     /**
@@ -715,13 +626,14 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         stage.setTitle("Experiment Setup");
         this.window = stage;
 
-        //Initialize the gridpane with the controls to configure the problem
+        //Initialize the gridpane with the controls to configure the experiment
         createContentLayout();
         //Fill description tab
         fillDescriptionTab();
         //add binding to run and close button
         addBindingAndListener();
 
+        LOGGER.info("Show DynamicConfigurationWindow for {}.", this.registrableClass.getName());
         stage.show();
     }
 
@@ -729,8 +641,8 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
      * Add the values to description tab.
      */
     private void fillDescriptionTab() {
-        algorithmNameLabel.setText(ReflectionUtils.getNameOfAlgorithm(problemClass));
-        problemNameLabel.setText(ReflectionUtils.getNameOfProblem(problemClass));
-        descriptionTextArea.setText(ReflectionUtils.getDescriptionOfProblem(problemClass));
+        algorithmNameLabel.setText(ReflectionUtils.getNameOfAlgorithm(registrableClass));
+        problemNameLabel.setText(ReflectionUtils.getNameOfProblem(registrableClass));
+        descriptionTextArea.setText(ReflectionUtils.getDescriptionOfProblem(registrableClass));
     }
 }

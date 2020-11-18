@@ -3,8 +3,8 @@ package model.metaheuristic.problem.evaluator;
 import epanet.core.*;
 import model.epanet.element.Gama;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.solutionattribute.NumberOfViolatedConstraints;
-import model.metaheuristic.utils.solutionattribute.OverallConstraintViolation;
+import model.metaheuristic.util.solutionattribute.NumberOfViolatedConstraints;
+import model.metaheuristic.util.solutionattribute.OverallConstraintViolation;
 
 import java.util.List;
 

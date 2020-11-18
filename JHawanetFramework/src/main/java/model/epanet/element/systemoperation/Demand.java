@@ -2,13 +2,18 @@ package model.epanet.element.systemoperation;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public final class Demand {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Demand.class);
+
     private double demand;
     @NotNull
     private String demandPattern; // ID to the Pattern
@@ -29,6 +34,8 @@ public final class Demand {
      */
     public Demand(@NotNull Demand demand) {
         Objects.requireNonNull(demand);
+        LOGGER.debug("Clonning demand.");
+
         this.demand = demand.demand;
         this.demandPattern = demand.demandPattern;
         this.demandCategory = demand.demandCategory;

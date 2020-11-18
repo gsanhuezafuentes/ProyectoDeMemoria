@@ -2,14 +2,19 @@ package model.epanet.element.networkdesign;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public final class Backdrop {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Backdrop.class);
+
 	public enum Unit {
 		FEET("FEET"), METERS("METERS"), DEGREES("DEGREES"), NONE("NONE");
 
@@ -62,6 +67,8 @@ public final class Backdrop {
 	 */
 	public Backdrop(@NotNull Backdrop backdrop) {
 		Objects.requireNonNull(backdrop);
+		LOGGER.debug("Clonning Backdrop.");
+
 		this.xBottomLeft = backdrop.xBottomLeft;
 		this.yBottomLeft = backdrop.yBottomLeft;
 		this.xUpperRight = backdrop.xUpperRight;

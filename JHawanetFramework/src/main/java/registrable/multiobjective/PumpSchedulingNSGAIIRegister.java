@@ -20,22 +20,18 @@ import model.metaheuristic.operator.selection.impl.TournamentSelection;
 import model.metaheuristic.problem.Problem;
 import model.metaheuristic.problem.impl.VanzylOriginal;
 import model.metaheuristic.solution.impl.IntegerSolution;
-import model.metaheuristic.utils.comparator.DominanceComparator;
-import model.metaheuristic.utils.evaluator.SequentialSolutionEvaluator;
+import model.metaheuristic.util.comparator.DominanceComparator;
+import model.metaheuristic.util.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.MultiObjectiveRegistrable;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class PumpSchedulingNSGAIIRegister implements MultiObjectiveRegistrable {
 
     private final SelectionOperator<List<IntegerSolution>, IntegerSolution> selection;
     private final CrossoverOperator<IntegerSolution> crossover;
     private final MutationOperator<IntegerSolution> mutation;
-    private final File baseDirectory;
     private final File json;
     private final int independentRun;
     private final int maxEvaluation;
@@ -59,17 +55,16 @@ public class PumpSchedulingNSGAIIRegister implements MultiObjectiveRegistrable {
                             @OperatorOption(displayName = "Integer Range Random Mutation", value = IntegerRangeRandomMutation.class)
                     })
             }, //
-            files = {@FileInput(displayName = "Base directory", type = FileInput.Type.Directory), @FileInput(displayName = "Configuration file (json) *")}, //
+            files = {@FileInput(displayName = "Configuration file (json) *")}, //
             numbers = {@NumberInput(displayName = "Independent run", defaultValue = 10)
                     , @NumberInput(displayName = "Max number of evaluation", defaultValue = 25000)
                     , @NumberInput(displayName = "Population Size", defaultValue = 100)
             }
     )
-    public PumpSchedulingNSGAIIRegister(Object selection, Object crossover, Object mutation, File baseDirectory, File json, int independentRun, int maxEvaluation, int populationSize) {
+    public PumpSchedulingNSGAIIRegister(Object selection, Object crossover, Object mutation, File json, int independentRun, int maxEvaluation, int populationSize) {
         this.selection = (SelectionOperator<List<IntegerSolution>, IntegerSolution>) selection;
         this.crossover = (CrossoverOperator<IntegerSolution>) crossover;
         this.mutation = (MutationOperator<IntegerSolution>) mutation;
-        this.baseDirectory = baseDirectory;
         this.json = Objects.requireNonNull(json, "The json configuration file was not indicated");
         this.independentRun = independentRun;
         this.maxEvaluation = maxEvaluation;
@@ -78,10 +73,6 @@ public class PumpSchedulingNSGAIIRegister implements MultiObjectiveRegistrable {
 
     @Override
     public Experiment<?> build(String inpPath) throws Exception {
-        String experimentBaseDirectory;
-        if (baseDirectory == null)
-             experimentBaseDirectory = "";
-        else experimentBaseDirectory = baseDirectory.getAbsolutePath();
 
         /* *******************vanzylOriginal ***************************/
 
@@ -119,13 +110,6 @@ public class PumpSchedulingNSGAIIRegister implements MultiObjectiveRegistrable {
                 .setAlgorithmList(algorithmList)
                 .setProblem(experimentProblem)
                 .setIndependentRuns(independentRun);
-        // if baseDirectory isn't null so add the output directory.
-        if (baseDirectory != null) {
-             builder.setExperimentBaseDirectory(experimentBaseDirectory)
-                    .setObjectiveOutputFileName("FUN")
-                    .setVariablesOutputFileName("VAR")
-                    .setReferenceFrontDirectory(experimentBaseDirectory + "/PSMOStudy/referenceFronts");
-        }
         Experiment<IntegerSolution> experiment = builder.build();
 
         return experiment;
