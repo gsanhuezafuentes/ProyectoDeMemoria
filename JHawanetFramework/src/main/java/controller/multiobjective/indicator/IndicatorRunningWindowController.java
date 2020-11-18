@@ -23,14 +23,14 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
- * This class is the controller for SingleObjectiveRunningWindow.fxml. <br>
+ * This class is the controller for IndicatorRunningWindow.fxml. <br>
  * <br>
  * <p>
- * The experiment received by this class will be executed in other thread.<br>
+ * The experiments (experimentSet) received by this class will be executed in other thread.<br>
  * <br>
  * <p>
  * When the experiment finishes successfully this controller will open the
- * ResultWindow.
+ * ResultIndicatorWindow.
  */
 public class IndicatorRunningWindowController {
     private static final Logger LOGGER = LoggerFactory.getLogger(IndicatorRunningWindowController.class);

@@ -37,7 +37,7 @@ import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 
 /**
- * This is the controller used to configure the quality indicators execution.
+ * This is the controller used to configure the quality indicators parameters.
  */
 public class IndicatorConfigurationWindowController {
     private static final Logger LOGGER = LoggerFactory.getLogger(IndicatorConfigurationWindowController.class);

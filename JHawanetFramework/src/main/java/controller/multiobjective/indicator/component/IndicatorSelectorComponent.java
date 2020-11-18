@@ -12,6 +12,9 @@ import model.metaheuristic.qualityindicator.impl.GenericIndicator;
 
 import java.util.List;
 
+/**
+ * This component show the indicators of the app and let activate its.
+ */
 public class IndicatorSelectorComponent extends ListView<Class<? extends GenericIndicator>>{
     private ObservableList<Class<? extends GenericIndicator>> selectedIndicators = FXCollections.observableArrayList();
 

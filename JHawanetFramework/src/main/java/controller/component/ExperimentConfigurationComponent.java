@@ -22,6 +22,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * This class is a component that show a interface to configure the registrable instance before create it.
+ * @param <T> The type of registrable.
+ */
 public class ExperimentConfigurationComponent<T extends Registrable<?>> extends GridPane {
     private static Logger LOGGER = LoggerFactory.getLogger(ExperimentConfigurationComponent.class);
 

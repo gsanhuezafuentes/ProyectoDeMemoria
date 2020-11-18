@@ -23,6 +23,8 @@ import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 
+/**
+ * This component let setting up the configuration of each problem/algorithm */
 public class IndicatorExperimentConfigurationComponent extends StackPane {
     private static final Logger LOGGER = LoggerFactory.getLogger(IndicatorExperimentConfigurationComponent.class);
 

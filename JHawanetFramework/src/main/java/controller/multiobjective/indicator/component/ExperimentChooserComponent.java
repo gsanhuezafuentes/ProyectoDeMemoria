@@ -22,6 +22,10 @@ import registrable.MultiObjectiveRegistrable;
 
 import java.util.*;
 
+/**
+ * This class is the component showed in Configuration windows of indicators. It show the problems added in the app (registrable instance) and his
+ * algorithm reading it from {@link RegistrableConfiguration#MULTIOBJECTIVES_PROBLEMS} and let configure the number of instances of each one.
+ */
 public class ExperimentChooserComponent extends VBox {
 
     @FXML

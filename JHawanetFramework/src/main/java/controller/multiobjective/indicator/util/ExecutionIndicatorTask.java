@@ -27,6 +27,9 @@ import java.nio.file.Path;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * This class run the each experiment and calculate the indicators. All this is realized in other thread.
+ */
 public class ExecutionIndicatorTask extends Task<String> {
     private static Logger LOGGER = LoggerFactory.getLogger(ExecutionIndicatorTask.class);
     @NotNull
