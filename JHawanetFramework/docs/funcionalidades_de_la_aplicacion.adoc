@@ -186,8 +186,15 @@ Una vez configurado y aceptado los problemas comienza la ejecución del algoritm
 
 image:images\funcionalidades\indicadores\ejecucion_indicadores.png[]
 
-Finalmente, cuando se termina la ejecución del algoritmo se muestra en la interfaz principal una nueva ventana en la que se pueden ver los gráficos de la comparación.
+Finalmente, cuando se termina la ejecución del algoritmo se muestra en la interfaz principal una nueva ventana en la que por cada indicador se pueden ver los gráficos de la comparación. A continuación se muestra unas imagenes de como son presentados los resultados.
 
-NOTE: Puede que necesite guardar los resultados de la comparación, estos resultados se almacenan automaticamente en una carpeta temporal llamada "*temp*" en el directorio en el que se ejecuto la aplicación.
+image:images\funcionalidades\indicadores\resultadofinal.png[]
+
+[NOTE]
+====
+Puede que necesite guardar los resultados de la comparación, estos resultados se almacenan automaticamente en una carpeta temporal llamada "*temp*" en el directorio en el que se ejecuto la aplicación. El nombre de la carpeta es generado aleatoriamente.
+
+image:images\funcionalidades\indicadores\carpeta_temporal.png[]
+====
 
 Para más detalles sobre como funcionan los indicadores pulse <<Como agregar nuevos indicadores>>
