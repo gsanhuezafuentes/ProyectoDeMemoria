@@ -1,4 +1,4 @@
-== Como agregar nuevos problemas
+=== Como agregar nuevos problemas
 
 Para agregar un nuevo problema se debe implementar la interfaz _Problem_ que se muestra a continuación.
 

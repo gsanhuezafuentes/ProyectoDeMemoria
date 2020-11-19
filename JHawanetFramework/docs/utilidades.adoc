@@ -1,8 +1,8 @@
-== Utilidades
+=== Utilidades
 
 Dentro de la aplicación se tienen algunas clases que facilitan el paso de parámetros cuando son muchos a un experimento, como por ejemplo las clases _GamaParser.java_ y _JsonSimpleReader_.java. La clase _GamaParser_ es ocupada especificamente para el problema _Pipe Optimizing_, mientras que _JsonSimpleReader_, es más general y puede ser ocupado en una gran variedad de problemas o configuraciones.
 
-=== _GamaParser_
+==== _GamaParser_
 
 Esta clase lee un archivo de texto con el formato que se indica a continuación utilizando el método _parse_.
 
@@ -44,7 +44,7 @@ try {
 
 Como se puede apreciar esta clase utilitaria solo sirve para problemas que requieran el costo o el díametro de la tubería. En la siguiente sección se va a ver una clase que puede ser usada de manera general en un ámplio número de problemas. 
 
-=== _JSonSimpleReader_
+==== _JSonSimpleReader_
 
 Dentro de las dependencias de la aplicación se encuentra la libreria link:https://github.com/google/gson[Gson].  Por lo tanto, es posible utilizar las funciones de esta librería para parsear los parámetros que vengan en archivos Json. Sin embargo, la librería tiene muchas funciones y varias maneras de realizar la misma tarea, por lo que aumenta la cantidad de código a escribir.
 

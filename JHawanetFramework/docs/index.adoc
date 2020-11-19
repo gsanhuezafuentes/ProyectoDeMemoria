@@ -12,9 +12,16 @@ Gabriel Sanhueza
 
 image::images/Principalv3.png[]
 
+//1
 include::introduccion.adoc[]
 
+//2
 include::funcionalidades_de_la_aplicacion.adoc[]
+
+//3
+include::descripcion_de_los_problemas_implementados.adoc[]
+
+== Funciones avanzadas
 
 include::como_agregar_nuevos_algoritmos.adoc[]
 

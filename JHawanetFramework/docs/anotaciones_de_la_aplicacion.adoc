@@ -1,8 +1,8 @@
-== Anotaciones de la aplicación
+=== Anotaciones de la aplicación
 
-=== Anotacion permitida en la clases _Operator_
+==== Anotacion permitida en la clases _Operator_
 
-==== _@DefaultConstructor_
+===== _@DefaultConstructor_
 
 Esta anotación indica el constructor principal utilizado para crear el operador a través de la interfaz gráfica.
 
@@ -11,9 +11,9 @@ Los elementos en esta anotación son los siguientes:
 * _value_: Arreglo que recibe anotaciones del tipo _@NumberInput_.
 
 
-=== Anotaciones pemitidas en la clases _Registrable_
+==== Anotaciones pemitidas en la clases _Registrable_
 
-==== _@NewProblem_
+===== _@NewProblem_
 Esta anotación permite indicar el nombre del problema que será mostrado en la interfaz gráfica. Puedes ver el uso de esta anotación a continuación:
 
 [[ejemplo-anotaciones]]
@@ -63,7 +63,7 @@ image::images/nuevos_experimentos/MenuDelProblema.png[]
 
 Esta anotación solo puede estar en un constructor, en caso de que esta anotación no esté presente, un error en tiempo de ejecución será lanzado. 
 
-=== _@Parameters_
+==== _@Parameters_
 
 Esta anotación permite agregar información acerca de los parámetros recibidos por el constructor. Cuando el constructor tiene esta anotación, por convención, está obligado a declarar los parámetros en un orden determinado en base a tu tipo. Este orden es el siguiente:
 
@@ -85,7 +85,7 @@ No usar la anotación _@Parameters_ tiene el mismo efecto que usar la anotación
 
 Puede ver el uso de esta anotación en el <<ejemplo-anotaciones, ejemplo anterior>>. 
 
-==== _@OperatorInput_
+===== _@OperatorInput_
 
 Esta anotación agrega información a uno de los parámetros del constructor acerca de los posibles operadores que pueden ser recibidos por ese parámetro. 
 Dentro de esta anotación existen varios elementos. Estos elementos son:
@@ -106,7 +106,7 @@ El botón _Configure_ permite configurar los parámetros que recibe el construct
 
 image::images/nuevos_operadores/InterfazConfiguracionUniformSelection.png[]
 
-==== _@OperatorOption_
+===== _@OperatorOption_
 
 Esta anotación permite indicar las alternativas de operadores que puede recibir un parámetro para una categoría de operador indicada por la anotación _@OperatorInput_.
 Dentro de esta anotación existen varios elementos. Estos elementos son:
@@ -114,7 +114,7 @@ Dentro de esta anotación existen varios elementos. Estos elementos son:
 * _displayName_: Nombre del operador. Este es el nombre visualizado en el _ComboBox_.
 * _value_: Instancia del tipo _Class_ que referencia el tipo de operador.
 
-==== _@FileInput_
+===== _@FileInput_
 
 Esta anotación indica que hay un parámetro que espera recibir un objeto de tipo _File_. Cuando esta anotación está presente junto con su parámetro, en la interfaz, aparecerá un apartado que abre un _FileChooser_ o un _DirectoryChooser_ para buscar un archivo o directorio, respectivamente.
 Dentro de esta anotación existen varios elementos. Éstos son:
@@ -127,7 +127,7 @@ image::images/nuevos_experimentos/ComponenteFileInput.png[]
 
 Si el _TextField_ donde se muestra la ruta está vacío, es decir, no se ha seleccionado un archivo o carpeta, entonces será inyectado *_null_* en el parámetro correspondiente del constructor.
 
-==== _@NumberInput_
+===== _@NumberInput_
 
 Esta anotación indica que hay un parámetro del tipo _int_ o _double_ o sus tipos envoltorios _Integer_ o _Double_, respectivamente. Esta anotación agrega en la interfaz un _TextField_ que solo permite como entrada un número.  Si el tipo del parámetro es _int_ o _Integer_, entonces el _TextField_ solo permite ingresar números enteros. Por otro lado, si el parámetro es _double_ o _Double_, entonces en la interfaz se acepta el ingreso de números enteros o decimales. En la interfaz, esta anotación es visualizada como se muestra a continuación.
 
@@ -140,7 +140,7 @@ Dentro de esta anotación existen los siguientes elementos:
 
 *Esta anotación puede ser utilizada dentro de la anotación _@DefaultConstructor_* definida al principio.
 
-==== _@NumberToggleInput_
+===== _@NumberToggleInput_
 
 Esta anotación indica que hay un conjunto de parámetros que son mutuamente excluyentes entre ellos, es decir, que solo un parámetro puede recibir el valor.
 

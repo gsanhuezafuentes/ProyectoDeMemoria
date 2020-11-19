@@ -2460,7 +2460,7 @@ amzn-kf8 {
 <ul class="sectlevel2">
 <li><a href="#_que_es_jhawanetframework">1.1. Que es JHawanetFramework</a></li>
 <li><a href="#_tipos_de_usuarios">1.2. Tipos de usuarios</a></li>
-<li><a href="#_objetivo">1.3. Objetivo</a></li>
+<li><a href="#_capacidades_actuales_del_programa">1.3. Capacidades actuales del programa</a></li>
 <li><a href="#_especificaciones_técnicas_del_sistema">1.4. Especificaciones técnicas del sistema</a></li>
 <li><a href="#_como_instalar_el_software">1.5. Como instalar el software</a></li>
 </ul>
@@ -2470,42 +2470,26 @@ amzn-kf8 {
 <li><a href="#_cargar_una_red">2.1. Cargar una red</a></li>
 <li><a href="#_visualizar_las_características_de_los_elementos_de_la_red">2.2. Visualizar las características de los elementos de la red</a></li>
 <li><a href="#_realizar_una_simulación_utilizando_los_valores_por_defecto_del_archivo_de_configuración_de_red">2.3. Realizar una simulación utilizando los valores por defecto del archivo de configuración de red</a></li>
-<li><a href="#_resolver_un_problema">2.4. Resolver un problema</a></li>
+<li><a href="#_ejecutar_un_algoritmo_de_optimización">2.4. Ejecutar un algoritmo de optimización</a></li>
 <li><a href="#_realizar_comparación_de_algoritmos_multiobjetivos">2.5. Realizar comparación de algoritmos multiobjetivos.</a></li>
 </ul>
 </li>
-<li><a href="#_como_agregar_nuevos_algoritmos">3. Como agregar nuevos algoritmos</a>
+<li><a href="#_problemas_de_optimización_en_rda">3. Problemas de optimización en RDA</a>
 <ul class="sectlevel2">
-<li><a href="#_problemas_de_optimización_en_rda">3.1. Problemas de optimización en RDA</a></li>
+<li><a href="#_pipe_optimizing">3.1. <em>Pipe Optimizing</em></a></li>
+<li><a href="#_pumping_schedule">3.2. <em>Pumping Schedule</em></a></li>
+<li><a href="#_referencias">Referencias</a></li>
 </ul>
 </li>
-<li><a href="#_como_agregar_nuevos_problemas">4. Como agregar nuevos problemas</a></li>
-<li><a href="#_como_agregar_nuevos_operadores">5. Como agregar nuevos operadores</a>
+<li><a href="#_funciones_avanzadas">4. Funciones avanzadas</a>
 <ul class="sectlevel2">
-<li><a href="#_defaultconstructor">5.1. <em>@DefaultConstructor</em></a></li>
-</ul>
-</li>
-<li><a href="#_como_agregar_nuevos_experimentos">6. Como agregar nuevos experimentos</a>
-<ul class="sectlevel2">
-<li><a href="#_interfaz_registrable">6.1. Interfaz Registrable</a></li>
-</ul>
-</li>
-<li><a href="#_como_agregar_nuevos_indicadores">7. Como agregar nuevos indicadores</a>
-<ul class="sectlevel2">
-<li><a href="#_como_funcionan_los_indicadores">7.1. Como funcionan los indicadores</a></li>
-</ul>
-</li>
-<li><a href="#_anotaciones_de_la_aplicación">8. Anotaciones de la aplicación</a>
-<ul class="sectlevel2">
-<li><a href="#_anotacion_permitida_en_la_clases_operator">8.1. Anotacion permitida en la clases <em>Operator</em></a></li>
-<li><a href="#_anotaciones_pemitidas_en_la_clases_registrable">8.2. Anotaciones pemitidas en la clases <em>Registrable</em></a></li>
-<li><a href="#_parameters">8.3. <em>@Parameters</em></a></li>
-</ul>
-</li>
-<li><a href="#_utilidades">9. Utilidades</a>
-<ul class="sectlevel2">
-<li><a href="#_gamaparser">9.1. <em>GamaParser</em></a></li>
-<li><a href="#_jsonsimplereader">9.2. <em>JSonSimpleReader</em></a></li>
+<li><a href="#_como_agregar_nuevos_algoritmos">4.1. Como agregar nuevos algoritmos</a></li>
+<li><a href="#_como_agregar_nuevos_problemas">4.2. Como agregar nuevos problemas</a></li>
+<li><a href="#_como_agregar_nuevos_operadores">4.3. Como agregar nuevos operadores</a></li>
+<li><a href="#_como_agregar_nuevos_experimentos">4.4. Como agregar nuevos experimentos</a></li>
+<li><a href="#_como_agregar_nuevos_indicadores">4.5. Como agregar nuevos indicadores</a></li>
+<li><a href="#_anotaciones_de_la_aplicación">4.6. Anotaciones de la aplicación</a></li>
+<li><a href="#_utilidades">4.7. Utilidades</a></li>
 </ul>
 </li>
 </ul>
@@ -2527,13 +2511,16 @@ amzn-kf8 {
 <div class="sect2">
 <h3 id="_que_es_jhawanetframework">1.1. Que es JHawanetFramework</h3>
 <div class="paragraph">
-<p>JHawanetFramework es un software que permite la optimización de redes de distribución de agua potable (RDA), incorporando una serie de problemas y algoritmos metaheurísticos. Adicionalmente, brinda al usuario avanzado la capacidad de extender la aplicación agregando nuevos algoritmos, problemas y operadores.</p>
+<p>JHawanetFramework es un software implementado sobre la plataforma Java, que permite la optimización de redes de distribución de agua potable (RDA), incorporando una serie de problemas y algoritmos metaheurísticos. Adicionalmente, brinda al usuario avanzado la capacidad de extender la aplicación agregando nuevos algoritmos, problemas y operadores.</p>
 </div>
 <div class="paragraph">
-<p>Junto a lo anteriormente mencionado, JHawanetFramework permite realizar simulaciones hidráulicas utilizando las configuraciones que vienen en el archivo de configuración de red y ver la configuración de los elementos que conforman la red.</p>
+<p>El objetivo de este software es optimizar el diseño y operación de redes de distribución de agua potable, proporcionando dichas capacidades a través de una interfaz gráfica amigable con el usuario. Está basado en la arquitectura lógica del framework multiobjetivo <a href="https://github.com/jMetal/jMetal">jMetal</a> implementando una serie de algoritmos metaheurísticos de optimización monoobjetivo y multiobjetivo aplicables en problemas de RDA.</p>
 </div>
 <div class="paragraph">
-<p>Al momento de realizar la optimización brinda la capacidad de visualizar gráficamente las soluciones. Una vez terminada la simulación, permite seleccionar la solución obtenida para un problema específico y generar un archivo de configuración de red que puede ser abierto en otros ambientes como Epanet o exportar el conjunto de soluciones a un archivo Excel.</p>
+<p>Junto a lo anteriormente mencionado, JHawanetFramework permite realizar simulaciones hidráulicas utilizando las configuraciones que vienen en el archivo de configuración de red y ver la configuración de los elementos que conforman la red. El archivo de configuración de red se debe encontrar en el formato utilizado por el software <a href="https://www.epa.gov/water-research/epanet">Epanet</a> al exportar con la extensión inp.</p>
+</div>
+<div class="paragraph">
+<p>Al momento de realizar la optimización, este software brinda la capacidad de visualizar gráficamente las soluciones para problemas con uno o dos objetivos. Una vez terminada la simulación, permite exportar las soluciones como un excel o a un conjunto de archivos csv. Adicionalmente, se puede seleccionar una solución para, de acuerdo a esta solución, modificar los valores establecidos por defecto en el archivo de configuración de red, permitiendo guardar este archivo en el sistema para poder ser usado con el software <a href="https://www.epa.gov/water-research/epanet">Epanet</a> u otros que acepten el formato inp.</p>
 </div>
 <div class="paragraph">
 <p>JHawanetFramework surge como parte del proyecto Fondecyt Regular N° 1180660 ``Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms.'', 2018.</p>
@@ -2556,9 +2543,37 @@ amzn-kf8 {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_objetivo">1.3. Objetivo</h3>
+<h3 id="_capacidades_actuales_del_programa">1.3. Capacidades actuales del programa</h3>
 <div class="paragraph">
-<p>Este software fue creado con el objetivo de optimizar el diseño y operación de redes de distribución de agua potable, proporcionando dichas capacidades a través de una interfaz gráfica amigable con el usuario. Está basado en la arquitectura lógica del framework multiobjetivo Jmetal implementando una serie de algoritmos metaheurísticos de optimización monoobjetivo y multiobjetivo aplicables en problemas de RDA.</p>
+<p>El sistema en este momento cuenta con las siguientes capacidades:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cargar y visualizar la configuración de los elementos de la red.</p>
+</li>
+<li>
+<p>Ejecutar la simulación de la red utilizando los valores por defecto que vienen en el archivo de configuración de ésta.</p>
+</li>
+<li>
+<p>Ejecutar algoritmos de optimización monoobjetivos y multiobjetivos para los problemas implementados.</p>
+</li>
+<li>
+<p>Visualizar el gráfico de las soluciones para problemas de uno y dos objetivos.</p>
+</li>
+<li>
+<p>Visualizar los resultados de algoritmos de optimización.</p>
+</li>
+<li>
+<p>Exportar los resultados de la optimización a excel y csv.</p>
+</li>
+<li>
+<p>Remplazar en la red cargada los valores de la solución para generar un nuevo archivo de configuración de red.</p>
+</li>
+<li>
+<p>Comparar algoritmos metaheurísticos multiobjetivos utilizando indicadores.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -2567,7 +2582,7 @@ amzn-kf8 {
 <p>El software fue desarrollado bajo el lenguaje de programación Java, utilizando la libreria JavaFX para la creación de la interfaz gráfica. Adicionalente, se hace uso de la librería dinámica <a href="https://www.epa.gov/water-research/epanet">EpanetToolkit</a> para realizar las simulaciones hidráulicas sobre las redes de agua potable y evaluar las soluciones generadas por los algoritmos metaheurísticos.</p>
 </div>
 <div class="paragraph">
-<p>Los algoritmos metaheurísticos implementados, estan basados en aquellos utilizados en la librería <a href="https://github.com/jMetal/jMetal">JMetal</a>, especificamente la versión 5.9.</p>
+<p>Los algoritmos metaheurísticos implementados, estan basados en aquellos utilizados en la librería <a href="https://github.com/jMetal/jMetal">jMetal</a>, especificamente la versión 5.9, pero no se hace uso de este framework.</p>
 </div>
 <div class="paragraph">
 <p>Para poder ejecutar la aplicación se tienen los siguientes requisitos:</p>
@@ -2582,6 +2597,9 @@ amzn-kf8 {
 </li>
 <li>
 <p>Maven</p>
+</li>
+<li>
+<p><a href="https://www.epa.gov/water-research/epanet">EpanetToolkit 2.0</a></p>
 </li>
 </ul>
 </div>
@@ -3078,13 +3096,13 @@ Si se agrega el atributo <strong>OverallConstraintViolation</strong> para penali
 <hr>
 </div>
 <div class="sect2">
-<h3 id="_resolver_un_problema">2.4. Resolver un problema</h3>
+<h3 id="_ejecutar_un_algoritmo_de_optimización">2.4. Ejecutar un algoritmo de optimización</h3>
 <div class="paragraph">
 <p>La aplicación cuenta con algunos problemas ya implementados siendo necesario solamente cargar la red y indicar el problema a abordar. Para esto debe buscar el problema que quiere resolver en el menu de la aplicación. Si el problema que quiere resolver no está implementado y tiene conocimientos en programación en el lenguaje Java puede implementarlo usted mismo como se muestra en <a href="#_como_agregar_nuevos_problemas">Como agregar nuevos problemas</a>. La siguiente imagen muestra los menús donde están los problemas.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/funcionalidades/resolver_problema/menu_problemas.png" alt="menu problemas">
+<img src="images/funcionalidades/ejecutar_algoritmo_optimizacion/menu_problemas.png" alt="menu problemas">
 </div>
 </div>
 <div class="paragraph">
@@ -3092,7 +3110,7 @@ Si se agrega el atributo <strong>OverallConstraintViolation</strong> para penali
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/funcionalidades/resolver_problema/ventana_de_configuracion_descripcion.png" alt="ventana de configuracion descripcion">
+<img src="images/funcionalidades/ejecutar_algoritmo_optimizacion/ventana_de_configuracion_descripcion.png" alt="ventana de configuracion descripcion">
 </div>
 </div>
 <div class="paragraph">
@@ -3100,7 +3118,7 @@ Si se agrega el atributo <strong>OverallConstraintViolation</strong> para penali
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/funcionalidades/resolver_problema/ventana_de_configuracion.png" alt="ventana de configuracion">
+<img src="images/funcionalidades/ejecutar_algoritmo_optimizacion/ventana_de_configuracion.png" alt="ventana de configuracion">
 </div>
 </div>
 <div class="paragraph">
@@ -3111,7 +3129,7 @@ Si se agrega el atributo <strong>OverallConstraintViolation</strong> para penali
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/funcionalidades/resolver_problema/ventana_de_estado_ejecucion_monoobjetivo.png" alt="ventana de estado ejecucion monoobjetivo">
+<img src="images/funcionalidades/ejecutar_algoritmo_optimizacion/ventana_de_estado_ejecucion_monoobjetivo.png" alt="ventana de estado ejecucion monoobjetivo">
 </div>
 </div>
 <div class="paragraph">
@@ -3122,7 +3140,7 @@ Si se agrega el atributo <strong>OverallConstraintViolation</strong> para penali
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/funcionalidades/resolver_problema/ventana_de_estado_ejecucion_multiobjetivo.png" alt="ventana de estado ejecucion multiobjetivo">
+<img src="images/funcionalidades/ejecutar_algoritmo_optimizacion/ventana_de_estado_ejecucion_multiobjetivo.png" alt="ventana de estado ejecucion multiobjetivo">
 </div>
 </div>
 <div class="paragraph">
@@ -3138,7 +3156,7 @@ Si se agrega el atributo <strong>OverallConstraintViolation</strong> para penali
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/funcionalidades/resolver_problema/grafico_de_resultados_monoobjetivo.png" alt="grafico de resultados monoobjetivo">
+<img src="images/funcionalidades/ejecutar_algoritmo_optimizacion/grafico_de_resultados_monoobjetivo.png" alt="grafico de resultados monoobjetivo">
 </div>
 </div>
 <div class="paragraph">
@@ -3146,7 +3164,7 @@ Si se agrega el atributo <strong>OverallConstraintViolation</strong> para penali
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/funcionalidades/resolver_problema/grafico_de_resultados_multiobjetivo.png" alt="grafico de resultados multiobjetivo">
+<img src="images/funcionalidades/ejecutar_algoritmo_optimizacion/grafico_de_resultados_multiobjetivo.png" alt="grafico de resultados multiobjetivo">
 </div>
 </div>
 </div>
@@ -3157,7 +3175,7 @@ Si se agrega el atributo <strong>OverallConstraintViolation</strong> para penali
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/funcionalidades/resolver_problema/grafico_de_resultados_boton.png" alt="grafico de resultados boton">
+<img src="images/funcionalidades/ejecutar_algoritmo_optimizacion/grafico_de_resultados_boton.png" alt="grafico de resultados boton">
 </div>
 </div>
 </div>
@@ -3168,7 +3186,7 @@ Si se agrega el atributo <strong>OverallConstraintViolation</strong> para penali
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/funcionalidades/resolver_problema/pestania_resultados_monoobjetivo.png" alt="pestania resultados monoobjetivo">
+<img src="images/funcionalidades/ejecutar_algoritmo_optimizacion/pestania_resultados_monoobjetivo.png" alt="pestania resultados monoobjetivo">
 </div>
 </div>
 <div class="paragraph">
@@ -3176,21 +3194,106 @@ Si se agrega el atributo <strong>OverallConstraintViolation</strong> para penali
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/funcionalidades/resolver_problema/pestania_resultados_multiobjetivo.png" alt="pestania resultados multiobjetivo">
+<img src="images/funcionalidades/ejecutar_algoritmo_optimizacion/pestania_resultados_multiobjetivo.png" alt="pestania resultados multiobjetivo">
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_guardar_los_resultados">2.4.4. Guardar los resultados</h4>
 <div class="paragraph">
-<p>Una vez terminada la ejecución de los experimentos, ya sea monoobjetivo o multiobjetivo, desde la pestaña abierta con las soluciones de pueden guardar los resultados de la optimización en diversos formatos. Estos son, como un archivo de configuración de red (archivo extensión .inp), un excel o un par de archivos de texto.</p>
+<p>Una vez terminada la ejecución de los experimentos, ya sean monoobjetivo o multiobjetivo, desde la pestaña abierta con las soluciones se pueden guardar los resultados de la optimización en diversos formatos. Estos son, un excel, un par de archivos de texto (csv) o seleccionar una solución y aplicarla sobre una red generando como resultado un archivo de configuración.</p>
 </div>
 <div class="paragraph">
-<p>Para guardar los resultados como un <strong>archivo de configuración de red</strong> (archivo extensión .inp), se debe seleccionar una solución y posteriormente pulsar el boton de guardado como se muestra en la imagen a continuación.</p>
+<p>Para aplicar los resultados a una red y guardarla como un <strong>archivo de configuración</strong> (archivo extensión .inp), se debe seleccionar una solución y posteriormente pulsar el boton de guardado como se muestra en la imagen a continuación.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/funcionalidades/resolver_problema/guardar_inp.png" alt="guardar inp">
+<img src="images/funcionalidades/ejecutar_algoritmo_optimizacion/guardar_inp.png" alt="guardar inp">
+</div>
+</div>
+<div class="paragraph">
+<p>Esto genera como resultado un nuevo archivo de configuración, en que de acuerdo a los valores de la solución se remplazan los que originalmente tenía el archivo. A continuación se muestran los cambios en el archivo inp, para el problema de optimización de las tuberías (Pipe Optimizing) al guardarlos utilizando esta función.</p>
+</div>
+<div class="listingblock to_long">
+<div class="title">Valores originales en archivo inp</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">[PIPES]
+;ID              	Node1           	Node2           	Length      	Diameter    	Roughness   	MinorLoss   	Status
+ Linea_1         	P1              	N2              	100         	1016         	130         	0           	Open  	;
+ Linea_10        	N10             	N11             	950         	1016        	130         	0           	Open  	;
+ Linea_11        	N11             	N12             	1200        	1016 	        130         	0           	Open  	;
+ Linea_12        	N12             	N13             	3500        	1016         	130         	0           	Open  	;
+ Linea_13        	N10             	N14             	800         	1016         	130         	0           	Open  	;
+ Linea_14        	N14             	N15             	500         	1016        	130         	0           	Open  	;
+ Linea_15        	N15             	N16             	550         	1016            130         	0           	Open  	;
+ Linea_16        	N16             	N17             	2730        	1016        	130         	0           	Open  	;
+ Linea_17        	N17             	N18             	1750        	1016          	130         	0           	Open  	;
+ Linea_18        	N18             	N19             	800         	1016         	130         	0           	Open  	;
+ Linea_19        	N19             	N3              	400         	1016         	130         	0           	Open  	;
+ Linea_2         	N2              	N3              	1350        	1016        	130         	0           	Open  	;
+ Linea_20        	N3              	N20             	2200        	1016          	130         	0           	Open  	;
+ Linea_21        	N20             	N21             	1500        	1016        	130         	0           	Open  	;
+ Linea_22        	N21             	N22             	500         	1016         	130         	0           	Open  	;
+ Linea_23        	N20             	N23             	2650        	1016       		130         	0           	Open  	;
+ Linea_24        	N23             	N24             	1230        	1016        	130         	0           	Open  	;
+ Linea_25        	N24             	N25             	1300        	1016         	130         	0           	Open  	;
+ Linea_26        	N25             	N26             	850         	1016        	130         	0           	Open  	;
+ Linea_27        	N26             	N27             	300         	1016         	130         	0           	Open  	;
+ Linea_28        	N27             	N16             	750         	1016        	130         	0           	Open  	;
+ Linea_29        	N23             	N28             	1500        	1016        	130         	0           	Open  	;
+ Linea_3         	N3              	N4              	900         	1016          	130         	0           	Open  	;
+ Linea_30        	N28             	N29             	2000        	1016          	130         	0           	Open  	;
+ Linea_31        	N29             	N30             	1600        	1016         	130         	0           	Open  	;
+ Linea_32        	N30             	N31             	150         	1016         	130         	0           	Open  	;
+ Linea_33        	N31             	N32             	860         	1016         	130         	0           	Open  	;
+ Linea_34        	N32             	N25             	950         	1016         	130         	0           	Open  	;
+ Linea_4         	N4              	N5              	1150        	1016          	130         	0           	Open  	;
+ Linea_5         	N5              	N6              	1450        	1016       		130         	0           	Open  	;
+ Linea_6         	N6              	N7              	450         	1016          	130         	0           	Open  	;
+ Linea_7         	N7              	N8              	850         	1016        	130         	0           	Open  	;
+ Linea_8         	N8              	N9              	850         	1016         	130         	0           	Open  	;
+ Linea_9         	N9              	N10             	800         	1016         	130         	0           	Open  	;</code></pre>
+</div>
+</div>
+<div class="listingblock to_long">
+<div class="title">Valores generados por la optimización.</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">[PIPE]
+;ID        	Node1     	Node2     	Length    	Diameter  	Roughness 	MinorLoss 	Status
+Linea_1 	P1        	N2        	100.000000	609.600000	130.000000	0.000000  	OPEN
+Linea_10	N10       	N11       	950.000000	1016.000000	130.000000	0.000000  	OPEN
+Linea_11	N11       	N12       	1200.000000	508.000000	130.000000	0.000000  	OPEN
+Linea_12	N12       	N13       	3500.000000	304.800000	130.000000	0.000000  	OPEN
+Linea_13	N10       	N14       	800.000000	304.800000	130.000000	0.000000  	OPEN
+Linea_14	N14       	N15       	500.000000	406.400000	130.000000	0.000000  	OPEN
+Linea_16	N16       	N17       	2730.000000	508.000000	130.000000	0.000000  	OPEN
+Linea_15	N15       	N16       	550.000000	508.000000	130.000000	0.000000  	OPEN
+Linea_17	N17       	N18       	1750.000000	609.600000	130.000000	0.000000  	OPEN
+Linea_18	N18       	N19       	800.000000	1016.000000	130.000000	0.000000  	OPEN
+Linea_19	N19       	N3        	400.000000	762.000000	130.000000	0.000000  	OPEN
+Linea_2 	N2        	N3        	1350.000000	1016.000000	130.000000	0.000000  	OPEN
+Linea_20	N3        	N20       	2200.000000	508.000000	130.000000	0.000000  	OPEN
+Linea_21	N20       	N21       	1500.000000	304.800000	130.000000	0.000000  	OPEN
+Linea_22	N21       	N22       	500.000000	508.000000	130.000000	0.000000  	OPEN
+Linea_23	N20       	N23       	2650.000000	762.000000	130.000000	0.000000  	OPEN
+Linea_24	N23       	N24       	1230.000000	609.600000	130.000000	0.000000  	OPEN
+Linea_25	N24       	N25       	1300.000000	762.000000	130.000000	0.000000  	OPEN
+Linea_26	N25       	N26       	850.000000	304.800000	130.000000	0.000000  	OPEN
+Linea_27	N26       	N27       	300.000000	406.400000	130.000000	0.000000  	OPEN
+Linea_28	N27       	N16       	750.000000	762.000000	130.000000	0.000000  	OPEN
+Linea_29	N23       	N28       	1500.000000	1016.000000	130.000000	0.000000  	OPEN
+Linea_3 	N3        	N4        	900.000000	1016.000000	130.000000	0.000000  	OPEN
+Linea_30	N28       	N29       	2000.000000	1016.000000	130.000000	0.000000  	OPEN
+Linea_31	N29       	N30       	1600.000000	304.800000	130.000000	0.000000  	OPEN
+Linea_32	N30       	N31       	150.000000	406.400000	130.000000	0.000000  	OPEN
+Linea_33	N31       	N32       	860.000000	1016.000000	130.000000	0.000000  	OPEN
+Linea_34	N32       	N25       	950.000000	406.400000	130.000000	0.000000  	OPEN
+Linea_4 	N4        	N5        	1150.000000	304.800000	130.000000	0.000000  	OPEN
+Linea_5 	N5        	N6        	1450.000000	508.000000	130.000000	0.000000  	OPEN
+Linea_6 	N6        	N7        	450.000000	1016.000000	130.000000	0.000000  	OPEN
+Linea_7 	N7        	N8        	850.000000	1016.000000	130.000000	0.000000  	OPEN
+Linea_9 	N9        	N10       	800.000000	762.000000	130.000000	0.000000  	OPEN
+Linea_8 	N8        	N9        	850.000000	1016.000000	130.000000	0.000000  	OPEN</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3198,7 +3301,7 @@ Si se agrega el atributo <strong>OverallConstraintViolation</strong> para penali
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/funcionalidades/resolver_problema/guardar_inp_fallo.png" alt="guardar inp fallo">
+<img src="images/funcionalidades/ejecutar_algoritmo_optimizacion/guardar_inp_fallo.png" alt="guardar inp fallo">
 </div>
 </div>
 <div class="paragraph">
@@ -3206,15 +3309,15 @@ Si se agrega el atributo <strong>OverallConstraintViolation</strong> para penali
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/funcionalidades/resolver_problema/guardar_excel.png" alt="guardar excel">
+<img src="images/funcionalidades/ejecutar_algoritmo_optimizacion/guardar_excel.png" alt="guardar excel">
 </div>
 </div>
 <div class="paragraph">
-<p>Se pueden <strong>exportar las soluciones a un archivo de texto</strong>. Dicho archivo tendran la extensión tsv. Al usar esta función se generan dos archivos, uno tiene el prefijo FUN_ y el otro el prefijo VAR_. Por ejemplo, FUN_resultado.tsv y VAR_resultado.tsv. El archivo FUN almacena el valor de los objetivos de los resultados, mientras que el archivo VAR contiene las variables utilizadas para alcanzar dicho objetivo. La siguiente imagen indica el boton utilizado para guardar como archivo de texto.</p>
+<p>Se pueden <strong>exportar las soluciones a un archivo de texto</strong>. Dicho archivo tendran la extensión csv. Al usar esta función se generan dos archivos, uno tiene el prefijo FUN_ y el otro el prefijo VAR_. Por ejemplo, FUN_resultado.csv y VAR_resultado.csv. El archivo FUN almacena el valor de los objetivos de los resultados, mientras que el archivo VAR contiene las variables utilizadas para alcanzar dicho objetivo. La siguiente imagen indica el boton utilizado para guardar como archivo de texto.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/funcionalidades/resolver_problema/guardar_tsv.png" alt="guardar tsv">
+<img src="images/funcionalidades/ejecutar_algoritmo_optimizacion/guardar_csv.png" alt="guardar csv">
 </div>
 </div>
 <hr>
@@ -3332,95 +3435,13 @@ Asegurese todos los experimentos configurados, no importa para el problema que s
 </div>
 </div>
 <div class="sect1">
-<h2 id="_como_agregar_nuevos_algoritmos">3. Como agregar nuevos algoritmos</h2>
+<h2 id="_problemas_de_optimización_en_rda">3. Problemas de optimización en RDA</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Para agregar un nuevo algoritmo a la aplicación se debe implementar la interfaz <em>Algorithm</em>. En la siguiente figura se puede ver la interfaz correspondiente.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/nuevos_algoritmos/d_class_metaheuristics.svg" alt="d class metaheuristics">
-</div>
-</div>
-<div class="paragraph">
-<p>Esta interfaz cuenta con los siguientes métodos:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>RunSingleStep</em>: Este método debe ejecutar un único paso del algoritmo (Una sola generación/iteración).</p>
-</li>
-<li>
-<p><em>isStoppingConditionReached</em>: Este método indica si la condición de término del algoritmo ha sido alcanzada.</p>
-</li>
-<li>
-<p><em>getStatusOfExecution</em>: Este método puede devolver un <em>String</em> con información del algoritmo como se muestra en la dos siguientes imagenes. La primera correspondiente a un algoritmo monoobjetivo y la segunda a un algoritmo multiobjetivo.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="images/nuevos_algoritmos/SingleObjectiveRunningWindow.png" alt="SingleObjectiveRunningWindow">
-</div>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="images/nuevos_algoritmos/MultiObjectiveRunningWindow.png" alt="MultiObjectiveRunningWindow">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>getResult</em>: Devuelve el resultado del algoritmo.</p>
-</li>
-<li>
-<p><em>getName</em>: Devuelve el nombre del algoritmo.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Para llevar a cabo la simulación, la aplicación llama al método <em>RunSingleStep</em> hasta que <em>isStoppingConditionReached</em> sea verdadero. Adicionalmente, dentro del mismo método <em>RunSingleStep</em> también se debería asegurar que una vez sea alcanzada la condición de termino no se realicen nuevas operaciones. Un ejemplo de <em>RunSingleStep</em> utilizado en el Algoritmo NSGAII y GA se puede ver a continuación:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="java">@Override
-public void runSingleStep() throws Exception, EpanetException {
-    List&lt;S&gt; offspringPopulation;
-    List&lt;S&gt; selectionPopulation;
-
-    // Inicializa el algoritmo en la primera iteración.
-    if (step == 0) {
-        population = createInitialPopulation();
-        population = evaluatePopulation(population);
-        initProgress();
-    }
-
-    // Realiza la selección y reproducción.
-    if (!isStoppingConditionReached()) {
-        selectionPopulation = selection(population);
-        offspringPopulation = reproduction(selectionPopulation);
-        offspringPopulation = evaluatePopulation(offspringPopulation);
-        population = replacement(population, offspringPopulation);
-        updateProgress();
-    }
-
-    this.step++;
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Se utiliza el metodo <em>RunSingleStep</em> puesto que permite obtener resultados intermedio de la operación despues de cada iteración.</p>
-</div>
-<div class="paragraph">
-<p>Una vez agregado un nuevo algoritmo, si este lo quiere utilizar con un problema ya implementado debe crear el <a href="#_como_agregar_nuevos_experimentos">experimento</a> y utilizar las clases de los problemas implementados. Puede utilizar las otras clases "<em>Registrable</em>" para guiarse.</p>
+<p>La aplicación incorpora dos problemas. Estos son la optimización del diseño de RDA basado en la selección del diámetro de tuberías (<em>Pipe Optimizing</em>) y la optimización del régimen de bombeo (<em>Pumping Schedule</em>). Para probar estos problemas, dentro de la carpeta "inp/" en el directorio donde se encuentra el código de la aplicación se encuentran un conjunto de redes con sus archivos asociados.</p>
 </div>
 <div class="sect2">
-<h3 id="_problemas_de_optimización_en_rda">3.1. Problemas de optimización en RDA</h3>
-<div class="paragraph">
-<p>La aplicación incorpora dos problemas. Estos son la optimización del diseño de RDA basado en la selección del diámetro de tuberías (<em>Pipe Optimizing</em>) y la optimización del régimen de bombeo (<em>Pumping Schedule</em>).</p>
-</div>
-<div class="sect3">
-<h4 id="_pipe_optimizing">3.1.1. <em>Pipe Optimizing</em></h4>
+<h3 id="_pipe_optimizing">3.1. <em>Pipe Optimizing</em></h3>
 <div class="paragraph">
 <p><em>Pipe Optimizing</em> es un problema de diseño cuyo objetivo es minimizar el costo de inversión en la construcción de las tuberías. Para ésto, se busca aquella combinación de diámetros que disminuyan el costo de la construcción de las tuberías a la vez que se cumplen las restricción de presión mínima impuesta sobre la red. La siguiente ecuación es presentada en <a href="#Pereyra2017">[1]</a> y muestra la función a optimizar.</p>
 </div>
@@ -3448,8 +3469,8 @@ public void runSingleStep() throws Exception, EpanetException {
 <img src="images/problemas_implementados/pipe_optimizing/representacion_solucion_monoobjetivo.svg" alt="representacion solucion monoobjetivo">
 </div>
 </div>
-<div class="sect4">
-<h5 id="_ejecución">Ejecución</h5>
+<div class="sect3">
+<h4 id="_ejecución">3.1.1. Ejecución</h4>
 <div class="paragraph">
 <p>Para ejecutar este experimento sobre una red vaya a <span class="menuseq"><b class="menu">Singleobjective Optimization</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Pipe Optimizing</b></span>. Como se puede apreciar, este experimento solo esta disponible con el algoritmo NSGAII. Al momento de escoger el algoritmo, se abrira la ventana de configuración, en la pentaña de configuración se tienen las opciones que se muestran a continuación.</p>
 </div>
@@ -3521,8 +3542,8 @@ DN40	1016	130	278.2804341</code></pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_pumping_schedule">3.1.2. <em>Pumping Schedule</em></h4>
+<div class="sect2">
+<h3 id="_pumping_schedule">3.2. <em>Pumping Schedule</em></h3>
 <div class="paragraph">
 <p><em>Pumping Schedule</em> <a href="#Makaremi2017">[2]</a> <a href="#JHawanet-2019">[3]</a> es un problema de operación que tiene como objetivos optimizar tanto el costo energético, así como el costo de mantención de los equipos de bombeos. A continuación se expresan las ecuaciones utilizadas para calcular los objetivos y las restricciones.</p>
 </div>
@@ -3750,8 +3771,8 @@ DN40	1016	130	278.2804341</code></pre>
 <img src="images/problemas_implementados/pump_schedule/representacion_solucion_multiobjetivo.svg" alt="representacion solucion multiobjetivo">
 </div>
 </div>
-<div class="sect4">
-<h5 id="_ejecución_2">Ejecución</h5>
+<div class="sect3">
+<h4 id="_ejecución_2">3.2.1. Ejecución</h4>
 <div class="paragraph">
 <p>Para la ejecución de este experimento sobre una red vaya a <span class="menuseq"><b class="menu">Multiobjetive Optimization</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Pumping Scheduling</b></span> y selecciona el algoritmo a utilizar.</p>
 </div>
@@ -3851,8 +3872,8 @@ Los algoritmos disponibles para este experimento contienen párametros comunes p
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_referencias">Referencias</h4>
+<div class="sect2">
+<h3 id="_referencias">Referencias</h3>
 <div class="ulist bibliography">
 <ul class="bibliography">
 <li>
@@ -3869,10 +3890,94 @@ Los algoritmos disponibles para este experimento contienen párametros comunes p
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="_como_agregar_nuevos_problemas">4. Como agregar nuevos problemas</h2>
+<h2 id="_funciones_avanzadas">4. Funciones avanzadas</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_como_agregar_nuevos_algoritmos">4.1. Como agregar nuevos algoritmos</h3>
+<div class="paragraph">
+<p>Para agregar un nuevo algoritmo a la aplicación se debe implementar la interfaz <em>Algorithm</em>. En la siguiente figura se puede ver la interfaz correspondiente.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_algoritmos/d_class_metaheuristics.svg" alt="d class metaheuristics">
+</div>
+</div>
+<div class="paragraph">
+<p>Esta interfaz cuenta con los siguientes métodos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>RunSingleStep</em>: Este método debe ejecutar un único paso del algoritmo (Una sola generación/iteración).</p>
+</li>
+<li>
+<p><em>isStoppingConditionReached</em>: Este método indica si la condición de término del algoritmo ha sido alcanzada.</p>
+</li>
+<li>
+<p><em>getStatusOfExecution</em>: Este método puede devolver un <em>String</em> con información del algoritmo como se muestra en la dos siguientes imagenes. La primera correspondiente a un algoritmo monoobjetivo y la segunda a un algoritmo multiobjetivo.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/nuevos_algoritmos/SingleObjectiveRunningWindow.png" alt="SingleObjectiveRunningWindow">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/nuevos_algoritmos/MultiObjectiveRunningWindow.png" alt="MultiObjectiveRunningWindow">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>getResult</em>: Devuelve el resultado del algoritmo.</p>
+</li>
+<li>
+<p><em>getName</em>: Devuelve el nombre del algoritmo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Para llevar a cabo la simulación, la aplicación llama al método <em>RunSingleStep</em> hasta que <em>isStoppingConditionReached</em> sea verdadero. Adicionalmente, dentro del mismo método <em>RunSingleStep</em> también se debería asegurar que una vez sea alcanzada la condición de termino no se realicen nuevas operaciones. Un ejemplo de <em>RunSingleStep</em> utilizado en el Algoritmo NSGAII y GA se puede ver a continuación:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">@Override
+public void runSingleStep() throws Exception, EpanetException {
+    List&lt;S&gt; offspringPopulation;
+    List&lt;S&gt; selectionPopulation;
+
+    // Inicializa el algoritmo en la primera iteración.
+    if (step == 0) {
+        population = createInitialPopulation();
+        population = evaluatePopulation(population);
+        initProgress();
+    }
+
+    // Realiza la selección y reproducción.
+    if (!isStoppingConditionReached()) {
+        selectionPopulation = selection(population);
+        offspringPopulation = reproduction(selectionPopulation);
+        offspringPopulation = evaluatePopulation(offspringPopulation);
+        population = replacement(population, offspringPopulation);
+        updateProgress();
+    }
+
+    this.step++;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Se utiliza el metodo <em>RunSingleStep</em> puesto que permite obtener resultados intermedio de la operación despues de cada iteración.</p>
+</div>
+<div class="paragraph">
+<p>Una vez agregado un nuevo algoritmo, si este lo quiere utilizar con un problema ya implementado debe crear el <a href="#_como_agregar_nuevos_experimentos">experimento</a> y utilizar las clases de los problemas implementados. Puede utilizar las otras clases "<em>Registrable</em>" para guiarse.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_como_agregar_nuevos_problemas">4.2. Como agregar nuevos problemas</h3>
 <div class="paragraph">
 <p>Para agregar un nuevo problema se debe implementar la interfaz <em>Problem</em> que se muestra a continuación.</p>
 </div>
@@ -3938,10 +4043,8 @@ public Network applySolutionToNetwork(Network network, Solution&lt;?&gt; solutio
 <p>Una vez que ha agregado un nuevo problema debe crear el <a href="#_como_agregar_nuevos_experimentos">experimento</a> para que este pueda ser ejecutado desde la interfaz gráfica.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_como_agregar_nuevos_operadores">5. Como agregar nuevos operadores</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_como_agregar_nuevos_operadores">4.3. Como agregar nuevos operadores</h3>
 <div class="paragraph">
 <p>Para crear un nuevo operador se debe implementar la interfaz <em>Operator</em> o alguna de sus subinterfaces o subclases. La interfaz se muestra a continuación.</p>
 </div>
@@ -3963,8 +4066,8 @@ public Network applySolutionToNetwork(Network network, Solution&lt;?&gt; solutio
 <div class="paragraph">
 <p>Para configurar los parámetros desde la ventana de configuración, debe haber un constructor público en el operador que posea la anotación <em>@DefaultConstructor</em>.</p>
 </div>
-<div class="sect2">
-<h3 id="_defaultconstructor">5.1. <em>@DefaultConstructor</em></h3>
+<div class="sect3">
+<h4 id="_defaultconstructor">4.3.1. <em>@DefaultConstructor</em></h4>
 <div class="paragraph">
 <p>La anotación <em>@DefaultConstructor</em> indica el constructor que debe ser usado al momento de crear una instancia del operador utilizando la ventana de configuración. Esta anotación recibe un arreglo de [<em>@NumberInput</em>](Anotaciones%20permitidas.md). El arreglo debe tener la misma cantidad de argumentos que los parámetros del constructor. A continuación se muestran el codigo de dos constructores de diferentes clases y su representación gráfica:</p>
 </div>
@@ -4033,10 +4136,8 @@ public CustomMutation() {
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_como_agregar_nuevos_experimentos">6. Como agregar nuevos experimentos</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_como_agregar_nuevos_experimentos">4.4. Como agregar nuevos experimentos</h3>
 <div class="paragraph">
 <p>Un experimento, en el contexto de este programa, es una clase que contiene una lista de algoritmos para resolver un problema específico. Los algoritmos que conforman el experimento deben ser de un mismo tipo, por ejemplo, "<strong>n</strong>" repeticiones del Algoritmo Genético. Actuando "<strong>n</strong>" como el número de ejecuciones independientes del algoritmo. A continuación se muestran las interfaces del módulo metaheurísticas incluyendo las clases utilizadas para los experimentos.</p>
 </div>
@@ -4065,8 +4166,8 @@ public CustomMutation() {
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_interfaz_registrable">6.1. Interfaz Registrable</h3>
+<div class="sect3">
+<h4 id="_interfaz_registrable">4.4.1. Interfaz Registrable</h4>
 <div class="paragraph">
 <p>Con el fin de agregar un nuevo experimento en la aplicación, se debe crear una clase que herede de <em>SingleObjectiveRegistrable</em> o <em>MultiObjectiveRegistrable</em>, dependiendo de si el problema es monoobjetivo o multiobjetivo, respectivamente. La clases que heredan de <em>Registrable</em> funcionan como <em>templates</em> para crear nuevos experimentos. En la siguiente imagen, se presenta la jerarquía de clases de la interfaz <em>Registrable</em>.</p>
 </div>
@@ -4326,10 +4427,8 @@ public Map&lt;String, String&gt; getParameters() {
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_como_agregar_nuevos_indicadores">7. Como agregar nuevos indicadores</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_como_agregar_nuevos_indicadores">4.5. Como agregar nuevos indicadores</h3>
 <div class="paragraph">
 <p>Para agregar un nuevo indicador, se tiene que heredar de la clase abstracta <strong>GenericIndicator</strong> que se muestra a continuación.</p>
 </div>
@@ -4371,13 +4470,12 @@ Los indicadores deben tener un constructor que no reciba parametros. Este constr
 </table>
 </div>
 <div class="paragraph">
-<p>Una vez se tenga implementado el indicador, éste debe ser agregado en la lista de la clase <strong><em>RegistrableConfiguration</em></strong>. A continuación se muestra los valores de dicha lista que consisten en los indicadores permitidos en la aplicación.</p>
+<p>Una vez se tenga implementado el indicador, éste debe ser agregado en la lista de la clase <strong><em>RegistrableConfiguration</em></strong>. A continuación se muestra de manera simplificada los valores de la clase anteriormente mencionada.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="java">public final class RegistrableConfiguration {
-	// Métodos para agregar los operadores
-
+	public static final List&lt;Class&lt;? extends MultiObjectiveRegistrable&gt;&gt; MULTIOBJECTIVES_PROBLEMS = new ArrayList&lt;&gt;();
 	public static final List&lt;Class&lt;? extends GenericIndicator&gt;&gt; INDICATORS = new ArrayList&lt;&gt;();
 
 	// Lista de indicadores implementados en la aplicación.
@@ -4392,9 +4490,11 @@ Los indicadores deben tener un constructor que no reciba parametros. Este constr
 		INDICATORS.add(GeneralizedSpread.class);
 		INDICATORS.add(GenerationalDistance.class);
 	}
-
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Los indicadores implementados pueden ser utilizados por todos los algoritmos que se encuentran en la variable <strong><em>MULTIOBJECTIVES_PROBLEMS</em></strong>.</p>
 </div>
 <div class="paragraph">
 <p>El siguiente código muestra como ejemplo la implementación del indicador Epsilon.</p>
@@ -4479,19 +4579,40 @@ public class Epsilon&lt;S extends Solution&lt;?&gt;&gt; extends GenericIndicator
 }</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_como_funcionan_los_indicadores">7.1. Como funcionan los indicadores</h3>
+<div class="paragraph">
+<p>La lista de selección de problemas que se muestra en la imagen a continuación. Se construye agrupando los elementos presentes en la variable <strong><em>MULTIOBJECTIVES_PROBLEMS</em></strong>, presente en la clase <strong><em>RegistrableConfiguration</em></strong>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/funcionalidades/indicadores/eleccion_experimentos.png" alt="eleccion experimentos"></span></p>
+</div>
+<div class="paragraph">
+<p>Para la tabla superior se utiliza como nombre del problema, el valor en la anotación @NewProblem() en su atributo <em>displayName</em>. Mientras que en la tabla inferior, se utiliza el valor en el atributo <em>algorithmName</em>. A modo de ejemplo se presenta unicamente la anotación @NewProblem para 3 clases agregadas en la lista <strong><em>MULTIOBJECTIVES_PROBLEMS</em></strong>, correspondientes a los elementos mostrados en la imagen anterior.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java"> // Para la clase PumpSchedulingNSGAIIRegister.class
+ @NewProblem(displayName = "Pumping Scheduling", algorithmName = "NSGA-II", description = "Solve the PumpScheduling Problem.\n" +
+            "Objective1: energy cost\n" +
+            "Objective2: maintenance Cost")
 
+ // Para la clase PumpSchedulingSMPSORegister.class
+ @NewProblem(displayName = "Pumping Scheduling", algorithmName = "SMPSOInteger", description = "Solve the PumpScheduling Problem.\n" +
+            "Objective1: energy cost\n" +
+            "Objective2: maintenance Cost")
+
+ // Para la clase PumpSchedulingSPA2Register.class
+ @NewProblem(displayName = "Pumping Scheduling", algorithmName = "SPA2", description = "Solve the PumpScheduling Problem.\n" +
+            "Objective1: energy cost\n" +
+            "Objective2: maintenance Cost")</code></pre>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_anotaciones_de_la_aplicación">8. Anotaciones de la aplicación</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_anotacion_permitida_en_la_clases_operator">8.1. Anotacion permitida en la clases <em>Operator</em></h3>
+<h3 id="_anotaciones_de_la_aplicación">4.6. Anotaciones de la aplicación</h3>
 <div class="sect3">
-<h4 id="_defaultconstructor_2">8.1.1. <em>@DefaultConstructor</em></h4>
+<h4 id="_anotacion_permitida_en_la_clases_operator">4.6.1. Anotacion permitida en la clases <em>Operator</em></h4>
+<div class="sect4">
+<h5 id="_defaultconstructor_2"><em>@DefaultConstructor</em></h5>
 <div class="paragraph">
 <p>Esta anotación indica el constructor principal utilizado para crear el operador a través de la interfaz gráfica.</p>
 </div>
@@ -4507,10 +4628,10 @@ public class Epsilon&lt;S extends Solution&lt;?&gt;&gt; extends GenericIndicator
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_anotaciones_pemitidas_en_la_clases_registrable">8.2. Anotaciones pemitidas en la clases <em>Registrable</em></h3>
 <div class="sect3">
-<h4 id="_newproblem">8.2.1. <em>@NewProblem</em></h4>
+<h4 id="_anotaciones_pemitidas_en_la_clases_registrable">4.6.2. Anotaciones pemitidas en la clases <em>Registrable</em></h4>
+<div class="sect4">
+<h5 id="_newproblem"><em>@NewProblem</em></h5>
 <div class="paragraph">
 <p>Esta anotación permite indicar el nombre del problema que será mostrado en la interfaz gráfica. Puedes ver el uso de esta anotación a continuación:</p>
 </div>
@@ -4577,8 +4698,8 @@ public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_parameters">8.3. <em>@Parameters</em></h3>
+<div class="sect3">
+<h4 id="_parameters">4.6.3. <em>@Parameters</em></h4>
 <div class="paragraph">
 <p>Esta anotación permite agregar información acerca de los parámetros recibidos por el constructor. Cuando el constructor tiene esta anotación, por convención, está obligado a declarar los parámetros en un orden determinado en base a tu tipo. Este orden es el siguiente:</p>
 </div>
@@ -4624,8 +4745,8 @@ No usar la anotación <em>@Parameters</em> tiene el mismo efecto que usar la ano
 <div class="paragraph">
 <p>Puede ver el uso de esta anotación en el <a href="#ejemplo-anotaciones">ejemplo anterior</a>.</p>
 </div>
-<div class="sect3">
-<h4 id="_operatorinput">8.3.1. <em>@OperatorInput</em></h4>
+<div class="sect4">
+<h5 id="_operatorinput"><em>@OperatorInput</em></h5>
 <div class="paragraph">
 <p>Esta anotación agrega información a uno de los parámetros del constructor acerca de los posibles operadores que pueden ser recibidos por ese parámetro.
 Dentro de esta anotación existen varios elementos. Estos elementos son:</p>
@@ -4666,8 +4787,8 @@ El botón <em>Configure</em> permite configurar los parámetros que recibe el co
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_operatoroption">8.3.2. <em>@OperatorOption</em></h4>
+<div class="sect4">
+<h5 id="_operatoroption"><em>@OperatorOption</em></h5>
 <div class="paragraph">
 <p>Esta anotación permite indicar las alternativas de operadores que puede recibir un parámetro para una categoría de operador indicada por la anotación <em>@OperatorInput</em>.
 Dentro de esta anotación existen varios elementos. Estos elementos son:</p>
@@ -4683,8 +4804,8 @@ Dentro de esta anotación existen varios elementos. Estos elementos son:</p>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_fileinput">8.3.3. <em>@FileInput</em></h4>
+<div class="sect4">
+<h5 id="_fileinput"><em>@FileInput</em></h5>
 <div class="paragraph">
 <p>Esta anotación indica que hay un parámetro que espera recibir un objeto de tipo <em>File</em>. Cuando esta anotación está presente junto con su parámetro, en la interfaz, aparecerá un apartado que abre un <em>FileChooser</em> o un <em>DirectoryChooser</em> para buscar un archivo o directorio, respectivamente.
 Dentro de esta anotación existen varios elementos. Éstos son:</p>
@@ -4712,8 +4833,8 @@ Dentro de esta anotación existen varios elementos. Éstos son:</p>
 <p>Si el <em>TextField</em> donde se muestra la ruta está vacío, es decir, no se ha seleccionado un archivo o carpeta, entonces será inyectado <strong><em>null</em></strong> en el parámetro correspondiente del constructor.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_numberinput">8.3.4. <em>@NumberInput</em></h4>
+<div class="sect4">
+<h5 id="_numberinput"><em>@NumberInput</em></h5>
 <div class="paragraph">
 <p>Esta anotación indica que hay un parámetro del tipo <em>int</em> o <em>double</em> o sus tipos envoltorios <em>Integer</em> o <em>Double</em>, respectivamente. Esta anotación agrega en la interfaz un <em>TextField</em> que solo permite como entrada un número.  Si el tipo del parámetro es <em>int</em> o <em>Integer</em>, entonces el <em>TextField</em> solo permite ingresar números enteros. Por otro lado, si el parámetro es <em>double</em> o <em>Double</em>, entonces en la interfaz se acepta el ingreso de números enteros o decimales. En la interfaz, esta anotación es visualizada como se muestra a continuación.</p>
 </div>
@@ -4739,8 +4860,8 @@ Dentro de esta anotación existen varios elementos. Éstos son:</p>
 <p><strong>Esta anotación puede ser utilizada dentro de la anotación <em>@DefaultConstructor</em></strong> definida al principio.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_numbertoggleinput">8.3.5. <em>@NumberToggleInput</em></h4>
+<div class="sect4">
+<h5 id="_numbertoggleinput"><em>@NumberToggleInput</em></h5>
 <div class="paragraph">
 <p>Esta anotación indica que hay un conjunto de parámetros que son mutuamente excluyentes entre ellos, es decir, que solo un parámetro puede recibir el valor.</p>
 </div>
@@ -4783,15 +4904,13 @@ Dentro de esta anotación existen varios elementos. Éstos son:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_utilidades">9. Utilidades</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_utilidades">4.7. Utilidades</h3>
 <div class="paragraph">
 <p>Dentro de la aplicación se tienen algunas clases que facilitan el paso de parámetros cuando son muchos a un experimento, como por ejemplo las clases <em>GamaParser.java</em> y <em>JsonSimpleReader</em>.java. La clase <em>GamaParser</em> es ocupada especificamente para el problema <em>Pipe Optimizing</em>, mientras que <em>JsonSimpleReader</em>, es más general y puede ser ocupado en una gran variedad de problemas o configuraciones.</p>
 </div>
-<div class="sect2">
-<h3 id="_gamaparser">9.1. <em>GamaParser</em></h3>
+<div class="sect3">
+<h4 id="_gamaparser">4.7.1. <em>GamaParser</em></h4>
 <div class="paragraph">
 <p>Esta clase lee un archivo de texto con el formato que se indica a continuación utilizando el método <em>parse</em>.</p>
 </div>
@@ -4846,8 +4965,8 @@ try {
 <p>Como se puede apreciar esta clase utilitaria solo sirve para problemas que requieran el costo o el díametro de la tubería. En la siguiente sección se va a ver una clase que puede ser usada de manera general en un ámplio número de problemas.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_jsonsimplereader">9.2. <em>JSonSimpleReader</em></h3>
+<div class="sect3">
+<h4 id="_jsonsimplereader">4.7.2. <em>JSonSimpleReader</em></h4>
 <div class="paragraph">
 <p>Dentro de las dependencias de la aplicación se encuentra la libreria <a href="https://github.com/google/gson">Gson</a>.  Por lo tanto, es posible utilizar las funciones de esta librería para parsear los parámetros que vengan en archivos Json. Sin embargo, la librería tiene muchas funciones y varias maneras de realizar la misma tarea, por lo que aumenta la cantidad de código a escribir.</p>
 </div>
@@ -4980,9 +5099,10 @@ double[] maxTank = config.getDoubleArray("maxTank"); // lee {10, 5};</code></pre
 </div>
 </div>
 </div>
+</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-18 18:55:46 -0300
+Last updated 2020-11-19 15:15:05 -0300
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">

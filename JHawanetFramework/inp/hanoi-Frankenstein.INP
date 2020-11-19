@@ -44,40 +44,40 @@ exporting test
 
 [PIPES]
 ;ID              	Node1           	Node2           	Length      	Diameter    	Roughness   	MinorLoss   	Status
- Linea_1         	P1              	N2              	100         	0.5         	130         	0           	Open  	;
- Linea_10        	N10             	N11             	950         	0.5        	130         	0           	Open  	;
- Linea_11        	N11             	N12             	1200        	0.5 	130         	0           	Open  	;
- Linea_12        	N12             	N13             	3500        	0.5         	130         	0           	Open  	;
- Linea_13        	N10             	N14             	800         	0.5         	130         	0           	Open  	;
- Linea_14        	N14             	N15             	500         	0.5        	130         	0           	Open  	;
- Linea_15        	N15             	N16             	550         	0.5            130         	0           	Open  	;
- Linea_16        	N16             	N17             	2730        	0.5        	130         	0           	Open  	;
- Linea_17        	N17             	N18             	1750        	0.5          	130         	0           	Open  	;
- Linea_18        	N18             	N19             	800         	0.5         	130         	0           	Open  	;
- Linea_19        	N19             	N3              	400         	0.5         	130         	0           	Open  	;
- Linea_2         	N2              	N3              	1350        	0.5        	130         	0           	Open  	;
- Linea_20        	N3              	N20             	2200        	0.5          	130         	0           	Open  	;
- Linea_21        	N20             	N21             	1500        	0.5        	130         	0           	Open  	;
- Linea_22        	N21             	N22             	500         	0.5         	130         	0           	Open  	;
- Linea_23        	N20             	N23             	2650        	0.5       		130         	0           	Open  	;
- Linea_24        	N23             	N24             	1230        	0.5        	130         	0           	Open  	;
- Linea_25        	N24             	N25             	1300        	0.5         	130         	0           	Open  	;
- Linea_26        	N25             	N26             	850         	0.5        	130         	0           	Open  	;
- Linea_27        	N26             	N27             	300         	0.5         	130         	0           	Open  	;
- Linea_28        	N27             	N16             	750         	0.5        	130         	0           	Open  	;
- Linea_29        	N23             	N28             	1500        	0.5        	130         	0           	Open  	;
- Linea_3         	N3              	N4              	900         	0.5          	130         	0           	Open  	;
- Linea_30        	N28             	N29             	2000        	0.5          	130         	0           	Open  	;
- Linea_31        	N29             	N30             	1600        	0.5         	130         	0           	Open  	;
- Linea_32        	N30             	N31             	150         	0.5         	130         	0           	Open  	;
- Linea_33        	N31             	N32             	860         	0.5         	130         	0           	Open  	;
- Linea_34        	N32             	N25             	950         	0.5         	130         	0           	Open  	;
- Linea_4         	N4              	N5              	1150        	0.5          	130         	0           	Open  	;
- Linea_5         	N5              	N6              	1450        	0.5       		130         	0           	Open  	;
- Linea_6         	N6              	N7              	450         	0.5          	130         	0           	Open  	;
- Linea_7         	N7              	N8              	850         	0.5        	130         	0           	Open  	;
- Linea_8         	N8              	N9              	850         	0.5         	130         	0           	Open  	;
- Linea_9         	N9              	N10             	800         	0.5         	130         	0           	Open  	;
+ L�nea_1         	P1              	N2              	100         	1016         	130         	0           	Open  	;
+ L�nea_10        	N10             	N11             	950         	1016        	130         	0           	Open  	;
+ L�nea_11        	N11             	N12             	1200        	1016 	130         	0           	Open  	;
+ L�nea_12        	N12             	N13             	3500        	1016         	130         	0           	Open  	;
+ L�nea_13        	N10             	N14             	800         	1016         	130         	0           	Open  	;
+ L�nea_14        	N14             	N15             	500         	1016        	130         	0           	Open  	;
+ L�nea_15        	N15             	N16             	550         	1016            130         	0           	Open  	;
+ L�nea_16        	N16             	N17             	2730        	1016        	130         	0           	Open  	;
+ L�nea_17        	N17             	N18             	1750        	1016          	130         	0           	Open  	;
+ L�nea_18        	N18             	N19             	800         	1016         	130         	0           	Open  	;
+ L�nea_19        	N19             	N3              	400         	1016         	130         	0           	Open  	;
+ L�nea_2         	N2              	N3              	1350        	1016        	130         	0           	Open  	;
+ L�nea_20        	N3              	N20             	2200        	1016          	130         	0           	Open  	;
+ L�nea_21        	N20             	N21             	1500        	1016        	130         	0           	Open  	;
+ L�nea_22        	N21             	N22             	500         	1016         	130         	0           	Open  	;
+ L�nea_23        	N20             	N23             	2650        	1016       		130         	0           	Open  	;
+ L�nea_24        	N23             	N24             	1230        	1016        	130         	0           	Open  	;
+ L�nea_25        	N24             	N25             	1300        	1016         	130         	0           	Open  	;
+ L�nea_26        	N25             	N26             	850         	1016        	130         	0           	Open  	;
+ L�nea_27        	N26             	N27             	300         	1016         	130         	0           	Open  	;
+ L�nea_28        	N27             	N16             	750         	1016        	130         	0           	Open  	;
+ L�nea_29        	N23             	N28             	1500        	1016        	130         	0           	Open  	;
+ L�nea_3         	N3              	N4              	900         	1016          	130         	0           	Open  	;
+ L�nea_30        	N28             	N29             	2000        	1016          	130         	0           	Open  	;
+ L�nea_31        	N29             	N30             	1600        	1016         	130         	0           	Open  	;
+ L�nea_32        	N30             	N31             	150         	1016         	130         	0           	Open  	;
+ L�nea_33        	N31             	N32             	860         	1016         	130         	0           	Open  	;
+ L�nea_34        	N32             	N25             	950         	1016         	130         	0           	Open  	;
+ L�nea_4         	N4              	N5              	1150        	1016          	130         	0           	Open  	;
+ L�nea_5         	N5              	N6              	1450        	1016       		130         	0           	Open  	;
+ L�nea_6         	N6              	N7              	450         	1016          	130         	0           	Open  	;
+ L�nea_7         	N7              	N8              	850         	1016        	130         	0           	Open  	;
+ L�nea_8         	N8              	N9              	850         	1016         	130         	0           	Open  	;
+ L�nea_9         	N9              	N10             	800         	1016         	130         	0           	Open  	;
 
 [PUMPS]
 ;ID              	Node1           	Node2           	Parameters
@@ -210,7 +210,7 @@ exporting test
 
 [BACKDROP]
  DIMENSIONS     	2817.55         	-113.60         	5533.45         	2385.60         
- UNITS          	None
+ UNITS          	Ninguno
  FILE           	
  OFFSET         	0.00            	0.00            
 

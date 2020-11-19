@@ -1,11 +1,13 @@
 == Introducción al ambiente de JHawanet
 === Que es JHawanetFramework
 
-JHawanetFramework es un software que permite la optimización de redes de distribución de agua potable (RDA), incorporando una serie de problemas y algoritmos metaheurísticos. Adicionalmente, brinda al usuario avanzado la capacidad de extender la aplicación agregando nuevos algoritmos, problemas y operadores.
+JHawanetFramework es un software implementado sobre la plataforma Java, que permite la optimización de redes de distribución de agua potable (RDA), incorporando una serie de problemas y algoritmos metaheurísticos. Adicionalmente, brinda al usuario avanzado la capacidad de extender la aplicación agregando nuevos algoritmos, problemas y operadores.
 
-Junto a lo anteriormente mencionado, JHawanetFramework permite realizar simulaciones hidráulicas utilizando las configuraciones que vienen en el archivo de configuración de red y ver la configuración de los elementos que conforman la red. 
+El objetivo de este software es optimizar el diseño y operación de redes de distribución de agua potable, proporcionando dichas capacidades a través de una interfaz gráfica amigable con el usuario. Está basado en la arquitectura lógica del framework multiobjetivo link:https://github.com/jMetal/jMetal[jMetal] implementando una serie de algoritmos metaheurísticos de optimización monoobjetivo y multiobjetivo aplicables en problemas de RDA.
 
-Al momento de realizar la optimización brinda la capacidad de visualizar gráficamente las soluciones. Una vez terminada la simulación, permite seleccionar la solución obtenida para un problema específico y generar un archivo de configuración de red que puede ser abierto en otros ambientes como Epanet o exportar el conjunto de soluciones a un archivo Excel.
+Junto a lo anteriormente mencionado, JHawanetFramework permite realizar simulaciones hidráulicas utilizando las configuraciones que vienen en el archivo de configuración de red y ver la configuración de los elementos que conforman la red. El archivo de configuración de red se debe encontrar en el formato utilizado por el software link:https://www.epa.gov/water-research/epanet[Epanet] al exportar con la extensión inp.
+
+Al momento de realizar la optimización, este software brinda la capacidad de visualizar gráficamente las soluciones para problemas con uno o dos objetivos. Una vez terminada la simulación, permite exportar las soluciones como un excel o a un conjunto de archivos csv. Adicionalmente, se puede seleccionar una solución para, de acuerdo a esta solución, modificar los valores establecidos por defecto en el archivo de configuración de red, permitiendo guardar este archivo en el sistema para poder ser usado con el software link:https://www.epa.gov/water-research/epanet[Epanet] u otros que acepten el formato inp.
 
 JHawanetFramework surge como parte del proyecto Fondecyt Regular N° 1180660 ``Optimization of real-world water distribution systems and hydraulic elements using computational fluid dynamics (cfd) and evolutionary algorithms.'', 2018.
 
@@ -16,21 +18,38 @@ Se contemplan dos tipos de usuarios:
 *   Usuarios que trabajan directamente con la aplicación gráfica.
 *   Usuarios que utilizan la estructura para acoplar nuevos problemas desde el punto de vista computacional.
 
+////
 === Objetivo
 
-Este software fue creado con el objetivo de optimizar el diseño y operación de redes de distribución de agua potable, proporcionando dichas capacidades a través de una interfaz gráfica amigable con el usuario. Está basado en la arquitectura lógica del framework multiobjetivo Jmetal implementando una serie de algoritmos metaheurísticos de optimización monoobjetivo y multiobjetivo aplicables en problemas de RDA.
+Este software fue creado con el objetivo de optimizar el diseño y operación de redes de distribución de agua potable, proporcionando dichas capacidades a través de una interfaz gráfica amigable con el usuario. Está basado en la arquitectura lógica del framework multiobjetivo jMetal implementando una serie de algoritmos metaheurísticos de optimización monoobjetivo y multiobjetivo aplicables en problemas de RDA.
+
+////
+
+=== Capacidades actuales del programa
+
+El sistema en este momento cuenta con las siguientes capacidades:
+
+* Cargar y visualizar la configuración de los elementos de la red.
+* Ejecutar la simulación de la red utilizando los valores por defecto que vienen en el archivo de configuración de ésta.
+* Ejecutar algoritmos de optimización monoobjetivos y multiobjetivos para los problemas implementados.
+* Visualizar el gráfico de las soluciones para problemas de uno y dos objetivos.
+* Visualizar los resultados de algoritmos de optimización.
+* Exportar los resultados de la optimización a excel y csv.
+* Remplazar en la red cargada los valores de la solución para generar un nuevo archivo de configuración de red.
+* Comparar algoritmos metaheurísticos multiobjetivos utilizando indicadores.
 
 === Especificaciones técnicas del sistema
 
 El software fue desarrollado bajo el lenguaje de programación Java, utilizando la libreria JavaFX para la creación de la interfaz gráfica. Adicionalente, se hace uso de la librería dinámica link:https://www.epa.gov/water-research/epanet[EpanetToolkit] para realizar las simulaciones hidráulicas sobre las redes de agua potable y evaluar las soluciones generadas por los algoritmos metaheurísticos.
 
-Los algoritmos metaheurísticos implementados, estan basados en aquellos utilizados en la librería link:https://github.com/jMetal/jMetal[JMetal], especificamente la versión 5.9.
+Los algoritmos metaheurísticos implementados, estan basados en aquellos utilizados en la librería link:https://github.com/jMetal/jMetal[jMetal], especificamente la versión 5.9, pero no se hace uso de este framework.
 
 Para poder ejecutar la aplicación se tienen los siguientes requisitos:
 
 * Windows 64 bits
 * JDK 1.8 64 bits
 * Maven
+* link:https://www.epa.gov/water-research/epanet[EpanetToolkit 2.0]
 
 === Como instalar el software
 Para instalar la aplicación se necesita tener instalado en el sistema Java 1.8 64bits y Maven. El código de la aplicación se encuentra alojado en github en el siguiente link:https://github.com/EinherjarSt/ProyectoDeMemoria[repositorio]. A continuación se explica como instalar cada uno de estos elementos.

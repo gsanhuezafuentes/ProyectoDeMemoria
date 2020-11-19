@@ -1,4 +1,4 @@
-== Como agregar nuevos indicadores
+=== Como agregar nuevos indicadores
 
 Para agregar un nuevo indicador, se tiene que heredar de la clase abstracta *GenericIndicator* que se muestra a continuación. 
 
@@ -14,13 +14,12 @@ Los métodos que son declarados en esta clase son los siguientes:
 
 IMPORTANT: Los indicadores deben tener un constructor que no reciba parametros. Este constructor es el utilizado al momento de construir el indicador en tiempo de ejecución.
 
-Una vez se tenga implementado el indicador, éste debe ser agregado en la lista de la clase *_RegistrableConfiguration_*. A continuación se muestra los valores de dicha lista que consisten en los indicadores permitidos en la aplicación.
+Una vez se tenga implementado el indicador, éste debe ser agregado en la lista de la clase *_RegistrableConfiguration_*. A continuación se muestra de manera simplificada los valores de la clase anteriormente mencionada.
 
 [source, java]
 ----
 public final class RegistrableConfiguration {
-	// Métodos para agregar los operadores
-
+	public static final List<Class<? extends MultiObjectiveRegistrable>> MULTIOBJECTIVES_PROBLEMS = new ArrayList<>();
 	public static final List<Class<? extends GenericIndicator>> INDICATORS = new ArrayList<>();
 
 	// Lista de indicadores implementados en la aplicación.
@@ -35,9 +34,10 @@ public final class RegistrableConfiguration {
 		INDICATORS.add(GeneralizedSpread.class);
 		INDICATORS.add(GenerationalDistance.class);
 	}
- 
 }
 ----
+
+Los indicadores implementados pueden ser utilizados por todos los algoritmos que se encuentran en la variable *_MULTIOBJECTIVES_PROBLEMS_*.
 
 El siguiente código muestra como ejemplo la implementación del indicador Epsilon.
 
@@ -121,4 +121,26 @@ public class Epsilon<S extends Solution<?>> extends GenericIndicator<S> {
 }
 ----
 
-=== Como funcionan los indicadores
+La lista de selección de problemas que se muestra en la imagen a continuación. Se construye agrupando los elementos presentes en la variable *_MULTIOBJECTIVES_PROBLEMS_*, presente en la clase *_RegistrableConfiguration_*.
+
+image:images\funcionalidades\indicadores\eleccion_experimentos.png[]
+
+Para la tabla superior se utiliza como nombre del problema, el valor en la anotación @NewProblem() en su atributo _displayName_. Mientras que en la tabla inferior, se utiliza el valor en el atributo _algorithmName_. A modo de ejemplo se presenta unicamente la anotación @NewProblem para 3 clases agregadas en la lista *_MULTIOBJECTIVES_PROBLEMS_*, correspondientes a los elementos mostrados en la imagen anterior.
+
+[source, java]
+----
+ // Para la clase PumpSchedulingNSGAIIRegister.class
+ @NewProblem(displayName = "Pumping Scheduling", algorithmName = "NSGA-II", description = "Solve the PumpScheduling Problem.\n" +
+            "Objective1: energy cost\n" +
+            "Objective2: maintenance Cost")
+            
+ // Para la clase PumpSchedulingSMPSORegister.class
+ @NewProblem(displayName = "Pumping Scheduling", algorithmName = "SMPSOInteger", description = "Solve the PumpScheduling Problem.\n" +
+            "Objective1: energy cost\n" +
+            "Objective2: maintenance Cost")
+ 
+ // Para la clase PumpSchedulingSPA2Register.class
+ @NewProblem(displayName = "Pumping Scheduling", algorithmName = "SPA2", description = "Solve the PumpScheduling Problem.\n" +
+            "Objective1: energy cost\n" +
+            "Objective2: maintenance Cost")
+----
