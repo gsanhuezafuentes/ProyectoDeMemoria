@@ -178,7 +178,6 @@ public final class Experiment<S extends Solution<?>> {
      * It is used internally by the application. If the user add a value to this variable the values will be override.
      *
      * @param experimentBaseDirectory the directory folder.
-     * @return this object
      * @throws NullPointerException     if experimentBaseDirectory is null.
      * @throws IllegalArgumentException if the experimentBaseDirectory is empty.
      */

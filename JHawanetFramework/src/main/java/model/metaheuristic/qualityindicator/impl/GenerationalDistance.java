@@ -46,7 +46,7 @@ import java.util.Objects;
  * Technical Report TR-98-03, Dept. Elec. Comput. Eng., Air Force
  * Inst. Technol. (1998)
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es &gt;
  * @author Juan J. Durillo
  */
 @SuppressWarnings("serial")
@@ -63,7 +63,7 @@ public class GenerationalDistance<S extends Solution<?>> extends GenericIndicato
      * Constructor
      *
      * @param referenceParetoFrontFile
-     * @param p
+     * @param p the pow used in the equation where evaluate the solution.
      * @throws FileNotFoundException if the file isn't found.
      * @throws IOException           if there is a error reading the file.
      */
@@ -75,7 +75,7 @@ public class GenerationalDistance<S extends Solution<?>> extends GenericIndicato
     /**
      * Constructor
      *
-     * @param referenceParetoFrontFile
+     * @param referenceParetoFrontFile the file path where the pareto front is saved
      * @throws FileNotFoundException if the file isn't found.
      * @throws IOException           if there is a error reading the file.
      */
@@ -86,7 +86,7 @@ public class GenerationalDistance<S extends Solution<?>> extends GenericIndicato
     /**
      * Constructor
      *
-     * @param referenceParetoFront
+     * @param referenceParetoFront the reference pareto front
      */
     public GenerationalDistance(Front referenceParetoFront) {
         super(referenceParetoFront);

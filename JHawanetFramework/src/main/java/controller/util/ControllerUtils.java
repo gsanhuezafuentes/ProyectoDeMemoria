@@ -46,7 +46,6 @@ public class ControllerUtils {
      * @param pathToResource the path to fxml resource.
      * @param root the pane root.
      * @param controller the controller instance of the view (generally is the value of this).
-     * @return the root pane of view.
      * @throws ViewLoadException if the fxml can't be loaded.
      */
     public static void loadFXML(String pathToResource, Pane root, Object controller){

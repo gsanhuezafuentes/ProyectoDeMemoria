@@ -48,3 +48,5 @@ public void runSingleStep() throws Exception, EpanetException {
 Se utiliza el metodo _RunSingleStep_ puesto que permite obtener resultados intermedio de la operación despues de cada iteración.
 
 Una vez agregado un nuevo algoritmo, si este lo quiere utilizar con un problema ya implementado debe crear el <<Como agregar nuevos experimentos, experimento>> y utilizar las clases de los problemas implementados. Puede utilizar las otras clases "_Registrable_" para guiarse.
+
+include::descripcion_de_los_problemas_implementados.adoc[]

@@ -31,7 +31,7 @@ package model.metaheuristic.util.solutionattribute;
 import model.metaheuristic.solution.Solution;
 
 /**
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;
  */
 public class HypervolumeContributionAttribute<S extends Solution<?>>
     extends SolutionAttribute<S, Double>  {

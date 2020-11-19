@@ -49,7 +49,7 @@ import java.util.Objects;
  * the front could contain solutions that dominate some of those of the supposed Pareto front.
  * It is a responsibility of the caller to ensure that this does not happen.
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es &gt;
  * TODO: using an epsilon value
  */
 @SuppressWarnings("serial")
@@ -60,7 +60,7 @@ public class ErrorRatio<Evaluate extends List<? extends Solution<?>>>
     /**
      * Constructor
      *
-     * @param referenceParetoFrontFile
+     * @param referenceParetoFrontFile the reference pareto front
      * @throws FileNotFoundException if file can't be found.
      * @throws NullPointerException  if referenceParetoFrontFile is null.
      * @throws IOException           if there is a error reading the file.

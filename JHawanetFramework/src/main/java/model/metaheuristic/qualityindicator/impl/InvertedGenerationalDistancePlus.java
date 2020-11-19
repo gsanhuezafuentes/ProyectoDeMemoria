@@ -45,7 +45,7 @@ import java.util.Objects;
  * Reference: Ishibuchi et al 2015, "A Study on Performance Evaluation Ability of a Modified
  * Inverted Generational Distance Indicator", GECCO 2015
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;
  */
 @SuppressWarnings("serial")
 public class InvertedGenerationalDistancePlus<S extends Solution<?>> extends GenericIndicator<S> {
@@ -70,8 +70,7 @@ public class InvertedGenerationalDistancePlus<S extends Solution<?>> extends Gen
     /**
      * Constructor
      *
-     * @param referenceParetoFront
-     * @throws FileNotFoundException
+     * @param referenceParetoFront the reference pareto front
      */
     public InvertedGenerationalDistancePlus(Front referenceParetoFront) {
         super(referenceParetoFront);
@@ -80,7 +79,7 @@ public class InvertedGenerationalDistancePlus<S extends Solution<?>> extends Gen
     /**
      * Evaluate() method
      *
-     * @param solutionList
+     * @param solutionList the solution list to evaluate
      * @return the indicator value.
      * @throws NullPointerException of the solution list is null.
      */
@@ -96,6 +95,7 @@ public class InvertedGenerationalDistancePlus<S extends Solution<?>> extends Gen
      *
      * @param front          The front
      * @param referenceFront The reference pareto front
+     * @return the inverted generational distance value
      */
     public double invertedGenerationalDistancePlus(Front front, Front referenceFront) {
 

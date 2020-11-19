@@ -9,7 +9,7 @@ import java.util.Objects;
  * This class implements the {@link Comparator} interface. It is used
  * to compare two points according the value of a particular dimension.
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;
  * @author Juan J. Durillo
  */
 public class PointDimensionComparator implements Comparator<Point> {
@@ -21,7 +21,7 @@ public class PointDimensionComparator implements Comparator<Point> {
 
   /**
    * Constructor
-   * @throws if index is less than 0.
+   * @throws IllegalArgumentException if index is less than 0.
    */
   public PointDimensionComparator(int index) {
     if (index < 0) {
@@ -35,7 +35,7 @@ public class PointDimensionComparator implements Comparator<Point> {
    *
    * @param pointOne An object that reference a double[]
    * @param pointTwo An object that reference a double[]
-   * @return -1 if o1 < o1, 1 if o1 > o2 or 0 in other case.
+   * @return -1 if o1 &lt; o1, 1 if o1 &gt; o2 or 0 in other case.
    */
   @Override
   public int compare(Point pointOne, Point pointTwo) {

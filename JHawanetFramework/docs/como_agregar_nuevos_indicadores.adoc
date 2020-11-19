@@ -1,0 +1,124 @@
+== Como agregar nuevos indicadores
+
+Para agregar un nuevo indicador, se tiene que heredar de la clase abstracta *GenericIndicator* que se muestra a continuación. 
+
+image:images\nuevos_indicadores\diagrama_de_indicadores.svg[]
+
+Los métodos que son declarados en esta clase son los siguientes:
+
+* _isTheLowerTheIndicatorValueTheBetter_: Esta método indica si un valor menor es considerado mejor o peor. *Este método debe ser sobreescrito*.
+* _evaluate_: Este método recibe una lista de soluciones y devuelve un valor. Dicho valor es el resultado de aplicar la equación correspondiente para calcular el indicador. *Este método debe ser sobreescrito*.
+* _getName_: Este método devuelve el nombre del operador. *Este método debe ser sobreescrito*.
+* _setReferenceToParetoFront_: Esté método recibe la frontera de pareto final del problema (La frontera formada por todos los algoritmos de los experimentos aplicados sobre el problema.). Esta frontera es utilizada como referencia para comparar con la frontera individual de cada algoritmo en cada experimento para un mismo problema.
+* _getReferenceToParetoFront_: Esté método devuelve la frontera de pareto referencial.
+
+IMPORTANT: Los indicadores deben tener un constructor que no reciba parametros. Este constructor es el utilizado al momento de construir el indicador en tiempo de ejecución.
+
+Una vez se tenga implementado el indicador, éste debe ser agregado en la lista de la clase *_RegistrableConfiguration_*. A continuación se muestra los valores de dicha lista que consisten en los indicadores permitidos en la aplicación.
+
+[source, java]
+----
+public final class RegistrableConfiguration {
+	// Métodos para agregar los operadores
+
+	public static final List<Class<? extends GenericIndicator>> INDICATORS = new ArrayList<>();
+
+	// Lista de indicadores implementados en la aplicación.
+	static {
+		INDICATORS.add(NormalizedHypervolume.class);
+		INDICATORS.add(InvertedGenerationalDistance.class);
+		INDICATORS.add(Epsilon.class);
+		INDICATORS.add(Spread.class);
+		INDICATORS.add(InvertedGenerationalDistancePlus.class);
+		INDICATORS.add(WFGHypervolume.class);
+		INDICATORS.add(PISAHypervolume.class);
+		INDICATORS.add(GeneralizedSpread.class);
+		INDICATORS.add(GenerationalDistance.class);
+	}
+ 
+}
+----
+
+El siguiente código muestra como ejemplo la implementación del indicador Epsilon.
+
+[source,java]
+.Epsilon.java
+----
+/**
+* @author Antonio J. Nebro <antonio@lcc.uma.es>;
+* @author Juan J. Durillo
+*/
+public class Epsilon<S extends Solution<?>> extends GenericIndicator<S> {
+
+    /**
+     * Constructor por defecto. Este constructor se utiliza para crear la instancia de este indicador en tiempo de ejecución.
+     */
+    public Epsilon() {
+    }
+
+    @Override
+    public boolean isTheLowerTheIndicatorValueTheBetter() {
+        return true;
+    }
+
+    /**
+     * Evaluate() method
+     *
+     * @param solutionList the solution list.
+     * @return the value of indicator
+     * @throws NullPointerException if solutionList is null.
+     */
+    @Override
+    public @NotNull Double evaluate(List<S> solutionList) {
+        Objects.requireNonNull(solutionList);
+        return epsilon(new ArrayFront(solutionList), referenceParetoFront);
+    }
+
+    /**
+     * Returns the value of the epsilon indicator.
+     *
+     * @param front          Solution front
+     * @param referenceFront Optimal Pareto front
+     * @return the value of the epsilon indicator
+     */
+    private double epsilon(Front front, Front referenceFront) {
+        double eps, epsJ = 0.0, epsK = 0.0, epsTemp;
+
+        int numberOfObjectives = front.getPointDimensions();
+
+        eps = Double.MIN_VALUE;
+
+        for (int i = 0; i < referenceFront.getNumberOfPoints(); i++) {
+            for (int j = 0; j < front.getNumberOfPoints(); j++) {
+                for (int k = 0; k < numberOfObjectives; k++) {
+                    epsTemp = front.getPoint(j).getValue(k)
+                            - referenceFront.getPoint(i).getValue(k);
+                    if (k == 0) {
+                        epsK = epsTemp;
+                    } else if (epsK < epsTemp) {
+                        epsK = epsTemp;
+                    }
+                }
+                if (j == 0) {
+                    epsJ = epsK;
+                } else if (epsJ > epsK) {
+                    epsJ = epsK;
+                }
+            }
+            if (i == 0) {
+                eps = epsJ;
+            } else if (eps < epsJ) {
+                eps = epsJ;
+            }
+        }
+        return eps;
+    }
+
+    @Override
+    public @NotNull String getName() {
+        return "EP";
+    }
+}
+----
+
+=== Como funcionan los indicadores

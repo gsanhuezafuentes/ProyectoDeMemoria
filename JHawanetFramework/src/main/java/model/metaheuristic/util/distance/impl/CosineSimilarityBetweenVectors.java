@@ -33,7 +33,7 @@ import model.metaheuristic.util.distance.Distance;
 /**
  * Class for calculating the cosine similarity between two vectors.
  *
- * @author <antonio@lcc.uma.es>
+ * @author &lt;antonio@lcc.uma.es&gt;
  */
 public class CosineSimilarityBetweenVectors implements Distance<double[], double[]> {
 

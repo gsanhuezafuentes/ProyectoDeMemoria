@@ -37,9 +37,9 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Class for calculating the Euclidean distance between two {@link DoubleSolution} objects in solution space.
+ * Class for calculating the Euclidean distance between two Double {@link Solution} objects in solution space.
  *
- * @author <antonio@lcc.uma.es>
+ * @author &lt;antonio@lcc.uma.es&gt;
  */
 public class DistanceBetweenSolutionAndKNearestNeighbors<S extends Solution<?>>
         implements Distance<S, List<S>> {

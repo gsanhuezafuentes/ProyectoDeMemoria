@@ -81,7 +81,6 @@ public class WFGHypervolume<S extends Solution<?>> extends Hypervolume<S> {
      * Constructor
      *
      * @param referenceParetoFront
-     * @throws FileNotFoundException
      */
     public WFGHypervolume(model.metaheuristic.util.front.Front referenceParetoFront) {
         super(referenceParetoFront);

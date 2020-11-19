@@ -50,7 +50,7 @@ import java.util.List;
  * multi-objective optimization using a convergence criterion,
  * 2006 IEEE Congress on Evolutionary Computation, 2006, pp. 3234-3241.
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es &gt;
  * @author Juan J. Durillo
  */
 @SuppressWarnings("serial")
@@ -65,7 +65,7 @@ public class GeneralizedSpread<S extends Solution<?>> extends GenericIndicator<S
     /**
      * Constructor
      *
-     * @param referenceParetoFrontFile
+     * @param referenceParetoFrontFile the file path where the pareto front is saved.
      * @throws FileNotFoundException if the file isn't found.
      * @throws IOException           if there is a error reading the file.
      */
@@ -76,8 +76,7 @@ public class GeneralizedSpread<S extends Solution<?>> extends GenericIndicator<S
     /**
      * Constructor
      *
-     * @param referenceParetoFront
-     * @throws FileNotFoundException
+     * @param referenceParetoFront the reference pareto front
      */
     public GeneralizedSpread(Front referenceParetoFront) {
         super(referenceParetoFront);
@@ -86,8 +85,8 @@ public class GeneralizedSpread<S extends Solution<?>> extends GenericIndicator<S
     /**
      * Evaluate() method
      *
-     * @param solutionList
-     * @return
+     * @param solutionList the solution list to evaluate
+     * @return the indicator value.
      */
     @Override
     public @NotNull Double evaluate(List<S> solutionList) {

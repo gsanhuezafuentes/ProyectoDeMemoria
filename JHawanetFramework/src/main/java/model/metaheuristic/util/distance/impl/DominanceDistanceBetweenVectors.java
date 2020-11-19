@@ -35,7 +35,7 @@ import java.util.Objects;
 /**
  * Class for calculating the dominance distance between two vectors
  *
- * @author <antonio@lcc.uma.es>
+ * @author &lt;antonio@lcc.uma.es&gt;
  */
 public class DominanceDistanceBetweenVectors implements Distance<double[], double[]> {
 

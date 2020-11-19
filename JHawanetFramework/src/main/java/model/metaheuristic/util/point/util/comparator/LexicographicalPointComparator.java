@@ -10,7 +10,7 @@ import java.util.Objects;
  * This class implements the Comparator interface for comparing two points.
  * The order used is lexicographical order.
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;
  * @author Juan J. Durillo
 
  */
@@ -21,7 +21,7 @@ public class LexicographicalPointComparator implements Comparator<Point> {
    *
    * @param pointOne An object that reference a double[].
    * @param pointTwo An object that reference a double[].
-   * @return The following value: -1 if point1 < point2, 1 if point1 > point2 or 0 in other case.
+   * @return The following value: -1 if point1 &lt; point2, 1 if point1 &gt; point2 or 0 in other case.
    * @throws NullPointerException if pointOne or pointTwo is null.
    */
   @Override

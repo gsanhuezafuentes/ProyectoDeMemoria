@@ -35,7 +35,7 @@ import java.io.Serializable;
 /**
  * @param <Evaluate> Entity to runAlgorithm
  * @param <Result>   Result of the evaluation
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;
  */
 public interface QualityIndicator<Evaluate, Result> extends Serializable {
     @NotNull Result evaluate(Evaluate evaluate);

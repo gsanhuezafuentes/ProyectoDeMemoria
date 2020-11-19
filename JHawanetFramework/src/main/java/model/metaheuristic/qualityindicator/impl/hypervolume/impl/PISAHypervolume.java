@@ -53,7 +53,7 @@ import java.util.Objects;
  * Evolutionary Algorithms: A Comparative Case Study and the Strength Pareto Approach, IEEE
  * Transactions on Evolutionary Computation, vol. 3, no. 4, pp. 257-271, 1999.
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;;
  * @author Juan J. Durillo
  */
 @SuppressWarnings("serial")
@@ -71,7 +71,7 @@ public class PISAHypervolume<S extends Solution<?>> extends Hypervolume<S> {
     /**
      * Constructor with reference point
      *
-     * @param referencePoint
+     * @param referencePoint the reference point
      */
     public PISAHypervolume(double[] referencePoint) {
         super(referencePoint);
@@ -80,7 +80,7 @@ public class PISAHypervolume<S extends Solution<?>> extends Hypervolume<S> {
     /**
      * Constructor
      *
-     * @param referenceParetoFrontFile
+     * @param referenceParetoFrontFile the path to reference pareto front file.
      * @throws FileNotFoundException if the reference front file isn't found.
      * @throws IOException           if there is a error reading the file.
      */
@@ -91,8 +91,7 @@ public class PISAHypervolume<S extends Solution<?>> extends Hypervolume<S> {
     /**
      * Constructor
      *
-     * @param referenceParetoFront
-     * @throws FileNotFoundException
+     * @param referenceParetoFront the reference front
      */
     public PISAHypervolume(Front referenceParetoFront) {
         super(referenceParetoFront);

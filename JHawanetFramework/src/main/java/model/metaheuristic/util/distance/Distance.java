@@ -31,7 +31,7 @@ package model.metaheuristic.util.distance;
 /**
  * Interface representing distances between two entities
  *
- * @author <antonio@lcc.uma.es>
+ * @author &lt;antonio@lcc.uma.es&gt;
  */
 @FunctionalInterface
 public interface Distance<E, J> {

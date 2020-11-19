@@ -35,7 +35,7 @@ import java.util.Objects;
 /**
  * Class for calculating the Euclidean distance between two vectors
  *
- * @author <antonio@lcc.uma.es>
+ * @author &lt;antonio@lcc.uma.es&gt;
  */
 public class EuclideanDistanceBetweenVectors implements Distance<double[], double[]> {
 

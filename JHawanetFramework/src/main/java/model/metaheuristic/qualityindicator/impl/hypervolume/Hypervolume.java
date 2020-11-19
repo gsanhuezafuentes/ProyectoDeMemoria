@@ -44,7 +44,7 @@ import java.util.List;
 /**
  * This interface represents implementations of the Hypervolume quality indicator
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;
  * @author Juan J. Durillo
  */
 @SuppressWarnings("serial")
@@ -56,7 +56,7 @@ public abstract class Hypervolume<S extends Solution<?>> extends GenericIndicato
     /**
      * Constructor.
      *
-     * @param referenceParetoFrontFile
+     * @param referenceParetoFrontFile the path to the reference pareto front.
      * @throws IOException           if there is a error reading file.
      * @throws FileNotFoundException the file can't be found.
      */

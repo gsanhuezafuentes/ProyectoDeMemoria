@@ -42,7 +42,7 @@ import java.util.Objects;
 /**
  * Abstract class representing quality indicators that need a reference front to be computed
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;
  */
 @SuppressWarnings("serial")
 public abstract class GenericIndicator<S extends Solution<?>> implements QualityIndicator<List<S>, Double> {

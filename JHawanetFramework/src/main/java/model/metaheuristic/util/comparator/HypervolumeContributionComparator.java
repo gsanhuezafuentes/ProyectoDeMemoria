@@ -39,7 +39,7 @@ import java.util.Comparator;
  * Compares two solutions according to the crowding distance attribute. The higher
  * the distance the better
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;
  */
 @SuppressWarnings("serial")
 public class HypervolumeContributionComparator<S extends Solution<?>> implements Comparator<S>, Serializable {

@@ -90,7 +90,7 @@ Para el caso multiobjetivo la ventana es la siguiente:
 
 image::images/funcionalidades/resolver_problema/ventana_de_estado_ejecucion_multiobjetivo.png[]
 
-En esta ventana se muestra lo mismo que lo anteriormente mencionadado para el caso monoobjetivo. Pero adicionalmente, se muestra un cuadro de texto extra en la que se registra los accesos que se hacen al disco. Esto es debido a que en los experimentos para los algoritmos multiobjetivos, si se establece el parametro _ExperimentBaseDirectory_, los resultados de la ejecución son guardados en el equipo.
+En esta ventana se muestra lo mismo que lo anteriormente mencionadado para el caso monoobjetivo. Pero adicionalmente, se muestra un cuadro de texto extra en la que se registra los accesos que se hacen al disco. Esto se debe a que en los experimentos para los algoritmos multiobjetivos, se almacena los resultados generados durante la ejecución en una carpeta temporal.
 
 ==== Ver gráfico de las soluciones
 Desde la ventana de estado de la ejecución, para aquellos experimentos formados por algoritmo de 1 o 2 objetivos se puede visualizar el gráfico de las soluciones, si es que está activado en el menú de la aplicación.
@@ -135,6 +135,59 @@ Para guardar los resultados como una *tabla de excel* se debe pulsar el boton as
 
 image::images/funcionalidades/resolver_problema/guardar_excel.png[]
 
-Por ultimo se pueden *exportar las soluciones a un archivo de texto*. Dicho archivo tendran la extensión tsv. Al usar esta función se generan dos archivos, uno tiene el prefijo FUN_ y el otro el prefijo VAR_. Por ejemplo, FUN_resultado.tsv y VAR_resultado.tsv. El archivo FUN almacena el valor de los objetivos de los resultados, mientras que el archivo VAR contiene las variables utilizadas para alcanzar dicho objetivo. La siguiente imagen indica el boton utilizado para guardar como archivo de texto.
+Se pueden *exportar las soluciones a un archivo de texto*. Dicho archivo tendran la extensión tsv. Al usar esta función se generan dos archivos, uno tiene el prefijo FUN_ y el otro el prefijo VAR_. Por ejemplo, FUN_resultado.tsv y VAR_resultado.tsv. El archivo FUN almacena el valor de los objetivos de los resultados, mientras que el archivo VAR contiene las variables utilizadas para alcanzar dicho objetivo. La siguiente imagen indica el boton utilizado para guardar como archivo de texto.
 
 image::images/funcionalidades/resolver_problema/guardar_tsv.png[]
+
+'''
+
+=== Realizar comparación de algoritmos multiobjetivos.
+Para comparar algoritmos multiobjetivos se debe cargar la red e ir al menu:Indicators[Compare multiobjective experiments] como se muestra a continuación.
+
+image:images\funcionalidades\indicadores\menu_indicadores.png[]
+
+Despues hay que seleccionar los indicadores que se quieren utilizar para la comparación. A continuación se muestra la interfaz para la selección. 
+
+image:images\funcionalidades\indicadores\eleccion_indicadores.png[]
+
+Una vez escogidos los indicadores hay que escoger los problemas que quieren ser utilizados y la cantidad de instancias de cada uno de ellos. Junto con los problemas, hay que escoger los algoritmos a evaluar. La siguiente imagen muestra esta interfaz.
+
+image:images\funcionalidades\indicadores\eleccion_experimentos.png[]
+
+
+[CAUTION]
+====
+Si especifica que quiere realizar la comparación de los indicadores para más de un problema a la vez. Los algoritmos que configure para cada problema deben ser los mismos.
+
+Por ejemplo lo mostrado en la siguiente imagen no es valido, puesto que para el problema _Pumping Scheduling_ se configuro el algoritmo NSGAII y SMPSOInteger, mientras que para el otro problema solo se configura NSGAII.
+
+image:images\funcionalidades\indicadores\configuracion_invalida.png[]
+
+Pero lo siguiente si, ya que los dos problemas tienen configurados los mismos algoritmos.
+
+image:images\funcionalidades\indicadores\configuracion_valida.png[]
+
+Deben haber más de dos algoritmos seleccionados, puedo que esto es necesario para contruir la tabla de Wilcoxon, la cual pide un par de algoritmos. Estos algoritmos pueden ser dos del mismo tipo o dos de diferentes tipo. 
+
+Por ejemplo, las configuración mostrada en la siguiente imagen es valida en los dos casos.
+
+image:images\funcionalidades\indicadores\configuracion_valida_algoritmo.png[]
+====
+
+De acuerdo a la cantidad de instancias de cada problema y la cantidad de algoritmos se crea la interfaz para configurar los experimentos. Por cada instancia de un problema se tiene la cantidad de algoritmos configuradas. Por ejemplo, si se configuran dos instancias del problema _Pumping Scheduling_; y se establece 2 instancias del algoritmo _NSGAII_ y 2 instancias del algoritmo _SMPSO_ se generara la interfaz de la siguiente imagen.
+
+image:images\funcionalidades\indicadores\configuracion_experimentos.png[]
+
+En esta interfaz, cada algoritmo con el mismo nombre se considera como el mismo y deben ser configurados de la misma manera. Por ejemplo, del problema _Pumping Scheduling - 0_ y del problema _Pumping Scheduling - 1_ el algoritmo _NSGAII_ de cada uno de ellos debe ser configurado de la misma manera, puesto que son considerados iguales.
+
+CAUTION: Asegurese todos los experimentos configurados, no importa para el problema que sean, tengan el mismo número de ejecuciones independientes. Si éste no es el caso, una excepción puede ser lanzada al momento de intentar visualizar los resultados de la simulación.
+
+Una vez configurado y aceptado los problemas comienza la ejecución del algoritmo mostrando la siguiente interfaz.
+
+image:images\funcionalidades\indicadores\ejecucion_indicadores.png[]
+
+Finalmente, cuando se termina la ejecución del algoritmo se muestra en la interfaz principal una nueva ventana en la que se pueden ver los gráficos de la comparación.
+
+NOTE: Puede que necesite guardar los resultados de la comparación, estos resultados se almacenan automaticamente en una carpeta temporal llamada "*temp*" en el directorio en el que se ejecuto la aplicación.
+
+Para más detalles sobre como funcionan los indicadores pulse <<Como agregar nuevos indicadores>>

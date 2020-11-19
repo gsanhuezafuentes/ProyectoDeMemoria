@@ -45,7 +45,7 @@ import java.util.List;
  * Technical Report TR-98-03, Dept. Elec. Comput. Eng., Air Force
  * Inst. Technol. (1998)
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es &gt;
  * @author Juan J. Durillo
  */
 @SuppressWarnings("serial")
@@ -63,6 +63,7 @@ public class InvertedGenerationalDistance<S extends Solution<?>> extends Generic
      * Constructor
      *
      * @param referenceParetoFrontFile the reference pareto front.
+     * @param p the pow use in the equation
      * @throws FileNotFoundException if can't find the file.
      * @throws IOException           if there is a error reading file.
      */
@@ -85,7 +86,7 @@ public class InvertedGenerationalDistance<S extends Solution<?>> extends Generic
     /**
      * Constructor
      *
-     * @param referenceParetoFront
+     * @param referenceParetoFront the reference pareto front
      */
     public InvertedGenerationalDistance(Front referenceParetoFront) {
         super(referenceParetoFront);
@@ -94,7 +95,7 @@ public class InvertedGenerationalDistance<S extends Solution<?>> extends Generic
     /**
      * Evaluate() method
      *
-     * @param solutionList
+     * @param solutionList the solutions list to evaluate
      * @return
      */
     @Override
@@ -107,6 +108,7 @@ public class InvertedGenerationalDistance<S extends Solution<?>> extends Generic
      *
      * @param front          The front
      * @param referenceFront The reference pareto front
+     * @return the inverted generational distance value.
      */
     public double invertedGenerationalDistance(Front front, Front referenceFront) {
         double sum = 0.0;

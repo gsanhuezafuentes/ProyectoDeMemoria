@@ -46,7 +46,7 @@ import java.util.List;
  * <p>
  * Before computing this indicator it must be checked that the HV of the reference front is not zero.
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;
  */
 @SuppressWarnings("serial")
 public class NormalizedHypervolume<S extends Solution<?>> extends GenericIndicator<S> {

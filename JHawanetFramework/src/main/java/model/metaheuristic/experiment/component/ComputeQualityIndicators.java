@@ -43,7 +43,7 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
  * the resulting values are store in a file called as {@link QualityIndicator #getName()}, which is located
  * in the same directory of the FUN files.
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;
  */
 public class ComputeQualityIndicators<S extends Solution<?>> implements ExperimentComponent {
     private static final Logger LOGGER = LoggerFactory.getLogger(ComputeQualityIndicators.class);

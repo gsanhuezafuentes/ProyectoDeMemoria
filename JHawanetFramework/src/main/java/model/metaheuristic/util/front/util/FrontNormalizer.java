@@ -38,7 +38,7 @@ import java.util.Objects;
 /**
  * Class for normalizing {@link Front} objects
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;
  */
 public class FrontNormalizer {
   private final double[] maximumValues;

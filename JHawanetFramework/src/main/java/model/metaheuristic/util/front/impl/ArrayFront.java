@@ -61,7 +61,7 @@ public class ArrayFront implements Front {
      * Constructor
      *
      * @throws NullPointerException if solutionList is null.
-     * @throws if                   the size of solutionList is 0.
+     * @throws IllegalArgumentException if the size of solutionList is 0.
      */
     public ArrayFront(List<? extends Solution<?>> solutionList) {
         Objects.requireNonNull(solutionList, "The list of solutions is null");

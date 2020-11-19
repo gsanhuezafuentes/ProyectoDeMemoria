@@ -58,13 +58,10 @@ import java.util.Objects;
  * <p>
  * If {@link Experiment#getReferenceFrontDirectory()} is a empty string (is not set up) the final pareto front will not be saved automatically
  * in disk.
-<<<<<<< HEAD:JHawanetFramework/src/main/java/model/metaheuristic/experiment/component/GenerateReferenceParetoFront.java
-=======
  * <p>
  * This class use the solution in RAM to generate the reference pareto front.
  * <p>
  * This class is used when run a multiobjective optimization.
->>>>>>> Indicators:JHawanetFramework/src/main/java/model/metaheuristic/experiment/component/GenerateReferenceParetoFrontInRAM.java
  */
 public class GenerateReferenceParetoFrontInRAM implements ExperimentComponent {
     @NotNull

@@ -1,13 +1,18 @@
 == Como agregar nuevos experimentos
 
-Un experimento, en el contexto de este programa, es una clase que contiene una lista de algoritmos para resolver un problema específico. Los algoritmos que conforman el experimento deben ser de un mismo tipo, por ejemplo, "n" repeticiones del Algoritmo Genético. Actuando "n" como el número de ejecuciones independientes del algoritmo. A continuación se muestran las interfaces del módulo metaheurísticas incluyendo las clases utilizadas para los experimentos.
+Un experimento, en el contexto de este programa, es una clase que contiene una lista de algoritmos para resolver un problema específico. Los algoritmos que conforman el experimento deben ser de un mismo tipo, por ejemplo, "*n*" repeticiones del Algoritmo Genético. Actuando "*n*" como el número de ejecuciones independientes del algoritmo. A continuación se muestran las interfaces del módulo metaheurísticas incluyendo las clases utilizadas para los experimentos.
 
 image::images/nuevos_experimentos/d_class_metaheuristics_extendido.svg[]
 
 
 Para crear el experimento la aplicación cuenta con una clase llamada _ExperimentBuilder_. 
 
-Los parámetros _ExperimentBaseDirectory_ y _ReferenceFrontDirectory_ solo tienen uso en experimentos multiobjetivos. _ExperimentBaseDirectory_ indica donde guardar la frontera de Pareto de cada repetición del algoritmo multiobjetivo. En cambio, _ReferenceFrontDirectory_ indica donde guardar la frontera de Pareto final, que se obtiene al unir las fronteras de cada repetición y extraer solamente las soluciones no dominadas de dicho conjunto. 
+Los parámetros _ExperimentBaseDirectory_ y _ReferenceFrontDirectory_ solo tienen uso en experimentos multiobjetivos. _ExperimentBaseDirectory_ indica donde guardar la frontera de Pareto de cada repetición del algoritmo multiobjetivo. En cambio, _ReferenceFrontDirectory_ indica el nombre de la carpeta donde se guarda la frontera de pareto final del experimento. 
+
+[CAUTION]
+====
+Los parámetros _ExperimentBaseDirectory_ y _ReferenceFrontDirectory_ en la clase experimento no deben ser modificados por el usuario. El valor de estos parámetros son modificados cuando se ejecuta el experimento, asignandole una ruta a un directorio temporal en el que se guardan los resultados de la simulación. Dicho directorio temporal se encuentra en la carpeta en que se ejecuta el proyecto.
+====
 
 === Interfaz Registrable
 

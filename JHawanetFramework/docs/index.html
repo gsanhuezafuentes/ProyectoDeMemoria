@@ -2462,7 +2462,7 @@ amzn-kf8 {
 <li><a href="#_tipos_de_usuarios">1.2. Tipos de usuarios</a></li>
 <li><a href="#_objetivo">1.3. Objetivo</a></li>
 <li><a href="#_especificaciones_técnicas_del_sistema">1.4. Especificaciones técnicas del sistema</a></li>
-<li><a href="#_repositorio">1.5. Repositorio</a></li>
+<li><a href="#_como_instalar_el_software">1.5. Como instalar el software</a></li>
 </ul>
 </li>
 <li><a href="#_funcionalidades_de_la_aplicación">2. Funcionalidades de la aplicación</a>
@@ -2471,9 +2471,14 @@ amzn-kf8 {
 <li><a href="#_visualizar_las_características_de_los_elementos_de_la_red">2.2. Visualizar las características de los elementos de la red</a></li>
 <li><a href="#_realizar_una_simulación_utilizando_los_valores_por_defecto_del_archivo_de_configuración_de_red">2.3. Realizar una simulación utilizando los valores por defecto del archivo de configuración de red</a></li>
 <li><a href="#_resolver_un_problema">2.4. Resolver un problema</a></li>
+<li><a href="#_realizar_comparación_de_algoritmos_multiobjetivos">2.5. Realizar comparación de algoritmos multiobjetivos.</a></li>
 </ul>
 </li>
-<li><a href="#_como_agregar_nuevos_algoritmos">3. Como agregar nuevos algoritmos</a></li>
+<li><a href="#_como_agregar_nuevos_algoritmos">3. Como agregar nuevos algoritmos</a>
+<ul class="sectlevel2">
+<li><a href="#_problemas_de_optimización_en_rda">3.1. Problemas de optimización en RDA</a></li>
+</ul>
+</li>
 <li><a href="#_como_agregar_nuevos_problemas">4. Como agregar nuevos problemas</a></li>
 <li><a href="#_como_agregar_nuevos_operadores">5. Como agregar nuevos operadores</a>
 <ul class="sectlevel2">
@@ -2485,18 +2490,16 @@ amzn-kf8 {
 <li><a href="#_interfaz_registrable">6.1. Interfaz Registrable</a></li>
 </ul>
 </li>
-<li><a href="#_anotaciones_de_la_aplicación">7. Anotaciones de la aplicación</a>
+<li><a href="#_como_agregar_nuevos_indicadores">7. Como agregar nuevos indicadores</a>
 <ul class="sectlevel2">
-<li><a href="#_anotacion_permitida_en_la_clases_operator">7.1. Anotacion permitida en la clases <em>Operator</em></a></li>
-<li><a href="#_anotaciones_pemitidas_en_la_clases_registrable">7.2. Anotaciones pemitidas en la clases <em>Registrable</em></a></li>
-<li><a href="#_parameters">7.3. <em>@Parameters</em></a></li>
+<li><a href="#_como_funcionan_los_indicadores">7.1. Como funcionan los indicadores</a></li>
 </ul>
 </li>
-<li><a href="#_problemas_de_optimización_en_rda">8. Problemas de optimización en RDA</a>
+<li><a href="#_anotaciones_de_la_aplicación">8. Anotaciones de la aplicación</a>
 <ul class="sectlevel2">
-<li><a href="#_pipe_optimizing">8.1. <em>Pipe Optimizing</em></a></li>
-<li><a href="#_pumping_schedule">8.2. <em>Pumping Schedule</em></a></li>
-<li><a href="#_referencias">Referencias</a></li>
+<li><a href="#_anotacion_permitida_en_la_clases_operator">8.1. Anotacion permitida en la clases <em>Operator</em></a></li>
+<li><a href="#_anotaciones_pemitidas_en_la_clases_registrable">8.2. Anotaciones pemitidas en la clases <em>Registrable</em></a></li>
+<li><a href="#_parameters">8.3. <em>@Parameters</em></a></li>
 </ul>
 </li>
 <li><a href="#_utilidades">9. Utilidades</a>
@@ -2584,9 +2587,373 @@ amzn-kf8 {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_repositorio">1.5. Repositorio</h3>
+<h3 id="_como_instalar_el_software">1.5. Como instalar el software</h3>
 <div class="paragraph">
-<p>El código de la aplicación se encuentra alojado en github en el siguiente enlace: <a href="https://github.com/EinherjarSt/ProyectoDeMemoria">Repositorio</a></p>
+<p>Para instalar la aplicación se necesita tener instalado en el sistema Java 1.8 64bits y Maven. El código de la aplicación se encuentra alojado en github en el siguiente <a href="https://github.com/EinherjarSt/ProyectoDeMemoria">repositorio</a>. A continuación se explica como instalar cada uno de estos elementos.</p>
+</div>
+<div class="sect3">
+<h4 id="_como_instalar_java">1.5.1. Como instalar Java</h4>
+<div class="paragraph">
+<p>Para instalar java vaya al siguiente <a href="https://www.oracle.com/cl/java/technologies/javase/javase-jdk8-downloads.html">enlace</a>. Una vez en el enlace descargue el la versión de java para Window x64 como se muestra en la siguiente imagen.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/instalar_java/descargar_java.png" alt="descargar java"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Al intentar descargar Java le solicitará que ingrese una cuenta de oracle. Si no la tiene debe crearsela e intentar nuevamente descargarlo.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Una vez descargado el instalador de java, ejecutelo y siga los pasos del instalador. Durante la instalación, le indicará la ruta en que se instalara el programa. Esta ruta debe recordarla para realizar los siguientes pasos. En la siguiente imagen se muestra la ruta.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/instalar_java/instalando_java.png" alt="instalando java"></span></p>
+</div>
+<div class="paragraph">
+<p>Una vez finalizada la instalación debe ir a las variables del sistema. Para ello busque la carpeta <strong>Este Equipo</strong>, click derecho y propiedades; luego en configuración del sistema y finalmente en variables de entorn, como se ve a continuación.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/instalar_java/abrir_variables_entorno.png" alt="abrir variables entorno"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Tambien puede usar la barra de busquedas del sistema Window.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/instalar_java/buscar_variable.png" alt="buscar variable"></span></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Busque entre las variables de entorno, las variables <strong>PATH</strong> y <strong>JAVA_HOME</strong>. Si no existe tendrá que crearlas. Puede crearlas como variable de entorno del usuario o del sistema. La variable <strong>JAVA_HOME</strong> tiene que contener la ruta al jdk previamente instalado, como se muestra a continuación.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/instalar_java/JAVA_HOME.png" alt="JAVA HOME"></span></p>
+</div>
+<div class="paragraph">
+<p>En la variable PATH, debemos agregar la ruta a los ejecutables de java. Ésto permitira que java pueda ser ejecutado desde una terminal. Para ello agregamos lo siguiente en dicha variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">%JAVA_HOME%\bin</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A continuación se muestra como debe quedar la variable <strong>PATH</strong>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/instalar_java/path_java.png" alt="path java"></span></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En las variable de entorno <strong>PATH</strong>, ya sea del usuario o del sistema, pueden aparecer otras referencias a los ejecutables de java que son instaladas por defecto en el sistema. Estas referencias deben ser borradas. Si no son borradas, el sistema utilizará estas referencia en vez de la instalada por nosotros. A continuación se muestra una imagen con el nombre de esta referencia.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/instalar_java/path_java_remove.png" alt="path java remove"></span></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Una vez hecho todo lo anteriormente mencionado, guarde los cambios pulsando el boton <b class="button">Aceptar</b>.</p>
+</div>
+<div class="paragraph">
+<p>Para comprobar que la instalación fue exitosa abra la terminal del sistema, ya sea CMD o PowerShell y escriba el siguiente línea.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">java -version</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>la anterior línea debe mostrar un resultado parecido al siguiente, la subversión de Java puede ser diferente.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/instalar_java/probando_java.png" alt="probando java"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_como_instalar_maven">1.5.2. Como instalar Maven</h4>
+<div class="paragraph">
+<p>Para instalar maven vaya al siguiente <a href="https://maven.apache.org/download.cgi">link</a> y descargue el archivo que se muestra en la imagen a continuación.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/instalar_maven/descargar_maven.png" alt="descargar maven"></span></p>
+</div>
+<div class="paragraph">
+<p>Una vez descargado maven, descomprimalo. Con maven descargado y descomprimido debe agregarlo a la variable de entorno <strong>PATH</strong> como se muestra a continuación.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/instalar_maven/path_maven.png" alt="path maven"></span></p>
+</div>
+<div class="paragraph">
+<p>Cuando tenga configurada la variable <strong>PATH</strong> con maven compruebe que la instalación fue correcta ingresando el siguiente comando.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">mvn -version</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A continuación se muestra la salida del comando.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/instalar_maven/probando_mvn.png" alt="probando mvn"></span></p>
+</div>
+<div class="paragraph">
+<p>Una vez maven este instalado, hay que agregar el jar de la EpanetTolkit, requerido para la simulación, al repositorio de maven como una librería. Para esto ejecute el siguiente comando:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">mvn install:install-file -Dfile="lib/epajava.jar" -DgroupId=epajava -DartifactId=epajava -Dversion="1.0" -Dpackaging=jar</pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_como_ejecutar_la_aplicación">Como ejecutar la aplicación</h5>
+<div class="paragraph">
+<p>Para compilar la aplicación primero hay que compilarla. Para esto puede generar un archivo jar con el siguiente comando.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">mvn clean jfx:jar</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La salida de este comando se encuentra en el directorio target/jfx y contiene la librería, el ejecutable y la dll. Esta salida se muestra en la imagen a continuación.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/ejecutar/jar.png" alt="jar"></span></p>
+</div>
+<div class="paragraph">
+<p>La salida del comando mencionada anteriormente puede ser compartida y para su ejecución únicamente se requiere tener instalado Java 1.8 64bits.</p>
+</div>
+<div class="paragraph">
+<p>A continuación se presenta otra manera de compilar y ejecutar la aplicación. Esta consiste en ejecutar el siguiente comando.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">mvn jfx:native</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Esto genera una aplicación autocontenida, que no requiere la instalación de ningun programa externo, ya que incluye tanto las librerías del proyecto, así como una copia del jre de java. A continuación se muestra la salida del comando anterior.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/ejecutar/exe.png" alt="exe"></span></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_abrir_proyecto_con_eclipse">1.5.3. Abrir proyecto con eclipse</h4>
+<div class="paragraph">
+<p>Abrir el proyecto desde eclipse y agregar la ruta lib/additionalResources y la carpeta src/resource, en caso de que no se encuentre, al <strong>build path</strong>. Para ello, seleccione la carpeta y muestre el menú contextual. Luego, en la opción <strong>Build path</strong> seleccione la opción <strong>Use as source folder</strong> (Puede cambiar la configuración también desde <strong>Configure build path</strong>). Esto se muestra en la imagen a continuación:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/instalacion/jhawanet/addPath.png" alt="addPath">
+</div>
+</div>
+<div class="paragraph">
+<p>El <strong>build path</strong> debería mostrarse de la siguiente manera:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/instalacion/jhawanet/BuildPath.png" alt="BuildPath">
+</div>
+</div>
+<div class="paragraph">
+<p>Tambien hay que comprobar la instalación del jdk, ya que por eclipse a veces usa la version de java incorporada en el IDE. Como se muestra a continuación.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/jhawanet/eclipse_propierties_default-java.png" alt="eclipse propierties default java"></span></p>
+</div>
+<div class="paragraph">
+<p>Para cambiar la versión de java utilizada, selecciona la librería y presiona el <b class="button">Remove</b>. Posteriormente, presiona <b class="button">Add library</b>, seleccióna "<em>JRE System Library</em>" y posteriormente <b class="button">Next</b> como se muestra a continuación.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/jhawanet/eclipse_propierties_configure.png" alt="eclipse propierties configure"></span></p>
+</div>
+<div class="paragraph">
+<p>En la siguiente ventana selecciona "<em>Alternate JRE</em>" y pulsa <b class="button">Installed JRE</b>, tal como se ve en la siguiente imagen.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/jhawanet/eclipse_propierties_configure2.png" alt="eclipse propierties configure2"></span></p>
+</div>
+<div class="paragraph">
+<p>Posteriormente, ve a "<em>Installed JRE</em>" y pulsa <b class="button">Add&#8230;&#8203;</b>. En la ventana que se abre, selecciona "<em>Standard VM</em>". Estos pasos se pueden ver en la siguiente imagen.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/jhawanet/eclipse_propierties_configure3.png" alt="eclipse propierties configure3"></span></p>
+</div>
+<div class="paragraph">
+<p>Luego, busca en el sistema la versión de java enteriormente instalada como se muestra a continuación y guarda los cambios.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/jhawanet/eclipse_propierties_configure4.png" alt="eclipse propierties configure4"></span></p>
+</div>
+<div class="paragraph">
+<p>Con los cambios guardados selecciona el JDK anteriormente agregado como el por defecto de eclipse como se muestra a continuación.
+<span class="image"><img src="images/instalacion/jhawanet/eclipse_propierties_configure5.png" alt="eclipse propierties configure5"></span></p>
+</div>
+<div class="paragraph">
+<p>Finalmente, debes establecer el JDK instalado, como el que va a ser usado para ejecutar tu proyecto. La siguiente imagen muestra esto último.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/instalacion/jhawanet/eclipse_propierties_configure6.png" alt="eclipse propierties configure6"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_abrir_proyecto_en_intellij">1.5.4. Abrir Proyecto en IntelliJ</h4>
+<div class="paragraph">
+<p>Abrir o exportar la carpeta del proyecto en IntelliJ. Para esto hay dos formas de hacerlo. La primera consiste en hacerlo desde la ventana de bienvenida usando la opción <b class="button">Open or import</b> como se muestra a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/instalacion/jhawanet/WelcomeViewIJ.png" alt="WelcomeViewIJ">
+</div>
+</div>
+<div class="paragraph">
+<p>o desde un proyecto ya abierto ir a <span class="menuseq"><b class="menu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Open</b></span>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/instalacion/jhawanet/IntelliJOpen.png" alt="IntelliJOpen">
+</div>
+</div>
+<div class="paragraph">
+<p>Una vez abierto el proyecto hay que revisar si las carpetas están correctamente configuradas. Para ello, es necesario agregar la carpeta lib/additionalResources y la carpeta src/resource en la configuración de la estructura del proyecto en caso de que no se encuentren ya agregadas. Para configurar la estructura del proyecto ve a <span class="menuseq"><b class="menu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Proyect Structure</b></span>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/instalacion/jhawanet/ProyectStructureMenu.png" alt="ProyectStructureMenu">
+</div>
+</div>
+<div class="paragraph">
+<p>y en <b class="button">Modules</b> revisa que esté de la siguiente manera:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/instalacion/jhawanet/ProyectStructure.png" alt="ProyectStructure">
+</div>
+</div>
+<div class="paragraph">
+<p>en caso de que no se encuentre la configuración de la manera indicada busca la carpeta deseada y seleccionala. Luego, has click sobre el botón <b class="button">Resources</b>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/instalacion/jhawanet/ProyectStructureAddResource.png" alt="ProyectStructureAddResource">
+</div>
+</div>
+<div class="paragraph">
+<p>Finalmente, comprueba que la versión de Java utilizada para compilar y el lenguaje utilizado sea la versión 1.8 de 64bits como se muestra a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/instalacion/jhawanet/ProyectStructure_sdk.png" alt="ProyectStructure sdk">
+</div>
+</div>
+<div class="paragraph">
+<p>con esto el proyecto estará listo para ser usado en IntelliJ.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+La version en ingles y la version en español de epanet a veces ocupan distintas palabras claves (Ej: Feet en ingles y Pies en español). Este programa lee el formato inp de la version en ingles.
+NOTE: La ventaja de usar IntelliJ es que este posee un analizador de código que en mi opinión es bastante util y permite detectar el uso de algunas anotaciones extras para verificar el codigo como @NotNull y @Nullable. En caso de que el proyecto sea abierto usando eclipse estas anotaciones no tienen uso pero no causaran problemas en la compilación del proyecto.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Dependiendo de la unidad de flujo (<strong>Flow</strong>) escogida, el sistema de unidades cambia. Para más información ver en el manual de epanet la sección <strong>Units of Measurement</strong>. A continuación también se adjuntas unas imagenes referentes a esto:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/instalacion/jhawanet/SIMetric.png" alt="SIMetric">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/instalacion/jhawanet/USUnits.png" alt="USUnits">
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Se debe tener cuidado con el <strong>encoding</strong> de los archivos. Por defecto, el programa lee ISO-8859-1. Pero para evitar cualquier error, mejor asegurar que los archivos de red no contengan caracteres raros como ´,ñ, etc.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Si se agrega el atributo <strong>OverallConstraintViolation</strong> para penalizar las soluciones, este atributo sera recuperado y mostrado en la ventana de resultados.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="title">Para desarrolladores principalmente</div>
+<div class="paragraph">
+<p>Tener cuidado con cerrar epanet (epanet.ENclose). Si está cerrado hacer una llamada a la librería puede causar que el programa se cierre y no lanzara ninguna advertencia más que un código de error.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -2759,7 +3126,7 @@ amzn-kf8 {
 </div>
 </div>
 <div class="paragraph">
-<p>En esta ventana se muestra lo mismo que lo anteriormente mencionadado para el caso monoobjetivo. Pero adicionalmente, se muestra un cuadro de texto extra en la que se registra los accesos que se hacen al disco. Esto es debido a que en los experimentos para los algoritmos multiobjetivos, si se establece el parametro <em>ExperimentBaseDirectory</em>, los resultados de la ejecución son guardados en el equipo.</p>
+<p>En esta ventana se muestra lo mismo que lo anteriormente mencionadado para el caso monoobjetivo. Pero adicionalmente, se muestra un cuadro de texto extra en la que se registra los accesos que se hacen al disco. Esto se debe a que en los experimentos para los algoritmos multiobjetivos, se almacena los resultados generados durante la ejecución en una carpeta temporal.</p>
 </div>
 <div class="sect3">
 <h4 id="_ver_gráfico_de_las_soluciones">2.4.1. Ver gráfico de las soluciones</h4>
@@ -2843,13 +3210,115 @@ amzn-kf8 {
 </div>
 </div>
 <div class="paragraph">
-<p>Por ultimo se pueden <strong>exportar las soluciones a un archivo de texto</strong>. Dicho archivo tendran la extensión tsv. Al usar esta función se generan dos archivos, uno tiene el prefijo FUN_ y el otro el prefijo VAR_. Por ejemplo, FUN_resultado.tsv y VAR_resultado.tsv. El archivo FUN almacena el valor de los objetivos de los resultados, mientras que el archivo VAR contiene las variables utilizadas para alcanzar dicho objetivo. La siguiente imagen indica el boton utilizado para guardar como archivo de texto.</p>
+<p>Se pueden <strong>exportar las soluciones a un archivo de texto</strong>. Dicho archivo tendran la extensión tsv. Al usar esta función se generan dos archivos, uno tiene el prefijo FUN_ y el otro el prefijo VAR_. Por ejemplo, FUN_resultado.tsv y VAR_resultado.tsv. El archivo FUN almacena el valor de los objetivos de los resultados, mientras que el archivo VAR contiene las variables utilizadas para alcanzar dicho objetivo. La siguiente imagen indica el boton utilizado para guardar como archivo de texto.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/funcionalidades/resolver_problema/guardar_tsv.png" alt="guardar tsv">
 </div>
 </div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_realizar_comparación_de_algoritmos_multiobjetivos">2.5. Realizar comparación de algoritmos multiobjetivos.</h3>
+<div class="paragraph">
+<p>Para comparar algoritmos multiobjetivos se debe cargar la red e ir al <span class="menuseq"><b class="menu">Indicators</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Compare multiobjective experiments</b></span> como se muestra a continuación.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/funcionalidades/indicadores/menu_indicadores.png" alt="menu indicadores"></span></p>
+</div>
+<div class="paragraph">
+<p>Despues hay que seleccionar los indicadores que se quieren utilizar para la comparación. A continuación se muestra la interfaz para la selección.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/funcionalidades/indicadores/eleccion_indicadores.png" alt="eleccion indicadores"></span></p>
+</div>
+<div class="paragraph">
+<p>Una vez escogidos los indicadores hay que escoger los problemas que quieren ser utilizados y la cantidad de instancias de cada uno de ellos. Junto con los problemas, hay que escoger los algoritmos a evaluar. La siguiente imagen muestra esta interfaz.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/funcionalidades/indicadores/eleccion_experimentos.png" alt="eleccion experimentos"></span></p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Si especifica que quiere realizar la comparación de los indicadores para más de un problema a la vez. Los algoritmos que configure para cada problema deben ser los mismos.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo lo mostrado en la siguiente imagen no es valido, puesto que para el problema <em>Pumping Scheduling</em> se configuro el algoritmo NSGAII y SMPSOInteger, mientras que para el otro problema solo se configura NSGAII.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/funcionalidades/indicadores/configuracion_invalida.png" alt="configuracion invalida"></span></p>
+</div>
+<div class="paragraph">
+<p>Pero lo siguiente si, ya que los dos problemas tienen configurados los mismos algoritmos.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/funcionalidades/indicadores/configuracion_valida.png" alt="configuracion valida"></span></p>
+</div>
+<div class="paragraph">
+<p>Deben haber más de dos algoritmos seleccionados, puedo que esto es necesario para contruir la tabla de Wilcoxon, la cual pide un par de algoritmos. Estos algoritmos pueden ser dos del mismo tipo o dos de diferentes tipo.</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, las configuración mostrada en la siguiente imagen es valida en los dos casos.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/funcionalidades/indicadores/configuracion_valida_algoritmo.png" alt="configuracion valida algoritmo"></span></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>De acuerdo a la cantidad de instancias de cada problema y la cantidad de algoritmos se crea la interfaz para configurar los experimentos. Por cada instancia de un problema se tiene la cantidad de algoritmos configuradas. Por ejemplo, si se configuran dos instancias del problema <em>Pumping Scheduling</em>; y se establece 2 instancias del algoritmo <em>NSGAII</em> y 2 instancias del algoritmo <em>SMPSO</em> se generara la interfaz de la siguiente imagen.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/funcionalidades/indicadores/configuracion_experimentos.png" alt="configuracion experimentos"></span></p>
+</div>
+<div class="paragraph">
+<p>En esta interfaz, cada algoritmo con el mismo nombre se considera como el mismo y deben ser configurados de la misma manera. Por ejemplo, del problema <em>Pumping Scheduling - 0</em> y del problema <em>Pumping Scheduling - 1</em> el algoritmo <em>NSGAII</em> de cada uno de ellos debe ser configurado de la misma manera, puesto que son considerados iguales.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Asegurese todos los experimentos configurados, no importa para el problema que sean, tengan el mismo número de ejecuciones independientes. Si éste no es el caso, una excepción puede ser lanzada al momento de intentar visualizar los resultados de la simulación.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Una vez configurado y aceptado los problemas comienza la ejecución del algoritmo mostrando la siguiente interfaz.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/funcionalidades/indicadores/ejecucion_indicadores.png" alt="ejecucion indicadores"></span></p>
+</div>
+<div class="paragraph">
+<p>Finalmente, cuando se termina la ejecución del algoritmo se muestra en la interfaz principal una nueva ventana en la que se pueden ver los gráficos de la comparación.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Puede que necesite guardar los resultados de la comparación, estos resultados se almacenan automaticamente en una carpeta temporal llamada "<strong>temp</strong>" en el directorio en el que se ejecuto la aplicación.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Para más detalles sobre como funcionan los indicadores pulse <a href="#_como_agregar_nuevos_indicadores">Como agregar nuevos indicadores</a></p>
 </div>
 </div>
 </div>
@@ -2936,6 +3405,460 @@ public void runSingleStep() throws Exception, EpanetException {
 </div>
 <div class="paragraph">
 <p>Una vez agregado un nuevo algoritmo, si este lo quiere utilizar con un problema ya implementado debe crear el <a href="#_como_agregar_nuevos_experimentos">experimento</a> y utilizar las clases de los problemas implementados. Puede utilizar las otras clases "<em>Registrable</em>" para guiarse.</p>
+</div>
+<div class="sect2">
+<h3 id="_problemas_de_optimización_en_rda">3.1. Problemas de optimización en RDA</h3>
+<div class="paragraph">
+<p>La aplicación incorpora dos problemas. Estos son la optimización del diseño de RDA basado en la selección del diámetro de tuberías (<em>Pipe Optimizing</em>) y la optimización del régimen de bombeo (<em>Pumping Schedule</em>).</p>
+</div>
+<div class="sect3">
+<h4 id="_pipe_optimizing">3.1.1. <em>Pipe Optimizing</em></h4>
+<div class="paragraph">
+<p><em>Pipe Optimizing</em> es un problema de diseño cuyo objetivo es minimizar el costo de inversión en la construcción de las tuberías. Para ésto, se busca aquella combinación de diámetros que disminuyan el costo de la construcción de las tuberías a la vez que se cumplen las restricción de presión mínima impuesta sobre la red. La siguiente ecuación es presentada en <a href="#Pereyra2017">[1]</a> y muestra la función a optimizar.</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\text{Costo de inversión} = \sum_{i=1}^{N} (C_i \times D_i \times L_i)\]
+</div>
+</div>
+<div class="paragraph">
+<p>En la ecuación anteriormente presentada el termino \(C_i\) se refiere al costo unitario de la tubería \(i\), el término \(D_i\) corresponde al diámetro de la tubería y finalmente \(L_i\) hace referencia su longitud. Como se mencionó anteriormente, el problema debe satisfacer la siguiente restricción:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[H_i \geq H_{min}\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde \(H_i\) corresponde a la presión sobre la tubería \(i\) y \(H_{min}\) a la presión mínima de la red.</p>
+</div>
+<div class="paragraph">
+<p>La solución retornada por el algoritmo utilizado, en este caso GA, se puede ver en la siguiente figura. En dicha solución los valores que toman la variable de decisión corresponden al índice a una tabla donde se encuentra el diámetro y el costo de la tubería. El largo de la tubería esta configurado en el archivo de configuración de red (El archivo con extensión inp).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/problemas_implementados/pipe_optimizing/representacion_solucion_monoobjetivo.svg" alt="representacion solucion monoobjetivo">
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ejecución">Ejecución</h5>
+<div class="paragraph">
+<p>Para ejecutar este experimento sobre una red vaya a <span class="menuseq"><b class="menu">Singleobjective Optimization</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Pipe Optimizing</b></span>. Como se puede apreciar, este experimento solo esta disponible con el algoritmo NSGAII. Al momento de escoger el algoritmo, se abrira la ventana de configuración, en la pentaña de configuración se tienen las opciones que se muestran a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/problemas_implementados/pipe_optimizing/pipe_optimizing_setup.png" alt="pipe optimizing setup">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><em>Independent Run</em></dt>
+<dd>
+<p>Establece el número de ejecuciones independientes. Ej, si el valor es 5, significa que se ejecutará 5 veces el Algoritmo Genético. Esto, dara como resultado 5 soluciones.</p>
+</dd>
+<dt class="hdlist1"><em>Min pressure</em></dt>
+<dd>
+<p>Establece la presión mínima de la red. Se utiliza para penalizar las soluciones generadas.</p>
+</dd>
+<dt class="hdlist1"><em>Population Size</em></dt>
+<dd>
+<p>Establece el tamaño de la población.</p>
+</dd>
+<dt class="hdlist1"><em>Finish Condition</em></dt>
+<dd>
+<p>Define la condición de término del algoritmo a utilizar.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><em>Max number of evaluation</em></dt>
+<dd>
+<p>Establece que se detendrá la ejecución del algoritmo despues de haber realizado el número establecido de evaluaciones.</p>
+</dd>
+<dt class="hdlist1"><em>Number of iteration without improvement</em></dt>
+<dd>
+<p>Establece que se detendrá el algoritmo despues de que se realizo un cierto número de iteraciones en que no hubieron mejora en los resultados.</p>
+</dd>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1"><em>Gama</em></dt>
+<dd>
+<p>Es un archivo con configuraciones extras de la red. Este archivo contiene el id de los nodos, el diametro de las tuberías, la rugosidad y el coste de éstas. A continuación se presenta un ejemplo del formato. *Adicionalmente, este archivo establece el número de alternativas posibles para la tuberías de la red.</p>
+<div class="listingblock">
+<div class="title">&lt;nombre_de_archivo&gt;.Gama</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>;ID	Dint	Rug	Coste
+
+DN12	304.8	130	45.72614132
+DN16	406.4	130	70.4
+DN20	508.0	130	98.38699101
+DN24	609.6	130	129.3330584
+DN30	0762	130	180.748444
+DN40	1016	130	278.2804341</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><em>Selection Operator</em></dt>
+<dd>
+<p>Establece el operador de selección a utilizar.</p>
+</dd>
+<dt class="hdlist1"><em>Crossover Operator</em></dt>
+<dd>
+<p>Establece el operador de cruzamiento a utilizar.</p>
+</dd>
+<dt class="hdlist1"><em>Mutation Operator</em></dt>
+<dd>
+<p>Establece el operador de mutación a utilizar.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_pumping_schedule">3.1.2. <em>Pumping Schedule</em></h4>
+<div class="paragraph">
+<p><em>Pumping Schedule</em> <a href="#Makaremi2017">[2]</a> <a href="#JHawanet-2019">[3]</a> es un problema de operación que tiene como objetivos optimizar tanto el costo energético, así como el costo de mantención de los equipos de bombeos. A continuación se expresan las ecuaciones utilizadas para calcular los objetivos y las restricciones.</p>
+</div>
+<div id="costos-energeticos" class="paragraph">
+<p>Para el cálculo de los <strong>costos energéticos</strong> se ocupa la siguiente ecuación:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[C_E(S) = \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}(P_c(t) \times E_c(n, t) \times S(n, t))\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(C_E(S)\): Costos energético.</p>
+</li>
+<li>
+<p>\(NP\): El numero de bombas.</p>
+</li>
+<li>
+<p>\(NT\): Número de periodos de simulación. El máximo son 24 horas.</p>
+</li>
+<li>
+<p>\(P_c(t)\): La tarifa energética en el periodo \(t\).</p>
+</li>
+<li>
+<p>\(E_c(n, t)\): Consumo energético de la bomba \(n\) en el tiempo \(t\).</p>
+</li>
+<li>
+<p>\(S(n,t)\): El estado de la bomba. 1 si esta encendida y 0 si esta apagada.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Para calcular el consumo energético de la bomba \(n\) se utiliza la siguiente formula:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[E_c(n, t) = \frac{10^{-3} \times \gamma \times Q(n, t) \times h(n, t)}{e(n, t)}\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(\gamma\): Peso del agua.</p>
+</li>
+<li>
+<p>\(Q(n, t)\): Flujo a través de la bomba \(n\) en el tiempo \(t\)</p>
+</li>
+<li>
+<p>\(h(n, t)\): Altura manométrica de la bomba.</p>
+</li>
+<li>
+<p>\(e(n, t)\): Eficiencia de la bomba \(n\) en el tiempo \(t\).</p>
+</li>
+</ul>
+</div>
+<div id="costos-de-mantenimiento" class="paragraph">
+<p>Para cálcular el <strong>costo de mantenimiento</strong> se cálcula el número de encendido y apagados de todas las bombas en el periodo de tiempo analizado. Matemáticamente la función para calcular dicho costo corresponde a:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[C_N(S) = \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}r_t\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(C_N(S)\): Costo de mantenimiento.</p>
+</li>
+<li>
+<p>\(r_t\): Valor indicando si en el periodo \(t\) hubo un cambio de estado en la bomba desde apagado a encendido. Este valor es 1 cuando la bomba ha sido encendida.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Las funciones de los <a href="#costos-energeticos">costos energéticos</a> y los <a href="#costos-de-mantenimiento">costos de mantenimiento</a> deben cumplir las siguientes restricciones:</p>
+</div>
+<div class="paragraph">
+<p><strong>Conservación de la masa</strong>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\sum q_{in}-q_{out} = C_j\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(q_{in}\): Flujo de entrada.</p>
+</li>
+<li>
+<p>\(q_{out}\): Flujo de salida.</p>
+</li>
+<li>
+<p>\(C_j\): Consumo del nodo \(j\).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Conservación de la energía</strong>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[\sum h_f - \sum E_p = 0\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(h_f\): Perdida de energía por fricción.</p>
+</li>
+<li>
+<p>\(E_p\): Energía aportada por la bomba.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Perdida de carga por fricción</strong>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[h_f = \frac{10.67 \times L_q^{1.85}}{CH^{1.85} \times D^{4.87}}\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(L_q\): Largo de la tubería.</p>
+</li>
+<li>
+<p>\(CH\): Coeficiente de Hazen-Williams.</p>
+</li>
+<li>
+<p>\(D\): Diámetro de la tubería.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Presión mínima</strong>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[H_i \geq H_{min}\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(H_i\): Presión en el nodo \(i\).</p>
+</li>
+<li>
+<p>\(H_{min}\): Presión mínima.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Caudal</strong>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[Q_{i,t} \leq Q_i^{max}\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(Q_{i,t}\): Caudal del nodo \(i\) en el tiempo \(t\).</p>
+</li>
+<li>
+<p>\(Q_i^{max}\): Caudal máximo del nodo \(i\).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Nivel de depósito</strong>:</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[TS_{i, NT} \geq TS_{i, 0}\]
+</div>
+</div>
+<div class="paragraph">
+<p>donde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>\(TS_{i, NT}\): Nivel del reservorio \(i\) en el periodo de tiempo \(NT\).</p>
+</li>
+<li>
+<p>\(TS_{i, 0}\): Nivel del reservorio \(i\) en el tiempo \(0\).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En la siguiente figura se muestra como se codifica la solución a este problema, ésta es propuesta en <a href="#JHawanet-2019">[3]</a>. Como se puede observar la solución cuenta con 24 variables de decisión correspondiente a las 24 horas del día. Cada variable es un índice a la matriz de combinaciones posibles para cada bomba. Posteriormente, se genera una matriz binaria en donde cada fila es una bomba, cada columna es el periodo y el valor es el estado de la bomba en dicho periodo. Esta matriz binaria es usada para calcular el número de cambios de estado en las bombas de la ecuaciónde los <a href="#costos-de-mantenimiento">costos de mantenimiento</a>, así como para obtener el estado de la bomba en el periodo \(t\) en la ecuación de los <a href="#costos-energeticos">costos energéticos</a> referente al termino \(S(n, t)\).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/problemas_implementados/pump_schedule/representacion_solucion_multiobjetivo.svg" alt="representacion solucion multiobjetivo">
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ejecución_2">Ejecución</h5>
+<div class="paragraph">
+<p>Para la ejecución de este experimento sobre una red vaya a <span class="menuseq"><b class="menu">Multiobjetive Optimization</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Pumping Scheduling</b></span> y selecciona el algoritmo a utilizar.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Los algoritmos disponibles para este experimento contienen párametros comunes por lo que se explicará utilizando el algoritmo NSGAII.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Al momento de escoger el algoritmo, se abrira la ventana de configuración, en la pentaña de configuración se tienen las opciones que se muestran a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/problemas_implementados/pump_schedule/pump_schedule_setup.png" alt="pump schedule setup">
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><em>Independent Run</em></dt>
+<dd>
+<p>Establece el número de ejecuciones independientes. Ej, si el valor es 5, significa que se ejecutará 5 veces el Algoritmo Genético. Esto, dara como resultado 5 soluciones.</p>
+</dd>
+<dt class="hdlist1"><em>Max number of evaluation</em></dt>
+<dd>
+<p>Establece que se detendrá la ejecución del algoritmo despues de haber realizado el número establecido de evaluaciones.</p>
+</dd>
+<dt class="hdlist1"><em>Population Size</em></dt>
+<dd>
+<p>Establece el tamaño de la población.</p>
+</dd>
+<dt class="hdlist1"><em>Configuration file</em></dt>
+<dd>
+<p>Es un archivo JSON con algunas configuraciones adicionales. El archivo JSON tiene los siguientes atributos.</p>
+<div class="listingblock to_long">
+<div class="title">configuration_file.json</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="json">{
+  "numPumps": 3,
+  "totalOptimizationTime": 86400,
+  "intervalOptimizationTime": 3600,
+  "energyCostPerTime": [
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.0244,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194,
+    0.1194
+  ],
+  "maintenanceCost": 1,
+  "minNodePressure": 15,
+  "numConstraints": 218,
+  "maxFlowrateEachPump": [300, 300, 150],
+  "minTank": [0, 0],
+  "maxTank": [10, 5]
+}</code></pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><em>Selection Operator</em></dt>
+<dd>
+<p>Establece el operador de selección a utilizar.</p>
+</dd>
+<dt class="hdlist1"><em>Crossover Operator</em></dt>
+<dd>
+<p>Establece el operador de cruzamiento a utilizar.</p>
+</dd>
+<dt class="hdlist1"><em>Mutation Operator</em></dt>
+<dd>
+<p>Establece el operador de mutación a utilizar.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_referencias">Referencias</h4>
+<div class="ulist bibliography">
+<ul class="bibliography">
+<li>
+<p><a id="Pereyra2017"></a>[1] Pereyra, G., Pandolfi, D., &amp; Villagra, A. (2017). Diseño y optimización de redes de distribución de agua utilizando algoritmos genéticos. Informes Científicos Técnicos - UNPA, 9(1), 37–63. <a href="https://doi.org/10.22305/ict-unpa.v9i1.236" class="bare">https://doi.org/10.22305/ict-unpa.v9i1.236</a></p>
+</li>
+<li>
+<p><a id="Makaremi2017"></a>[2] Makaremi, Y., Haghighi, A., &amp; Ghafouri, H. R. (2017). Optimization of Pump Scheduling Program in Water Supply Systems Using a Self-Adaptive NSGA-II; a Review of Theory to Real Application. Water Resources Management, 31(4), 1283–1304. <a href="https://doi.org/10.1007/s11269-017-1577-x" class="bare">https://doi.org/10.1007/s11269-017-1577-x</a></p>
+</li>
+<li>
+<p><a id="JHawanet-2019"></a>[3] Gutiérrez-Bahamondes, J. H., Salgueiro, Y., Silva-Rubio, S. A., Alsina, M. A., Mora-Meliá, D., &amp; Fuertes-Miquel, V. S. (2019). jHawanet: An open-source project for the implementation and assessment of multi-objective evolutionary algorithms on water distribution networks. Water (Switzerland), 11(10). <a href="https://doi.org/10.3390/w11102018" class="bare">https://doi.org/10.3390/w11102018</a></p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -3107,7 +4030,7 @@ public CustomMutation() {
 <h2 id="_como_agregar_nuevos_experimentos">6. Como agregar nuevos experimentos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Un experimento, en el contexto de este programa, es una clase que contiene una lista de algoritmos para resolver un problema específico. Los algoritmos que conforman el experimento deben ser de un mismo tipo, por ejemplo, "n" repeticiones del Algoritmo Genético. Actuando "n" como el número de ejecuciones independientes del algoritmo. A continuación se muestran las interfaces del módulo metaheurísticas incluyendo las clases utilizadas para los experimentos.</p>
+<p>Un experimento, en el contexto de este programa, es una clase que contiene una lista de algoritmos para resolver un problema específico. Los algoritmos que conforman el experimento deben ser de un mismo tipo, por ejemplo, "<strong>n</strong>" repeticiones del Algoritmo Genético. Actuando "<strong>n</strong>" como el número de ejecuciones independientes del algoritmo. A continuación se muestran las interfaces del módulo metaheurísticas incluyendo las clases utilizadas para los experimentos.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -3118,7 +4041,21 @@ public CustomMutation() {
 <p>Para crear el experimento la aplicación cuenta con una clase llamada <em>ExperimentBuilder</em>.</p>
 </div>
 <div class="paragraph">
-<p>Los parámetros <em>ExperimentBaseDirectory</em> y <em>ReferenceFrontDirectory</em> solo tienen uso en experimentos multiobjetivos. <em>ExperimentBaseDirectory</em> indica donde guardar la frontera de Pareto de cada repetición del algoritmo multiobjetivo. En cambio, <em>ReferenceFrontDirectory</em> indica donde guardar la frontera de Pareto final, que se obtiene al unir las fronteras de cada repetición y extraer solamente las soluciones no dominadas de dicho conjunto.</p>
+<p>Los parámetros <em>ExperimentBaseDirectory</em> y <em>ReferenceFrontDirectory</em> solo tienen uso en experimentos multiobjetivos. <em>ExperimentBaseDirectory</em> indica donde guardar la frontera de Pareto de cada repetición del algoritmo multiobjetivo. En cambio, <em>ReferenceFrontDirectory</em> indica el nombre de la carpeta donde se guarda la frontera de pareto final del experimento.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Los parámetros <em>ExperimentBaseDirectory</em> y <em>ReferenceFrontDirectory</em> en la clase experimento no deben ser modificados por el usuario. El valor de estos parámetros son modificados cuando se ejecuta el experimento, asignandole una ruta a un directorio temporal en el que se guardan los resultados de la simulación. Dicho directorio temporal se encuentra en la carpeta en que se ejecuta el proyecto.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_interfaz_registrable">6.1. Interfaz Registrable</h3>
@@ -3383,12 +4320,170 @@ public Map&lt;String, String&gt; getParameters() {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_anotaciones_de_la_aplicación">7. Anotaciones de la aplicación</h2>
+<h2 id="_como_agregar_nuevos_indicadores">7. Como agregar nuevos indicadores</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Para agregar un nuevo indicador, se tiene que heredar de la clase abstracta <strong>GenericIndicator</strong> que se muestra a continuación.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/nuevos_indicadores/diagrama_de_indicadores.svg" alt="diagrama de indicadores"></span></p>
+</div>
+<div class="paragraph">
+<p>Los métodos que son declarados en esta clase son los siguientes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>isTheLowerTheIndicatorValueTheBetter</em>: Esta método indica si un valor menor es considerado mejor o peor. <strong>Este método debe ser sobreescrito</strong>.</p>
+</li>
+<li>
+<p><em>evaluate</em>: Este método recibe una lista de soluciones y devuelve un valor. Dicho valor es el resultado de aplicar la equación correspondiente para calcular el indicador. <strong>Este método debe ser sobreescrito</strong>.</p>
+</li>
+<li>
+<p><em>getName</em>: Este método devuelve el nombre del operador. <strong>Este método debe ser sobreescrito</strong>.</p>
+</li>
+<li>
+<p><em>setReferenceToParetoFront</em>: Esté método recibe la frontera de pareto final del problema (La frontera formada por todos los algoritmos de los experimentos aplicados sobre el problema.). Esta frontera es utilizada como referencia para comparar con la frontera individual de cada algoritmo en cada experimento para un mismo problema.</p>
+</li>
+<li>
+<p><em>getReferenceToParetoFront</em>: Esté método devuelve la frontera de pareto referencial.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Los indicadores deben tener un constructor que no reciba parametros. Este constructor es el utilizado al momento de construir el indicador en tiempo de ejecución.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Una vez se tenga implementado el indicador, éste debe ser agregado en la lista de la clase <strong><em>RegistrableConfiguration</em></strong>. A continuación se muestra los valores de dicha lista que consisten en los indicadores permitidos en la aplicación.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">public final class RegistrableConfiguration {
+	// Métodos para agregar los operadores
+
+	public static final List&lt;Class&lt;? extends GenericIndicator&gt;&gt; INDICATORS = new ArrayList&lt;&gt;();
+
+	// Lista de indicadores implementados en la aplicación.
+	static {
+		INDICATORS.add(NormalizedHypervolume.class);
+		INDICATORS.add(InvertedGenerationalDistance.class);
+		INDICATORS.add(Epsilon.class);
+		INDICATORS.add(Spread.class);
+		INDICATORS.add(InvertedGenerationalDistancePlus.class);
+		INDICATORS.add(WFGHypervolume.class);
+		INDICATORS.add(PISAHypervolume.class);
+		INDICATORS.add(GeneralizedSpread.class);
+		INDICATORS.add(GenerationalDistance.class);
+	}
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>El siguiente código muestra como ejemplo la implementación del indicador Epsilon.</p>
+</div>
+<div class="listingblock">
+<div class="title">Epsilon.java</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">/**
+* @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;;
+* @author Juan J. Durillo
+*/
+public class Epsilon&lt;S extends Solution&lt;?&gt;&gt; extends GenericIndicator&lt;S&gt; {
+
+    /**
+     * Constructor por defecto. Este constructor se utiliza para crear la instancia de este indicador en tiempo de ejecución.
+     */
+    public Epsilon() {
+    }
+
+    @Override
+    public boolean isTheLowerTheIndicatorValueTheBetter() {
+        return true;
+    }
+
+    /**
+     * Evaluate() method
+     *
+     * @param solutionList the solution list.
+     * @return the value of indicator
+     * @throws NullPointerException if solutionList is null.
+     */
+    @Override
+    public @NotNull Double evaluate(List&lt;S&gt; solutionList) {
+        Objects.requireNonNull(solutionList);
+        return epsilon(new ArrayFront(solutionList), referenceParetoFront);
+    }
+
+    /**
+     * Returns the value of the epsilon indicator.
+     *
+     * @param front          Solution front
+     * @param referenceFront Optimal Pareto front
+     * @return the value of the epsilon indicator
+     */
+    private double epsilon(Front front, Front referenceFront) {
+        double eps, epsJ = 0.0, epsK = 0.0, epsTemp;
+
+        int numberOfObjectives = front.getPointDimensions();
+
+        eps = Double.MIN_VALUE;
+
+        for (int i = 0; i &lt; referenceFront.getNumberOfPoints(); i++) {
+            for (int j = 0; j &lt; front.getNumberOfPoints(); j++) {
+                for (int k = 0; k &lt; numberOfObjectives; k++) {
+                    epsTemp = front.getPoint(j).getValue(k)
+                            - referenceFront.getPoint(i).getValue(k);
+                    if (k == 0) {
+                        epsK = epsTemp;
+                    } else if (epsK &lt; epsTemp) {
+                        epsK = epsTemp;
+                    }
+                }
+                if (j == 0) {
+                    epsJ = epsK;
+                } else if (epsJ &gt; epsK) {
+                    epsJ = epsK;
+                }
+            }
+            if (i == 0) {
+                eps = epsJ;
+            } else if (eps &lt; epsJ) {
+                eps = epsJ;
+            }
+        }
+        return eps;
+    }
+
+    @Override
+    public @NotNull String getName() {
+        return "EP";
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_como_funcionan_los_indicadores">7.1. Como funcionan los indicadores</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_anotaciones_de_la_aplicación">8. Anotaciones de la aplicación</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_anotacion_permitida_en_la_clases_operator">7.1. Anotacion permitida en la clases <em>Operator</em></h3>
+<h3 id="_anotacion_permitida_en_la_clases_operator">8.1. Anotacion permitida en la clases <em>Operator</em></h3>
 <div class="sect3">
-<h4 id="_defaultconstructor_2">7.1.1. <em>@DefaultConstructor</em></h4>
+<h4 id="_defaultconstructor_2">8.1.1. <em>@DefaultConstructor</em></h4>
 <div class="paragraph">
 <p>Esta anotación indica el constructor principal utilizado para crear el operador a través de la interfaz gráfica.</p>
 </div>
@@ -3405,9 +4500,9 @@ public Map&lt;String, String&gt; getParameters() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_anotaciones_pemitidas_en_la_clases_registrable">7.2. Anotaciones pemitidas en la clases <em>Registrable</em></h3>
+<h3 id="_anotaciones_pemitidas_en_la_clases_registrable">8.2. Anotaciones pemitidas en la clases <em>Registrable</em></h3>
 <div class="sect3">
-<h4 id="_newproblem">7.2.1. <em>@NewProblem</em></h4>
+<h4 id="_newproblem">8.2.1. <em>@NewProblem</em></h4>
 <div class="paragraph">
 <p>Esta anotación permite indicar el nombre del problema que será mostrado en la interfaz gráfica. Puedes ver el uso de esta anotación a continuación:</p>
 </div>
@@ -3475,7 +4570,7 @@ public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator
 </div>
 </div>
 <div class="sect2">
-<h3 id="_parameters">7.3. <em>@Parameters</em></h3>
+<h3 id="_parameters">8.3. <em>@Parameters</em></h3>
 <div class="paragraph">
 <p>Esta anotación permite agregar información acerca de los parámetros recibidos por el constructor. Cuando el constructor tiene esta anotación, por convención, está obligado a declarar los parámetros en un orden determinado en base a tu tipo. Este orden es el siguiente:</p>
 </div>
@@ -3522,7 +4617,7 @@ No usar la anotación <em>@Parameters</em> tiene el mismo efecto que usar la ano
 <p>Puede ver el uso de esta anotación en el <a href="#ejemplo-anotaciones">ejemplo anterior</a>.</p>
 </div>
 <div class="sect3">
-<h4 id="_operatorinput">7.3.1. <em>@OperatorInput</em></h4>
+<h4 id="_operatorinput">8.3.1. <em>@OperatorInput</em></h4>
 <div class="paragraph">
 <p>Esta anotación agrega información a uno de los parámetros del constructor acerca de los posibles operadores que pueden ser recibidos por ese parámetro.
 Dentro de esta anotación existen varios elementos. Estos elementos son:</p>
@@ -3564,7 +4659,7 @@ El botón <em>Configure</em> permite configurar los parámetros que recibe el co
 </div>
 </div>
 <div class="sect3">
-<h4 id="_operatoroption">7.3.2. <em>@OperatorOption</em></h4>
+<h4 id="_operatoroption">8.3.2. <em>@OperatorOption</em></h4>
 <div class="paragraph">
 <p>Esta anotación permite indicar las alternativas de operadores que puede recibir un parámetro para una categoría de operador indicada por la anotación <em>@OperatorInput</em>.
 Dentro de esta anotación existen varios elementos. Estos elementos son:</p>
@@ -3581,7 +4676,7 @@ Dentro de esta anotación existen varios elementos. Estos elementos son:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_fileinput">7.3.3. <em>@FileInput</em></h4>
+<h4 id="_fileinput">8.3.3. <em>@FileInput</em></h4>
 <div class="paragraph">
 <p>Esta anotación indica que hay un parámetro que espera recibir un objeto de tipo <em>File</em>. Cuando esta anotación está presente junto con su parámetro, en la interfaz, aparecerá un apartado que abre un <em>FileChooser</em> o un <em>DirectoryChooser</em> para buscar un archivo o directorio, respectivamente.
 Dentro de esta anotación existen varios elementos. Éstos son:</p>
@@ -3610,7 +4705,7 @@ Dentro de esta anotación existen varios elementos. Éstos son:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_numberinput">7.3.4. <em>@NumberInput</em></h4>
+<h4 id="_numberinput">8.3.4. <em>@NumberInput</em></h4>
 <div class="paragraph">
 <p>Esta anotación indica que hay un parámetro del tipo <em>int</em> o <em>double</em> o sus tipos envoltorios <em>Integer</em> o <em>Double</em>, respectivamente. Esta anotación agrega en la interfaz un <em>TextField</em> que solo permite como entrada un número.  Si el tipo del parámetro es <em>int</em> o <em>Integer</em>, entonces el <em>TextField</em> solo permite ingresar números enteros. Por otro lado, si el parámetro es <em>double</em> o <em>Double</em>, entonces en la interfaz se acepta el ingreso de números enteros o decimales. En la interfaz, esta anotación es visualizada como se muestra a continuación.</p>
 </div>
@@ -3637,7 +4732,7 @@ Dentro de esta anotación existen varios elementos. Éstos son:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_numbertoggleinput">7.3.5. <em>@NumberToggleInput</em></h4>
+<h4 id="_numbertoggleinput">8.3.5. <em>@NumberToggleInput</em></h4>
 <div class="paragraph">
 <p>Esta anotación indica que hay un conjunto de parámetros que son mutuamente excluyentes entre ellos, es decir, que solo un parámetro puede recibir el valor.</p>
 </div>
@@ -3677,466 +4772,6 @@ Dentro de esta anotación existen varios elementos. Éstos son:</p>
 <div class="paragraph">
 <p>Las anotaciones presentadas en las dos secciones anteriores deben ser usadas en constructores públicos.</p>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_problemas_de_optimización_en_rda">8. Problemas de optimización en RDA</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>La aplicación incorpora dos problemas. Estos son la optimización del diseño de RDA basado en la selección del diámetro de tuberías (<em>Pipe Optimizing</em>) y la optimización del régimen de bombeo (<em>Pumping Schedule</em>).</p>
-</div>
-<div class="sect2">
-<h3 id="_pipe_optimizing">8.1. <em>Pipe Optimizing</em></h3>
-<div class="paragraph">
-<p><em>Pipe Optimizing</em> es un problema de diseño cuyo objetivo es minimizar el costo de inversión en la construcción de las tuberías. Para ésto, se busca aquella combinación de diámetros que disminuyan el costo de la construcción de las tuberías a la vez que se cumplen las restricción de presión mínima impuesta sobre la red. La siguiente ecuación es presentada en <a href="#Pereyra2017">[1]</a> y muestra la función a optimizar.</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\[\text{Costo de inversión} = \sum_{i=1}^{N} (C_i \times D_i \times L_i)\]
-</div>
-</div>
-<div class="paragraph">
-<p>En la ecuación anteriormente presentada el termino \(C_i\) se refiere al costo unitario de la tubería \(i\), el término \(D_i\) corresponde al diámetro de la tubería y finalmente \(L_i\) hace referencia su longitud. Como se mencionó anteriormente, el problema debe satisfacer la siguiente restricción:</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\[H_i \geq H_{min}\]
-</div>
-</div>
-<div class="paragraph">
-<p>donde \(H_i\) corresponde a la presión sobre la tubería \(i\) y \(H_{min}\) a la presión mínima de la red.</p>
-</div>
-<div class="paragraph">
-<p>La solución retornada por el algoritmo utilizado, en este caso GA, se puede ver en la siguiente figura. En dicha solución los valores que toman la variable de decisión corresponden al índice a una tabla donde se encuentra el diámetro y el costo de la tubería. El largo de la tubería esta configurado en el archivo de configuración de red (El archivo con extensión inp).</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/problemas_implementados/pipe_optimizing/representacion_solucion_monoobjetivo.svg" alt="representacion solucion monoobjetivo">
-</div>
-</div>
-<div class="sect3">
-<h4 id="_ejecución">8.1.1. Ejecución</h4>
-<div class="paragraph">
-<p>Para ejecutar este experimento sobre una red vaya a <span class="menuseq"><b class="menu">Singleobjective Optimization</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Pipe Optimizing</b></span>. Como se puede apreciar, este experimento solo esta disponible con el algoritmo NSGAII. Al momento de escoger el algoritmo, se abrira la ventana de configuración, en la pentaña de configuración se tienen las opciones que se muestran a continuación.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/problemas_implementados/pipe_optimizing/pipe_optimizing_setup.png" alt="pipe optimizing setup">
-</div>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><em>Independent Run</em></dt>
-<dd>
-<p>Establece el número de ejecuciones independientes. Ej, si el valor es 5, significa que se ejecutará 5 veces el Algoritmo Genético. Esto, dara como resultado 5 soluciones.</p>
-</dd>
-<dt class="hdlist1"><em>Min pressure</em></dt>
-<dd>
-<p>Establece la presión mínima de la red. Se utiliza para penalizar las soluciones generadas.</p>
-</dd>
-<dt class="hdlist1"><em>Population Size</em></dt>
-<dd>
-<p>Establece el tamaño de la población.</p>
-</dd>
-<dt class="hdlist1"><em>Finish Condition</em></dt>
-<dd>
-<p>Define la condición de término del algoritmo a utilizar.</p>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><em>Max number of evaluation</em></dt>
-<dd>
-<p>Establece que se detendrá la ejecución del algoritmo despues de haber realizado el número establecido de evaluaciones.</p>
-</dd>
-<dt class="hdlist1"><em>Number of iteration without improvement</em></dt>
-<dd>
-<p>Establece que se detendrá el algoritmo despues de que se realizo un cierto número de iteraciones en que no hubieron mejora en los resultados.</p>
-</dd>
-</dl>
-</div>
-</dd>
-<dt class="hdlist1"><em>Gama</em></dt>
-<dd>
-<p>Es un archivo con configuraciones extras de la red. Este archivo contiene el id de los nodos, el diametro de las tuberías, la rugosidad y el coste de éstas. A continuación se presenta un ejemplo del formato. *Adicionalmente, este archivo establece el número de alternativas posibles para la tuberías de la red.</p>
-<div class="listingblock">
-<div class="title">&lt;nombre_de_archivo&gt;.Gama</div>
-<div class="content">
-<pre class="prettyprint highlight nowrap"><code>;ID	Dint	Rug	Coste
-
-DN12	304.8	130	45.72614132
-DN16	406.4	130	70.4
-DN20	508.0	130	98.38699101
-DN24	609.6	130	129.3330584
-DN30	0762	130	180.748444
-DN40	1016	130	278.2804341</code></pre>
-</div>
-</div>
-</dd>
-<dt class="hdlist1"><em>Selection Operator</em></dt>
-<dd>
-<p>Establece el operador de selección a utilizar.</p>
-</dd>
-<dt class="hdlist1"><em>Crossover Operator</em></dt>
-<dd>
-<p>Establece el operador de cruzamiento a utilizar.</p>
-</dd>
-<dt class="hdlist1"><em>Mutation Operator</em></dt>
-<dd>
-<p>Establece el operador de mutación a utilizar.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_pumping_schedule">8.2. <em>Pumping Schedule</em></h3>
-<div class="paragraph">
-<p><em>Pumping Schedule</em> <a href="#Makaremi2017">[2]</a> <a href="#JHawanet-2019">[3]</a> es un problema de operación que tiene como objetivos optimizar tanto el costo energético, así como el costo de mantención de los equipos de bombeos. A continuación se expresan las ecuaciones utilizadas para calcular los objetivos y las restricciones.</p>
-</div>
-<div id="costos-energeticos" class="paragraph">
-<p>Para el cálculo de los <strong>costos energéticos</strong> se ocupa la siguiente ecuación:</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\[C_E(S) = \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}(P_c(t) \times E_c(n, t) \times S(n, t))\]
-</div>
-</div>
-<div class="paragraph">
-<p>donde:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>\(C_E(S)\): Costos energético.</p>
-</li>
-<li>
-<p>\(NP\): El numero de bombas.</p>
-</li>
-<li>
-<p>\(NT\): Número de periodos de simulación. El máximo son 24 horas.</p>
-</li>
-<li>
-<p>\(P_c(t)\): La tarifa energética en el periodo \(t\).</p>
-</li>
-<li>
-<p>\(E_c(n, t)\): Consumo energético de la bomba \(n\) en el tiempo \(t\).</p>
-</li>
-<li>
-<p>\(S(n,t)\): El estado de la bomba. 1 si esta encendida y 0 si esta apagada.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Para calcular el consumo energético de la bomba \(n\) se utiliza la siguiente formula:</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\[E_c(n, t) = \frac{10^{-3} \times \gamma \times Q(n, t) \times h(n, t)}{e(n, t)}\]
-</div>
-</div>
-<div class="paragraph">
-<p>donde:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>\(\gamma\): Peso del agua.</p>
-</li>
-<li>
-<p>\(Q(n, t)\): Flujo a través de la bomba \(n\) en el tiempo \(t\)</p>
-</li>
-<li>
-<p>\(h(n, t)\): Altura manométrica de la bomba.</p>
-</li>
-<li>
-<p>\(e(n, t)\): Eficiencia de la bomba \(n\) en el tiempo \(t\).</p>
-</li>
-</ul>
-</div>
-<div id="costos-de-mantenimiento" class="paragraph">
-<p>Para cálcular el <strong>costo de mantenimiento</strong> se cálcula el número de encendido y apagados de todas las bombas en el periodo de tiempo analizado. Matemáticamente la función para calcular dicho costo corresponde a:</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\[C_N(S) = \sum_{n=1}^{NP}\sum_{t=0}^{NT-1}r_t\]
-</div>
-</div>
-<div class="paragraph">
-<p>donde:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>\(C_N(S)\): Costo de mantenimiento.</p>
-</li>
-<li>
-<p>\(r_t\): Valor indicando si en el periodo \(t\) hubo un cambio de estado en la bomba desde apagado a encendido. Este valor es 1 cuando la bomba ha sido encendida.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Las funciones de los <a href="#costos-energeticos">costos energéticos</a> y los <a href="#costos-de-mantenimiento">costos de mantenimiento</a> deben cumplir las siguientes restricciones:</p>
-</div>
-<div class="paragraph">
-<p><strong>Conservación de la masa</strong>:</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\[\sum q_{in}-q_{out} = C_j\]
-</div>
-</div>
-<div class="paragraph">
-<p>donde:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>\(q_{in}\): Flujo de entrada.</p>
-</li>
-<li>
-<p>\(q_{out}\): Flujo de salida.</p>
-</li>
-<li>
-<p>\(C_j\): Consumo del nodo \(j\).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Conservación de la energía</strong>:</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\[\sum h_f - \sum E_p = 0\]
-</div>
-</div>
-<div class="paragraph">
-<p>donde:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>\(h_f\): Perdida de energía por fricción.</p>
-</li>
-<li>
-<p>\(E_p\): Energía aportada por la bomba.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Perdida de carga por fricción</strong>:</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\[h_f = \frac{10.67 \times L_q^{1.85}}{CH^{1.85} \times D^{4.87}}\]
-</div>
-</div>
-<div class="paragraph">
-<p>donde:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>\(L_q\): Largo de la tubería.</p>
-</li>
-<li>
-<p>\(CH\): Coeficiente de Hazen-Williams.</p>
-</li>
-<li>
-<p>\(D\): Diámetro de la tubería.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Presión mínima</strong>:</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\[H_i \geq H_{min}\]
-</div>
-</div>
-<div class="paragraph">
-<p>donde:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>\(H_i\): Presión en el nodo \(i\).</p>
-</li>
-<li>
-<p>\(H_{min}\): Presión mínima.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Caudal</strong>:</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\[Q_{i,t} \leq Q_i^{max}\]
-</div>
-</div>
-<div class="paragraph">
-<p>donde:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>\(Q_{i,t}\): Caudal del nodo \(i\) en el tiempo \(t\).</p>
-</li>
-<li>
-<p>\(Q_i^{max}\): Caudal máximo del nodo \(i\).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Nivel de depósito</strong>:</p>
-</div>
-<div class="stemblock">
-<div class="content">
-\[TS_{i, NT} \geq TS_{i, 0}\]
-</div>
-</div>
-<div class="paragraph">
-<p>donde:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>\(TS_{i, NT}\): Nivel del reservorio \(i\) en el periodo de tiempo \(NT\).</p>
-</li>
-<li>
-<p>\(TS_{i, 0}\): Nivel del reservorio \(i\) en el tiempo \(0\).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>En la siguiente figura se muestra como se codifica la solución a este problema, ésta es propuesta en <a href="#JHawanet-2019">[3]</a>. Como se puede observar la solución cuenta con 24 variables de decisión correspondiente a las 24 horas del día. Cada variable es un índice a la matriz de combinaciones posibles para cada bomba. Posteriormente, se genera una matriz binaria en donde cada fila es una bomba, cada columna es el periodo y el valor es el estado de la bomba en dicho periodo. Esta matriz binaria es usada para calcular el número de cambios de estado en las bombas de la ecuaciónde los <a href="#costos-de-mantenimiento">costos de mantenimiento</a>, así como para obtener el estado de la bomba en el periodo \(t\) en la ecuación de los <a href="#costos-energeticos">costos energéticos</a> referente al termino \(S(n, t)\).</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/problemas_implementados/pump_schedule/representacion_solucion_multiobjetivo.svg" alt="representacion solucion multiobjetivo">
-</div>
-</div>
-<div class="sect3">
-<h4 id="_ejecución_2">8.2.1. Ejecución</h4>
-<div class="paragraph">
-<p>Para la ejecución de este experimento sobre una red vaya a <span class="menuseq"><b class="menu">Multiobjetive Optimization</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Pumping Scheduling</b></span> y selecciona el algoritmo a utilizar.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Los algoritmos disponibles para este experimento contienen párametros comunes por lo que se explicará utilizando el algoritmo NSGAII.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Al momento de escoger el algoritmo, se abrira la ventana de configuración, en la pentaña de configuración se tienen las opciones que se muestran a continuación.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/problemas_implementados/pump_schedule/pump_schedule_setup.png" alt="pump schedule setup">
-</div>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><em>Independent Run</em></dt>
-<dd>
-<p>Establece el número de ejecuciones independientes. Ej, si el valor es 5, significa que se ejecutará 5 veces el Algoritmo Genético. Esto, dara como resultado 5 soluciones.</p>
-</dd>
-<dt class="hdlist1"><em>Max number of evaluation</em></dt>
-<dd>
-<p>Establece que se detendrá la ejecución del algoritmo despues de haber realizado el número establecido de evaluaciones.</p>
-</dd>
-<dt class="hdlist1"><em>Population Size</em></dt>
-<dd>
-<p>Establece el tamaño de la población.</p>
-</dd>
-<dt class="hdlist1"><em>Base directory</em></dt>
-<dd>
-<p>Es el directorio de salida del experimento. <strong>Este atributo es opcional</strong>. Si este atributo es configurado, entonces a medida que se van ejecutando las repeticiones del algoritmo se irán guardando los resultados en la carpeta indicada.</p>
-</dd>
-<dt class="hdlist1"><em>Configuration file</em></dt>
-<dd>
-<p>Es un archivo JSON con algunas configuraciones adicionales. El archivo JSON tiene los siguientes atributos.</p>
-<div class="listingblock to_long">
-<div class="title">configuration_file.json</div>
-<div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="json">{
-  "numPumps": 3,
-  "totalOptimizationTime": 86400,
-  "intervalOptimizationTime": 3600,
-  "energyCostPerTime": [
-    0.0244,
-    0.0244,
-    0.0244,
-    0.0244,
-    0.0244,
-    0.0244,
-    0.0244,
-    0.1194,
-    0.1194,
-    0.1194,
-    0.1194,
-    0.1194,
-    0.1194,
-    0.1194,
-    0.1194,
-    0.1194,
-    0.1194,
-    0.1194,
-    0.1194,
-    0.1194,
-    0.1194,
-    0.1194,
-    0.1194,
-    0.1194
-  ],
-  "maintenanceCost": 1,
-  "minNodePressure": 15,
-  "numConstraints": 218,
-  "maxFlowrateEachPump": [300, 300, 150],
-  "minTank": [0, 0],
-  "maxTank": [10, 5]
-}</code></pre>
-</div>
-</div>
-</dd>
-<dt class="hdlist1"><em>Selection Operator</em></dt>
-<dd>
-<p>Establece el operador de selección a utilizar.</p>
-</dd>
-<dt class="hdlist1"><em>Crossover Operator</em></dt>
-<dd>
-<p>Establece el operador de cruzamiento a utilizar.</p>
-</dd>
-<dt class="hdlist1"><em>Mutation Operator</em></dt>
-<dd>
-<p>Establece el operador de mutación a utilizar.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_referencias">Referencias</h3>
-<div class="ulist bibliography">
-<ul class="bibliography">
-<li>
-<p><a id="Pereyra2017"></a>[1] Pereyra, G., Pandolfi, D., &amp; Villagra, A. (2017). Diseño y optimización de redes de distribución de agua utilizando algoritmos genéticos. Informes Científicos Técnicos - UNPA, 9(1), 37–63. <a href="https://doi.org/10.22305/ict-unpa.v9i1.236" class="bare">https://doi.org/10.22305/ict-unpa.v9i1.236</a></p>
-</li>
-<li>
-<p><a id="Makaremi2017"></a>[2] Makaremi, Y., Haghighi, A., &amp; Ghafouri, H. R. (2017). Optimization of Pump Scheduling Program in Water Supply Systems Using a Self-Adaptive NSGA-II; a Review of Theory to Real Application. Water Resources Management, 31(4), 1283–1304. <a href="https://doi.org/10.1007/s11269-017-1577-x" class="bare">https://doi.org/10.1007/s11269-017-1577-x</a></p>
-</li>
-<li>
-<p><a id="JHawanet-2019"></a>[3] Gutiérrez-Bahamondes, J. H., Salgueiro, Y., Silva-Rubio, S. A., Alsina, M. A., Mora-Meliá, D., &amp; Fuertes-Miquel, V. S. (2019). jHawanet: An open-source project for the implementation and assessment of multi-objective evolutionary algorithms on water distribution networks. Water (Switzerland), 11(10). <a href="https://doi.org/10.3390/w11102018" class="bare">https://doi.org/10.3390/w11102018</a></p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -4339,7 +4974,7 @@ double[] maxTank = config.getDoubleArray("maxTank"); // lee {10, 5};</code></pre
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-02 11:06:35 -0300
+Last updated 2020-11-18 18:55:46 -0300
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">

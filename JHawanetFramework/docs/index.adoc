@@ -24,8 +24,8 @@ include::como_agregar_nuevos_operadores.adoc[]
 
 include::como_agregar_nuevos_experimentos.adoc[]
 
-include::anotaciones_de_la_aplicacion.adoc[]
+include::como_agregar_nuevos_indicadores.adoc[]
 
-include::descripcion_de_los_problemas_implementados.adoc[]
+include::anotaciones_de_la_aplicacion.adoc[]
 
 include::utilidades.adoc[]

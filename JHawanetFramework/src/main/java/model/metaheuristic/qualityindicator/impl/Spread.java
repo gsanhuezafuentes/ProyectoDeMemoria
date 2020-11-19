@@ -44,7 +44,7 @@ import java.util.List;
  * Reference: Deb, K., Pratap, A., Agarwal, S., Meyarivan, T.: A fast and
  * elitist multiobjective genetic algorithm: NSGA-II. IEEE Trans. on Evol. Computation 6 (2002) 182-197
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;
  * @author Juan J. Durillo
  */
 @SuppressWarnings("serial")
@@ -70,8 +70,7 @@ public class Spread<S extends Solution<?>> extends GenericIndicator<S> {
     /**
      * Constructor
      *
-     * @param referenceParetoFront
-     * @throws FileNotFoundException
+     * @param referenceParetoFront the reference pareto front
      */
     public Spread(Front referenceParetoFront) {
         super(referenceParetoFront);

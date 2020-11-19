@@ -12,7 +12,6 @@ import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.StackPane;
-import javafx.util.Callback;
 import model.metaheuristic.experiment.Experiment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +20,10 @@ import registrable.MultiObjectiveRegistrable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.concurrent.Callable;
-import java.util.function.Supplier;
 
 /**
- * This component let setting up the configuration of each problem/algorithm */
+ * This component let setting up the configuration of each problem/algorithm
+ */
 public class IndicatorExperimentConfigurationComponent extends StackPane {
     private static final Logger LOGGER = LoggerFactory.getLogger(IndicatorExperimentConfigurationComponent.class);
 
@@ -139,15 +138,23 @@ public class IndicatorExperimentConfigurationComponent extends StackPane {
      * @throws InvocationTargetException if there is a error while create some of registrable instances or his operators.
      */
     public List<Callable<Experiment<?>>> getRegistrableList(String inpPath) throws InvocationTargetException {
-        LOGGER.debug("Creating the registrable list for use with indicators with the network '{}'.",inpPath);
+        LOGGER.debug("Creating the registrable list for use with indicators with the network '{}'.", inpPath);
 
         Objects.requireNonNull(inpPath);
         if (inpPath.isEmpty()) {
             throw new IllegalArgumentException("The inpPath is empty");
         }
         List<Callable<Experiment<?>>> experiments = new ArrayList<>();
+        // For each item in the GUI get the Registrable object.
         for (ExperimentItem item : this.experimentItemList) {
             MultiObjectiveRegistrable registrableInstance = item.getGuiComponent().getRegistrableInstance();
+
+            /*
+             * Add to the list to return the callbacks to create the experiments.
+             * This is done because each experiment requires the EpanetToolkit,
+             * but it should not be manipulated by more than one object at the same time, so
+             * the creation of the experiment is delayed until it is necessary.
+             */
             experiments.add(() -> {
                 Experiment<?> experiment = registrableInstance.build(inpPath);
                 String oldTagExperiment = experiment.getProblem().getTag();

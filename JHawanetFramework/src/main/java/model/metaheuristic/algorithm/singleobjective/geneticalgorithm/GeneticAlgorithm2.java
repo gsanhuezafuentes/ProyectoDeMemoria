@@ -53,7 +53,7 @@ import java.util.List;
  * evaluations with a value of 10000 is set.
  * <p>
  * <p>
- * This algorithm is the same that the {@link GeneticAlgorithm} class but this receive a selection operator with other type (SelectionOperator &lt; List &lt; S &gt; , List &lt; S &gt; &gt;).
+ * This algorithm is the same that the {@link GeneticAlgorithm} class but this receive a selection operator with other type (SelectionOperator &lt; List &lt; S &gt;; , List &lt; S &gt;; &gt;;).
  */
 public class GeneticAlgorithm2<S extends Solution<?>> extends AbstractEvolutionaryAlgorithm<S> {
     private final int maxPopulationSize;

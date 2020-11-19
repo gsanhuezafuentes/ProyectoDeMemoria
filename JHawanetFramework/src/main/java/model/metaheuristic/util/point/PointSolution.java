@@ -56,7 +56,7 @@ public class PointSolution implements Solution<Double> {
     /**
      * Constructor.
      *
-     * @param point
+     * @param point the point to copy the objectives values.
      */
     public PointSolution(Point point) {
         this.numberOfObjectives = point.getDimension();
@@ -70,7 +70,7 @@ public class PointSolution implements Solution<Double> {
     /**
      * Constructor.
      *
-     * @param solution
+     * @param solution the solution to get the objective values.
      */
     public PointSolution(Solution<?> solution) {
         this.numberOfObjectives = solution.getNumberOfObjectives();
@@ -84,7 +84,7 @@ public class PointSolution implements Solution<Double> {
     /**
      * Copy constructor.
      *
-     * @param point
+     * @param point the point to copy.
      */
     public PointSolution(PointSolution point) {
         this(point.getNumberOfObjectives());
@@ -162,7 +162,7 @@ public class PointSolution implements Solution<Double> {
      * Get the variable as string. This method return null.
      *
      * @param index the index of variable to return.
-     * @return
+     * @return the variable value as a string.
      */
     @Override
     public String getVariableAsString(int index) {
@@ -214,7 +214,7 @@ public class PointSolution implements Solution<Double> {
      * Get attributes of the solution.
      *
      * @param id The element associated to attribute when was saved.
-     * @return
+     * @return the attribute.
      */
     @Override
     public Object getAttribute(Object id) {

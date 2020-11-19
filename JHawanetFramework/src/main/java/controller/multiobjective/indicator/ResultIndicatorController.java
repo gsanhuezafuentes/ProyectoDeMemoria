@@ -93,7 +93,7 @@ public class ResultIndicatorController {
     /**
      * Return the node of this component.
      *
-     * @return
+     * @return the graphic node.
      */
     public Pane getNode() {
         return this.root;

@@ -42,7 +42,7 @@ import java.util.Objects;
 /**
  * A Front is a  list of points. This class includes utilities to work with {@link Front} objects.
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es&gt;
  */
 public class FrontUtils {
     /**
@@ -285,7 +285,7 @@ public class FrontUtils {
      * Given a front, converts it to a Solution set of PointSolutions
      *
      * @param front
-     * @return A front as a List<FrontSolution>
+     * @return A front as a List&lt;FrontSolution&gt;
      * @throws NullPointerException     if the front or point is null.
      */
 

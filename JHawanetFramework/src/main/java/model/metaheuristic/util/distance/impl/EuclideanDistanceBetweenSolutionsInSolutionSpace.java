@@ -32,9 +32,9 @@ import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.distance.Distance;
 
 /**
- * Class for calculating the Euclidean distance between two {@link DoubleSolution} objects in solution space.
+ * Class for calculating the Euclidean distance between two Double {@link Solution} objects in solution space.
  *
- * @author <antonio@lcc.uma.es>
+ * @author &lt;antonio@lcc.uma.es&gt;
  */
 public class EuclideanDistanceBetweenSolutionsInSolutionSpace<S extends Solution<Double>>
     implements Distance<S, S> {

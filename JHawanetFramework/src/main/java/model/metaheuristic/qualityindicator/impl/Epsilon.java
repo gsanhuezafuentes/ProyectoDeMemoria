@@ -43,11 +43,9 @@ import java.util.Objects;
  * Zitzler, E. Thiele, L. Laummanns, M., Fonseca, C., and Grunert da Fonseca. V
  * (2003): Performance Assessment of Multiobjective Optimizers: An Analysis and
  * Review. The code is the a Java version of the original metric implementation
- * by Eckart Zitzler. It can be used also as a command line program just by
- * typing $java org.uma.jmetal.qualityindicator.impl.Epsilon <solutionFrontFile>
- * <trueFrontFile> <getNumberOfObjectives>
+ * by Eckart Zitzler.
  *
- * @author Antonio J. Nebro <antonio@lcc.uma.es>
+ * @author Antonio J. Nebro &lt;antonio@lcc.uma.es &gt;
  * @author Juan J. Durillo
  */
 @SuppressWarnings("serial")

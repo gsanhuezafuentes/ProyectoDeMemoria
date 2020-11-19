@@ -1,8 +1,8 @@
-== Problemas de optimización en RDA
+=== Problemas de optimización en RDA
 
 La aplicación incorpora dos problemas. Estos son la optimización del diseño de RDA basado en la selección del diámetro de tuberías (_Pipe Optimizing_) y la optimización del régimen de bombeo (_Pumping Schedule_).
 
-=== _Pipe Optimizing_
+==== _Pipe Optimizing_
 
 _Pipe Optimizing_ es un problema de diseño cuyo objetivo es minimizar el costo de inversión en la construcción de las tuberías. Para ésto, se busca aquella combinación de diámetros que disminuyan el costo de la construcción de las tuberías a la vez que se cumplen las restricción de presión mínima impuesta sobre la red. La siguiente ecuación es presentada en <<Pereyra2017>> y muestra la función a optimizar.
 
@@ -24,7 +24,7 @@ La solución retornada por el algoritmo utilizado, en este caso GA, se puede ver
 
 image::images/problemas_implementados/pipe_optimizing/representacion_solucion_monoobjetivo.svg[]
 
-==== Ejecución
+===== Ejecución
 
 Para ejecutar este experimento sobre una red vaya a menu:Singleobjective Optimization[Pipe Optimizing]. Como se puede apreciar, este experimento solo esta disponible con el algoritmo NSGAII. Al momento de escoger el algoritmo, se abrira la ventana de configuración, en la pentaña de configuración se tienen las opciones que se muestran a continuación.
 
@@ -54,7 +54,7 @@ _Selection Operator_:: Establece el operador de selección a utilizar.
 _Crossover Operator_:: Establece el operador de cruzamiento a utilizar.
 _Mutation Operator_:: Establece el operador de mutación a utilizar.
 
-=== _Pumping Schedule_
+==== _Pumping Schedule_
 
 _Pumping Schedule_ <<Makaremi2017>> <<JHawanet-2019>> es un problema de operación que tiene como objetivos optimizar tanto el costo energético, así como el costo de mantención de los equipos de bombeos. A continuación se expresan las ecuaciones utilizadas para calcular los objetivos y las restricciones.
 
@@ -181,7 +181,7 @@ En la siguiente figura se muestra como se codifica la solución a este problema,
 
 image::images/problemas_implementados/pump_schedule/representacion_solucion_multiobjetivo.svg[]
 
-==== Ejecución
+===== Ejecución
 Para la ejecución de este experimento sobre una red vaya a menu:Multiobjetive Optimization[Pumping Scheduling] y selecciona el algoritmo a utilizar. 
 
 IMPORTANT: Los algoritmos disponibles para este experimento contienen párametros comunes por lo que se explicará utilizando el algoritmo NSGAII.
@@ -193,7 +193,6 @@ image::images\problemas_implementados\pump_schedule\pump_schedule_setup.png[]
 _Independent Run_:: Establece el número de ejecuciones independientes. Ej, si el valor es 5, significa que se ejecutará 5 veces el Algoritmo Genético. Esto, dara como resultado 5 soluciones.
 _Max number of evaluation_:: Establece que se detendrá la ejecución del algoritmo despues de haber realizado el número establecido de evaluaciones.
 _Population Size_:: Establece el tamaño de la población.
-_Base directory_:: Es el directorio de salida del experimento. *Este atributo es opcional*. Si este atributo es configurado, entonces a medida que se van ejecutando las repeticiones del algoritmo se irán guardando los resultados en la carpeta indicada.
 _Configuration file_:: Es un archivo JSON con algunas configuraciones adicionales. El archivo JSON tiene los siguientes atributos.
 +
 .configuration_file.json
@@ -242,7 +241,7 @@ _Crossover Operator_:: Establece el operador de cruzamiento a utilizar.
 _Mutation Operator_:: Establece el operador de mutación a utilizar.
 
 [bibliography]
-=== Referencias
+==== Referencias
 
 - [[[Pereyra2017,1]]] Pereyra, G., Pandolfi, D., & Villagra, A. (2017). Diseño y optimización de redes de distribución de agua utilizando algoritmos genéticos. Informes Científicos Técnicos - UNPA, 9(1), 37–63. https://doi.org/10.22305/ict-unpa.v9i1.236
 - [[[Makaremi2017,2]]] Makaremi, Y., Haghighi, A., & Ghafouri, H. R. (2017). Optimization of Pump Scheduling Program in Water Supply Systems Using a Self-Adaptive NSGA-II; a Review of Theory to Real Application. Water Resources Management, 31(4), 1283–1304. https://doi.org/10.1007/s11269-017-1577-x

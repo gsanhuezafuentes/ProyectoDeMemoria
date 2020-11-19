@@ -87,6 +87,7 @@ public class R2<Evaluate extends List<? extends Solution<?>>>
      * Constructor
      * Creates a new instance of the R2 indicator for nDimensiosn
      * It loads the weight vectors from the file fileName
+     * @throws java.io.IOException if there is a error reading referenceParetoFront
      */
     public R2(String file, Front referenceParetoFront) throws java.io.IOException {
         this(readWeightsFrom(file), referenceParetoFront);

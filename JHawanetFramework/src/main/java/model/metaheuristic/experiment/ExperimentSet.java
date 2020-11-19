@@ -39,6 +39,7 @@ public class ExperimentSet<S extends Solution<?>> implements Iterable<Experiment
      * Contructor.
      *
      * @param callbackList the list with the callback to create each experiment.
+     * @param indicatorsList the list with the indicators to use.
      * @throws NullPointerException     if experimentList or indicatorsList is null.
      * @throws IllegalArgumentException if experiment list or indicatorsList is null.
      */
@@ -185,8 +186,8 @@ public class ExperimentSet<S extends Solution<?>> implements Iterable<Experiment
 
     /**
      * Get number of independent run. It has to be the same for all experiments.
-     * return number of independent run.
-     * return number of independent run of each experiment.
+     *
+     * @return number of independent run.
      *
      * @throws InvalidConditionException if the number of independent run isn't the same in all experiments.
      */

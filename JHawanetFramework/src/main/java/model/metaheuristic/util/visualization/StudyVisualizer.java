@@ -23,7 +23,7 @@ import java.util.LinkedList;
  * This class generates HTML files to visualize and analyze the results of a experiment.
  *
  * <p>As argument, it needs the path to the experiment base directory. The results are created in
- * the directory {@link Experiment * #getExperimentBaseDirectory()}/html. There it creates a HTML
+ * the directory {@link model.metaheuristic.experiment.Experiment#getExperimentBaseDirectory()}/html. There it creates a HTML
  * file for each indicator computed.
  *
  * <p>Each HTML file is composed of: - A table with the mean value of the executions witch each
@@ -58,24 +58,6 @@ public class StudyVisualizer {
 
   public StudyVisualizer(String path) throws IOException {
     this(path, null);
-  }
-
-  /**
-   *
-   * @param args
-   * @throws IOException
-   */
-  public static void main(String[] args) throws IOException {
-    String directory;
-
-    if (args.length != 1) {
-      throw new IllegalArgumentException("Argument required: name of the experiment base directory");
-    } else {
-      directory = args[0];
-    }
-
-    StudyVisualizer visualizer = new StudyVisualizer(directory, TYPE_OF_FRONT_TO_SHOW.NONE);
-    visualizer.createHTMLPageForEachIndicator();
   }
 
   public void createHTMLPageForEachIndicator() throws IOException {
