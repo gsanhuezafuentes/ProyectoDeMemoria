@@ -78,7 +78,7 @@
                         </ImageView>
                     </graphic>
                     <tooltip>
-                        <Tooltip text="Export solutions to tsv"/>
+                        <Tooltip text="Export solutions to csv"/>
                     </tooltip>
                 </Button>
                 <Button fx:id="saveSelectedAsINPButton" disable="true" styleClass="imageButton">

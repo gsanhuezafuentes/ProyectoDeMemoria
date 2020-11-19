@@ -285,10 +285,10 @@ public class ResultController {
      * Save table. It save the solutions in Fun y Var file.
      */
     public void saveTable() {
-        LOGGER.info("Save solution in tsv file.");
+        LOGGER.info("Save solution in csv file.");
 
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TSV file", "*.tsv"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV file", "*.csv"));
         fileChooser.setTitle("Save table");
 
         File file = fileChooser.showSaveDialog(this.resultTable.getScene().getWindow());
@@ -297,6 +297,7 @@ public class ResultController {
             String varFilePath = Paths.get(file.getParent(), "VAR_" + file.getName()).toString();
 
             SolutionListOutput output = new SolutionListOutput(this.solutionList)
+                    .setSeparator(",")
                     .setFunFileName(funFilePath)
                     .setVarFileName(varFilePath);
             try {
