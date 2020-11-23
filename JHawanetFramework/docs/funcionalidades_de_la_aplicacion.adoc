@@ -226,7 +226,8 @@ image::images/funcionalidades/ejecutar_algoritmo_optimizacion/guardar_csv.png[]
 '''
 
 === Realizar comparación de algoritmos multiobjetivos.
-Para comparar algoritmos multiobjetivos se debe cargar la red e ir al menu:Indicators[Compare multiobjective experiments] como se muestra a continuación.
+
+Para comparar algoritmos multiobjetivos se debe cargar la red e ir a menu:Indicators[Compare multiobjective experiments] como se muestra a continuación.
 
 image:images\funcionalidades\indicadores\menu_indicadores.png[]
 
@@ -247,7 +248,7 @@ Por ejemplo lo mostrado en la siguiente imagen no es valido, puesto que para el 
 
 image:images\funcionalidades\indicadores\configuracion_invalida.png[]
 
-Pero lo siguiente si, ya que los dos problemas tienen configurados los mismos algoritmos.
+Pero lo siguiente si es valido, ya que los dos problemas tienen configurados los mismos algoritmos.
 
 image:images\funcionalidades\indicadores\configuracion_valida.png[]
 
@@ -264,7 +265,7 @@ image:images\funcionalidades\indicadores\configuracion_experimentos.png[]
 
 En esta interfaz, cada algoritmo con el mismo nombre se considera como el mismo y deben ser configurados de la misma manera. Por ejemplo, del problema _Pumping Scheduling - 0_ y del problema _Pumping Scheduling - 1_ el algoritmo _NSGAII_ de cada uno de ellos debe ser configurado de la misma manera, puesto que son considerados iguales.
 
-CAUTION: Asegurese todos los experimentos configurados, no importa para el problema que sean, tengan el mismo número de ejecuciones independientes. Si éste no es el caso, una excepción puede ser lanzada al momento de intentar visualizar los resultados de la simulación.
+CAUTION: Asegurese de que *todos los experimentos configurados, no importa para el problema que sean, tengan el mismo número de ejecuciones independientes establecido*. Si éste no es el caso, una excepción puede ser lanzada al momento de intentar visualizar los resultados de la simulación.
 
 Una vez configurado y aceptado los problemas comienza la ejecución del algoritmo mostrando la siguiente interfaz.
 
@@ -274,9 +275,15 @@ Finalmente, cuando se termina la ejecución del algoritmo se muestra en la inter
 
 image:images\funcionalidades\indicadores\resultadofinal.png[]
 
+==== Guardar los resultados de los indicadores
+
+Puede que necesite guardar los resultados de la comparación que son mostrados al finalizar la ejecución de todos los experimentos utilizados. Para ello, en la pestaña de visualización de los resultados se encuentra un boton que permitirá indicar el directorio donde respaldarlos, como se muestra en la siguiente imagen.
+
+image:images\funcionalidades\indicadores\save_indicators.png[]
+
 [NOTE]
 ====
-Puede que necesite guardar los resultados de la comparación, estos resultados se almacenan automaticamente en una carpeta temporal llamada "*temp*" en el directorio en el que se ejecuto la aplicación. El nombre de la carpeta es generado aleatoriamente.
+Durante la ejecución de la comparación los resultados de los algoritmos y el valor de los indicadores son guardados dentro de una subcarpeta de la carpeta "*temp*". Esta carpeta se encuentra en el directorio en el que se ejecuto la aplicación. El nombre de cada carpeta dentro del directorio "*temp*"" es generado aleatoriamente y se crean cada vez que se ejecuta un experimento multiobjetivo o una comparación de indicadores. Los resultados guardados por el boton mencionado anteriormente, es una copia de la carpeta que se encuentra en este directorio. A continuación se muestra un ejemplo del contenido de la carpeta "*temp*" para una de las ejecuciones.
 
 image:images\funcionalidades\indicadores\carpeta_temporal.png[]
 ====

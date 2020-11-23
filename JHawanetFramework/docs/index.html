@@ -2571,7 +2571,7 @@ amzn-kf8 {
 <p>Remplazar en la red cargada los valores de la solución para generar un nuevo archivo de configuración de red.</p>
 </li>
 <li>
-<p>Comparar algoritmos metaheurísticos multiobjetivos utilizando indicadores.</p>
+<p>Comparar algoritmos metaheurísticos multiobjetivos utilizando indicadores y guardar los resultados en diversos formatos.</p>
 </li>
 </ul>
 </div>
@@ -2742,7 +2742,7 @@ Al intentar descargar Java le solicitará que ingrese una cuenta de oracle. Si n
 <p><span class="image"><img src="images/instalacion/instalar_maven/probando_mvn.png" alt="probando mvn"></span></p>
 </div>
 <div class="paragraph">
-<p>Una vez maven este instalado, hay que agregar el jar de la EpanetTolkit, requerido para la simulación, al repositorio de maven como una librería. Para esto ejecute el siguiente comando:</p>
+<p>Una vez maven este instalado, hay que agregar el jar de la EpanetToolkit, requerido para la simulación, al repositorio de maven como una librería. Para esto ejecute el siguiente comando:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2940,7 +2940,7 @@ NOTE: La ventaja de usar IntelliJ es que este posee un analizador de código que
 <i class="fa icon-caution" title="Caution"></i>
 </td>
 <td class="content">
-Se debe tener cuidado con el <strong>encoding</strong> de los archivos. Por defecto, el programa lee ISO-8859-1. Pero para evitar cualquier error, mejor asegurar que los archivos de red no contengan caracteres raros como ´,ñ, etc.
+Se debe tener cuidado con el <strong>encoding</strong> de los archivos. Por defecto, el programa lee y escribe en ISO-8859-1. Pero para evitar cualquier error, mejor asegurar que los archivos de red no contengan caracteres raros como ´,ñ, etc.
 </td>
 </tr>
 </table>
@@ -3326,7 +3326,7 @@ Linea_8 	N8        	N9        	850.000000	1016.000000	130.000000	0.000000  	OPEN
 <div class="sect2">
 <h3 id="_realizar_comparación_de_algoritmos_multiobjetivos">2.5. Realizar comparación de algoritmos multiobjetivos.</h3>
 <div class="paragraph">
-<p>Para comparar algoritmos multiobjetivos se debe cargar la red e ir al <span class="menuseq"><b class="menu">Indicators</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Compare multiobjective experiments</b></span> como se muestra a continuación.</p>
+<p>Para comparar algoritmos multiobjetivos se debe cargar la red e ir a <span class="menuseq"><b class="menu">Indicators</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Compare multiobjective experiments</b></span> como se muestra a continuación.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="images/funcionalidades/indicadores/menu_indicadores.png" alt="menu indicadores"></span></p>
@@ -3360,7 +3360,7 @@ Linea_8 	N8        	N9        	850.000000	1016.000000	130.000000	0.000000  	OPEN
 <p><span class="image"><img src="images/funcionalidades/indicadores/configuracion_invalida.png" alt="configuracion invalida"></span></p>
 </div>
 <div class="paragraph">
-<p>Pero lo siguiente si, ya que los dos problemas tienen configurados los mismos algoritmos.</p>
+<p>Pero lo siguiente si es valido, ya que los dos problemas tienen configurados los mismos algoritmos.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="images/funcionalidades/indicadores/configuracion_valida.png" alt="configuracion valida"></span></p>
@@ -3394,7 +3394,7 @@ Linea_8 	N8        	N9        	850.000000	1016.000000	130.000000	0.000000  	OPEN
 <i class="fa icon-caution" title="Caution"></i>
 </td>
 <td class="content">
-Asegurese todos los experimentos configurados, no importa para el problema que sean, tengan el mismo número de ejecuciones independientes. Si éste no es el caso, una excepción puede ser lanzada al momento de intentar visualizar los resultados de la simulación.
+Asegurese de que <strong>todos los experimentos configurados, no importa para el problema que sean, tengan el mismo número de ejecuciones independientes establecido</strong>. Si éste no es el caso, una excepción puede ser lanzada al momento de intentar visualizar los resultados de la simulación.
 </td>
 </tr>
 </table>
@@ -3411,6 +3411,14 @@ Asegurese todos los experimentos configurados, no importa para el problema que s
 <div class="paragraph">
 <p><span class="image"><img src="images/funcionalidades/indicadores/resultadofinal.png" alt="resultadofinal"></span></p>
 </div>
+<div class="sect3">
+<h4 id="_guardar_los_resultados_de_los_indicadores">2.5.1. Guardar los resultados de los indicadores</h4>
+<div class="paragraph">
+<p>Puede que necesite guardar los resultados de la comparación que son mostrados al finalizar la ejecución de todos los experimentos utilizados. Para ello, en la pestaña de visualización de los resultados se encuentra un boton que permitirá indicar el directorio donde respaldarlos, como se muestra en la siguiente imagen.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/funcionalidades/indicadores/save_indicators.png" alt="save indicators"></span></p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3419,7 +3427,7 @@ Asegurese todos los experimentos configurados, no importa para el problema que s
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Puede que necesite guardar los resultados de la comparación, estos resultados se almacenan automaticamente en una carpeta temporal llamada "<strong>temp</strong>" en el directorio en el que se ejecuto la aplicación. El nombre de la carpeta es generado aleatoriamente.</p>
+<p>Durante la ejecución de la comparación los resultados de los algoritmos y el valor de los indicadores son guardados dentro de una subcarpeta de la carpeta "<strong>temp</strong>". Esta carpeta se encuentra en el directorio en el que se ejecuto la aplicación. El nombre de cada carpeta dentro del directorio "<strong>temp</strong>"" es generado aleatoriamente y se crean cada vez que se ejecuta un experimento multiobjetivo o una comparación de indicadores. Los resultados guardados por el boton mencionado anteriormente, es una copia de la carpeta que se encuentra en este directorio. A continuación se muestra un ejemplo del contenido de la carpeta "<strong>temp</strong>" para una de las ejecuciones.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="images/funcionalidades/indicadores/carpeta_temporal.png" alt="carpeta temporal"></span></p>
@@ -3430,6 +3438,7 @@ Asegurese todos los experimentos configurados, no importa para el problema que s
 </div>
 <div class="paragraph">
 <p>Para más detalles sobre como funcionan los indicadores pulse <a href="#_como_agregar_nuevos_indicadores">Como agregar nuevos indicadores</a></p>
+</div>
 </div>
 </div>
 </div>
@@ -4494,7 +4503,7 @@ Los indicadores deben tener un constructor que no reciba parametros. Este constr
 </div>
 </div>
 <div class="paragraph">
-<p>Los indicadores implementados pueden ser utilizados por todos los algoritmos que se encuentran en la variable <strong><em>MULTIOBJECTIVES_PROBLEMS</em></strong>.</p>
+<p>Los indicadores implementados pueden ser utilizados por todos los experimentos que se encuentran en la variable <strong><em>MULTIOBJECTIVES_PROBLEMS</em></strong>.</p>
 </div>
 <div class="paragraph">
 <p>El siguiente código muestra como ejemplo la implementación del indicador Epsilon.</p>
@@ -4605,6 +4614,39 @@ public class Epsilon&lt;S extends Solution&lt;?&gt;&gt; extends GenericIndicator
             "Objective1: energy cost\n" +
             "Objective2: maintenance Cost")</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Basado en los valores de la anotación <em>@NewProblem</em> se realiza las validaciones. Las validaciones realizadas son las siguientes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Si hay solo un problema establecido (el valor es mayor a 0):</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Tiene que haber 2 instancias de algoritmo. Por ejemplo, dos del mismo tipo (Un algoritmo con el valor asociado en 2 o más, imagen de la izquierda) o de diferentes tipos (dos algoritmos cada uno con el valor asociado en 1, imagen de la derecha). Como se muestra a continuación.</p>
+<div class="paragraph">
+<p><span class="image"><img src="images/funcionalidades/indicadores/configuracion_valida_algoritmo.png" alt="configuracion valida algoritmo"></span></p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Si hay mas de un problema configurado:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Se tiene que usar los mismos algoritmos para cada problema y con el mismo valor establecido. A continuación se muestran 2 problemas configurados y los algoritmos con los que seran abordado cada uno de ellos.</p>
+<div class="paragraph">
+<p><span class="image"><img src="images/funcionalidades/indicadores/configuracion_valida.png" alt="configuracion valida"></span></p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -5102,7 +5144,7 @@ double[] maxTank = config.getDoubleArray("maxTank"); // lee {10, 5};</code></pre
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-19 15:15:05 -0300
+Last updated 2020-11-23 15:40:59 -0300
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">

@@ -36,7 +36,7 @@ El sistema en este momento cuenta con las siguientes capacidades:
 * Visualizar los resultados de algoritmos de optimización.
 * Exportar los resultados de la optimización a excel y csv.
 * Remplazar en la red cargada los valores de la solución para generar un nuevo archivo de configuración de red.
-* Comparar algoritmos metaheurísticos multiobjetivos utilizando indicadores.
+* Comparar algoritmos metaheurísticos multiobjetivos utilizando indicadores y guardar los resultados en diversos formatos.
 
 === Especificaciones técnicas del sistema
 
@@ -128,7 +128,7 @@ A continuación se muestra la salida del comando.
 
 image:images\instalacion\instalar_maven\probando_mvn.png[]
 
-Una vez maven este instalado, hay que agregar el jar de la EpanetTolkit, requerido para la simulación, al repositorio de maven como una librería. Para esto ejecute el siguiente comando:
+Una vez maven este instalado, hay que agregar el jar de la EpanetToolkit, requerido para la simulación, al repositorio de maven como una librería. Para esto ejecute el siguiente comando:
 
 ----
 mvn install:install-file -Dfile="lib/epajava.jar" -DgroupId=epajava -DartifactId=epajava -Dversion="1.0" -Dpackaging=jar
@@ -232,7 +232,7 @@ image::images/instalacion/jhawanet/SIMetric.png[]
 image::images/instalacion/jhawanet/USUnits.png[]
 ====
 
-CAUTION: Se debe tener cuidado con el *encoding* de los archivos. Por defecto, el programa lee ISO-8859-1. Pero para evitar cualquier error, mejor asegurar que los archivos de red no contengan caracteres raros como ´,ñ, etc.
+CAUTION: Se debe tener cuidado con el *encoding* de los archivos. Por defecto, el programa lee y escribe en ISO-8859-1. Pero para evitar cualquier error, mejor asegurar que los archivos de red no contengan caracteres raros como ´,ñ, etc.
 
 NOTE: Si se agrega el atributo *OverallConstraintViolation* para penalizar las soluciones, este atributo sera recuperado y mostrado en la ventana de resultados.
 

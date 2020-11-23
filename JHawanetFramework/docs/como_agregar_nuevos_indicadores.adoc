@@ -37,7 +37,7 @@ public final class RegistrableConfiguration {
 }
 ----
 
-Los indicadores implementados pueden ser utilizados por todos los algoritmos que se encuentran en la variable *_MULTIOBJECTIVES_PROBLEMS_*.
+Los indicadores implementados pueden ser utilizados por todos los experimentos que se encuentran en la variable *_MULTIOBJECTIVES_PROBLEMS_*.
 
 El siguiente código muestra como ejemplo la implementación del indicador Epsilon.
 
@@ -144,3 +144,14 @@ Para la tabla superior se utiliza como nombre del problema, el valor en la anota
             "Objective1: energy cost\n" +
             "Objective2: maintenance Cost")
 ----
+
+Basado en los valores de la anotación _@NewProblem_ se realiza las validaciones. Las validaciones realizadas son las siguientes:
+
+* Si hay solo un problema establecido (el valor es mayor a 0):
+** Tiene que haber 2 instancias de algoritmo. Por ejemplo, dos del mismo tipo (Un algoritmo con el valor asociado en 2 o más, imagen de la izquierda) o de diferentes tipos (dos algoritmos cada uno con el valor asociado en 1, imagen de la derecha). Como se muestra a continuación.
++
+image:images\funcionalidades\indicadores\configuracion_valida_algoritmo.png[]
+* Si hay mas de un problema configurado:
+** Se tiene que usar los mismos algoritmos para cada problema y con el mismo valor establecido. A continuación se muestran 2 problemas configurados y los algoritmos con los que seran abordado cada uno de ellos.
++
+image:images\funcionalidades\indicadores\configuracion_valida.png[]
