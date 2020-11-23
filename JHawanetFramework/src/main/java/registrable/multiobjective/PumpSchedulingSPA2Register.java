@@ -91,7 +91,7 @@ public class PumpSchedulingSPA2Register implements MultiObjectiveRegistrable {
         // String psePath = "src/resources/Sotelo2001.pse";
         // PumpScheduling pumpScheduling = new PumpScheduling(psePath, inpPath);
 
-        ExperimentProblem<IntegerSolution> problem = new ExperimentProblem<>(vanzylObj, "vanzylOriginal");
+        ExperimentProblem<IntegerSolution> problem = new ExperimentProblem<>(vanzylObj);
 
         List<ExperimentAlgorithm<IntegerSolution>> algorithmList = ExperimentUtils.configureAlgorithmList(problem, independentRun, () -> {
             Algorithm<IntegerSolution> algorithm = new SPEA2Builder<IntegerSolution>(

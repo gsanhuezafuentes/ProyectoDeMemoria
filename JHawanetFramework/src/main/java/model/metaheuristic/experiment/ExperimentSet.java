@@ -12,7 +12,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * This class save a list of experiment and the indicators used to evaluate.
@@ -29,16 +28,19 @@ import java.util.stream.Stream;
  */
 /*This class is use with indicators.*/
 public class ExperimentSet<S extends Solution<?>> implements Iterable<Experiment<S>> {
+    // This are a list of callback that create each experiment when is needed.
     private @NotNull
     final List<Callable<Experiment<S>>> callbackList;
     private @NotNull
     final List<GenericIndicator> indicatorList;
+
+    // The list is created after browsing it using an iterator
     private @Nullable List<Experiment<S>> experimentList;
 
     /**
      * Contructor.
      *
-     * @param callbackList the list with the callback to create each experiment.
+     * @param callbackList   the list with the callback to create each experiment.
      * @param indicatorsList the list with the indicators to use.
      * @throws NullPointerException     if experimentList or indicatorsList is null.
      * @throws IllegalArgumentException if experiment list or indicatorsList is null.
@@ -115,7 +117,7 @@ public class ExperimentSet<S extends Solution<?>> implements Iterable<Experiment
      * @return the indicator list or a empty list if there isn't indicators.
      */
     public List<GenericIndicator> getIndicatorList() {
-        return indicatorList != null ? indicatorList : Collections.emptyList();
+        return indicatorList;
     }
 
     /**
@@ -132,37 +134,42 @@ public class ExperimentSet<S extends Solution<?>> implements Iterable<Experiment
      * Remove duplicated algorithms of each experiment.
      */
     public void removeDuplicatedAlgorithms() {
-        experimentList.forEach((experiment) -> experiment.removeDuplicatedAlgorithms());
+        experimentList.forEach(Experiment::removeDuplicatedAlgorithms);
     }
 
     /**
-     * Get an only one instance of each experiment problems.
+     * Get an only one instance of each experiment problems. Two problems are considered equals based in his {@link ExperimentProblem#getTag()}.
      *
      * @return the list with all experiments problems without repeat elements.
      */
     public List<ExperimentProblem<S>> getExperimentProblems() {
         /*
-         * Get all distincs problem based in problemTag.
+         * Get all distincs problem based in problemTag of problem algorithm.
          */
         HashSet<String> problemTags = new HashSet<>();
-        List<ExperimentProblem<S>> problems = this.experimentList.stream().map(Experiment::getProblem).collect(Collectors.toList());
+        List<ExperimentProblem<S>> problems = getExperimentList().stream().map(Experiment::getProblem).collect(Collectors.toList());
         problems.removeIf(eProblem -> !problemTags.add(eProblem.getTag()));
         return problems;
     }
 
     /**
-     * Get all algorithms used to the specific problem.
+     * Get all experiment algorithms without duplicated used to this problem. Two experiment are duplicated
+     * if they has the same {@link ExperimentAlgorithm#getAlgorithmTag()}.
      *
-     * @param problem the problem used to search algorithms.
-     * @return the list with all experiments problems without repeat elements.
+     * @return the list with all experiments algorithm without repeat elements.
      */
-    public List<ExperimentAlgorithm<S>> getExperimentAlgorithms(ExperimentProblem<?> problem) {
+    public List<ExperimentAlgorithm<S>> getExperimentAlgorithms() {
         /*
          * Get all algorithms that resolve the same problem. Two problem are the same if has the same problemTag.
          */
-        List<ExperimentAlgorithm<S>> algorithms = this.experimentList.stream()
-                .filter(experiment -> experiment.getProblem().getTag().equals(problem.getTag()))
-                .map(experiment -> experiment.getAlgorithmList().get(0)).collect(Collectors.toList());
+        HashSet<String> algorithmTags = new HashSet<>();
+        // Get all experimentAlgorithm in each experiment into the same list
+        List<ExperimentAlgorithm<S>> algorithms = getExperimentList().stream()
+                .map(Experiment::getAlgorithmList)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+        // remove elements to get only one experiment algorithm for each algorithm tag.
+        algorithms.removeIf(eAlgorithm -> !algorithmTags.add(eAlgorithm.getAlgorithmTag()));
         return algorithms;
     }
 
@@ -188,14 +195,30 @@ public class ExperimentSet<S extends Solution<?>> implements Iterable<Experiment
      * Get number of independent run. It has to be the same for all experiments.
      *
      * @return number of independent run.
-     *
      * @throws InvalidConditionException if the number of independent run isn't the same in all experiments.
      */
     public int getIndependentRuns() {
-        List<Integer> result = this.experimentList.stream().map(Experiment::getIndependentRuns).distinct().collect(Collectors.toList());
+        List<Integer> result = getExperimentList().stream().map(Experiment::getIndependentRuns).distinct().collect(Collectors.toList());
         if (result.size() != 1) {
             throw new InvalidConditionException("All experiments hasn't have the same number of independent run.");
         }
         return result.get(0);
+    }
+
+    /**
+     * Get the experiment base directory. It directory should be the same by all experiments in this set.
+     * Because the base directory is setting up in {@link controller.multiobjective.indicator.util.ExecutionIndicatorTask}
+     * before execute any experiment.
+     * <p>
+     * Call this method after running at least once the iterator. This method get the experiment base directory of any experiment in this set.
+     * @throws NoSuchElementException if there aren't a experiment in this set to get the experiment base directory.
+     */
+    public String getExperimentBaseDirectory() {
+        Optional<Experiment<S>> experiment = getExperimentList().stream()
+                .findFirst();
+        if (experiment.isPresent()) {
+            return experiment.get().getExperimentBaseDirectory();
+        }
+        throw new NoSuchElementException("There aren't experiment algorithm to get the base directory. Run this set with iterator at least once a time.");
     }
 }

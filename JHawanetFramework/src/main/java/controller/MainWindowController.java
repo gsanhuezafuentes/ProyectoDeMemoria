@@ -142,6 +142,13 @@ public class MainWindowController implements Initializable {
      */
     @FXML
     private Button saveSelectedAsINPButton;
+
+    /**
+     * Button to save the result of indicators.
+     */
+    @FXML
+    private Button saveIndicatorsResult;
+
     /**
      * The network tab. This is the tab by default and you must not close it.
      */
@@ -188,16 +195,25 @@ public class MainWindowController implements Initializable {
 
         // Configure tabpane behaviour when the default network tab is selected
         // Disable buttons to save results when is in the network tab
-        this.networkTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) { // clean bind and disable button when default tab "network" is selected
-                LOGGER.debug("Disable 'Save Results' buttons.");
-                this.saveTableButton.setDisable(true);
-                this.saveTableAsExcelButton.setDisable(true);
-                this.saveSelectedAsINPButton.disableProperty().unbind();
-                this.saveSelectedAsINPButton.setDisable(true);
-                this.saveSelectedAsINPButton.setOnAction(null);
-                this.saveTableButton.setOnAction(null);
-            }
+//        this.networkTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
+//            if (newValue) { // clean bind and disable button when default tab "network" is selected
+//
+//            }
+//        });
+
+        this.tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            LOGGER.debug("Disable 'Save Results' buttons.");
+            this.saveTableButton.setDisable(true);
+            this.saveTableButton.setOnAction(null);
+
+            this.saveTableAsExcelButton.setDisable(true);
+
+            this.saveSelectedAsINPButton.disableProperty().unbind();
+            this.saveSelectedAsINPButton.setDisable(true);
+            this.saveSelectedAsINPButton.setOnAction(null);
+
+            this.saveIndicatorsResult.setDisable(true);
+            this.saveIndicatorsResult.setOnAction(null);
         });
 
         //disable the button to show the hydraulic simulation until that a hydraulic simulation are be executed.
@@ -431,7 +447,24 @@ public class MainWindowController implements Initializable {
     private void createIndicatorResultTab(@NotNull ResultIndicatorController resultController) {
         LOGGER.info("Showing results for indicators in a new tab in the main window.");
         Tab tab = new Tab("Indicator result " + LocalDate.now(), resultController.getNode());
+        // add bind when select the tab
 
+        tab.setOnSelectionChanged(event -> {
+            if (tab.selectedProperty().getValue()) {
+                LOGGER.debug("Enabled buttons to tabs '{}'", tab.getText());
+
+                // add event to enable the buttons to save results
+                // to save as fun and var
+                this.saveIndicatorsResult.setDisable(false);
+                this.saveIndicatorsResult.setOnAction(event1 -> resultController.saveResult());
+            }
+        });
+
+        tab.setOnClosed(event -> { // remove the bind when switch tab
+            LOGGER.debug("Remove event of the tab '{}' because was closed", tab.getText());
+            tab.setOnSelectionChanged(null);
+            tab.setOnClosed(null);
+        });
         this.tabPane.getTabs().addAll(tab);
         this.tabPane.getSelectionModel().select(tab);
     }

@@ -56,14 +56,13 @@ import java.util.Objects;
  * Pareto front.
  * <Strong>Notes:</Strong>
  * <p>
- * If {@link Experiment#getReferenceFrontDirectory()} is a empty string (is not set up) the final pareto front will not be saved automatically
- * in disk.
- * <p>
  * This class use the solution in RAM to generate the reference pareto front.
  * <p>
  * This class is used when run a multiobjective optimization.
  */
 public class GenerateReferenceParetoFrontInRAM implements ExperimentComponent {
+    //If {@link Experiment#getReferenceFrontDirectory()} is a empty string (is not set up) the final pareto front will not be saved automatically
+    //in disk.
     @NotNull
     private final Experiment<?> experiment;
     private final ObservableStringBuffer taskLog;

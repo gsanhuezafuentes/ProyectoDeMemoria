@@ -102,7 +102,7 @@ public class PumpSchedulingNSGAIIRegister implements MultiObjectiveRegistrable {
         // String psePath = "src/resources/Sotelo2001.pse";
         // PumpScheduling pumpScheduling = new PumpScheduling(psePath, inpPath);
 
-        ExperimentProblem<IntegerSolution> experimentProblem = new ExperimentProblem<>(vanzylObj, "vanzylOriginal");
+        ExperimentProblem<IntegerSolution> experimentProblem = new ExperimentProblem<>(vanzylObj);
 
         List<ExperimentAlgorithm<IntegerSolution>> algorithmList = configureAlgorithmList(experimentProblem);
 

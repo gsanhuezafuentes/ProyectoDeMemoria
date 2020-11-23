@@ -6,6 +6,7 @@ import controller.multiobjective.indicator.component.IndicatorExperimentConfigur
 import controller.multiobjective.indicator.component.IndicatorSelectorComponent;
 import controller.util.ControllerUtils;
 import controller.util.ReflectionUtils;
+import exception.UnfullfilledRestrictionException;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,7 +42,8 @@ import java.util.function.Consumer;
  */
 public class IndicatorConfigurationWindowController {
     private static final Logger LOGGER = LoggerFactory.getLogger(IndicatorConfigurationWindowController.class);
-    @NotNull private String inpPath;
+    @NotNull
+    private String inpPath;
     @NotNull
     private Consumer<ExperimentSet> indicatorsEvent;
     @Nullable
@@ -83,15 +85,31 @@ public class IndicatorConfigurationWindowController {
     private @NotNull
     final EventHandler<ActionEvent> runButtonEvent = (event) -> {
         if (this.tabPane.getSelectionModel().getSelectedItem() == this.indicatorTab) {
+            //In first pane
+            if (this.indicatorsListView.getSelectedIndicators().size() == 0){
+                CustomDialogs.showDialog("Error", "There aren't selected indicators.", "Select indicadors of the list.", Alert.AlertType.ERROR);
+                return;
+            }
+
             // move to next pane
             this.tabPane.getSelectionModel().select(this.chooseExperimentsTab);
+
         } else if (this.tabPane.getSelectionModel().getSelectedItem() == this.chooseExperimentsTab) {
+            // in second pane
+
             // move to next pane
-            this.tabPane.getSelectionModel().select(this.configurationTab);
-            this.indicatorExperimentConfigurationComponent = new IndicatorExperimentConfigurationComponent(this.experimentChooserComponent.getRegistrableClassMap());
-            this.configurationTab.setContent(this.indicatorExperimentConfigurationComponent);
+            try {
+                this.indicatorExperimentConfigurationComponent = new IndicatorExperimentConfigurationComponent(this.experimentChooserComponent.getRegistrableClassMap());
+                this.tabPane.getSelectionModel().select(this.configurationTab);
+                this.configurationTab.setContent(this.indicatorExperimentConfigurationComponent);
+            } catch (UnfullfilledRestrictionException e) {
+                CustomDialogs.showDialog("Error", "Error in the selection of problems and algorithms.",
+                        e.getMessage(), Alert.AlertType.ERROR);
+            }
 
         } else {
+            //in third pane
+
             List<Callable<Experiment<?>>> registrableList = null;
             try {
                 registrableList = this.indicatorExperimentConfigurationComponent.getRegistrableList(inpPath);
@@ -108,10 +126,10 @@ public class IndicatorConfigurationWindowController {
                 try {
                     indicators.add((GenericIndicator) ReflectionUtils.createIndicatorInstance(indicator));
                 } catch (InvocationTargetException e) {
-                    LOGGER.error("Error in the creation of {} instance", indicator.getSimpleName() , e);
+                    LOGGER.error("Error in the creation of {} instance", indicator.getSimpleName(), e);
                     CustomDialogs.showDialog("Error"
                             , "Error in indicator creation"
-                            ,"The indicator " + indicator.getSimpleName() + " can't be created", Alert.AlertType.ERROR);
+                            , "The indicator " + indicator.getSimpleName() + " can't be created", Alert.AlertType.ERROR);
                     return;
                 }
             }
@@ -152,7 +170,7 @@ public class IndicatorConfigurationWindowController {
             }
         }
         // When move to next tab
-        else if (newV.intValue() > oldV.intValue()){
+        else if (newV.intValue() > oldV.intValue()) {
             switch (newV.intValue()) {
                 case 1:
                     this.chooseExperimentsTab.setDisable(false);
@@ -168,9 +186,8 @@ public class IndicatorConfigurationWindowController {
     };
 
     /**
-     *
      * @param inpPath the inpPath
-     * @throws NullPointerException if inpPath or indicatorsEvent is null.
+     * @throws NullPointerException     if inpPath or indicatorsEvent is null.
      * @throws IllegalArgumentException if inpPath is empty.
      */
     public IndicatorConfigurationWindowController(@NotNull String inpPath, @NotNull Consumer<ExperimentSet> indicatorsEvent) {

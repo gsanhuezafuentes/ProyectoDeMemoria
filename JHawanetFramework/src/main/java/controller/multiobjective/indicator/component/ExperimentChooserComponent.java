@@ -4,13 +4,13 @@ import application.RegistrableConfiguration;
 import controller.util.ControllerUtils;
 import controller.util.ReflectionUtils;
 import controller.util.TextInputUtil;
+import exception.UnfullfilledRestrictionException;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 import registrable.MultiObjectiveRegistrable;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * This class is the component showed in Configuration windows of indicators. It show the problems added in the app (registrable instance) and his
@@ -57,12 +58,7 @@ public class ExperimentChooserComponent extends VBox {
         this.algorithmItemMap = new HashMap<>();
         for (Class<? extends MultiObjectiveRegistrable> registrable : multiobjectivesProblems) {
             String problemName = ReflectionUtils.getNameOfProblem(registrable);
-            List<AlgorithmItem> problemAlgorithmItems = algorithmItemMap.get(problemName);
-            if (problemAlgorithmItems == null) {
-                problemAlgorithmItems = new ArrayList<>();
-                algorithmItemMap.put(problemName, problemAlgorithmItems);
-            }
-
+            List<AlgorithmItem> problemAlgorithmItems = algorithmItemMap.computeIfAbsent(problemName, k -> new ArrayList<>());
             String algorithmName = ReflectionUtils.getNameOfAlgorithm(registrable);
             problemAlgorithmItems.add(new AlgorithmItem(algorithmName, registrable));
         }
@@ -82,19 +78,17 @@ public class ExperimentChooserComponent extends VBox {
         TableColumn<ProblemItem, Integer> problemNumberOfInstanceColumn = (TableColumn<ProblemItem, Integer>) this.problemTableView.getColumns().get(1);
         problemNumberOfInstanceColumn.setCellFactory(param -> new TextFieldTableCell<>(TextInputUtil.createIntegerConverter()));
         problemNumberOfInstanceColumn.setCellValueFactory(param -> param.getValue().numberOfInstancesProperty().asObject());
-        problemNumberOfInstanceColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ProblemItem, Integer>>() {
-                                                          @Override
-                                                          public void handle(TableColumn.CellEditEvent<ProblemItem, Integer> t) {
-                                                              if (t.getNewValue() >= 0) {
-                                                                  ((ProblemItem) t.getTableView().getItems().get(
-                                                                          t.getTablePosition().getRow())
-                                                                  ).setNumberOfInstances(t.getNewValue());
-                                                              } else {
-                                                                  t.getTableColumn().setVisible(false);
-                                                                  t.getTableColumn().setVisible(true);
-                                                              }
-                                                          }
-                                                      }
+        problemNumberOfInstanceColumn.setOnEditCommit(t -> {
+            // a valid value for this component is greater or equals than 0
+            if (t.getNewValue() >= 0) {
+                t.getTableView().getItems().get(
+                        t.getTablePosition().getRow()).setNumberOfInstances(t.getNewValue());
+            } else {
+                // A trick to update the component with the value saved in the item.
+                t.getTableColumn().setVisible(false);
+                t.getTableColumn().setVisible(true);
+            }
+        }
         );
 
         this.problemTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -109,19 +103,15 @@ public class ExperimentChooserComponent extends VBox {
         TableColumn<AlgorithmItem, Integer> algorithmNumberOfInstanceColumn = (TableColumn<AlgorithmItem, Integer>) this.algorithmTableView.getColumns().get(1);
         algorithmNumberOfInstanceColumn.setCellFactory(param -> new TextFieldTableCell<>(TextInputUtil.createIntegerConverter()));
         algorithmNumberOfInstanceColumn.setCellValueFactory(param -> param.getValue().numberOfInstancesProperty().asObject());
-        algorithmNumberOfInstanceColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<AlgorithmItem, Integer>>() {
-                                                            @Override
-                                                            public void handle(TableColumn.CellEditEvent<AlgorithmItem, Integer> t) {
-                                                                if (t.getNewValue() >= 0) {
-                                                                    ((AlgorithmItem) t.getTableView().getItems().get(
-                                                                            t.getTablePosition().getRow())
-                                                                    ).setNumberOfInstances(t.getNewValue());
-                                                                } else {
-                                                                    t.getTableColumn().setVisible(false);
-                                                                    t.getTableColumn().setVisible(true);
-                                                                }
-                                                            }
-                                                        }
+        algorithmNumberOfInstanceColumn.setOnEditCommit(t -> {
+            if (t.getNewValue() >= 0) {
+                t.getTableView().getItems().get(
+                        t.getTablePosition().getRow()).setNumberOfInstances(t.getNewValue());
+            } else {
+                t.getTableColumn().setVisible(false);
+                t.getTableColumn().setVisible(true);
+            }
+        }
         );
     }
 
@@ -150,8 +140,10 @@ public class ExperimentChooserComponent extends VBox {
      * </pre>
      *
      * @return the registrable for each repetitions of each problems.
+     * @throws UnfullfilledRestrictionException if the algorithms for each problem with a number distinct to zero are not the same or do not have the same amount of algorithm.
      */
-    public Map<String, List<List<Class<? extends MultiObjectiveRegistrable>>>> getRegistrableClassMap() {
+    public Map<String, List<List<Class<? extends MultiObjectiveRegistrable>>>> getRegistrableClassMap() throws UnfullfilledRestrictionException {
+        validateAlgorithmRestriction();
         Map<String, List<List<Class<? extends MultiObjectiveRegistrable>>>> result = new HashMap<>();
 
         for (ProblemItem problems : this.problemItemsList) {
@@ -160,8 +152,7 @@ public class ExperimentChooserComponent extends VBox {
             if (numberOfInstances > 0) {
                 List<Class<? extends MultiObjectiveRegistrable>> registrablesForProblem = getRegistrablesForProblem(problems.getProblemName());
                 if (registrablesForProblem != null) {
-                    listOfRegistrableList = new ArrayList<>();
-                    listOfRegistrableList.addAll(Collections.nCopies(numberOfInstances, registrablesForProblem));
+                    listOfRegistrableList = new ArrayList<>(Collections.nCopies(numberOfInstances, registrablesForProblem));
                 }
             }
             if (listOfRegistrableList != null) {
@@ -170,6 +161,7 @@ public class ExperimentChooserComponent extends VBox {
         }
         return result;
     }
+
 
     /**
      * Create a list with registrable of the specific problems. Each registrable is "number of instances" repeats.
@@ -192,11 +184,91 @@ public class ExperimentChooserComponent extends VBox {
     }
 
     /**
+     * Check if each problem with the number distinct to zero has the same algorithms in the same amount.
+     * This check is based in the name of algorithm or problems.
+     *
+     * @throws UnfullfilledRestrictionException if the restriction isn't fulfilled.
+     */
+    private void validateAlgorithmRestriction() throws UnfullfilledRestrictionException {
+        List<ProblemItem> problemItems = this.problemItemsList
+                .stream()
+                .filter(problemItem -> problemItem.getNumberOfInstances() > 0)
+                .collect(Collectors.toList());
+
+        if (problemItems.size() == 0) { // if there aren't problem configured
+            throw new UnfullfilledRestrictionException("There aren't problem instances configured.");
+        } else if (problemItems.size() == 1) { // if there is only one problem type check that the number of algorithms are greater than 2.
+            List<AlgorithmItem> algorithmItems = this.algorithmItemMap.get(problemItems.get(0).getProblemName());
+            // Check if for the problems there is algorithm configured
+            if (algorithmItems != null){
+                int sum = algorithmItems
+                        .stream()
+                        .mapToInt(AlgorithmItem::getNumberOfInstances)
+                        .sum();
+                if (sum <= 1) {
+                    throw new UnfullfilledRestrictionException("There must be 2 instances of the algorithm, either of the same or different type.");
+                }
+            }else{ // if there isn't configured algorithm.
+                throw new UnfullfilledRestrictionException("Configure a algorithm for selected problem.");
+            }
+            return;
+        }
+
+        // if there are more than one type of problem
+        HashMap<String, Integer> added = new HashMap<>();
+        boolean isFirstIteration = true;
+        for (ProblemItem problem : problemItems) {
+            List<AlgorithmItem> algorithmItems = this.algorithmItemMap
+                    .get(problem.getProblemName()).stream().filter(algorithmItem -> algorithmItem.getNumberOfInstances() > 0)
+                    .collect(Collectors.toList());
+            // Get the algorithm type in the first iteration
+            if (isFirstIteration) {
+                isFirstIteration = false;
+                algorithmItems.forEach(algorithmItem -> {
+                    added.put(algorithmItem.getAlgorithmName(), algorithmItem.getNumberOfInstances());
+                });
+            } else {
+                int numberOfAlgorithm = 0; // Check that each loop as the same number of algorithm
+
+                // Check if the algorithm in other iteration are the same that in the first iteration and has the same number.
+                for (AlgorithmItem algorithm : algorithmItems) {
+                    Integer numberOfInstances = added.get(algorithm.getAlgorithmName());
+
+                    System.out.println(algorithm.getAlgorithmName());
+                    // if there is a algorithm that isn't in first iteration
+                    if (numberOfInstances == null){
+                        throw new UnfullfilledRestrictionException("There aren't the same algorithm configured for each problem.");
+                    }
+
+                    // if the saved value in first iteration for the algorithm name isn't equals to the
+                    // saved value for the same algorithm in other iteration
+                    if (! (numberOfInstances.compareTo(algorithm.getNumberOfInstances()) == 0) ) {
+                        throw new UnfullfilledRestrictionException("The number of instance for the same algorithm in different problems isn't the same.");
+                    }
+                    numberOfAlgorithm++;
+                }
+
+                // Check if the number of algorithm in first loop isn't the same that in the map.
+                if (numberOfAlgorithm != added.size()) {
+                    throw new UnfullfilledRestrictionException("Not the same algorithms are configured for each problem");
+                }
+            }
+        }
+        if (added.size() == 0){
+            throw new UnfullfilledRestrictionException("There aren't configured algorithm for any problems.");
+        }
+        // If there is only one algorithm check that there are more than one number of instance of it.
+        if ((added.size() == 1) && added.values().stream().findFirst().get().compareTo(1) == 0){ // sorry demeter =P
+            throw new UnfullfilledRestrictionException("It is necessary more than one type of algorithm or more than 2 instances of the same algorithm.");
+        }
+    }
+
+    /**
      * This class is used to wrap the problem name in Registrable class. This let add the item to tableview.
      */
     private static class ProblemItem {
         private final ReadOnlyStringWrapper problemName = new ReadOnlyStringWrapper();
-        private SimpleIntegerProperty numberOfInstances = new SimpleIntegerProperty(0);
+        private final SimpleIntegerProperty numberOfInstances = new SimpleIntegerProperty(0);
 
         /**
          * @param name the name of problem.
@@ -207,7 +279,6 @@ public class ExperimentChooserComponent extends VBox {
             Objects.requireNonNull(name);
             if (name.isEmpty()) throw new IllegalArgumentException("name can't be null");
             problemName.set(name);
-            numberOfInstances.addListener((observable, oldValue, newValue) -> System.out.println(problemName.get() + " " + newValue));
         }
 
         public String getProblemName() {
@@ -227,7 +298,7 @@ public class ExperimentChooserComponent extends VBox {
         }
 
         /**
-         * @param numberOfInstances
+         * @param numberOfInstances the number of instances of the problem
          * @throws IllegalArgumentException if numberOfInstances is negative.
          */
         public void setNumberOfInstances(int numberOfInstances) {
@@ -248,7 +319,7 @@ public class ExperimentChooserComponent extends VBox {
      */
     private static class AlgorithmItem {
         private final ReadOnlyStringWrapper algorithmName = new ReadOnlyStringWrapper();
-        private IntegerProperty numberOfInstances = new SimpleIntegerProperty(0);
+        private final IntegerProperty numberOfInstances = new SimpleIntegerProperty(0);
         private final Class<? extends MultiObjectiveRegistrable> clazz;
 
         /**
@@ -275,7 +346,7 @@ public class ExperimentChooserComponent extends VBox {
         }
 
         /**
-         * @param numberOfInstances
+         * @param numberOfInstances the number of instances of algorithm for each problem associated.
          * @throws IllegalArgumentException if numberOfInstances is negative.
          */
         public void setNumberOfInstances(int numberOfInstances) {

@@ -88,7 +88,7 @@ public class PumpSchedulingSMPSORegister implements MultiObjectiveRegistrable {
         // String psePath = "src/resources/Sotelo2001.pse";
         // PumpScheduling pumpScheduling = new PumpScheduling(psePath, inpPath);
 
-        ExperimentProblem<IntegerSolution> problem = new ExperimentProblem<>(vanzylObj, "vanzylOriginal");
+        ExperimentProblem<IntegerSolution> problem = new ExperimentProblem<>(vanzylObj);
 
         // create so many algorithm as the number of independantRun indicated.
         List<ExperimentAlgorithm<IntegerSolution>> algorithmList = ExperimentUtils.configureAlgorithmList(problem, independentRun, () -> {

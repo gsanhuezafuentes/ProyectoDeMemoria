@@ -60,7 +60,7 @@ public class GenerateReferenceParetoFrontInDisk implements ExperimentComponent {
             NonDominatedSolutionListArchive<PointSolution> nonDominatedSolutionArchive =
                     new NonDominatedSolutionListArchive<PointSolution>();
 
-            for (ExperimentAlgorithm<?> algorithm : experimentSet.getExperimentAlgorithms(problem)) {
+            for (ExperimentAlgorithm<?> algorithm : experimentSet.getExperimentAlgorithms()) {
                 String problemDirectory = experimentBaseDirectory + "/data/" +
                         algorithm.getAlgorithmTag() + "/" + problem.getTag();
 
@@ -105,7 +105,7 @@ public class GenerateReferenceParetoFrontInDisk implements ExperimentComponent {
             List<PointSolution> nonDominatedSolutions) throws IOException {
         SolutionAttribute<PointSolution, String> solutionAttribute = new SolutionAttribute<PointSolution, String>();
 
-        for (ExperimentAlgorithm<?> algorithm : experimentSet.getExperimentAlgorithms(problem)) {
+        for (ExperimentAlgorithm<?> algorithm : experimentSet.getExperimentAlgorithms()) {
             List<PointSolution> solutionsPerAlgorithm = new ArrayList<>();
             for (PointSolution solution : nonDominatedSolutions) {
                 if (algorithm.getAlgorithmTag().equals(solutionAttribute.getAttribute(solution))) {

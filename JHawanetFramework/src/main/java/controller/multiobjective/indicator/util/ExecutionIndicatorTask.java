@@ -10,9 +10,7 @@ import javafx.concurrent.Task;
 import javafx.util.Pair;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.experiment.ExperimentSet;
-import model.metaheuristic.experiment.component.ComputeQualityIndicators;
-import model.metaheuristic.experiment.component.GenerateHtmlPages;
-import model.metaheuristic.experiment.component.GenerateReferenceParetoFrontInDisk;
+import model.metaheuristic.experiment.component.*;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -118,12 +116,15 @@ public class ExecutionIndicatorTask extends Task<String> {
         // return only one pareto front
         new GenerateReferenceParetoFrontInDisk(experimentSet).run();
         new ComputeQualityIndicators(experimentSet).run();
+//        new GenerateFriedmanTestTables(experimentSet).run(); // the previos sentence also include this results.
+        new GenerateFriedmanHolmTestTables(experimentSet).run();
+        new GenerateLatexTablesWithStatistics(experimentSet).run();
+        new GenerateWilcoxonTestTablesWithR(experimentSet).run();
         new GenerateHtmlPages(path.toAbsolutePath()).run();
 
         MDC.remove("logFileName");
 
         return path.toAbsolutePath().toString();
-//        return "D:\\gsanh\\2Desktop\\ProyectosJimmy\\NSGAIIComputingReferenceParetoFrontsStudy";
     }
 
     /**

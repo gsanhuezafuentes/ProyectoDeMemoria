@@ -91,6 +91,17 @@
                         <Tooltip text="Export selected to inp"/>
                     </tooltip>
                 </Button>
+                <Separator orientation="VERTICAL"/>
+                <Button fx:id="saveIndicatorsResult" disable="true" styleClass="imageButton">
+                    <graphic>
+                        <ImageView>
+                            <Image url="@icons/flaticon_file32px.png"/>
+                        </ImageView>
+                    </graphic>
+                    <tooltip>
+                        <Tooltip text="Save indicators results"/>
+                    </tooltip>
+                </Button>
             </ToolBar>
         </VBox>
     </top>

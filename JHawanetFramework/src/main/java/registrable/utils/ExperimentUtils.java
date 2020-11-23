@@ -37,12 +37,16 @@ public final class ExperimentUtils {
      * @param supplier the supplier of algorithm
      * @return a list with the experiment algorithm.
      * @throws NullPointerException if experimentProblem or supplier are null.
+     * @throws IllegalArgumentException if numberOfIndependentRun is null.
      * @param <S> the type of solution.
      */
     public static <S extends Solution<?>> List<ExperimentAlgorithm<S>> configureAlgorithmList(ExperimentProblem<S> experimentProblem,  int numberOfIndependentRun,
                                                                                               Supplier<Algorithm<S>> supplier) {
         Objects.requireNonNull(experimentProblem);
         Objects.requireNonNull(supplier);
+        if (numberOfIndependentRun < 0){
+            throw new IllegalArgumentException("If numberOfIndependentRun is null.");
+        }
 
         List<ExperimentAlgorithm<S>> algorithms = new ArrayList<>(numberOfIndependentRun);
         for (int run = 0; run < numberOfIndependentRun; run++) {

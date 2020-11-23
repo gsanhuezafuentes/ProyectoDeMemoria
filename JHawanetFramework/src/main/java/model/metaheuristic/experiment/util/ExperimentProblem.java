@@ -44,28 +44,15 @@ public final class ExperimentProblem<S extends Solution<?>> {
 	/**
 	 * Constructor.
 	 * @param problem the problem.
-	 * @param tag the tag of algorithm.
-	 * @throws NullPointerException if problem or tag is null.
-	 * @throws IllegalArgumentException if experiment tag is empty.
-	 */
-	public ExperimentProblem(@NotNull Problem<S> problem, @NotNull String tag) {
-		Objects.requireNonNull(problem);
-		Objects.requireNonNull(tag);
-		if (tag.isEmpty()){
-			throw new IllegalArgumentException("Experiment problem tag is empty.");
-		}
-
-		this.problem = problem;
-		this.tag = tag;
-	}
-
-	/**
-	 * Constructor.
-	 * @param problem the problem.
 	 * @throws NullPointerException if problem is null.
 	 */
 	public ExperimentProblem(@NotNull Problem<S> problem) {
-		this(problem, problem.getName());
+		this.problem = Objects.requireNonNull(problem);
+		this.tag = Objects.requireNonNull(problem.getName());
+		if (this.tag.isEmpty()) {
+			this.tag = this.problem.getClass().getSimpleName();
+		}
+
 	}
 
 	/**
@@ -85,13 +72,12 @@ public final class ExperimentProblem<S extends Solution<?>> {
 	}
 
 	/**
-	 * Change the tag. Don't use this method, It is use internally by the application.
+	 * Set the tag. Don't use this method, It is use internally by the application with the indicators.
 	 * @param tag the new tag.
 	 * @throws NullPointerException if tag is null.
 	 * @throws IllegalArgumentException if tag is empty.
 	 */
 	public void setTag(@NotNull String tag) {
-		// El metodo se usa en IndicatorExperimentConfigurationComponent para agregar un numero al final ej (PumpScheduling - 1).
 		Objects.requireNonNull(tag);
 		if (tag.isEmpty()){
 			throw new IllegalArgumentException("The problem tag is empty.");

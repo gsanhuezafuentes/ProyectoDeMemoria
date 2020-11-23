@@ -84,37 +84,22 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
     @Nullable
     private String varFile;
 
-    /**
-     * Constructor
-     *
-     * @param algorithm    the algorithm
-     * @param algorithmTag the algorithm tag (is used to create the directory)
-     * @param problem the ExperimentProblem setting up with the same problem of the algorithm
-     * @param runId        runId the id of execution of this algorithm for a experiment
-     * @throws NullPointerException     if algorithm, algorithmTag or problem is null.
-     * @throws IllegalArgumentException if algorithmTag is empty.
-     */
-    public ExperimentAlgorithm(@NotNull Algorithm<S> algorithm, @NotNull String algorithmTag, @NotNull ExperimentProblem<S> problem, int runId) {
-        Objects.requireNonNull(algorithm);
-        Objects.requireNonNull(algorithmTag);
-        Objects.requireNonNull(problem);
-        if (algorithmTag.isEmpty()) {
-            throw new IllegalArgumentException("algorithmTag is empty.");
-        }
-
-        this.algorithmTag = algorithmTag;
-        this.algorithm = algorithm;
-        this.problem = problem;
-        this.runId = runId;
-    }
-
-    /**
+     /**
      * @param algorithm the algorithm
      * @param problem   the problem
      * @param runId     the id of execution of this algorithm for a experiment
+     * @throws NullPointerException     if algorithm or problem is null .
      */
     public ExperimentAlgorithm(@NotNull Algorithm<S> algorithm, @NotNull ExperimentProblem<S> problem, int runId) {
-        this(algorithm, algorithm.getName(), problem, runId);
+        Objects.requireNonNull(algorithm);
+        Objects.requireNonNull(problem);
+        this.algorithmTag = Objects.requireNonNull(algorithm.getName());
+        if (algorithmTag.isEmpty()) {
+            this.algorithmTag = algorithm.getClass().getSimpleName();
+        }
+        this.algorithm = algorithm;
+        this.problem = problem;
+        this.runId = runId;
     }
 
 //    /**
@@ -230,10 +215,11 @@ public final class ExperimentAlgorithm<S extends Solution<?>> {
      */
     // This method has to be called before of prepareToRun.
     public void setAlgorithmTag(@NotNull String algorithmTag) {
-        this.algorithmTag = Objects.requireNonNull(algorithmTag);
-        if (this.algorithmTag.isEmpty()){
+        Objects.requireNonNull(algorithmTag);
+        if (algorithmTag.isEmpty()){
             throw new IllegalArgumentException("Algorithm tag is empty.");
         }
+        this.algorithmTag = algorithmTag;
     }
 
     /**
