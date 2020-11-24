@@ -92,10 +92,10 @@ public class JavaRandom {
 	}
 
 	/**
-	 * Generate a random value between lowerBound and upperBound exclusive.
+	 * Generate a random value between lowerBound and upperBound (inclusive).
 	 * @param lowerBound the lowerBound
 	 * @param upperBound the upperBound inclusive
-	 * @return int number between lowerBound and upperBound
+	 * @return double number between lowerBound and upperBound
 	 */
 	public double nextDouble(double lowerBound, double upperBound) {
 		return lowerBound + random.nextDouble()*(upperBound - lowerBound) ;
