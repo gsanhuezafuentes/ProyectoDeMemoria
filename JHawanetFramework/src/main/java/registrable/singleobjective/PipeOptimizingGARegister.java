@@ -36,7 +36,7 @@ import java.util.Map;
  * The sistem read this class using reflection to get the annotation and create
  * a GUI to configure the experiment and inject the value to injectable method.
  */
-public final class PipeOptimizingRegister implements SingleObjectiveRegistrable {
+public final class PipeOptimizingGARegister implements SingleObjectiveRegistrable {
     private final SelectionOperator<List<IntegerSolution>, List<IntegerSolution>> selection;
     private final CrossoverOperator<IntegerSolution> crossover;
     private final MutationOperator<IntegerSolution> mutation;
@@ -92,8 +92,8 @@ public final class PipeOptimizingRegister implements SingleObjectiveRegistrable 
             })
     @SuppressWarnings("unchecked") // The object injected are indicated in operators elements. It guarantee its
     // types.
-    public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama, int independentRun,
-                                  int minPressure, int populationSize, int maxEvaluations, int numberWithoutImprovement) throws Exception {
+    public PipeOptimizingGARegister(Object selectionOperator, Object crossoverOperator, Object mutationOperator, File gama, int independentRun,
+                                    int minPressure, int populationSize, int maxEvaluations, int numberWithoutImprovement) throws Exception {
         System.out.println("selectionOperator: " + selectionOperator);
         System.out.println("crossoverOperator: " + crossoverOperator);
         System.out.println("mutationOperator: " + mutationOperator);
