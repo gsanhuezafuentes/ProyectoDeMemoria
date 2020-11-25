@@ -1,6 +1,8 @@
 package controller.component;
 
 import annotations.*;
+import annotations.operator.DefaultConstructor;
+import annotations.registrable.*;
 import controller.util.ReflectionUtils;
 import controller.util.TextInputUtil;
 import javafx.application.Platform;

@@ -1,6 +1,6 @@
 package model.metaheuristic.operator.mutation.impl;
 
-import annotations.DefaultConstructor;
+import annotations.operator.DefaultConstructor;
 import annotations.NumberInput;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.solution.impl.IntegerSolution;

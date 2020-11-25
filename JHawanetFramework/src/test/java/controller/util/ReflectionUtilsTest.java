@@ -1,6 +1,7 @@
 package controller.util;
 
 import annotations.*;
+import annotations.registrable.*;
 import exception.ApplicationException;
 import model.metaheuristic.experiment.Experiment;
 import model.metaheuristic.operator.crossover.impl.IntegerSBXCrossover;

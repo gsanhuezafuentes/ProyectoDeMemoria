@@ -61,9 +61,9 @@ El nombre dado en el elemento _displayName_, es el nombre visible del problema e
 
 image::images/nuevos_experimentos/MenuDelProblema.png[]
 
-Esta anotación solo puede estar en un constructor, en caso de que esta anotación no esté presente, un error en tiempo de ejecución será lanzado. 
+Esta anotación solo puede estar en un constructor, *en caso de que esta anotación no esté presente, un error en tiempo de ejecución será lanzado*. 
 
-==== _@Parameters_
+===== _@Parameters_
 
 Esta anotación permite agregar información acerca de los parámetros recibidos por el constructor. Cuando el constructor tiene esta anotación, por convención, está obligado a declarar los parámetros en un orden determinado en base a tu tipo. Este orden es el siguiente:
 
@@ -127,19 +127,6 @@ image::images/nuevos_experimentos/ComponenteFileInput.png[]
 
 Si el _TextField_ donde se muestra la ruta está vacío, es decir, no se ha seleccionado un archivo o carpeta, entonces será inyectado *_null_* en el parámetro correspondiente del constructor.
 
-===== _@NumberInput_
-
-Esta anotación indica que hay un parámetro del tipo _int_ o _double_ o sus tipos envoltorios _Integer_ o _Double_, respectivamente. Esta anotación agrega en la interfaz un _TextField_ que solo permite como entrada un número.  Si el tipo del parámetro es _int_ o _Integer_, entonces el _TextField_ solo permite ingresar números enteros. Por otro lado, si el parámetro es _double_ o _Double_, entonces en la interfaz se acepta el ingreso de números enteros o decimales. En la interfaz, esta anotación es visualizada como se muestra a continuación.
-
-image::images/nuevos_experimentos/ComponenteNumberInput.png[]
-
-Dentro de esta anotación existen los siguientes elementos:
-
-* _displayName_: Nombre del parámetro.
-* _defaultValue_: Valor por defecto de la propiedad. Si el tipo de parámetro en el constructor de la clase que hereda de _Registrable_ es un entero, pero se ingresa como valor por defecto un número con decimales, los decimales serán truncados. Si este elemento no se define su valor por defecto es 0.
-
-*Esta anotación puede ser utilizada dentro de la anotación _@DefaultConstructor_* definida al principio.
-
 ===== _@NumberToggleInput_
 
 Esta anotación indica que hay un conjunto de parámetros que son mutuamente excluyentes entre ellos, es decir, que solo un parámetro puede recibir el valor.
@@ -163,3 +150,17 @@ En el elemento _numbersToggle_ de la anotación _@Parameters_, las anotaciones q
 
 Las anotaciones presentadas en las dos secciones anteriores deben ser usadas en constructores públicos.
 
+==== Anotaciones permitidas en _Operators_ y _Registrable_
+
+===== _@NumberInput_
+
+Esta anotación indica que hay un parámetro del tipo _int_ o _double_ o sus tipos envoltorios _Integer_ o _Double_, respectivamente. Esta anotación agrega en la interfaz un _TextField_ que solo permite como entrada un número.  Si el tipo del parámetro es _int_ o _Integer_, entonces el _TextField_ solo permite ingresar números enteros. Por otro lado, si el parámetro es _double_ o _Double_, entonces en la interfaz se acepta el ingreso de números enteros o decimales. En la interfaz, esta anotación es visualizada como se muestra a continuación.
+
+image::images/nuevos_experimentos/ComponenteNumberInput.png[]
+
+Dentro de esta anotación existen los siguientes elementos:
+
+* _displayName_: Nombre del parámetro.
+* _defaultValue_: Valor por defecto de la propiedad. Si el tipo de parámetro en el constructor de la clase que hereda de _Registrable_ es un entero, pero se ingresa como valor por defecto un número con decimales, los decimales serán truncados. Si este elemento no se define su valor por defecto es 0.
+
+*Esta anotación puede ser utilizada dentro de la anotación _@DefaultConstructor_ y _@Parameters_*.

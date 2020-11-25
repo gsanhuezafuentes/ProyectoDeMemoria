@@ -1,6 +1,7 @@
 package registrable.multiobjective;
 
 import annotations.*;
+import annotations.registrable.*;
 import model.io.JsonSimpleReader;
 import model.metaheuristic.algorithm.Algorithm;
 import model.metaheuristic.algorithm.multiobjective.smpso.SMPSOIntegerBuilder;

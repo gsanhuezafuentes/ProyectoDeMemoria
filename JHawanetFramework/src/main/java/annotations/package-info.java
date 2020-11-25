@@ -6,17 +6,17 @@
  *
  * Use with {@link registrable.Registrable}:
  * <ul>
- *    <li>{@link annotations.NewProblem}</li>
- *    <li>{@link annotations.Parameters}</li>
- *    <li>{@link annotations.OperatorInput}</li>
- *    <li>{@link annotations.OperatorOption}</li>
+ *    <li>{@link annotations.registrable.NewProblem}</li>
+ *    <li>{@link annotations.registrable.Parameters}</li>
+ *    <li>{@link annotations.registrable.OperatorInput}</li>
+ *    <li>{@link annotations.registrable.OperatorOption}</li>
  *    <li>{@link annotations.NumberInput}</li>
- *    <li>{@link annotations.NumberToggleInput}</li>
+ *    <li>{@link annotations.registrable.NumberToggleInput}</li>
  * </ul>
  * <p>
  * Use with {@link model.metaheuristic.operator.Operator}:
  *  <ul>
- *     <li>{@link annotations.DefaultConstructor}</li>
+ *     <li>{@link annotations.operator.DefaultConstructor}</li>
  *     <li>{@link annotations.NumberInput}</li>
  *  </ul>
  */

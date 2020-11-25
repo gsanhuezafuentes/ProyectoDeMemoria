@@ -4736,12 +4736,11 @@ public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator
 </div>
 </div>
 <div class="paragraph">
-<p>Esta anotación solo puede estar en un constructor, en caso de que esta anotación no esté presente, un error en tiempo de ejecución será lanzado.</p>
+<p>Esta anotación solo puede estar en un constructor, <strong>en caso de que esta anotación no esté presente, un error en tiempo de ejecución será lanzado</strong>.</p>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_parameters">4.6.3. <em>@Parameters</em></h4>
+<div class="sect4">
+<h5 id="_parameters"><em>@Parameters</em></h5>
 <div class="paragraph">
 <p>Esta anotación permite agregar información acerca de los parámetros recibidos por el constructor. Cuando el constructor tiene esta anotación, por convención, está obligado a declarar los parámetros en un orden determinado en base a tu tipo. Este orden es el siguiente:</p>
 </div>
@@ -4786,6 +4785,7 @@ No usar la anotación <em>@Parameters</em> tiene el mismo efecto que usar la ano
 </div>
 <div class="paragraph">
 <p>Puede ver el uso de esta anotación en el <a href="#ejemplo-anotaciones">ejemplo anterior</a>.</p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="_operatorinput"><em>@OperatorInput</em></h5>
@@ -4876,33 +4876,6 @@ Dentro de esta anotación existen varios elementos. Éstos son:</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_numberinput"><em>@NumberInput</em></h5>
-<div class="paragraph">
-<p>Esta anotación indica que hay un parámetro del tipo <em>int</em> o <em>double</em> o sus tipos envoltorios <em>Integer</em> o <em>Double</em>, respectivamente. Esta anotación agrega en la interfaz un <em>TextField</em> que solo permite como entrada un número.  Si el tipo del parámetro es <em>int</em> o <em>Integer</em>, entonces el <em>TextField</em> solo permite ingresar números enteros. Por otro lado, si el parámetro es <em>double</em> o <em>Double</em>, entonces en la interfaz se acepta el ingreso de números enteros o decimales. En la interfaz, esta anotación es visualizada como se muestra a continuación.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/nuevos_experimentos/ComponenteNumberInput.png" alt="ComponenteNumberInput">
-</div>
-</div>
-<div class="paragraph">
-<p>Dentro de esta anotación existen los siguientes elementos:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>displayName</em>: Nombre del parámetro.</p>
-</li>
-<li>
-<p><em>defaultValue</em>: Valor por defecto de la propiedad. Si el tipo de parámetro en el constructor de la clase que hereda de <em>Registrable</em> es un entero, pero se ingresa como valor por defecto un número con decimales, los decimales serán truncados. Si este elemento no se define su valor por defecto es 0.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Esta anotación puede ser utilizada dentro de la anotación <em>@DefaultConstructor</em></strong> definida al principio.</p>
-</div>
-</div>
-<div class="sect4">
 <h5 id="_numbertoggleinput"><em>@NumberToggleInput</em></h5>
 <div class="paragraph">
 <p>Esta anotación indica que hay un conjunto de parámetros que son mutuamente excluyentes entre ellos, es decir, que solo un parámetro puede recibir el valor.</p>
@@ -4942,6 +4915,36 @@ Dentro de esta anotación existen varios elementos. Éstos son:</p>
 </div>
 <div class="paragraph">
 <p>Las anotaciones presentadas en las dos secciones anteriores deben ser usadas en constructores públicos.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_anotaciones_permitidas_en_operators_y_registrable">4.6.3. Anotaciones permitidas en <em>Operators</em> y <em>Registrable</em></h4>
+<div class="sect4">
+<h5 id="_numberinput"><em>@NumberInput</em></h5>
+<div class="paragraph">
+<p>Esta anotación indica que hay un parámetro del tipo <em>int</em> o <em>double</em> o sus tipos envoltorios <em>Integer</em> o <em>Double</em>, respectivamente. Esta anotación agrega en la interfaz un <em>TextField</em> que solo permite como entrada un número.  Si el tipo del parámetro es <em>int</em> o <em>Integer</em>, entonces el <em>TextField</em> solo permite ingresar números enteros. Por otro lado, si el parámetro es <em>double</em> o <em>Double</em>, entonces en la interfaz se acepta el ingreso de números enteros o decimales. En la interfaz, esta anotación es visualizada como se muestra a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/nuevos_experimentos/ComponenteNumberInput.png" alt="ComponenteNumberInput">
+</div>
+</div>
+<div class="paragraph">
+<p>Dentro de esta anotación existen los siguientes elementos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>displayName</em>: Nombre del parámetro.</p>
+</li>
+<li>
+<p><em>defaultValue</em>: Valor por defecto de la propiedad. Si el tipo de parámetro en el constructor de la clase que hereda de <em>Registrable</em> es un entero, pero se ingresa como valor por defecto un número con decimales, los decimales serán truncados. Si este elemento no se define su valor por defecto es 0.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Esta anotación puede ser utilizada dentro de la anotación <em>@DefaultConstructor</em></strong> definida al principio.</p>
 </div>
 </div>
 </div>

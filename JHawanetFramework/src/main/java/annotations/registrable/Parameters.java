@@ -1,5 +1,6 @@
-package annotations;
+package annotations.registrable;
 
+import annotations.NumberInput;
 import registrable.Registrable;
 
 import java.lang.annotation.Documented;

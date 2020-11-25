@@ -28,7 +28,7 @@
  */
 package model.metaheuristic.operator.crossover.impl;
 
-import annotations.DefaultConstructor;
+import annotations.operator.DefaultConstructor;
 import annotations.NumberInput;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.solution.impl.IntegerSolution;

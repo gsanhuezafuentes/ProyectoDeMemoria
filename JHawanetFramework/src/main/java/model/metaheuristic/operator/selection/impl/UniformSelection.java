@@ -1,6 +1,6 @@
 package model.metaheuristic.operator.selection.impl;
 
-import annotations.DefaultConstructor;
+import annotations.operator.DefaultConstructor;
 import annotations.NumberInput;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.solution.Solution;

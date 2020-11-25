@@ -1,5 +1,6 @@
-package annotations;
+package annotations.operator;
 
+import annotations.NumberInput;
 import model.metaheuristic.operator.Operator;
 
 import java.lang.annotation.Documented;
