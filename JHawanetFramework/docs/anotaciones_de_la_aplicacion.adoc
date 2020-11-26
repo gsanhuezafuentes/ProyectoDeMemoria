@@ -65,7 +65,7 @@ Esta anotación solo puede estar en un constructor, *en caso de que esta anotaci
 
 ===== _@Parameters_
 
-Esta anotación permite agregar información acerca de los parámetros recibidos por el constructor. Cuando el constructor tiene esta anotación, por convención, está obligado a declarar los parámetros en un orden determinado en base a tu tipo. Este orden es el siguiente:
+Esta anotación permite agregar información acerca de los parámetros recibidos por el constructor. *Cuando el constructor tiene esta anotación, por convención, está obligado a declarar los parámetros en un orden determinado en base a tu tipo*. Este orden es el siguiente:
 
 1. _Object_
 2. _File_
@@ -79,6 +79,8 @@ Dentro de esta anotación existen varios elementos. Estos elementos son:
 * _files_: Arreglo que recibe anotaciones del tipo _FileInput_.
 * _numbers_:  Arreglo que recibe anotaciones del tipo _NumberInput_.
 * _numbersToggle_: Arreglo que recibe anotaciones del tipo _NumberToggleInput_.
+
+NOTE: Los valores de las anotaciones son inyectados en el constructor de la clase en el orden de la lista de elementos definidas anteriormente. Es decir, _operators_ (inyectados como _Object_), _files_ (_File_), _numbers_ (_int_ o _double_) y _numbersToggle_(_int_ o _double_).
 
 El valor por defecto para todos los elementos mencionados anteriormente es un arreglo vacío ({}).
 No usar la anotación _@Parameters_ tiene el mismo efecto que usar la anotación, pero con sus valores por defecto.

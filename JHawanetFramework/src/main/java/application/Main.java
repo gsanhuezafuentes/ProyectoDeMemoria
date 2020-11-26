@@ -53,6 +53,7 @@ public class Main extends Application {
 
 			primaryStage.show();
 		} catch (IOException e) {
+			LOGGER.error("Error loading the main window", e);
 			throw new ViewLoadException("The FXML MainWindow.fxml can't be loaded.", e);
 		}
 	}

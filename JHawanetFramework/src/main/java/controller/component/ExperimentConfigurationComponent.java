@@ -12,6 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.util.StringConverter;
+import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -305,7 +306,7 @@ public class ExperimentConfigurationComponent<T extends Registrable<?>> extends 
             }
 
             // If a operator is selected enable the Configure button only if his default constructor need parameters.
-            configButton.setDisable(ReflectionUtils.getNumberOfParameterInDefaultConstructor(newv) <= 0);
+            configButton.setDisable(ReflectionUtils.getNumberOfParameterInDefaultConstructor(newv) == 0);
         });
 
         comboBox.getSelectionModel().select(0);
@@ -329,8 +330,8 @@ public class ExperimentConfigurationComponent<T extends Registrable<?>> extends 
     private void createAndShowOperatorConfigureDialog(String name, Class<?> selectedItem) {
         // Create a custom dialog to configure the operator's parameters.
         Dialog<List<Number>> dialog = new Dialog<>();
-        dialog.setTitle("Configuración " + name);
-        dialog.setContentText("Ingrese los valores");
+        dialog.setTitle("Configure " + name);
+        dialog.setContentText("Enter the values");
         ButtonType okButtonType = new ButtonType("Save", ButtonBar.ButtonData.OK_DONE);
         ButtonType cancelButtonType = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
         dialog.getDialogPane().getButtonTypes().addAll(okButtonType, cancelButtonType);

@@ -1,5 +1,6 @@
 package annotations.registrable;
 
+import annotations.EnumInput;
 import annotations.NumberInput;
 import registrable.Registrable;
 
@@ -36,6 +37,12 @@ public @interface Parameters {
 	 * @return the FileInput annotation
 	 */
 	FileInput[] files() default {};
+
+	/**
+	 * Get the enum input annotation. The enum value will be injected in registrable in the specific enum type.
+	 * @return the EnumInput annotation.
+	 */
+	EnumInput[] enums() default {};
 
 	/**
 	 * Get the number input annotation. The number will be injected in registrable

@@ -1,6 +1,7 @@
 package controller;
 
 import controller.component.ExperimentConfigurationComponent;
+import controller.component.ExperimentConfigurationComponent2;
 import controller.util.ControllerUtils;
 import controller.util.ReflectionUtils;
 import exception.ApplicationException;
@@ -35,7 +36,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
     private final Pane root;
     private static final double defaultSpaceInConfigurationGrid = 5;
     private final Class<? extends T> registrableClass;
-    private final ExperimentConfigurationComponent<T> configurationComponent;
+    private final ExperimentConfigurationComponent2<T> configurationComponent;
 
     private @Nullable Stage window;
 
@@ -62,7 +63,7 @@ public class DynamicConfigurationWindowController<T extends Registrable<?>> {
         this.root = ControllerUtils.loadFXML("/view/DynamicConfigurationWindow.fxml",this);
         this.registrableClass = Objects.requireNonNull(registrable);
         this.experimentEvent = Objects.requireNonNull(experimentEvent);
-        this.configurationComponent = new ExperimentConfigurationComponent<>(this.registrableClass);
+        this.configurationComponent = new ExperimentConfigurationComponent2<>(this.registrableClass);
         this.configurationPane.setContent(configurationComponent);
     }
 

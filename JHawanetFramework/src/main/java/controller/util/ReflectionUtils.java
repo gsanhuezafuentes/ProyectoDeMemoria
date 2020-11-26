@@ -1,6 +1,6 @@
 package controller.util;
 
-import annotations.*;
+import annotations.NumberInput;
 import annotations.operator.DefaultConstructor;
 import annotations.registrable.*;
 import exception.ApplicationException;
@@ -148,7 +148,7 @@ public class ReflectionUtils {
         // are in the correct order. (object,..., file ..., int or double,...)
         Parameters parametersAnnotation = constructor.getAnnotation(Parameters.class);
         if (parametersAnnotation != null) {
-            int numberOfParametersInAnnotation = getNumberOfParameterInParameterAnnotation(parametersAnnotation);
+            int numberOfParametersInAnnotation = getNumberOfParameterInParametersAnnotation(parametersAnnotation);
             // the constructor's parameter number as to be the same that the numbers of
             // parameters described by annotation.
             if (constructor.getParameterCount() != numberOfParametersInAnnotation) {
@@ -182,24 +182,32 @@ public class ReflectionUtils {
 
                     }
                     fileCount++;
-                } else if (parameterType.getName().matches("int|Integer|double|Double")) {
+                } else if (parameterType.equals(int.class)
+                        || parameterType.equals(Integer.class)
+                        || parameterType.equals(double.class)
+                        || parameterType.equals(Double.class)) {
+
                     numberCount++;
+
                 } else {
                     throw new IllegalRegistrableException("The type " + parameterType.getName()
                             + " is not valid type in the constructor " + registrable.getName()
                             + ". Only can be used object, file, int(or Integer) or double(Double)");
                 }
             }
+
             // checks if the type of parameters correspond to the type of annotation in
             // Parameters annotation
             if (objectCount != parametersAnnotation.operators().length) {
                 throw new IllegalRegistrableException("The number of " + OperatorInput.class.getName()
                         + "doesn't correspond to the number of Object parameter in constructor");
             }
+
             if (fileCount != parametersAnnotation.files().length) {
                 throw new IllegalRegistrableException("The number of " + FileInput.class.getName()
                         + "doesn't correspond to the number of File parameter in constructor");
             }
+
             if (numberCount != parametersAnnotation.numbers().length + parametersAnnotation.numbersToggle().length) {
                 throw new IllegalRegistrableException("The number of " + NumberInput.class.getName() + "plus the number of "
                         + NumberToggleInput.class.getName()
@@ -297,7 +305,11 @@ public class ReflectionUtils {
 
                         // Test if each parameter is one of type defined in regex expression
                         for (Class<?> type : defaultConstructor.getParameterTypes()) {
-                            if (!type.getName().matches("int|Integer|double|Double")) {
+                            if (!(type.equals(int.class)
+                                    || type.equals(Integer.class)
+                                    || type.equals(double.class)
+                                    || type.equals(Double.class))) {
+
                                 throw new IllegalOperatorException("The default constructor of " + operatorClass.getName()
                                         + " has parameters with a type is not valid for default constructor. The only valid type are int or double or his wrapper classes(Integer, Double)");
                             }
@@ -371,7 +383,7 @@ public class ReflectionUtils {
      * @return the number of parameters in parameter annotation
      * @throws NullPointerException if parametersAnnotation is null.
      */
-    public static int getNumberOfParameterInParameterAnnotation(Parameters parametersAnnotation) {
+    public static int getNumberOfParameterInParametersAnnotation(Parameters parametersAnnotation) {
         Objects.requireNonNull(parametersAnnotation);
         int numberOfParametersInAnnotation = parametersAnnotation.operators().length
                 + parametersAnnotation.files().length //
@@ -484,7 +496,7 @@ public class ReflectionUtils {
     public static Object createIndicatorInstance(Class<? extends GenericIndicator> indicatorClass) throws InvocationTargetException {
         Objects.requireNonNull(indicatorClass);
         try {
-        	// Call to default constructor without parameters.
+            // Call to default constructor without parameters.
             Constructor<?> constructor = indicatorClass.getConstructor();
             Object indicator;
 
