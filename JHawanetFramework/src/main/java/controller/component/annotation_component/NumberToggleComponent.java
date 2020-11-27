@@ -56,7 +56,7 @@ public class NumberToggleComponent {
 
         // if the type is int or integer use a validator that only let whole number
         if (this.parameterType.equals(int.class) || this.parameterType.equals(Integer.class)) {
-            textfield.setTextFormatter(TextInputUtil.createWholeTextFormatter((int) annotation.defaultValue()));
+            textfield.setTextFormatter(TextInputUtil.createWholeTextFormatter((int) annotation.defaultValue()));// this cast in mandatory
         } else { // is double or Double
             this.textfield.setTextFormatter(TextInputUtil.createDecimalTextFormatter(annotation.defaultValue()));
         }

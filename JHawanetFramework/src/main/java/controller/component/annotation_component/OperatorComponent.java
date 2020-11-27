@@ -1,9 +1,12 @@
 package controller.component.annotation_component;
 
+import annotations.BooleanInput;
+import annotations.EnumInput;
 import annotations.NumberInput;
 import annotations.operator.DefaultConstructor;
 import annotations.registrable.OperatorInput;
 import annotations.registrable.OperatorOption;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import controller.util.ReflectionUtils;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -90,17 +93,30 @@ public class OperatorComponent {
         DefaultConstructor operatorAnnotation = constructor.getAnnotation(DefaultConstructor.class);
 
         NumberInput[] numberInputs = operatorAnnotation.numbers();
+        EnumInput[] enumInputs = operatorAnnotation.enums();
+        BooleanInput[] booleanInputs = operatorAnnotation.booleans();
+
         // if the constructor as parameter so get the default value for this and keep it in a list.
         if (parameters.length > 0) {
             List<Object> defaultValues = new ArrayList<>(parameters.length);
-            // for each number input annotation in default constructor get the default value and cast it in the respective type.
+            // For each number input annotation in default constructor get the default value and cast it in the respective type.
+            // This avoid open the windows for setting operators.
+            // This assumes that parameters has the correct order. It is checked in ReflectionInput#validateOperators
             for (int i = 0; i < parameters.length; i++) {
                 // cast the default value from double to int (truncating the results)
                 if (parameters[i].equals(int.class) || parameters[i].equals(Integer.class)) {
-                    defaultValues.add((int) numberInputs[i].defaultValue());
+                    defaultValues.add((int) numberInputs[i].defaultValue()); // this cast in mandatory
                 } else if (parameters[i].equals(double.class) || parameters[i].equals(Double.class)) {
                     defaultValues.add(numberInputs[i].defaultValue());
-
+                } else if (parameters[i].isEnum()) {
+                    EnumInput enumInput = enumInputs[i - numberInputs.length];
+                    if (enumInput.defaultValue() == null || enumInput.defaultValue().isEmpty()) {
+                        defaultValues.add(enumInput.enumClass().getEnumConstants()[0]);
+                    } else {
+                        defaultValues.add(Enum.valueOf(enumInput.enumClass(), enumInput.defaultValue()));
+                    }
+                } else if (parameters[i].equals(boolean.class) || parameters[i].equals(Boolean.class)) {
+                    defaultValues.add(booleanInputs[i - numberInputs.length - enumInputs.length].defaultValue());
                 }
             }
             this.valuesOfOperators.put(newv, defaultValues);
@@ -151,7 +167,17 @@ public class OperatorComponent {
         Objects.requireNonNull(constructor, "The operator " + selectedItem.getSimpleName() + " has no a constructor with DefaultConstructor Annotation");
 
         DefaultConstructor annotation = constructor.getAnnotation(DefaultConstructor.class);
-        ArrayList<NumberComponent> numberComponents = new ArrayList<>(annotation.numbers().length);
+        NumberInput[] numberInputs = annotation.numbers();
+        EnumInput[] enumInputs = annotation.enums();
+        BooleanInput[] booleanInputs = annotation.booleans();
+
+        int numberSize = numberInputs.length;
+        int enumSize = enumInputs.length;
+        int booleanSize = booleanInputs.length;
+
+        ArrayList<NumberComponent> numberComponents = new ArrayList<>(numberSize);
+        ArrayList<EnumComponent> enumComponents = new ArrayList<>(enumSize);
+        ArrayList<BooleanComponent> booleanComponents = new ArrayList<>(booleanSize);
 
         Class<?>[] parameters = constructor.getParameterTypes();
 
@@ -160,12 +186,22 @@ public class OperatorComponent {
 
         // Add component to dialog
         for (int i = 0; i < parameters.length; i++) {
-            // If there was previous result of a previous configuration so load it.
-            numberComponents.add(NumberComponent.createComponent(annotation.numbers()[i]
-                    , (Number) previousResults.get(i), parameters[i], grid, i));
+            if (parameters[i].equals(int.class) || parameters[i].equals(Integer.class)
+                    || parameters[i].equals(double.class) || parameters[i].equals(Double.class)) {
 
+                // If there was previous result of a previous configuration so load it.
+                numberComponents.add(NumberComponent.createComponent(numberInputs[i]
+                        , (Number) previousResults.get(i), parameters[i], grid, i));
+
+            } else if (parameters[i].isEnum()) {
+                enumComponents.add(EnumComponent.createComponent(enumInputs[i - numberSize]
+                        , (Enum<?>) previousResults.get(i), grid, i));
+
+            } else if (parameters[i].equals(boolean.class) || parameters[i].equals(Boolean.class)) {
+                booleanComponents.add(BooleanComponent.createComponent(booleanInputs[i - numberSize - enumSize]
+                        , (boolean) previousResults.get(i), grid, i));
+            }
         }
-
 
         dialog.getDialogPane().setContent(grid);
 
@@ -176,9 +212,19 @@ public class OperatorComponent {
                         .stream()
                         .map(NumberComponent::getResult)
                         .collect(Collectors.toList());
+                List<Enum<?>> resultsOfEnum= enumComponents
+                        .stream()
+                        .map(EnumComponent::getResult)
+                        .collect(Collectors.toList());
+                List<Boolean> resultsOfBoolean = booleanComponents
+                        .stream()
+                        .map(BooleanComponent::getResult)
+                        .collect(Collectors.toList());
 
                 List<Object> result = new ArrayList<>();
                 result.addAll(resultsOfNumber);
+                result.addAll(resultsOfEnum);
+                result.addAll(resultsOfBoolean);
                 return result;
             }
             return null;

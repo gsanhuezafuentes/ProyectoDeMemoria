@@ -529,6 +529,16 @@ class ReflectionUtilsTest {
         assertThrows(IllegalOperatorException.class, () -> ReflectionUtils.validateOperator(clazz));
     }
 
+
+    @ParameterizedTest
+    @ValueSource(classes = {
+            OperatorParameterWithWrongType.class
+            , OperatorParameterWithWrongType2.class
+    })
+    void testValidateOperator_OperatorParameterWithWrongType_IllegalOperatorException(Class<?> clazz) {
+        assertThrows(IllegalOperatorException.class, () -> ReflectionUtils.validateOperator(clazz));
+    }
+
     static abstract class TestOperador implements Operator<Object, Object> {
         /**
          * Execute the operator on source
@@ -620,6 +630,26 @@ class ReflectionUtilsTest {
                 , booleans = {@BooleanInput}
         )
         public MissingBooleanParameterInConstructor(int number1, int number2, Type type1) {
+        }
+    }
+
+    static class OperatorParameterWithWrongType extends TestOperador {
+        enum Type {Zero, ONE, TWO, THREE}
+
+        @DefaultConstructor(numbers = {@NumberInput(), @NumberInput()},
+                enums = {@EnumInput(enumClass = Type.class)}
+        )
+        public OperatorParameterWithWrongType(float number1, int number2, Type type1) {
+        }
+    }
+
+    static class OperatorParameterWithWrongType2 extends TestOperador {
+        enum Type {Zero, ONE, TWO, THREE}
+
+        @DefaultConstructor(numbers = {@NumberInput(), @NumberInput()},
+                enums = {@EnumInput(enumClass = Type.class)}
+        )
+        public OperatorParameterWithWrongType2(int number1, int number2, Object type1) {
         }
     }
 }
