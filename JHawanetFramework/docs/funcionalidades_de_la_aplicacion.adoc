@@ -22,15 +22,15 @@ Hay dos formas para visualizar la características de los elementos de la red.
 
 Estas son:
 
-. Hacer *doble click derecho*, en el gráfico, sobre el elemento de la red que quiere visualizar. En la siguiente imagen se muestra la interfaz que es abierta por esta función, la flecha indica donde se ha realizado ha pulsado.
+. Hacer *doble click izquerdo*, en el gráfico, sobre el elemento de la red que quiere visualizar. En la siguiente imagen se muestra la interfaz que es abierta por esta función, la flecha indica donde se ha realizado ha pulsado.
 +
 image::images/funcionalidades/visualizar_caracteristicas/doble_click_grafico.png[]
 
-. Hacer *doble click derecho* desde el visor de elementos. En la siguiente imagen se puede este visor y que se ha abierto la interfaz para ver los detalles de los elementos.
+. Hacer *doble click izquerdo* desde el visor de elementos. En la siguiente imagen se puede este visor y que se ha abierto la interfaz para ver los detalles de los elementos.
 +
 image::images/funcionalidades/visualizar_caracteristicas/lista_de_elementos.png[]
 
-Al hacer *click derecho* sobre un elemento, ya sea desde el gráfico o desde el visor, el elemento seleccionado sera índicado con un círculo de color rojo, como lo muesta la siguiente imagen.
+Al hacer *click izquierdo* sobre un elemento, ya sea desde el gráfico o desde el visor, el elemento seleccionado sera índicado con un círculo de color rojo, como lo muesta la siguiente imagen.
 
 image::images/funcionalidades/visualizar_caracteristicas/click_derecho.png[align=center]
 
