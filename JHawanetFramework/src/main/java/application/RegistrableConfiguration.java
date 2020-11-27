@@ -10,7 +10,8 @@ import registrable.SingleObjectiveRegistrable;
 import registrable.multiobjective.PumpSchedulingNSGAIIRegister;
 import registrable.multiobjective.PumpSchedulingSMPSORegister;
 import registrable.multiobjective.PumpSchedulingSPA2Register;
-import registrable.singleobjective.PipeOptimizingRegister;
+import registrable.singleobjective.PipeOptimizingDERegister;
+import registrable.singleobjective.PipeOptimizingGARegister;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,8 @@ public final class RegistrableConfiguration {
 	//Add here the Registrable clases (SingleObjectives).
 	static {
 		LOGGER.debug("Initializing SINGLEOBJECTIVES_PROBLEMS in RegistrableConfiguration class.");
-		SINGLEOBJECTIVES_PROBLEMS.add(PipeOptimizingRegister.class);
+		SINGLEOBJECTIVES_PROBLEMS.add(PipeOptimizingGARegister.class);
+		SINGLEOBJECTIVES_PROBLEMS.add(PipeOptimizingDERegister.class);
 	}
 	
 	// Multiobjectives

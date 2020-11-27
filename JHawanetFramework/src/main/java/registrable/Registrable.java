@@ -5,7 +5,7 @@ import annotations.registrable.*;
 import model.metaheuristic.operator.Operator;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import registrable.singleobjective.PipeOptimizingRegister;
+import registrable.singleobjective.PipeOptimizingGARegister;
 
 import java.util.Map;
 
@@ -85,7 +85,7 @@ import java.util.Map;
  * {@link NumberToggleInput#groupID()} are the same. <br>
  * <br>
  * 
- * A example is showed in the class {@link PipeOptimizingRegister}.
+ * A example is showed in the class {@link PipeOptimizingGARegister}.
  *
  */
 public interface Registrable<R> {
