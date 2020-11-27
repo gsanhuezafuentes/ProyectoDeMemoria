@@ -25,7 +25,7 @@ public class IntegerSinglePointCrossover implements CrossoverOperator<IntegerSol
      * Constructor
      * @param crossoverProbability the crossover probability
      */
-    @DefaultConstructor(@NumberInput(displayName = "CrossoverProbability", defaultValue = 0.1))
+    @DefaultConstructor(numbers = @NumberInput(displayName = "CrossoverProbability", defaultValue = 0.1))
     public IntegerSinglePointCrossover(double crossoverProbability) {
         this(crossoverProbability, () -> JavaRandom.getInstance().nextDouble(),
                 (a, b) -> JavaRandom.getInstance().nextInt(a, b));

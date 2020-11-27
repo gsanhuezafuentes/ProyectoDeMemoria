@@ -1,5 +1,6 @@
 package controller.util;
 
+import annotations.EnumInput;
 import annotations.NumberInput;
 import annotations.operator.DefaultConstructor;
 import annotations.registrable.*;
@@ -15,6 +16,7 @@ import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Parameter;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -107,8 +109,11 @@ public class ReflectionUtils {
      * <ol>
      * 		<li>Verify if {@code registrable} has only a public constructor</li>
      * 		<li>Verify if {@code registrable} has {@link NewProblem} annotation in his only one constructor </li>
-     * 		<li>Verify if {@code registrable} has the same number of parameters has values defined in {@link Parameters} annotation in the constructor</li>
-     * 		<li>Verify if {@code registrable} has the parameters in the correct order and if the parameters are only of type Object, File, int or double or his wrapper Integer, Double. The order is (Object..., File ..., int|double ...)</li>
+     * 		<li>Verify if {@code registrable} has the same number of parameters has values defined in {@link Parameters}
+     * 		annotation in the constructor</li>
+     * 		<li>Verify if {@code registrable} has the parameters in the correct order and if the parameters are only of
+     * 		type Object, File, Enumerator, boolean, int or double or his wrapper Integer, Double. The order is (Object...,
+     * 		File ..., Enumerator, boolean int|double ...)</li>
      * 		<li>Verify if {@code registrable}'s constructor parameters correspond to the type defined by {@link Parameters}</li>
      * 		<li>Verify if {@code registrable} constructor doesn't have parameters when {@link Parameters} annotation isn't used</li>
      * </ol>
@@ -163,25 +168,45 @@ public class ReflectionUtils {
             Class<?>[] parameterTypes = constructor.getParameterTypes();
             int objectCount = 0;
             int fileCount = 0;
+            int enumCount = 0;
+            int booleanCount = 0;
             int numberCount = 0;
             for (int i = 0; i < parameterTypes.length; i++) {
                 Class<?> parameterType = parameterTypes[i];
                 if (parameterType == Object.class) {
-                    if (fileCount != 0 || numberCount != 0) {
+                    if (fileCount != 0 || enumCount != 0 || booleanCount != 0 || numberCount != 0) {
                         throw new IllegalRegistrableException(
-                                "The order of operator isn't valid. Confirm that the order is (Object ..., File ..., double or int ...) in "
+                                "The order of operator isn't valid. Confirm that the order is (Object ..., File ..., " +
+                                        "Enumerator ..., boolean ..., double or int ...) in "
                                         + registrable.getName());
 
                     }
                     objectCount++;
                 } else if (parameterType == File.class) {
-                    if (numberCount != 0) {
+                    if (enumCount != 0 || booleanCount != 0 || numberCount != 0) {
                         throw new IllegalRegistrableException(
-                                "The order of operator isn't valid. Confirm that the order is (object ..., File ..., double or int ...) in "
+                                "The order of operator isn't valid. Confirm that the order is (Object ..., File ..., " +
+                                        "Enumerator ..., boolean ..., double or int ...) in "
                                         + registrable.getName());
 
                     }
                     fileCount++;
+                } else if (parameterType.isEnum()) {
+                    if (booleanCount != 0 || numberCount != 0) {
+                        throw new IllegalRegistrableException(
+                                "The order of operator isn't valid. Confirm that the order is (Object ..., File ..., " +
+                                        "Enumerator ..., boolean ..., double or int ...) in "
+                                        + registrable.getName());
+                    }
+                    enumCount++;
+                } else if (parameterType.equals(boolean.class) || parameterType.equals(Boolean.class)) {
+                    if (numberCount != 0) {
+                        throw new IllegalRegistrableException(
+                                "The order of operator isn't valid. Confirm that the order is (Object ..., File ..., " +
+                                        "Enumerator ..., boolean ..., double or int ...) in "
+                                        + registrable.getName() + ".");
+                    }
+                    booleanCount++;
                 } else if (parameterType.equals(int.class)
                         || parameterType.equals(Integer.class)
                         || parameterType.equals(double.class)
@@ -200,18 +225,28 @@ public class ReflectionUtils {
             // Parameters annotation
             if (objectCount != parametersAnnotation.operators().length) {
                 throw new IllegalRegistrableException("The number of " + OperatorInput.class.getName()
-                        + "doesn't correspond to the number of Object parameter in constructor");
+                        + " doesn't correspond to the number of Object parameter in constructor");
             }
 
             if (fileCount != parametersAnnotation.files().length) {
                 throw new IllegalRegistrableException("The number of " + FileInput.class.getName()
-                        + "doesn't correspond to the number of File parameter in constructor");
+                        + " doesn't correspond to the number of File parameter in constructor");
+            }
+
+            if (enumCount != parametersAnnotation.enums().length) {
+                throw new IllegalRegistrableException("The number of " + EnumInput.class.getName()
+                        + " doesn't correspond to the number of enum types parameters in constructor");
+            }
+
+            if (booleanCount != parametersAnnotation.booleans().length) {
+                throw new IllegalRegistrableException("The number of " + Boolean.class.getName()
+                        + " doesn't correspond to the number of boolean parameter in constructor");
             }
 
             if (numberCount != parametersAnnotation.numbers().length + parametersAnnotation.numbersToggle().length) {
-                throw new IllegalRegistrableException("The number of " + NumberInput.class.getName() + "plus the number of "
+                throw new IllegalRegistrableException("The number of " + NumberInput.class.getName() + " plus the number of "
                         + NumberToggleInput.class.getName()
-                        + "doesn't correspond to the number of int|Integer or double|Double parameter in constructor");
+                        + " doesn't correspond to the number of int|Integer or double|Double parameter in constructor.");
             }
 
             // checks that entries with the same group id are consecutively
@@ -224,7 +259,23 @@ public class ReflectionUtils {
                         lastAdded = numberToggle.groupID();
                         if (addedGroupId.contains(lastAdded)) {
                             throw new IllegalRegistrableException(
-                                    "The NumberToggleInput with the same group id are not consecutive");
+                                    "The NumberToggleInput with the same group id are not consecutive.");
+                        }
+                    }
+                }
+            }
+
+            // checks that default value of Enum is correct.
+            if (parametersAnnotation.enums().length != 0) {
+                for (EnumInput enumInput : parametersAnnotation.enums()) {
+                    String defaultValue = enumInput.defaultValue();
+                    if (!(defaultValue == null || defaultValue.isEmpty())){
+                        boolean isValid = Arrays.stream(enumInput.enumClass().getEnumConstants())
+                                .anyMatch(anEnum -> anEnum.name().equals(defaultValue));
+
+                        if (!isValid){
+                            throw new IllegalRegistrableException("The EnumInput default value for " + enumInput.enumClass().getCanonicalName() +
+                                    " isn't correct because not exist a enum constant named " + defaultValue + ".");
                         }
                     }
                 }
@@ -232,7 +283,7 @@ public class ReflectionUtils {
 
         } else if (constructor.getParameterCount() != 0) {
             throw new IllegalRegistrableException("The constructor of " + registrable.getName()
-                    + " has input parameters but there isn't a ParameterAnnotation describing it");
+                    + " has input parameters but there isn't a ParameterAnnotation describing it.");
         }
     }
 
@@ -297,7 +348,7 @@ public class ReflectionUtils {
 
                         // Test if the number of parameter in default constructor are the same that the
                         // defined in DefaultConstructor annotation
-                        if (defaultConstructor.getParameterCount() != constructorAnnotation.value().length) {
+                        if (defaultConstructor.getParameterCount() != constructorAnnotation.numbers().length) {
                             throw new IllegalOperatorException("The default constructor of " + operatorClass.getName()
                                     + " hasn't the same number of parameter that the defined in the DefaultConstructor annotation");
 
@@ -387,6 +438,8 @@ public class ReflectionUtils {
         Objects.requireNonNull(parametersAnnotation);
         int numberOfParametersInAnnotation = parametersAnnotation.operators().length
                 + parametersAnnotation.files().length //
+                + parametersAnnotation.enums().length //
+                + parametersAnnotation.booleans().length //
                 + parametersAnnotation.numbers().length//
                 + parametersAnnotation.numbersToggle().length;
         return numberOfParametersInAnnotation;
@@ -424,6 +477,7 @@ public class ReflectionUtils {
                                                                          Object[] parameters) throws InvocationTargetException {
         Objects.requireNonNull(registrableClass);
         Objects.requireNonNull(parameters);
+        LOGGER.debug("Creating registrable {} with parameters {}.", registrableClass.getName(), parameters);
 
 
         Constructor<?> constructor = ReflectionUtils.getNewProblemConstructor(registrableClass);
@@ -470,6 +524,7 @@ public class ReflectionUtils {
     public static Object createOperatorInstance(Class<?> operatorClass, Object[] parameters) throws InvocationTargetException {
         Objects.requireNonNull(operatorClass);
         Objects.requireNonNull(parameters);
+        LOGGER.debug("Creating operator {} with parameters {}.", operatorClass.getName(), parameters);
 
         Constructor<?> constructor = ReflectionUtils.getDefaultConstructor(operatorClass);
         Object operator;
@@ -495,6 +550,7 @@ public class ReflectionUtils {
      */
     public static Object createIndicatorInstance(Class<? extends GenericIndicator> indicatorClass) throws InvocationTargetException {
         Objects.requireNonNull(indicatorClass);
+        LOGGER.debug("Creating indicator {}.", indicatorClass.getName());
         try {
             // Call to default constructor without parameters.
             Constructor<?> constructor = indicatorClass.getConstructor();

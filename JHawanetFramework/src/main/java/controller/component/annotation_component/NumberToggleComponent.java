@@ -1,5 +1,6 @@
 package controller.component.annotation_component;
 
+import annotations.EnumInput;
 import annotations.registrable.NumberToggleInput;
 import controller.util.TextInputUtil;
 import javafx.scene.control.RadioButton;
@@ -10,6 +11,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
+/**
+ * This class create the component for {@link NumberToggleInput}.
+ */
 public class NumberToggleComponent {
 
     private final NumberToggleInput annotation;
@@ -24,7 +28,8 @@ public class NumberToggleComponent {
      * @param annotation    the annotation
      * @param parameterType the type that describe the annotation
      * @param toggleGroup   the toggle group where the element of this component has to be added.
-     * @throws IllegalArgumentException if parameterType isnot a int, Integer, double or Double type.
+     * @throws NullPointerException     if annotation, parameterType or toggleGroup is null
+     * @throws IllegalArgumentException if parameterType isn't a int, Integer, double or Double type.
      */
     private NumberToggleComponent(NumberToggleInput annotation, Class<?> parameterType, ToggleGroup toggleGroup) {
         Objects.requireNonNull(annotation);
@@ -104,7 +109,7 @@ public class NumberToggleComponent {
      * @param toggleGroup the toggle group used by the radio button created by this component
      * @param pane the pane where add elements.
      * @param gridRowIndex the row where add the elements.
-     * @throws NullPointerException     if annotation or parameterType is null
+     * @throws NullPointerException     if annotation, parameterType or toggleGroup is null
      * @throws IllegalArgumentException if parameterType isn't a int, Integer, double or Double type.
      */
     public static NumberToggleComponent createComponent(NumberToggleInput annotation, Class<?> parameterType, ToggleGroup toggleGroup, GridPane pane, int gridRowIndex) {

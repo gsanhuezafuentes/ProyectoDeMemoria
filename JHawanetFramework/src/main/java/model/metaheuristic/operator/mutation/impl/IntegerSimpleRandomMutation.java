@@ -24,7 +24,7 @@ public class IntegerSimpleRandomMutation implements MutationOperator<IntegerSolu
 	 * Constructor
 	 * @param probability the probability of mutation
 	 */
-	@DefaultConstructor(@NumberInput(displayName = "Probability", defaultValue = 0.03))
+	@DefaultConstructor(numbers = @NumberInput(displayName = "Probability", defaultValue = 0.03))
 	public IntegerSimpleRandomMutation(double probability) {
 		this(probability, () -> JavaRandom.getInstance().nextDouble(),
 				(a, b) -> JavaRandom.getInstance().nextInt(a, b));

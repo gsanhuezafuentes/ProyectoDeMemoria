@@ -26,7 +26,7 @@ public class IntegerRangeRandomMutation implements MutationOperator<IntegerSolut
      * @param probability the probability of mutation
      * @param range       the range of mutation
      */
-    @DefaultConstructor({@NumberInput(displayName = "Probability", defaultValue = 0.1),
+    @DefaultConstructor(numbers = {@NumberInput(displayName = "Probability", defaultValue = 0.1),
             @NumberInput(displayName = "Range", defaultValue = 1)})
     public IntegerRangeRandomMutation(double probability, int range) {
         this(probability, range, () -> JavaRandom.getInstance().nextDouble(),

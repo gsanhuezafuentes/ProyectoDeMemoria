@@ -78,7 +78,7 @@ public class IntegerPolynomialMutation implements MutationOperator<IntegerSoluti
      * @param mutationProbability the mutation probability
      * @param distributionIndex   the distribution index
      */
-    @DefaultConstructor({@NumberInput(displayName = "MutationProbability", defaultValue = 0.01),
+    @DefaultConstructor(numbers = {@NumberInput(displayName = "MutationProbability", defaultValue = 0.01),
             @NumberInput(displayName = "DistributionIndex", defaultValue = 20)})
     public IntegerPolynomialMutation(double mutationProbability, double distributionIndex) {
         this(mutationProbability, distributionIndex, () -> JavaRandom.getInstance().nextDouble());

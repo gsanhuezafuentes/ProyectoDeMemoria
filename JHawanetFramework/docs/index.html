@@ -4732,7 +4732,7 @@ public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/nuevos_experimentos/MenuDelProblema.png" alt="MenuDelProblema">
+<img src="images/anotaciones/MenuDelProblema.png" alt="MenuDelProblema">
 </div>
 </div>
 <div class="paragraph">
@@ -4751,6 +4751,12 @@ public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator
 </li>
 <li>
 <p><em>File</em></p>
+</li>
+<li>
+<p><em>Enum</em></p>
+</li>
+<li>
+<p><em>boolean</em></p>
 </li>
 <li>
 <p><em>int</em> o <em>double</em></p>
@@ -4772,6 +4778,12 @@ public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator
 <p><em>files</em>: Arreglo que recibe anotaciones del tipo <em>FileInput</em>.</p>
 </li>
 <li>
+<p><em>enums</em>: Arreglo que recibe anotaciones del tipo <em>EnumInput</em>.</p>
+</li>
+<li>
+<p><em>booleans</em>: Arreglo que recibe anotaciones del tipo <em>BooleanInput</em>.</p>
+</li>
+<li>
 <p><em>numbers</em>:  Arreglo que recibe anotaciones del tipo <em>NumberInput</em>.</p>
 </li>
 <li>
@@ -4786,7 +4798,7 @@ public PipeOptimizingRegister(Object selectionOperator, Object crossoverOperator
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Los valores de las anotaciones son inyectados en el constructor de la clase en el orden de la lista de elementos definidas anteriormente. Es decir, <em>operators</em> (inyectados como <em>Object</em>), <em>files</em> (<em>File</em>), <em>numbers</em> (<em>int</em> o <em>double</em>) y <em>numbersToggle</em>(<em>int</em> o <em>double</em>).
+Los valores de las anotaciones son inyectados en el constructor de la clase en el orden de la lista de elementos definidas anteriormente. Es decir, <em>operators</em> (inyectados como <em>Object</em>), <em>files</em> (<em>File</em>), <em>enums</em> (inyectados en como un enumerador), <em>booleans</em> (inyectados como boolean) ,<em>numbers</em> (<em>int</em> o <em>double</em>) y <em>numbersToggle</em>(<em>int</em> o <em>double</em>).
 </td>
 </tr>
 </table>
@@ -4820,7 +4832,7 @@ Dentro de esta anotación existen varios elementos. Estos elementos son:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/nuevos_experimentos/ComponenteOperatorInput.png" alt="ComponenteOperatorInput">
+<img src="images/anotaciones/ComponenteOperatorInput.png" alt="ComponenteOperatorInput">
 </div>
 </div>
 <div class="paragraph">
@@ -4828,7 +4840,7 @@ Dentro de esta anotación existen varios elementos. Estos elementos son:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/nuevos_experimentos/ComponenteOperatorInputExpandido.png" alt="ComponenteOperatorInputExpandido">
+<img src="images/anotaciones/ComponenteOperatorInputExpandido.png" alt="ComponenteOperatorInputExpandido">
 </div>
 </div>
 <div class="paragraph">
@@ -4873,7 +4885,7 @@ Dentro de esta anotación existen varios elementos. Éstos son:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/nuevos_experimentos/ComponenteFileInput.png" alt="ComponenteFileInput">
+<img src="images/anotaciones/ComponenteFileInput.png" alt="ComponenteFileInput">
 </div>
 </div>
 <div class="ulist">
@@ -4904,7 +4916,7 @@ Dentro de esta anotación existen varios elementos. Éstos son:</p>
 <p><em>groudID</em>: <em>String</em> con un id para el grupo. Las anotaciones <em>NumberToggerInput</em> que tengan el mismo id, en la interfaz, se encuentran en una sección cuyo título es el nombre del grupo. Esto se aprecia en la figura siguiente.</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/nuevos_experimentos/ComponenteNumberToggleInput.png" alt="ComponenteNumberToggleInput">
+<img src="images/anotaciones/ComponenteNumberToggleInput.png" alt="ComponenteNumberToggleInput">
 </div>
 </div>
 </li>
@@ -4939,7 +4951,7 @@ Dentro de esta anotación existen varios elementos. Éstos son:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/nuevos_experimentos/ComponenteNumberInput.png" alt="ComponenteNumberInput">
+<img src="images/anotaciones/ComponenteNumberInput.png" alt="ComponenteNumberInput">
 </div>
 </div>
 <div class="paragraph">
@@ -4954,6 +4966,92 @@ Dentro de esta anotación existen varios elementos. Éstos son:</p>
 <p><em>defaultValue</em>: Valor por defecto de la propiedad. Si el tipo de parámetro en el constructor de la clase que hereda de <em>Registrable</em> es un entero, pero se ingresa como valor por defecto un número con decimales, los decimales serán truncados. Si este elemento no se define su valor por defecto es 0.</p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_enuminput"><em>@EnumInput</em></h5>
+<div class="paragraph">
+<p>Esta anotación indica que hay un parámetro del tipo <em>Enum</em>. Esta anotación agrega en la interfaz un <em>ComboBox</em> que permite seleccionar la constante del enumerador. En la interfaz, esta anotación es visualizada como se muestra a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/anotaciones/ComponenteEnumerator.png" alt="ComponenteEnumerator">
+</div>
+</div>
+<div class="paragraph">
+<p>Dentro de esta anotación existen los siguientes elementos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>displayName</em>: Nombre del parámetro.</p>
+</li>
+<li>
+<p><em>enumClass</em>: El tipo de enumerador.</p>
+</li>
+<li>
+<p><em>defaultValue</em>: String que indica el valor por defecto. El <em>String</em> tiene que ser el nombre de una constante presente en el enumerador indicado en <em>enumClass</em>. Por defecto, este valor es un <em>String</em> vacio. Si este elemento tiene asignado el un <em>String</em> vacio o null, entonces el componente de la GUI tomara la primera constante del enumerador.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Si el <em>String</em> guardado en <em>defaultValue</em> no corresponde al nombre de una constante en el enumerador <em>enumClass</em> una excepción será lanzada.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A continuación se presenta un ejemplo del uso de esta anotación.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">enum Type{
+        ZERO, ONE, TWO, THREE
+}
+
+@EnumInput(displayName = "Enum Type", enumClass = Type.class, defaultValue = "TWO")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Esta anotación puede ser utilizada dentro de la anotación <em>@DefaultConstructor</em> y <em>@Parameters</em></strong>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_booleaninput"><em>@BooleanInput</em></h5>
+<div class="paragraph">
+<p>Esta anotación indica que hay un parámetro del tipo boolean. En la interfaz, esta anotación es visualizada como un <em>ComboBox</em> como se muestra a continuación.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/anotaciones/ComponenteBoolean.png" alt="ComponenteBoolean">
+</div>
+</div>
+<div class="paragraph">
+<p>Dentro de esta anotación existen los siguientes elementos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>displayName</em>: Nombre del parámetro.</p>
+</li>
+<li>
+<p><em>defaultValue</em>: Valor por defecto de la propiedad. Este valor es opcional y por defecto es false.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A continuación se presenta un ejemplo del uso de esta anotación.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="java">@BooleanInput(displayName = "Is Enabled")</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p><strong>Esta anotación puede ser utilizada dentro de la anotación <em>@DefaultConstructor</em> y <em>@Parameters</em></strong>.</p>

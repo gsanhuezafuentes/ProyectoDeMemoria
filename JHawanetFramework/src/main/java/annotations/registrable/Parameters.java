@@ -1,5 +1,6 @@
 package annotations.registrable;
 
+import annotations.BooleanInput;
 import annotations.EnumInput;
 import annotations.NumberInput;
 import registrable.Registrable;
@@ -43,6 +44,12 @@ public @interface Parameters {
 	 * @return the EnumInput annotation.
 	 */
 	EnumInput[] enums() default {};
+
+	/**
+	 * Get the boolean input annotation. The boolean value will be injected in registrable in the specific boolean field.
+	 * @return the BooleanInput annotation.
+	 */
+	BooleanInput[] booleans() default {};
 
 	/**
 	 * Get the number input annotation. The number will be injected in registrable

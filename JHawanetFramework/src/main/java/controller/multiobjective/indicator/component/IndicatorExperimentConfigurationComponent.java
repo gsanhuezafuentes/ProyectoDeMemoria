@@ -103,7 +103,7 @@ public class IndicatorExperimentConfigurationComponent extends StackPane {
 
             private ChangeListener<? super Boolean> selectedListener = (prop, oldV, newV) -> {
                 if (newV) {
-                    System.out.println("" + getItem().getName());
+                    LOGGER.info("Change to {} configuration window.", getItem().getName());
                     configurationPane.getChildren().clear();
 
                     if (getItem() instanceof ExperimentItem) {

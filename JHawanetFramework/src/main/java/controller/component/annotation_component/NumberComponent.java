@@ -1,5 +1,6 @@
 package controller.component.annotation_component;
 
+import annotations.EnumInput;
 import annotations.NumberInput;
 import controller.util.TextInputUtil;
 import javafx.scene.control.Label;
@@ -9,6 +10,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
+/**
+ * This class create the component for {@link NumberInput}.
+ */
 public class NumberComponent {
     private final NumberInput annotation;
     private final Class<?> parameterType;

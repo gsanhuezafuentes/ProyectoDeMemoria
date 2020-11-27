@@ -54,7 +54,7 @@ public class TournamentSelection<S extends Solution<?>> implements SelectionOper
      *
      * @param n_arity the number of solutions to realize the tournament
      */
-    @DefaultConstructor(@NumberInput(displayName = "Arity", defaultValue = 2))
+    @DefaultConstructor(numbers = @NumberInput(displayName = "Arity", defaultValue = 2))
     public TournamentSelection(int n_arity) {
         this( n_arity, new DominanceComparator<S>());
     }

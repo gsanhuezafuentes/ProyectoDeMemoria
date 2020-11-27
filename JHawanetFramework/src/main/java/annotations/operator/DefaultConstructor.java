@@ -1,5 +1,6 @@
 package annotations.operator;
 
+import annotations.EnumInput;
 import annotations.NumberInput;
 import model.metaheuristic.operator.Operator;
 
@@ -26,5 +27,20 @@ public @interface DefaultConstructor {
 	 *
 	 * @return the NumberInput annotation
 	 */
-	NumberInput[] value() default {};
+	NumberInput[] numbers() default {};
+
+	/**
+	 * Get the enum annotation. This will be injected in a Enum type.
+	 *
+	 * @return the NumberInput annotation
+	 */
+	EnumInput[] enums() default {};
+
+	/**
+	 * Get the boolean annotation. This will be injected in boolean parameter.
+	 *
+	 * @return the NumberInput annotation
+	 */
+	EnumInput[] booleans() default {};
+
 }

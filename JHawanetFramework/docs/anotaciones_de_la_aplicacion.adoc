@@ -59,7 +59,7 @@ Los elementos en esta anotación consisten en:
 
 El nombre dado en el elemento _displayName_, es el nombre visible del problema en el menú de la aplicación y permite agrupar a los problemas que tengan el mismo nombre, pero distintos algoritmos, como se ve en la siguiente imagen.
 
-image::images/nuevos_experimentos/MenuDelProblema.png[]
+image::images/anotaciones/MenuDelProblema.png[]
 
 Esta anotación solo puede estar en un constructor, *en caso de que esta anotación no esté presente, un error en tiempo de ejecución será lanzado*. 
 
@@ -69,7 +69,9 @@ Esta anotación permite agregar información acerca de los parámetros recibidos
 
 1. _Object_
 2. _File_
-3.  _int_ o _double_
+3. _Enum_
+4. _boolean_
+5. _int_ o _double_
 
 Si el constructor no declara los parámetros en ese orden un error en tiempo de ejecución será lanzado.
 
@@ -77,10 +79,12 @@ Dentro de esta anotación existen varios elementos. Estos elementos son:
 
 * _operators_: Arreglo que recibe anotaciones del tipo _OperatorInput_. 
 * _files_: Arreglo que recibe anotaciones del tipo _FileInput_.
+* _enums_: Arreglo que recibe anotaciones del tipo _EnumInput_.
+* _booleans_: Arreglo que recibe anotaciones del tipo _BooleanInput_.
 * _numbers_:  Arreglo que recibe anotaciones del tipo _NumberInput_.
 * _numbersToggle_: Arreglo que recibe anotaciones del tipo _NumberToggleInput_.
 
-NOTE: Los valores de las anotaciones son inyectados en el constructor de la clase en el orden de la lista de elementos definidas anteriormente. Es decir, _operators_ (inyectados como _Object_), _files_ (_File_), _numbers_ (_int_ o _double_) y _numbersToggle_(_int_ o _double_).
+NOTE: Los valores de las anotaciones son inyectados en el constructor de la clase en el orden de la lista de elementos definidas anteriormente. Es decir, _operators_ (inyectados como _Object_), _files_ (_File_), _enums_ (inyectados en como un enumerador), _booleans_ (inyectados como boolean) ,_numbers_ (_int_ o _double_) y _numbersToggle_(_int_ o _double_).
 
 El valor por defecto para todos los elementos mencionados anteriormente es un arreglo vacío ({}).
 No usar la anotación _@Parameters_ tiene el mismo efecto que usar la anotación, pero con sus valores por defecto.
@@ -97,11 +101,11 @@ Dentro de esta anotación existen varios elementos. Estos elementos son:
 
 En la ventana de configuración de problema, estos parámetros son vistos con un _ComboBox_ como muestra la siguiente imagen. 
 
-image::images/nuevos_experimentos/ComponenteOperatorInput.png[]
+image::images/anotaciones/ComponenteOperatorInput.png[]
 
 Las alternativas disponibles dentro del _ComboBox_ están dadas por aquellas indicadas en el elemento value de este operador. Como se muestrará en la siguiente figura la única alternativa para el _Selection Operator_ es el operador _UniformSelection_.
  
-image::images/nuevos_experimentos/ComponenteOperatorInputExpandido.png[]
+image::images/anotaciones/ComponenteOperatorInputExpandido.png[]
 
 Por defecto, el _ComboBox_ selecciona el primer elemento de la lista.
 El botón _Configure_ permite configurar los parámetros que recibe el constructor del operador, aquel que posee la anotación _@DefaultConstructor_. Para el caso del operador _UniformSelection_, su interfaz es la siguiente:
@@ -123,7 +127,7 @@ Dentro de esta anotación existen varios elementos. Éstos son:
 
 * _displayName_: Nombre del parámetro. Este nombre también corresponde al nombre visualizado en la ventana de configuración como se muestra a continuación.
   
-image::images/nuevos_experimentos/ComponenteFileInput.png[]
+image::images/anotaciones/ComponenteFileInput.png[]
 
 * _type_: Indica el modo en que se abrirá el _FileChooser_. Este elemento recibe un enumerado del tipo _Type_; los cuales son _Type.OPEN_, _Type.SAVE_, que abren un _FileChooser_ para leer o guardar un archivo; y _Type.Directory_, el cual abre un _DirectoryChooser_ para seleccionar un directorio. La opción por defecto es _FileType.OPEN_.
 
@@ -139,7 +143,7 @@ Dentro de esta anotación existen varios elementos. Estos elementos son:
 
 * _groudID_: _String_ con un id para el grupo. Las anotaciones _NumberToggerInput_ que tengan el mismo id, en la interfaz, se encuentran en una sección cuyo título es el nombre del grupo. Esto se aprecia en la figura siguiente.
 +
-image::images/nuevos_experimentos/ComponenteNumberToggleInput.png[]
+image::images/anotaciones/ComponenteNumberToggleInput.png[]
 
 * _displayName_: Nombre del parámetro.
 * _defaultValue_: Valor por defecto de la propiedad. Si el tipo de parámetro en el constructor de la clase que hereda de _Registrable_ es un entero, pero se ingresa como valor por defecto un número con decimales, los decimales serán truncados. Si este elemento no se define su valor por defecto es 0.
@@ -158,11 +162,56 @@ Las anotaciones presentadas en las dos secciones anteriores deben ser usadas en 
 
 Esta anotación indica que hay un parámetro del tipo _int_ o _double_ o sus tipos envoltorios _Integer_ o _Double_, respectivamente. Esta anotación agrega en la interfaz un _TextField_ que solo permite como entrada un número.  Si el tipo del parámetro es _int_ o _Integer_, entonces el _TextField_ solo permite ingresar números enteros. Por otro lado, si el parámetro es _double_ o _Double_, entonces en la interfaz se acepta el ingreso de números enteros o decimales. En la interfaz, esta anotación es visualizada como se muestra a continuación.
 
-image::images/nuevos_experimentos/ComponenteNumberInput.png[]
+image::images/anotaciones/ComponenteNumberInput.png[]
 
 Dentro de esta anotación existen los siguientes elementos:
 
 * _displayName_: Nombre del parámetro.
 * _defaultValue_: Valor por defecto de la propiedad. Si el tipo de parámetro en el constructor de la clase que hereda de _Registrable_ es un entero, pero se ingresa como valor por defecto un número con decimales, los decimales serán truncados. Si este elemento no se define su valor por defecto es 0.
+
+===== _@EnumInput_
+
+Esta anotación indica que hay un parámetro del tipo _Enum_. Esta anotación agrega en la interfaz un _ComboBox_ que permite seleccionar la constante del enumerador. En la interfaz, esta anotación es visualizada como se muestra a continuación.
+
+image::images\anotaciones\ComponenteEnumerator.png[]
+
+Dentro de esta anotación existen los siguientes elementos:
+
+* _displayName_: Nombre del parámetro.
+* _enumClass_: El tipo de enumerador.
+* _defaultValue_: String que indica el valor por defecto. El _String_ tiene que ser el nombre de una constante presente en el enumerador indicado en _enumClass_. Por defecto, este valor es un _String_ vacio. Si este elemento tiene asignado el un _String_ vacio o null, entonces el componente de la GUI tomara la primera constante del enumerador.
+
+CAUTION: Si el _String_ guardado en _defaultValue_ no corresponde al nombre de una constante en el enumerador _enumClass_ una excepción será lanzada.
+
+A continuación se presenta un ejemplo del uso de esta anotación.
+
+[source, java]
+----
+enum Type{
+        ZERO, ONE, TWO, THREE
+}
+
+@EnumInput(displayName = "Enum Type", enumClass = Type.class, defaultValue = "TWO")
+----
+
+*Esta anotación puede ser utilizada dentro de la anotación _@DefaultConstructor_ y _@Parameters_*.
+
+===== _@BooleanInput_
+
+Esta anotación indica que hay un parámetro del tipo boolean. En la interfaz, esta anotación es visualizada como un _ComboBox_ como se muestra a continuación.
+
+image::images/anotaciones/ComponenteBoolean.png[]
+
+Dentro de esta anotación existen los siguientes elementos:
+
+* _displayName_: Nombre del parámetro.
+* _defaultValue_: Valor por defecto de la propiedad. Este valor es opcional y por defecto es false.
+
+A continuación se presenta un ejemplo del uso de esta anotación.
+
+[source, java]
+----
+@BooleanInput(displayName = "Is Enabled")
+----
 
 *Esta anotación puede ser utilizada dentro de la anotación _@DefaultConstructor_ y _@Parameters_*.

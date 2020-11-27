@@ -26,7 +26,7 @@ public class UniformSelection<S extends Solution<?>> implements SelectionOperato
 	 * @param constant the value constant. it has to be between the range [1.5, 2]
 	 * @throws IllegalArgumentException if constant is not between the range [1.5, 2]
 	 */
-	@DefaultConstructor(@NumberInput(displayName = "constant", defaultValue = 1.5))
+	@DefaultConstructor(numbers = @NumberInput(displayName = "constant", defaultValue = 1.5))
 	public UniformSelection(double constant) {
 		this(constant, new DominanceComparator<S>());
 
