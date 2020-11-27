@@ -1,6 +1,5 @@
 package controller.component.annotation_component;
 
-import annotations.EnumInput;
 import annotations.registrable.NumberToggleInput;
 import controller.util.TextInputUtil;
 import javafx.scene.control.RadioButton;

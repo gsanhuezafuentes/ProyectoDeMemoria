@@ -1,6 +1,5 @@
 package controller.multiobjective.indicator;
 
-import controller.ResultController;
 import controller.multiobjective.indicator.util.ExecutionIndicatorTask;
 import controller.util.ControllerUtils;
 import epanet.core.EpanetException;

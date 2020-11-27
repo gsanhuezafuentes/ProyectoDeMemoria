@@ -2,7 +2,6 @@ package model.epanet.element.networkdesign;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import model.epanet.element.Network;
 import model.epanet.element.utils.Point;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

@@ -28,8 +28,8 @@
  */
 package model.metaheuristic.operator.selection.impl;
 
-import annotations.operator.DefaultConstructor;
 import annotations.NumberInput;
+import annotations.operator.DefaultConstructor;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.solution.Solution;
 import model.metaheuristic.util.SolutionListUtils;

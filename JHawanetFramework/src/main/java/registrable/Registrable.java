@@ -1,6 +1,6 @@
 package registrable;
 
-import annotations.*;
+import annotations.NumberInput;
 import annotations.registrable.*;
 import model.metaheuristic.operator.Operator;
 import org.jetbrains.annotations.NotNull;

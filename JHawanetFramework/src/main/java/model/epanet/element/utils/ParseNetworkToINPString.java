@@ -1,6 +1,5 @@
 package model.epanet.element.utils;
 
-import controller.HydraulicSimulationResultWindowController;
 import model.epanet.element.Network;
 import model.epanet.element.networkcomponent.*;
 import model.epanet.element.networkcomponent.Pump.PumpProperty;

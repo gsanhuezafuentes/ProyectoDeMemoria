@@ -2,7 +2,6 @@ package model.epanet.element.networkcomponent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import model.epanet.element.Network;
 import model.epanet.element.systemoperation.Curve;
 import model.epanet.element.waterquality.Mixing;
 import org.jetbrains.annotations.NotNull;

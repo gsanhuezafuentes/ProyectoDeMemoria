@@ -1,6 +1,5 @@
 package controller.multiobjective.indicator.component;
 
-import application.RegistrableConfiguration;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

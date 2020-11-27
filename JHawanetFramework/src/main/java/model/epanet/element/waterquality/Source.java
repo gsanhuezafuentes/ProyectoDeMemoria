@@ -2,7 +2,6 @@ package model.epanet.element.waterquality;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import model.epanet.element.Network;
 import model.epanet.element.systemoperation.Pattern;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;

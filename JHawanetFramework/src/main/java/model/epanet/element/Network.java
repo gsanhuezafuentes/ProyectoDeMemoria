@@ -9,7 +9,6 @@ import model.epanet.element.optionsreport.QualityOption;
 import model.epanet.element.optionsreport.Report;
 import model.epanet.element.optionsreport.Time;
 import model.epanet.element.systemoperation.*;
-import model.epanet.element.utils.ParseNetworkToINPString;
 import model.epanet.element.waterquality.ReactionOption;
 import model.epanet.io.InpParser;
 import org.jetbrains.annotations.NotNull;

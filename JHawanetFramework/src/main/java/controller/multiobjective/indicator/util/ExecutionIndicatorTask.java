@@ -1,6 +1,5 @@
 package controller.multiobjective.indicator.util;
 
-import controller.singleobjective.util.SingleObjectiveExperimentTask;
 import exception.ApplicationException;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;

@@ -1,6 +1,5 @@
 package controller.component.annotation_component;
 
-import annotations.EnumInput;
 import annotations.NumberInput;
 import controller.util.TextInputUtil;
 import javafx.scene.control.Label;

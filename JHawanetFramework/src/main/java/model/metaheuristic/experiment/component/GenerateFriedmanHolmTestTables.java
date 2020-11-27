@@ -42,7 +42,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * This class computes the Friedman test ranking and generates a Latex script that produces a table

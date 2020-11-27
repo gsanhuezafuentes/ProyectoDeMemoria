@@ -1,7 +1,7 @@
 package model.metaheuristic.operator.mutation.impl;
 
-import annotations.operator.DefaultConstructor;
 import annotations.NumberInput;
+import annotations.operator.DefaultConstructor;
 import model.metaheuristic.operator.mutation.MutationOperator;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.util.random.BoundedRandomGenerator;

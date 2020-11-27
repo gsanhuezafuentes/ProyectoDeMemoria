@@ -1,6 +1,5 @@
 package controller.component.annotation_component;
 
-import annotations.EnumInput;
 import annotations.registrable.FileInput;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

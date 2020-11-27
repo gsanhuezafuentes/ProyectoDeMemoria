@@ -2,7 +2,6 @@ package model.epanet.element.networkcomponent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import model.epanet.element.Network;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;

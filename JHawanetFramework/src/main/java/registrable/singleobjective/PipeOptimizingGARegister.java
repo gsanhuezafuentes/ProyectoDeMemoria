@@ -1,6 +1,6 @@
 package registrable.singleobjective;
 
-import annotations.*;
+import annotations.NumberInput;
 import annotations.registrable.*;
 import epanet.core.EpanetAPI;
 import model.metaheuristic.algorithm.singleobjective.geneticalgorithm.GeneticAlgorithm2;

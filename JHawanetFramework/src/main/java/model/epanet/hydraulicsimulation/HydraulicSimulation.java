@@ -1,6 +1,5 @@
 package model.epanet.hydraulicsimulation;
 
-import controller.HydraulicSimulationResultWindowController;
 import epanet.core.*;
 import exception.ApplicationException;
 import org.jetbrains.annotations.NotNull;

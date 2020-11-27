@@ -1,6 +1,6 @@
 package registrable.multiobjective;
 
-import annotations.*;
+import annotations.NumberInput;
 import annotations.registrable.*;
 import model.io.JsonSimpleReader;
 import model.metaheuristic.algorithm.Algorithm;
@@ -26,7 +26,10 @@ import model.metaheuristic.util.evaluator.impl.SequentialSolutionEvaluator;
 import registrable.MultiObjectiveRegistrable;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
 
 public class PumpSchedulingNSGAIIRegister implements MultiObjectiveRegistrable {
 

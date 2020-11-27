@@ -1,7 +1,6 @@
 package controller.component.annotation_component;
 
 import annotations.EnumInput;
-import javafx.beans.property.ObjectPropertyBase;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;

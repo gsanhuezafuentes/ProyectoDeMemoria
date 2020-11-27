@@ -6,7 +6,6 @@ import annotations.NumberInput;
 import annotations.operator.DefaultConstructor;
 import annotations.registrable.OperatorInput;
 import annotations.registrable.OperatorOption;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import controller.util.ReflectionUtils;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
