@@ -4664,9 +4664,42 @@ public class Epsilon&lt;S extends Solution&lt;?&gt;&gt; extends GenericIndicator
 <div class="ulist">
 <ul>
 <li>
-<p><em>value</em>: Arreglo que recibe anotaciones del tipo <em>@NumberInput</em>.</p>
+<p><em>numbers</em>: Arreglo que recibe anotaciones del tipo <em>@NumberInput</em>.</p>
+</li>
+<li>
+<p><em>enums</em>: Arreglo que recibe anotaciones del tipo <em>EnumInput</em>.</p>
+</li>
+<li>
+<p><em>booleans</em>: Arreglo que recibe anotaciones del tipo <em>BooleanInput</em>.</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>El constructor con la anotación tiene que declarar los parámetros en el siguiente orden:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>int</em> o <em>double</em></p>
+</li>
+<li>
+<p><em>Enum</em></p>
+</li>
+<li>
+<p><em>boolean</em></p>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -5011,9 +5044,7 @@ Si el <em>String</em> guardado en <em>defaultValue</em> no corresponde al nombre
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="java">enum Type{
-        ZERO, ONE, TWO, THREE
-}
+<pre class="prettyprint highlight nowrap"><code data-lang="java">enum Type{ZERO, ONE, TWO, THREE}
 
 @EnumInput(displayName = "Enum Type", enumClass = Type.class, defaultValue = "TWO")</code></pre>
 </div>

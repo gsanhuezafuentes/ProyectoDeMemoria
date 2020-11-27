@@ -8,8 +8,20 @@ Esta anotación indica el constructor principal utilizado para crear el operador
 
 Los elementos en esta anotación son los siguientes:
 
-* _value_: Arreglo que recibe anotaciones del tipo _@NumberInput_.
+* _numbers_: Arreglo que recibe anotaciones del tipo _@NumberInput_.
+* _enums_: Arreglo que recibe anotaciones del tipo _EnumInput_.
+* _booleans_: Arreglo que recibe anotaciones del tipo _BooleanInput_.
 
+
+[CAUTION] 
+====
+El constructor con la anotación tiene que declarar los parámetros en el siguiente orden:
+
+1. _int_ o _double_
+2. _Enum_
+3. _boolean_
+
+====
 
 ==== Anotaciones pemitidas en la clases _Registrable_
 
@@ -187,9 +199,7 @@ A continuación se presenta un ejemplo del uso de esta anotación.
 
 [source, java]
 ----
-enum Type{
-        ZERO, ONE, TWO, THREE
-}
+enum Type{ZERO, ONE, TWO, THREE}
 
 @EnumInput(displayName = "Enum Type", enumClass = Type.class, defaultValue = "TWO")
 ----

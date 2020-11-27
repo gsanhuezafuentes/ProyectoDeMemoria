@@ -154,6 +154,7 @@ public class ReflectionUtils {
         Parameters parametersAnnotation = constructor.getAnnotation(Parameters.class);
         if (parametersAnnotation != null) {
             int numberOfParametersInAnnotation = getNumberOfParameterInParametersAnnotation(parametersAnnotation);
+
             // the constructor's parameter number as to be the same that the numbers of
             // parameters described by annotation.
             if (constructor.getParameterCount() != numberOfParametersInAnnotation) {
@@ -164,7 +165,7 @@ public class ReflectionUtils {
             }
 
             // Test the order of the parameters
-            // Order: Object, File, int | double
+            // Order: Object, File, enum, boolean, int | double
             Class<?>[] parameterTypes = constructor.getParameterTypes();
             int objectCount = 0;
             int fileCount = 0;
@@ -217,7 +218,7 @@ public class ReflectionUtils {
                 } else {
                     throw new IllegalRegistrableException("The type " + parameterType.getName()
                             + " is not valid type in the constructor " + registrable.getName()
-                            + ". Only can be used object, file, int(or Integer) or double(Double)");
+                            + ". Only can be used Object, File, Enumerator, boolean (or Boolean), int(or Integer) or double(Double)");
                 }
             }
 
@@ -269,11 +270,11 @@ public class ReflectionUtils {
             if (parametersAnnotation.enums().length != 0) {
                 for (EnumInput enumInput : parametersAnnotation.enums()) {
                     String defaultValue = enumInput.defaultValue();
-                    if (!(defaultValue == null || defaultValue.isEmpty())){
+                    if (!(defaultValue == null || defaultValue.isEmpty())) {
                         boolean isValid = Arrays.stream(enumInput.enumClass().getEnumConstants())
                                 .anyMatch(anEnum -> anEnum.name().equals(defaultValue));
 
-                        if (!isValid){
+                        if (!isValid) {
                             throw new IllegalRegistrableException("The EnumInput default value for " + enumInput.enumClass().getCanonicalName() +
                                     " isn't correct because not exist a enum constant named " + defaultValue + ".");
                         }
@@ -295,8 +296,7 @@ public class ReflectionUtils {
      * <ol>
      * <li>Verify that all operators has {@link DefaultConstructor} in only one
      * constructor.</li>
-     * <li>Verify that all operator has only int or double value in the default
-     * constructor</li>
+     * <li>Verify that all operator has the parameter in the next order: int, enum, boolean in his constructor</li>
      * <li>Verify that the {@link DefaultConstructor} has the same number of
      * elements that the parameters of constructor</li>
      * </ol>
@@ -317,56 +317,108 @@ public class ReflectionUtils {
                 for (OperatorOption operatorOption : operator.value()) {
                     // Test if operator has a default constructor
                     Class<?> operatorClass = operatorOption.value();
-                    // Test if it operator has been verified before.
-                    if (!verifiedOperators.contains(operatorClass)) {
-                        verifiedOperators.add(operatorClass);
-
-                        Constructor<?> defaultConstructor = null;
-                        int defaultConstructCount = 0;
-                        // count the number of default constructor
-                        for (Constructor<?> operatorConstructor : operatorClass.getConstructors()) {
-                            DefaultConstructor constructorAnnotation = operatorConstructor
-                                    .getAnnotation(DefaultConstructor.class);
-                            if (constructorAnnotation != null) {
-                                defaultConstructCount++;
-                                defaultConstructor = operatorConstructor;
-                            }
-                        }
-
-                        if (defaultConstructCount == 0) {
-                            throw new IllegalOperatorException(operatorClass.getName()
-                                    + " hasn't a public constructor with the DefaultConstructor annotation ");
-                        }
-
-                        if (defaultConstructCount > 1) {
-                            throw new IllegalOperatorException(operatorClass.getName()
-                                    + " has more than one constructor with the DefaultConstructor annotation ");
-                        }
-
-                        DefaultConstructor constructorAnnotation = defaultConstructor
-                                .getAnnotation(DefaultConstructor.class);
-
-                        // Test if the number of parameter in default constructor are the same that the
-                        // defined in DefaultConstructor annotation
-                        if (defaultConstructor.getParameterCount() != constructorAnnotation.numbers().length) {
-                            throw new IllegalOperatorException("The default constructor of " + operatorClass.getName()
-                                    + " hasn't the same number of parameter that the defined in the DefaultConstructor annotation");
-
-                        }
-
-                        // Test if each parameter is one of type defined in regex expression
-                        for (Class<?> type : defaultConstructor.getParameterTypes()) {
-                            if (!(type.equals(int.class)
-                                    || type.equals(Integer.class)
-                                    || type.equals(double.class)
-                                    || type.equals(Double.class))) {
-
-                                throw new IllegalOperatorException("The default constructor of " + operatorClass.getName()
-                                        + " has parameters with a type is not valid for default constructor. The only valid type are int or double or his wrapper classes(Integer, Double)");
-                            }
-                        }
-                    }
+                    validateOperator(operatorClass);
                 }
+            }
+        }
+
+    }
+
+    /**
+     * @see #validateOperators(Class)
+     * @param operatorClass the operator class
+     */
+    public static void validateOperator(Class<?> operatorClass){
+        // Test if it operator has been verified before.
+        if (!verifiedOperators.contains(operatorClass)) {
+            verifiedOperators.add(operatorClass);
+
+            Constructor<?> defaultConstructor = null;
+            int defaultConstructCount = 0;
+            // count the number of default constructor
+            for (Constructor<?> operatorConstructor : operatorClass.getConstructors()) {
+                DefaultConstructor constructorAnnotation = operatorConstructor
+                        .getAnnotation(DefaultConstructor.class);
+                if (constructorAnnotation != null) {
+                    defaultConstructCount++;
+                    defaultConstructor = operatorConstructor;
+                }
+            }
+
+            if (defaultConstructCount == 0) {
+                throw new IllegalOperatorException(operatorClass.getName()
+                        + " hasn't a public constructor with the DefaultConstructor annotation ");
+            }
+
+            if (defaultConstructCount > 1) {
+                throw new IllegalOperatorException(operatorClass.getName()
+                        + " has more than one constructor with the DefaultConstructor annotation ");
+            }
+
+            DefaultConstructor constructorAnnotation = defaultConstructor
+                    .getAnnotation(DefaultConstructor.class);
+
+            int numberOfParameters = constructorAnnotation.numbers().length
+                    + constructorAnnotation.enums().length + constructorAnnotation.booleans().length;
+
+            // Test if the number of parameter in default constructor are the same that the
+            // defined in DefaultConstructor annotation
+            if (defaultConstructor.getParameterCount() != numberOfParameters) {
+                throw new IllegalOperatorException("The default constructor of " + operatorClass.getName()
+                        + " hasn't the same number of parameter that the defined in the DefaultConstructor annotation");
+
+            }
+
+            // Test the order of the parameters
+            // Order: int | double, enum, boolean
+            Class<?>[] parameterTypes = defaultConstructor.getParameterTypes();
+            int numberCount = 0;
+            int enumCount = 0;
+            int booleanCount = 0;
+            for (int i = 0; i < parameterTypes.length; i++) {
+                Class<?> parameterType = parameterTypes[i];
+                if (parameterType.equals(int.class)
+                        || parameterType.equals(Integer.class)
+                        || parameterType.equals(double.class)
+                        || parameterType.equals(Double.class)) {
+
+                    if (enumCount != 0 || booleanCount != 0) {
+                        throw new IllegalOperatorException(
+                                "The order of operator isn't valid. Confirm that the order is (double or int ... " +
+                                        "Enumerator ..., boolean ...) in "
+                                        + operatorClass.getName());
+                    }
+                    numberCount++;
+                } else if (parameterType.isEnum()) {
+                    if (booleanCount != 0) {
+                        throw new IllegalOperatorException(
+                                "The order of operator isn't valid. Confirm that the order is (double or int ... " +
+                                        "Enumerator ..., boolean ...) in "
+                                        + operatorClass.getName());
+                    }
+                    enumCount++;
+                } else if (parameterType.equals(boolean.class) || parameterType.equals(Boolean.class)) {
+                    booleanCount++;
+                } else {
+                    throw new IllegalOperatorException("The type " + parameterType.getName()
+                            + " is not valid type in the constructor " + operatorClass.getName()
+                            + ". Only can be used int(or Integer) or double(Double), Enumerator, boolean (or Boolean)");
+                }
+            }
+
+            if (numberCount != constructorAnnotation.numbers().length) {
+                throw new IllegalOperatorException("The number of " + NumberInput.class.getName()
+                        + " doesn't correspond to the number of int|Integer or double|Double parameter in constructor.");
+            }
+
+            if (enumCount != constructorAnnotation.enums().length) {
+                throw new IllegalOperatorException("The number of " + EnumInput.class.getName()
+                        + " doesn't correspond to the number of enum types parameters in constructor");
+            }
+
+            if (booleanCount != constructorAnnotation.booleans().length) {
+                throw new IllegalOperatorException("The number of " + Boolean.class.getName()
+                        + " doesn't correspond to the number of boolean parameter in constructor");
             }
         }
     }

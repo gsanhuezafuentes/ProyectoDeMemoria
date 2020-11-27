@@ -3,10 +3,13 @@ package controller.util;
 import annotations.BooleanInput;
 import annotations.EnumInput;
 import annotations.NumberInput;
+import annotations.operator.DefaultConstructor;
 import annotations.registrable.*;
 import exception.ApplicationException;
+import exception.IllegalOperatorException;
 import exception.IllegalRegistrableException;
 import model.metaheuristic.experiment.Experiment;
+import model.metaheuristic.operator.Operator;
 import model.metaheuristic.operator.crossover.impl.IntegerSBXCrossover;
 import model.metaheuristic.operator.crossover.impl.IntegerSinglePointCrossover;
 import model.metaheuristic.operator.mutation.impl.IntegerPolynomialMutation;
@@ -24,6 +27,10 @@ import java.io.File;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ReflectionUtilsTest {
+
+    //************************************************************
+    // Test of Registrables.
+    //************************************************************/
 
     @Test
     void testGetNameOfProblem() {
@@ -475,6 +482,144 @@ class ReflectionUtilsTest {
                         @NumberToggleInput(groupID = "Finish Condition", displayName = "Max number of evaluation")})
         public EnumDefaultValueIncorrect(Object selectionOperator, Object crossoverOperator, Object mutationOperator,
                                          File gama, Numbers numbers, boolean booolResult, int minPressure, int populationSize, int numberWithoutImprovement, int maxEvaluations) {
+        }
+    }
+
+
+    //************************************************************
+    // Test of Operators.
+    //************************************************************/
+
+    @ParameterizedTest
+    @ValueSource(classes = {OperatorEmptyConstructor.class})
+    void testValidateOperator_OperatorWithEmptyConstructor_NotException(Class<?> clazz) {
+        assertDoesNotThrow(() -> ReflectionUtils.validateOperator(clazz));
+    }
+
+    @ParameterizedTest
+    @ValueSource(classes = {OperatorWithoutDefaultConstructorAnnotation.class})
+    void testValidateOperator_OperatorWithoutDefaultConstructorAnnotation_IllegalOperatorException(Class<?> clazz) {
+        assertThrows(IllegalOperatorException.class, () -> ReflectionUtils.validateOperator(clazz));
+    }
+
+    @ParameterizedTest
+    @ValueSource(classes = {OperatorParameterInCorrectOrder1.class
+            , OperatorParameterInCorrectOrder2.class
+            , OperatorParameterInCorrectOrder3.class
+    })
+    void testValidateOperator_ParameterInCorrectOrder_NotException(Class<?> clazz) {
+        assertDoesNotThrow(() -> ReflectionUtils.validateOperator(clazz));
+    }
+
+    @ParameterizedTest
+    @ValueSource(classes = {
+            OperatorParameterInWrongOrder.class
+            , OperatorParameterInWrongOrder2.class
+    })
+    void testValidateOperator_ParameterInWrongOrder_IllegalOperatorException(Class<?> clazz) {
+        assertThrows(IllegalOperatorException.class, () -> ReflectionUtils.validateOperator(clazz));
+    }
+
+    @ParameterizedTest
+    @ValueSource(classes = {
+            MissingBooleanParameterInAnnotation.class
+            , MissingBooleanParameterInConstructor.class
+    })
+    void testValidateOperator_MissingValuesInConstructorOrAnnotation_IllegalOperatorException(Class<?> clazz) {
+        assertThrows(IllegalOperatorException.class, () -> ReflectionUtils.validateOperator(clazz));
+    }
+
+    static abstract class TestOperador implements Operator<Object, Object> {
+        /**
+         * Execute the operator on source
+         *
+         * @param o element to operates.
+         * @return Result of operation
+         */
+        @Override
+        public Object execute(Object o) {
+            return null;
+        }
+    }
+
+    static class OperatorEmptyConstructor extends TestOperador {
+        @DefaultConstructor
+        public OperatorEmptyConstructor() {
+        }
+    }
+
+    static class OperatorWithoutDefaultConstructorAnnotation extends TestOperador {
+        public OperatorWithoutDefaultConstructorAnnotation() {
+        }
+    }
+
+    static class OperatorParameterInCorrectOrder1 extends TestOperador {
+        @DefaultConstructor(numbers = {@NumberInput(), @NumberInput()})
+        public OperatorParameterInCorrectOrder1(int number1, int number2) {
+        }
+    }
+
+    static class OperatorParameterInCorrectOrder2 extends TestOperador {
+        enum Type {Zero, ONE, TWO, THREE}
+
+        @DefaultConstructor(numbers = {@NumberInput(), @NumberInput()},
+                enums = {@EnumInput(enumClass = Type.class)}
+        )
+        public OperatorParameterInCorrectOrder2(int number1, int number2, Type type1) {
+        }
+    }
+
+    static class OperatorParameterInCorrectOrder3 extends TestOperador {
+        enum Type {Zero, ONE, TWO, THREE}
+
+        @DefaultConstructor(numbers = {@NumberInput(), @NumberInput()}
+                , enums = {@EnumInput(enumClass = Type.class)}
+                , booleans = {@BooleanInput()}
+        )
+        public OperatorParameterInCorrectOrder3(int number1, int number2, Type type1, boolean isValid) {
+        }
+    }
+
+    static class OperatorParameterInWrongOrder extends TestOperador {
+        enum Type {Zero, ONE, TWO, THREE}
+
+        @DefaultConstructor(numbers = {@NumberInput(), @NumberInput()}
+                , enums = {@EnumInput(enumClass = Type.class)}
+                , booleans = {@BooleanInput()}
+        )
+        public OperatorParameterInWrongOrder(int number1, Type type1, int number2, boolean isValid) {
+        }
+    }
+
+    static class OperatorParameterInWrongOrder2 extends TestOperador {
+        enum Type {Zero, ONE, TWO, THREE}
+
+        @DefaultConstructor(numbers = {@NumberInput(), @NumberInput()}
+                , enums = {@EnumInput(enumClass = Type.class)}
+                , booleans = {@BooleanInput()}
+        )
+        public OperatorParameterInWrongOrder2(int number1, boolean isValid, int number2, Type type1) {
+        }
+    }
+
+    static class MissingBooleanParameterInAnnotation extends TestOperador {
+        enum Type {Zero, ONE, TWO, THREE}
+
+        @DefaultConstructor(numbers = {@NumberInput(), @NumberInput()}
+                , enums = {@EnumInput(enumClass = Type.class)}
+        )
+        public MissingBooleanParameterInAnnotation(int number1, int number2, Type type1, boolean isValid) {
+        }
+    }
+
+    static class MissingBooleanParameterInConstructor extends TestOperador {
+        enum Type {Zero, ONE, TWO, THREE}
+
+        @DefaultConstructor(numbers = {@NumberInput(), @NumberInput()}
+                , enums = {@EnumInput(enumClass = Type.class)}
+                , booleans = {@BooleanInput}
+        )
+        public MissingBooleanParameterInConstructor(int number1, int number2, Type type1) {
         }
     }
 }
