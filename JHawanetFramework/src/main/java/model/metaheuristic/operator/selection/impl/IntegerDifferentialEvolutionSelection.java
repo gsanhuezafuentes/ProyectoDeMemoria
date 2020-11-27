@@ -28,6 +28,9 @@
  */
 package model.metaheuristic.operator.selection.impl;
 
+import annotations.BooleanInput;
+import annotations.NumberInput;
+import annotations.operator.DefaultConstructor;
 import model.metaheuristic.operator.selection.SelectionOperator;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.util.random.BoundedRandomGenerator;
@@ -67,6 +70,9 @@ public class IntegerDifferentialEvolutionSelection
     /**
      * Constructor
      */
+    @DefaultConstructor(numbers = @NumberInput(displayName = "Number Of Solutions To Select", defaultValue = 3),
+        booleans = @BooleanInput(displayName = "Select current solution?", defaultValue = false)
+    )
     public IntegerDifferentialEvolutionSelection(
             int numberOfSolutionsToSelect, boolean selectCurrentSolution) {
         this(

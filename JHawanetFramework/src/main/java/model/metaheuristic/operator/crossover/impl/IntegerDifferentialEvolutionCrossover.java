@@ -29,6 +29,9 @@
 package model.metaheuristic.operator.crossover.impl;
 
 
+import annotations.EnumInput;
+import annotations.NumberInput;
+import annotations.operator.DefaultConstructor;
 import model.metaheuristic.operator.crossover.CrossoverOperator;
 import model.metaheuristic.solution.impl.IntegerSolution;
 import model.metaheuristic.util.random.BoundedRandomGenerator;
@@ -114,6 +117,10 @@ public class IntegerDifferentialEvolutionCrossover implements CrossoverOperator<
      * @param f
      * @param variant
      */
+    @DefaultConstructor(numbers = {@NumberInput(displayName = "cr", defaultValue = DEFAULT_CR),
+            @NumberInput(displayName = "f", defaultValue = DEFAULT_F)}
+            , enums = @EnumInput(displayName = "variant", enumClass = DE_VARIANT.class, defaultValue = "RAND_1_BIN")
+    )
     public IntegerDifferentialEvolutionCrossover(double cr, double f, DE_VARIANT variant) {
         this(
                 cr,
@@ -149,7 +156,6 @@ public class IntegerDifferentialEvolutionCrossover implements CrossoverOperator<
     }
 
     /**
-     *
      * @param variant the type of variant
      * @throws IllegalArgumentException if the variant isn't valid
      */
@@ -286,12 +292,12 @@ public class IntegerDifferentialEvolutionCrossover implements CrossoverOperator<
         int numberOfVariables = parentSolutions.get(0).getNumberOfVariables();
         int jrand = jRandomGenerator.getRandomValue(0, numberOfVariables);
 
-        Double[][] parent = new Double[getNumberOfRequiredParents()][];
+        Integer[][] parent = new Integer[getNumberOfRequiredParents()][];
 
         IntStream.range(0, getNumberOfRequiredParents())
                 .forEach(
                         i -> {
-                            parent[i] = new Double[numberOfVariables];
+                            parent[i] = new Integer[numberOfVariables];
                             parentSolutions.get(i).getVariables().toArray(parent[i]);
                         });
 
@@ -335,7 +341,7 @@ public class IntegerDifferentialEvolutionCrossover implements CrossoverOperator<
                         });
     }
 
-    private double mutate(Double[][] parent, int index) {
+    private double mutate(Integer[][] parent, int index) {
         double value = 0;
         if (mutationType.equals(DE_MUTATION_TYPE.RAND)) {
             value = randMutation(parent, index, numberOfDifferenceVectors);
@@ -349,14 +355,13 @@ public class IntegerDifferentialEvolutionCrossover implements CrossoverOperator<
     }
 
     /**
-     *
      * @param parent
      * @param index
      * @param numberOfDifferenceVectors
      * @return
      * @throws IllegalArgumentException if numberOfDifferenceVectors isn't 1 or 2.
      */
-    private double randMutation(Double[][] parent, int index, int numberOfDifferenceVectors) {
+    private double randMutation(Integer[][] parent, int index, int numberOfDifferenceVectors) {
         if (numberOfDifferenceVectors == 1) {
             return parent[2][index] + f * (parent[0][index] - parent[1][index]);
         } else if (numberOfDifferenceVectors == 2) {
@@ -370,15 +375,14 @@ public class IntegerDifferentialEvolutionCrossover implements CrossoverOperator<
     }
 
     /**
-     *
      * @param parent
      * @param index
      * @param numberOfDifferenceVectors a 1 or 2.
      * @return get the best mutation
-     * @throws NullPointerException if bestSolution of this object is null.
+     * @throws NullPointerException     if bestSolution of this object is null.
      * @throws IllegalArgumentException if the numberOfDifferenceVectors isn't 1 or 2.
      */
-    private double bestMutation(Double[][] parent, int index, int numberOfDifferenceVectors) {
+    private double bestMutation(Integer[][] parent, int index, int numberOfDifferenceVectors) {
         Objects.requireNonNull(bestSolution);
         if (numberOfDifferenceVectors == 1) {
             return bestSolution.getVariable(index) + f * (parent[0][index] - parent[1][index]);
@@ -393,13 +397,12 @@ public class IntegerDifferentialEvolutionCrossover implements CrossoverOperator<
     }
 
     /**
-     *
      * @param parent
      * @param index
      * @return
      * @throws NullPointerException if bestSolution or currentSolution of this object is null when this method is called
      */
-    private double bestRandToBestMutation(Double[][] parent, int index) {
+    private double bestRandToBestMutation(Integer[][] parent, int index) {
         Objects.requireNonNull(bestSolution);
         Objects.requireNonNull(currentSolution);
         return currentSolution.getVariable(index)
@@ -409,6 +412,7 @@ public class IntegerDifferentialEvolutionCrossover implements CrossoverOperator<
 
     /**
      * Get the variant from string
+     *
      * @param variant the variant to search
      * @return the DE_VARIANT type
      * @throws IllegalArgumentException if the string isn't valid.

@@ -1,6 +1,7 @@
 package registrable.singleobjective;
 
 import annotations.*;
+import annotations.registrable.*;
 import epanet.core.EpanetAPI;
 import model.metaheuristic.algorithm.singleobjective.differentialevolution.IntegerDifferentialEvolution;
 import model.metaheuristic.algorithm.singleobjective.differentialevolution.IntegerDifferentialEvolutionBuilder;
@@ -9,9 +10,6 @@ import model.metaheuristic.experiment.ExperimentBuilder;
 import model.metaheuristic.experiment.util.ExperimentAlgorithm;
 import model.metaheuristic.experiment.util.ExperimentProblem;
 import model.metaheuristic.operator.crossover.impl.IntegerDifferentialEvolutionCrossover;
-import model.metaheuristic.operator.mutation.impl.IntegerPolynomialMutation;
-import model.metaheuristic.operator.mutation.impl.IntegerRangeRandomMutation;
-import model.metaheuristic.operator.mutation.impl.IntegerSimpleRandomMutation;
 import model.metaheuristic.operator.selection.impl.IntegerDifferentialEvolutionSelection;
 import model.metaheuristic.problem.impl.PipeOptimizing;
 import model.metaheuristic.solution.impl.IntegerSolution;
